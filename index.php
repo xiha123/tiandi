@@ -1,4 +1,4 @@
-test12312s<?php
+test<?php
 /**
  * CodeIgniter
  *
