@@ -1,4 +1,4 @@
-2312312312<?php
+<?php
 /**
  * CodeIgniter
  *
