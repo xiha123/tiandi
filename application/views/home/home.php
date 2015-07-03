@@ -5,13 +5,14 @@
 		<div class="slider">
 			<div class="left-slider">
 				<ul>
-					<li><i style="display:none"></i><img src="http://10.url.cn/qqcourse_logo_rn/ajNVdqHZLLAwcDOP64mFcXsv8w5xjA2EdQc3nmQjnB40jVPficcDwHuGevRBgB1ibMv85w6yYqKWg/440" /></li>
-					<li><i></i><img src="http://10.url.cn/qqcourse_logo_rn/ajNVdqHZLLDhYZtZ3ZxS9lZ7OZlvj2rJjWIbFEh4QEeSWhUz3mH0qjs409OG63C8cAhTnoE5mzc/440" /></li>
-					<li><i></i><img src="http://10.url.cn/qqcourse_logo_rn/ajNVdqHZLLCGGZIM1E47wcibVBmC7JqmDLkxjZW5B4zfvyBHlezcsfcO34Vryf3qylECNABXp4pA/440" /></li>
+					<li><i style="display:none"></i><img src="http://file05.16sucai.com/2015/0619/6557051ab76ea70cbbf2960c04c5559b.jpg" /></li>
+					<li><i></i><img src="http://file05.16sucai.com/2015/0619/c345c9b05a75ce12c34ffd873a563de5.jpg" /></li>
+					<li><i></i><img src="http://file05.16sucai.com/2015/0619/14d07995bcf1ec7a5d5c0e2d935e40c1.jpg" /></li>
 				</ul>
 			</div>
 			<div class="center-slider">
-				<img src="http://10.url.cn/qqcourse_logo_rn/ajNVdqHZLLAwcDOP64mFcXsv8w5xjA2EdQc3nmQjnB40jVPficcDwHuGevRBgB1ibMv85w6yYqKWg/440" />
+				<img src="http://file05.16sucai.com/2015/0619/6557051ab76ea70cbbf2960c04c5559b.jpg" class="one"/>
+				<img src="" class="lost"/>
 			</div>
 			<div class="right-slider">
 				<div class="right-data" style="display:block">
