@@ -49,12 +49,12 @@ a{text-decoration:none;}
 
 .header {background:#219aa2;}
 
-.wrapper {width:1200px;margin:0 auto;}
+.wrapper { overflow:visible;width:1200px;margin:0 auto;}
 .wrapper.header-nav{position:relative; height:35px;}
 .wrapper .logo{position:absolute;top:0px;left:-150px;background:#219aa2;border-radius:0 0 5px 5px;padding:6px;padding-top:0px;}
 
 
-
+.mian{ float:left;z-index:}
 
 .nav li{position:relative;overflow:hidden;border-right:1px solid #22a6a8;float:left;height:35px;line-height:35px;text-align:center}
 .nav a{display:block;width:200px;color:#fff;}
@@ -137,7 +137,7 @@ a{text-decoration:none;}
 
 
 
-.footer{background:url(../static/image/footer.png) repeat-x bottom;  min-height:300px; }
+.footer{ float:left;background:url(../static/image/footer.png) repeat-x bottom; width:100%;min-height:200px;z-index:1;}
 
 
 
