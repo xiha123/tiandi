@@ -88,16 +88,48 @@ a{text-decoration:none;}
 
 .tab {margin-top:50px}
 .tab li a{color:#219ba1;font-size:28px;font-weight:700}
-.tab li{float:left;width:20%;overflow:hidden;padding-bottom:9px;text-align:center}
-.tab ul{border-bottom:1px solid #219ba1; overflow:hidden}
+.tab li{float:left;width:20%;border-bottom:2px solid #219ba1; overflow:hidden;padding-bottom:9px;text-align:center}
+.tab ul{overflow:hidden}
 .tab .hover{border-bottom:7px solid #219ba1}
+.tab li:hover{border-bottom:7px solid #219ba1}
+.tab .content{width:100%; float:left}
+.tab .content{width:100%; float:left}
 
 
 
+/* 内页样式 */
+.left-content{float:left;width:770px;padding:24px 15px;background:#fff}
+.left-content h1{ float:left;font-weight:400;color:#219ba1;font-size:30px; }
+.left-content a{ float:right;color:#219ba1;font-size:15px;line-height:40px;}
+.left-content .content-title{overflow:hidden;padding-right:10px;margin-bottom:20px;}
+.left-content .content-pic{width:100%;height:400px;background:#e4e4e4}
+.left-content .content-pic img{width:100%;height:400px;}
 
+.left-content .content-nav { height:40px;margin-top:30px;}
+		      .content-nav li{float:left;background:#e4e4e4;padding:5px 41px;margin-right:4px;}
+		      .content-nav .registration{background-color:#219ba1;border:none;color:#fff; border-radius:25px;padding:5px 37px;position:relative;top:-5px; float:right;font-size:20px;font-weight:700}
+		     
+.left-content .content-outline {margin-top:20px;}
+		       .content-outline .left{float:left;width:364px;padding:0px 10px;border-right:2px solid #219ba1}
+		       .content-outline .right{width:364px;padding:10px;position:relative;top:30px;float:left;}
+		       .content-outline .right,.left{margin-top:10px;}
+		       
+		       .content-outline p{color:#999;font-size:14px;margin-top:0px;padding-right:30px;}
+		       
+		       .content-outline .left-outline-content{margin-bottom:24px; padding-bottom:10px;}
+		       .content-outline .outline-title{height:37px;margin-top:-9px;}
+		       
+		       
+		      .content-outline h3{float:right;color:#888}
+		      				   .radius{float:right;position:relative;top:7px;right:-17px;border-radius:10px;background:#219ba1;display:block;height:12px;width:12px}
+						  .right .radius{float:left;right:0;left:-17px;}
+						  .right h3{float:left;}
+						  .right .left-outline-content{margin-top:24px;}
+						  .right p{padding-right:0px;padding-left:30px;}
+				
 
-
-
+.right-content {float:left;margin-bottom:10px;width:330px;height:300px;padding:24px 15px;margin-left:20px;background:#fff;}
+.right-content h2{font-weight:400;color:#219ba1;}
 
 
 

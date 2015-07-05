@@ -55,7 +55,9 @@
 				<li><a href="javascript:void(0)">Cocos2d-x</a></li>
 				<li><a href="javascript:void(0)">Android</a></li>
 			</ul>
-			<div>content for tab</div>
+			<div class="content">
+				content for tab
+			</div>
 			<div>content for tab</div>
 			<div>content for tab</div>
 			<div>content for tab</div>
