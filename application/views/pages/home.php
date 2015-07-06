@@ -1,7 +1,14 @@
+<?php $this->load->view('widgets/header.php'); ?>
+	<link rel="stylesheet" href="/static/css/home.css">
+</head>
+<body>
+
+<?php $this->load->view('widgets/nav.php'); ?>
+
 <div class="main">
 	<div class="wrapper">
-	
-	
+
+
 		<div class="slider">
 			<div class="left-slider">
 				<ul>
@@ -23,7 +30,7 @@
 						课表1
 					</div>
 				</div>
-				
+
 				<div class="right-data">
 					<div class="slider-content">
 						课程2
@@ -32,7 +39,7 @@
 						课表2
 					</div>
 				</div>
-				
+
 				<div class="right-data">
 					<div class="slider-content">
 						课程3
@@ -41,12 +48,12 @@
 						课表3
 					</div>
 				</div>
-				
-				
+
+
 			</div>
 		</div>
-		
-		
+
+
 		<div class="tab">
 			<ul>
 				<li class="hover"><a href="javascript:void(0)">Unity-3D</a></li>
@@ -65,3 +72,9 @@
 		</div>
 	</div>
 </div>
+
+<?php $this->load->view('widgets/footer.php'); ?>
+<script src="/static/js/home.js"></script>
+
+</body>
+</html>

@@ -1,9 +1,9 @@
-<?php $this->load->view('widget/header.php'); ?>
-	<link rel="stylesheet" href="/static/css/home.css">
+<?php $this->load->view('widgets/header.php'); ?>
+	<link rel="stylesheet" href="/static/css/course.css">
 </head>
 <body>
 
-<?php $this->load->view('widget/nav.php'); ?>
+<?php $this->load->view('widgets/nav.php'); ?>
 
 <div class="main">
 	<div class="wrapper">
@@ -84,8 +84,8 @@
 	</div>
 </div>
 
-<?php $this->load->view('widget/footer.php'); ?>
-<script src="/static/js/tiandi.min.js?var=201507031350"></script>
+<?php $this->load->view('widgets/footer.php'); ?>
+<script src="/static/js/course.js"></script>
 
 </body>
 </html>
