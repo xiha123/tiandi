@@ -8,7 +8,6 @@
 <div class="main">
 	<div class="wrapper">
 
-
 		<div class="slider">
 			<div class="left-slider">
 				<ul>
@@ -49,10 +48,8 @@
 					</div>
 				</div>
 
-
 			</div>
 		</div>
-
 
 		<div class="tab">
 			<ul>
