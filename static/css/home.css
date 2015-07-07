@@ -6,6 +6,7 @@
 	position:relative;
 	margin-bottom:5px;
 	font-size:0;
+	cursor:pointer;
 }
 .slider-trigger li:after {
 	position:absolute;
@@ -27,7 +28,7 @@
 }
 .slider-content {
 	position:relative;
-	height:310px;
+	height:370px;
 	width:795px;
 	margin-left:5px;
 }
@@ -43,18 +44,40 @@
 .slider-content .active {
 	opacity:1;
 }
+.slider-content img {
+	float:left;
+}
 .slider-summary {
+	float:left;
 	margin-left:5px;
-	width:170px;
-	height:310px;
+	width:175px;
+	height:100%;
 }
 
 /* tab */
-.tab {margin-top:50px}
-.tab li a{color:#219ba1;font-size:28px;font-weight:700}
-.tab li{float:left;width:20%;border-bottom:2px solid #219ba1; overflow:hidden;padding-bottom:9px;text-align:center}
-.tab ul{overflow:hidden}
-.tab .hover{border-bottom:7px solid #219ba1}
-.tab li:hover{border-bottom:7px solid #219ba1}
-.tab .content{width:100%; float:left}
-.tab .content{width:100%; float:left}
+.tab {
+	margin-top:50px;
+}
+.tab-trigger li {
+	float:left;
+	width:20%;
+	border-bottom:1px solid #219ba1;
+}
+.tab-trigger a {
+	display:block;
+	text-align:center;
+	padding:10px 0;
+	color:#219ba1;
+	font-size:22px;
+	font-weight:bolder;
+}
+.tab-trigger a:hover,
+.tab-trigger .active {
+	border-bottom:4px solid #219ba1;
+}
+.tab-content li {
+	opacity:0;
+}
+.tab-content .active {
+	opacity:1;
+}
