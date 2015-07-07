@@ -1,59 +1,23 @@
-$(document).ready(function(e) {
+$(document).ready(function() {
+	var $sliderTriggers = $('.js-slider-trigger').children('li'),
+		$sliderContents = $('.js-slider-content').children('li'),
+		sliderCurIndex = 0;
 
-	var slider = $(".slider") , list_index = 1 , slider_time_out , temp_index = 0;
-	var slider_left = slider.find(".left-slider img") , clear = false;
-	slider_setInterval();
+	$('.js-slider-trigger').delegate('li', 'click', function (e) {
+		var index = $sliderTriggers.index(e.currentTarget);
 
-	slider.find(".left-slider li").hover(function(){
-		slider.find(".left-slider li").eq(temp_index).find("i").show()
-		$(this).find("i").hide();
-		temp_index = slider.find(".left-slider li").index(this);
-		slider.find(".right-slider .right-data").hide()
-		slider.find(".right-slider .right-data").eq(temp_index).show()
-		slider.find(".center-slider img").attr("src" , slider_left.eq(temp_index).attr("src") );
-		list_index = temp_index + 1;
-		if(list_index >= slider_left.length){
-			list_index = 0;
-		}
+		index !== sliderCurIndex && refreshSlider(index);
 	});
 
-	slider.hover(function(){
-		type = false;
-		clear = false;
-		setTimeout(function(){
-			if(type == false){
-				clear = true;
-				clearInterval(slider_time_out);
-			}
-		},400);
-	},function(){
-		type = true;
-		if(clear){
-			slider_setInterval();
-		}
+	setInterval(refreshSlider, 5000);
 
-	})
-	function slider_setInterval(){
-		slider_time_out = setInterval(function(){
-			slider.find(".left-slider li").eq(temp_index).find("i").fadeIn(400);
-			slider.find(".left-slider li").eq(list_index).find("i").fadeOut(400);
+	function refreshSlider(newIndex) {
+		newIndex = newIndex || (sliderCurIndex + 1) % 3;
 
-			slider.find(".right-slider .right-data").hide()
-			slider.find(".right-slider .right-data").eq(list_index).show()
-
-			slider.find(".center-slider .one").hide()
-			slider.find(".center-slider .lost").show()
-			slider.find(".center-slider .one").fadeIn(800);
-			slider.find(".center-slider .one").attr("src" , slider_left.eq(list_index).attr("src") );
-			slider.find(".center-slider .lost").attr("src" , slider_left.eq(temp_index).attr("src") );
-
-
-			temp_index = list_index;
-			list_index ++;
-			if(list_index >= slider_left.length){
-				list_index = 0;
-			}
-		},3000);
+		$sliderTriggers.eq(sliderCurIndex).removeClass('active');
+		$sliderTriggers.eq(newIndex).addClass('active');
+		$sliderContents.eq(sliderCurIndex).removeClass('active');
+		$sliderContents.eq(newIndex).addClass('active');
+		sliderCurIndex = newIndex;
 	}
-
-});
+});
