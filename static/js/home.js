@@ -2,6 +2,8 @@ $(document).ready(function() {
 	var $sliderTriggers = $('.js-slider-trigger').children('li'),
 		$sliderContents = $('.js-slider-content').children('li'),
 		sliderCurIndex = 0,
+		sliderCount = $sliderContents.length,
+		sliderInterval = 5000,
 		sliderTimer;
 
 	setSliderTimer();
@@ -14,11 +16,11 @@ $(document).ready(function() {
 
 	function setSliderTimer() {
 		if (sliderTimer) clearInterval(sliderTimer);
-		sliderTimer = setInterval(refreshSlider, 5000);
+		sliderTimer = setInterval(refreshSlider, sliderInterval);
 	}
 
 	function refreshSlider(newIndex) {
-		newIndex = newIndex === undefined ? (sliderCurIndex + 1) % 3 : newIndex;
+		newIndex = newIndex === undefined ? (sliderCurIndex + 1) % sliderCount : newIndex;
 
 		$sliderTriggers.eq(sliderCurIndex).removeClass('active');
 		$sliderTriggers.eq(newIndex).addClass('active');
