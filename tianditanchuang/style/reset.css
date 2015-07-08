@@ -1,0 +1,54 @@
+/*CSS Document 清零*/
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{
+    margin:0;
+    padding:0;
+}
+body{
+    font-family: "宋体","STSong";
+}
+img{
+    border:none;
+}
+
+li{
+    list-style:none;
+}
+i{
+    font-style: inherit;
+}
+
+input,select,textarea{
+    outline:none;
+}
+
+textarea{
+    resize:none;
+}
+a{
+    text-decoration:none;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.line_2{
+    width:910px;
+    height:6px;
+    border-top:solid 5px #83847e;
+    border-bottom: solid 1px  #83847e;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.font-weight{
+    font-weight:bold;
+}
+/*清浮动*/
+/*.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }*/
+/*.clearfix { display: inline-block; }*/
+/* IE 6/7 */
+/*.clearfix { zoom: 1; }*/
+.clear{
+    clear:both;
+}
