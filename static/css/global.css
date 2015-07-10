@@ -60,6 +60,7 @@ textarea {
     position:absolute;
     top:0px;
     left:-140px;
+    z-index:999;
     background:#219ba1;
     border-radius:0 0 5px 5px;
     padding:8px;
@@ -79,7 +80,7 @@ textarea {
 }
 .nav .active,
 .nav a:hover {
-    background:#1b7b80
+   font-weight:700
 }
 
 /* user widget */
