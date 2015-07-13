@@ -19,7 +19,7 @@ $(document).ready(function(){
 			if(index + 1 >= $Carousel_image.length){
 				index = -1;	
 			}
-		} , 2);
+		} , 2000);
 	}
 	
 	$Carousel_nav.hover(function(){
