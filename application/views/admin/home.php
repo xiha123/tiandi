@@ -1,56 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>天地君道后台管理系统</title>
-<link rel="stylesheet" href="../static/css/global.css" type="text/css" />
-<link rel="stylesheet" href="../static/css/admin_home.css" type="text/css" />
-<link rel="stylesheet" href="../static/css/font-awesome.min.css" type="text/css" />
+<?php $this->load->view('widgets/admin/header.php'); ?>
+<link rel="stylesheet" href="../static/css/admin/admin_home.css" type="text/css" />
 </head>
 
 <body>
-	<div class="left-nav">
-		<div class="user-data">
-			<img src="../static/image/user_pic.jpg" />
-			<div class="user-nick">
-				<h2>administrator</h2>
-				<a href="javascript:void(0)"><i class="icon-edit"></i>编辑个人资料</a>
-			</div>
-		</div>
-		
-		<ul>
-			<li class="hover">
-				<div class="content">
-					<i class="icon-home"></i><font>后台首页 / home</font>
-				</div>
-			</li>
-			<li>
-				<div class="content">
-					<i class="icon-building"></i><font>首页轮播设置</font>
-				</div>
-			</li>
-			<li>
-				<div class="content">
-					<i class="icon-file-alt"></i><font>课表栏相关设置</font>
-				</div>
-			</li>
-			<li>
-				<div class="content">
-					<i class="icon-building"></i><font>首页轮播设置</font>
-				</div>
-			</li>
-			<li>
-				<div class="content">
-					<i class="icon-building"></i><font>首页轮播设置</font>
-				</div>
-			</li>
-		</ul>
-	</div>
-	
+<?php $this->load->view('widgets/admin_left.php'); ?>
 	<div class="main">
-		231
-	
-	
+		<div class="main-content">
+			<div class="main-title">
+				<ul class="nav nav-pills">
+					<li role="presentation" class="active"><a href="#"><i class="icon-home"></i>首页</a></li>
+					<li role="presentation"><a href="#">首页轮播设置</a></li>
+					<li role="presentation"><a href="#">课程表设置</a></li>
+				</ul>
+			</div>
+			
+			<h1>欢迎来到后台管理系统，这个页面将会在日后完善</h1>
+
+
+		</div>
 	</div>
 	
 </body>

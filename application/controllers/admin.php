@@ -22,12 +22,16 @@ class admin extends CI_Controller {
 	
 	public function home(){
 		$this -> load -> model('admin_interface' , "admin");
-		
 		$data = array(
 			'blog_title' => 'My Blog Title',
 			'blog_heading' => 'My Blog Heading'
 		);
 		$this->load->library('parser');
 		$this->parser->parse('admin/home.php', $data);
+	}
+	
+	
+	public function slider(){
+		$this->load->view('admin/slider.php');
 	}
 }
