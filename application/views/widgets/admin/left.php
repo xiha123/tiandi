@@ -3,10 +3,9 @@
 		<img src="../static/image/user_pic.jpg" />
 		<div class="user-nick">
 			<h2>administrator</h2>
-			<a href="javascript:void(0)"><i class="icon-edit"></i>编辑个人资料</a>
+			<a href="javascript:void(0)"><i class="icon-edit"></i></a>
 		</div>
 	</div>
-	
 	<ul>
 		<li class="hover">
 			<a href="home">

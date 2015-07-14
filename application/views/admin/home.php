@@ -1,9 +1,9 @@
 <?php $this->load->view('widgets/admin/header.php'); ?>
-<link rel="stylesheet" href="../static/css/admin/admin_home.css" type="text/css" />
+<link rel="stylesheet" href="../static/css/admin/home.css" type="text/css" />
 </head>
 
 <body>
-<?php $this->load->view('widgets/admin_left.php'); ?>
+<?php $this->load->view('widgets/admin/left.php'); ?>
 	<div class="main">
 		<div class="main-content">
 			<div class="main-title">
@@ -14,7 +14,9 @@
 				</ul>
 			</div>
 			
-			<h1>欢迎来到后台管理系统，这个页面将会在日后完善</h1>
+			<div class="main-data">
+				<h1>欢迎来到后台管理系统，这个页面将会在日后完善</h1>
+			</div>
 
 
 		</div>

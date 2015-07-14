@@ -1,0 +1,98 @@
+/* css reset from yui */
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
+
+/* global tags */
+html {
+    font-family:"Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+    font-size:14px;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+	color:#333;
+}
+
+.table {width:100%;background:#fff}
+.table>th,td{height:40px;line-height:40px !important;padding:10px 16px !important;color:#666}
+.table th{height:20px;background:#eee;line-height:20px !important;color:#888}
+.table tr:hover{background:#f7f7f7}
+.table i{line-height:40px;margin-right:13px;}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{border:1px solid #eee}
+
+
+
+/* 弹窗样式 */
+.window {display:none;width:calc(100% - 200px);height:100%;position:fixed;top:0px;left:200px;z-index:9;background:rgba(0,0,0,0.5)}
+.window .confirm{transition:top 0.4s;width:600px;height:auto;border:1px solid #777;background:#fff;position:absolute;top:0px;left:0;right:0;margin:auto}
+	       .confirm .confirm-title{height:40px;padding:10px 20px;}
+	       		     .confirm-title h2{color:#333;float:left;line-height:40px;font-size:16px;}
+	       		     .confirm-title .close{float:right;line-height:40px;color:#999;margin-right:5px;}
+	       .confirm .confirm-content{margin-top:10px;padding:15px;color:#999;}
+	      		     .confirm-content i{margin:0px 15px;margin-right:33px;position:relative;top:2px;float:left;font-size:56px;}
+	      		     .confirm-content p{line-height:30px;}
+			     .confirm-content .icon-remove{color:#ff5757}
+	       .confirm .confirm-bottom{margin-top:15px;width:100%;height:50px; text-align:center;}
+	       		     .confirm-bottom button{outline:none;width:140px;height:30px;line-height:0px;margin-right:15px;}
+			     
+			     
+			     
+/* 左侧导航样式 */
+.left-nav {position:fixed;top:0px;float:left;width:200px;height:100%;color:#fff;background:#32363E}
+.left-nav .user-data{width:200px;height:45px;border-bottom:1px solid #29b7be;padding:8px;background:#219ba1}
+	       .user-data img{margin-left:5px;margin-top:-1px;float:left;width:30px;height:30px; border-radius:100px}
+	       .user-data .user-nick{margin-top:5px;float:left}
+	       .user-data h2{ float:left;margin-left:19px;color:#c6fcff;}
+	       .user-data a{float:left;color:#c6fcff;font-size:12px;margin-left:15px;margin-top:3px;}
+
+.left-nav li{margin-bottom:1px;float:left;width:100%;color:#8B97A5;font-size:18px;height:65px;line-height:65px;border-bottom:1px solid #2d2d2d;}
+.left-nav li .content{padding:0px 10px;}
+	          .content i{margin-right:15px;margin-left:15px;position:relative;top:2px;}
+	          .content font{font-size:14px;}
+.left-nav li a{color:#8B97A5}
+.left-nav li a:hover{color:#CCC; text-decoration:none}
+
+
+/* 核心页面 */
+.main {position:relative;float:left;margin-left:200px;width:calc(100% - 200px);height:100%;}
+.main .main-data{float:left;padding:14px;width:100%;}
+
+.main .main-title{background:#fff;width:100%;float:left;border-bottom:1px solid #eaeaea;color:#888;height:46px;padding:5px;}
+	  .main-title i{color:#fff;margin-right:10px;}
+
+.remove-slider:hover{cursor:pointer;color:#219ba1}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

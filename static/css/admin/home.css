@@ -1,0 +1,35 @@
+/* CSS Document */
+body{background:#f7f7f7;color:#333; font-family:'微软雅黑'}
+html,body{height:100%}
+
+
+
+.left-nav li:hover {background:#333;color:#CCC; cursor:pointer}
+.left-nav .hover{background:#333;color:#CCC;}
+.left-nav .hover a{color:#CCC;}
+.left-nav .logo{position:absolute;bottom:30px;left:0;right:0;margin:0 auto}
+
+
+
+.nav-pills {
+	
+	font-size:14px;
+	
+  float: left;
+}
+.nav-pills a{color:#bbb;margin-right:10px;padding:6px 14px !important;}
+.nav-pills a i{color:#bbb}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
