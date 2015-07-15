@@ -1,0 +1,61 @@
+/*body*/
+body{
+    background-color: #1d9ba1;
+}
+
+.box{
+    width: 620px;
+    height: 240px;
+    position: absolute;
+    top: 50%;
+    margin-top: -120px;
+    left: 50%;
+    margin-left: -310px;
+}
+/*logo*/
+img{
+    margin:50px;
+}
+/*表单*/
+form input,ul {
+    display: block;;
+}
+
+form input{
+    margin: 15px;
+    padding: 4px;
+    border-radius: 5px;
+    width: 220px;
+    line-height: 27px;
+    font-size: 16px;
+    text-align: 9px;
+    border: 1px solid #1d9ba1;
+}
+/*登陆键*/
+.landing{
+    position: relative;
+    background-color: #19c9d1;
+    border: 1px solid #1d9ba1;
+    color: #ffffff;
+}
+
+ul li{
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 25px;
+
+}
+ul i{
+    color:#19c9d1;
+    padding-right: 10px;
+}
+/*无法登陆*/
+.why{
+    position: absolute;
+    top: 250px;
+    left: 480px;
+    color: #fff;
+    font-size: 13px;
+}
+
+
