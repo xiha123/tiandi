@@ -1,7 +1,7 @@
 /*body*/
 body{   background-color: #1d9ba1;}
 body,input{
- 
+
     font-family:"Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
     font-size:14px;
     -webkit-font-smoothing:antialiased;
@@ -17,7 +17,9 @@ body,input{
     margin:auto;
 }
 /*logo*/
-img{
+.logo {
+    box-sizing:content-box;
+    float:left;
     margin:50px;
     border-right:1px solid #1c9399;
     padding-right:40px;
@@ -28,22 +30,23 @@ form input,ul {
 }
 
 form input{
-    margin: 10px;
+    margin: 10px 0;
     padding: 4px 8px;
     border-radius: 4px;
-    width: 240px;
-    line-height: 27px;
-    font-size: 14px;
-    text-align: 9px;
+    width: 260px;
+    line-height: 28px;
     border: 1px solid #1d9ba1;
 }
-/*登陆键*/
-.landing{
+/*登录键*/
+.login-btn{
     position: relative;
     background-color: #19c9d1;
     border: 1px solid #1d9ba1;
     color: #ffffff;
     width: 260px;
+}
+.login-btn:hover {
+    background:#36DFE7;
 }
 
 ul li{
