@@ -20,6 +20,14 @@ html {
 .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{border:1px solid #eee}
 
 
+/* 通用分页 */
+.page{width:100%;background:#fff;height:50px;line-height:50px;border:1px solid #eee;float:left}
+.page font{margin-left:15px;color:#999;float:left}
+.page .right{float:right;width:250px; overflow:hidden}
+	  .right input{margin-left:5px;margin-top:11px;height:28px;padding:2px;line-height:28px;border:2px solid #219ba1; float:left}
+	  .right input[type="submit"]{padding:0px 5px;line-height:0px;background:#219ba1;color:#fff;float:left}
+	  .right input[type="text"]{width:80px;padding:0px 10px;outline:none; text-align:center}
+
 
 /* 弹窗样式 */
 .window {display:none;width:calc(100% - 200px);height:100%;position:fixed;top:0px;left:200px;z-index:9;background:rgba(0,0,0,0.5)}
