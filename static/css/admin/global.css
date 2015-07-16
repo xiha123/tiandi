@@ -78,7 +78,7 @@ html,body{height:100%}
 /* 表单样式 */
 .table-form{width:100%;}
 .table-form td{color:#666;position:relative;height:30px;line-height:30px !important;padding:4px 8px !important}
-.table-form input[type="text"]{padding:3px 10px;color:#ccc;width:442px;outline:none;border:1px solid #eaeaea}
+.table-form input[type="text"]{padding:3px 10px;color:#666;width:442px;outline:none;border:1px solid #eaeaea}
 .table-form input[type="file"]{opacity:0;position:absolute;top:14px;left:8px;width:calc(100% - 16px);height:calc(100% - 17px);cursor:pointer; outline:none;}
 .table-form img{max-height:200px;margin-top:10px;}
 .table-form .updata:hover font{display:block;}

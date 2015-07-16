@@ -29,7 +29,7 @@
 						<th width="8%">状态</th>
 						<th width="8%">操作</th>
 					</tr>
-					<tr><td>css3 calc():css简单的数学运算-加减乘除 | HTML老虎</td><td>点击浏览</td><td>2015年7月14日15:19:22</td><td>测试性质的添加测试</td><td>正常</td><td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider" data-id="0"></i></td></tr>
+					<tr  data-id="0" data-img=""  data-color=""><td>css3 calc():css简单的数学运算-加减乘除 | HTML老虎</td><td>点击浏览</td><td>2015年7月14日15:19:22</td><td>测试性质的添加测试</td><td>正常</td><td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider"></i></td></tr>
 					<tr><td>css3 calc():css简单的数学运算-加减乘除 | HTML老虎</td><td>点击浏览</td><td>2015年7月14日15:19:22</td><td>测试性质的添加测试</td><td>正常</td><td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider" data-id="0"></i></td></tr>
 					<tr><td>css3 calc():CSS简单的数学运| HTML老虎</td><td>点击浏览</td><td>2015年7月14日15:19:22</td><td>测试性质的添加测试</td><td>正常</td><td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider" data-id="0"></i></td></tr>
 				</table>

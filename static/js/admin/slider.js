@@ -13,9 +13,21 @@ $(document).ready(function(){
 	});
 	
 	$(".edit-slider").click(function(){
+		$parents = $(this).parents().parents().eq(0);
+		$parents_baby = $parents.find("td");
+
 		input({
 			"title" : "编辑轮播焦点图",
 			"icon" : "icon-trash",
+			"content" : 
+			'<table class=table-form>'+
+			'<input type="hidden" value="' + $parents.data("id")+ '" name="id">'+
+			'<tr><td>轮播标题：<input type="text" value="' + $parents_baby.eq(0).text()+ '">'+
+			'<tr><td>轮播地址：<input type="text" value="' + $parents.data("link")+ '">'+
+			'<tr><td>轮播描述：<input type="text" value="' + $parents_baby.eq(3).text()+ '">'+
+			'<tr><td>轮播背景：<input type="text" value="' + $parents.data("color")+ '" maxlength=7 class=slider-color><div class=color></div>'+
+			'<tr><td class=updata><font>点击更换图片</font><input type=file><img src="' + $parents.data("img")+ '" width="100%" id=preview>'+
+			'<tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400 ， 该图片尺寸：200 * 200</span ></table>',
 			"success" : function(){
 				alert("");	
 			}
@@ -26,6 +38,7 @@ $(document).ready(function(){
 		input({
 			"title" : "添加轮播焦点图",
 			"icon" : "icon-trash",
+			"content" : '<table class=table-form><tr><td>轮播标题：<input type=text placeholder="请输入轮播标题"><tr><td>轮播地址：<input type=text placeholder="请输入轮播地址"><tr><td>轮播描述：<input type=text placeholder="请输入轮播描述"><tr><td>轮播背景：<input type=text placeholder="在此填写轮播的背景颜色" maxlength=7 class=slider-color><div class=color></div><tr><td class=updata><font>点击更换图片</font><input type=file><img src=../static/image/slide4.jpg width="100%" id=preview><tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400 ， 该图片尺寸：200 * 200</span ></table>',
 			"success" : function(){
 				alert("");	
 			}
@@ -35,30 +48,6 @@ $(document).ready(function(){
 	
 	
 	
-	var sourceInfo;
-	var reader = new FileReader();
-	$previewImg = $('#preview'),
-	reader.onload = function (e) {
-		$previewImg.attr('src', e.target.result);
-		$temp.attr('src', e.target.result);
-	}
-	
-	$(".slider-color").keypress(function(){
-		setTimeout(function(){
-			$(".color").css({"background-color" : $(".slider-color").val()});
-		},200);
-	})
-	
-	 $('input[type="file"]').bind('change', function (e) {
-		var file = e.target.files[0];
-		reader.readAsDataURL(file);
-		$temp = $('.temp-image'),
-		sourceInfo = {
-			height: $temp.height(),
-			width: $temp.width()
-		};
-		$(".table-form span").text("建议图片尺寸：1200 * 400 ， 该图片尺寸：" + sourceInfo.width + " * " + sourceInfo.height);
-	});
 	
 	
 	
