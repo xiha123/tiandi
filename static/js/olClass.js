@@ -17,7 +17,7 @@ $(document).ready(function() {
 		});
 
 		function setSliderTimer() {
-			if (sliderTimer) clearInterval(sliderTimer);
+			sliderTimer && clearInterval(sliderTimer);
 			sliderTimer = setInterval(refreshSlider, sliderInterval);
 		}
 
