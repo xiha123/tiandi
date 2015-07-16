@@ -1,6 +1,3 @@
-<div class="footer">
-</div>
-
 <?php
 switch($this->agent->browser()) {
     case 'Opera':

@@ -8,8 +8,10 @@ html {
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
 	color:#333;
-
+    background:url(../image/footer.png) repeat-x bottom;
 }
+html,
+body { min-height:100%; }
 a {
 	text-decoration:none;
 }
@@ -120,10 +122,4 @@ textarea {
 }
 .user-menu a:hover {
     background:#f0f0f0;
-}
-
-/* footer widget */
-.footer {
-    background:url(../image/footer.png) repeat-x bottom;
-    height:200px;
 }
