@@ -11,22 +11,22 @@
                     ),
                     array(
                         'name' => '实时答疑',
-                        'link' => 'javascript:;',
+                        'link' => '#',
                         'active' => false
                     ),
                     array(
                         'name' => '学习印记',
-                        'link' => 'javascript:;',
+                        'link' => '#',
                         'active' => false
                     ),
                     array(
                         'name' => '神码来了',
-                        'link' => 'javascript:;',
+                        'link' => '#',
                         'active' => false
                     ),
                     array(
                         'name' => '关于我们',
-                        'link' => 'javascript:;',
+                        'link' => '#',
                         'active' => false
                     )
                 );

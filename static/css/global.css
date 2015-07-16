@@ -3,6 +3,7 @@ html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre
 
 /* global tags */
 html {
+    min-height:100%;
     font-family:"Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
     font-size:14px;
     -webkit-font-smoothing:antialiased;
@@ -10,8 +11,6 @@ html {
 	color:#333;
     background:url(../image/footer.png) repeat-x bottom;
 }
-html,
-body { min-height:100%; }
 a {
 	text-decoration:none;
 }
