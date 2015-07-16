@@ -3,6 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>天地君道后台管理系统</title>
-<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="../static/lib/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="../static/css/admin/global.css" type="text/css" />
-<link rel="stylesheet" href="../static/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="../static/lib/fa/css/font-awesome.min.css" type="text/css" />

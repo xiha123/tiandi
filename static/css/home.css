@@ -10,3 +10,17 @@
 		.Carousel-nav li{float:left;width:9px;height:9px;margin-right:10px; cursor:pointer;background:#219ba1;border-radius:5px;}
 		.Carousel-nav li:hover{background:#eee;}
 		.Carousel-nav .active {background:#eee;}
+		
+.main h2{margin-top:130px;font-size:20px;color:#1d9ba1}
+
+.classList {border-top:1px solid #1d9ba1;margin-top:10px;padding-top:50px;overflow:hidden;width:100%;}
+.classList li{float:left;width:20%; text-align:center;}
+.classList li img{width:120px;}
+.classList li p{margin-top:20px;font-size:20px;color:#1d9ba1}
+
+
+
+
+
+
+

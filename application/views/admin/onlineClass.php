@@ -9,7 +9,7 @@
 			<?php $this->load->view('widgets/admin/window.php'); ?>
 			<div class="main-title">
 				<ul class="nav nav-pills">
-					<li role="presentation"><a href="onlineClass"><i class="icon-building"></i>在线课堂轮播设置</a></li>
+					<li role="presentation"  class="active"><a href="onlineClass"><i class="icon-building"></i>在线课堂轮播设置</a></li>
 					<li role="presentation"><a href="onlineClassSlider"><i class="icon-building"></i>课程表设置</a></li>
 					<li role="presentation"><a href="onlineClassSlider"><i class="icon-building"></i>新手引导栏设置</a></li>
 					<li role="presentation"><a href="onlineClassSlider"><i class="icon-building"></i>课程方向引导栏设置</a></li>
