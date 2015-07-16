@@ -1,16 +1,12 @@
 .header-image{line-height:60px;width:100%;height:60px; background:url(../image/header.png);position:absolute;z-index:10;top:35px;left:0px;}
-
-
 .header-image i{width:2px;height:16px;z-index:-1;display:block;position:absolute;left:96px;top:-5px;background:#22a6a8;}
 .header-image li{position:relative;float:left;width:200px; text-align:center;margin-top:5px;}
 
 .Carousel {width:100%;height:400px;background:#eee;position:relative;}
 .Carousel .Carousel-image li{transition:opacity 0.4s ease-in-out;width:100%;height:400px; position:absolute;top:0px;left:0px;}
-.Carousel .Carousel-hover {z-index:9}
+.Carousel-image .active {z-index:9}
 
 .Carousel .Carousel-nav {width:95px;margin:0 auto;left:0px;right:0px; text-align:center;height:8px;position:absolute;bottom:15px;z-index:10;}
 		.Carousel-nav li{float:left;width:9px;height:9px;margin-right:10px; cursor:pointer;background:#219ba1;border-radius:5px;}
 		.Carousel-nav li:hover{background:#eee;}
-		.Carousel-nav .hover{background:#eee;}
-
-
+		.Carousel-nav .active {background:#eee;}

@@ -7,13 +7,13 @@
 
 <div class="main">
 	<div class="wrapper">
-		<div class="slider cf">
+		<div class="slider cf" data-widget="slider">
 			<ul class="slider-trigger fl js-slider-trigger">
 				<li class="active"><img src="./static/image/slide1.jpg" height="120" width="200"></li>
 				<li><img src="./static/image/slide2.jpg" height="120" width="200"></li>
 				<li><img src="./static/image/slide3.jpg" height="120" width="200"></li>
 			</ul>
-			<ul class="slider-content fl js-slider-content">
+			<ul class="slider-sheet fl js-slider-sheet">
 				<li class="active">
 					<img src="./static/image/slide1.jpg" height="370" width="615">
 					<div class="slider-summary">课程1</div>

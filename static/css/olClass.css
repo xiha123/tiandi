@@ -26,13 +26,13 @@
 .slider-trigger li:last-child {
 	margin-bottom:0;
 }
-.slider-content {
+.slider-sheet {
 	position:relative;
 	height:370px;
 	width:795px;
 	margin-left:5px;
 }
-.slider-content li {
+.slider-sheet li {
 	position:absolute;
 	top:0;
 	left:0;
@@ -41,10 +41,10 @@
 	opacity:0;
 	transition:opacity 0.4s ease-in-out;
 }
-.slider-content .active {
+.slider-sheet .active {
 	opacity:1;
 }
-.slider-content img {
+.slider-sheet img {
 	float:left;
 }
 .slider-summary {

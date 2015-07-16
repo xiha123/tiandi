@@ -17,21 +17,21 @@
 			</ul>
 		</div>
 	</div>
-	<div class="Carousel">
-		<ul class="Carousel-image">
+	<div class="Carousel" data-widget="slider" data-config='{"interval": 2000}'>
+		<ul class="Carousel-nav js-slider-trigger">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<ul class="Carousel-image js-slider-sheet">
 			<!-- li内的颜色为模拟图片展现-->
-			<li style="background:#cc0000" class="Carousel-hover"></li>
+			<li style="background:#cc0000" class="active"></li>
 			<li style="background:#FCC0FD"></li>
 			<li style="background:#000"></li>
 			<li style="background:#0036ff"></li>
 			<li style="background:#F0F"></li>
-		</ul>
-		<ul class="Carousel-nav">
-			<li class="hover"></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
 		</ul>
 	</div>
 	<div class="wrapper">
