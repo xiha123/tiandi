@@ -7,35 +7,38 @@
 		</div>
 	</div>
 	<ul>
-		<li class="hover">
-			<a href="home">
-			<div class="content">
-				<i class="icon-home"></i><font>后台首页 / home</font>
-			</div>
-			</a>
-		</li>
-		<li>
-			<a href="slider">
-			<div class="content">
-				<i class="icon-building"></i><font>首页轮播设置</font>
-			</div>
-			</a>
-		</li>
-		<li>
-			<div class="content">
-				<i class="icon-file-alt"></i><font>课表栏相关设置</font>
-			</div>
-		</li>
-		<li>
-			<div class="content">
-				<i class="icon-building"></i><font>首页轮播设置</font>
-			</div>
-		</li>
-		<li>
-			<div class="content">
-				<i class="icon-building"></i><font>首页轮播设置</font>
-			</div>
-		</li>
+		<?php
+			$navList = array(
+				array(
+					"title" => "后台首页 / home",
+					"link" => "./home",
+					"icon" => "icon-home",
+					"active" => false
+				),
+				array(
+					"title" => "首页轮播设置",
+					"link" => "./slider",
+					"icon" => "icon-building",
+					"active" => false
+				),
+				array(
+					"title" => "在线课堂设置",
+					"link" => "./onlineClass",
+					"icon" => "icon-shopping-cart",
+					"active" => false
+				),
+			);
+			if (isset($activeNav)) $navList[$activeNav]['active'] = true;
+			for($index = 0;$index < count($navList);$index ++){
+				$active = $navList[$index]["active"] == true ? ' class="hover"' : "";
+				echo '<li' . $active . '><a href="' . $navList[$index]["link"] . '"><div class="content"><i class="' . $navList[$index]["icon"] . '"></i><font>' . $navList[$index]["title"] . '</font></div></a></li>';
+			}
+		
+		?>
+	
+	
+		
+	
 	</ul>
 	
 	<img src="../static/image/admin_logo.png"  class="logo"/>

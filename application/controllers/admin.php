@@ -34,4 +34,17 @@ class admin extends CI_Controller {
 	public function slider(){
 		$this->load->view('admin/slider.php');
 	}
+	
+	public function onlineClassSlider(){
+		$this->load->view('admin/onlineClassSlider.php');
+	}
+	
+	public function onlineClass(){
+		$this->load->view('admin/onlineClass.php');
+	}
+	
+	
+	
+	
+	
 }
