@@ -45,9 +45,19 @@
 }
 .slider-summary {
 	float:left;
+	width:170px;
+	height:175px;
+	padding:5px 0 5px 5px;
 	margin-left:5px;
-	width:175px;
-	height:100%;
+	word-break:break-all;
+	border-top:solid 1px #f0f0f0;
+}
+.slider-sheet img + .slider-summary {
+	border-top:0;
+}
+.slider-summary p:first-child {
+	font-size:18px;
+	margin-bottom:20px;
 }
 .slider-trigger .active:after {
 	opacity:0;
@@ -83,7 +93,7 @@
 .tab-sheet {
 	position:relative;
 }
-.tab-sheet li {
+.tab-sheet > li {
 	position:absolute;
 	left:0;
 	top:0;

@@ -79,11 +79,12 @@ textarea {
     color:#fff;
     height:35px;
     line-height:35px;
-    text-align:center
+    text-align:center;
+    transition:background 0.2s ease-in-out;
 }
 .nav .active,
 .nav a:hover {
-   font-weight:700
+    background-color:#2AC3CB;
 }
 
 /* user widget */
