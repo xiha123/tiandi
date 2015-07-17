@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2015 at 05:53 PM
+-- Generation Time: Jul 17, 2015 at 06:33 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -28,10 +28,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `ad` (
   `id` int(11) NOT NULL,
-  `img` varchar(128) COLLATE utf8_bin NOT NULL,
-  `link` varchar(128) COLLATE utf8_bin NOT NULL,
-  `text` text COLLATE utf8_bin
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `name` varchar(32) NOT NULL,
+  `img` varchar(128) NOT NULL,
+  `link` varchar(128) NOT NULL,
+  `text` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -41,11 +42,18 @@ CREATE TABLE IF NOT EXISTS `ad` (
 
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(11) NOT NULL,
-  `name` varchar(32) COLLATE utf8_bin NOT NULL,
-  `pwd` char(32) COLLATE utf8_bin NOT NULL,
-  `salt` char(10) COLLATE utf8_bin NOT NULL,
-  `nickname` varchar(32) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table for admin account';
+  `name` varchar(32) NOT NULL,
+  `pwd` char(32) NOT NULL,
+  `salt` char(10) NOT NULL,
+  `nickname` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`) VALUES
+(0, 'tiandi', '933e92d31cdc2748c6f84f26ec090835', '', 'tiandi');
 
 -- --------------------------------------------------------
 
@@ -56,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 CREATE TABLE IF NOT EXISTS `site` (
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL COMMENT 'qq=0 | copyright=1 | icp=2 | tel=3',
-  `content` varchar(128) COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `content` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -67,10 +75,11 @@ CREATE TABLE IF NOT EXISTS `site` (
 
 CREATE TABLE IF NOT EXISTS `slide` (
   `id` int(11) NOT NULL,
-  `img` varchar(128) COLLATE utf8_bin NOT NULL,
-  `link` varchar(128) COLLATE utf8_bin NOT NULL,
-  `text` text COLLATE utf8_bin
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `type` int(11) NOT NULL COMMENT '0 home; 1 olclass',
+  `img` varchar(128) NOT NULL,
+  `link` varchar(128) NOT NULL,
+  `text` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -80,25 +89,28 @@ CREATE TABLE IF NOT EXISTS `slide` (
 
 CREATE TABLE IF NOT EXISTS `subject` (
   `id` int(11) NOT NULL,
-  `name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `name` varchar(64) NOT NULL,
   `startDate` date NOT NULL,
   `endDate` date NOT NULL,
-  `direction` varchar(64) COLLATE utf8_bin NOT NULL,
-  `detail_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `direction` varchar(256) NOT NULL,
+  `video` varchar(128) NOT NULL,
+  `tag` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject_detial`
+-- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `subject_detial` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
-  `video` varchar(128) COLLATE utf8_bin NOT NULL,
-  `tag` varchar(64) COLLATE utf8_bin NOT NULL,
-  `ad_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `nickname` varchar(64) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `pwd` char(32) NOT NULL,
+  `salt` varchar(10) NOT NULL,
+  `type` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -108,7 +120,13 @@ CREATE TABLE IF NOT EXISTS `subject_detial` (
 -- Indexes for table `ad`
 --
 ALTER TABLE `ad`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `site`
@@ -120,14 +138,29 @@ ALTER TABLE `site`
 -- Indexes for table `slide`
 --
 ALTER TABLE `slide`
+  ADD PRIMARY KEY (`id`), ADD KEY `type` (`type`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `subject_detial`
+-- Indexes for table `user`
 --
-ALTER TABLE `subject_detial`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
