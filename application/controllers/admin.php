@@ -4,21 +4,53 @@ class admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->helper(array('form', 'url'));
+
+		$this->load->model('admin_model');
+		$this->user_info = $this->admin_model->check_login();
 	}
 
 	public function index() {
-		$this->load->model('admin_model');
-		$user_info = $this->admin_model->check_login();
-		if (empty($user_info)) {
-			$this->load->view('admin/login.php');
-		} else {
-			$this->load->view('admin/home.php', $user_info);
-		}
+		if (empty($this->user_info)) redirect('admin/login');
+
+		$data = array (
+			'me' => $this->user_info
+		);
+
+		$this->load->view('admin/home.php', $data);
 	}
 
 	public function slider(){
-		$this->load->view('admin/slider.php');
+		if (empty($this->user_info)) redirect('admin/login');
+
+		$data = array (
+			'me' => $this->user_info
+		);
+
+		$this->load->view('admin/slider.php', $data);
+	}
+
+	public function users() {
+		if (empty($this->user_info)) redirect('admin/login');
+
+		$data = array (
+			'me' => $this->user_info
+		);
+
+		$this->load->view('admin/users.php', $data);
+	}
+
+	public function login() {
+		$this->load->view('admin/login.php');
+	}
+
+	public function onlineClass(){
+		if (empty($this->user_info)) redirect('admin/login');
+
+		$data = array (
+			'me' => $this->user_info
+		);
+
+		$this->load->view('admin/onlineClass.php', $data);
 	}
 
 
@@ -59,9 +91,6 @@ class admin extends CI_Controller {
 
 
 	//在线课堂 轮播设置
-	public function onlineClass(){
-		$this->load->view('admin/onlineClass.php');
-	}
 
 	//在线课堂课程表
 	public function onlineList(){

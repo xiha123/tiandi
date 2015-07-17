@@ -31,4 +31,14 @@ class admin_model extends CI_Model {
 	public function remove() {
 
 	}
+
+	public function edit($params) {
+		$auid = $this->session->userdata('auid');
+		if (!isset($auid) || $params['auid'] !== $auid) return false;
+
+		$this->db->where('id', $auid)->update('admin', array(
+			'nickname' => $params['nickname']
+		));
+		return true;
+	}
 }

@@ -11,7 +11,6 @@ class admin_api extends base_api {
     }
 
     public function login() {
-        // POST
         $params = parent::getParams('POST', array('username', 'pwd'));
         if (empty($params)) return;
         extract($params);
@@ -23,6 +22,27 @@ class admin_api extends base_api {
 
 		if ($this->admin_model->login($username, $pwd) === false) {
 			parent::finish(false, '用户名或密码错误');
+			return;
+		}
+
+		parent::finish(true);
+    }
+
+    public function edit() {
+        $params = parent::getParams('POST', array('auid', 'nickname'));
+        if (empty($params)) return;
+        extract($params);
+
+		if ($nickname === '') {
+			parent::finish(false, '昵称不能为空');
+			return;
+		}
+
+		if ($this->admin_model->edit(array(
+                'auid' => $auid,
+                'nickname' => $nickname
+            )) === false) {
+			parent::finish(false, '没有权限');
 			return;
 		}
 

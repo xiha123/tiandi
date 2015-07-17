@@ -1,10 +1,7 @@
 <div class="left-nav">
-	<div class="user-data">
+	<div class="profile">
 		<img src="static/image/user_pic.jpg" />
-		<div class="user-nick">
-			<h2>administrator</h2>
-			<a href="javascript:void(0)"><i class="icon-edit"></i></a>
-		</div>
+		<h2><?= $me['nickname'] ?></h2>
 	</div>
 	<ul>
 		<?php
