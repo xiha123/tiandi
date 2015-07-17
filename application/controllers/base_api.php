@@ -39,7 +39,7 @@ class base_api extends CI_Controller {
         }
 
         foreach ($keys as $key) {
-            if (!isset($params[$key])) {
+            if (!isset($params[$key]) || empty($params[$key])) {
                 $this->finish(false, '参数不完整');
                 return false;
             }

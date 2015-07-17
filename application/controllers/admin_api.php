@@ -15,11 +15,6 @@ class admin_api extends base_api {
         if (empty($params)) return;
         extract($params);
 
-		if ($username === '' || $pwd === '') {
-			parent::finish(false, '用户名和密码不能为空');
-			return;
-		}
-
 		if ($this->admin_model->login($username, $pwd) === false) {
 			parent::finish(false, '用户名或密码错误');
 			return;
@@ -29,22 +24,65 @@ class admin_api extends base_api {
     }
 
     public function edit() {
-        $params = parent::getParams('POST', array('auid', 'nickname'));
+        $params = parent::getParams('POST', array('nickname'));
         if (empty($params)) return;
         extract($params);
 
-		if ($nickname === '') {
-			parent::finish(false, '昵称不能为空');
-			return;
-		}
-
-		if ($this->admin_model->edit(array(
-                'auid' => $auid,
-                'nickname' => $nickname
-            )) === false) {
+		$cur_id= $this->session->userdata('auid');
+		if (!isset($cur_id)) {
 			parent::finish(false, '没有权限');
 			return;
-		}
+        }
+
+		$this->admin_model->edit(array(
+            'auid' => $cur_id,
+            'nickname' => $nickname
+        ));
+
+		parent::finish(true);
+    }
+
+    public function create() {
+        $params = parent::getParams('POST', array('name', 'nickname', 'pwd'));
+        if (empty($params)) return;
+        extract($params);
+
+		$cur_id= $this->session->userdata('auid');
+		if (!isset($cur_id)) {
+			parent::finish(false, '没有权限');
+			return;
+        }
+
+		if (false === $this->admin_model->create(array(
+            'name' => $name,
+            'nickname' => $nickname,
+            'pwd' => $pwd
+        ))) {
+			parent::finish(false, '用户名已存在');
+			return;
+        }
+
+		parent::finish(true);
+    }
+
+    public function remove() {
+        $params = parent::getParams('POST', array('name'));
+        if (empty($params)) return;
+        extract($params);
+
+		$cur_id= $this->session->userdata('auid');
+		if (!isset($cur_id)) {
+			parent::finish(false, '没有权限');
+			return;
+        }
+
+		if (false === $this->admin_model->remove(array(
+            'name' => $name,
+            'auid' => $cur_id
+        ))) {
+			parent::finish(false, '目标是自己或不存在');
+			return;
+        }
 
 		parent::finish(true);
     }

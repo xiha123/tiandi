@@ -16,29 +16,31 @@ class admin_model extends CI_Model {
 	public function check_login() {
 		$auid = $this->session->userdata('auid');
 		if (!isset($auid)) return false;
-		return $this->getInfo($auid);
-	}
-
-	private function getInfo($auid) {
 		return $this->db->where('id', $auid)->get('admin')->row_array();
 	}
 
-	public function create() {
-		$uniqid = substr(uniqid(rand()), -32);
+	public function create($params) {
+		if (!empty($this->db->where('name', $params['name'])->get('admin')->row_array())) return false;
+
+		$salt = substr(uniqid(rand()), -10);
+		$this->db->insert('admin', array(
+			'nickname' => $params['nickname'],
+			'name' => $params['name'],
+			'salt' => $salt,
+			'pwd' => md5($params['pwd'] . $salt)
+		));
 	}
 
+	public function remove($params) {
+		$id = $this->db->selet('id')->where('name', $params['name'])->get('admin')->row_array();
+		if (empty($id) || $id['id'] === $params['auid']) return false;
 
-	public function remove() {
-
+		$this->db->where('name', $name)->delete('admin');
 	}
 
 	public function edit($params) {
-		$auid = $this->session->userdata('auid');
-		if (!isset($auid) || $params['auid'] !== $auid) return false;
-
 		$this->db->where('id', $auid)->update('admin', array(
 			'nickname' => $params['nickname']
 		));
-		return true;
 	}
 }
