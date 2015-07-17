@@ -1,5 +1,5 @@
 <?php $this->load->view('widgets/header.php'); ?>
-	<link rel="stylesheet" href="./static/css/home.css">
+	<link rel="stylesheet" href="static/css/home.css">
 </head>
 <body>
 

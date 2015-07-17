@@ -1,12 +1,12 @@
 // JavaScript Document
 $(document).ready(function(){
-	$(".close , #close").click(close);	
+	$(".close , #close").click(close);
 });
 
 function confirms(config){
 	$(".window,#confirm").fadeIn(200);
 	setTimeout(function(){
-		$("#confirm").css({"top" : "20%"});		
+		$("#confirm").css({"top" : "20%"});
 	},50);
 	$("#confirm .confirm-title h2").text(config.title);
 	$("#confirm .confirm-content .con").html(config.content);
@@ -15,14 +15,14 @@ function confirms(config){
 	window_init();
 	$("#confirm .confirm-bottom").find(".button_ok").on("click",function(){
 		config.success();
-		$(".confirm").find(".close").click();	
+		$(".confirm").find(".close").click();
 	})
 }
 
 function input(config){
 	$(".window,#input").fadeIn(200);
 	setTimeout(function(){
-		$("#input").css({"top" : "20%"});		
+		$("#input").css({"top" : "20%"});
 	},50);
 	$("#input .confirm-title h2").text(config.title);
 	$("#input .confirm-content .con").html(config.content);
@@ -31,7 +31,7 @@ function input(config){
 	window_init();
 	$("#input .confirm-bottom").find(".button_ok").on("click",function(){
 		config.success();
-		$("#input .confirm").find(".close").click();	
+		$("#input .confirm").find(".close").click();
 	})
 }
 
@@ -62,7 +62,7 @@ $(".slider-color").keypress(function(){
 	$(".table-form span").text("建议图片尺寸：1200 * 400 ， 该图片尺寸：" + sourceInfo.width + " * " + sourceInfo.height);
 });
 }
-	
+
 
 function close(){
 	$(".confirm").css({"top" : "0px" });
@@ -72,4 +72,13 @@ function close(){
 		$(".confirm").css({"display" : "none"});
 
 	},200);
+}
+
+$('.alert').delegate('.close', 'click', hideAlert);
+function showAlert(text) {
+    $('.alert').children('p').text(text);
+    $('.alert').slideDown();
+}
+function hideAlert() {
+    $('.alert').slideUp();
 }

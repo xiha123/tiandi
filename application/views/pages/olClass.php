@@ -1,5 +1,5 @@
 <?php $this->load->view('widgets/header.php'); ?>
-	<link rel="stylesheet" href="./static/css/olClass.css">
+	<link rel="stylesheet" href="static/css/olClass.css">
 </head>
 <body>
 
@@ -74,7 +74,7 @@
 </div>
 
 <?php $this->load->view('widgets/footer.php'); ?>
-<script src="./static/js/olClass.js"></script>
+<script src="static/js/olClass.js"></script>
 
 </body>
 </html>
