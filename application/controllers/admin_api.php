@@ -10,6 +10,8 @@ class admin_api extends base_api {
 		$this->load->model('admin_model');
     }
 
+
+
     public function login() {
         $params = parent::getParams('POST', array('username', 'pwd'));
         if (empty($params)) return;

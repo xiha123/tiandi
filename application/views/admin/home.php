@@ -1,4 +1,4 @@
-	<?php $this->load->view('widgets/admin/header.php'); ?>
+<?php $this->load->view('widgets/admin/header.php'); ?>
 	<link rel="stylesheet" href="static/css/admin/home.css">
 </head>
 

@@ -4,6 +4,7 @@
 		<h2><?= $me['nickname'] ?></h2>
 	</div>
 	<ul>
+	
 		<?php
 			$navList = array(
 				array(

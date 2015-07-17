@@ -2,7 +2,7 @@
 html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
 
 /* global tags */
-html {
+body,html {
     font-family:"Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
     font-size:14px;
     -webkit-font-smoothing:antialiased;
@@ -85,9 +85,9 @@ a {text-decoration:none;}
 
 .nav-pills {font-size:14px;float: left;margin-left:13px;}
 .nav-pills a{color:#bbb;margin-right:10px;padding:6px 14px !important;}
-.nav-pills a i{color:#bbb}
+.nav-pills a i{color:#bbb;margin-right:9px;}
 
 
 
 
-.alert { display:none;position:fixed;top:0;left:0;right:0;margin-bottom:0;border-radius:0; }
+.alert { display:none;position:fixed;top:0;z-index:9999;left:0;right:0;margin-bottom:0;border-radius:0; }

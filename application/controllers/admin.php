@@ -21,12 +21,29 @@ class admin extends CI_Controller {
 
 	public function slider(){
 		if (empty($this->user_info)) redirect('admin/login');
-
-		$data = array (
-			'me' => $this->user_info
+		$this->load->database();
+		
+		$data_list = array();
+		$temp_list = $this->db->get('slide');
+		$temp_list = $temp_list->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"id" => $temp_list[$index] -> id,
+				"title" => $temp_list[$index] -> name,
+				"img" => $temp_list[$index] -> img,
+				"link" => $temp_list[$index] -> link,
+				"time" =>date("Y-m-d H:i:s" ,  $temp_list[$index] -> time),
+				"color" => $temp_list[$index] -> color,
+				"background" => $temp_list[$index] -> background,
+				"text" => $temp_list[$index] -> text,
+			));
+		}
+		$data = array(
+			"data_list" => $data_list,
+			"me" => $this->user_info
 		);
-
-		$this->load->view('admin/slider.php', $data);
+		$this->load->library('parser');
+		$this->parser->parse('admin/slider.php', $data);
 	}
 
 	public function users() {
@@ -63,27 +80,27 @@ class admin extends CI_Controller {
 
 		$config['upload_path'] = './static/uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size'] = '100';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+		$config['max_size'] = '2048';
+
 
 		$this->load->library('upload', $config);
-		if(!$this->upload->do_upload("updata")){
-			$this->load->view('admin/slider.php' , array("uptype" => false));
+		if(!$this->upload->do_upload("userfile")){
+			echo  $this->upload->display_errors();
 		}else{
 			$returnConfig = $this->upload->data();
 			$this->load->database();
 			$data = array(
-				'title' => $title,
-				'link' => $link,
-				'time' => time(),
-				'description' => $description,
+				'id' => "333",
+				'name' => $title,
 				'type' => "0",
 				'img' => $returnConfig['file_name'],
-				'color' => $color,
+				'link' => $link,
+				'background' => $color,
+				'time' => time(),
+				'text' => $description,
+				
 			);
-			$this->db->insert('tiand_index_slider', $data);
-			$this->load->view('admin/slider.php' , array("uptype" => true));
+			$this->db->insert('slide', $data);
 		}
 	}
 
