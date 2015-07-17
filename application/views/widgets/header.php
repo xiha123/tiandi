@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>天地培训官网首页_游戏开发培训_手机游戏开发培训_游戏编程培训_游戏策划培训</title>
-<base href="<?= base_url() ?>"
+<base href="<?= base_url() ?>">
 <link rel="Shortcut Icon" href="favicon.ico">
 <link rel="stylesheet" href="static/css/global.css">
 <meta name="keywords" content="游戏开发培训,手机游戏开发培训,游戏编程培训,游戏策划培训,天地培训">

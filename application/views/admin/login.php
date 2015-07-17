@@ -8,11 +8,6 @@
     <form action="admin/login" method="post">
         <input type="text" placeholder="登录名" name="username" id="username">
         <input type="password" placeholder="密码" name="password" id="pwd">
-        <ul class="msg">
-            <li class="tishi"><i class="icon-exclamation-sign"></i>请输入登录密码</li>
-            <li class="tishi">  <i class="icon-exclamation-sign"></i>请输入登录名</li>
-            <li class="tishi"><i class="icon-exclamation-sign"></i>登录名或密码错误</li>
-        </ul>
         <input type="submit" class="login-btn" value="登录">
     </form>
 </div>

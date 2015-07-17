@@ -1,5 +1,5 @@
 /*body*/
-body{   background-color: #1d9ba1;}
+html{ height:100%;background-color: #1d9ba1;}
 body,input{
 
     font-family:"Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
@@ -13,7 +13,7 @@ body,input{
     width: 630px;
     height: 240px;
     position: absolute;
-    top: -20px;left:0;right:0;bottom:0;
+    top: 0;left:0;right:0;bottom:0;
     margin:auto;
 }
 /*logo*/
@@ -25,7 +25,7 @@ body,input{
     padding-right:40px;
 }
 /*表单*/
-form input,ul {
+input {
     display: block;;
 }
 
@@ -39,34 +39,12 @@ form input{
 }
 /*登录键*/
 .login-btn{
-    position: relative;
     background-color: #19c9d1;
-    border: 1px solid #1d9ba1;
     color: #ffffff;
     width: 260px;
 }
 .login-btn:hover {
     background:#36DFE7;
 }
-
-ul li{
-    color: #ffffff;
-    font-size: 14px;
-    line-height: 25px;
-
-}
-ul i{
-    color:#19c9d1;
-    padding-right: 10px;
-}
-/*无法登陆*/
-.why{
-    position: absolute;
-    top: 250px;
-    left: 480px;
-    color: #fff;
-    font-size: 13px;
-}
-.tishi{display:none;}
 
 form{margin-top:60px;}
