@@ -2,13 +2,12 @@
 
 class admin extends CI_Controller {
 
-	function __construct()
-	{
+	function __construct() {
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 	}
 
-	public function index(){
+	public function index() {
 		$this->load->model('admin_model');
 		$user_info = $this->admin_model->check_login();
 		if (empty($user_info)) {
@@ -19,24 +18,7 @@ class admin extends CI_Controller {
 	}
 
 	public function slider(){
-		$this->load->database();
-		$data_array = array();
-		$query = $this->db->get('tiand_index_slider');
-		foreach ($query->result() as $row){
-			array_push($data_array , array(
-				"title" => $row->title ,
-				"link" => $row->link ,
-				"time" => $row->time ,
-				"description" => $row->description ,
-				"type" => $row->type ,
-				"img" => $row->img ,
-				"color" => $row->color));
-		}
-		$data = array(
-			"data_list" => $data_array,
-		);
-		$this->load->library('parser');
-		$this->parser->parse('admin/slider.php' , $data);
+		$this->load->view('admin/slider.php');
 	}
 
 
@@ -105,9 +87,5 @@ class admin extends CI_Controller {
 
 	public function onlineClassSlider(){
 		$this->load->view('admin/onlineClassSlider.php');
-	}
-
-	public function onlineClass(){
-		$this->load->view('admin/onlineClass.php');
 	}
 }

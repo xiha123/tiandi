@@ -10,21 +10,27 @@
 		<?php
 			$navList = array(
 				array(
-					"title" => "后台首页 / home",
-					"link" => "./home",
+					"title" => "后台首页",
+					"link" => "admin",
 					"icon" => "icon-home",
 					"active" => false
 				),
 				array(
-					"title" => "首页轮播设置",
-					"link" => "./slider",
-					"icon" => "icon-building",
+					"title" => "轮播设置",
+					"link" => "admin/slider",
+					"icon" => "icon-th-large",
 					"active" => false
 				),
 				array(
 					"title" => "在线课堂设置",
-					"link" => "./onlineClass",
+					"link" => "admin/onlineClass",
 					"icon" => "icon-shopping-cart",
+					"active" => false
+				),
+				array(
+					"title" => "用户管理",
+					"link" => "admin/users",
+					"icon" => "icon-user",
 					"active" => false
 				),
 			);
