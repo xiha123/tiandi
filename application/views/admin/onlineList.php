@@ -9,8 +9,7 @@
 			<?php $this->load->view('widgets/admin/window.php'); ?>
 			<div class="main-title">
 				<ul class="nav nav-pills">
-					<li role="presentation"><a href="javascript:void(0)" class="add-pic"><i class="icon-dashboard"></i>添加轮播图片</a></li>
-					<li role="presentation"><a href="onlineClassSlider"><i class="icon-building"></i>在线课堂轮播设置</a></li>
+					<?php $this->load->view('widgets/admin/onlineClass/nav.php' , array("activeNav" => 1)); ?>
 				</ul>
 			</div>
 			
