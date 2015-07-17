@@ -1,7 +1,6 @@
 <div class="window">
 	<img src="" class="temp-image">
-	
-	
+
 	<!-- 确认是否弹窗 -->
 	<div class="confirm" id="confirm" style="display:none">
 		<div class="confirm-title">
@@ -20,8 +19,7 @@
 			<button class="btn btn-default" id="close">取消</button>
 		</div>
 	</div>
-	
-	
+
 	<!-- 编辑或添加轮播图 -->
 	<div class="confirm" id="input" style="display:none">
 		<div class="confirm-title">
@@ -45,8 +43,7 @@
 			<button class="btn btn-default" id="close">取消</button>
 		</div>
 	</div>
-	
-	
+
 	<!-- 单温馨提示弹窗 -->
 	<div class="confirm" style="display:none">
 		<div class="confirm-title">
@@ -62,5 +59,4 @@
 			<button class="btn btn-primary" id="close">确定</button>
 		</div>
 	</div>
-	
 </div>

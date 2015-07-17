@@ -1,6 +1,6 @@
 <div class="left-nav">
 	<div class="user-data">
-		<img src="../static/image/user_pic.jpg" />
+		<img src="static/image/user_pic.jpg" />
 		<div class="user-nick">
 			<h2>administrator</h2>
 			<a href="javascript:void(0)"><i class="icon-edit"></i></a>
@@ -33,13 +33,7 @@
 				$active = $navList[$index]["active"] == true ? ' class="hover"' : "";
 				echo '<li' . $active . '><a href="' . $navList[$index]["link"] . '"><div class="content"><i class="' . $navList[$index]["icon"] . '"></i><font>' . $navList[$index]["title"] . '</font></div></a></li>';
 			}
-		
 		?>
-	
-	
-		
-	
 	</ul>
-	
-	<img src="../static/image/admin_logo.png"  class="logo"/>
+	<img src="static/image/admin_logo.png"  class="logo"/>
 </div>

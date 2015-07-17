@@ -23,7 +23,7 @@
     $('form').on('submit', function (e) {
         e.preventDefault();
         $.ajax({
-            url: 'admin/login',
+            url: 'admin_api/login',
             method: 'post',
             data: {
                 username: $.trim($('#username').val()),
@@ -31,7 +31,7 @@
             },
             dataType: 'json',
             success: function (res) {
-                if (res.status === 0) {
+                if (res.status) {
                     location.reload();
                 } else {
                     showAlert(res.error);
