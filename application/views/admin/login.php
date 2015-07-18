@@ -27,7 +27,7 @@
             dataType: 'json',
             success: function (res) {
                 if (res.status) {
-                    location.reload();
+                    location.href = 'admin';
                 } else {
                     showAlert(res.error);
                 }

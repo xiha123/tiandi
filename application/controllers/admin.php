@@ -22,7 +22,7 @@ class admin extends CI_Controller {
 	public function slider(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$this->load->database();
-		
+
 		$data_list = array();
 		$temp_list = $this->db->get('slide');
 		$temp_list = $temp_list->result();
@@ -98,7 +98,7 @@ class admin extends CI_Controller {
 				'background' => $color,
 				'time' => time(),
 				'text' => $description,
-				
+
 			);
 			$this->db->insert('slide', $data);
 		}
