@@ -24,7 +24,10 @@ class admin extends CI_Controller {
 		$this->load->database();
 
 		$data_list = array();
+		$this->db->order_by("time", "DESC"); 
 		$temp_list = $this->db->get('slide');
+		
+		
 		$temp_list = $temp_list->result();
 		for($index = 0;$index < count($temp_list);$index ++){
 			array_push($data_list , array(
@@ -37,6 +40,7 @@ class admin extends CI_Controller {
 				"text" => $temp_list[$index] -> text,
 			));
 		}
+		
 		$data = array(
 			"data_list" => $data_list,
 			"me" => $this->user_info
