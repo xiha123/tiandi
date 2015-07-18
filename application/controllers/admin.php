@@ -64,7 +64,8 @@ class admin extends CI_Controller {
 		if (empty($this->user_info)) redirect('admin/login');
 
 		$data = array (
-			'me' => $this->user_info
+			'me' => $this->user_info,
+			'guide' => $this->admin_model->get_guide()
 		);
 
 		$this->load->view('admin/onlineClass.php', $data);

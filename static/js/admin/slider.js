@@ -1,17 +1,15 @@
 $(document).ready(function(){
-	
-
 	$(".remove-slider").click(function(){
 		confirms({
 			"title" : "您确定要删除吗",
 			"icon" : "icon-trash",
 			"content" : "<p>您确定要删除掉这篇文章吗？</p><p>删除后将无法复原，点击确定按钮确认删除该条记录</p>",
 			"success" : function(){
-				alert("");	
+				alert("");
 			}
 		});
 	});
-	
+
 	$(".edit-slider").click(function(){
 		$parents = $(this).parents().parents().eq(0);
 		$parents_baby = $parents.find("td");
@@ -19,7 +17,7 @@ $(document).ready(function(){
 		input({
 			"title" : "编辑轮播焦点图",
 			"icon" : "icon-trash",
-			"content" : 
+			"content" :
 			'<table class=table-form>'+
 			'<form action="" method="post">'+
 			'<input type="hidden" value="' + $parents.data("id")+ '" name="id">'+
@@ -30,17 +28,17 @@ $(document).ready(function(){
 			'<tr><td class=updata><font>点击更换图片</font><input type=file name="userfile"><img src="' + $parents.data("img")+ '" width="100%" id=preview>'+
 			'<tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400 ， 该图片尺寸：200 * 200</span ></table>',
 			"success" : function(){
-				alert("");	
+				alert("");
 			}
 		});
-	});				
-	
+	});
+
 	$(".add-pic").click(function(){
 		showAlert("2")
 		input({
 			"title" : "添加轮播焦点图",
 			"icon" : "icon-trash",
-			"content" : 
+			"content" :
 			'<form method="post" action="admin/addIndexSlider" id="add" enctype="multipart/form-data">'+
 			'<table class=table-form>'+
 			'<input type="hidden" name="id">'+
@@ -58,23 +56,11 @@ $(document).ready(function(){
 							console.log(data);
 						}
 					};
-					$("#add").ajaxSubmit(option);  
-					return false;   //阻止表单默认提交  	
+					$("#add").ajaxSubmit(option);
+					return false;   //阻止表单默认提交
 				});
 				$("#add").submit();
 			}
 		});
 	});
-	
-	
-	
-	
-	
-	
-	
-
-	
-			
-
-
 })

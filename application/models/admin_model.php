@@ -43,4 +43,8 @@ class admin_model extends CI_Model {
 			'nickname' => $params['nickname']
 		));
 	}
+
+	public function get_guide() {
+		return $this->db->get('guide')->result_array();
+	}
 }

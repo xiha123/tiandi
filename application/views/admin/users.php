@@ -45,69 +45,24 @@
                 <input type="submit" class="btn btn-danger" value="删除">
             </form>
         </div>
-        <div role="tabpanel" class="tab-pane" id="user">3</div>
+        <div role="tabpanel" class="tab-pane" id="user">
+			<p>设置某个用户为老师</p>
+            <form onsubmit="editUser();return false;">
+                <div class="form-group">
+                    <label for="edit-user-username">用户名</label>
+                    <input type="text" class="form-control" id="edit-user-username" placeholder="用户名">
+                </div>
+                <div class="form-group">
+                    <label for="edit-user-type">身份</label>
+                    <input type="text" class="form-control" id="edit-user-type" placeholder="0为普通用户，1为老师">
+                </div>
+                <input type="submit" class="btn btn-success" value="修改">
+            </form>
+		</div>
     </div>
 </div>
 
 <?php $this->load->view('widgets/admin/footer.php'); ?>
-<script>
-    function editProfile() {
-        var nickname = $.trim($('#edit-profile-nickname').val());
-
-        $.ajax({
-            url: 'admin_api/edit',
-            method: 'post',
-            data: {
-                nickname: nickname
-            },
-            dataType: 'json',
-            success: function (res) {
-                if (res.status) {
-                    $('.profile h2').text(nickname);
-                } else {
-                    showAlert(res.error, 'danger');
-                }
-            }
-        });
-    }
-
-    function createAdmin() {
-        $.ajax({
-            url: 'admin_api/create',
-            method: 'post',
-            data: {
-                name: $('#create-admin-username').val(),
-                pwd: $('#create-admin-pwd').val(),
-                nickname: $('#create-admin-nickname').val()
-            },
-            dataType: 'json',
-            success: function (res) {
-                if (res.status) {
-                    showAlert('创建成功', 'success');
-                } else {
-                    showAlert(res.error, 'danger');
-                }
-            }
-        });
-    }
-
-    function removeAdmin() {
-        $.ajax({
-            url: 'admin_api/remove',
-            method: 'post',
-            data: {
-                name: $('#remove-admin-username').val()
-            },
-            dataType: 'json',
-            success: function (res) {
-                if (res.status) {
-                    showAlert('删除成功', 'success');
-                } else {
-                    showAlert(res.error, 'danger');
-                }
-            }
-        });
-    }
-</script>
+<script src="static/js/admin/users.js"></script>
 </body>
 </html>
