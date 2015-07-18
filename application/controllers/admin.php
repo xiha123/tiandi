@@ -34,7 +34,6 @@ class admin extends CI_Controller {
 				"link" => $temp_list[$index] -> link,
 				"time" =>date("Y-m-d H:i:s" ,  $temp_list[$index] -> time),
 				"color" => $temp_list[$index] -> color,
-				"background" => $temp_list[$index] -> background,
 				"text" => $temp_list[$index] -> text,
 			));
 		}
@@ -85,22 +84,23 @@ class admin extends CI_Controller {
 
 		$this->load->library('upload', $config);
 		if(!$this->upload->do_upload("userfile")){
-			echo  $this->upload->display_errors();
+			echo  '{"status" : "false" , "error" : "' . $this->upload->display_errors() . '"}';
 		}else{
 			$returnConfig = $this->upload->data();
 			$this->load->database();
 			$data = array(
-				'id' => "333",
+				'id' => "NULL",
 				'name' => $title,
 				'type' => "0",
 				'img' => $returnConfig['file_name'],
 				'link' => $link,
-				'background' => $color,
+				'color' => $color,
 				'time' => time(),
 				'text' => $description,
 				
 			);
 			$this->db->insert('slide', $data);
+			echo  '{"status" : "true"}';
 		}
 	}
 

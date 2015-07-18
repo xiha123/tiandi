@@ -2,12 +2,27 @@ $(document).ready(function(){
 	
 
 	$(".remove-slider").click(function(){
+		$parents = $(this).parents().parents().eq(0);
 		confirms({
 			"title" : "您确定要删除吗",
 			"icon" : "icon-trash",
 			"content" : "<p>您确定要删除掉这篇文章吗？</p><p>删除后将无法复原，点击确定按钮确认删除该条记录</p>",
 			"success" : function(){
-				alert("");	
+				$.ajax({
+					"url" : "admin_api/deleteSlider",
+					type : "POST",
+					data : {"id" : $parents.data("id")},
+					dataType : "JSON",
+					success: function(data){
+						console.log();
+						  if(data.status == true) {
+							$parents.hide();
+							close();
+						} else {
+							showAlert(data.error);
+						}
+					}
+				});
 			}
 		});
 	});
@@ -36,7 +51,6 @@ $(document).ready(function(){
 	});				
 	
 	$(".add-pic").click(function(){
-		showAlert("2")
 		input({
 			"title" : "添加轮播焦点图",
 			"icon" : "icon-trash",
@@ -48,18 +62,45 @@ $(document).ready(function(){
 			'<tr><td>轮播地址：<input type="text" placeholder="请输入轮播地址" name="link">'+
 			'<tr><td>轮播描述：<input type="text" placeholder="请输入轮播描述" name="description">'+
 			'<tr><td>轮播背景：<input type="text" placeholder="在此填写轮播的背景颜色" name="color" maxlength=7 class=slider-color><div class=color></div>'+
-			'<tr><td class=updata><font>点击更换图片</font><input type="file" name="userfile"><img src="./static/image/slide4.jpg" width="100%" id=preview>'+
+			'<tr><td class=updata><font>点击更换图片</font><input type="file" name="userfile" id="add_updata"><img src="./static/image/slide4.jpg" width="100%" id=preview>'+
 			'<tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400 ， 该图片尺寸：200 * 200</span ></table></form>',
 			"success" : function(){
+				$("#add").unbind("submit");
 				$("#add").on("submit",function(){
+					if($("input[name='title']").val() == ""){
+						showAlert("您必须填写一个标题");
+						return false
+					}
+					if($("input[name='link']").val() == ""){
+						showAlert("您必须填写一个连接");
+						return false
+					}
+					if($("input[name='description']").val() == ""){
+						showAlert("您必须填写一个描述");
+						return false
+					}
+					if($("input[name='color']").val() == ""){
+						showAlert("您必须填写一个颜色");
+						return false
+					}
+					if($("#add_updata").val() == ""){
+						showAlert("必须添加一张轮播图片才能保存！");
+						return false
+					}	
 					var option = {
 						type : "post",
 						success:function (data) {
-							console.log(data);
+							data = JSON.parse(data);
+							console.log(data.status);
+							  if(data.status == "true") {
+								location.reload();
+							} else {
+								showAlert(data.error);
+							}
 						}
 					};
 					$("#add").ajaxSubmit(option);  
-					return false;   //阻止表单默认提交  	
+					return false;
 				});
 				$("#add").submit();
 			}

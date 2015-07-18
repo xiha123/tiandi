@@ -26,6 +26,7 @@
 				<tr  data-id="{id}" data-img="{img}"  data-color="{color}" data-link="{link}" ><td>{title}</td><td><a href="{link}">点击浏览</a></td><td>{time}</td><td>{text}</td><td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider"></i></td></tr>
 				{/data_list}
 			</table>
+			<!--
 			<div class="page">
 				<font>共 0 页，当前正在第 0 页，共有数据 0 条</font>
 				<div class="right">
@@ -37,6 +38,8 @@
 					<input type="submit" value="下一页">
 				</div>
 			</div>
+			
+			-->
 		</div>
 	</div>
 </div>
