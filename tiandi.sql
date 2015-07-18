@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2015 at 06:33 AM
+-- Generation Time: Jul 18, 2015 at 08:19 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -46,14 +46,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `pwd` char(32) NOT NULL,
   `salt` char(10) NOT NULL,
   `nickname` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`) VALUES
-(0, 'tiandi', '933e92d31cdc2748c6f84f26ec090835', '', 'tiandi');
+(1, 'tiandi', '933e92d31cdc2748c6f84f26ec090835', '', 'tiandi');
 
 -- --------------------------------------------------------
 
@@ -156,6 +156,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `ad`
+--
+ALTER TABLE `ad`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `site`
+--
+ALTER TABLE `site`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `slide`
+--
+ALTER TABLE `slide`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
