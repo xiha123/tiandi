@@ -39,8 +39,8 @@
             </form>
             <form onsubmit="removeAdmin();return false;">
                 <div class="form-group">
-                    <label for="remove-admin-nickname">用户名</label>
-                    <input type="text" class="form-control" id="create-admin-nickname" placeholder="昵称">
+                    <label for="remove-admin-username">用户名</label>
+                    <input type="text" class="form-control" id="remove-admin-username" placeholder="用户名">
                 </div>
                 <input type="submit" class="btn btn-danger" value="删除">
             </form>
@@ -65,7 +65,7 @@
                 if (res.status) {
                     $('.profile h2').text(nickname);
                 } else {
-                    showAlert(res.error);
+                    showAlert(res.error, 'danger');
                 }
             }
         });
@@ -83,9 +83,9 @@
             dataType: 'json',
             success: function (res) {
                 if (res.status) {
-                    alert('创建成功');
+                    showAlert('创建成功', 'success');
                 } else {
-                    showAlert(res.error);
+                    showAlert(res.error, 'danger');
                 }
             }
         });
@@ -96,14 +96,14 @@
             url: 'admin_api/remove',
             method: 'post',
             data: {
-                name: $('#create-admin-username').val()
+                name: $('#remove-admin-username').val()
             },
             dataType: 'json',
             success: function (res) {
                 if (res.status) {
-                    alert('删除成功');
+                    showAlert('删除成功', 'success');
                 } else {
-                    showAlert(res.error);
+                    showAlert(res.error, 'danger');
                 }
             }
         });

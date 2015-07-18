@@ -15,7 +15,7 @@ class admin_api extends base_api {
 	
 	public function deleteSlider(){
 		$params = parent::getParams('POST', array('id'));
-		if(empty($params)) return;
+		if(empty($params))return;
 		extract($params);
 		$this->admin_model->deleteSlider($id);
 		parent::finish(true);

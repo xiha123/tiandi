@@ -73,11 +73,17 @@ function close(){
 	},200);
 }
 
-$('.alert').delegate('.close', 'click', hideAlert);
-function showAlert(text) {
-    $('.alert').children('p').text(text);
-    $('.alert').slideDown();
+var $alertBox = $('.alert'),
+	alertTimer;
+function showAlert(text, type) {
+	type && $alertBox[0].setAttribute('class', 'alert alert-dismissible alert-' + type);
+    $alertBox.children('p').text(text);
+    $alertBox.show();
+	alertTimer && clearTimeout(alertTimer);
+	alertTimer = setTimeout(hideAlert, 2000);
 }
 function hideAlert() {
-    $('.alert').slideUp();
+    $alertBox.hide();
+	alertTimer && clearTimeout(alertTimer);
+	alertTimer = null;
 }

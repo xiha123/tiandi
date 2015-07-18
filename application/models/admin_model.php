@@ -38,10 +38,10 @@ class admin_model extends CI_Model {
 	}
 
 	public function remove($params) {
-		$id = $this->db->selet('id')->where('name', $params['name'])->get('admin')->row_array();
-		if (empty($id) || $id['id'] === $params['auid']) return false;
+		$query = $this->db->select('id')->where('name', $params['name'])->get('admin')->row_array();
+		if (empty($query) || $query['id'] === $params['auid']) return false;
 
-		$this->db->where('name', $name)->delete('admin');
+		$this->db->where('name', $params['name'])->delete('admin');
 	}
 
 	public function edit($params) {
