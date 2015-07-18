@@ -2,17 +2,10 @@
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
-<<<<<<< HEAD
--- 主机: 127.0.0.1
--- 生成日期: 2015 �?07 �?18 �?09:32
--- 服务器版本: 5.6.11
--- PHP 版本: 5.5.1
-=======
 -- Host: 127.0.0.1
 -- Generation Time: Jul 18, 2015 at 08:19 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
->>>>>>> origin/master
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -24,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `tiandi`
+-- 数据�? `tiandi`
 --
 CREATE DATABASE IF NOT EXISTS `tiandi` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `tiandi`;
@@ -56,18 +49,11 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `name` varchar(32) NOT NULL,
   `pwd` char(32) NOT NULL,
   `salt` char(10) NOT NULL,
-<<<<<<< HEAD
-  `nickname` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
-=======
   `nickname` varchar(32) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
->>>>>>> origin/master
 
 --
--- 转存表中的数据 `admin`
+-- 转存表中的数�?`admin`
 --
 
 INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`) VALUES
@@ -105,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `slide` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
--- 转存表中的数据 `slide`
+-- 转存表中的数�?`slide`
 --
 
 INSERT INTO `slide` (`id`, `name`, `img`, `link`, `color`, `type`, `time`, `text`) VALUES
@@ -156,79 +142,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-<<<<<<< HEAD
-=======
---
--- Indexes for table `ad`
---
-ALTER TABLE `ad`
-  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
-
---
--- Indexes for table `site`
---
-ALTER TABLE `site`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `slide`
---
-ALTER TABLE `slide`
-  ADD PRIMARY KEY (`id`), ADD KEY `type` (`type`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `ad`
---
-ALTER TABLE `ad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `site`
---
-ALTER TABLE `site`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `slide`
---
-ALTER TABLE `slide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `subject`
---
-ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
->>>>>>> origin/master
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

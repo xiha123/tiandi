@@ -40,7 +40,7 @@ $(document).ready(function(){
 			'<tr><td>轮播地址：<input type="text" value="' + $parents.data("link")+ '">'+
 			'<tr><td>轮播描述：<input type="text" value="' + $parents_baby.eq(3).text()+ '">'+
 			'<tr><td>轮播背景：<input type="text" value="' + $parents.data("color")+ '" maxlength=7 class=slider-color><div class=color></div>'+
-			'<tr><td class=updata><font>点击更换图片</font><input type=file name="userfile"><img src="' + $parents.data("img")+ '" width="100%" id=preview>'+
+			'<tr><td class=updata><font>点击更换图片</font><input type=file name="userfile"><img src="static/uploads/' + $parents.data("img")+ '" width="100%" id=preview>'+
 			'<tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400 ， 该图片尺寸：200 * 200</span ></table>',
 			"success" : function(){
 				alert("");
@@ -89,7 +89,6 @@ $(document).ready(function(){
 						type : "post",
 						success:function (data) {
 							data = JSON.parse(data);
-							console.log(data.status);
 							  if(data.status == "true") {
 								location.reload();
 							} else {
