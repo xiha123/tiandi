@@ -5,6 +5,12 @@ class admin_model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function deleteSlider($id){
+		$this->db->delete('slide', array('id' => $id)); 
+		return true;
+	}
+
+
 	public function login($username, $pwd){
 		$user = $this->db->select('id, pwd, salt')->where('name', $username)->get('admin')->row_array();
 		if (empty($user) || $user['pwd'] !== md5($pwd . $user['salt'])) return false;

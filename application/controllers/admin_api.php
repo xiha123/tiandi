@@ -4,11 +4,23 @@
  * 和后台操作相关
  */
 include_once(APPPATH . 'controllers/base_api.php');
+
 class admin_api extends base_api {
+	
     public function __construct() {
-        parent::__construct();
+		parent::__construct();
 		$this->load->model('admin_model');
+		$this->admin_model->check_login();
     }
+	
+	public function deleteSlider(){
+		$params = parent::getParams('POST', array('id'));
+		if(empty($params))return;
+		extract($params);
+		$this->admin_model->deleteSlider($id);
+		parent::finish(true);
+	}
+
 
     public function login() {
         $params = parent::getParams('POST', array('username', 'pwd'));
@@ -22,6 +34,10 @@ class admin_api extends base_api {
 
 		parent::finish(true);
     }
+
+
+
+
 
     public function edit() {
         $params = parent::getParams('POST', array('nickname'));

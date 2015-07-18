@@ -32,6 +32,7 @@
 				</tr>
 				{/data_list}
 			</table>
+			<!--
 			<div class="page">
 				<font>共 0 页，当前正在第 0 页，共有数据 0 条</font>
 				<div class="right">
@@ -43,6 +44,8 @@
 					<input type="submit" value="下一页">
 				</div>
 			</div>
+			
+			-->
 		</div>
 	</div>
 </div>
