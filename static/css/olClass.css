@@ -1,6 +1,6 @@
 /* slider */
 .slider {
-	margin-top:20px;
+	margin-top:10px;
 }
 .slider-trigger li {
 	position:relative;
@@ -51,6 +51,7 @@
 	margin-left:5px;
 	word-break:break-all;
 	border-top:solid 1px #f0f0f0;
+	background-color:#fff
 }
 .slider-sheet img + .slider-summary {
 	border-top:0;

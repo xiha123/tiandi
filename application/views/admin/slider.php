@@ -1,8 +1,12 @@
 	<?php $this->load->view('widgets/admin/header.php'); ?>
-	<link rel="stylesheet" href="static/css/admin/home.css">
+	<link rel="stylesheet" href="static/css/admin/slider.css">
 </head>
 
 <body>
+<div class="imgLook">
+	<img src="#">
+</div>
+
 <?php $this->load->view('widgets/admin/left.php', array("activeNav" => 1)); ?>
 <div class="main">
 	<div class="main-content">

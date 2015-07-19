@@ -7,7 +7,8 @@
 
 <div class="main">
     <ul class="nav nav-pills" role="tablist">
-        <li role="presentation" class="active"><a href="#guide" aria-controls="guide" role="tab" data-toggle="tab">新手引导</a></li>
+
+		<?php $this->load->view('widgets/online/nav.php' , array("activeNav" => 0)); ?>
     </ul>
 	<div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="guide">
@@ -28,6 +29,29 @@
 			</div>
         </div>
 	</div>
+	<div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="guide2">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th width="">名字</th>
+						<th width="">图片</th>
+						<th width="">链接</th>
+						<th width="">状态</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div class="operation">
+	            <a class="btn btn-success" data-toggle="modal" data-target="#add-guide">添加</a>
+			</div>
+        </div>
+	</div>
+	
+	
+	
+	
 	<div class="modal fade" id="add-guide" tabindex="-1" role="dialog" aria-labelledby="add-guide-title">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -36,7 +60,7 @@
 					<h4 class="modal-title" id="add-guide-title">添加新手指引</h4>
 				</div>
 				<div class="modal-body">
-		            <form onsubmit="addGuide();return false;">
+		            <form onSubmit="addGuide();return false;">
 		                <div class="form-group">
 		                    <label for="add-guide-name">名称</label>
 		                    <input type="text" class="form-control" id="add-guide-nickname" placeholder="名称">

@@ -14,7 +14,7 @@
 					"active" => false
 				),
 				array(
-					"title" => "轮播设置",
+					"title" => "首页轮播设置",
 					"link" => "admin/slider",
 					"icon" => "icon-th-large",
 					"active" => false
@@ -23,6 +23,12 @@
 					"title" => "在线课堂设置",
 					"link" => "admin/onlineClass",
 					"icon" => "icon-shopping-cart",
+					"active" => false
+				),
+				array(
+					"title" => "课程详情设置",
+					"link" => "admin/classList",
+					"icon" => " icon-list-ol",
 					"active" => false
 				),
 				array(

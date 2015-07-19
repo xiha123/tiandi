@@ -6,7 +6,7 @@ $(document).ready(function(){
 function confirms(config){
 	$(".window,#confirm").fadeIn(200);
 	setTimeout(function(){
-		$("#confirm").css({"top" : "20%"});
+		$("#confirm").css({"top" : "10%"});
 	},50);
 	$("#confirm .confirm-title h2").text(config.title);
 	$("#confirm .confirm-content .con").html(config.content);
@@ -21,7 +21,7 @@ function confirms(config){
 function input(config){
 	$(".window,#input").fadeIn(200);
 	setTimeout(function(){
-		$("#input").css({"top" : "20%"});
+		$("#input").css({"top" : "10%"});
 	},50);
 	$("#input .confirm-title h2").text(config.title);
 	$("#input .confirm-content .con").html(config.content);
@@ -43,7 +43,7 @@ function window_init(){
 		$previewImg.attr('src', e.target.result);
 		$temp.attr('src', e.target.result);
 	}
-	
+	$(".color").css({"background-color" : $(".slider-color").val()});
 	$(".slider-color").keypress(function(){
 		setTimeout(function(){
 			$(".color").css({"background-color" : $(".slider-color").val()});

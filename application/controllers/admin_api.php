@@ -6,6 +6,9 @@
 include_once(APPPATH . 'controllers/base_api.php');
 
 class admin_api extends base_api {
+
+	
+	
 	
     public function __construct() {
 		parent::__construct();
@@ -24,7 +27,7 @@ class admin_api extends base_api {
 
     public function login() {
         $params = parent::getParams('POST', array('username', 'pwd'));
-        if (empty($params)) return;
+        if(empty($params)) return;
         extract($params);
 
 		if ($this->admin_model->login($username, $pwd) === false) {
@@ -36,8 +39,31 @@ class admin_api extends base_api {
     }
 
 
-
-
+	//添加新的课程列表
+	public function addClassList(){
+        	$params = parent::getParams('POST', array('className' , 'classVideo' , 'text'));if(empty($params)) return;extract($params);
+		if(!$this->admin_model->addClassList(array(
+			"className" => $className,
+			"text" =>$text,
+			"video" => $classVideo
+		))){
+			parent::finish(false, '填写的新课程名与其他课程重名了');return;
+		}else{
+			parent::finish(true);	
+		}
+	}
+	
+	//删除课程列表
+	public function deleteClassList(){
+        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> deleteClassList($id);
+		parent::finish(true);
+	}
+	
+	
+	
+	
+	
 
     public function edit() {
         $params = parent::getParams('POST', array('nickname'));

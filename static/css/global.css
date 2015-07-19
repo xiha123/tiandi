@@ -9,7 +9,8 @@ html {
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
 	color:#333;
-    background:url(../image/footer.png) repeat-x bottom;
+	
+    background:url(../image/footer.png) repeat-x bottom #eee
 }
 a {
 	text-decoration:none;

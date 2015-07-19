@@ -17,18 +17,14 @@
 	</div>
 	<div class="slider" data-widget="slider" data-config='{"interval": 2000}'>
 		<ul class="slider-trigger js-slider-trigger">
+			{data_list}
 			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li class="last"></li>
+			{/data_list}
 		</ul>
 		<ul class="slider-sheet js-slider-sheet">
-			<li style="background:#cc0000"></li>
-			<li style="background:#FCC0FD"></li>
-			<li style="background:#000"></li>
-			<li style="background:#0036ff"></li>
-			<li style="background:#F0F"></li>
+			{data_list}
+			<li style="background:{color}"><a href="{link}" target="_blank"><img src="static/uploads/{img}"></a></li>
+			{/data_list}
 		</ul>
 	</div>
 	<div class="wrapper">

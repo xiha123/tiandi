@@ -4,6 +4,64 @@ class admin_model extends CI_Model {
 	public function __construct(){
 		parent::__construct();
 	}
+	
+	
+	//>>>>>>>>>>>>>>>>>>>>>> 课程列表开始
+	
+	//获得课程列表
+	public function getClassList(){
+		$temp_list = $this -> db -> get_where("classlist")->result();
+		$data_list = array();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"id" => $temp_list[$index] -> id,
+				"name" => $temp_list[$index] -> name,
+				"video" => $temp_list[$index] -> video,
+				"time" => date("Y-m-d H:i:s" ,  $temp_list[$index] -> time),
+				"text" => $temp_list[$index] -> text,
+			));
+		}	
+		return $data_list;	
+	}
+	
+	//删除课程列
+	public function deleteClassList($id){
+		$this->db->delete('classlist', array('id' => $id)); 
+		return true;
+	}
+	
+	//添加新的课程列表
+	public function addClassList($params = array()){
+		$result = $this -> db -> get_where("classlist" , array("name" => $params["className"]) , 0 ,1) -> result();
+		if(count($result) > 0){
+			return false;	
+		}
+		$this -> db -> insert("classlist" , array("name" => $params["className"] , "video" => $params["video"]  , "time" => time() , "text" => $params["text"]));
+		return true;
+	}
+	
+	//<<<<<<<<<<<<<<<<<<<<< 课程列表结束
+	
+	
+	public function getSlider($type = "0"){
+		$data_list = array();
+		$this->db->order_by("time", "DESC"); 
+		$temp_list = $this -> db -> get_where("slide" , array("type" => $type));
+		$temp_list = $temp_list->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"id" => $temp_list[$index] -> id,
+				"title" => $temp_list[$index] -> name,
+				"img" => $temp_list[$index] -> img,
+				"link" => $temp_list[$index] -> link,
+				"time" =>date("Y-m-d H:i:s" ,  $temp_list[$index] -> time),
+				"color" => $temp_list[$index] -> color,
+				"text" => $temp_list[$index] -> text,
+			));
+		}
+		return $data_list;
+	}
+
 
 	public function deleteSlider($id){
 		$this->db->delete('slide', array('id' => $id)); 

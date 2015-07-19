@@ -9,44 +9,26 @@
 	<div class="wrapper">
 		<div class="slider cf" data-widget="slider">
 			<ul class="slider-trigger fl js-slider-trigger">
-				<li><img src="./static/image/slide1.jpg" height="120" width="200"></li>
-				<li><img src="./static/image/slide2.jpg" height="120" width="200"></li>
-				<li><img src="./static/image/slide3.jpg" height="120" width="200"></li>
+				{data_list}
+				<li><img src="./static/uploads/{img}" height="120" width="200"></li>
+				{/data_list}
 			</ul>
 			<ul class="slider-sheet fl js-slider-sheet">
+			
+			{data_list}
 				<li>
-					<img src="./static/image/slide1.jpg" height="370" width="615">
+					<img src="./static/uploads/{img}" height="370" width="615">
 					<div class="slider-summary">
 						<p>课程</p>
-						<p>内容啊内容内容啊内内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容容</p>
+						<p></p>
 					</div>
 					<div class="slider-summary">
 						<p>课表</p>
-						<p>内容啊内容内容啊内内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容内容啊内容容</p>
+						<p></p>
 					</div>
 				</li>
-				<li>
-					<img src="./static/image/slide2.jpg" height="370" width="615">
-					<div class="slider-summary">
-						<p>课程</p>
-						<p>222222222222222222222222222222222222</p>
-					</div>
-					<div class="slider-summary">
-						<p>课表</p>
-						<p>222222222222222222222222222222222222222222222222</p>
-					</div>
-				</li>
-				<li>
-					<img src="./static/image/slide3.jpg" height="370" width="615">
-					<div class="slider-summary">
-						<p>课程</p>
-						<p>33333333333333333333333333333</p>
-					</div>
-					<div class="slider-summary">
-						<p>课表</p>
-						<p>3333333333333333333333333333333333333333333333333333</p>
-					</div>
-				</li>
+				
+			{/data_list}
 			</ul>
 		</div>
 		<div class="tab" data-widget="tab">
@@ -77,4 +59,4 @@
 <script src="static/js/olClass.js"></script>
 
 </body>
-</html>
+</html>

@@ -7,7 +7,7 @@ class base_api extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // 非ajax请求拒绝
-        if(!$this->input->is_ajax_request()) $this->finish(false, '非法请求');
+        if(!$this->input->is_ajax_request()) $this->finish(false, '非法请求');return false;
     }
 
     /**

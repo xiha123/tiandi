@@ -20,29 +20,11 @@ class admin extends CI_Controller {
 	}
 
 	public function slider(){
-		if (empty($this->user_info)) redirect('admin/login');
-		$this->load->database();
-
-		$data_list = array();
-		$this->db->order_by("time", "DESC"); 
-		$temp_list = $this->db->get('slide');
-		
-		
-		$temp_list = $temp_list->result();
-		for($index = 0;$index < count($temp_list);$index ++){
-			array_push($data_list , array(
-				"id" => $temp_list[$index] -> id,
-				"title" => $temp_list[$index] -> name,
-				"img" => $temp_list[$index] -> img,
-				"link" => $temp_list[$index] -> link,
-				"time" =>date("Y-m-d H:i:s" ,  $temp_list[$index] -> time),
-				"color" => $temp_list[$index] -> color,
-				"text" => $temp_list[$index] -> text,
-			));
-		}
-		
+		if(empty($this->user_info)) redirect('admin/login');
+		$this -> load -> model ("admin_model" , "model");
+		$returnData = $this -> model -> getSlider();
 		$data = array(
-			"data_list" => $data_list,
+			"data_list" => $returnData,
 			"me" => $this->user_info
 		);
 		$this->load->library('parser');
@@ -65,13 +47,62 @@ class admin extends CI_Controller {
 
 	public function onlineClass(){
 		if (empty($this->user_info)) redirect('admin/login');
-
+		
+		
 		$data = array (
 			'me' => $this->user_info,
 			'guide' => $this->admin_model->get_guide()
 		);
-
 		$this->load->view('admin/onlineClass.php', $data);
+	}
+
+	//编辑首页图片
+	public function eidtIndexSlider(){
+		$title = $this->input->post("title", true);
+		$link = $this->input->post("link", true);
+		$description = $this->input->post("description", true);
+		$color = $this->input->post("color", true);
+		$id = $this->input->post("id", true);
+		$type = $this->input->post("type", true);
+
+		if(isset($_FILES["userfile"])){
+			$config['upload_path'] = './static/uploads/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size'] = '2048';
+			$this->load->library('upload', $config);
+			if(!$this->upload->do_upload("userfile")){
+				echo  '{"status" : "false" , "error" : "' . $this->upload->display_errors() . '"}';
+			}else{
+				$returnConfig = $this->upload->data();
+				$this->load->database();
+				$data = array(
+					'name' => $title,
+					'type' => $type,
+					'img' => $returnConfig['file_name'],
+					'link' => $link,
+					'color' => $color,
+					'time' => time(),
+					'text' => $description,
+	
+				);
+				$this->db->where('id', $id);
+				$this->db->update('slide', $data); 
+				echo  '{"status" : "true"}';
+			}
+		}else{
+			$this->load->database();
+			$data = array(
+				'name' => $title,
+				'type' => $type,
+				'link' => $link,
+				'color' => $color,
+				'time' => time(),
+				'text' => $description,
+			);
+			$this->db->where('id', $id);
+			$this->db->update('slide', $data); 
+			echo  '{"status" : "true"}';
+		}
 	}
 
 
@@ -81,11 +112,11 @@ class admin extends CI_Controller {
 		$link = $this->input->post("link", true);
 		$description = $this->input->post("description", true);
 		$color = $this->input->post("color", true);
+		$type = $this->input->post("type", true);
 
 		$config['upload_path'] = './static/uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size'] = '2048';
-
 
 		$this->load->library('upload', $config);
 		if(!$this->upload->do_upload("userfile")){
@@ -96,7 +127,7 @@ class admin extends CI_Controller {
 			$data = array(
 				'id' => "NULL",
 				'name' => $title,
-				'type' => "0",
+				'type' => $type,
 				'img' => $returnConfig['file_name'],
 				'link' => $link,
 				'color' => $color,
@@ -109,10 +140,32 @@ class admin extends CI_Controller {
 		}
 	}
 
+		
+	public function classList(){
+		if (empty($this->user_info)) redirect('admin/login');
+		$returnData = $this -> admin_model -> getClassList();
+		$data = array(
+			"data_list" => $returnData,
+			"me" => $this->user_info
+		);
+		$this->load->library('parser');
+		$this->parser->parse('admin/classList/home.php' , $data);
+	}
 
 
 
 	//在线课堂 轮播设置
+	public function onlineSlider(){
+		if (empty($this->user_info)) redirect('admin/login');
+		$this -> load -> model ("admin_model" , "model");
+		$returnData = $this -> model -> getSlider("1");
+		$data = array(
+			"data_list" => $returnData,
+			"me" => $this->user_info
+		);
+		$this->load->library('parser');
+		$this->parser->parse('admin/onlineSlider.php', $data);
+	}	
 
 	//在线课堂课程表
 	public function onlineList(){
