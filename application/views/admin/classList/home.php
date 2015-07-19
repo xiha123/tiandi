@@ -10,13 +10,14 @@
 
 <div class="main">
 	<ul class="nav nav-pills" role="tablist">
-		<?php $this->load->view('widgets/classList/nav.php' , array("activeNav" => 0)); ?>
+		<?php $this->load->view('widgets/classList/nav.php' , array("activeNav" => 0)); ?><p style="margin-left:122px;color:#aaa;line-height:34px;">点击课程行可进入相关设置</p>
 	</ul>
 
 	<div class="main-content">
 		<?php $this->load->view('widgets/admin/window.php'); ?>
-
+		
 		<div class="main-data">
+	
 			<table class="table table-bordered">
 				<tr>
 					<th >课程名</th>
@@ -26,7 +27,7 @@
 					<th width="8%">操作</th>
 				</tr>
 				{data_list}
-				<tr data-id="{id}" data-img="{img}" data-color="{color}" data-link="{link}">
+				<tr data-id="{id}" >
 					<td>{name}</td>
 					<td>{video}</td>
 					<td>{time}</td>

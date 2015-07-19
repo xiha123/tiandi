@@ -8,6 +8,22 @@ class admin extends CI_Controller {
 		$this->load->model('admin_model');
 		$this->user_info = $this->admin_model->check_login();
 	}
+	
+	public function classListSite($id = ""){
+		if(empty($this->user_info)) redirect('admin/login');
+		$return_data = $this -> admin_model -> getClassListData($id);
+		$return_tag = $this -> admin_model -> getClassListTag($id);
+		$return_chapter = $this -> admin_model -> getClassListChapter($id);
+		$data = array (
+			"id" => $id,
+			"data_tag" => $return_tag,
+			"data_list" => $return_data,
+			"data_chapter" => $return_chapter,
+			'me' => $this->user_info
+		);
+		$this->load->library('parser');
+		$this->parser->parse('admin/classList/classListSite.php', $data);
+	}
 
 	public function index() {
 		if (empty($this->user_info)) redirect('admin/login');

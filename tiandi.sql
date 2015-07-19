@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 18, 2015 at 08:19 AM
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Host: localhost
+-- Generation Time: 2015-07-19 18:04:39
+-- 服务器版本： 5.6.11
+-- PHP Version: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据�? `tiandi`
+-- Database: `tiandi`
 --
-CREATE DATABASE IF NOT EXISTS `tiandi` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `tiandi`;
 
 -- --------------------------------------------------------
 
@@ -50,14 +48,78 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `pwd` char(32) NOT NULL,
   `salt` char(10) NOT NULL,
   `nickname` varchar(32) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
 
 --
--- 转存表中的数�?`admin`
+-- 转存表中的数据 `admin`
 --
 
 INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`) VALUES
-(1, 'tiandi', '933e92d31cdc2748c6f84f26ec090835', '', 'tiandi');
+(1, 'tiandi', '933e92d31cdc2748c6f84f26ec090835', '', 'tiandi'),
+(0, 'tocurd', 'f734d30ecf38421451afe6fba0c26db5', 'bb26886376', '12312'),
+(0, 'tocurd3', 'dca4fe15c87b864a043b89f647a3857e', 'bb278979ef', '123122');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `chapter`
+--
+
+CREATE TABLE IF NOT EXISTS `chapter` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `form` int(11) NOT NULL,
+  `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `chapter`
+--
+
+INSERT INTO `chapter` (`id`, `form`, `title`, `content`) VALUES
+(4, 5, '12312312', '123123'),
+(5, 5, '第一章', '教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `classlist`
+--
+
+CREATE TABLE IF NOT EXISTS `classlist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(124) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `video` text NOT NULL,
+  `time` int(13) NOT NULL,
+  `text` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `link` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `direction` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `tag` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `url` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- 转存表中的数据 `classlist`
+--
+
+INSERT INTO `classlist` (`id`, `name`, `video`, `time`, `text`, `link`, `direction`, `tag`, `url`) VALUES
+(5, '123123', '231312', 1437315977, '312', '112312312', '测试', '3,2,3', '3,2,3'),
+(6, 'Swift', '#', 1437295073, 'Swift', '', '', '', ''),
+(7, 'web', '#', 1437295087, 'web', '', '', '', ''),
+(8, ' Cocos2d-x', '#', 1437295116, ' Cocos2d-x', '', '', '', ''),
+(9, 'Android', '#', 1437295129, 'Android', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `guide`
+--
+
+CREATE TABLE IF NOT EXISTS `guide` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -80,34 +142,27 @@ CREATE TABLE IF NOT EXISTS `site` (
 
 CREATE TABLE IF NOT EXISTS `slide` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
+  `name` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `img` varchar(128) NOT NULL,
   `link` text NOT NULL,
   `color` text NOT NULL,
   `type` int(11) NOT NULL,
   `time` int(13) NOT NULL,
-  `text` text NOT NULL,
+  `text` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
--- 转存表中的数�?`slide`
+-- 转存表中的数据 `slide`
 --
 
 INSERT INTO `slide` (`id`, `name`, `img`, `link`, `color`, `type`, `time`, `text`) VALUES
-(1, '3123', '2014052715273823267.png', '1312', '31', 0, 1437198095, '312'),
-(2, '12312', '2014052715273823268.png', '12312', '12312', 0, 1437198165, '12312'),
-(3, '12', '2014052715273823269.png', '3123123', '312', 0, 1437198186, '12312312'),
-(4, '312', '2014052715273823270.png', '132312', '12312', 0, 1437198195, '3123'),
-(5, '12312', '2014052715273823271.png', '31231', '31', 0, 1437198204, '312312'),
-(6, '132', '20140527152738232.png', '123', '312', 0, 1437201543, '312'),
-(7, '132', '201405271527382321.png', '123', '312', 0, 1437201543, '312'),
-(8, '123', '1_140227095325_1.png', '123123123', '12312', 0, 1437203182, '3213123'),
-(9, '123', '1_140227095325_11.png', '123123123', '12312', 0, 1437203189, '3213123'),
-(10, '123', '1_140227095325_12.png', '123123123', '12312', 0, 1437203189, '3213123'),
-(11, '123', '1_140227095325_13.png', '123123123', '12312', 0, 1437203201, '3213123'),
-(12, '123', '1_140227095325_14.png', '123123123', '12312', 0, 1437203201, '3213123'),
-(13, '123', '1_140227095325_15.png', '123123123', '12312', 0, 1437203201, '3213123');
+(0, '212312', 'logo-hd1.png', '312', '#1e9ba1', 0, 1437283385, '测试'),
+(18, '天地培训测试轮播', 'slide4.jpg', 'http://www.baidu.com/', '#1e9ba1', 0, 1437279877, '天地培训测试轮播'),
+(21, '312', 'slide13.jpg', '12', '123', 1, 1437287609, '31212'),
+(22, '测试', 'slide12.jpg', '#', '#', 1, 1437287598, '测试'),
+(23, '12312', 'slide11.jpg', '312', '#123', 1, 1437287590, '#123132'),
+(24, 'cs', 'slide46.jpg', 'cs', 'cs', 0, 1437287647, 'cs');
 
 -- --------------------------------------------------------
 
@@ -125,6 +180,28 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `tag` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tag`
+--
+
+CREATE TABLE IF NOT EXISTS `tag` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `form` int(11) NOT NULL,
+  `tag` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `url` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `tag`
+--
+
+INSERT INTO `tag` (`id`, `form`, `tag`, `url`) VALUES
+(3, 5, '112321', '12312'),
+(5, 5, '12312312312312', '12312');
 
 -- --------------------------------------------------------
 
