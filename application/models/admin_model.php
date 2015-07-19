@@ -5,11 +5,119 @@ class admin_model extends CI_Model {
 		parent::__construct();
 	}
 	
+	//>>>>>>>>>>>>>>>>>>>>>> 课程详情页设置
+	
+	public function getClassListData($id){
+		$this -> db -> order_by("time", "DESC"); 
+		$data_list = array();
+		$temp_list = $this -> db -> get_where("classlist" , array("id" => $id))->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"id" => $temp_list[$index] -> id,
+				"name" => $temp_list[$index] -> name,
+				"link" => $temp_list[$index] -> link,
+				"direction" => $temp_list[$index] -> direction,
+			));
+		}
+		return $data_list;
+	}
+	
+	
+	public function getClassListTag($id){
+		$this -> db -> order_by("id", "DESC"); 
+		$data_list = array();
+		$temp_list = $this -> db -> get_where("tag" , array("form" => $id))->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"id" => $temp_list[$index] -> id,
+				"name" => $temp_list[$index] -> tag,
+				"url" => $temp_list[$index] -> url,
+			));
+		}
+		return $data_list;
+	}
+	public function getClassListChapter($id){
+		$this -> db -> order_by("id", "DESC"); 
+		$data_list = array();
+		$temp_list = $this -> db -> get_where("chapter" , array("form" => $id))->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"id" => $temp_list[$index] -> id,
+				"title" => $temp_list[$index] -> title,
+				"content" => $temp_list[$index] -> content,
+			));
+		}
+		return $data_list;
+	}
+	
+	public function setClassListLink($array){
+		$this -> db -> where("id" , $array["id"]);
+		$this -> db -> update("classlist",array("link" => $array["link"]  , "direction" =>  $array["direction"]));
+		return true;
+	}
+	
+	
+	public function editClassContent($params){
+		$this -> db -> where("id" , $params["id"]);
+		$this -> db -> update("chapter",array( "title" => $params["title"]  , "content" => $params["content"]));
+		return true;
+	}
+	public function editClassListTag($params){
+		$this -> db -> where("id" , $params["id"]);
+		$this -> db -> update("tag",array( "tag" => $params["className"]  , "url" => $params["classLink"]));
+		return true;
+	}
+
+
+
+	public function deleteClassContent($id){
+		$this->db->delete('chapter', array('id' => $id)); 
+		return true;
+	}
+	
+	public function deleteClassListTag($id){
+		$this->db->delete('tag', array('id' => $id)); 
+		return true;
+	}
+	
+	
+	
+	public function addClassListLink($params){
+		$this -> db -> where("id" , $params["id"]);
+		$this -> db -> update("classlist",array("link" => $params["link"]  , "direction" => $params["direction"]));
+		return true;
+	}
+	
+	public function addClassListTag($params){
+		$this -> db -> insert("tag" , array("form" => $params["id"] , "tag" => $params["className"]  , "url" => $params["classLink"]));
+		return true;
+	}
+	
+	public function addClassContent($params){
+		$this -> db -> insert("chapter" , array("form" => $params["id"] , "title" => $params["title"]  , "content" => $params["content"]));
+		return true;
+	}
+	
+	public function addChapter($params){
+		$this -> db -> where("id" , $params["id"]);
+		$this -> db -> update("classlist",array("link" => $params["link"]  , "direction" => $params["direction"]));
+		return true;
+	}
+
+	
+	//<<<<<<<<<<<<<<<<<<<<<< 课程列表结束
+	
+	
+	
+	
+	
+	
 	
 	//>>>>>>>>>>>>>>>>>>>>>> 课程列表开始
 	
 	//获得课程列表
 	public function getClassList(){
+		$this -> db -> order_by("time", "DESC"); 
 		$temp_list = $this -> db -> get_where("classlist")->result();
 		$data_list = array();
 		for($index = 0;$index < count($temp_list);$index ++){
@@ -22,6 +130,13 @@ class admin_model extends CI_Model {
 			));
 		}	
 		return $data_list;	
+	}
+	
+	//编辑课程列表
+	public function editClassList($params){
+		$this -> db -> where("id" , $params["id"]);
+		$this -> db -> update("classlist",array("name" => $params["className"]  , "time" => time()  , "video" =>  $params["classVideo"], "text" =>  $params["text"]));
+		return true;
 	}
 	
 	//删除课程列

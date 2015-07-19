@@ -6,39 +6,12 @@
 include_once(APPPATH . 'controllers/base_api.php');
 
 class admin_api extends base_api {
-
-	
-	
-	
     public function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');
 		$this->admin_model->check_login();
     }
-	
-	public function deleteSlider(){
-		$params = parent::getParams('POST', array('id'));
-		if(empty($params))return;
-		extract($params);
-		$this->admin_model->deleteSlider($id);
-		parent::finish(true);
-	}
-
-
-    public function login() {
-        $params = parent::getParams('POST', array('username', 'pwd'));
-        if(empty($params)) return;
-        extract($params);
-
-		if ($this->admin_model->login($username, $pwd) === false) {
-			parent::finish(false, '用户名或密码错误');
-			return;
-		}
-
-		parent::finish(true);
-    }
-
-
+    
 	//添加新的课程列表
 	public function addClassList(){
         	$params = parent::getParams('POST', array('className' , 'classVideo' , 'text'));if(empty($params)) return;extract($params);
@@ -52,6 +25,58 @@ class admin_api extends base_api {
 			parent::finish(true);	
 		}
 	}
+	public function addClassContent(){
+        	$params = parent::getParams('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> addClassContent(array(
+			"id" => $id,
+			"title" => $title,
+			"content" => $content
+		));
+		parent::finish(true);
+	}
+	public function addClassListTag(){
+        	$params = parent::getParams('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> addClassListTag(array(
+			"id" => $id,
+			"className" => $className,
+			"classLink" => $classLink
+		));
+		parent::finish(true);
+	}
+	public function addClassListLink(){
+        	$params = parent::getParams('POST', array('id' , 'direction' , 'link'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> addClassListLink(array(
+			"id" => $id,
+			"link" => $link,
+			"direction" => $direction
+		));
+		parent::finish(true);
+	}
+	
+	public function editClassListTag(){
+        	$params = parent::getParams('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> editClassListTag(array(
+			"id" => $id,
+			"className" => $className,
+			"classLink" => $classLink
+		));
+		parent::finish(true);
+	}
+	
+	public function editClassContent(){
+        	$params = parent::getParams('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> editClassContent(array(
+			"id" => $id,
+			"title" => $title,
+			"content" => $content
+		));
+		parent::finish(true);
+	}
+	
+
+
+
+
 	
 	//删除课程列表
 	public function deleteClassList(){
@@ -59,11 +84,57 @@ class admin_api extends base_api {
 		$this -> admin_model -> deleteClassList($id);
 		parent::finish(true);
 	}
+	public function deleteClassListTag(){
+        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> deleteClassListTag($id);
+		parent::finish(true);
+	}
+	public function deleteClassContent(){
+        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+		$this -> admin_model -> deleteClassContent($id);
+		parent::finish(true);
+	}	
+	public function deleteSlider(){
+		$params = parent::getParams('POST', array('id'));
+		if(empty($params))return;
+		extract($params);
+		$this->admin_model->deleteSlider($id);
+		parent::finish(true);
+	}
+	
+	
+	//删除课程列表
+	public function editClassList(){
+        	$params = parent::getParams('POST', array('id' , "className" , "classVideo" , "text"));if(empty($params)) return;extract($params);
+		if($this -> admin_model -> editClassList(array(
+			"id" => $id,
+			"className" => $className,
+			"classVideo" => $classVideo,
+			"text" => $text
+		))){
+			parent::finish(true);
+		}else{
+			parent::finish(false , "填写的新课程名与其他课程重名了");
+		}
+		
+	}
 	
 	
 	
 	
 	
+    public function login() {
+        $params = parent::getParams('POST', array('username', 'pwd'));
+        if(empty($params)) return;
+        extract($params);
+
+		if ($this->admin_model->login($username, $pwd) === false) {
+			parent::finish(false, '用户名或密码错误');
+			return;
+		}
+
+		parent::finish(true);
+    }
 
     public function edit() {
         $params = parent::getParams('POST', array('nickname'));

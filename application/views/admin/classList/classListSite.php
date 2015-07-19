@@ -63,6 +63,7 @@
 							<tr data-id="{id}">
 								<td>{title}</td>
 								<td>{content}</td>
+								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-classContent"></i></td>
 							</tr>
 							{/data_chapter}
 						</table>
