@@ -12,10 +12,16 @@ class course extends CI_Controller {
 		$id = $this->input->get("id", true);
 		$data_chapter = $this -> index_model -> getClassListChapter($id);
 		$data_tag = $this -> index_model -> getClassListTag($id);
+		$data_Link = $this -> index_model -> getClassListLink($id);
+		$data_Viode = $this -> index_model -> getClassListViode($id);
 		
 		$data = array(
+			"name" => $data_Viode[0]["name"],
+			"video" => $data_Viode[0]["video"],
 			"data_list" => $data_chapter,
 			"tag" => $data_tag,
+			"link" => $data_Link[0]["link"],
+			"description" => $data_Link[0]["direction"],
 		);
 		$this->load->library('parser');
 		$this->parser->parse('pages/course.php' , $data);

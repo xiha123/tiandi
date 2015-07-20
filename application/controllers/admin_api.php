@@ -82,6 +82,10 @@ class admin_api extends base_api {
 	public function deleteClassList(){
         	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> deleteClassList($id);
+		$this -> admin_model -> deleteClassListTag_all($id);
+		$this -> admin_model -> deleteClassContent_all($id);
+		
+		
 		parent::finish(true);
 	}
 	public function deleteClassListTag(){

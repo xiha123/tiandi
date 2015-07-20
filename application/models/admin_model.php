@@ -78,6 +78,14 @@ class admin_model extends CI_Model {
 		$this->db->delete('tag', array('id' => $id)); 
 		return true;
 	}
+	public function deleteClassListTag_all($id){
+		$this->db->delete('tag', array('form' => $id)); 
+		return true;
+	}
+	public function deleteClassContent_all($id){
+		$this->db->delete('chapter', array('form' => $id)); 
+		return true;
+	}
 	
 	
 	

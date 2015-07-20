@@ -20,14 +20,16 @@
 		<div class="intro fl">
 			<div class="intro-title">
 				<a class="fr" href="javascript:;">分享</a>
-				<h1>U3D 初级课程</h1>
+				<h1>{name}</h1>
 			</div>
-			<div class="intro-video">video</div>
+			<div class="intro-video">
+				<iframe height="100%" width="100%" src="{video}" frameborder=0 allowfullscreen></iframe>
+			</div>
 		</div>
 		<div class="content fl">
 			<div class="content-tag">
 				<div class="reg">
-					<a class="fr" href="#">报名</a>
+					<a class="fr" href="{link}">报名</a>
 				</div>
 				<ul class="cf">
 					{tag}
@@ -35,7 +37,7 @@
 					{/tag}
 				</ul>
 			</div>
-			<p class="content-description">课课课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述课程描述程描述</p>
+			<p class="content-description">{description}</p>
 			<div class="content-outline cf">
 				<h2>课程大纲</h2>
 				<div class="line"></div>
