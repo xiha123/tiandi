@@ -10,8 +10,8 @@ html { background-color:#fafafa; }
 
 .content { width:770px;background:#fff;padding:20px 15px 150px; }
 .content-tag li { float:left;background:#fafafa;height:30px;line-height:30px;width:80px;text-align:center;margin-right:5px;}
-.content-tag a { background-color:#219ba1;color:#fff;height:30px;line-height:30px;width:100px;text-align:center;border-radius:15px;font-size:18px; }
-.content-tag a:hover { background-color:#2AC3CB; }
+.content-tag .reg a { background-color:#219ba1;color:#fff;height:30px;line-height:30px;width:100px;text-align:center;border-radius:15px;font-size:18px; }
+.content-tag .reg a:hover { background-color:#2AC3CB; }
 .content-description { margin:20px 0 30px; }
 
 .content-outline { position:relative; }

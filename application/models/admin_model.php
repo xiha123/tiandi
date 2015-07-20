@@ -37,7 +37,6 @@ class admin_model extends CI_Model {
 		return $data_list;
 	}
 	public function getClassListChapter($id){
-		$this -> db -> order_by("id", "DESC"); 
 		$data_list = array();
 		$temp_list = $this -> db -> get_where("chapter" , array("form" => $id))->result();
 		for($index = 0;$index < count($temp_list);$index ++){
