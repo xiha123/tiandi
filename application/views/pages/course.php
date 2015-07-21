@@ -10,11 +10,9 @@
 		<div class="fr sidebar">
 			<h2>推荐课程</h2>
 			<ul>
-				<li><a href="#">课程1</a></li>
-				<li><a href="#">课程1</a></li>
-				<li><a href="#">课程1</a></li>
-				<li><a href="#">课程1</a></li>
-				<li><a href="#">课程1</a></li>
+				{ClassList}
+				<li><a href="{link}">{name}</a></li>
+				{/ClassList}
 			</ul>
 		</div>
 		<div class="intro fl">
@@ -29,7 +27,7 @@
 		<div class="content fl">
 			<div class="content-tag">
 				<div class="reg">
-					<a class="fr" href="{link}">报名</a>
+					<a class="fr" href="{link}">报名<img src="./static/image/sign-up.png"></a>
 				</div>
 				<ul class="cf">
 					{tag}

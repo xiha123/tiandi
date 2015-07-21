@@ -4,6 +4,17 @@ class Index_model extends CI_Model {
 	public function __construct(){
 		parent::__construct();
 	}
+	public function getClassList(){
+		$data_list = array();
+		$temp_list  =  $this -> db -> get("classlist") ->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"name" => $temp_list[$index] -> name,
+				"link" => $temp_list[$index] -> link,
+			));
+		}
+		return $data_list;
+	}	
 	public function getClassListTag($id){
 		$data_list = array();
 		$this -> db -> get_where("classlist",array("id"));

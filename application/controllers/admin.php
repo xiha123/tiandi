@@ -8,30 +8,13 @@ class admin extends CI_Controller {
 		$this->load->model('admin_model');
 		$this->user_info = $this->admin_model->check_login();
 	}
-	
-	public function classListSite($id = ""){
-		if(empty($this->user_info)) redirect('admin/login');
-		$return_data = $this -> admin_model -> getClassListData($id);
-		$return_tag = $this -> admin_model -> getClassListTag($id);
-		$return_chapter = $this -> admin_model -> getClassListChapter($id);
-		$data = array (
-			"id" => $id,
-			"data_tag" => $return_tag,
-			"data_list" => $return_data,
-			"data_chapter" => $return_chapter,
-			'me' => $this->user_info
-		);
-		$this->load->library('parser');
-		$this->parser->parse('admin/classList/classListSite.php', $data);
-	}
+
 
 	public function index() {
 		if (empty($this->user_info)) redirect('admin/login');
-
 		$data = array (
 			'me' => $this->user_info
 		);
-
 		$this->load->view('admin/home.php', $data);
 	}
 
@@ -49,11 +32,9 @@ class admin extends CI_Controller {
 
 	public function users() {
 		if (empty($this->user_info)) redirect('admin/login');
-
 		$data = array (
 			'me' => $this->user_info
 		);
-
 		$this->load->view('admin/users.php', $data);
 	}
 
@@ -61,16 +42,6 @@ class admin extends CI_Controller {
 		$this->load->view('admin/login.php');
 	}
 
-	public function onlineClass(){
-		if (empty($this->user_info)) redirect('admin/login');
-		
-		
-		$data = array (
-			'me' => $this->user_info,
-			'guide' => $this->admin_model->get_guide()
-		);
-		$this->load->view('admin/onlineClass.php', $data);
-	}
 
 	//编辑首页图片
 	public function eidtIndexSlider(){
@@ -157,6 +128,13 @@ class admin extends CI_Controller {
 	}
 
 		
+
+
+	/* 
+	*	课程详情
+	*	classList		首页 （课程设置，课程的添加删改）
+	*	classListSite 	课程详细设置
+	*/
 	public function classList(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$returnData = $this -> admin_model -> getClassList();
@@ -167,10 +145,50 @@ class admin extends CI_Controller {
 		$this->load->library('parser');
 		$this->parser->parse('admin/classList/home.php' , $data);
 	}
+	
+	public function classListTag(){
+		if (empty($this->user_info)) redirect('admin/login');
+		$returnData = $this -> admin_model -> getClassList();
+		$data = array(
+			"data_list" => $returnData,
+			"me" => $this->user_info
+		);
+		$this->load->library('parser');
+		$this->parser->parse('admin/classList/home.php' , $data);
+	}
+
+	public function classListSite($id = ""){
+		if(empty($this->user_info)) redirect('admin/login');
+		$return_data = $this -> admin_model -> getClassListData($id);
+		$return_tag = $this -> admin_model -> getClassListTag($id);
+		$return_chapter = $this -> admin_model -> getClassListChapter($id);
+		$data = array (
+			"id" => $id,
+			"data_tag" => $return_tag,
+			"data_list" => $return_data,
+			"data_chapter" => $return_chapter,
+			'me' => $this->user_info
+		);
+		$this->load->library('parser');
+		$this->parser->parse('admin/classList/classListSite.php', $data);
+	}
 
 
 
-	//在线课堂 轮播设置
+	/* 
+	*	在线课堂
+	*	onlineClass 首页 （新手引导）
+	*	onlineSlider 轮播设置
+	*	onlineGoTo 课程方向引导
+	*/
+	public function onlineClass(){
+		if (empty($this->user_info)) redirect('admin/login');
+		$data = array (
+			'me' => $this->user_info,
+			'guide' => $this->admin_model->get_guide()
+		);
+		$this->load->view('admin/onlineClass/home.php', $data);
+	}
 	public function onlineSlider(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$this -> load -> model ("admin_model" , "model");
@@ -180,32 +198,15 @@ class admin extends CI_Controller {
 			"me" => $this->user_info
 		);
 		$this->load->library('parser');
-		$this->parser->parse('admin/onlineSlider.php', $data);
+		$this->parser->parse('admin/onlineClass/onlineSlider.php', $data);
 	}	
-
-	//在线课堂课程表
-	public function onlineList(){
-		$this->load->view('admin/onlineList.php');
-	}
-
-	//新手引导栏设置
-	public function onlineNew(){
-		$this->load->view('admin/onlineNew.php');
-	}
-
-	//课程方向引导栏设置
 	public function onlineGoTo(){
-		$this->load->view('admin/onlineGoTo.php');
+		if (empty($this->user_info)) redirect('admin/login');
+		$data = array(
+			"me" => $this->user_info
+		);
+		$this->load->library('parser');
+		$this->parser->parse('admin/onlineClass/onlineGoTo.php', $data);
 	}
 
-
-	//课程内容详情页设置
-	public function onlineListContent(){
-		$this->load->view('admin/onlineListContent.php');
-	}
-
-
-	public function onlineClassSlider(){
-		$this->load->view('admin/onlineClassSlider.php');
-	}
 }

@@ -1,5 +1,27 @@
 // JavaScript Document
 
+$siteBox = $(".site-box");
+$siteBox.hide();
+$siteBox.eq(0).show();
+temp_index = 1;
+$faterBox = $(".title");
+$faterBox.on("click" , "a" , function(){
+	var _this = $(this);
+	var index = $faterBox.find("a").index(this);
+	if(index == 0) return;
+	
+	_this.parent().addClass("active");
+	$(".site-box").eq(index- 1).show();
+	
+	if(temp_index != index){
+		$faterBox.find("li").eq(temp_index).removeClass("active");
+		$(".site-box").eq(temp_index - 1).hide();
+	}
+	
+	
+	temp_index = index;
+})
+
 $("#save-link").click(function(){
 	$.ajax({
 		"url" : "admin_api/addClassListLink",

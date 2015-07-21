@@ -12,8 +12,8 @@
 			<?php $this->load->view('widgets/admin/window.php'); ?>
 			<div class="main-title">
 				<ul class="nav nav-pills title">
-					<li class="active"><a href="admin/classList"><i class="icon-arrow-left"></i><font>返回</font></a></li>
-					<li><p>当前操作的课程详情页：{data_list}{name}{/data_list}</p></li>
+					<?php $this->load->view('widgets/classList/min.nav.php' , array("activeNav" => 1)); ?>
+					<li style="float:right;font-weight:700"><p>当前操作的课程详情页：{data_list}{name}{/data_list}</p></li>
 				</ul>
 			</div>
 			
@@ -34,7 +34,7 @@
 							</tr>
 							{/data_tag}
 						</table>
-						<button class="btn btn-primary" style="float:right" id="add-classList"><i class="icon-list"></i> &nbsp;添加课程特色</button>
+						<button class="btn btn-primary" style="float:right" id="add-classList"><i class="icon-tag"></i> &nbsp;&nbsp;&nbsp;添加课程特色标签</button>
 					</div>
 					<div class="site-box">
 						<h2>报名按钮</h2><br>
@@ -51,6 +51,52 @@
 							</tr>
 						</table>
 					</div>
+					
+					
+					<div class="site-box">
+						<h2>公开课开课时间设置</h2><br>
+						<table class="table table-bordered">
+							<tr>
+								<th width="40%">名称</th>
+								<th>时间</th>
+								<th>内容</th>
+								<th width="8%">操作</th>
+							</tr>
+							{data_chapter}
+							<tr data-id="{id}">
+								<td>{title}</td>
+								<td>{title}</td>
+								<td>{content}</td>
+								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-classContent"></i></td>
+							</tr>
+							{/data_chapter}
+						</table>
+						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
+					</div>
+					
+					
+					<div class="site-box">
+						<h2>付费课开课时间设置</h2><br>
+						<table class="table table-bordered">
+							<tr>
+								<th width="40%">名称</th>
+								<th>时间</th>
+								<th>内容</th>
+								<th width="8%">操作</th>
+							</tr>
+							{data_chapter}
+							<tr data-id="{id}">
+								<td>{title}</td>
+								<td>{title}</td>
+								<td>{content}</td>
+								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-classContent"></i></td>
+							</tr>
+							{/data_chapter}
+						</table>
+						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
+					</div>
+					
+					
 					<div class="site-box">
 						<h2>课程内容章节设置</h2><br>
 						<table class="table table-bordered">
@@ -68,7 +114,6 @@
 							{/data_chapter}
 						</table>
 						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
-
 					</div>
 					
 					

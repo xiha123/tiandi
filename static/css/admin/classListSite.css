@@ -1,6 +1,6 @@
 /* CSS Document */
 
-.site-box{float:left;width:100%;background:#fff;padding:20px 11px;margin-top:10px;border:1px solid #dcdcdc; border-radius:3px;}
+.site-box{display:none;float:left;width:100%;background:#fff;padding:20px 11px;margin-top:10px;border:1px solid #dcdcdc; border-radius:3px;}
 .site-box h2{font-size:16px;color:#333}
 .site-box table{margin-top:0px;}
 .site-box td,th,tr {height:30px;line-height:30px !important;}

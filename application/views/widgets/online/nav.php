@@ -14,17 +14,11 @@ $navList = array(
 		"active" => false
 	),
 	array(
-		"title" => "在线课堂设置",
-		"link" => "admin/onlineClass",
+		"title" => "课程方向引导",
+		"link" => "admin/onlineGoTo",
 		"icon" => "icon-shopping-cart",
 		"active" => false
-	),
-	array(
-		"title" => "用户管理",
-		"link" => "admin/users",
-		"icon" => "icon-user",
-		"active" => false
-	),
+	)
 );
 
 

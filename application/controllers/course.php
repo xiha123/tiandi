@@ -14,6 +14,7 @@ class course extends CI_Controller {
 		$data_tag = $this -> index_model -> getClassListTag($id);
 		$data_Link = $this -> index_model -> getClassListLink($id);
 		$data_Viode = $this -> index_model -> getClassListViode($id);
+		$data_ClassList = $this -> index_model -> getClassList();
 		
 		$data = array(
 			"name" => $data_Viode[0]["name"],
@@ -21,6 +22,7 @@ class course extends CI_Controller {
 			"data_list" => $data_chapter,
 			"tag" => $data_tag,
 			"link" => $data_Link[0]["link"],
+			"ClassList" => $data_ClassList,
 			"description" => $data_Link[0]["direction"],
 		);
 		$this->load->library('parser');

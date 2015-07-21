@@ -9,7 +9,7 @@
 			<?php $this->load->view('widgets/admin/window.php'); ?>
 			<div class="main-title">
 				<ul class="nav nav-pills">
-					<?php $this->load->view('widgets/admin/onlineClass/nav.php' , array("activeNav" => 4)); ?>
+					<?php $this->load->view('widgets/online/nav.php' , array("activeNav" => 2)); ?>
 				</ul>
 			</div>
 			
