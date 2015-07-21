@@ -14,25 +14,25 @@ $navList = array(
 		"active" => false
 	),
 	array(
-		"title" => "报名地址及课程描述",
+		"title" => "地址及描述",
 		"link" => "javascript:void(0)",
 		"icon" => "icon-list",
 		"active" => false
 	),
 	array(
-		"title" => "公开课课程设置",
+		"title" => "公开课设置",
 		"link" => "javascript:void(0)",
 		"icon" => "icon-list",
 		"active" => false
 	),
 	array(
-		"title" => "付费课课程设置",
+		"title" => "付费课设置",
 		"link" => "javascript:void(0)",
 		"icon" => "icon-list",
 		"active" => false
 	),
 	array(
-		"title" => "课程章节设置",
+		"title" => "章节设置",
 		"link" => "javascript:void(0)",
 		"icon" => "icon-list",
 		"active" => false

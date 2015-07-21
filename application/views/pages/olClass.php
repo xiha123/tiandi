@@ -8,13 +8,12 @@
 <div class="main">
 	<div class="wrapper">
 		<div class="slider cf" data-widget="slider">
-			<ul class="slider-trigger fl js-slider-trigger">
-				{data_list}
+			<ul class="slider-trigger fl">
 				<li><img src="./static/uploads/{img}" height="120" width="200"></li>
-				{/data_list}
+				<li><img src="./static/uploads/{img}" height="120" width="200"></li>
+				<li><img src="./static/uploads/{img}" height="120" width="200"></li>
 			</ul>
 			<ul class="slider-sheet fl js-slider-sheet">
-			
 			{data_list}
 				<li>
 					<img src="./static/uploads/{img}" height="370" width="615">
@@ -27,8 +26,12 @@
 						<p></p>
 					</div>
 				</li>
-				
 			{/data_list}
+			</ul>
+			<ul class="js-slider-trigger">
+				{data_list}
+				<li><a href="javascript:void(0)"></a></li>
+				{/data_list}
 			</ul>
 		</div>
 		<div class="tab" data-widget="tab">
