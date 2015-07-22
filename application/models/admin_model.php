@@ -4,7 +4,42 @@ class admin_model extends CI_Model {
 	public function __construct(){
 		parent::__construct();
 	}
+
+	public function deleteClassPublic($id){
+		if($this->db->delete('classlistcourse', array('id' => $id))){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function addClassPublic($array){
+		if($this->db->insert('classlistcourse', array('form' => $array["id"] , 'title' => $array["title"] , "content" => $array["content"] , "time" => $array["time"]))){
+			return $this->db->insert_id();
+		}else{
+			return -1;
+		}
+	}
 	
+	
+	
+	public function getClassListCourse($id , $type = "0"){
+		$data_list = array();
+		$this -> db -> order_by("time", "DESC"); 
+		$temp_list = $this -> db -> get_where("classlistcourse" , array("form" => $id , "type" => $type));
+		foreach ($temp_list->result_array() as $row)
+		{
+			$data_list[] = array(
+				"id" => $row["id"],
+				"title" => $row["title"],
+				"time" => date("Y-m-d",$row["time"]),
+				"content" => $row["content"],
+			);
+		}
+		return ($data_list);
+	}
+	
+	
+
 	//>>>>>>>>>>>>>>>>>>>>>> 课程详情页设置
 	
 	public function getClassListData($id){
@@ -36,6 +71,9 @@ class admin_model extends CI_Model {
 		}
 		return $data_list;
 	}
+	
+	
+	
 	public function getClassListChapter($id){
 		$data_list = array();
 		$temp_list = $this -> db -> get_where("chapter" , array("form" => $id))->result();

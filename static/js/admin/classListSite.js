@@ -9,18 +9,102 @@ $faterBox.on("click" , "a" , function(){
 	var _this = $(this);
 	var index = $faterBox.find("a").index(this);
 	if(index == 0) return;
-	
 	_this.parent().addClass("active");
 	$(".site-box").eq(index- 1).show();
-	
 	if(temp_index != index){
 		$faterBox.find("li").eq(temp_index).removeClass("active");
 		$(".site-box").eq(temp_index - 1).hide();
 	}
-	
-	
 	temp_index = index;
 })
+
+
+
+$(".public-class").click(function(){
+	$father = $(this).parents().find("tbody");
+	input({
+		"title" : "添加公开课设置",
+		"content" : 
+		'<table class=table-form>'+
+		'<tr><td>课程名称：<input type="text" placeholder="请输入公开课课程名称" class="addpublic-title">'+
+		'<tr><td>课程地址：<input type="text" placeholder="请输入公开课介绍"  class="addpublic-content">'+
+		'<tr><td>课程时间：<input type="text" placeholder="请选择时间"  class="time">'+
+		'</table>',
+		"success" : function(){
+			if($("input[name='className']").val() == ""){
+				showAlert("您必须写清课程的名称");
+				return false
+			}
+			if($("input[name='classLink']").val() == ""){
+				showAlert("您必须写清课程的连接");
+				return false
+			}
+			$.ajax({
+				"url" : "admin_api/addClassPublic",
+				type : "POST",
+				data : {
+					"id" : id,
+					"title" : $(".addpublic-title").val(),
+					"content" : $(".addpublic-content").val(),
+					"time" : $(".time").val(),
+				},
+				dataType : "JSON",
+				success: function(data){
+					  if(data.status == true) {
+						$father.append("<tr data-id='" + data.error+ "'><td>" +$(".addpublic-title").val()+ "</td><td>"+$(".time").val()+"</td><td>" + $(".addpublic-content").val() + '</td><td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-public"></i></td></tr>');
+						close();
+						showAlert("恭喜您！添加成功");
+					} else {
+						showAlert(data.error);
+					}
+				}
+			});				
+		}
+	});
+	$( ".time" ).datepicker();
+	alertBox({"title":"温馨提示","content":"<p>&nbsp;&nbsp;&nbsp;&nbsp;公开课列表，添加成功</p>",});
+});
+
+
+
+
+$("body").on("click" , ".remove-public" , function(){
+	$parents = $(this).parents().parents().eq(0);
+	confirms({
+		"title" : "您确定要删除吗",
+		"icon" : "icon-trash",
+		"content" : "<p>您确定要删除掉这个课程吗？</p><p>删除后将无法复原，点击确定按钮确认删除该课程</p>",
+		"success" : function(){
+			$.ajax({
+				"url" : "admin_api/deleteClassPublic",
+				type : "POST",
+				data : {"id" : $parents.data("id")},
+				dataType : "JSON",
+				success: function(data){
+					  if(data.status == true) {
+						$parents.hide();
+						close();
+						
+					} else {
+						alertBox(data.error);
+					}
+				}
+			});
+		}
+	});
+})
+
+
+
+
+
+
+
+
+
+
+
+
 
 $("#save-link").click(function(){
 	$.ajax({
@@ -34,7 +118,7 @@ $("#save-link").click(function(){
 		dataType : "JSON",
 		success: function(data){
 			  if(data.status == true) {
-				showAlert("保存成功" , "success");
+				alertBox({"title":"保存成功","icon":"icon-ok","content":"<p>恭喜您！</p><p>保存成功</p>",});
 			} else {
 				showAlert(data.error);
 			}

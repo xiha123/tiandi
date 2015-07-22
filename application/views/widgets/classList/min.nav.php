@@ -16,25 +16,31 @@ $navList = array(
 	array(
 		"title" => "地址及描述",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-list",
+		"icon" => "icon-external-link",
 		"active" => false
 	),
 	array(
 		"title" => "公开课设置",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-list",
+		"icon" => "icon-film",
 		"active" => false
 	),
 	array(
 		"title" => "付费课设置",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-list",
+		"icon" => "icon-qrcode",
 		"active" => false
 	),
 	array(
 		"title" => "章节设置",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-list",
+		"icon" => "icon-tasks",
+		"active" => false
+	),
+	array(
+		"title" => "图片设置",
+		"link" => "javascript:void(0)",
+		"icon" => "icon-picture",
 		"active" => false
 	),
 );

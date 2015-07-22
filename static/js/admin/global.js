@@ -3,6 +3,18 @@ $(document).ready(function(){
 	$(".close_window , #close_window").click(close);
 });
 
+function alertBox(config){
+	$(".window,#alert").fadeIn(200);
+	setTimeout(function(){
+		$("#alert").css({"top" : "10%"});
+	},50);
+	$("#alert .confirm-title h2").text(config.title);
+	$("#alert .confirm-content .con").html(config.content);
+	$("#alert .confirm-content i").addClass(config.icon);
+	$("#alert .confirm-bottom").find(".button_ok").on("click",function(){
+	
+	})
+}
 function confirms(config){
 	$(".window,#confirm").fadeIn(200);
 	setTimeout(function(){

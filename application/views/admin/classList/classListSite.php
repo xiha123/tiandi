@@ -19,7 +19,7 @@
 			
 			<div class="main-data">
 					<div class="site-box">
-						<h2>课程特色介绍</h2><br>
+						<h2><i class="icon-tag"></i>课程特色介绍</h2><br>
 						<table class="table table-bordered">
 							<tr>
 								<th width="40%">名称</th>
@@ -36,8 +36,10 @@
 						</table>
 						<button class="btn btn-primary" style="float:right" id="add-classList"><i class="icon-tag"></i> &nbsp;&nbsp;&nbsp;添加课程特色标签</button>
 					</div>
+					
+					
 					<div class="site-box">
-						<h2>报名按钮</h2><br>
+						<h2><i class="icon-external-link"></i>报名地址及描述</h2><br>
 						<table>
 
 							<tr>
@@ -54,24 +56,24 @@
 					
 					
 					<div class="site-box">
-						<h2>公开课开课时间设置</h2><br>
+						<h2>公开课课程发布时间设置</h2><br>
 						<table class="table table-bordered">
 							<tr>
 								<th width="40%">名称</th>
-								<th>时间</th>
-								<th>内容</th>
+								<th>发布时间</th>
+								<th>发布内容</th>
 								<th width="8%">操作</th>
 							</tr>
-							{data_chapter}
+							{course_0}
 							<tr data-id="{id}">
 								<td>{title}</td>
-								<td>{title}</td>
+								<td>{time}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-classContent"></i></td>
+								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-public"></i></td>
 							</tr>
-							{/data_chapter}
+							{/course_0}
 						</table>
-						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
+						<button class="btn btn-primary public-class" style="float:right" data-type="0"><i class="icon-list"></i> &nbsp;添加课程</button>
 					</div>
 					
 					
@@ -84,17 +86,19 @@
 								<th>内容</th>
 								<th width="8%">操作</th>
 							</tr>
-							{data_chapter}
+							{course_1}
 							<tr data-id="{id}">
 								<td>{title}</td>
-								<td>{title}</td>
+								<td>{time}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-classContent"></i></td>
+								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-public"></i></td>
 							</tr>
-							{/data_chapter}
+							{/course_1}
 						</table>
-						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
+						<button class="btn btn-primary public-class" style="float:right" data-type="1"><i class="icon-list"></i> &nbsp;添加课程</button>
 					</div>
+					
+					
 					
 					
 					<div class="site-box">
@@ -114,7 +118,7 @@
 							{/data_chapter}
 						</table>
 						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
-					</div>
+					</div> 
 					
 					
 					
@@ -124,7 +128,9 @@
 		</div>
 	</div>
 	<?php $this->load->view('widgets/admin/footer.php'); ?>
-	<script src="static/js/admin/classListSite.js"></script>
+	<link rel="stylesheet" href="./static/css/datepicker.css">
+	  <script src="./static/lib/bootstrap-datepicker.js"></script>
+	<script src="./static/js/admin/classListSite.js"></script>
 
 </body>
 </html>
