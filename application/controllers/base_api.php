@@ -40,7 +40,7 @@ class base_api extends CI_Controller {
 
         foreach ($keys as $key) {
             if (!isset($params[$key]) || empty($params[$key])) {
-                $this->finish(false, '参数不完整');
+                $this->finish(false, '亲，不能填写空数据保存哟！');
                 return false;
             }
             $result[$key] = $params[$key];

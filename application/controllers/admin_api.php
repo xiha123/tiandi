@@ -12,6 +12,32 @@ class admin_api extends base_api {
 		$this->admin_model->check_login();
     }
     
+    
+    	public function deleteClassPublic(){
+        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+		if(!$this->admin_model->deleteClassPublic($id)){
+			parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
+		}else{
+			parent::finish(true);
+		}		
+	}
+    	public function addClassPublic(){
+        	$params = parent::getParams('POST', array('id' , 'title' , 'content' , 'time'));if(empty($params)) return;extract($params);
+		$time = (strtotime($time) + 86400);
+		if(time() > $time) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
+		if(!$data = $this->admin_model->addClassPublic(array(
+			"id" => $id,
+			"title" =>$title,
+			"time" =>$time,
+			"content" => $content
+		))){
+			parent::finish(false, '无法插入该课程，请稍候再试');return;
+		}else{
+			parent::finish(true , $data);	
+		}
+	}
+    
+    
 	//添加新的课程列表
 	public function addClassList(){
         	$params = parent::getParams('POST', array('className' , 'classVideo' , 'text'));if(empty($params)) return;extract($params);
