@@ -69,7 +69,7 @@
 								<td>{title}</td>
 								<td>{time}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-public"></i></td>
+								<td><i class="icon-edit edit-public"></i><i class="icon-trash remove-public"></i></td>
 							</tr>
 							{/course_0}
 						</table>

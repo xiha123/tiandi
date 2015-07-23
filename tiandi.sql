@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 2015-07-19 18:04:39
--- 服务器版本： 5.6.11
--- PHP Version: 5.5.1
+-- 主机: 127.0.0.1
+-- 生成日期: 2015 �?07 �?22 �?11:51
+-- 服务器版本: 5.6.11
+-- PHP 版本: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `tiandi`
+-- 数据库: `tiandi`
 --
+CREATE DATABASE IF NOT EXISTS `tiandi` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tiandi`;
 
 -- --------------------------------------------------------
 
@@ -71,15 +73,7 @@ CREATE TABLE IF NOT EXISTS `chapter` (
   `title` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- 转存表中的数据 `chapter`
---
-
-INSERT INTO `chapter` (`id`, `form`, `title`, `content`) VALUES
-(4, 5, '12312312', '123123'),
-(5, 5, '第一章', '教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5教会学生们如何使用Photosthop cs5');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -105,11 +99,68 @@ CREATE TABLE IF NOT EXISTS `classlist` (
 --
 
 INSERT INTO `classlist` (`id`, `name`, `video`, `time`, `text`, `link`, `direction`, `tag`, `url`) VALUES
-(5, '123123', '231312', 1437315977, '312', '112312312', '测试', '3,2,3', '3,2,3'),
+(5, ' Unity-3D', 'http://v.qq.com/iframe/player.html?vid=z01592zs6ck&width=770&height=400&auto=0', 1437463584, ' Unity-3D', '112312312', '你是否早已难以忍受普通路由器的种种问题：无线网络卡顿、家中角落信号弱、安装设置复杂......为了让全家人获得绝佳的极速上网体验，现在是时候换台双频AC智能路由器了：2.4GHz / 5GHz双频并发，速率快3倍；\n人人都会用的两步极简安装、一键信号覆盖拓展、防蹭网等功能，享受简单的智能；支持USB外接硬盘，可脱机下载电影、备份照片，满足娱乐生活的更多需求；支持更多的智能设备的连接与管理，让家就在你手中。', '3,2,3', '3,2,3'),
 (6, 'Swift', '#', 1437295073, 'Swift', '', '', '', ''),
 (7, 'web', '#', 1437295087, 'web', '', '', '', ''),
 (8, ' Cocos2d-x', '#', 1437295116, ' Cocos2d-x', '', '', '', ''),
-(9, 'Android', '#', 1437295129, 'Android', '', '', '', '');
+(9, 'Android', '#', 1437295129, 'Android', '', '', '', ''),
+(10, '1', '1', 1437546632, '1', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `classlistcourse`
+--
+
+CREATE TABLE IF NOT EXISTS `classlistcourse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `form` int(11) NOT NULL,
+  `type` int(11) NOT NULL COMMENT '0为公开课 1为付费课',
+  `time` int(13) NOT NULL,
+  `title` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=45 ;
+
+--
+-- 转存表中的数据 `classlistcourse`
+--
+
+INSERT INTO `classlistcourse` (`id`, `form`, `type`, `time`, `title`, `content`) VALUES
+(1, 1, 1, 1, '2', '32131'),
+(2, 1, 1, 1, '2', '32131'),
+(3, 1, 1, 1, '2', '32131'),
+(4, 1, 1, 1, '2', '32131'),
+(5, 1, 1, 1, '2', '32131'),
+(6, 1, 1, 1, '2', '32131'),
+(7, 1, 1, 1, '2', '32131'),
+(8, 1, 1, 1, '2', '32131'),
+(9, 1, 1, 1, '2', '32131'),
+(10, 1, 0, 1, '2', '32131'),
+(11, 1, 1, 1, '2', '32131'),
+(12, 1, 1, 1, '2', '32131'),
+(15, 1, 1, 1, '2', '32131'),
+(24, 10, 0, 1437553127, '3123', '123312'),
+(26, 5, 0, 1437602400, '第十部分：web开发案例', '07-23 20:00-21:00'),
+(27, 5, 0, 1437602400, '第二部分：CSS基础课程', 'CSS基础课程 07-23 15:00-16:00'),
+(28, 5, 0, 1438207200, '三部分：JavaScript入门与实践', 'JavaScript入门与实践 07-30 20:00-21:00'),
+(44, 5, 0, 1437602400, '3123', '1312');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `course`
+--
+
+CREATE TABLE IF NOT EXISTS `course` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) NOT NULL,
+  `content` text NOT NULL,
+  `type` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -193,15 +244,16 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `tag` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `url` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `tag`
 --
 
 INSERT INTO `tag` (`id`, `form`, `tag`, `url`) VALUES
-(3, 5, '112321', '12312'),
-(5, 5, '12312312312312', '12312');
+(3, 5, '测试1', '12312'),
+(5, 5, '12312312312312', '12312'),
+(6, 5, '123', '231');
 
 -- --------------------------------------------------------
 

@@ -27,7 +27,7 @@ $(".public-class").click(function(){
 		"content" : 
 		'<table class=table-form>'+
 		'<tr><td>课程名称：<input type="text" placeholder="请输入公开课课程名称" class="addpublic-title">'+
-		'<tr><td>课程地址：<input type="text" placeholder="请输入公开课介绍"  class="addpublic-content">'+
+		'<tr><td>课程地址：<textarea placeholder="请输入公开课介绍" class="addpublic-content"></textarea>'+
 		'<tr><td>课程时间：<input type="text" placeholder="请选择时间"  class="time">'+
 		'</table>',
 		"success" : function(){
@@ -51,7 +51,7 @@ $(".public-class").click(function(){
 				dataType : "JSON",
 				success: function(data){
 					  if(data.status == true) {
-						$father.append("<tr data-id='" + data.error+ "'><td>" +$(".addpublic-title").val()+ "</td><td>"+$(".time").val()+"</td><td>" + $(".addpublic-content").val() + '</td><td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-public"></i></td></tr>');
+						$father.append("<tr data-id='" + data.error+ "'><td>" +$(".addpublic-title").val()+ "</td><td>"+$(".time").val()+"</td><td>" + $(".addpublic-content").val() + '</td><td><i class="icon-edit edit-public"></i><i class="icon-trash remove-public"></i></td></tr>');
 						close();
 						showAlert("恭喜您！添加成功");
 					} else {
@@ -62,8 +62,62 @@ $(".public-class").click(function(){
 		}
 	});
 	$( ".time" ).datepicker();
-	alertBox({"title":"温馨提示","content":"<p>&nbsp;&nbsp;&nbsp;&nbsp;公开课列表，添加成功</p>",});
 });
+
+
+$("body").on("click" , ".edit-public" , function(){
+	$father = $(this).parents().find("tbody");
+	$parents = $(this).parents().parents().eq(0);
+	console.log($parents);
+	input({
+		"title" : "编辑公开课设置",
+		"content" : 
+		'<table class=table-form>'+
+		'<tr><td>课程名称：<input placeholder="请输入公开课标题" type="text" value="' + $parents.find("td").eq(0).text() + '" class="addpublic-title">'+
+		'<tr><td>课程描述：<textarea placeholder="请输入公开课介绍" class="addpublic-content">' + $parents.find("td").eq(2).text() + '</textarea>'+
+		'<tr><td>课程时间：<input  type="text" value="' + $parents.find("td").eq(1).text() + '"placeholder="请选择时间"  class="time">'+
+		'</table>',
+		"success" : function(){
+			if($("input[name='className']").val() == ""){
+				showAlert("您必须写清课程的名称");
+				return false
+			}
+			if($("input[name='classLink']").val() == ""){
+				showAlert("您必须写清课程的连接");
+				return false
+			}
+			$.ajax({
+				"url" : "admin_api/editClassPublic",
+				type : "POST",
+				data : {
+					"id" : $parents.data("id"),
+					"title" : $(".addpublic-title").val(),
+					"content" : $(".addpublic-content").val(),
+					"time" : $(".time").val(),
+					"type" : "true",
+				},
+				dataType : "JSON",
+				success: function(data){
+					  if(data.status == true) {
+						$parents.html("<td>" +$(".addpublic-title").val()+ "</td><td>"+$(".time").val()+"</td><td>" + $(".addpublic-content").val() + '</td><td><i class="icon-edit edit-public"></i><i class="icon-trash remove-public"></i></td>');
+						close();
+						showAlert("恭喜您！编辑成功");
+					} else {
+						showAlert(data.error);
+					}
+				}
+			});				
+		}
+	});
+	$( ".time" ).datepicker();
+});
+
+
+
+
+
+
+
 
 
 

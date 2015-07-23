@@ -4,6 +4,14 @@ class admin_model extends CI_Model {
 	public function __construct(){
 		parent::__construct();
 	}
+	
+	public function editClassPublic($pr){
+		$this -> db -> where("id" , $pr['id']);
+		if($this -> db -> update("classlistcourse" , array("time" => strtotime($pr["time"] ), "title" =>  $pr["title"] , "content" => $pr["content"] ))){
+			return true;
+		}
+		return false;
+	}
 
 	public function deleteClassPublic($id){
 		if($this->db->delete('classlistcourse', array('id' => $id))){
@@ -13,7 +21,8 @@ class admin_model extends CI_Model {
 		}
 	}
 	public function addClassPublic($array){
-		if($this->db->insert('classlistcourse', array('form' => $array["id"] , 'title' => $array["title"] , "content" => $array["content"] , "time" => $array["time"]))){
+	
+		if($this->db->insert('classlistcourse', array('form' => $array["id"] , 'title' => $array["title"] , "content" => $array["content"] , "time" =>$array["time"]) )){
 			return $this->db->insert_id();
 		}else{
 			return -1;

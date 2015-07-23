@@ -12,6 +12,15 @@ class admin_api extends base_api {
 		$this->admin_model->check_login();
     }
     
+    	public function editClassPublic(){
+        	$params = parent::getParams('POST', array('id' , "title" , "content" , "time" , "type"));if(empty($params)) return;extract($params);
+		if(time() >  strtotime($time)) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
+		if(!$this->admin_model->editClassPublic($params)){
+			parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
+		}else{
+			parent::finish(true);
+		}
+	}
     
     	public function deleteClassPublic(){
         	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
