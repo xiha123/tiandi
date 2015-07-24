@@ -69,7 +69,7 @@
 								<td>{title}</td>
 								<td>{time}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-public"></i><i class="icon-trash remove-public"></i></td>
+								<td><i class="icon-edit edit-public" data-type="0"></i><i class="icon-trash remove-public"></i></td>
 							</tr>
 							{/course_0}
 						</table>
@@ -91,7 +91,7 @@
 								<td>{title}</td>
 								<td>{time}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-public"></i></td>
+								<td><i class="icon-edit edit-public" data-type="1"></i><i class="icon-trash remove-public"></i></td>
 							</tr>
 							{/course_1}
 						</table>
@@ -118,6 +118,16 @@
 							{/data_chapter}
 						</table>
 						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
+					</div> 			
+
+
+					<div class="site-box updata">
+						<h2>设置课程照片</h2><br>
+						<div class="updataBox">
+							<img src="#">
+							<input type="file">
+						</div>
+						<button class="btn btn-success" style="float:right" id="updataPic"><i class="icon-list"></i> &nbsp;保存</button>
 					</div> 
 					
 					

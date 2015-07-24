@@ -7,7 +7,11 @@ class admin_model extends CI_Model {
 	
 	public function editClassPublic($pr){
 		$this -> db -> where("id" , $pr['id']);
-		if($this -> db -> update("classlistcourse" , array("time" => strtotime($pr["time"] ), "title" =>  $pr["title"] , "content" => $pr["content"] ))){
+		if($this -> db -> update("classlistcourse" , array(
+			"time" => strtotime($pr["time"] ), 
+			"title" =>  $pr["title"] , 
+			"content" => $pr["content"] 
+		))){
 			return true;
 		}
 		return false;
@@ -20,9 +24,15 @@ class admin_model extends CI_Model {
 			return false;
 		}
 	}
-	public function addClassPublic($array){
 	
-		if($this->db->insert('classlistcourse', array('form' => $array["id"] , 'title' => $array["title"] , "content" => $array["content"] , "time" =>$array["time"]) )){
+	public function addClassPublic($array){
+		if($this->db->insert('classlistcourse', array(
+			'form' => $array["id"] ,
+			 'title' => $array["title"] , 
+			 "content" => $array["content"] , 
+			 "type" => $array["type"] , 
+			 "time" =>$array["time"]
+		))){
 			return $this->db->insert_id();
 		}else{
 			return -1;

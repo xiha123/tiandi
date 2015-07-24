@@ -22,6 +22,8 @@ $faterBox.on("click" , "a" , function(){
 
 $(".public-class").click(function(){
 	$father = $(this).parents().find("tbody");
+	var type = $(this).data("type") == 0 ? 'true' : 'false';
+
 	input({
 		"title" : "添加公开课设置",
 		"content" : 
@@ -47,6 +49,7 @@ $(".public-class").click(function(){
 					"title" : $(".addpublic-title").val(),
 					"content" : $(".addpublic-content").val(),
 					"time" : $(".time").val(),
+					"type" : type,
 				},
 				dataType : "JSON",
 				success: function(data){
@@ -65,10 +68,15 @@ $(".public-class").click(function(){
 });
 
 
+
+
+
 $("body").on("click" , ".edit-public" , function(){
 	$father = $(this).parents().find("tbody");
 	$parents = $(this).parents().parents().eq(0);
-	console.log($parents);
+	var type = $(this).data("type") == 0 ? 'data-id="0"' : 'data-id="1"';
+	
+
 	input({
 		"title" : "编辑公开课设置",
 		"content" : 
@@ -99,7 +107,7 @@ $("body").on("click" , ".edit-public" , function(){
 				dataType : "JSON",
 				success: function(data){
 					  if(data.status == true) {
-						$parents.html("<td>" +$(".addpublic-title").val()+ "</td><td>"+$(".time").val()+"</td><td>" + $(".addpublic-content").val() + '</td><td><i class="icon-edit edit-public"></i><i class="icon-trash remove-public"></i></td>');
+						$parents.html("<td>" +$(".addpublic-title").val()+ "</td><td>"+$(".time").val()+"</td><td>" + $(".addpublic-content").val() + '</td><td><i class="icon-edit edit-public" '+type+'></i><i class="icon-trash remove-public"></i></td>');
 						close();
 						showAlert("恭喜您！编辑成功");
 					} else {

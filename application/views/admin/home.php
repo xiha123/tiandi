@@ -1,5 +1,9 @@
 <?php $this->load->view('widgets/admin/header.php'); ?>
 	<link rel="stylesheet" href="static/css/admin/home.css">
+	<script type="text/javascript">
+
+
+	</script>
 </head>
 
 <body>
@@ -24,3 +28,9 @@
 <?php $this->load->view('widgets/admin/footer.php'); ?>
 </body>
 </html>
+
+
+
+
+
+
