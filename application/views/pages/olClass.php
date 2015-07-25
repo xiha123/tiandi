@@ -9,21 +9,22 @@
 	<div class="wrapper">
 		<div class="slider cf" data-widget="slider">
 			<ul class="slider-trigger fl">
-				<li><img src="./static/uploads/{img}" height="120" width="200"></li>
-				<li><img src="./static/uploads/{img}" height="120" width="200"></li>
-				<li><img src="./static/uploads/{img}" height="120" width="200"></li>
+			{data_left}
+				<li><a href="{link}" target=""><img src="./static/uploads/{img}" height="120" width="200"></a></li>
+			{/data_left}
+
 			</ul>
 			<ul class="slider-sheet fl js-slider-sheet">
 			{data_list}
 				<li>
-					<img src="./static/uploads/{img}" height="370" width="615">
+					<img src="./static/uploads/{url}" height="370" width="615">
 					<div class="slider-summary">
-						<p>课程</p>
-						<p></p>
+						<p>公开课</p>
+						<p>{public} {title} {/public}</p>
 					</div>
 					<div class="slider-summary">
-						<p>课表</p>
-						<p></p>
+						<p>付费课</p>
+						<p>{class} {title} {/class}</p>
 					</div>
 				</li>
 			{/data_list}

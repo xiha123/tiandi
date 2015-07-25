@@ -14,7 +14,7 @@ class admin_api extends base_api {
     
     	public function editClassPublic(){
         	$params = parent::getParams('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
-		if(time() >  strtotime($time)) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
+		if(time() >  strtotime($time) + 86400) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
 		if(!$this->admin_model->editClassPublic($params)){
 			parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
 		}else{
@@ -35,9 +35,8 @@ class admin_api extends base_api {
     	public function addClassPublic(){
         	$params = parent::getParams('POST', array('id' , 'title' , 'content' , 'time' , 'type'));if(empty($params)) return;extract($params);
         	$type = $type == 'false' ? "1" : '0';
-
-		$time = (strtotime($time) + 86400);
-		if(time() > $time) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
+        	$time = strtotime($time);
+		if(time() > strtotime($time)+ 86400){parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
 		if(!$data = $this->admin_model->addClassPublic(array(
 			"id" => $id,
 			"title" =>$title,

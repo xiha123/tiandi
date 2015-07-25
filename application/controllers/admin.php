@@ -56,6 +56,7 @@ class admin extends CI_Controller {
 			$config['upload_path'] = './static/uploads/';
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size'] = '2048';
+			$config['file_name'] =date("Ymd"). rand(100000000000,9999999999999);
 			$this->load->library('upload', $config);
 			if(!$this->upload->do_upload("userfile")){
 				echo  '{"status" : "false" , "error" : "' . $this->upload->display_errors() . '"}';
@@ -164,10 +165,10 @@ class admin extends CI_Controller {
 		$return_chapter = $this -> admin_model -> getClassListChapter($id);
 		$return_course_0 = $this -> admin_model -> getClassListCourse($id);
 		$return_course_1 = $this -> admin_model -> getClassListCourse($id , "1");
-		
+
 		$data = array (
 			"id" => $id,
-							"data_tag" => $return_tag,
+			"data_tag" => $return_tag,
 			"data_list" => $return_data,
 			"data_chapter" => $return_chapter,
 			'me' => $this->user_info,

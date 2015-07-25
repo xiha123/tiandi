@@ -10,7 +10,7 @@
 
 <div class="main">
 	<ul class="nav nav-pills" role="tablist">
-		<?php $this->load->view('widgets/online/nav.php' , array("activeNav" => 1)); ?>
+		<?php $this->load->view('widgets/online/nav.php' , array("activeNav" => 0)); ?>
 	</ul>
 
 	<div class="main-content">

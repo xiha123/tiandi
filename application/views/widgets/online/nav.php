@@ -1,24 +1,13 @@
 <?php
 
 $navList = array(
+
 	array(
 		"title" => "新手引导",
-		"link" => "admin/onlineClass",
-		"icon" => "icon-home",
-		"active" => false
-	),
-	array(
-		"title" => "轮播设置",
 		"link" => "admin/onlineSlider",
 		"icon" => "icon-th-large",
 		"active" => false
 	),
-	array(
-		"title" => "课程方向引导",
-		"link" => "admin/onlineGoTo",
-		"icon" => "icon-shopping-cart",
-		"active" => false
-	)
 );
 
 

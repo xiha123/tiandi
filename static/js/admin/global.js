@@ -46,13 +46,14 @@ function input(config){
 	})
 }
 
-
+window_init();
 function window_init(){
 	var sourceInfo;
 	var reader = new FileReader();
 	$previewImg = $('#preview'),
 	reader.onload = function (e) {
 		$previewImg.attr('src', e.target.result);
+		$('.preview').attr('src', e.target.result);
 		$temp.attr('src', e.target.result);
 	}
 	$(".color").css({"background-color" : $(".slider-color").val()});
@@ -62,7 +63,7 @@ function window_init(){
 		},200);
 	})
 	
-	 $(".window").on("change" , 'input[type="file"]' , function (e) {
+	 $("body").on("change" , 'input[type="file"]' , function (e) {
 		var file = e.target.files[0];
 		reader.readAsDataURL(file);
 		$temp = $('.temp-image'),

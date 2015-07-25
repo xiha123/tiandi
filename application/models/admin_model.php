@@ -4,7 +4,19 @@ class admin_model extends CI_Model {
 	public function __construct(){
 		parent::__construct();
 	}
-	
+
+	public function insertUploadPic($id,$type,$url){
+		switch ($type) {
+			case 'classPic':
+				$this->db->where("id",$id);
+				$this->db->update("classlist",array("url" => $url));
+				break;
+			default:
+				# code...
+				break;
+		}
+	}	
+			
 	public function editClassPublic($pr){
 		$this -> db -> where("id" , $pr['id']);
 		if($this -> db -> update("classlistcourse" , array(
@@ -71,6 +83,7 @@ class admin_model extends CI_Model {
 				"name" => $temp_list[$index] -> name,
 				"link" => $temp_list[$index] -> link,
 				"direction" => $temp_list[$index] -> direction,
+				"url" => $temp_list[$index] -> url,
 			));
 		}
 		return $data_list;

@@ -15,6 +15,23 @@ class Index_model extends CI_Model {
 		}
 		return $data_list;
 	}	
+
+	public function getLefts(){
+		$data_list = array();
+		$this->db->order_by("time", "DESC"); 
+		$this->db->where("type","1");
+		$temp_list = $this -> db -> get_where("slide" , array() , 3 , 0);
+		$temp_list = $temp_list->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"img" => $temp_list[$index] -> img,
+				"link" => $temp_list[$index] -> link,
+			));
+		}
+		return $data_list;
+	}
+
+
 	public function getClassListTag($id){
 		$data_list = array();
 		$this -> db -> get_where("classlist",array("id"));
@@ -64,19 +81,30 @@ class Index_model extends CI_Model {
 	}
 	
 	public function getSlider($type = "0"){
+		$time = strtotime(date("ymd"));
 		$data_list = array();
 		$this->db->order_by("time", "DESC"); 
-		$temp_list = $this -> db -> get_where("slide" , array("type" => $type));
+		$temp_list = $this -> db -> get_where("classlist" , array() , 3 , 0);
 		$temp_list = $temp_list->result();
 		for($index = 0;$index < count($temp_list);$index ++){
+			
+			$this->db->where("time >=" ,$time - 86400);
+			$this->db->where("time <" , $time);
+			$this->db->where("form =" , $temp_list[$index] -> id);
+			$this->db->where("type" , "0");
+			$public = $this->db->get_where("classlistcourse")->result();
+
+			$this->db->where("time >=" ,$time - 86400);
+			$this->db->where("time <" , $time);
+			$this->db->where("form =" , $temp_list[$index] -> id);			
+			$this->db->where("type" , "1");
+			$class = $this->db->get_where("classlistcourse")->result();
+
 			array_push($data_list , array(
 				"id" => $temp_list[$index] -> id,
-				"title" => $temp_list[$index] -> name,
-				"img" => $temp_list[$index] -> img,
-				"link" => $temp_list[$index] -> link,
-				"time" =>date("Y-m-d H:i:s" ,  $temp_list[$index] -> time),
-				"color" => $temp_list[$index] -> color,
-				"text" => $temp_list[$index] -> text,
+				"url" => $temp_list[$index] -> url,
+				"public" => $public,
+				"class" => $class,
 			));
 		}
 		return $data_list;

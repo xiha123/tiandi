@@ -3,7 +3,7 @@
 $navList = array(
 	array(
 		"title" => "课程管理",
-		"link" => "admin/onlineClass",
+		"link" => "javascript:void(0)",
 		"icon" => "icon-home",
 		"active" => false
 	),

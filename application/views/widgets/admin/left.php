@@ -14,19 +14,19 @@
 					"active" => false
 				),
 				array(
-					"title" => "首页轮播设置",
+					"title" => "轮播管理",
 					"link" => "admin/slider",
 					"icon" => "icon-th-large",
 					"active" => false
 				),
 				array(
 					"title" => "在线课堂设置",
-					"link" => "admin/onlineClass",
+					"link" => "admin/onlineSlider",
 					"icon" => "icon-shopping-cart",
 					"active" => false
 				),
 				array(
-					"title" => "课程详情设置",
+					"title" => "课程管理",
 					"link" => "admin/classList",
 					"icon" => " icon-list-ol",
 					"active" => false

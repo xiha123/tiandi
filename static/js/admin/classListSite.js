@@ -18,12 +18,28 @@ $faterBox.on("click" , "a" , function(){
 	temp_index = index;
 })
 
+$("#updataPic").click(function(){
+	var option = {
+		type : "post",
+		success:function (data) {
+			data = JSON.parse(data);
+			 if(data.status == "true") {
+				location.reload();
+			} else {
+				showAlert(data.error);
+			}
+		}
+	};
+	$("#classpic").ajaxSubmit(option);
+});
+
+
+
 
 
 $(".public-class").click(function(){
 	$father = $(this).parents().find("tbody");
 	var type = $(this).data("type") == 0 ? 'true' : 'false';
-
 	input({
 		"title" : "添加公开课设置",
 		"content" : 
