@@ -4,6 +4,7 @@ class Index_model extends CI_Model {
 	public function __construct(){
 		parent::__construct();
 	}
+
 	public function getClassList(){
 		$data_list = array();
 		$temp_list  =  $this -> db -> get("classlist") ->result();
@@ -79,7 +80,22 @@ class Index_model extends CI_Model {
 		}
 		return $data_list;
 	}
-	
+	public function getIndexSlider($type = "0"){
+		$time = strtotime(date("ymd"));
+		$data_list = array();
+		$this->db->order_by("time", "DESC"); 
+		$temp_list = $this -> db -> get_where("slide" , array("type" => "0"));
+		$temp_list = $temp_list->result();
+		for($index = 0;$index < count($temp_list);$index ++){
+			array_push($data_list , array(
+				"img" => $temp_list[$index] -> img,
+				"link" => $temp_list[$index] -> link,
+				"color" => $temp_list[$index] -> color,
+			));	
+		}
+		return $data_list;
+	}
+
 	public function getSlider($type = "0"){
 		$time = strtotime(date("ymd"));
 		$data_list = array();
