@@ -1,0 +1,50 @@
+.doubt{padding:10px;background:#d6edeb;width:980px;}
+.doubt .table{position:relative;width:980px;}
+	     .table td{width:980px;}
+	     .table .title{margin-bottom:10px;}
+	     .table .title,.input-content,.code{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
+	     .table .input-content{height: 60px;}
+	     .table .code{height:110px;border-top:1px dashed #ddd;margin-top:-5px;}
+	     .table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
+	     .table .Language{position:absolute;right:15px;}
+
+.doubt .tag{color:#aaa;padding:5px 5px;height:25px;background:#fff;border:1px solid #7cc4c7;width: 970px;}
+		.tag .input-tag{margin-left:7px;border:none;height:25px;color:#aaa;}
+		.tag .tag-box{background:#eee;padding:4px 3px 4px 7px;}
+			 .tag-box button{  cursor: pointer;outline: none; background: none;border:none;border-left:1px solid #ddd;color:#aaa;margin-left:5px;}
+
+
+.content{padding-bottom:140px; overflow: hidden; margin-top:30px;}
+.content .left-content,.right-content{float: left}
+
+.content .left-content{width:790px;}
+		 .content .title{border-bottom:1px solid #219ba1; height:39px;}
+		 .content .title li{margin-right:1px;float: left;padding:0px 30px;padding-bottom:9px;}
+		 .content .title a{font-size: 23px;color:#219ba1;}
+		 .content .title .active{font-weight:700;border-bottom:4px solid #219ba1;}
+		 .left-content .title li:hover{border-bottom:4px solid #219ba1;}
+
+		 .left-content .list-data li{padding:5px;position:relative; float: left;width:100%;border-bottom:1px solid #eee;margin:7px 0px;}
+		 			   .list-data .link-num{float:left;text-align: center; background:#219ba1;padding:6px 12px;color:#fff;}
+		 			   .list-data .list-title{width:720px;font-size:16px;padding-left:14px;}
+		 			   .list-data .list-title,.list-date{float: left}
+		 			   .list-data .list-tag{position:relative;left:10px;top:-2px;}
+		 			   .list-data .list-tag li{border:none;width:auto;float: left}
+		 			   .list-data .list-tag .tag-box{background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-right: 4px}
+		 			   .list-data .list-date{color:#aaa;bottom:15px;position: absolute;right:10px;}
+
+
+.content .right-content{margin-left:10px;width:200px;}
+		 .right-content{margin-left:10px;width:200px;}
+ 		 .right-content .list-tag{position:relative;left:20px;top:0px;}
+		 .right-content .list-tag li{border:none;width:auto;margin-top:15px;}
+		 .right-content .list-tag .tag-box{background:#d6edeb;color:#43a8ad;padding:5px 9px;margin-right: 4px}
+		 .right-content .list-date{color:#aaa;bottom:15px;position: absolute;right:10px;}
+
+
+
+
+
+
+
+		 
