@@ -1,0 +1,21 @@
+
+
+
+.data{position:relative; width: 480px;margin-top:15px;padding-top:10px;padding-bottom: 50px;border-bottom:1px solid #eee;}
+.data .pic{width: 130px;height: 130px;}
+.data img,p,button{ font-family: '微软雅黑'; float: left;}
+.data button{font-size:18px; cursor: pointer; font-weight:700;position:absolute;top:130px;margin-top:20px;background:#219ba1;color:#fff;border:none;width:130px;height:30px; border-radius: 20px; left:0px;}
+.data p{width:330px;margin-bottom:7px;padding-left:20px;}
+.data .name{font-size:18px;font-weight: 700;}
+.data .name font{margin-right:20px;float: right;font-size:13px;font-weight: 400;color:#aaa;}
+.data .name font img{float: left;margin-right: 4px;}
+.data .desk{color:#aaa;}
+.data a{position:relative;left:18px;}
+
+
+
+
+
+
+
+

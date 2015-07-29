@@ -7,11 +7,47 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .page li a{color:#249ca2;}
 .page .active{background: #249ca2;color:#fff;}
 .page .active a{color:#fff;}
+.tagBox{background:#d6edeb;color:#43a8ad;padding:3px 9px;position:relative;top:5px; margin-right: 4px}
 
+
+/* tab */
+.tab {
+    margin-top:0px;
+}
+.tab-trigger li {
+    float:left;
+    width:20%;
+    border-bottom:1px solid #219ba1;
+}
+.tab-trigger a {
+    display:block;
+    text-align:center;
+    padding:10px 0;
+    color:#219ba1;
+    font-size:22px;
+    font-weight:bolder;
+}
+.tab-trigger li:hover,
+.tab-trigger .active {
+    border-bottom:5px solid #219ba1;
+}
+.tab-sheet {
+    position:relative;
+}
+.tab-sheet > li {
+    width: 100%;
+    position:absolute;
+    left:0;
+    top:0;
+    display: none
+}
+.tab-sheet .active {
+    display: block;
+}
 
 
 /* global tags */
-html {
+html{
     min-height:100%;
     font-family:"Segoe UI", "Lucida Grande", Helvetica, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
     font-size:14px;
@@ -25,7 +61,7 @@ a {
 	text-decoration:none;
 }
 input,
-textarea {
+textarea ,button{
     outline:none;
     resize:none;
 }
