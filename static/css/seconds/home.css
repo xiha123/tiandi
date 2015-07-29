@@ -24,23 +24,25 @@
 					 .title .active{font-weight:700;border-bottom:4px solid #219ba1;}
 					 .title li:hover{border-bottom:4px solid #219ba1;}
 
-		 .left-content .list-data li{padding:5px;position:relative; float: left;width:100%;border-bottom:1px solid #eee;margin:7px 0px;}
+		.left-content .title li{cursor:pointer; }
+		 .left-content .list-data  > li{ padding:5px;position:relative; float: left;width:100%;border-bottom:1px solid #eee;margin:7px 0px;}
 		 			   .list-data .link-num{float:left;text-align: center; background:#219ba1;padding:6px 12px;color:#fff;}
 		 			   .list-data .list-title{width:720px;font-size:16px;padding-left:14px;}
 		 			   .list-data .list-title,.list-date{float: left}
-		 			   .list-data .list-tag{position:relative;left:10px;top:-2px;}
+		 			   .list-data .list-tag{position:relative;left:10px;top:9px;}
 		 			   .list-data .list-tag li{border:none;width:auto;float: left}
-		 			   .list-data .list-tag .tag-box{background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-right: 4px}
-		 			   .list-data .list-date{color:#aaa;bottom:15px;position: absolute;right:10px;}
+		 			   .list-data .list-tag .tag-box{background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-right: 7px}
+		 			   .list-data .list-date{color:#aaa;bottom:15px;position: absolute;right:26px;}
+		}
 
 
 .right-content{margin-left:10px;width:200px;}
 		 .right-content{margin-left:10px;width:200px;}
- 		 .right-content .list-tag{position:relative;left:20px;top:0px;}
+ 		 .right-content .list-tag{position:relative;left:5px;top:0px;}
 		 .right-content .list-tag li{border:none;width:auto;margin-top:15px;}
 		 .right-content .list-tag .tag-box{background:#d6edeb;color:#43a8ad;padding:5px 9px;margin-right: 4px}
 		 .right-content .list-date{color:#aaa;bottom:15px;position: absolute;right:10px;}
-
+		.right-content .box-title{position:relative;margin-top:28px;}
 
 .left-content .tag-desk{width: 100%; overflow: hidden}
 			  .tag-desk h1{float:left;color:#219ba1;font-size: 32px;margin-bottom:10px;font-weight: 700}
