@@ -1,0 +1,27 @@
+api:
+    -
+        url: algorithm/add.do
+        type: post
+        name: addAlgorithm
+        args:
+            - username
+            - displayName
+        success:
+            - algorithmId
+            - updateTime
+    -
+        url: user/isLogin.do
+        type: post
+        name: checkLogin
+        success:
+            - username
+            - avatar
+    -
+        url: user/updateProfile.do
+        type: post
+        name: applyResearch
+response:
+    isSuccess:
+        code: 0
+    fail:
+        - message
