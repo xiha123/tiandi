@@ -15,11 +15,11 @@ class Index_model extends CI_Model {
 			));
 		}
 		return $data_list;
-	}	
+	}
 
 	public function getLefts(){
 		$data_list = array();
-		$this->db->order_by("time", "DESC"); 
+		$this->db->order_by("time", "DESC");
 		$this->db->where("type","1");
 		$temp_list = $this -> db -> get_where("slide" , array() , 3 , 0);
 		$temp_list = $temp_list->result();
@@ -44,7 +44,7 @@ class Index_model extends CI_Model {
 			));
 		}
 		return $data_list;
-	}	
+	}
 	public function getClassListChapter($id){
 		$data_list = array();
 		$temp_list = $this -> db -> get_where("chapter" , array("form" => $id))->result();
@@ -83,15 +83,18 @@ class Index_model extends CI_Model {
 	public function getIndexSlider($type = "0"){
 		$time = strtotime(date("ymd"));
 		$data_list = array();
-		$this->db->order_by("time", "DESC"); 
-		$temp_list = $this -> db -> get_where("slide" , array("type" => "0"));
+		$this->db->order_by("id", "DESC");
+		$temp_list = $this -> db -> get_where("slide" , array(
+			"type" => "0",
+			"status" => "1"
+		));
 		$temp_list = $temp_list->result();
 		for($index = 0;$index < count($temp_list);$index ++){
 			array_push($data_list , array(
 				"img" => $temp_list[$index] -> img,
 				"link" => $temp_list[$index] -> link,
 				"color" => $temp_list[$index] -> color,
-			));	
+			));
 		}
 		return $data_list;
 	}
@@ -99,11 +102,11 @@ class Index_model extends CI_Model {
 	public function getSlider($type = "0"){
 		$time = strtotime(date("ymd"));
 		$data_list = array();
-		$this->db->order_by("time", "DESC"); 
+		$this->db->order_by("time", "DESC");
 		$temp_list = $this -> db -> get_where("classlist" , array() , 3 , 0);
 		$temp_list = $temp_list->result();
 		for($index = 0;$index < count($temp_list);$index ++){
-			
+
 			$this->db->where("time >=" ,$time - 86400);
 			$this->db->where("time <" , $time);
 			$this->db->where("form =" , $temp_list[$index] -> id);
@@ -112,7 +115,7 @@ class Index_model extends CI_Model {
 
 			$this->db->where("time >=" ,$time - 86400);
 			$this->db->where("time <" , $time);
-			$this->db->where("form =" , $temp_list[$index] -> id);			
+			$this->db->where("form =" , $temp_list[$index] -> id);
 			$this->db->where("type" , "1");
 			$class = $this->db->get_where("classlistcourse")->result();
 
@@ -124,5 +127,5 @@ class Index_model extends CI_Model {
 			));
 		}
 		return $data_list;
-	}	
+	}
 }

@@ -19,22 +19,14 @@ function editProfile() {
 }
 
 function createAdmin() {
-    $.ajax({
-        url: 'admin_api/create',
-        method: 'post',
-        data: {
-            name: $('#create-admin-username').val(),
-            pwd: $('#create-admin-pwd').val(),
-            nickname: $('#create-admin-nickname').val()
-        },
-        dataType: 'json',
-        success: function (res) {
-            if (res.status) {
-                showAlert('创建成功', 'success');
-            } else {
-                showAlert(res.error, 'danger');
-            }
-        }
+    _td.api.createAdmin({
+        name: $('#create-admin-username').val(),
+        pwd: $('#create-admin-pwd').val(),
+        nickname: $('#create-admin-nickname').val()
+    }).then(function () {
+        showAlert('创建成功', 'success');
+    }, function (msg) {
+        showAlert(msg, 'danger');
     });
 }
 

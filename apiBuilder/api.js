@@ -20,10 +20,10 @@ window._td = {
                 url: config.url,
                 timeout: 5000,
                 success: function (res, status, xhr) {
-                    if (res.code === 0) {
-                        next.resolve(res);
+                    if (res.status) {
+                        next.resolve(res.data);
                     } else {
-                        next.reject(res.message);
+                        next.reject(res.error);
                     }
                 },
                 error: function () {

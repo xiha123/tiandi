@@ -11,46 +11,46 @@ class admin_api extends base_api {
 		$this->load->model('admin_model');
 		$this->admin_model->check_login();
     }
-    
-    	public function editClassPublic(){
-        	$params = parent::getParams('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
-		if(time() >  strtotime($time) + 86400) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
-		if(!$this->admin_model->editClassPublic($params)){
-			parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
-		}else{
-			parent::finish(true);
-		}
-	}
-    
-    
-    	public function deleteClassPublic(){
-        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
-		if(!$this->admin_model->deleteClassPublic($id)){
-			parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
-		}else{
-			parent::finish(true);
-		}		
-	}
-    
-    	public function addClassPublic(){
-        	$params = parent::getParams('POST', array('id' , 'title' , 'content' , 'time' , 'type'));if(empty($params)) return;extract($params);
-        	$type = $type == 'false' ? "1" : '0';
-        	$time = strtotime($time);
-		if(time() > strtotime($time)+ 86400){parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
-		if(!$data = $this->admin_model->addClassPublic(array(
-			"id" => $id,
-			"title" =>$title,
-			"time" =>$time,
-			"type" =>$type,
-			"content" => $content
-		))){
-			parent::finish(false, '无法插入该课程，请稍候再试');return;
-		}else{
-			parent::finish(true , $data);	
-		}
-	}
-    
-    
+
+    public function editClassPublic(){
+        $params = parent::getParams('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
+        if(time() >  strtotime($time) + 86400) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
+        if(!$this->admin_model->editClassPublic($params)){
+            parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
+        }else{
+            parent::finish(true);
+        }
+    }
+
+
+    public function deleteClassPublic(){
+        $params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+        if(!$this->admin_model->deleteClassPublic($id)){
+            parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
+        }else{
+            parent::finish(true);
+        }
+    }
+
+    public function addClassPublic(){
+        $params = parent::getParams('POST', array('id' , 'title' , 'content' , 'time' , 'type'));if(empty($params)) return;extract($params);
+        $type = $type == 'false' ? "1" : '0';
+        $time = strtotime($time);
+        if(time() > strtotime($time)+ 86400){parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
+        if(!$data = $this->admin_model->addClassPublic(array(
+            "id" => $id,
+            "title" =>$title,
+            "time" =>$time,
+            "type" =>$type,
+            "content" => $content
+        ))){
+            parent::finish(false, '无法插入该课程，请稍候再试');return;
+        }else{
+            parent::finish(true , $data);
+        }
+    }
+
+
 	//添加新的课程列表
 	public function addClassList(){
         	$params = parent::getParams('POST', array('className' , 'classVideo' , 'text'));if(empty($params)) return;extract($params);
@@ -61,7 +61,7 @@ class admin_api extends base_api {
 		))){
 			parent::finish(false, '填写的新课程名与其他课程重名了');return;
 		}else{
-			parent::finish(true);	
+			parent::finish(true);
 		}
 	}
 	public function addClassContent(){
@@ -91,7 +91,7 @@ class admin_api extends base_api {
 		));
 		parent::finish(true);
 	}
-	
+
 	public function editClassListTag(){
         	$params = parent::getParams('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> editClassListTag(array(
@@ -101,7 +101,7 @@ class admin_api extends base_api {
 		));
 		parent::finish(true);
 	}
-	
+
 	public function editClassContent(){
         	$params = parent::getParams('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> editClassContent(array(
@@ -111,20 +111,20 @@ class admin_api extends base_api {
 		));
 		parent::finish(true);
 	}
-	
 
 
 
 
-	
+
+
 	//删除课程列表
 	public function deleteClassList(){
         	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> deleteClassList($id);
 		$this -> admin_model -> deleteClassListTag_all($id);
 		$this -> admin_model -> deleteClassContent_all($id);
-		
-		
+
+
 		parent::finish(true);
 	}
 	public function deleteClassListTag(){
@@ -136,7 +136,7 @@ class admin_api extends base_api {
         	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> deleteClassContent($id);
 		parent::finish(true);
-	}	
+	}
 	public function deleteSlider(){
 		$params = parent::getParams('POST', array('id'));
 		if(empty($params))return;
@@ -144,8 +144,8 @@ class admin_api extends base_api {
 		$this->admin_model->deleteSlider($id);
 		parent::finish(true);
 	}
-	
-	
+
+
 	//删除课程列表
 	public function editClassList(){
         	$params = parent::getParams('POST', array('id' , "className" , "classVideo" , "text"));if(empty($params)) return;extract($params);
@@ -159,13 +159,13 @@ class admin_api extends base_api {
 		}else{
 			parent::finish(false , "填写的新课程名与其他课程重名了");
 		}
-		
+
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
     public function login() {
         $params = parent::getParams('POST', array('username', 'pwd'));
         if(empty($params)) return;
