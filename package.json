@@ -9,5 +9,8 @@
   "bugs": {
     "url": "https://github.com/mangoCheese/tiandi/issues"
   },
-  "homepage": "https://github.com/mangoCheese/tiandi"
+  "homepage": "https://github.com/mangoCheese/tiandi",
+  "dependencies": {
+    "js-yaml": "^3.3.1"
+  }
 }

@@ -49,6 +49,8 @@
 - follow_count 关注的数量
 - ask_count 提问的数量
 - answer_count 回答的数量
+- collect_problems 收藏列表，JSON数组
+- follow_problems 关注列表，JSON数组
 - skilled_tags 擅长的标签，JSON数组
 - alipay 支付宝账号
 - gold_coin 金币数量
@@ -120,6 +122,7 @@
 - status 0 不展示，1 未回答，2 认领中，3 已回答，4 关闭
 - title
 - owner_id 提问者 id
+- answer_id 回答者 id
 - details 问题详情（学生提问，老师回答）,JSON数组
 - comments 问题下面的评论，JSON数组
 - tags 标签列表，JSON对象，key 为 tag 表的 id
@@ -154,3 +157,12 @@
 - type
 - target
 - content
+
+### note 表
+
+存放笔记。
+
+- status
+- title
+- content
+- owner_id
