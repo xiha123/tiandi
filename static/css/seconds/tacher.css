@@ -1,15 +1,21 @@
+/*老师个人主页*/
+
+/*介绍*/
 .tacher-data {position:relative; overflow: hidden;padding-bottom: 50px; height: auto; padding-top:20px;}
 .tacher-data img{width: 120px;height: 120px;}
 .tacher-data img,.name,.desk{float:left;}
 .tacher-data .name,.desk{margin-bottom:7px;width: 870px;margin-left:10px;}
 .tacher-data .name{font-size: 18px;font-weight: 700}
+.tacher-data .name a{float:right;font-size: 16px;font-weight: 100;color:#219ba1;position:relative;top:5px;}
 .tacher-data .desk{color: #aaa}
 .tacher-data button{font-size:18px; cursor: pointer; font-weight:700;position:absolute;top:120px;margin-top:30px;background:#219ba1;color:#fff;border:none;width:120px;height:30px; border-radius: 20px; left:0px;}
-
+.tacher-data.home{padding-bottom:20px;}
+.tacher-data .money{padding-left:10px;margin-bottom:15px;color:#aaa;float: left}
 h2{float:left;font-size:20px;color:#219ba1;}
 h2 .tag-box{top:-1px }
 .tacher-tag{margin-bottom:40px;overflow: hidden; width: 1000px;}
 
+/*正在开的课程*/
 .tacher-class {margin-bottom:40px;overflow: hidden; }
 .tacher-class h2{width: 100%;margin-bottom: 15px;}
 .tacher-class li{float: left;width:320px;margin-right:13px;background: #eee;height: 150px;}
@@ -18,14 +24,7 @@ h2 .tag-box{top:-1px }
 .tacher-why {padding-bottom: 120px; overflow: hidden;}
 .tacher-why h2{width: 100%;margin-bottom: 15px;}
 
-.list-data li{padding:5px;position:relative; float: left;width:100%;border-bottom:1px solid #eee;margin:7px 0px;}
-.list-data .link-num{float:left;text-align: center; background:#219ba1;padding:6px 12px;color:#fff;}
 .list-data .list-title{width:920px;font-size:16px;padding-left:14px;}
-.list-data .list-title,.list-date{float: left;float: left}
-.list-data .list-tag{position:relative;left:10px;top:-2px;}
-.list-data .list-tag li{border:none;width:auto;float: left}
-.list-data .list-tag .tag-box{background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-right: 4px}
-.list-data .list-date{color:#aaa;bottom:15px;position: absolute;right:10px;}
 
 
 

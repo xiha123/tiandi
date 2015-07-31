@@ -27,5 +27,12 @@ class seconds extends CI_Controller {
 	public function student(){
 		$this->load->view("seconds/student.php");
 	}
+	public function home(){
+		$this->load->view("seconds/studentHome.php");
+	}
+	public function godhome(){
+		$this->load->view("seconds/godhome.php");
+	}
+
 
 }

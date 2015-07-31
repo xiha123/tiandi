@@ -86,7 +86,6 @@ class Index_model extends CI_Model {
 		$this->db->order_by("id", "DESC");
 		$temp_list = $this -> db -> get_where("slide" , array(
 			"type" => "0",
-			"status" => "1"
 		));
 		$temp_list = $temp_list->result();
 		for($index = 0;$index < count($temp_list);$index ++){
