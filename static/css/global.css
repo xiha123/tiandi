@@ -97,6 +97,11 @@ textarea ,button{
 	margin:0 auto;
 }
 
+/*login*/
+.outline{
+    width:600px;
+}
+
 /* header widget */
 .header {
     background:#219ba1;
