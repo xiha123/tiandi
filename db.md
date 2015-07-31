@@ -73,6 +73,7 @@
 - type 0 为 course，1 为问题
 - name 有索引
 - count 属于这个 tag 的数量
+- status
 
 ### slide 表
 
