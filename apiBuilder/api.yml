@@ -1,0 +1,71 @@
+api:
+
+# admin
+-
+    url: admin_api/login
+    type: post
+    name: loginAdmin
+    args:
+        - name
+        - pwd
+-
+    url: admin_api/logout
+    type: get
+    name: logoutAdmin
+-
+    url: admin_api/create
+    type: post
+    name: createAdmin
+    args:
+        - name
+        - nickname
+        - pwd
+-
+    url: admin_api/edit
+    type: post
+    name: editAdmin
+    args:
+        - nickname
+-
+    url: admin_api/remove
+    type: post
+    name: removeAdmin
+    args:
+        - name
+
+
+# user
+-
+    url: user_api/login
+    type: post
+    name: loginUser
+    args:
+        - name
+        - pwd
+-
+    url: user_api/logout
+    type: get
+    name: logoutUser
+-
+    url: user_api/create
+    type: post
+    name: createUser
+    args:
+        - name
+        - nickname
+        - pwd
+-
+    url: user_api/edit
+    type: post
+    name: editUser
+    args:
+        - nickname
+-
+    url: user_api/remove
+    type: post
+    name: removeUser
+    args:
+        - name
+
+
+# slide

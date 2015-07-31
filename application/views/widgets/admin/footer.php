@@ -6,3 +6,4 @@
 <script src="static/lib/jquery.form/jquery.form.min.js"></script>
 <script src="static/lib/bootstrap/bootstrap.min.js"></script>
 <script src="static/js/admin/global.js"></script>
+<script src="static/js/api.js"></script>

@@ -1,40 +1,23 @@
-function editProfile() {
+function editAdmin() {
     var nickname = $.trim($('#edit-profile-nickname').val());
-
-    $.ajax({
-        url: 'admin_api/edit',
-        method: 'post',
-        data: {
-            nickname: nickname
-        },
-        dataType: 'json',
-        success: function (res) {
-            if (res.status) {
-                $('.profile h2').text(nickname);
-            } else {
-                showAlert(res.error, 'danger');
-            }
-        }
+    _td.api.editAdmin({
+        nickname: nickname
+    }).then(function () {
+        $('.profile h2').text(nickname);
+    }, function (msg) {
+        showAlert(msg, 'danger');
     });
 }
 
 function createAdmin() {
-    $.ajax({
-        url: 'admin_api/create',
-        method: 'post',
-        data: {
-            name: $('#create-admin-username').val(),
-            pwd: $('#create-admin-pwd').val(),
-            nickname: $('#create-admin-nickname').val()
-        },
-        dataType: 'json',
-        success: function (res) {
-            if (res.status) {
-                showAlert('创建成功', 'success');
-            } else {
-                showAlert(res.error, 'danger');
-            }
-        }
+    _td.api.createAdmin({
+        name: $('#create-admin-username').val(),
+        pwd: $('#create-admin-pwd').val(),
+        nickname: $('#create-admin-nickname').val()
+    }).then(function () {
+        showAlert('创建成功', 'success');
+    }, function (msg) {
+        showAlert(msg, 'danger');
     });
 }
 
