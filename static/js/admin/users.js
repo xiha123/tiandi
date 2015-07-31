@@ -1,20 +1,11 @@
-function editProfile() {
+function editAdmin() {
     var nickname = $.trim($('#edit-profile-nickname').val());
-
-    $.ajax({
-        url: 'admin_api/edit',
-        method: 'post',
-        data: {
-            nickname: nickname
-        },
-        dataType: 'json',
-        success: function (res) {
-            if (res.status) {
-                $('.profile h2').text(nickname);
-            } else {
-                showAlert(res.error, 'danger');
-            }
-        }
+    _td.api.editAdmin({
+        nickname: nickname
+    }).then(function () {
+        $('.profile h2').text(nickname);
+    }, function (msg) {
+        showAlert(msg, 'danger');
     });
 }
 

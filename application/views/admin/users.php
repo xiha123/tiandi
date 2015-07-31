@@ -13,7 +13,7 @@
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="self">
-            <form onsubmit="editProfile();return false;">
+            <form onsubmit="editAdmin();return false;">
                 <div class="form-group">
                     <label for="edit-profile-nickname">昵称</label>
                     <input type="text" class="form-control" id="edit-profile-nickname" placeholder="<?= $me['nickname'] ?>">

@@ -17,21 +17,14 @@
 <script>
     $('form').on('submit', function (e) {
         e.preventDefault();
-        $.ajax({
-            url: 'admin_api/login',
-            method: 'post',
-            data: {
-                username: $.trim($('#username').val()),
-                pwd: $.trim($('#pwd').val())
-            },
-            dataType: 'json',
-            success: function (res) {
-                if (res.status) {
-                    location.href = 'admin';
-                } else {
-                    showAlert(res.error);
-                }
-            }
+        
+        _td.api.loginAdmin({
+            name: $.trim($('#username').val()),
+            pwd: $.trim($('#pwd').val())
+        }).then(function () {
+            location.href = 'admin';
+        }, function (msg) {
+            showAlert(msg);
         });
     });
 </script>

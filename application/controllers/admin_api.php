@@ -167,11 +167,11 @@ class admin_api extends base_api {
 
 
     public function login() {
-        $params = parent::getParams('POST', array('username', 'pwd'));
+        $params = parent::getParams('POST', array('name', 'pwd'));
         if(empty($params)) return;
         extract($params);
 
-		if ($this->admin_model->login($username, $pwd) === false) {
+		if ($this->admin_model->login($name, $pwd) === false) {
 			parent::finish(false, '用户名或密码错误');
 			return;
 		}
@@ -179,12 +179,19 @@ class admin_api extends base_api {
 		parent::finish(true);
     }
 
+    public function logout() {
+		if ($this->admin_model->logout() === false) {
+			parent::finish(false, '注销失败');
+			return;
+		}
+    }
+
     public function edit() {
         $params = parent::getParams('POST', array('nickname'));
         if (empty($params)) return;
         extract($params);
 
-		$cur_id= $this->session->userdata('auid');
+		$cur_id = $this->session->userdata('auid');
 		if (!isset($cur_id)) {
 			parent::finish(false, '没有权限');
 			return;

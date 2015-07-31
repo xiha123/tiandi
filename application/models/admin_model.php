@@ -268,11 +268,16 @@ class admin_model extends CI_Model {
 
 
 	// admin model
-	public function login($username, $pwd){
+	public function login($username, $pwd) {
 		$user = $this->db->select('id, pwd, salt')->where('name', $username)->get('admin')->row_array();
 		if (empty($user) || $user['pwd'] !== md5($pwd . $user['salt'])) return false;
 
 		$this->session->set_userdata('auid', $user['id']);
+		return true;
+	}
+
+	public function logout() {
+		$this->session->unset_userdata('auid');
 		return true;
 	}
 
@@ -302,7 +307,7 @@ class admin_model extends CI_Model {
 	}
 
 	public function edit($params) {
-		$this->db->where('id', $auid)->update('admin', array(
+		$this->db->where('id', $params['auid'])->update('admin', array(
 			'nickname' => $params['nickname']
 		));
 	}

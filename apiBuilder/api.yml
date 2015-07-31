@@ -1,5 +1,16 @@
 api:
 -
+    url: admin_api/login
+    type: post
+    name: loginAdmin
+    args:
+        - name
+        - pwd
+-
+    url: admin_api/logout
+    type: get
+    name: logoutAdmin
+-
     url: admin_api/create
     type: post
     name: createAdmin
@@ -7,3 +18,15 @@ api:
         - name
         - nickname
         - pwd
+-
+    url: admin_api/edit
+    type: post
+    name: editAdmin
+    args:
+        - nickname
+-
+    url: admin_api/remove
+    type: post
+    name: removeAdmin
+    args:
+        - name

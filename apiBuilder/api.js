@@ -20,7 +20,7 @@ window._td = {
                 url: config.url,
                 timeout: 5000,
                 success: function (res, status, xhr) {
-                    if (res.status) {
+                    if (res.status === true) {
                         next.resolve(res.data);
                     } else {
                         next.reject(res.error);

@@ -28,7 +28,7 @@ function makeMethod(api) {
 
     res += 'if (isPassed) {' +
                 'this._doAjax({' +
-                    'url:"/api/' + api.url + '",' +
+                    'url:"' + api.url + '",' +
                     'methodType:"' + (api.type.toLowerCase() === 'get' ? 'get' : 'post') + '",' +
                     'data:arguments[0]' +
                 '}, promise);' +
