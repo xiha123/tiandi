@@ -1,6 +1,9 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/seconds/home.css">
+ <link href="umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+
 <body>
+<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
 
 <div class="wrapper">
 	<div class="doubt">
@@ -8,7 +11,15 @@
 			<tr><td><input type="text" class="title" placeholder="一句话写下你遇到的问题"></td></tr>
 			<tr><td>
 				<div class="desc">
-					<textarea class="input-content" placeholder="描述你的详细信息"></textarea>
+					<!-- <div class="tools">
+						<i class=" icon-bold"></i>
+						<i class=" icon-italic"></i>
+						<i class=" icon-underline"></i>
+						<i class=" icon-font"></i>
+						<i class=" icon-picture"></i>
+						<i class=" icon-list-ol"></i>
+					</div> -->
+					<script type="text/plain" id="myEditor" style="width:980px;height:120px;"></script>
 					<a href="javascript:" class="Language">选择语言</a>
 					<textarea class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
 				</div>
@@ -19,6 +30,9 @@
 				<input type="text" class="input-tag" placeholder="请输入标签">
 			</div></td></tr>
 		</table>
+		<div class="button submit">
+			<button>提交</button>
+		</div>
 	</div>
 	
 	<div class="content">
@@ -160,8 +174,10 @@
 
 </div>
 
-
-
 <?php $this->load->view('widgets/footer.php'); ?>
+
+<script src="umeditor/umeditor.config.js"></script>
+<script src="umeditor/umeditor.min.js"></script>
+<script src="./static/js/edit.js"></script> 
 </body>
 </html>

@@ -11,7 +11,7 @@
                     ),
                     array(
                         'name' => '实时答疑',
-                        'link' => '#',
+                        'link' => './seconds',
                         'active' => false
                     ),
                     array(
@@ -46,4 +46,4 @@
             </ul>
         </div>
     </div>
-</div>
+</div>

@@ -33,6 +33,9 @@ class seconds extends CI_Controller {
 	public function godhome(){
 		$this->load->view("seconds/godhome.php");
 	}
+	public function closeProblem(){
+		$this->load->view("seconds/closeProblem.php");
+	}
 
 
 }

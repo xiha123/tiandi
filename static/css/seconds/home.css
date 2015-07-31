@@ -1,12 +1,14 @@
 .doubt{padding:10px;background:#d6edeb;width:980px;}
-.doubt .table{position:relative;width:980px;}
-	     .table td{width:980px;}
-	     .table .title{margin-bottom:10px;}
-	     .table .title,.input-content,.code{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
-	     .table .input-content{height: 60px;}
-	     .table .code{height:110px;border-top:1px dashed #ddd;margin-top:-5px;}
-	     .table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
-	     .table .Language{position:absolute;right:15px;}
+.doubt .tools {padding-bottom: 10px;}
+.doubt .tools i{margin:0px 6px; cursor:pointer; color:#209ba2;}
+.doubt > .table{position:relative;width:980px;}
+.doubt >.table td{width:980px;}
+.doubt >.table .title{margin-bottom:10px;}
+.doubt >.table .title,.input-content,.code{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
+.doubt >.table .input-content{height: 60px;}
+.doubt >.table .code{height:110px;border-top:1px dashed #ddd;margin-top:-5px;}
+.doubt >.table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
+.doubt >.table .Language{position:absolute;right:15px;}
 
 .doubt .tag{color:#aaa;padding:5px 5px;height:25px;background:#fff;border:1px solid #7cc4c7;width: 970px;}
 		.tag .input-tag{margin-left:7px;border:none;height:25px;color:#aaa;}

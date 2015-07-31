@@ -8,6 +8,17 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .page .active{background: #249ca2;color:#fff;}
 .page .active a{color:#fff;}
 
+.seconds-nav {font-size:15px;margin-bottom:30px;width:100%;background:#219ba1;height:35px;}
+.seconds-nav .seacher{float: left;}
+.seconds-nav li{float: left;border-right: 1px solid #22a6a8;}
+.seconds-nav li a{ transition: background 0.2s ease-in-out;color:#fff;width: 150px;display:block;height: 35px;line-height: 35px;text-align: center;padding:0px 10px;}
+.seconds-nav li .active,
+.seconds-nav li a:hover{background-color: #2AC3CB}
+.seconds-nav .seacher{position:relative; margin-top:5px;width:300px;}
+.seconds-nav .seacher input[type="text"]{width:270px;border:none;padding:4px 15px;height:16px;font-size:12px;border-radius: 15px;}
+.seconds-nav .seacher button{position:absolute; right:5px; cursor:pointer; background: none;height:16px;top:3px;border:none;}
+
+
 .tag-box,.tagBox{float:left;margin-bottom:7px;font-size:14px;background:#d6edeb;color:#43a8ad;padding:3px 9px;position:relative;top:5px; margin-right: 4px}
 
 
@@ -45,7 +56,7 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .tab-sheet .active {
     display: block;
 }
-.title{border-bottom:1px solid #219ba1; height:39px;}
+.tab .title{border-bottom:1px solid #219ba1; height:39px;}
 .title > li{margin-right:1px;float: left;padding:0px 30px;padding-bottom:9px;}
 .title a{font-size: 23px;color:#219ba1;}
 .title .active{font-weight:700;border-bottom:4px solid #219ba1;}
@@ -78,6 +89,17 @@ a {
 	text-decoration:none;
 }
 .box-title{width: 100%;border-bottom:1px solid #219ba1;color:#219ba1;padding:6px 0px;font-size:20px;}
+.box-title.none-border{border: none}
+.box-title.title{margin-bottom:10px;padding:0px 0px;}
+
+
+.button{float:left;text-align: center; overflow: hidden; width:100%;}
+.button.submit{margin-top:20px;}
+.button button{font-size:18px; cursor: pointer; font-weight:700;font-family: '微软雅黑'; text-align: center; background:#219ba1;color:#fff;margin:0px 15px;border:none;width:130px;height:30px; border-radius: 20px; left:0px;}
+.button .none-background{color:#219ba1;border:1px solid #219ba1;background: none}
+
+
+
 input,
 textarea ,button{
     outline:none;
@@ -111,6 +133,7 @@ textarea ,button{
     text-overflow:ellipsis;
 }
 .wrapper {
+    position: relative;
 	width:1000px;
 	margin:0 auto;
 }
@@ -156,6 +179,7 @@ textarea ,button{
 }
 
 /* user widget */
+.user-menu.seconds{width:150px;padding:none;background: #219ba1; overflow: hidden;}
 .user {
     position:absolute;
     top:0;
