@@ -1,0 +1,4 @@
+<?php
+
+class slide_model extends CI_Model {
+	public function __construct(){		parent::__construct();	}	// name, img, link, color, type, text    public function create($params) {		$this->db->insert('slide', $params);    }	// name || id	public function remove($params) {		$this->db->delete('slide', $params);	}	public function online($id) {		$this->db->where('id', $id)->update('slide', array(			'status' => 1		));	}	public function offline($id) {		$this->db->where('id', $id)->update('slide', array(			'status' => 0		));	}	// id	public function edit($params) {		$this->db->where('id', $id)->update('slide', $params);	}	public function isExist($name) {		return $this->db->select('id')->where('name', $name)->get('slide')->num_rows() > 0;	}}

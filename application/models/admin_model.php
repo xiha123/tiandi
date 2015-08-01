@@ -269,7 +269,10 @@ class admin_model extends CI_Model {
 
 	// admin model
 	public function login($username, $pwd) {
-		$user = $this->db->select('id, pwd, salt')->where('name', $username)->get('admin')->row_array();
+		$user = $this->db->select('id, pwd, salt')->where(array(
+			'name' => $username,
+			'status' => 1
+		))->get('admin')->row_array();
 		if (empty($user) || $user['pwd'] !== md5($pwd . $user['salt'])) return false;
 
 		$this->session->set_userdata('auid', $user['id']);
