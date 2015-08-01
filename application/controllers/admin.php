@@ -71,10 +71,10 @@ class admin extends CI_Controller {
 					'color' => $color,
 					'time' => time(),
 					'text' => $description,
-	
+
 				);
 				$this->db->where('id', $id);
-				$this->db->update('slide', $data); 
+				$this->db->update('slide', $data);
 				echo  '{"status" : "true"}';
 			}
 		}else{
@@ -88,7 +88,7 @@ class admin extends CI_Controller {
 				'text' => $description,
 			);
 			$this->db->where('id', $id);
-			$this->db->update('slide', $data); 
+			$this->db->update('slide', $data);
 			echo  '{"status" : "true"}';
 		}
 	}
@@ -128,10 +128,10 @@ class admin extends CI_Controller {
 		}
 	}
 
-		
 
 
-	/* 
+
+	/*
 	*	课程详情
 	*	classList		首页 （课程设置，课程的添加删改）
 	*	classListSite 	课程详细设置
@@ -146,7 +146,7 @@ class admin extends CI_Controller {
 		$this->load->library('parser');
 		$this->parser->parse('admin/classList/home.php' , $data);
 	}
-	
+
 	public function classListTag(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$returnData = $this -> admin_model -> getClassList();
@@ -181,7 +181,7 @@ class admin extends CI_Controller {
 
 
 
-	/* 
+	/*
 	*	在线课堂
 	*	onlineClass 首页 （新手引导）
 	*	onlineSlider 轮播设置
@@ -205,7 +205,7 @@ class admin extends CI_Controller {
 		);
 		$this->load->library('parser');
 		$this->parser->parse('admin/onlineClass/onlineSlider.php', $data);
-	}	
+	}
 	public function onlineGoTo(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$data = array(

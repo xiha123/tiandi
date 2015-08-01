@@ -17,7 +17,7 @@ window._td = {
                 dataType: 'json',
                 type: config.methodType,
                 context: window,
-                url: config.url,
+                url: 'api/' + config.url,
                 timeout: 5000,
                 success: function (res, status, xhr) {
                     if (res.status === true) {
