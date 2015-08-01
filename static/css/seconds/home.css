@@ -6,7 +6,7 @@
 .doubt >.table .title{margin-bottom:10px;}
 .doubt >.table .title,.input-content,.code{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
 .doubt >.table .input-content{height: 60px;}
-.doubt >.table .code{height:110px;border-top:1px dashed #ddd;margin-top:-5px;}
+.doubt >.table .code{height:110px;border-top:1px dashed #ddd;}
 .doubt >.table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
 .doubt >.table .Language{position:absolute;right:15px;}
 

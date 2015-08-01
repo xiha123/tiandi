@@ -1,1 +1,1 @@
-var um = UM.getEditor('myEditor');
+ var ue = UE.getEditor('editor');

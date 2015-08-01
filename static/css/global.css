@@ -1,6 +1,9 @@
 /* css reset from yui */
 html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
 
+.notLogin a{font-size:12px;color:#fff;padding:0px 7px;}
+.notLogin a i{margin-right: 4px;}
+
 
 .page{float:left;width:100%;margin-left:-10px;margin-top:20px;}
 .page li{float:left;font-size: 16px;padding: 5px 10px}
@@ -95,6 +98,7 @@ a {
 
 .button{float:left;text-align: center; overflow: hidden; width:100%;}
 .button.submit{margin-top:20px;}
+.button.submit img{float: right;width: 24px;position: relative;right: 14px;}
 .button button{font-size:18px; cursor: pointer; font-weight:700;font-family: '微软雅黑'; text-align: center; background:#219ba1;color:#fff;margin:0px 15px;border:none;width:130px;height:30px; border-radius: 20px; left:0px;}
 .button .none-background{color:#219ba1;border:1px solid #219ba1;background: none}
 

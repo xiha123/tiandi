@@ -1,4 +1,4 @@
 RewriteEngine on
 
-RewriteCond $1 !^(index\.php|application|static|umeditor)
+RewriteCond $1 !^(index\.php|application|static|ueditor)
 RewriteRule ^(.*)$ index.php/$1 [L]
