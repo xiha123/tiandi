@@ -40,7 +40,7 @@ class admin_api extends base_api {
             "type" =>$type,
             "content" => $content
         ))){
-            parent::finish(false, '无法插入该课程，请稍候再试');return;
+            parent::finish(false, '无法插入该课程，请稍候再试');
         }else{
             parent::finish(true , $data);
         }
@@ -55,7 +55,7 @@ class admin_api extends base_api {
 			"text" =>$text,
 			"video" => $classVideo
 		))){
-			parent::finish(false, '填写的新课程名与其他课程重名了');return;
+			parent::finish(false, '填写的新课程名与其他课程重名了');
 		}else{
 			parent::finish(true);
 		}
@@ -169,7 +169,6 @@ class admin_api extends base_api {
 
 		if ($this->admin_model->login($name, $pwd) === false) {
 			parent::finish(false, '用户名或密码错误');
-			return;
 		}
 
 		parent::finish(true);
@@ -178,7 +177,6 @@ class admin_api extends base_api {
     public function logout() {
 		if ($this->admin_model->logout() === false) {
 			parent::finish(false, '注销失败');
-			return;
 		}
     }
 
@@ -190,7 +188,6 @@ class admin_api extends base_api {
 		$cur_id = $this->session->userdata('auid');
 		if (!isset($cur_id)) {
 			parent::finish(false, '没有权限');
-			return;
         }
 
 		$this->admin_model->edit(array(
@@ -209,7 +206,6 @@ class admin_api extends base_api {
 		$cur_id= $this->session->userdata('auid');
 		if (!isset($cur_id)) {
 			parent::finish(false, '没有权限');
-			return;
         }
 
 		if (false === $this->admin_model->create(array(
@@ -218,7 +214,6 @@ class admin_api extends base_api {
             'pwd' => $pwd
         ))) {
 			parent::finish(false, '用户名已存在');
-			return;
         }
 
 		parent::finish(true);
@@ -232,7 +227,6 @@ class admin_api extends base_api {
 		$cur_id= $this->session->userdata('auid');
 		if (!isset($cur_id)) {
 			parent::finish(false, '没有权限');
-			return;
         }
 
 		if (false === $this->admin_model->remove(array(
@@ -240,7 +234,6 @@ class admin_api extends base_api {
             'auid' => $cur_id
         ))) {
 			parent::finish(false, '目标是自己或不存在');
-			return;
         }
 
 		parent::finish(true);

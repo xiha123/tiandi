@@ -6,7 +6,7 @@ class user_api extends base_api {
     public function __construct() {
 		parent::__construct();
 		$this->load->model('user_model');
-    }   
+    }
 
     public function login() {
         $params = parent::getParams('POST', array('name', 'pwd'));
@@ -16,7 +16,6 @@ class user_api extends base_api {
 
 		if ($this->user_model->login($name, $pwd) === false) {
 			parent::finish(false, '用户名或密码错误');
-			return;
 		}
 		parent::finish(true);
     }
@@ -24,7 +23,6 @@ class user_api extends base_api {
     public function logout() {
 		if ($this->user_model->logout() === false) {
 			parent::finish(false, '注销失败');
-			return;
 		}
     }
 
@@ -36,7 +34,6 @@ class user_api extends base_api {
 		$cur_id = $this->session->userdata('uid');
 		if (!isset($cur_id)) {
 			parent::finish(false, '没有权限');
-			return;
         }
 
 		$this->user_model->edit(array(
@@ -58,7 +55,6 @@ class user_api extends base_api {
             'pwd' => $pwd
         ))) {
 			parent::finish(false, '用户名已存在');
-			return;
         }
 
 		parent::finish(true);
@@ -72,7 +68,6 @@ class user_api extends base_api {
 		$cur_id = $this->session->userdata('auid');
 		if (!isset($cur_id)) {
 			parent::finish(false, '没有权限');
-			return;
         }
 
 		if (false === $this->user_model->remove(array(
@@ -80,7 +75,6 @@ class user_api extends base_api {
             'auid' => $cur_id
         ))) {
 			parent::finish(false, '目标是自己或不存在');
-			return;
         }
 
 		parent::finish(true);

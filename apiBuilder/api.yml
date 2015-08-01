@@ -68,4 +68,25 @@ api:
         - name
 
 
-# slide
+# problem
+-
+    url: problem_api/create
+    type: post
+    name: createProblem
+    args:
+        - title
+        - detail
+        - tags
+-
+    url: problem_api/create_detail
+    type: post
+    name: createDetail
+    args:
+        - content
+        - type
+-
+    url: problem_api/create_comment
+    type: post
+    name: createComment
+    args:
+        - content

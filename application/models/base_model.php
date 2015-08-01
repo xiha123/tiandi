@@ -9,7 +9,8 @@ class base_model extends CI_Model {
     }
 
     public function create($params) {
-		return $this->db->insert($this->tableName, $params);
+		$this->db->insert($this->tableName, $params);
+        return $this->db->insert_id();
     }
 
 	public function remove($id) {
@@ -34,7 +35,7 @@ class base_model extends CI_Model {
 		$this->db->where('id', $id)->update($this->tableName, $params);
 	}
 
-	public function isExist($params) {
+	public function is_exist($params) {
 		return $this->db->select('id')->where($params)->get($this->tableName)->num_rows() > 0;
 	}
 

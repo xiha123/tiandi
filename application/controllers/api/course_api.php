@@ -2,9 +2,9 @@
 
 include_once(APPPATH . 'controllers/api/base_api.php');
 
-class slide_api extends base_api {
+class course_api extends base_api {
     public function __construct() {
 		parent::__construct();
-		$this->load->model('slide_model');
+		$this->load->model('course_model');
     }
 }

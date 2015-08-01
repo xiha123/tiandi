@@ -7,7 +7,7 @@ class base_api extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // 非ajax请求拒绝
-        if(!$this->input->is_ajax_request()) $this->finish(false, '非法请求');return false;
+        if (!$this->input->is_ajax_request()) $this->finish(false, '非法请求');
     }
 
     /**
@@ -18,18 +18,18 @@ class base_api extends CI_Controller {
      * @param {String} error 失败时的错误信息
      */
     public function finish($status = false, $error = '', $data = '') {
-        echo json_encode(array(
+        exit(json_encode(array(
             'status' => $status,
             'data' => $data,
             'error' => $error
-        ));
+        )));
     }
 
     /**
      * @method getParams
      * @description 获取参数
      * @param {String} method 获取参数的方法 GET | POST, default = 'GET'
-     * @param {Array} keys 要获取的参数名字
+     * @param {Array} keys 要获取的参数名字，true 表示不能为空，false 则可以为空，默认为 true
      */
     public function getParams($method = 'GET', $keys) {
         if (strtoupper($method) === 'GET') {
@@ -38,14 +38,14 @@ class base_api extends CI_Controller {
             $params = $this->input->post(NULL, true);
         }
 
-        foreach ($keys as $key) {
-            if (!isset($params[$key]) || empty($params[$key])) {
-                $this->finish(false, '亲，不能填写空数据保存哟！');
-                return false;
+        foreach ($keys as $key => $val) {
+            if ((empty($key) && (!isset($params[$val]) || empty($params[$val]))) || (!isset($params[$key]) || empty($params[$key]))) {
+                $this->finish(false, '数据不能为空');
             }
             $result[$key] = $params[$key];
         }
 
         return $result;
     }
+
 }
