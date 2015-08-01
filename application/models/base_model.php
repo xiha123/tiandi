@@ -39,6 +39,7 @@ class base_model extends CI_Model {
 	}
 
     public function get($params) {
-        return $this->db->where($params).get('table', 1)->row_array();
+        $params['status'] = 1;
+        return $this->db->where($params).get($this->tableName, 1)->row_array();
     }
 }
