@@ -5,8 +5,40 @@ $(document).ready(function() {
         switch($widget.attr('data-widget')) {
             case 'slider': initSlider($widget); break;
             case 'tab': initTab($widget); break;
+            case 'tag': initTag($widget); break;
         }
     });
+
+    function initTag($tag){
+        var tagIndex = 0, value ="";
+        $tag.find('input[type="text"]').blur(function(){
+            value = $(this).val();
+            if(value == ""){return;}
+            addTag($tag , value);
+            $(this).val("");
+        });
+        $tag.on('click', '.close', function(event) {
+            tagIndex = tagIndex - 1;
+            console.log(tagIndex);
+            $(this).parent().remove();
+        });
+        $tag.keyup(function(e) {
+            value = $tag.find('input[type="text"]').val();
+            if(e.keyCode == 13){
+            if(value == "" || value.length >18){return;}
+            $tag.find('input[type="text"]').val("");
+            addTag($tag,value);
+        }
+    });
+
+        function addTag($tag , tagName){
+            tagIndex ++;
+            if(tagIndex >5){return false;}
+            $tag.append('<span class="tag-box">'+tagName+' <button class="close">X</button></span>');
+        }
+
+    }
+
 
     /**
      * @method initSlider

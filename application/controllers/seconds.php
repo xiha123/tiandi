@@ -2,14 +2,15 @@
 
 
 class seconds extends CI_Controller {
-
 	function __construct() {
 		parent::__construct();
+		$this->load->model("user_model");
 	}
 
-
 	public function index() {
-		$this->load->view('seconds/home.php');
+		$userdata = $this->user_model->check_login();
+		print_r($userdata);
+		$this->load->view('seconds/home.php' , $userdata);
 	}
 
 	public function god() {

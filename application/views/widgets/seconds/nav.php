@@ -39,15 +39,27 @@
 
 		</ul>
 		<div class="user">
-			<img src="./static/image/test.jpg" height="25" width="25" alt="avatar">用户昵称
-			<ul class="user-menu seconds">
-				<li><a href="">个人主页</a></li>
-				<li><a href="">大神主页</a></li>
-				<li><a href="">通知</a></li>
-				<li><a href="">设置</a></li>
-				<li><a href="">充值</a></li>
-				<li><a href="">退出</a></li>
-			</ul>
+
+			<?php
+				if(isset($name)){
+			?>
+					<img src="<?=$salt?>" height="25" width="25" alt="avatar"><?=$name?>
+					<ul class="user-menu seconds">
+						<li><a href="">个人主页</a></li>
+						<li><a href="">大神主页</a></li>
+						<li><a href="">通知</a></li>
+						<li><a href="">设置</a></li>
+						<li><a href="">充值</a></li>
+						<li><a href="">退出</a></li>
+					</ul>
+			<?php
+				}else{
+					echo '<div class="notLogin"><a href="javascript:"><i class="icon-user"></i>登录</a><a href="javascript:">注册</a></div>';
+				}
+
+			?>
+
+			<!--  -->
 		</div>
 	</div>
 

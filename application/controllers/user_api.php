@@ -12,12 +12,11 @@ class user_api extends base_api {
         $params = parent::getParams('POST', array('name', 'pwd'));
         if(empty($params)) return;
         extract($params);
-
+        
 		if ($this->admin_model->login($name, $pwd) === false) {
 			parent::finish(false, '用户名或密码错误');
 			return;
 		}
-
 		parent::finish(true);
     }
 
