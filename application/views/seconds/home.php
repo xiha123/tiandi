@@ -168,5 +168,6 @@
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
 <script src="./static/js/edit.js"></script> 
+<script src="./static/js/problem.home.js"></script>
 </body>
 </html>

@@ -2,10 +2,9 @@
 
 class base_model extends CI_Model {
 
-    public $table_name = '';
-
     public function __construct() {
-        parent::__construct();
+        parent::__construct();//Database 
+      $this->load->database();
     }
 
     public function create($params) {

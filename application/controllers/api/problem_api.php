@@ -4,11 +4,12 @@ include_once(APPPATH . 'controllers/api/base_api.php');
 
 class problem_api extends base_api {
     public function __construct() {
-		parent::__construct();
-		$this->load->model('problem_model');
-		$this->load->model('problem_comment_model');
-
-		$this->me = $this->user_model->check_login();
+	parent::__construct();
+        $this->table_name="problem";
+	$this->load->model('problem_model');
+        $this->load->model('problem_detail_model');
+	$this->load->model('problem_comment_model');
+	$this->me = $this->user_model->check_login();
     }
 
     public function create() {
@@ -19,12 +20,9 @@ class problem_api extends base_api {
         ));
         extract($params);
 
-        if ($this->problem_model->is_exist(array(
-            'title' => $title
-        ))) {
+        if ($this->problem_model->is_exist(array('title' => $title))){
             $this->finish(false, '重复的标题');
         }
-
         $detail_id[] = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'type' => 0,
@@ -40,7 +38,7 @@ class problem_api extends base_api {
     }
 
     public function create_comment() {
-        $params = $this->get_params('POST', array('content', 'problem_id')));
+        $params = $this->get_params('POST', array('content', 'problem_id'));
         extract($params);
 
         if ($this->problem_model->is_exist(array(
@@ -59,7 +57,7 @@ class problem_api extends base_api {
     }
 
     public function create_detail() {
-        $params = $this->get_params('POST', array('content', 'type', 'problem_id')));
+        $params = $this->get_params('POST', array('content', 'type', 'problem_id'));
         extract($params);
 
         if ($this->problem_model->is_exist(array(
@@ -88,7 +86,7 @@ class problem_api extends base_api {
     }
 
     public function request_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
 
         if ($this->me['type'] !== 1) {
@@ -100,8 +98,8 @@ class problem_api extends base_api {
         ));
 
         if ($this->problem_model->request(array(
-            'pid': $problem_id,
-            'uid': $me['id']
+            'pid' => $problem_id,
+            'uid' => $me['id']
         )) === false) {
             $this->finish(false, '问题不能认领');
         }
@@ -110,7 +108,7 @@ class problem_api extends base_api {
     }
 
     public function close_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
 
         $problem = $this->problem_model->get(array(
@@ -122,7 +120,7 @@ class problem_api extends base_api {
         }
 
         if ($this->problem_model->close(array(
-            'pid': $problem_id,
+            'pid'=>$problem_id,
         )) === false) {
             $this->finish(false, '问题不能关闭');
         }
@@ -131,32 +129,32 @@ class problem_api extends base_api {
     }
 
     public function follow_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function unfollow_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function collect_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function uncollect_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function up_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function down_problem() {
-        $params = $this->get_params('POST', array('problem_id')));
+        $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 }
