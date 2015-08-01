@@ -9,7 +9,6 @@ class admin extends CI_Controller {
 		$this->user_info = $this->admin_model->check_login();
 	}
 
-
 	public function index() {
 		if (empty($this->user_info)) redirect('admin/login');
 		$data = array (
