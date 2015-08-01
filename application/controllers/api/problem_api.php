@@ -134,4 +134,29 @@ class problem_api extends base_api {
         $params = $this->get_params('POST', array('problem_id')));
         extract($params);
     }
+
+    public function unfollow_problem() {
+        $params = $this->get_params('POST', array('problem_id')));
+        extract($params);
+    }
+
+    public function collect_problem() {
+        $params = $this->get_params('POST', array('problem_id')));
+        extract($params);
+    }
+
+    public function uncollect_problem() {
+        $params = $this->get_params('POST', array('problem_id')));
+        extract($params);
+    }
+
+    public function up_problem() {
+        $params = $this->get_params('POST', array('problem_id')));
+        extract($params);
+    }
+
+    public function down_problem() {
+        $params = $this->get_params('POST', array('problem_id')));
+        extract($params);
+    }
 }

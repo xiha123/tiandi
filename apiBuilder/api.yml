@@ -109,3 +109,45 @@ api:
     name: closeProblem
     args:
         - problem_id
+-
+    # 关注问题
+    url: problem_api/follow_problem
+    type: post
+    name: followProblem
+    args:
+        - problem_id
+-
+    # 取消关注问题
+    url: problem_api/unfollow_problem
+    type: post
+    name: unfollowProblem
+    args:
+        - problem_id
+-
+    # 收藏问题
+    url: problem_api/collect_problem
+    type: post
+    name: collectProblem
+    args:
+        - problem_id
+-
+    # 取消收藏问题
+    url: problem_api/uncollect_problem
+    type: post
+    name: uncollectProblem
+    args:
+        - problem_id
+-
+    # 点赞
+    url: problem_api/up_problem
+    type: post
+    name: upProblem
+    args:
+        - problem_id
+-
+    # 点踩
+    url: problem_api/down_problem
+    type: post
+    name: downProblem
+    args:
+        - problem_id
