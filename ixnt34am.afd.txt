@@ -1,0 +1,32 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	application/controllers/api/user_api.php
+	application/models/user_model.php
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 2 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	renamed:    application/controllers/admin_api.php -> application/controllers/api/admin_api.php
+#	renamed:    application/controllers/base_api.php -> application/controllers/api/base_api.php
+#	new file:   application/controllers/api/course_api.php
+#	new file:   application/controllers/api/slide_api.php
+#	new file:   application/controllers/api/user_api.php
+#	new file:   application/models/course_model.php
+#	new file:   application/models/slide_model.php
+#	modified:   static/js/api.js
+#
+

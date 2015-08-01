@@ -1,9 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * admin_api
- * 和后台操作相关
- */
-include_once(APPPATH . 'controllers/base_api.php');
+
+include_once(APPPATH . 'controllers/api/base_api.php');
 
 class admin_api extends base_api {
     public function __construct() {
