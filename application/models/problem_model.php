@@ -2,4 +2,4 @@
 
 include_once(APPPATH . 'models/base_model.php');
 
-class problem_model extends base_model {	public function __construct() {		parent::__construct();		$this->tableName = 'problem';	}}
+class problem_model extends base_model {	public function __construct() {		parent::__construct();		$this->table_name = 'problem';	}	// pid, uid	public function request($params) {		extract($params);		$this->db->where(array(			'id' => $pid,			'type' => 0		))->update($this->table_name, array(			'answer_id' => $uid,			'type' => 1		));		return $this->db->affected_rows() > 0;	}	public function done($pid) {		$this->db->where(array(			'id' => $pid,			'type' => 1		))->update($this->table_name, array(			'type' => 2		));		return $this->db->affected_rows() > 0;	}	public function close($pid) {		$this->db->where(array(			'id' => $pid,			'type' => 2		))->update($this->table_name, array(			'type' => 3		));		return $this->db->affected_rows() > 0;	}	// pid, uid	public function follow($params) {		extract($params);		$this->db->where('id', $uid)->update($this->table_name, array(		));	}}

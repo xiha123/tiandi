@@ -9,7 +9,7 @@ class user_api extends base_api {
     }
 
     public function login() {
-        $params = parent::getParams('POST', array('name', 'pwd'));
+        $params = parent::get_params('POST', array('name', 'pwd'));
         if(empty($params)) return;
         extract($params);
 
@@ -27,7 +27,7 @@ class user_api extends base_api {
     }
 
     public function edit() {
-        $params = parent::getParams('POST', array('nickname'));
+        $params = parent::get_params('POST', array('nickname'));
         if (empty($params)) return;
         extract($params);
 
@@ -45,7 +45,7 @@ class user_api extends base_api {
     }
 
     public function create() {
-        $params = parent::getParams('POST', array('name', 'nickname', 'pwd'));
+        $params = parent::get_params('POST', array('name', 'nickname', 'pwd'));
         if (empty($params)) return;
         extract($params);
 
@@ -61,7 +61,7 @@ class user_api extends base_api {
     }
 
     public function remove() {
-        $params = parent::getParams('POST', array('name'));
+        $params = parent::get_params('POST', array('name'));
         if (empty($params)) return;
         extract($params);
 

@@ -93,6 +93,7 @@
 
 - title 章节标题
 - content 章节内容
+- course_id
 
 ### course_step 表
 
@@ -102,6 +103,7 @@
 - img 点开详情的图片
 - description 点开详情的描述
 - level 点开详情的难度
+- course_id
 
 ### course 表
 
@@ -120,7 +122,8 @@
 
 用来存放用户提问。
 
-- status 0 不展示，1 未回答，2 认领中，3 已回答，4 关闭
+- status
+- type 0 未回答，1 认领中，2 已回答，3 关闭
 - title
 - owner_id 提问者 id
 - answer_id 回答者 id
@@ -142,6 +145,7 @@
 - type 0 为提问，1 为回答
 - owner_id 发表这个详情的人的 id
 - ctime 创建时间
+- problem_id
 
 ### problem_comment 表
 
@@ -150,6 +154,7 @@
 - content
 - owner_id
 - ctime 创建时间
+- problem_id
 
 ### news 表
 

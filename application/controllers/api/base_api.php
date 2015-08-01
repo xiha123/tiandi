@@ -8,6 +8,7 @@ class base_api extends CI_Controller {
         parent::__construct();
         // 非ajax请求拒绝
         if (!$this->input->is_ajax_request()) $this->finish(false, '非法请求');
+        $this->load->model('user_model');
     }
 
     /**
@@ -26,12 +27,12 @@ class base_api extends CI_Controller {
     }
 
     /**
-     * @method getParams
+     * @method get_params
      * @description 获取参数
      * @param {String} method 获取参数的方法 GET | POST, default = 'GET'
      * @param {Array} keys 要获取的参数名字，true 表示不能为空，false 则可以为空，默认为 true
      */
-    public function getParams($method = 'GET', $keys) {
+    public function get_params($method = 'GET', $keys) {
         if (strtoupper($method) === 'GET') {
             $params = $this->input->get(NULL, true);
         } else {
@@ -46,6 +47,16 @@ class base_api extends CI_Controller {
         }
 
         return $result;
+    }
+
+    public function check_login() {
+		$me = $this->user_model->check_login();
+
+        if ($me === false) {
+            $this->finish(false, '用户未登录');
+        }
+        
+        return $me;
     }
 
 }

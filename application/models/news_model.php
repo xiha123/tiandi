@@ -2,4 +2,4 @@
 
 include_once(APPPATH . 'models/base_model.php');
 
-class news_model extends base_model {	public function __construct() {		parent::__construct();		$this->tableName = 'news';	}}
+class news_model extends base_model {	public function __construct() {		parent::__construct();		$this->table_name = 'news';	}}

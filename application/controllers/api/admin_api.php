@@ -9,7 +9,7 @@ class admin_api extends base_api {
     }
 
     public function editClassPublic(){
-        $params = parent::getParams('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
+        $params = parent::get_params('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
         if(time() >  strtotime($time) + 86400) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
         if(!$this->admin_model->editClassPublic($params)){
             parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
@@ -20,7 +20,7 @@ class admin_api extends base_api {
 
 
     public function deleteClassPublic(){
-        $params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+        $params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
         if(!$this->admin_model->deleteClassPublic($id)){
             parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
         }else{
@@ -29,7 +29,7 @@ class admin_api extends base_api {
     }
 
     public function addClassPublic(){
-        $params = parent::getParams('POST', array('id' , 'title' , 'content' , 'time' , 'type'));if(empty($params)) return;extract($params);
+        $params = parent::get_params('POST', array('id' , 'title' , 'content' , 'time' , 'type'));if(empty($params)) return;extract($params);
         $type = $type == 'false' ? "1" : '0';
         $time = strtotime($time);
         if(time() > strtotime($time)+ 86400){parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
@@ -49,7 +49,7 @@ class admin_api extends base_api {
 
 	//添加新的课程列表
 	public function addClassList(){
-        	$params = parent::getParams('POST', array('className' , 'classVideo' , 'text'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('className' , 'classVideo' , 'text'));if(empty($params)) return;extract($params);
 		if(!$this->admin_model->addClassList(array(
 			"className" => $className,
 			"text" =>$text,
@@ -61,7 +61,7 @@ class admin_api extends base_api {
 		}
 	}
 	public function addClassContent(){
-        	$params = parent::getParams('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> addClassContent(array(
 			"id" => $id,
 			"title" => $title,
@@ -70,7 +70,7 @@ class admin_api extends base_api {
 		parent::finish(true);
 	}
 	public function addClassListTag(){
-        	$params = parent::getParams('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> addClassListTag(array(
 			"id" => $id,
 			"className" => $className,
@@ -79,7 +79,7 @@ class admin_api extends base_api {
 		parent::finish(true);
 	}
 	public function addClassListLink(){
-        	$params = parent::getParams('POST', array('id' , 'direction' , 'link'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id' , 'direction' , 'link'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> addClassListLink(array(
 			"id" => $id,
 			"link" => $link,
@@ -89,7 +89,7 @@ class admin_api extends base_api {
 	}
 
 	public function editClassListTag(){
-        	$params = parent::getParams('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> editClassListTag(array(
 			"id" => $id,
 			"className" => $className,
@@ -99,7 +99,7 @@ class admin_api extends base_api {
 	}
 
 	public function editClassContent(){
-        	$params = parent::getParams('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> editClassContent(array(
 			"id" => $id,
 			"title" => $title,
@@ -115,7 +115,7 @@ class admin_api extends base_api {
 
 	//删除课程列表
 	public function deleteClassList(){
-        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> deleteClassList($id);
 		$this -> admin_model -> deleteClassListTag_all($id);
 		$this -> admin_model -> deleteClassContent_all($id);
@@ -124,17 +124,17 @@ class admin_api extends base_api {
 		parent::finish(true);
 	}
 	public function deleteClassListTag(){
-        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> deleteClassListTag($id);
 		parent::finish(true);
 	}
 	public function deleteClassContent(){
-        	$params = parent::getParams('POST', array('id'));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> deleteClassContent($id);
 		parent::finish(true);
 	}
 	public function deleteSlider(){
-		$params = parent::getParams('POST', array('id'));
+		$params = parent::get_params('POST', array('id'));
 		if(empty($params))return;
 		extract($params);
 		$this->admin_model->deleteSlider($id);
@@ -144,7 +144,7 @@ class admin_api extends base_api {
 
 	//删除课程列表
 	public function editClassList(){
-        	$params = parent::getParams('POST', array('id' , "className" , "classVideo" , "text"));if(empty($params)) return;extract($params);
+        	$params = parent::get_params('POST', array('id' , "className" , "classVideo" , "text"));if(empty($params)) return;extract($params);
 		if($this -> admin_model -> editClassList(array(
 			"id" => $id,
 			"className" => $className,
@@ -163,7 +163,7 @@ class admin_api extends base_api {
 
 
     public function login() {
-        $params = parent::getParams('POST', array('name', 'pwd'));
+        $params = parent::get_params('POST', array('name', 'pwd'));
         if(empty($params)) return;
         extract($params);
 
@@ -181,7 +181,7 @@ class admin_api extends base_api {
     }
 
     public function edit() {
-        $params = parent::getParams('POST', array('nickname'));
+        $params = parent::get_params('POST', array('nickname'));
         if (empty($params)) return;
         extract($params);
 
@@ -199,7 +199,7 @@ class admin_api extends base_api {
     }
 
     public function create() {
-        $params = parent::getParams('POST', array('name', 'nickname', 'pwd'));
+        $params = parent::get_params('POST', array('name', 'nickname', 'pwd'));
         if (empty($params)) return;
         extract($params);
 
@@ -220,7 +220,7 @@ class admin_api extends base_api {
     }
 
     public function remove() {
-        $params = parent::getParams('POST', array('name'));
+        $params = parent::get_params('POST', array('name'));
         if (empty($params)) return;
         extract($params);
 

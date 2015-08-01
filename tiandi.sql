@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2015 at 06:56 AM
+-- Generation Time: Aug 01, 2015 at 06:15 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -97,7 +97,8 @@ CREATE TABLE IF NOT EXISTS `course` (
 CREATE TABLE IF NOT EXISTS `course_chapter` (
   `id` int(11) NOT NULL,
   `title` varchar(64) NOT NULL,
-  `content` text NOT NULL
+  `content` text NOT NULL,
+  `course_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -111,7 +112,8 @@ CREATE TABLE IF NOT EXISTS `course_step` (
   `title` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
   `description` text NOT NULL,
-  `level` smallint(6) NOT NULL
+  `level` smallint(6) NOT NULL,
+  `course_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -161,7 +163,8 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `collect_count` int(11) NOT NULL DEFAULT '0',
   `follow_count` int(11) NOT NULL DEFAULT '0',
   `view_count` int(11) NOT NULL DEFAULT '0',
-  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -174,7 +177,8 @@ CREATE TABLE IF NOT EXISTS `problem_comment` (
   `id` int(11) NOT NULL,
   `content` text NOT NULL,
   `owner_id` int(11) NOT NULL,
-  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `problem_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -188,7 +192,8 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `content` text NOT NULL,
   `type` tinyint(4) NOT NULL,
   `owner_id` int(11) NOT NULL,
-  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `problem_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

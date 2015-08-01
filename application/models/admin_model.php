@@ -3,10 +3,10 @@
 include_once(APPPATH . 'models/base_model.php');
 
 class admin_model extends base_model {
-	
+
 	public function __construct() {
 		parent::__construct();
-		$this->tableName = 'admin';
+		$this->table_name = 'admin';
 	}
 
 	public function insertUploadPic($id,$type,$url){

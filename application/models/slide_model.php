@@ -4,4 +4,4 @@ include_once(APPPATH . 'models/base_model.php');
 
 class slide_model extends base_model {
 
-	public function __construct() {		parent::__construct();		$this->tableName = 'slide';	}	public function getList($type, $count = 5) {		return $this->db->where(array(			'status' => 1,			'type' => $type		))->order_by('id', 'DESC')->limit($count)->get('slide')->result_array();	}}
+	public function __construct() {		parent::__construct();		$this->table_name = 'slide';	}	public function getList($type, $count = 5) {		return $this->db->where(array(			'status' => 1,			'type' => $type		))->order_by('id', 'DESC')->limit($count)->get($this->table_name)->result_array();	}}

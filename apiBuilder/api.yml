@@ -70,6 +70,7 @@ api:
 
 # problem
 -
+    # 创建问题
     url: problem_api/create
     type: post
     name: createProblem
@@ -78,15 +79,33 @@ api:
         - detail
         - tags
 -
+    # 创建描述，即提问者的补充和老师的回答
     url: problem_api/create_detail
     type: post
     name: createDetail
     args:
+        - problem_id
         - content
         - type
 -
+    # 创建评论
     url: problem_api/create_comment
     type: post
     name: createComment
     args:
+        - problem_id
         - content
+-
+    # 老师认领问题
+    url: problem_api/request_problem
+    type: post
+    name: requestProblem
+    args:
+        - problem_id
+-
+    # 关闭问题
+    url: problem_api/close_problem
+    type: post
+    name: closeProblem
+    args:
+        - problem_id
