@@ -7,9 +7,11 @@ class admin_api extends base_api {
     public function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');
+
+    	$this->me = $this->admin_model->check_login();
     }
 
-    public function editClassPublic(){
+    public function editClassPublic() {
         $params = parent::get_params('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
         if(time() >  strtotime($time) + 86400) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
         if(!$this->admin_model->editClassPublic($params)){
@@ -164,33 +166,31 @@ class admin_api extends base_api {
 
 
     public function login() {
-    	$params = $this->get_params('POST', array('name', "pwd"));if(empty($params)) return;extract($params);
+    	$params = $this->get_params('POST', array('name', "pwd"));
+        extract($params);
 
-		if ($this->admin_model->login($name, $pwd) === false) {
-			$this->finish(false, '用户名或密码错误');
-		}
+		$result = $this->admin_model->login($name, $pwd);
 
-		$this->finish(true);
+        if ($result === true) {
+    		$this->finish(true);
+        } else {
+            
+        }
     }
 
     public function logout() {
-		if ($this->admin_model->logout() === false) {
-			parent::finish(false, '注销失败');
-		}
+		$this->admin_model->logout();
+        $this->finish(true);
     }
 
     public function edit() {
-        $params = parent::get_params('POST', array('nickname'));
-        if (empty($params)) return;
+        $params = $this->get_params('POST', array('nickname'));
         extract($params);
 
-		$cur_id = $this->session->userdata('auid');
-		if (!isset($cur_id)) {
-			parent::finish(false, '没有权限');
-        }
+        $this->check_admin_login();
 
 		$this->admin_model->edit(array(
-            'auid' => $cur_id,
+            'auid' => $this->me['id'],
             'nickname' => $nickname
         ));
 
@@ -199,34 +199,26 @@ class admin_api extends base_api {
 
     public function create() {
         $params = parent::get_params('POST', array('name', 'nickname', 'pwd'));
-        if (empty($params)) return;
         extract($params);
 
-		$cur_id= $this->session->userdata('auid');
-		if (!isset($cur_id)) {
-			parent::finish(false, '没有权限');
-        }
+        $this->check_admin_login();
 
 		if (false === $this->admin_model->create(array(
             'name' => $name,
             'nickname' => $nickname,
             'pwd' => $pwd
         ))) {
-			parent::finish(false, '用户名已存在');
+			$this->finish(false, '用户名已存在');
         }
 
-		parent::finish(true);
+		$this->finish(true);
     }
 
     public function remove() {
         $params = parent::get_params('POST', array('name'));
-        if (empty($params)) return;
         extract($params);
 
-		$cur_id= $this->session->userdata('auid');
-		if (!isset($cur_id)) {
-			parent::finish(false, '没有权限');
-        }
+        $this->check_admin_login();
 
 		if (false === $this->admin_model->remove(array(
             'name' => $name,
@@ -236,5 +228,11 @@ class admin_api extends base_api {
         }
 
 		parent::finish(true);
+    }
+
+    private function check_admin_login() {
+        if ($this->me === false) {
+            $this->finish(false, '未登录');
+        }
     }
 }

@@ -274,7 +274,8 @@ class admin_model extends base_model {
 	// admin model
 	public function login($username, $pwd) {
 		$user = $this->db->select('id, pwd, salt')->where('name', $username)->get('admin')->row_array();
-		if (empty($user) || $user['pwd'] !== md5($pwd . $user['salt'])) return false;
+
+		if (empty($user) || $user['pwd'] !== md5($pwd . $user['salt'])) return '用户名或密码错误';
 
 		$this->session->set_userdata('auid', $user['id']);
 		return true;

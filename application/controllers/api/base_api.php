@@ -54,14 +54,4 @@ class base_api extends CI_Controller {
         return $result;
     }
 
-    public function check_login() {
-    	$me = $this->user_model->check_login();
-
-        if ($me === false) {
-            $this->finish(false, '用户未登录');
-        }
-
-        return $me;
-    }
-
 }

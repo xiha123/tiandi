@@ -71,7 +71,12 @@ class problem_api extends base_api {
     }
 
     public function create_detail() {
-        $params = $this->get_params('POST', array('content', 'type', 'problem_id'));
+        $params = $this->get_params('POST', array(
+            'content' => true,
+            'type' => true,
+            'problem_id' => true,
+            'code' => false
+        ));
         extract($params);
 
         if ($this->problem_model->is_exist(array(

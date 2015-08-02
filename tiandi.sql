@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2015 at 08:38 AM
+-- Generation Time: Aug 02, 2015 at 09:35 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -188,7 +188,8 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `type` tinyint(4) NOT NULL,
   `owner_id` int(11) NOT NULL,
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `problem_id` int(11) NOT NULL
+  `problem_id` int(11) NOT NULL,
+  `code` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

@@ -86,6 +86,7 @@ api:
     args:
         - problem_id
         - content
+        - code
         - type
 -
     # 创建评论
