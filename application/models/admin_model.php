@@ -310,9 +310,4 @@ class admin_model extends base_model {
 		$this->db->where('name', $params['name'])->delete('admin');
 	}
 
-	public function edit($params) {
-		$this->db->where('id', $params['auid'])->update('admin', array(
-			'nickname' => $params['nickname']
-		));
-	}
 }

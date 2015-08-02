@@ -3,6 +3,7 @@
 include_once(APPPATH . 'controllers/api/base_api.php');
 
 class admin_api extends base_api {
+
     public function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');
@@ -163,14 +164,13 @@ class admin_api extends base_api {
 
 
     public function login() {
-        	$params = parent::get_params('POST', array('name', "pwd"));if(empty($params)) return;extract($params);
-
+    	$params = $this->get_params('POST', array('name', "pwd"));if(empty($params)) return;extract($params);
 
 		if ($this->admin_model->login($name, $pwd) === false) {
-			parent::finish(false, '用户名或密码错误');
+			$this->finish(false, '用户名或密码错误');
 		}
 
-		parent::finish(true);
+		$this->finish(true);
     }
 
     public function logout() {
