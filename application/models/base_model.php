@@ -3,8 +3,7 @@
 class base_model extends CI_Model {
 
     public function __construct() {
-        parent::__construct();//Database 
-      $this->load->database();
+        parent::__construct();
     }
 
     public function create($params) {
@@ -30,7 +29,7 @@ class base_model extends CI_Model {
 		));
 	}
 
-	public function edit($params) {
+	public function edit($id, $params) {
 		$this->db->where('id', $id)->update($this->table_name, $params);
 	}
 
@@ -39,7 +38,10 @@ class base_model extends CI_Model {
 	}
 
     public function get($params) {
-        $params['status'] = 1;
-        return $this->db->where($params).get($this->table_name, 1)->row_array();
+        return $this->db->where($params)->get($this->table_name, 1)->row_array();
     }
+
+	public function getList($params, $count = 5) {
+		return $this->db->where($params)->order_by('id', 'DESC')->limit($count)->get($this->table_name)->result_array();
+	}
 }

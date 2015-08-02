@@ -17,7 +17,7 @@
 <script>
     $('form').on('submit', function (e) {
         e.preventDefault();
-        
+
         _td.api.loginAdmin({
             name: $.trim($('#username').val()),
             pwd: $.trim($('#pwd').val())

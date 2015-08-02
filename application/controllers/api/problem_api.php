@@ -5,11 +5,14 @@ include_once(APPPATH . 'controllers/api/base_api.php');
 class problem_api extends base_api {
     public function __construct() {
 	parent::__construct();
-        $this->table_name="problem";
-	$this->load->model('problem_model');
+    	$this->load->model('problem_model');
         $this->load->model('problem_detail_model');
-	$this->load->model('problem_comment_model');
-	$this->me = $this->user_model->check_login();
+    	$this->load->model('problem_comment_model');
+
+    	$this->me = $this->user_model->check_login();
+        if ($this->me === false) {
+            $this->finish(false, '未登录');
+        }
     }
 
     public function create() {
@@ -47,10 +50,21 @@ class problem_api extends base_api {
             $this->finish(false, '不存在的问题');
         }
 
-        $this->problem_comment_model->create(array(
+        $new_comment_id = $this->problem_comment_model->create(array(
             'owner_id' => $this->me['id'],
             'problem_id' => $problem_id,
             'content' => $content
+        ));
+
+        $problem = $this->problem_model->get(array(
+            'id' => $problem_id
+        ));
+
+        $comments = json_decode($problem['comments']);
+        $comments[] = $new_comment_id;
+
+        $this->problem_model->edit($problem_id, array(
+            'comments' => json_encode($comments)
         ));
 
         $this->finish(true);
@@ -74,10 +88,17 @@ class problem_api extends base_api {
             $this->finish(false, '没有权限');
         }
 
-        $this->problem_detail_model->create(array(
+        $new_detail_id = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'content' => $content,
             'type' => $type
+        ));
+
+        $details = json_decode($problem['details']);
+        $details[] = $new_detail_id;
+
+        $this->problem_model->edit($problem_id, array(
+            'details' => $details
         ));
 
         $this->problem_model->done($problem_id);
@@ -120,7 +141,7 @@ class problem_api extends base_api {
         }
 
         if ($this->problem_model->close(array(
-            'pid'=>$problem_id,
+            'pid' => $problem_id
         )) === false) {
             $this->finish(false, '问题不能关闭');
         }

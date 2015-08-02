@@ -151,3 +151,66 @@ api:
     name: downProblem
     args:
         - problem_id
+
+# course
+-
+    url: course_api/create
+    type: post
+    name: createCourse
+    args:
+        - title
+        - type
+        - video
+        - description
+-
+    url: course_api/remove
+    type: post
+    name: removeCourse
+    args:
+        - course_id
+-
+    url: course_api/edit
+    type: post
+    name: editCourse
+    args:
+        - course_id
+        - title
+        - type
+        - video
+        - description
+-
+    url: course_api/create_chapter
+    type: post
+    name: createChapter
+    args:
+        - course_id
+        - content
+        - title
+-
+    url: course_api/create_step
+    type: post
+    name: createStep
+    args:
+        - course_id
+        - title
+        - description
+        - img
+        - level
+-
+    url: course_api/edit_chapter
+    type: post
+    name: editChapter
+    args:
+        - chapter_id
+        - content
+        - title
+-
+    url: course_api/edit_step
+    type: post
+    name: editStep
+    args:
+        - step_id
+        - title
+        - description
+        - img
+        - level
