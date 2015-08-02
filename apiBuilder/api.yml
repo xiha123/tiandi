@@ -78,6 +78,7 @@ api:
         - title
         - detail
         - tags
+        - code
 -
     # 创建描述，即提问者的补充和老师的回答
     url: problem_api/create_detail

@@ -3,8 +3,9 @@
 include_once(APPPATH . 'controllers/api/base_api.php');
 
 class problem_api extends base_api {
+
     public function __construct() {
-	parent::__construct();
+    	parent::__construct();
     	$this->load->model('problem_model');
         $this->load->model('problem_detail_model');
     	$this->load->model('problem_comment_model');
@@ -19,7 +20,8 @@ class problem_api extends base_api {
         $params = $this->get_params('POST', array(
             'title' => true,
             'detail' => true,
-            'tags' => false
+            'tags' => false,
+            'code' => false
         ));
         extract($params);
 
@@ -29,7 +31,8 @@ class problem_api extends base_api {
         $detail_id[] = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'type' => 0,
-            'content' => $detail
+            'content' => $detail,
+            'code' => $code
         ));
 
         $this->problem_model->create(array(
@@ -157,6 +160,8 @@ class problem_api extends base_api {
     public function follow_problem() {
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
+
+        $this->problem_model->follow($problem_id);
     }
 
     public function unfollow_problem() {

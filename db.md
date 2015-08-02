@@ -43,13 +43,17 @@
 - email 邮箱
 - cellphone 手机号
 - description 个人描述
-- collect_count 收藏的数量
-- follow_count 关注的数量
+- collect_problem_count 收藏的数量
+- follow_problem_count 关注的数量
 - ask_count 提问的数量
 - answer_count 回答的数量
+- follow_user_count 关注的人的数量
+- follower_count 被多少人关注
 - collect_problems 收藏列表，JSON数组
 - follow_problems 关注列表，JSON数组
 - skilled_tags 擅长的标签，JSON数组
+- follow_users 关注的用户，JSON数组
+- followers 被哪些用户关注，JSON数组
 - alipay 支付宝账号
 - gold_coin 金币数量
 - silver_coin 银币数量
@@ -128,6 +132,11 @@
 - follow_count 被关注的次数
 - view_count 被浏览的次数
 - ctime 创建时间
+- hot 火热值，计算方式为：(up - down) * 5 + comment_count * 1 + (follow_count + collect_cout) * 3 + view_count * 0.01
+- follow_users 被哪些人关注，JSON数组
+- collect_users 被那些人收藏，JSON
+- up_users 被哪些人赞，JSON
+- down_users 被哪些人踩，JSON
 
 ### problem_detail 表
 
@@ -153,8 +162,18 @@
 存放新消息提醒。
 
 - type
-- target
+- from
+- to
 - content
+
+### activity 表
+
+存放个人动态。
+
+- owner_id
+- ctime
+- type
+- target
 
 ### note 表
 
