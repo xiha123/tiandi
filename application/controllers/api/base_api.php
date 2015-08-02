@@ -53,4 +53,8 @@ class base_api extends CI_Controller {
         return $result;
     }
 
+    public function require_login() {
+        if ($this->me === false) $this->finish(false, '未登录');
+    }
+
 }
