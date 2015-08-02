@@ -16,7 +16,6 @@
 - img
 - link
 - text
-- status
 
 ### site 表
 
@@ -30,7 +29,6 @@
 - salt
 - nickname 昵称
 - name 有索引
-- status
 
 ### user 表
 
@@ -55,7 +53,6 @@
 - alipay 支付宝账号
 - gold_coin 金币数量
 - silver_coin 银币数量
-- status
 
 ### class_guide
 
@@ -64,7 +61,6 @@
 - name
 - img
 - link
-- status
 
 ### tag
 
@@ -73,13 +69,11 @@
 - type 0 为 course，1 为问题
 - name 有索引
 - count 属于这个 tag 的数量
-- status
 
 ### slide 表
 
 用来存放轮播相关。
 
-- status
 - name 用来搜索和 alt 显示的，有索引
 - img 图片地址
 - link 目标跳转地址
@@ -109,7 +103,6 @@
 
 用来存放课程相关信息。
 
-- status
 - title 课程名字，有索引
 - type 课程分类，有索引，0 3d，1 swift，2 web，3 coco，4 android（有新的再说）
 - video 视频地址
@@ -122,7 +115,6 @@
 
 用来存放用户提问。
 
-- status
 - type 0 未回答，1 认领中，2 已回答，3 关闭
 - title
 - owner_id 提问者 id
@@ -168,7 +160,6 @@
 
 存放笔记。
 
-- status
 - title
 - content
 - owner_id

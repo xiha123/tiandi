@@ -17,18 +17,6 @@ class base_model extends CI_Model {
 		));
 	}
 
-	public function online($id) {
-		$this->db->where('id', $id)->update($this->table_name, array(
-			'status' => 1
-		));
-	}
-
-	public function offline($id) {
-		$this->db->where('id', $id)->update($this->table_name, array(
-			'status' => 0
-		));
-	}
-
 	public function edit($id, $params) {
 		$this->db->where('id', $id)->update($this->table_name, $params);
 		return;

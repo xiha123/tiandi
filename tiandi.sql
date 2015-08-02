@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2015 at 06:15 PM
+-- Generation Time: Aug 02, 2015 at 08:38 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -31,8 +31,7 @@ CREATE TABLE IF NOT EXISTS `ad` (
   `name` varchar(32) NOT NULL,
   `img` varchar(128) NOT NULL,
   `link` varchar(128) NOT NULL,
-  `text` text,
-  `status` tinyint(4) NOT NULL
+  `text` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -46,16 +45,15 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `name` varchar(32) NOT NULL,
   `pwd` char(32) NOT NULL,
   `salt` char(10) NOT NULL,
-  `nickname` varchar(32) NOT NULL,
-  `status` tinyint(4) NOT NULL
+  `nickname` varchar(32) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`, `status`) VALUES
-(1, 'tiandi', '933e92d31cdc2748c6f84f26ec090835', '', 'tiandi', 0);
+INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`) VALUES
+(1, 'tiandi', '933e92d31cdc2748c6f84f26ec090835', '', 'tiandi');
 
 -- --------------------------------------------------------
 
@@ -67,8 +65,7 @@ CREATE TABLE IF NOT EXISTS `class_guide` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
-  `link` varchar(128) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0'
+  `link` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -82,10 +79,10 @@ CREATE TABLE IF NOT EXISTS `course` (
   `title` varchar(128) NOT NULL,
   `type` int(11) NOT NULL,
   `video` varchar(128) NOT NULL,
-  `tags` varchar(256) NOT NULL,
+  `tags` varchar(256) NOT NULL DEFAULT '[]',
   `description` text NOT NULL,
-  `chapters` varchar(256) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0'
+  `chapters` varchar(512) NOT NULL DEFAULT '[]',
+  `steps` varchar(512) NOT NULL DEFAULT '[]'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -137,7 +134,6 @@ CREATE TABLE IF NOT EXISTS `news` (
 
 CREATE TABLE IF NOT EXISTS `note` (
   `id` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
   `title` varchar(128) NOT NULL,
   `content` text NOT NULL,
   `owner_id` int(11) NOT NULL
@@ -151,13 +147,12 @@ CREATE TABLE IF NOT EXISTS `note` (
 
 CREATE TABLE IF NOT EXISTS `problem` (
   `id` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
   `title` varchar(256) NOT NULL,
   `owner_id` int(11) NOT NULL,
   `answer_id` int(11) NOT NULL,
-  `details` text NOT NULL,
-  `comments` text NOT NULL,
-  `tags` text NOT NULL,
+  `details` varchar(512) NOT NULL DEFAULT '[]',
+  `comments` varchar(512) NOT NULL DEFAULT '[]',
+  `tags` varchar(512) NOT NULL DEFAULT '[]',
   `up_count` int(11) NOT NULL DEFAULT '0',
   `down_count` int(11) NOT NULL DEFAULT '0',
   `collect_count` int(11) NOT NULL DEFAULT '0',
@@ -221,8 +216,7 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `link` varchar(128) NOT NULL,
   `color` varchar(32) NOT NULL,
   `type` int(11) NOT NULL,
-  `text` text NOT NULL,
-  `status` tinyint(4) NOT NULL
+  `text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -235,8 +229,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `id` int(11) NOT NULL,
   `type` tinyint(4) NOT NULL,
   `count` int(11) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `status` tinyint(4) NOT NULL
+  `name` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -252,7 +245,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `pwd` char(32) NOT NULL,
   `salt` varchar(10) NOT NULL,
   `type` int(4) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '1',
   `avatar` varchar(128) NOT NULL,
   `email` varchar(128) NOT NULL,
   `cellphone` char(11) NOT NULL,
@@ -261,9 +253,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `follow_count` int(11) NOT NULL DEFAULT '0',
   `ask_count` int(11) NOT NULL DEFAULT '0',
   `answer_count` int(11) NOT NULL DEFAULT '0',
-  `collect_problems` text NOT NULL,
-  `follow_problems` text NOT NULL,
-  `skilled_tags` text NOT NULL,
+  `collect_problems` varchar(1024) DEFAULT '[]',
+  `follow_problems` varchar(1024) NOT NULL DEFAULT '[]',
+  `skilled_tags` varchar(256) NOT NULL DEFAULT '[]',
   `alipay` varchar(64) NOT NULL,
   `gold_coin` int(11) NOT NULL DEFAULT '0',
   `silver_coin` int(11) NOT NULL DEFAULT '0'
@@ -325,7 +317,7 @@ ALTER TABLE `note`
 -- Indexes for table `problem`
 --
 ALTER TABLE `problem`
-  ADD PRIMARY KEY (`id`), ADD KEY `status` (`status`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `problem_comment`

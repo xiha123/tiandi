@@ -40,21 +40,27 @@ class base_api extends CI_Controller {
         } else {
             $params = $this->input->post(NULL, true);
         }
-        foreach ($keys as $key) {
-            if (!isset($params[$key]) || empty($params[$key])) {
-                $this->finish(false, '数据不能为空');
-                return false;
+
+        foreach ($keys as $key => $val) {
+            if (is_numeric($key)) {
+                if (!isset($params[$val]) || empty($params[$val])) $this->finish(false, '数据不能为空');
+                $result[$val] = $params[$val];
+            } else {
+                if (!isset($params[$key]) || empty($params[$key])) $this->finish(false, '数据不能为空');
+                $result[$key] = $params[$key];
             }
-           $result[$key] = $params[$key];
-         }
+        }
+
         return $result;
     }
 
     public function check_login() {
-	$me = $this->user_model->check_login();
+    	$me = $this->user_model->check_login();
+
         if ($me === false) {
             $this->finish(false, '用户未登录');
         }
+
         return $me;
     }
 
