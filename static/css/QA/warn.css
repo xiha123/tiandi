@@ -1,0 +1,60 @@
+html{
+    background: none;
+}
+.box {
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform:translate3d(-50%, -50%, 0);
+    transform:translate3d(-50%, -50%, 0);
+    border: 1px solid #209ba2;
+}
+.header{
+    color: white;
+    height: 20px;
+    clear: both;
+    padding: 16px 38px;
+    text-align: center;
+}
+.header p{
+    float: left;
+    font-size: 30px;
+    line-height: 20px;
+}
+.header a{
+    float: right;
+    color: white;
+    font-size: 30px;
+    line-height: 20px;
+}
+/*content*/
+.content{
+    padding: 100px;
+}
+
+.writing{
+    margin-bottom: 60px;
+}
+.writing p{
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    font-weight:bold;
+    color: #3e4a4a;
+}
+
+.okButton{
+    padding-left: 130px;
+}
+
+.okButton [type=submit]{
+    width: 50%;
+    font-size: 25px;
+    font-weight: bolder;
+    border: 1px solid #209ba2;
+    color: white;
+    background-color: #209ba2;
+    border-radius: 30px;
+    line-height: 40px;
+}
