@@ -1,0 +1,31 @@
+.box{
+    width: 1000px;
+    margin: 26px auto;
+}
+
+.information{
+    font-weight: bold;
+    font-size: 16px;
+    /*color: #209ba2;*/
+    margin-bottom: 20px;
+}
+form [type=text],
+[type=submit]{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    padding-left: 15px;
+    border: 1px solid #209ba2;
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
+
+.submitbutton button{
+    /*background-color: #209ba2;*/
+    /*color: #FFFFFF;*/
+    /*box-sizing: content-box;*/
+    /*font-weight: bolder;*/
+    /*font-size: 25px;*/
+}
+}
