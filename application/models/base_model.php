@@ -31,6 +31,7 @@ class base_model extends CI_Model {
 
 	public function edit($id, $params) {
 		$this->db->where('id', $id)->update($this->table_name, $params);
+		return;
 	}
 
 	public function is_exist($params) {

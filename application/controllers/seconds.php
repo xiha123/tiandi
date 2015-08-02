@@ -9,7 +9,9 @@ class seconds extends CI_Controller {
 
 	public function index() {
 		$userdata = $this->user_model->check_login();
-		print_r($userdata);
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
 		$this->load->view('seconds/home.php' , $userdata);
 	}
 

@@ -32,21 +32,21 @@ class base_api extends CI_Controller {
      * @param {String} method 获取参数的方法 GET | POST, default = 'GET'
      * @param {Array} keys 要获取的参数名字，true 表示不能为空，false 则可以为空，默认为 true
      */
+
+
     public function get_params($method = 'GET', $keys) {
         if (strtoupper($method) === 'GET') {
             $params = $this->input->get(NULL, true);
         } else {
             $params = $this->input->post(NULL, true);
         }
-        for($index =0 ;$index < count($keys);$index++){
-            $key = $keys[$index];
-            $val = $params[$key];
-
-            if ((empty($index) && (!isset($params[$val]) || empty($params[$val]))) || (!isset($params[$index]) || empty($params[$index]))) {
+        foreach ($keys as $key) {
+            if (!isset($params[$key]) || empty($params[$key])) {
                 $this->finish(false, '数据不能为空');
+                return false;
             }
-            $result[$index] = $params[$index];
-        }
+           $result[$key] = $params[$key];
+         }
         return $result;
     }
 

@@ -9,7 +9,7 @@
 		<?php
 			$navList = array(
 			    array(
-			        'name' => '秒答',
+			        'name' => '秒答解惑',
 			        'link' => './seconds',
 			        'active' => false
 			    ),
@@ -19,7 +19,7 @@
 			        'active' => false
 			    ),
 			    array(
-			        'name' => '大神',
+			        'name' => '大神来了',
 			        'link' => '#',
 			        'active' => false
 			    ),
@@ -43,18 +43,22 @@
 			<?php
 				if(isset($name)){
 			?>
-					<img src="<?=$salt?>" height="25" width="25" alt="avatar"><?=$name?>
+					<img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname	?>
 					<ul class="user-menu seconds">
 						<li><a href="">个人主页</a></li>
 						<li><a href="">大神主页</a></li>
 						<li><a href="">通知</a></li>
 						<li><a href="">设置</a></li>
 						<li><a href="">充值</a></li>
-						<li><a href="">退出</a></li>
+						<li><a href="javascript:" id="ajax_outlogin">退出</a></li>
 					</ul>
 			<?php
 				}else{
-					echo '<div class="notLogin"><a href="javascript:"><i class="icon-user"></i>登录</a><a href="javascript:">注册</a></div>';
+					echo '
+						<div class="notLogin">
+							<a href="javascript:" class="bomb-login"><i class="icon-user"></i>登录</a>
+							<a href="javascript:" class="bomb-reg">注册</a>
+						</div>';
 				}
 
 			?>

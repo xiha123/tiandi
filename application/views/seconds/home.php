@@ -3,8 +3,10 @@
 
 <body>
 <?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/windows.php' ); ?>
 
 <div class="wrapper">
+
 	<div class="doubt">
 		<table class="table">
 			<tr><td><input type="text" class="title" placeholder="一句话写下你遇到的问题"></td></tr>

@@ -5,6 +5,40 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .notLogin a i{margin-right: 4px;}
 
 
+/*登录框通用*/
+.window{display:none;width:100%;z-index:1023;position:fixed; top:0;left: 0;height: 100%;background: rgba(0,0,0,0.4);}
+
+.showAlert{text-align: center;display:none;transition:top 0.4s ease-in-out;display: inline;height:30px;z-index:99999;position:absolute;top:0%;bottom:0px;left:0;right: 0;margin:0 auto;text-align: center;padding:10px;}
+              .showAlert .aletrContent{font-size:18px;display:inline;padding:15px 30px;color:#fff; border-radius:5px; width:auto; margin:0 auto;}
+                              .aletrContent.success{background:#5cb85c;}
+                              .aletrContent.danger{background:#d9534f;}
+                               .aletrContent i{margin-right: 10px;}
+
+.window #reg{height:450px;display:none;}
+
+.window .login {display:none;width:400px;height:350px;position:fixed; top:0;left: 0;right: 0;bottom: 0;margin: auto;background: #fff;z-index:1024;}
+.login .login-title{padding:5px 20px;height:30px;background:#219ba1;color:#fff;}
+         .login-title h2{font-size:20px;float: left}
+         .login-title .close{line-height:30px;color:#fff;font-size:20px;float:right;}
+.login .login-content{padding:20px;}
+          .login-content li{float: left;width:100%;}
+          .login-content .login-click{margin:18px 29px;}
+                                .login-click a,.login-click{color:#219ba1;}
+                                .login-click a{margin-right: 50px;}
+                                .login-click span{margin-left:5px;}
+.login .sociality {width:100%;margin-top:30px;line-height:24px;margin-left: 25px;color:#219ba1;}
+         .sociality a{color:#219ba1;float: right;margin-right: 50px;}
+         .sociality li{float: left;width: auto}
+         .sociality img{position: relative;top:4px;margin-left: 10px;}
+
+          .login-content input[type='text'],
+          .login-content input[type='password'],
+          .login-content input[type="button"]{width:288px;margin-left:20px;font-size:16px;margin-top:10px;border-radius: 20px;padding:8px 15px;border:1px solid #219ba1;}
+          .login-content input[type="button"]{width:318px;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
+
+
+
+
 .page{float:left;width:100%;margin-left:-10px;margin-top:20px;}
 .page li{float:left;font-size: 16px;padding: 5px 10px}
 .page li a{color:#249ca2;}
