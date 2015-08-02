@@ -10,9 +10,9 @@ class admin extends CI_Controller {
 	}
 
 	public function index() {
-		if (empty($this->user_info)) redirect('admin/login');
+		if ($this->admin_model->require_login() === false) redirect('admin/login');
 		$data = array (
-			'me' => $this->user_info
+			'me' => $this->admin_model->me
 		);
 		$this->load->view('admin/home.php', $data);
 	}
