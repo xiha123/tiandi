@@ -9,13 +9,13 @@
 	<div class="wrapper">
 		<div class="slider cf" data-widget="slider">
 			<ul class="slider-trigger fl">
-			{data_left}
+			{guide_list}
 				<li><a href="{link}" target=""><img src="./static/uploads/{img}" height="120" width="200"></a></li>
-			{/data_left}
+			{/guide_list}
 
 			</ul>
 			<ul class="slider-sheet fl js-slider-sheet">
-			{data_list}
+			{slide_list}
 				<li>
 					<img src="./static/uploads/{url}" height="370" width="615">
 					<div class="slider-summary">
@@ -27,12 +27,12 @@
 						<p>{class} {title} {/class}</p>
 					</div>
 				</li>
-			{/data_list}
+			{/slide_list}
 			</ul>
 			<ul class="js-slider-trigger">
-				{data_list}
+				{slide_list}
 				<li><a href="javascript:void(0)"></a></li>
-				{/data_list}
+				{/slide_list}
 			</ul>
 		</div>
 		<div class="tab" data-widget="tab">

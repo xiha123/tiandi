@@ -2,11 +2,14 @@
     width: 1000px;
     margin: 26px auto;
 }
+.submitbutton{
+    padding: 0 25%;
+}
 
 .information{
     font-weight: bold;
     font-size: 16px;
-    /*color: #209ba2;*/
+    color: #209ba2;
     margin-bottom: 20px;
 }
 form [type=text],
@@ -20,12 +23,29 @@ form [type=text],
     border-radius: 30px;
     margin-bottom: 25px;
 }
-
-.submitbutton button{
-    /*background-color: #209ba2;*/
-    /*color: #FFFFFF;*/
-    /*box-sizing: content-box;*/
-    /*font-weight: bolder;*/
-    /*font-size: 25px;*/
+textarea{
+    width: 70%;
+    border: 1px solid #209ba2;
+    border-radius: 15px;
+    margin-bottom: 30px;
 }
+.submitbutton button{
+    width: 20%;
+    background-color: #209ba2;
+    color: #FFFFFF;
+    box-sizing: content-box;
+    font-weight: bolder;
+    font-size: 25px;
+    display: block;
+    margin: 0 auto;
+}
+
+.submitbutton i{
+    margin-left: 10px;
+}
+
+label{
+    color: #209ba2;
+    display: block;
+    margin-bottom: 25px;
 }

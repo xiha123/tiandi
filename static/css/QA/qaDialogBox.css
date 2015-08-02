@@ -71,6 +71,7 @@ form [type=text],
     vertical-align: middle;
     color: #209ba2;
 }
-a{
+a,
+label{
     color: #209ba2;
 }
