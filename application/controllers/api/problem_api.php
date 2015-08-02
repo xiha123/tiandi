@@ -11,12 +11,11 @@ class problem_api extends base_api {
     	$this->load->model('problem_comment_model');
 
     	$this->me = $this->user_model->check_login();
-        if ($this->me === false) {
-            $this->finish(false, '未登录');
-        }
     }
 
     public function create() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array(
             'title' => true,
             'detail' => true,
@@ -25,7 +24,7 @@ class problem_api extends base_api {
         ));
         extract($params);
 
-        if ($this->problem_model->is_exist(array('title' => $title))){
+        if ($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '重复的标题');
         }
         $detail_id[] = $this->problem_detail_model->create(array(
@@ -44,6 +43,8 @@ class problem_api extends base_api {
     }
 
     public function create_comment() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('content', 'problem_id'));
         extract($params);
 
@@ -74,6 +75,8 @@ class problem_api extends base_api {
     }
 
     public function create_detail() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array(
             'content' => true,
             'type' => true,
@@ -115,6 +118,8 @@ class problem_api extends base_api {
     }
 
     public function request_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
 
@@ -137,6 +142,8 @@ class problem_api extends base_api {
     }
 
     public function close_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
 
@@ -158,6 +165,8 @@ class problem_api extends base_api {
     }
 
     public function follow_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
 
@@ -165,26 +174,36 @@ class problem_api extends base_api {
     }
 
     public function unfollow_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function collect_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function uncollect_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function up_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function down_problem() {
+        parent::require_login();
+
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }

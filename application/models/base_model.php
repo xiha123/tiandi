@@ -31,8 +31,8 @@ class base_model extends CI_Model {
         return $this->db->where($params)->get($this->table_name, 1)->row_array();
     }
 
-	public function get_list($params, $count = 5) {
-		return $this->db->where($params)->order_by('id', 'DESC')->limit($count)->get($this->table_name)->result_array();
+	public function get_list($params, $page = 0, $count = 5) {
+		return $this->db->where($params)->order_by('id', 'DESC')->limit($count, $page * $count)->get($this->table_name)->result_array();
 	}
 
     public function require_login() {
