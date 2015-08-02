@@ -1,11 +1,10 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="static/css/QA/personalInformation.css" />
-<!---->
 
 </head>
 
 <div class="box">
-    <form action="#" method="get">
+    <form action="#" method="get" class="submitbutton">
         <h3 class="information">个 人 信 息</h3>
         <input type="text" placeholder="真实姓名"/>
         <input type="text" placeholder="身份证号"/>
@@ -16,10 +15,9 @@
         <label>
             <input type="checkbox" name="agree" class="agree"/>同意并接受《服务条款》
         </label>
-        <div class="submitbutton">
-            <button type="submit" value="submitbutton">
+            <button type="submit">
                 提 交<i class="fa fa-arrow-circle-right"></i>
             </button>
-        </div>
     </form>
-</div>
+
+    
