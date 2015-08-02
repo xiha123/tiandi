@@ -1,7 +1,7 @@
 /*老师个人主页*/
 
 /*介绍*/
-.tacher-data {position:relative; overflow: hidden;padding-bottom: 50px; height: auto; padding-top:20px;}
+.tacher-data {position:relative; overflow: hidden;padding-bottom: 50px; height: auto; }
 .tacher-data img{width: 120px;height: 120px;}
 .tacher-data img,.name,.desk{float:left;}
 .tacher-data .name,.desk{margin-bottom:7px;width: 870px;margin-left:10px;}
@@ -14,6 +14,8 @@
 h2{float:left;font-size:20px;color:#219ba1;}
 h2 .tag-box{top:-1px }
 .tacher-tag{margin-bottom:40px;overflow: hidden; width: 1000px;}
+
+.not{line-height:30px;color:#ccc;}
 
 /*正在开的课程*/
 .tacher-class {margin-bottom:40px;overflow: hidden; }

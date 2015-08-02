@@ -1,7 +1,10 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/seconds/godHome.css">
 <body>
+<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="wrapper">
+	
 		<div class="leftBox">
 			<img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic">
 			<h3 class="name">讲师姓名</h3>

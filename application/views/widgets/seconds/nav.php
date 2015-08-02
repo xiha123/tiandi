@@ -45,9 +45,9 @@
 			?>
 					<img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname	?>
 					<ul class="user-menu seconds">
-						<li><a href="">个人主页</a></li>
-						<li><a href="">大神主页</a></li>
-						<li><a href="">通知</a></li>
+						<li><a href="./home" target="_blank">个人主页</a></li>
+						<li><a href="./seconds/godhome" target="_blank">大神主页</a></li>
+						<li><a href="./notice" target="_blank">通知</a></li>
 						<li><a href="">设置</a></li>
 						<li><a href="">充值</a></li>
 						<li><a href="javascript:" id="ajax_outlogin">退出</a></li>

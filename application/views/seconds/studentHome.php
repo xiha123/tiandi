@@ -1,16 +1,27 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/seconds/tacher.css">
 <body>
+<?php 
+	$this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); 
+	$this->load->view('widgets/windows.php' ); 
+?>
 	<div class="wrapper">
 		<div class="tacher-data home">
-			<img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic">
-			<h3 class="name">讲师姓名 <a href="javascript:">想成为大神？</a></h3>
-			<p class="money">银币：999  金币：999</p>
-			<p class="desk">描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述</p>
+			<img src="<?=$avatar?>" alt="" class="pic">
+			<h3 class="name"><?=$nickname?> <a href="javascript:">想成为大神？</a></h3>
+			<p class="money">银币：<?=$gold_coin?>  金币：<?=$silver_coin?></p>
+			<p class="desk"><?php
+				if($description == ""){
+					echo '这家伙还没有描述.....';
+				}else{
+					echo $description;
+				}
+			?></p>
 		</div>
 		<div class="tacher-tag ">
 			<h2>收藏标签：</h2>
-			<a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a>
+			<p class="not">还没有收藏标签</p>
+			<!-- <a href="#" class="tag-box"></a> -->
 		</div>
 
 

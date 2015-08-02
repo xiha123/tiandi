@@ -5,6 +5,7 @@ include_once(APPPATH . 'controllers/api/base_api.php');
 class problem_api extends base_api {
     public function __construct() {
 	parent::__construct();
+            $this->table_name="problem_detail";
     	$this->load->model('problem_model');
         $this->load->model('problem_detail_model');
     	$this->load->model('problem_comment_model');

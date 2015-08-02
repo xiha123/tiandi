@@ -105,7 +105,6 @@ function bomb(eName){
 
 
 $(document).ready(function() {
-showAlter(!0, "欢迎来到这个天地培训网站");
 
     $.each($('[data-widget]'), function(index, value) {
         var $widget = $(value);

@@ -16,28 +16,54 @@ class seconds extends CI_Controller {
 	}
 
 	public function god() {
-		$this->load->view('seconds/god.php');
+		$userdata = $this->user_model->check_login();
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
+		$this->load->view('seconds/god.php' , $userdata);
 	}
 	public function search() {
-		$this->load->view('seconds/search.php');
+		$userdata = $this->user_model->check_login();
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
+		$this->load->view('seconds/search.php' , $userdata);
 	}
 	public function tag(){
-		$this->load->view('seconds/tag.php');
+		$userdata = $this->user_model->check_login();
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
+		$this->load->view('seconds/tag.php' , $userdata);
 	}
 	public function tacher(){
-		$this->load->view("seconds/tacher.php");
+		$userdata = $this->user_model->check_login();
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
+		$this->load->view("seconds/tacher.php" , $userdata);
 	}
 	public function student(){
-		$this->load->view("seconds/student.php");
+		$userdata = $this->user_model->check_login();
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
+		$this->load->view("seconds/student.php" , $userdata);
 	}
-	public function home(){
-		$this->load->view("seconds/studentHome.php");
-	}
+
 	public function godhome(){
-		$this->load->view("seconds/godhome.php");
+		$userdata = $this->user_model->check_login();
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
+		$this->load->view("seconds/godhome.php" , $userdata);
 	}
 	public function closeProblem(){
-		$this->load->view("seconds/closeProblem.php");
+		$userdata = $this->user_model->check_login();
+		if($userdata["avatar"] == NULL){
+			$userdata["avatar"] = "static/image/default.jpg";
+		}
+		$this->load->view("seconds/closeProblem.php" , $userdata);
 	}
 
 
