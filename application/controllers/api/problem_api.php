@@ -5,22 +5,16 @@ include_once(APPPATH . 'controllers/api/base_api.php');
 class problem_api extends base_api {
 
     public function __construct() {
-<<<<<<< HEAD
 	parent::__construct();
             $this->table_name="problem_detail";
-=======
-    	parent::__construct();
->>>>>>> origin/master
     	$this->load->model('problem_model');
-        $this->load->model('problem_detail_model');
+            $this->load->model('problem_detail_model');
     	$this->load->model('problem_comment_model');
-
     	$this->me = $this->user_model->check_login();
     }
 
     public function create() {
         parent::require_login();
-
         $params = $this->get_params('POST', array(
             'title' => true,
             'detail' => true,
@@ -28,7 +22,6 @@ class problem_api extends base_api {
             'code' => false
         ));
         extract($params);
-
         if ($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '重复的标题');
         }
@@ -38,13 +31,12 @@ class problem_api extends base_api {
             'content' => $detail,
             'code' => $code
         ));
-
         $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
             'title' => $title,
             'details' => json_encode($detail_id)
         ));
-		$this->finish(true);
+	$this->finish(true);
     }
 
     public function create_comment() {

@@ -35,18 +35,21 @@ api:
 
 
 # user
--
-    url: user_api/login
+- 
+    #已实现
+    url: user_api/login     
     type: post
     name: loginUser
     args:
         - name
         - pwd
 -
+    #已实现
     url: user_api/logout
     type: get
     name: logoutUser
 -
+    #已实现
     url: user_api/create
     type: post
     name: createUser
@@ -70,7 +73,7 @@ api:
 
 # problem
 -
-    # 创建问题
+    # 创建问题 已实现
     url: problem_api/create
     type: post
     name: createProblem

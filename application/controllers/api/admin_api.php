@@ -168,13 +168,11 @@ class admin_api extends base_api {
     public function login() {
     	$params = $this->get_params('POST', array('name', "pwd"));
         extract($params);
-
 		$result = $this->admin_model->login($name, $pwd);
-
         if ($result === true) {
     		$this->finish(true);
         } else {
-            
+    		$this->finish(false);
         }
     }
 

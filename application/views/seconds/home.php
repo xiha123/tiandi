@@ -9,12 +9,12 @@
 
 	<div class="doubt">
 		<table class="table">
-			<tr><td><input type="text" class="title" placeholder="一句话写下你遇到的问题"></td></tr>
+			<tr><td><input type="text" class="title" id="problem-title" placeholder="一句话写下你遇到的问题"></td></tr>
 			<tr><td>
 				<div class="desc">
 					<script id="editor" type="text/plain" style="width:980px;height:180px;"></script>
 					<a href="javascript:" class="Language">选择语言</a>
-					<textarea class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+					<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
 				</div>
 			</td></tr>
 			<tr><td><div class="tag" data-widget="tag">
@@ -23,7 +23,7 @@
 			</div></td></tr>
 		</table>
 		<div class="button submit">
-			<button>提交 <img src="static/image/sign-up.png"></button>
+			<button id="ajax_problemSubmit">提交 <img src="static/image/sign-up.png"></button>
 		</div>
 	</div>
 	
@@ -169,7 +169,6 @@
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
-<script src="./static/js/edit.js"></script> 
 <script src="./static/js/problem.home.js"></script>
 </body>
 </html>
