@@ -17,7 +17,7 @@
                 </label>
                 <a href="#" class="fr">忘记密码</a>
             </div>
-            <div class="loginbuttom">
+            <div class="loginbutton">
                 <button type="submit" value="loginbutton">
                   登 录  <i class="fa fa-arrow-circle-right"></i>
                 </button>
