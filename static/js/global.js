@@ -1,7 +1,27 @@
+$(".ajax_up").on("click" , function(){
+    var _this= $(this);
+    var problem_id = $(this).parents().data('id');
+    _td.api.upProblem({
+        problem_id : problem_id,
+    }).then(function(msg){
+        if(msg == "0"){
+            showAlert(true , "点赞成功！");
+            _this.find('.upCount').text(parseInt(_this.find('.upCount').text()) + 1);
+        }else{
+            showAlert(true , "取消点赞成功！");
+            _this.find('.upCount').text(parseInt(_this.find('.upCount').text()) - 1);
+        }
+    },function(msg){
+        bomb("login");
+        showAlert(false,msg);
+    });
+})
+
+
 $("#ajax_login").on('click' , function(event) {
     var username = $("#login_username").val(),
     password = $("#login_password").val();
-    var return_data = _td.api.loginUser({
+    _td.api.loginUser({
         "name" : username,
         "pwd" : password
     }).then(function(){
@@ -12,7 +32,6 @@ $("#ajax_login").on('click' , function(event) {
     }, function(){
         showAlert(false,"您输入的账号或密码错误，请检查后再试");
     });
-    return_data = JSON.parse(return_data);
 });
 
 $("#ajax_outlogin").on('click', function(event) {

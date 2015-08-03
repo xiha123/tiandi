@@ -36,9 +36,9 @@
 .whyUser > .data{width:710px;padding-left:10px;height:35px;display:inline-block;}
 .whyUser > .data p{position: relative;top:18px;font-size: 14px;color:#aaa;margin-right: 10px;}
 .whyUser > .data .name{color:#333;margin-left:10px;}
-.whyUser .desc{padding-right:20px;margin:25px 0;padding-top:5px;float:left;color:#aaa;}
+.whyUser .desc{padding-right:20px;margin:15px 0;padding-top:5px;float:left;color:#333;}
 .whyUser .desc *{line-height:20px;max-width: 760px;float:left;}
 .whyUser .desc br{margin:14px 0px;}
-.whyUser .desc img{margin-bottom:18px;}
+.whyUser .desc img{margin:10px 0px;}
 
 .leftHeader h1{font-size: 23px;font-weight: 700;margin-bottom:10px; }

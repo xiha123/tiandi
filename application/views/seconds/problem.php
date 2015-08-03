@@ -22,10 +22,12 @@
 				</div>
 				<div class="desc">{problem_detaill}{content}{/problem_detaill}</div>
 			</div>
+			{problem_detaill}
 			<div class="code">
 				<h2>code (html)</h2>
-				<textarea>{problem_detaill}{code}{/problem_detaill}</textarea>
+				<textarea>{code}</textarea>
 			</div>
+			{/problem_detaill}
 
 			<div class="button">
 				<button class="none-background">★ 收藏</button>

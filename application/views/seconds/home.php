@@ -39,26 +39,34 @@
 				<ul class="list-data tab-sheet  js-tab-sheet">
 					<li>
 						<ul class="list-data">
-							{problem_list}
-							<li data-id="{id}">
-								<div class="link-num"><p>{up_count}</p><p>点赞</p></div>
-								<div class="list-title"><a href="./seconds/p/{id}.html" target="_blank">{title}</a></div>
+						<?php foreach($problem_list as $key => $value){ ?>			
+							<li data-id="<?=$value['id']?>">
+								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
+								<div class="list-title">
+									<a href="./seconds/p/<?=$value['id']?>.html" target="_blank"><?=$value['title']?></a>
+								</div>
 								<ul class="list-tag">
 									<li><a href="#" class="tag-box">html5</a></li>
 									<li><a href="#" class="tag-box">javascript</a></li>
 									<li><a href="#" class="tag-box">jquery</a></li>
 								</ul>
-								<div class="list-date"> 提问于：{ctime}</div>
-							</li>
-							{/problem_list}
+								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+							</li>	
+						<?php }?>
 						</ul>
 						<div class="page">
 							<ul>
-								<li><a href="javascript:">< 上一页</a></li>
-								<li class="active"><a href="javascript:">1</a></li>
-								<li><a href="javascript:">2</a></li>
-								<li><a href="javascript:">3</a></li>
-								<li><a href="javascript:">下一页 ></a></li>
+								<?php
+									if($page > 1){echo '<li><a href="./seconds/?page='.($page - 1).'">< 上一页</a></li>';}
+									$active = "";
+									$count = ceil($problem_list_count / 20);
+									for($index = 1; $index < $count + 1;$index ++){
+										if($index == $page)$active = " class='active' ";
+										echo '<li'.$active.'><a href="./seconds/?page='.($index).'">'.($index).'</a></li>';
+										$active = "";
+									}
+									if($page < $count){echo '<li><a href="./seconds/?page='.($page + 1).'">下一页 ></a></li>';}
+								?>
 							</ul>
 						</div>
 					</li>

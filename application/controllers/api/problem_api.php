@@ -189,22 +189,67 @@ class problem_api extends base_api {
 
     public function uncollect_problem() {
         parent::require_login();
-
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
     }
 
     public function up_problem() {
-        parent::require_login();
+        $up_down_type = false;
+        $temp = array();
+        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
+        $return_data = $this->problem_model->get_problem($problem_id);
+        $up_users = json_decode($return_data[0]['up_users']);
 
-        $params = $this->get_params('POST', array('problem_id'));
-        extract($params);
-    }
+
+        foreach ($up_users as $key => $value) {
+            if($value->id != $this->me['id']){
+                array_push($temp, array("id"=>$value->id));
+            }else{
+                $up_down_type = true;
+            }
+        }
+        $up_users = $temp;
+        if($up_down_type == true){
+            if($this->problem_model->up(array(
+                "id" => $problem_id , 
+                "up_count" => $return_data[0]["up_count"] - 1 , 
+                "hot" =>$return_data[0]["hot"] - 5,
+                "up_users" => json_encode($up_users)
+            ))){
+                $this->finish(true , "","1");
+            }else{
+                $this->finish(false , "未知的网络原因导致操作失败");
+            }
+        }else{
+            array_push($up_users , array("id"=>$this->me['id']));
+            if($this->problem_model->up(array(
+                    "id" => $problem_id , 
+                    "up_count" => $return_data[0]["up_count"] + 1 , 
+                    "hot" =>$return_data[0]["hot"] + 5,
+                    "up_users" => json_encode($up_users)
+                ))){
+                    $this->finish(true , "","0");
+                }else{
+                    $this->finish(false , "未知的网络原因导致操作失败");
+                }
+            }
+        }
+
+
+
+  
+
+
 
     public function down_problem() {
         parent::require_login();
-
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
+        if($this->problem_model->down($problem_id)){
+            $this->finish(true);
+        }else{
+            $this->finish(false ,"可以因为某些网络原因导致操作失败，请尝试重试！");
+        }
     }
+
 }

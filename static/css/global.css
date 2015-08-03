@@ -102,7 +102,7 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 
 /*列表通用*/
 .list-data > li{padding:5px;position:relative; float: left;width:100%;border-bottom:1px solid #eee;margin:7px 0px;}
-.list-data .link-num{float:left;text-align: center; background:#219ba1;padding:6px 12px;color:#fff;}
+.list-data .link-num{cursor:pointer; float:left;text-align: center; background:#219ba1;padding:6px 12px;color:#fff;}
 .list-data .list-title{display:inline-block;width:680px;font-size:16px;position:relative;top:-3px; padding-left:14px;}
 .list-data .list-title a{color:#333;}
 .list-data .list-title,.list-date{float: left;float: left}

@@ -16,10 +16,16 @@ class seconds extends CI_Controller {
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$userdata["problem_list"] = $this->problem_model->get_list_by_time();
+		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
+		$userdata["problem_list_count"] = $this->problem_model->get_list_count();
+
 		$this->load->library('parser');
 		$this->parser->parse("seconds/home.php" , $userdata);
 	}
+
+
+
 
 	public function god() {
 		$userdata = $this->user_model->check_login();
