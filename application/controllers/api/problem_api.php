@@ -19,8 +19,10 @@ class problem_api extends base_api {
             'title' => true,
             'detail' => true,
             'tags' => false,
-            'code' => false
         ));
+       $code = isset($_GET['code']) ? $this->input->get("code") : "";
+
+
         extract($params);
         if ($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '重复的标题');
@@ -34,6 +36,7 @@ class problem_api extends base_api {
         $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
             'title' => $title,
+            'tags' => $tags,
             'details' => json_encode($detail_id)
         ));
 	$this->finish(true);

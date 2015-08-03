@@ -39,93 +39,18 @@
 				<ul class="list-data tab-sheet  js-tab-sheet">
 					<li>
 						<ul class="list-data">
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
+							{problem_list}
+							<li data-id="{id}">
+								<div class="link-num"><p>{up_count}</p><p>点赞</p></div>
+								<div class="list-title"><a href="./seconds/p/{id}.html" target="_blank">{title}</a></div>
 								<ul class="list-tag">
 									<li><a href="#" class="tag-box">html5</a></li>
 									<li><a href="#" class="tag-box">javascript</a></li>
 									<li><a href="#" class="tag-box">jquery</a></li>
 								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
+								<div class="list-date"> 提问于：{ctime}</div>
 							</li>
-						
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
-							</li>
-						
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
-							</li>
-						
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
-							</li>
-						
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
-							</li>
-
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
-							</li>
-
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
-							</li>
-
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
-							</li>
+							{/problem_list}
 						</ul>
 						<div class="page">
 							<ul>

@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<div class="seacher">
 			<input type="text" class="fl" placeholder="在此搜索你的问题">
-			<button><i class="icon-search"></i></button>
+			<button><i class="fa fa-search"></i></button>
 		</div>
 		<ul class="fr">
 

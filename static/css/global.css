@@ -51,9 +51,9 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .seconds-nav li a{ transition: background 0.2s ease-in-out;color:#fff;width: 150px;display:block;height: 35px;line-height: 35px;text-align: center;padding:0px 10px;}
 .seconds-nav li .active,
 .seconds-nav li a:hover{background-color: #2AC3CB}
-.seconds-nav .seacher{position:relative; margin-top:5px;width:300px;}
-.seconds-nav .seacher input[type="text"]{width:270px;border:none;padding:4px 15px;height:16px;font-size:12px;border-radius: 15px;}
-.seconds-nav .seacher button{position:absolute; right:5px; cursor:pointer; background: none;height:16px;top:3px;border:none;}
+.seconds-nav .seacher{position:relative; margin-top:2px;width:290px;}
+.seconds-nav .seacher input[type="text"]{width:260px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
+.seconds-nav .seacher button{position:absolute; right:5px; cursor:pointer; background: none;height:16px;top:6px;color:#219ba1;border:none;}
 
 
 .tag-box,.tagBox{float:left;margin-bottom:7px;font-size:14px;background:#d6edeb;color:#43a8ad;padding:3px 9px;position:relative;top:5px; margin-right: 4px}
@@ -103,11 +103,12 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 /*列表通用*/
 .list-data > li{padding:5px;position:relative; float: left;width:100%;border-bottom:1px solid #eee;margin:7px 0px;}
 .list-data .link-num{float:left;text-align: center; background:#219ba1;padding:6px 12px;color:#fff;}
-.list-data .list-title{display:inline-block;width:680px;font-size:16px;padding-left:14px;}
+.list-data .list-title{display:inline-block;width:680px;font-size:16px;position:relative;top:-3px; padding-left:14px;}
+.list-data .list-title a{color:#333;}
 .list-data .list-title,.list-date{float: left;float: left}
 .list-data .list-tag{position:relative;left:10px;top:-2px;}
 .list-data .list-tag li{border:none;width:auto;float: left}
-.list-data .list-tag .tag-box{margin-top:4px;background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-right: 4px}
+.list-data .list-tag .tag-box{margin-top:4px;font-size:12px;margin-top:7px;background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-left: 5px}
 .list-data .list-date{color:#aaa;bottom:15px;position: absolute;right:15px;}
 
 

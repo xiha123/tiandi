@@ -25,9 +25,7 @@ class base_api extends CI_Controller {
         )));
     }
 
-    public function require_login(){
-        
-    }
+ 
 
     /**
      * @method get_params

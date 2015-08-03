@@ -58,6 +58,11 @@ class user_api extends base_api {
         parent::finish(true);
     }
 
+    // public function get_user_data(){
+    //     $params = parent::getParams('POST', array('id'));if(empty($params)) return; extract($params);
+    //     print_r($this->get_user_data($id));
+
+    // } 
 
     // 删除用户
     public function remove() {
