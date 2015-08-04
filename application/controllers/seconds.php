@@ -25,13 +25,12 @@ class seconds extends CI_Controller {
 			$userdata["hot_type"] = false;
 			$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
 		}
-
-
 		$userdata["problem_list_count"] = $this->problem_model->get_list_count();
 		if($userdata["page"] > ceil($userdata["problem_list_count"] / 20)){
-			show_404();
+			if($userdata["page"] > 1){
+				show_404();
+			}
 		}
-
 		$this->load->library('parser');
 		$this->parser->parse("seconds/home.php" , $userdata);
 	}
@@ -92,19 +91,16 @@ class seconds extends CI_Controller {
 
 	public function p($id = NULL){
 		if($id == NULL){show_404();}
-
 		$userdata = $this->user_model->check_login();
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-
-
-		$problem = $this->problem_model->get_list_by_id($id);
-		$userdata["problem_data"] = array($problem);
-		$problem = $this->problem_detail_model->get_detaill($id);
-		$userdata["problem_detaill"] = array($problem);
-		$userdata["problem_user"] = array($this->user_model->get_user_data($problem["owner_id"]));
-
+		$userdata["problem_data"] = $this->problem_model->get_list_by_id($id);
+		if($userdata["problem_data"] == false){
+			show_404();
+		}
+		$userdata["problem_detaill"] = $this->problem_detail_model->get_detaill($userdata["problem_data"]['id']);
+		$userdata["problem_user"] = $this->user_model->get_user_data($userdata["problem_data"]["owner_id"]);
 		$this->load->library('parser');
 		$this->parser->parse("seconds/problem.php" , $userdata);
 	}

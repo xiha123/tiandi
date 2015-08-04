@@ -7,7 +7,7 @@
 		<div class="leftBox">
 			<!-- <div class="head">● 该问题赏金为<font>300银币</font>，共有<font>5位众筹者</font></div> -->
 			<div class="leftHeader">
-				<h1>{problem_data}{title}{/problem_data}</h1>
+				<h1><?=$problem_data["title"];?></h1>
 				<a href="#" class="tagBox">tag</a>
 				<a href="#" class="tagBox">tag</a>
 				<a href="#" class="tagBox">tag</a>
@@ -15,16 +15,16 @@
 				<a href="#" class="tagBox">tag</a>
 			</div>
 			<div class="whyUser">
-				<img src="<?=$problem_user[0]['avatar']?>" alt="" width="35" height="35">
+				<img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35">
 				<div class="data">
-					<p class="name"><?=$problem_user[0]['nickname']?></p>
-					<p class="date">提问于：<?=$problem_detaill[0]['ctime']?></p>
+					<p class="name"><?=$problem_user['nickname']?></p>
+					<p class="date">提问于：<?=$problem_data['ctime']?></p>
 				</div>
-				<div class="desc">{problem_detaill}{content}{/problem_detaill}</div>
+				<div class="desc"><?=$problem_detaill['content']?></div>
 			</div>
 			<?php
-				if($problem_detaill[0]["code"] != NULL){
-					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill[0]["code"].'</textarea></div>';
+				if($problem_detaill["code"] != NULL){
+					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill["code"].'</textarea></div>';
 				}
 			?>
 

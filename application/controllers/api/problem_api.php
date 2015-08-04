@@ -20,10 +20,10 @@ class problem_api extends base_api {
             'detail' => true,
             'tags' => false,
         ));
+        extract($params);
        $code = isset($_GET['code']) ? $this->input->get("code") : "";
 
 
-        extract($params);
         if ($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '重复的标题');
         }
@@ -31,7 +31,8 @@ class problem_api extends base_api {
             'owner_id' => $this->me['id'],
             'type' => 0,
             'content' => $detail,
-            'code' => $code
+            'code' => $code,
+            'problem_id' => "1"
         ));
         $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
@@ -39,7 +40,7 @@ class problem_api extends base_api {
             'tags' => $tags,
             'details' => json_encode($detail_id)
         ));
-	$this->finish(true);
+        $this->finish(true);
     }
 
     public function create_comment() {
