@@ -26,7 +26,7 @@ class qa extends CI_Controller {
 		$this->load->view('pages/QA/warn.php');
 	}
 
-	public function StudentInformation() {
+	public function studentInformation() {
 		$this->load->view('pages/QA/StudentInformation.php');
 	}
 
