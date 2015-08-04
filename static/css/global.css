@@ -28,7 +28,7 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
                                 .login-click span{margin-left:5px;}
 .login .sociality {width:100%;margin-top:30px;line-height:24px;margin-left: 25px;color:#219ba1;}
          .sociality a{color:#219ba1;float: right;margin-right: 50px;}
-         .sociality li{float: left;width: auto}
+         .sociality li{width: auto}
          .sociality img{position: relative;top:4px;margin-left: 10px;}
 
           .login-content input[type='text'],

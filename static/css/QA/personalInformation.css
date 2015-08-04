@@ -13,7 +13,8 @@
     margin-bottom: 20px;
 }
 form [type=text],
-[type=submit]{
+[type=submit],
+[type=password]{
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -23,12 +24,22 @@ form [type=text],
     border-radius: 30px;
     margin-bottom: 25px;
 }
+
 textarea{
     padding:8px;
     width: 100%;
     border: 1px solid #209ba2;
     border-radius: 15px;
     margin-bottom: 30px;
+}
+/*essentialInformationµÄid=signature*/
+#signature,
+#experience{
+    padding: 10px;
+}
+
+.personmessage{
+    margin-bottom: 15px;
 }
 .submitbutton button{
     width: 120px;
@@ -38,10 +49,10 @@ textarea{
     font-weight: bolder;
     font-size: 25px;
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
-.submitbutton i{
+.submitbutton [class=fa fa-arrow-circle-right]{
     margin-left: 10px;
 }
 
@@ -50,4 +61,16 @@ label{
     color: #209ba2;
     display: block;
     margin-bottom: 25px;
+}
+
+.line {
+    width: 100%;
+    height: 6px;
+    border-top: solid 2px #209ba2;
+    margin-bottom: 15px;
+}
+
+.sociality{
+    color:#209ba2;
+    font-size: 40px;
 }
