@@ -21,8 +21,10 @@
 
         <h3 class="information">绑定第三方账户</h3>
         <ul class="sociality">
-            <li><i class="fa fa-qq"></i></li>
-            <li><i class="fa fa-weibo"></i></li>
+            <li>
+                <i class="fa fa-qq"></i>
+                <i class="fa fa-weibo"></i>
+            </li>
         </ul>
         <button type="submit">
             提 交<i class="fa fa-arrow-circle-right"></i>
