@@ -10,31 +10,31 @@
 				array(
 					"title" => "后台首页",
 					"link" => "admin",
-					"icon" => "icon-home",
+					"icon" => "fa fa-home",
 					"active" => false
 				),
 				array(
 					"title" => "轮播管理",
 					"link" => "admin/slider",
-					"icon" => "icon-th-large",
+					"icon" => "fa fa-th-large",
 					"active" => false
 				),
 				array(
 					"title" => "在线课堂设置",
 					"link" => "admin/onlineSlider",
-					"icon" => "icon-shopping-cart",
+					"icon" => "fa fa-shopping-cart",
 					"active" => false
 				),
 				array(
 					"title" => "课程管理",
 					"link" => "admin/classList",
-					"icon" => " icon-list-ol",
+					"icon" => " fa fa-list-ol",
 					"active" => false
 				),
 				array(
 					"title" => "用户管理",
 					"link" => "admin/users",
-					"icon" => "icon-user",
+					"icon" => "fa fa-user",
 					"active" => false
 				),
 			);

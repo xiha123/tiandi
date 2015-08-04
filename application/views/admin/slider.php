@@ -13,7 +13,7 @@
 		<?php $this->load->view('widgets/admin/window.php'); ?>
 		<div class="main-title">
 			<ul class="nav nav-pills">
-				<li role="presentation"><a href="javascript:void(0)" class="add-pic"><i class="icon-dashboard"></i>添加轮播图片</a></li>
+				<li role="presentation"><a href="javascript:void(0)" class="add-pic"><i class="fa fa-plus icon-dashboard"></i>添加轮播图片</a></li>
 			</ul>
 		</div>
 
@@ -22,21 +22,19 @@
 				<tr>
 					<th width="35%">标题</th>
 					<th width="20%">地址</th>
-					<th width="15%">添加时间</th>
 					<th width="20%">描述</th>
 					<th width="10%">操作</th>
 				</tr>
 				{data_list}
 				<tr data-id="{id}" data-img="{img}" data-color="{color}" data-link="{link}">
-					<td>{title}</td>
+					<td>{name}</td>
 					<td><a href="{link}">点击浏览</a></td>
-					<td>{time}</td>
 					<td>{text}</td>
-					<td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider"></i></td>
+					<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-slider"></i></td>
 				</tr>
 				{/data_list}
 			</table>
-			<!--
+			
 			<div class="page">
 				<font>共 0 页，当前正在第 0 页，共有数据 0 条</font>
 				<div class="right">
@@ -49,7 +47,6 @@
 				</div>
 			</div>
 			
-			-->
 		</div>
 	</div>
 </div>

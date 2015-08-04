@@ -17,8 +17,20 @@ class seconds extends CI_Controller {
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
-		$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
+		// 去你妹的体验！
+		if(isset($_GET['hot'])){
+			$userdata["hot_type"] = true;
+			$userdata["problem_list"] = $this->problem_model->get_list_by_hot($userdata["page"] -1);
+		}else{
+			$userdata["hot_type"] = false;
+			$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
+		}
+
+
 		$userdata["problem_list_count"] = $this->problem_model->get_list_count();
+		if($userdata["page"] > ceil($userdata["problem_list_count"] / 20)){
+			show_404();
+		}
 
 		$this->load->library('parser');
 		$this->parser->parse("seconds/home.php" , $userdata);

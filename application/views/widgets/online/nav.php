@@ -5,7 +5,7 @@ $navList = array(
 	array(
 		"title" => "新手引导",
 		"link" => "admin/onlineSlider",
-		"icon" => "icon-th-large",
+		"icon" => "fa fa-th-large",
 		"active" => false
 	),
 );

@@ -10,7 +10,7 @@ class home extends CI_Controller {
 	public function index()
 	{
 		$userdata = $this->user_model->check_login();
-		
+
 		if(!isset($_GET["uid"])){
 			if($userdata == false){
 				exit("请登录后再查看学员主页");
@@ -20,8 +20,15 @@ class home extends CI_Controller {
 			}
 		}else{
 			// 用于浏览其他用户的个人主页
-			$this->input->get("uid" , true);
-			$userdata = array();
+			$userdata = $this->user_model->get_user_data($this->input->get("uid" , true));
+			if(!$userdata){
+				show_404();
+			}
+		}
+		if($userdata == false){
+			$userdata["login_type"] = false;
+		}else{
+			$userdata["login_type"] = true;
 		}
 		
 		$this->load->view("seconds/studentHome.php" , $userdata);

@@ -10,7 +10,7 @@ $(".remove-slider").click(function(){
 		"content" : "<p>您确定要删除掉这个课程吗？</p><p>删除后将无法复原，点击确定按钮确认删除该课程</p>",
 		"success" : function(){
 			$.ajax({
-				"url" : "admin_api/deleteClassList",
+				"url" : "api/admin_api/deleteClassList",
 				type : "POST",
 				data : {"id" : $parents.data("id")},
 				dataType : "JSON",
@@ -35,7 +35,7 @@ $("#add-classList").click(function(){
 	input({
 		"title" : "添加课程",
 		"content" : 
-		'<form method="post" action="admin_api/addClassList" id="addClassList" enctype="multipart/form-data">'+
+		'<form method="post" action="api/admin_api/addClassList" id="addClassList" enctype="multipart/form-data">'+
 		'<table class=table-form>'+
 		'<tr><td>课程名称：<input type="text" placeholder="请输入课程名称" name="className">'+
 		'<tr><td>视频地址：<input type="text" placeholder="请输入视频地址" name="classVideo">'+
@@ -47,7 +47,7 @@ $("#add-classList").click(function(){
 				return false
 			}
 			$.ajax({
-				url: 'admin_api/addClassList',
+				url: 'api/admin_api/addClassList',
 				method: 'post',
 				data: {
 					className: $("input[name='className']").val(),
@@ -74,7 +74,7 @@ $(".edit-slider").click(function(){
 	input({
 		"title" : "编辑该课程",
 		"content" : 
-		'<form method="post" action="admin_api/editClassList" id="editClassList" enctype="multipart/form-data">'+
+		'<form method="post" action="api/admin_api/editClassList" id="editClassList" enctype="multipart/form-data">'+
 		'<table class=table-form>'+
 		'<input type="hidden" name="id" value="'+$parents.data("id")+'" >'+
 		'<tr><td>课程名称：<input type="text" placeholder="请输入课程名称" value="' + $parents.find("td").eq(0).text()+ '" name="className">'+
@@ -87,7 +87,7 @@ $(".edit-slider").click(function(){
 				return false
 			}
 			$.ajax({
-				url: 'admin_api/editClassList',
+				url: 'api/admin_api/editClassList',
 				method: 'post',
 				data: {
 					id: $("input[name='id']").val(),

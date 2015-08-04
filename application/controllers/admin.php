@@ -5,22 +5,24 @@ class admin extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
-		$this->load->model('admin_model');
-		$this->user_info = $this->admin_model->check_login();
+		$this->load->model('admin_model' ,"model");
+		$this->load->model('slide_model');
+		$this->load->model('course_model');
+		$this->user_info = $this->model->check_login();
+
 	}
 
 	public function index() {
-		if ($this->admin_model->require_login() === false) redirect('admin/login');
+		if ($this->model->require_login() === false) redirect('admin/login');
 		$data = array (
-			'me' => $this->admin_model->me
+			'me' => $this->model->me
 		);
 		$this->load->view('admin/home.php', $data);
 	}
 
 	public function slider(){
 		if(empty($this->user_info)) redirect('admin/login');
-		$this -> load -> model ("admin_model" , "model");
-		$returnData = $this -> model -> getSlider();
+		$returnData = $this ->slide_model -> get_list(0);
 		$data = array(
 			"data_list" => $returnData,
 			"me" => $this->user_info
@@ -83,7 +85,6 @@ class admin extends CI_Controller {
 				'type' => $type,
 				'link' => $link,
 				'color' => $color,
-				'time' => time(),
 				'text' => $description,
 			);
 			$this->db->where('id', $id);
@@ -118,9 +119,7 @@ class admin extends CI_Controller {
 				'img' => $returnConfig['file_name'],
 				'link' => $link,
 				'color' => $color,
-				'time' => time(),
 				'text' => $description,
-
 			);
 			$this->db->insert('slide', $data);
 			echo  '{"status" : "true"}';
@@ -137,7 +136,7 @@ class admin extends CI_Controller {
 	*/
 	public function classList(){
 		if (empty($this->user_info)) redirect('admin/login');
-		$returnData = $this -> admin_model -> getClassList();
+		$returnData = $this -> course_model -> get_list(0);
 		$data = array(
 			"data_list" => $returnData,
 			"me" => $this->user_info
@@ -197,7 +196,7 @@ class admin extends CI_Controller {
 	public function onlineSlider(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$this -> load -> model ("admin_model" , "model");
-		$returnData = $this -> model -> getSlider("1");
+		$returnData = $this -> slide_model -> get_list(1);
 		$data = array(
 			"data_list" => $returnData,
 			"me" => $this->user_info

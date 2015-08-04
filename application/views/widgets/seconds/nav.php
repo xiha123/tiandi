@@ -41,7 +41,7 @@
 		<div class="user">
 
 			<?php
-				if(isset($name)){
+				if(isset($name) && $login_type == true){
 			?>
 					<img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname	?>
 					<ul class="user-menu seconds">

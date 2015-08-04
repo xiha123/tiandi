@@ -4,7 +4,7 @@ $navList = array(
 	array(
 		"title" => "课程管理",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-home",
+		"icon" => "fa fa-home",
 		"active" => false
 	),
 );

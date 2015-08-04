@@ -22,17 +22,15 @@
 				<tr>
 					<th >课程名</th>
 					<th >视频地址</th>
-					<th>添加时间</th>
 					<th>描述</th>
 					<th width="8%">操作</th>
 				</tr>
 				{data_list}
 				<tr data-id="{id}" >
-					<td>{name}</td>
+					<td>{title}</td>
 					<td>{video}</td>
-					<td>{time}</td>
-					<td>{text}</td>
-					<td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider"></i></td>
+					<td>{description}</td>
+					<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-slider"></i></td>
 				</tr>
 				{/data_list}
 			</table>

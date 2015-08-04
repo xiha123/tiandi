@@ -15,19 +15,18 @@
 				<a href="#" class="tagBox">tag</a>
 			</div>
 			<div class="whyUser">
-				<img src="{problem_user}{avatar}{/problem_user}" alt="" width="35" height="35">
+				<img src="<?=$problem_user[0]['avatar']?>" alt="" width="35" height="35">
 				<div class="data">
-					<p class="name">{problem_user}{nickname}{/problem_user}</p>
-					<p class="date">提问于：{problem_detaill}{ctime}{/problem_detaill}</p>
+					<p class="name"><?=$problem_user[0]['nickname']?></p>
+					<p class="date">提问于：<?=$problem_detaill[0]['ctime']?></p>
 				</div>
 				<div class="desc">{problem_detaill}{content}{/problem_detaill}</div>
 			</div>
-			{problem_detaill}
-			<div class="code">
-				<h2>code (html)</h2>
-				<textarea>{code}</textarea>
-			</div>
-			{/problem_detaill}
+			<?php
+				if($problem_detaill[0]["code"] != NULL){
+					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill[0]["code"].'</textarea></div>';
+				}
+			?>
 
 			<div class="button">
 				<button class="none-background">★ 收藏</button>

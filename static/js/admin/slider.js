@@ -48,7 +48,7 @@ $(document).ready(function(){
 			'<input type="hidden" value="' + $parents.data("id")+ '" name="id">'+
 			'<tr><td>轮播标题：<input type="text" value="' + $parents_baby.eq(0).text()+ '" name="title">'+
 			'<tr><td>轮播地址：<input type="text" value="' + $parents.data("link")+ '" name="link">'+
-			'<tr><td>轮播描述：<input type="text" value="' + $parents_baby.eq(3).text()+ '" name="description">'+
+			'<tr><td>轮播描述：<input type="text" value="' + $parents_baby.eq(2).text()+ '" name="description">'+
 			'<tr><td>轮播背景：<input type="text" value="' + $parents.data("color")+ '" name="color" maxlength=7 class=slider-color><div class=color></div>'+
 			'<tr><td class=updata><font>点击更换图片</font><input type="file" name="userfile" id="add_updata"><img src="./static/uploads/' + $parents.data("img")+ '" width="100%" id=preview>'+
 			'<tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400 ， 该图片尺寸：200 * 200</span ></table></form>',

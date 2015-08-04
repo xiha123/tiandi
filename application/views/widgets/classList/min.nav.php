@@ -4,43 +4,43 @@ $navList = array(
 	array(
 		"title" => "返回",
 		"link" => "admin/classList",
-		"icon" => "icon-arrow-left",
+		"icon" => "fa fa-arrow-left",
 		"active" => false
 	),
 	array(
 		"title" => "标签管理",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-tag",
+		"icon" => "fa fa-tag",
 		"active" => false
 	),
 	array(
 		"title" => "地址及描述",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-external-link",
+		"icon" => "fa fa-external-link",
 		"active" => false
 	),
 	array(
 		"title" => "公开课设置",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-film",
+		"icon" => "fa fa-film",
 		"active" => false
 	),
 	array(
 		"title" => "付费课设置",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-qrcode",
+		"icon" => "fa fa-qrcode",
 		"active" => false
 	),
 	array(
 		"title" => "章节设置",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-tasks",
+		"icon" => "fa fa-tasks",
 		"active" => false
 	),
 	array(
 		"title" => "图片设置",
 		"link" => "javascript:void(0)",
-		"icon" => "icon-picture",
+		"icon" => "fa fa-picture",
 		"active" => false
 	),
 );

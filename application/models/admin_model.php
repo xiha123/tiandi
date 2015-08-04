@@ -14,9 +14,7 @@ class admin_model extends base_model {
 
 	public function login($username, $pwd) {
 		$user = $this->db->select('id, pwd, salt')->where('name', $username)->get($this->table_name)->row_array();
-
 		if (empty($user) || $user['pwd'] !== md5($pwd . $user['salt'])) return '用户名或密码错误';
-
 		$this->session->set_userdata($this->id_name, $user['id']);
 		return true;
 	}
@@ -34,6 +32,16 @@ class admin_model extends base_model {
 			'id' => $id
 		));
 	}
+	public function require_login() {
+		$id = $this->session->userdata($this->id_name);
+		if (!isset($id)) return false;
+
+		return $this->get(array(
+			'id' => $id
+		));
+	}
+
+
 
 	// name, nickname, pwd
 	public function create($params) {

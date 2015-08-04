@@ -30,13 +30,13 @@
 	<div class="content">
 		<div class="left-content">
 
-			<div class="tab" data-widget="tab" >
-				<ul class="title  cf js-tab-trigger" data-widget="tab" >
-					<li class="active"><a href="javascript:">最新</a></li>
-					<li><a href="javascript:">热门</a></li>
+			<div class="tab">
+				<ul class="title" >
+					<li <?php if(!$hot_type){ echo 'class="active"'; } ?>><a href="./seconds">最新</a></li>
+					<li <?php if($hot_type){ echo 'class="active"'; } ?>><a href="./seconds?hot=hot">热门</a></li>
 					<li><a href="javascript:">众筹</a></li>
 				</ul>
-				<ul class="list-data tab-sheet  js-tab-sheet">
+				<ul class="list-data">
 					<li>
 						<ul class="list-data">
 						<?php foreach($problem_list as $key => $value){ ?>			
@@ -57,21 +57,20 @@
 						<div class="page">
 							<ul>
 								<?php
-									if($page > 1){echo '<li><a href="./seconds/?page='.($page - 1).'">< 上一页</a></li>';}
+									$hot = $hot_type ? "&hot=hot":"";
+									if($page > 1){echo '<li><a href="./seconds/?page='.($page - 1).$hot.'">< 上一页</a></li>';}else{echo"<li></li>";}
 									$active = "";
 									$count = ceil($problem_list_count / 20);
 									for($index = 1; $index < $count + 1;$index ++){
 										if($index == $page)$active = " class='active' ";
-										echo '<li'.$active.'><a href="./seconds/?page='.($index).'">'.($index).'</a></li>';
+										echo '<li'.$active.'><a href="./seconds/?page='.($index).$hot.'">'.($index).'</a></li>';
 										$active = "";
 									}
-									if($page < $count){echo '<li><a href="./seconds/?page='.($page + 1).'">下一页 ></a></li>';}
+									if($page < $count){echo '<li><a href="./seconds/?page='.($page + 1).$hot.'">下一页 ></a></li>';}
 								?>
 							</ul>
 						</div>
 					</li>
-					<li>2</li>
-					<li>3</li>
 				</ul>
 			</div>
 

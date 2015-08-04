@@ -58,7 +58,7 @@ $(".public-class").click(function(){
 				return false
 			}
 			$.ajax({
-				"url" : "admin_api/addClassPublic",
+				"url" : "api/admin_api/addClassPublic",
 				type : "POST",
 				data : {
 					"id" : id,
@@ -111,7 +111,7 @@ $("body").on("click" , ".edit-public" , function(){
 				return false
 			}
 			$.ajax({
-				"url" : "admin_api/editClassPublic",
+				"url" : "api/admin_api/editClassPublic",
 				type : "POST",
 				data : {
 					"id" : $parents.data("id"),
@@ -154,7 +154,7 @@ $("body").on("click" , ".remove-public" , function(){
 		"content" : "<p>您确定要删除掉这个课程吗？</p><p>删除后将无法复原，点击确定按钮确认删除该课程</p>",
 		"success" : function(){
 			$.ajax({
-				"url" : "admin_api/deleteClassPublic",
+				"url" : "api/admin_api/deleteClassPublic",
 				type : "POST",
 				data : {"id" : $parents.data("id")},
 				dataType : "JSON",
@@ -186,7 +186,7 @@ $("body").on("click" , ".remove-public" , function(){
 
 $("#save-link").click(function(){
 	$.ajax({
-		"url" : "admin_api/addClassListLink",
+		"url" : "api/admin_api/addClassListLink",
 		type : "POST",
 		data : {
 			"id" : $(this).data("id"),
@@ -224,7 +224,7 @@ $(".edit-slider").click(function(){
 				return false
 			}
 			$.ajax({
-				"url" : "admin_api/editClassListTag",
+				"url" : "api/admin_api/editClassListTag",
 				type : "POST",
 				data : {
 					"id" : $parents.data("id"),
@@ -262,7 +262,7 @@ $("#add-classList").click(function(){
 				return false
 			}
 			$.ajax({
-				"url" : "admin_api/addClassListTag",
+				"url" : "api/admin_api/addClassListTag",
 				type : "POST",
 				data : {
 					"id" : id,
@@ -294,7 +294,7 @@ $(".remove-tag").click(function(){
 		"content" : "<p>您确定要删除掉这个课程吗？</p><p>删除后将无法复原，点击确定按钮确认删除该课程</p>",
 		"success" : function(){
 			$.ajax({
-				"url" : "admin_api/deleteClassListTag",
+				"url" : "api/admin_api/deleteClassListTag",
 				type : "POST",
 				data : {"id" : $parents.data("id")},
 				dataType : "JSON",
@@ -320,7 +320,7 @@ $(".remove-classContent").click(function(){
 		"content" : "<p>您确定要删除掉这个课程吗？</p><p>删除后将无法复原，点击确定按钮确认删除该课程</p>",
 		"success" : function(){
 			$.ajax({
-				"url" : "admin_api/deleteClassContent",
+				"url" : "api/admin_api/deleteClassContent",
 				type : "POST",
 				data : {"id" : $parents.data("id")},
 				dataType : "JSON",
@@ -357,7 +357,7 @@ $(".edit-classContent").click(function(){
 				return false
 			}
 			$.ajax({
-				"url" : "admin_api/editClassContent",
+				"url" : "api/admin_api/editClassContent",
 				type : "POST",
 				data : {
 					"id" : $parents.data("id"),
@@ -395,7 +395,7 @@ $("#add-classContent").click(function(){
 				return false
 			}
 			$.ajax({
-				"url" : "admin_api/addClassContent",
+				"url" : "api/admin_api/addClassContent",
 				type : "POST",
 				data : {
 					"id" : id,
