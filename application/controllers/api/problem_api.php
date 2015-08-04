@@ -21,7 +21,7 @@ class problem_api extends base_api {
             'tags' => false,
         ));
         extract($params);
-       $code = isset($_GET['code']) ? $this->input->get("code") : "";
+       $code = isset($_POST['code']) ? $this->input->post("code") : "";
 
 
         if ($this->problem_model->is_exist(array('title' => $title))) {

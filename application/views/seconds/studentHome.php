@@ -7,11 +7,11 @@
 ?>
 	<div class="wrapper">
 		<div class="tacher-data home">
-			<img src="<?=$avatar?>" alt="" class="pic">
-			<h3 class="name"><?=$nickname?> <a href="javascript:">想成为大神？</a></h3>
-			<p class="money">银币：<?=$gold_coin?>  金币：<?=$silver_coin?></p>
+			<img src="<?=$user['avatar']?>" alt="" class="pic">
+			<h3 class="name"><?=$user['nickname']?> <a href="./god/apply" target="_blank">想成为大神？</a></h3>
+			<p class="money">银币：<?=$user['gold_coin']?>  金币：<?=$user['silver_coin']?></p>
 			<p class="desk"><?php
-				if($description == ""){
+				if($user['description'] == ""){
 					echo '这家伙还没有描述.....';
 				}else{
 					echo $description;

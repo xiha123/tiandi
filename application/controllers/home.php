@@ -10,30 +10,13 @@ class home extends CI_Controller {
 	public function index()
 	{
 		$userdata = $this->user_model->check_login();
-
-
-
-
 		if(!isset($_GET["uid"])){
-			if($userdata == false){
-				exit("请登录后再查看学员主页");
-			}
-			if($userdata["avatar"] == NULL){
-				$userdata["avatar"] = "static/image/default.jpg";
-			}
-		}else{
-			// 用于浏览其他用户的个人主页
-			$userdata = $this->user_model->get_user_data($this->input->get("uid" , true));
-			if(!$userdata){
-				show_404();
-			}
+			show_404();
 		}
-		if($userdata == false){
-			$userdata["login_type"] = false;
-		}else{
-			$userdata["login_type"] = true;
+		$userdata["user"] = $this->user_model->get_user_data($this->input->get("uid" , true));
+		if(!$userdata['user']){
+			show_404();
 		}
-		
 		$this->load->view("seconds/studentHome.php" , $userdata);
 	}
 }
