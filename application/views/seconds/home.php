@@ -43,7 +43,7 @@
 							<li data-id="<?=$value['id']?>">
 								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
 								<div class="list-title">
-									<a href="./seconds/p/<?=$value['id']?>.html" target="_blank"><?=$value['title']?></a>
+									<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
 								</div>
 								<ul class="list-tag">
 									<li><a href="#" class="tag-box">html5</a></li>

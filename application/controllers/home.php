@@ -11,6 +11,9 @@ class home extends CI_Controller {
 	{
 		$userdata = $this->user_model->check_login();
 
+
+
+
 		if(!isset($_GET["uid"])){
 			if($userdata == false){
 				exit("请登录后再查看学员主页");

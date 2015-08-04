@@ -1,7 +1,8 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/seconds/god.css">
 <body>
-
+<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
 	<div class="tab" data-widget="tab">
 		<ul class="tab-trigger cf js-tab-trigger">

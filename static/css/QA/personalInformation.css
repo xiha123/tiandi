@@ -1,5 +1,5 @@
 .box{
-    width: 1000px;
+    width: 600px;
     margin: 26px auto;
 }
 .submitbutton{
@@ -24,13 +24,14 @@ form [type=text],
     margin-bottom: 25px;
 }
 textarea{
-    width: 70%;
+    padding:8px;
+    width: 100%;
     border: 1px solid #209ba2;
     border-radius: 15px;
     margin-bottom: 30px;
 }
 .submitbutton button{
-    width: 20%;
+    width: 120px;
     background-color: #209ba2;
     color: #FFFFFF;
     box-sizing: content-box;
@@ -45,6 +46,7 @@ textarea{
 }
 
 label{
+    cursor:pointer;
     color: #209ba2;
     display: block;
     margin-bottom: 25px;

@@ -37,7 +37,7 @@
 - pwd
 - salt
 - nickname 昵称
-- type 0 为学生，1 为老师，2 为申请老师审核中，3 为大神，4 为审核中的大神
+- type 0 为学生，1 为老师，2 为申请老师审核中
 - name 有索引
 - avatar 头像
 - email 邮箱
