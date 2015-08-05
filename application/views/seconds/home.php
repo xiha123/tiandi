@@ -46,9 +46,13 @@
 									<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
 								</div>
 								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
+									<?php
+										if(isset($value['tags'])){
+											foreach ($value['tags'] as $key => $values) {
+												echo '<li><a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+											}
+										}
+									?>
 								</ul>
 								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
 							</li>	

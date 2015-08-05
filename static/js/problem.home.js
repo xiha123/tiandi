@@ -13,12 +13,11 @@ $("#ajax_problemSubmit").on("click",function(){
 		return false;
 	}
 
-	jsonText = '{"list":[';
+	jsonText = '[';
 	$.each($(".tag .tag-box"), function(index, val) {
-		 jsonText = jsonText + '{"value":"' +$(val).find("font").text()+ '"},';
-		 //{"s":1},{"s":1}]}
+		 jsonText = jsonText + '{"name":"' +$(val).find("font").text()+ '"},';
 	});
-	jsonText = jsonText + "]}";
+	jsonText =  jsonText + "]";
 
 	_td.api.createProblem({
 		"title" : title,

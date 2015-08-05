@@ -41,7 +41,7 @@
 		<div class="user">
 
 			<?php
-				if(isset($name)){
+				if(isset($nickname)){
 			?>
 					<img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname	?>
 					<ul class="user-menu seconds">

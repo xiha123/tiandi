@@ -7,3 +7,5 @@
 .tag-list .name{width:130px;font-size:18px;margin-left:10px;font-weight: 700}
 .tag-list .look{float: left;position:relative;top:5px;left: 8px;}
 .tag-list .look img{margin-right: 7px;}
+.left-content{width: 760px;margin-top: 0}
+.right-content{float: right;}

@@ -8,16 +8,18 @@
 			<!-- <div class="head">● 该问题赏金为<font>300银币</font>，共有<font>5位众筹者</font></div> -->
 			<div class="leftHeader">
 				<h1><?=$problem_data["title"];?></h1>
-				<a href="#" class="tagBox">tag</a>
-				<a href="#" class="tagBox">tag</a>
-				<a href="#" class="tagBox">tag</a>
-				<a href="#" class="tagBox">tag</a>
-				<a href="#" class="tagBox">tag</a>
+				<?php
+					if(isset($problem_data['tags'])){
+						foreach ($problem_data['tags'] as $key => $values) {
+							echo '<a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a>';
+						}
+					}
+				?>
 			</div>
 			<div class="whyUser">
-				<img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35">
+				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
 				<div class="data">
-					<p class="name"><?=$problem_user['nickname']?></p>
+					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
 					<p class="date">提问于：<?=$problem_data['ctime']?></p>
 				</div>
 				<div class="desc"><?=$problem_detaill['content']?></div>

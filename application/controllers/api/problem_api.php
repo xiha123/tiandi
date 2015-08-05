@@ -9,7 +9,8 @@ class problem_api extends base_api {
             $this->table_name="problem_detail";
     	$this->load->model('problem_model');
             $this->load->model('problem_detail_model');
-    	$this->load->model('problem_comment_model');
+        $this->load->model('problem_comment_model');
+    	$this->load->model('tag_model');
     	$this->me = $this->user_model->check_login();
     }
 
@@ -23,9 +24,20 @@ class problem_api extends base_api {
         extract($params);
        $code = isset($_POST['code']) ? $this->input->post("code") : "";
 
-
         if ($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '重复的标题');
+        }
+        $tag_return = $this->tag_model->add_tag_json($tags);
+        switch ($tag_return) {
+            case -1:
+               $this->finish(false, '标签格式填写错误！');
+                break;
+            case -2:
+               $this->finish(false, '您输入的标签太长或者太短了！');
+                break;
+            default:
+                # code...
+                break;
         }
         $detail_id[] = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],

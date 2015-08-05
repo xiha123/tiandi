@@ -6,10 +6,10 @@ class base_model extends CI_Model {
         parent::__construct();
     }
 
-    public function create($params) {
+	public function create($params) {
 		$this->db->insert($this->table_name, $params);
-        return $this->db->insert_id();
-    }
+		return $this->db->insert_id();
+	}
 
 	public function remove($id) {
 		$this->db->delete($this->table_name, array(
@@ -32,6 +32,7 @@ class base_model extends CI_Model {
     }
 
 	public function get_list($params, $page, $count) {
+		$page = $page < 0 ? 0 : $page;
 		return $this->db->where($params)->order_by('id', 'DESC')->limit($count, $page * $count)->get($this->table_name)->result_array();
 	}
 

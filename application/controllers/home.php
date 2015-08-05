@@ -11,12 +11,14 @@ class home extends CI_Controller {
 	{
 		$userdata = $this->user_model->check_login();
 		if(!isset($_GET["uid"])){
-			show_404();
+			show_404();	
 		}
 		$userdata["user"] = $this->user_model->get_user_data($this->input->get("uid" , true));
-		if(!$userdata['user']){
-			show_404();
+		if(!$userdata['user']){show_404();}
+		if($userdata["user"]["type"] == "0"){
+			$this->load->view("seconds/studentHome.php" , $userdata);
+		}else{
+			$this->load->view("seconds/god/home.php" , $userdata);
 		}
-		$this->load->view("seconds/studentHome.php" , $userdata);
 	}
 }

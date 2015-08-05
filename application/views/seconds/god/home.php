@@ -6,13 +6,13 @@
 	<div class="wrapper">
 	
 		<div class="leftBox">
-			<img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic">
-			<h3 class="name">讲师姓名</h3>
+			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
+			<h3 class="name"><?=$user["nickname"] ?></h3>
 			<p class="look"><img src="static/image/look.png" alt="" width="18px">99</p>
 			<p class="look"><img src="static/image/good.png" width="16px" alt="">999</p>
-			<p class="money">银币：999</p>
-			<p class="money">金币：999</p>
-			<p class="desc">描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述</p>
+			<p class="money">银币： <?=$user['gold_coin']?></p>
+			<p class="money">金币： <?=$user['silver_coin']?></p>
+			<p class="desc"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
 			<h2 class="box-title">擅长标签</h2>
 			<a href="#" class="tagBox">tag</a>
 			<a href="#" class="tagBox">tag</a>

@@ -17,6 +17,7 @@ class seconds extends CI_Controller {
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		
 		// 去你妹的体验！
 		if(isset($_GET['hot'])){
 			$userdata["hot_type"] = true;

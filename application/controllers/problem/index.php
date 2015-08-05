@@ -21,9 +21,6 @@ class index extends CI_Controller {
 		$this->parser->parse("seconds/problem/problem.php" , $userdata);
 	}
 
-	public function p($id = ""){
-		echo "mysql";
 
-	}
 
 }
