@@ -64,6 +64,19 @@ class user_api extends base_api {
 
     // } 
 
+
+    public function get_collect_json($pid) {
+        $temp_collect = array();
+        $collect = json_decode($this->me['skilled_tags']);
+        foreach ($collect as $key => $value) {
+            if($value->t != $pid){
+                array_push($temp_collect, array("t" => $value->t ));
+            }
+        }
+        $temp_collect = json_encode($temp_collect);
+        return $temp_collect == "" ? "[]" : $temp_collect;
+    }
+
     // 删除用户
     public function remove() {
         $params = parent::getParams('POST', array('name'));if(empty($params)) return; extract($params);

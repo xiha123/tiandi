@@ -1,6 +1,11 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/seconds/student.css">
 <body>
+
+<script>
+	var problem_id = <?=$problem_data["id"]?>;
+</script>
+
 <?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="wrapper">
@@ -31,7 +36,12 @@
 			?>
 
 			<div class="button">
-				<button class="none-background">★ 收藏</button>
+				<button class="none-background"><i class="fa fa-heart-o"></i> 关注</button>
+				<?php
+					echo $problem_collect == true ?
+					'<button id="uncollect">★ 取消收藏</button>':
+					'<button id="collect" class="none-background">★ 收藏</button>';
+				?>
 				<button>众筹</button>
 			</div>
 

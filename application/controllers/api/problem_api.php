@@ -9,7 +9,7 @@ class problem_api extends base_api {
             $this->table_name="problem_detail";
     	$this->load->model('problem_model');
             $this->load->model('problem_detail_model');
-        $this->load->model('problem_comment_model');
+         $this->load->model('problem_comment_model');
     	$this->load->model('tag_model');
     	$this->me = $this->user_model->check_login();
     }
@@ -194,17 +194,26 @@ class problem_api extends base_api {
     }
 
     public function collect_problem() {
-        parent::require_login();
-
-        $params = $this->get_params('POST', array('problem_id'));
-        extract($params);
+        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
+        if($this->problem_model->collect($problem_id)){
+            parent::finish(true , "");
+        }else{
+            parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
+        }
     }
 
     public function uncollect_problem() {
-        parent::require_login();
-        $params = $this->get_params('POST', array('problem_id'));
-        extract($params);
+        parent::require_login(); $params = $this->get_params('POST', array('problem_id'));extract($params);
+        if($this->problem_model->uncollect($problem_id)){
+            parent::finish(true , "");
+        }else{
+            parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
+        }   
+
+
     }
+
+
 
     public function up_problem() {
         $up_down_type = false;

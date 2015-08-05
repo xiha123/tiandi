@@ -20,7 +20,14 @@
 		</div>
 		<div class="tacher-tag ">
 			<h2>收藏标签：</h2>
-			<p class="not">还没有收藏标签</p>
+			<?php
+				if($user["skilled_tags"] == array()){
+					echo '<p class="not">还没有收藏标签</p>';
+				}else{
+					
+				}
+			?>
+			
 			<!-- <a href="#" class="tag-box"></a> -->
 		</div>
 

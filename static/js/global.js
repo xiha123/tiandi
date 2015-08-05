@@ -17,6 +17,40 @@ $(".ajax_up").on("click" , function(){
     });
 })
 
+$(".button").on("click" , "#collect" , function(){
+    var _this = $(this);
+    _td.api.collectProblem({
+        problem_id : problem_id,
+    }).then(function(msg){
+            location.reload();
+    },function(msg){
+        showAlert(false,msg);
+    });
+})
+$(".button").on("click" , "#uncollect" , function(){
+    _td.api.uncollectProblem({
+        problem_id : problem_id,
+    }).then(function(msg){
+            location.reload();
+    },function(msg){
+        showAlert(false,msg);
+    });
+})
+
+$(".button").on("click" , "#uncollect" , function(){
+    _td.api.uncollectProblem({
+        problem_id : problem_id,
+    }).then(function(msg){
+            location.reload();
+    },function(msg){
+        showAlert(false,msg);
+    });
+})
+
+
+
+
+
 
 $("#ajax_login").on('click' , function(event) {
     var username = $("#login_username").val(),
@@ -83,7 +117,7 @@ $("#ajax_reg").on('click' , function() {
 
 function showAlert(type , value){
     $showAlert = $(".showAlert");
-    icon = type ? "<i class='fa fa-smile-o'></i> " : "<i class='fa fa-times'></i> ";
+    icon = type ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i> ";
     color = type ? "aletrContent success" : "aletrContent danger";
     $showAlert.find(".aletrContent").attr("class" , color);
     $showAlert.find(".aletrContent").html(icon + value);
