@@ -16,7 +16,7 @@ class index extends CI_Controller {
 		if(!$userdata['tag_data'])show_404();
 		$userdata["hot_type"] = !isset($_GET['hot']) ? false : true;
 		$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);
-		$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name );
+		$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		
 	

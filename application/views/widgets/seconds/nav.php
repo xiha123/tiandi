@@ -43,12 +43,12 @@
 			<?php
 				if(isset($nickname)){
 			?>
-					<img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname	?>
+					<img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname?>
 					<ul class="user-menu seconds">
 						<?php
 							echo  $type == 0 ? 
 							'<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>' : 
-							'<li><a href="./seconds/godhome" target="_blank">大神主页</a></li>';
+							'<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>';
 						?>
 						
 						

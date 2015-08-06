@@ -13,7 +13,7 @@
 			<p class="money">银币： <?=$user['gold_coin']?></p>
 			<p class="money">金币： <?=$user['silver_coin']?></p>
 			<p class="desc"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
-			<h2 class="box-title">擅长标签</h2>
+			<h2 class="box-title">擅长标签</h2>	
 			<a href="#" class="tagBox">tag</a>
 			<a href="#" class="tagBox">tag</a>
 			<a href="#" class="tagBox">tag</a>
@@ -28,56 +28,24 @@
 		<div class="rightBox">
 			<h2 class="box-title">推荐您来回答</h2>
 			<ul class="list-data">
-				<li>
-					<div class="link-num"><p>999</p><p>点赞</p></div>
-					<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<ul class="list-tag">
-						<li><a href="#" class="tag-box">html5</a></li>
-						<li><a href="#" class="tag-box">javascript</a></li>
-						<li><a href="#" class="tag-box">jquery</a></li>
-					</ul>
-					<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-				</li>
-				<li>
-					<div class="link-num"><p>999</p><p>点赞</p></div>
-					<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<ul class="list-tag">
-						<li><a href="#" class="tag-box">html5</a></li>
-						<li><a href="#" class="tag-box">javascript</a></li>
-						<li><a href="#" class="tag-box">jquery</a></li>
-					</ul>
-					<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-				</li>
-				<li>
-					<div class="link-num"><p>999</p><p>点赞</p></div>
-					<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<ul class="list-tag">
-						<li><a href="#" class="tag-box">html5</a></li>
-						<li><a href="#" class="tag-box">javascript</a></li>
-						<li><a href="#" class="tag-box">jquery</a></li>
-					</ul>
-					<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-				</li>
-				<li>
-					<div class="link-num"><p>999</p><p>点赞</p></div>
-					<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<ul class="list-tag">
-						<li><a href="#" class="tag-box">html5</a></li>
-						<li><a href="#" class="tag-box">javascript</a></li>
-						<li><a href="#" class="tag-box">jquery</a></li>
-					</ul>
-					<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-				</li>
-				<li>
-					<div class="link-num"><p>999</p><p>点赞</p></div>
-					<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<ul class="list-tag">
-						<li><a href="#" class="tag-box">html5</a></li>
-						<li><a href="#" class="tag-box">javascript</a></li>
-						<li><a href="#" class="tag-box">jquery</a></li>
-					</ul>
-					<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-				</li>
+				<?php foreach ($recommend_list as $key => $value) {?>
+						<li data-id="<?=$value['id']?>">
+							<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
+							<div class="list-title">
+								<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
+							</div>
+							<ul class="list-tag">
+								<?php
+									if(isset($value['tags'])){
+										foreach ($value['tags'] as $key => $values) {
+											echo '<li><a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+										}
+									}
+								?>
+							</ul>
+							<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+						</li>	
+				<?php }	?>
 			</ul>
 
 
@@ -86,70 +54,41 @@
 					<li class="active"><a href="javascript:">最新未答</a></li>
 					<li><a href="javascript:">答过</a></li>
 				</ul>
-				<ul class="list-data tab-sheet  js-tab-sheet">
-					<li>
-						<ul class="list-data">
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-							</li>
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-							</li>
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-							</li>
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-							</li>
-							<li>
-								<div class="link-num"><p>999</p><p>点赞</p></div>
-								<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
-								<ul class="list-tag">
-									<li><a href="#" class="tag-box">html5</a></li>
-									<li><a href="#" class="tag-box">javascript</a></li>
-									<li><a href="#" class="tag-box">jquery</a></li>
-								</ul>
-								<div class="list-date"><font>Tocurd</font> 提问于：20:30</div>
-							</li>
-						</ul>
-						<div class="page">
-							<ul>
-								<li><a href="javascript:">< 上一页</a></li>
-								<li class="active"><a href="javascript:">1</a></li>
-								<li><a href="javascript:">2</a></li>
-								<li><a href="javascript:">3</a></li>
-								<li><a href="javascript:">下一页 ></a></li>
+				<ul class="list-data">
+					<?php foreach ($news_problem as $key => $value) {?>
+						<li data-id="<?=$value['id']?>">
+							<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
+							<div class="list-title">
+								<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
+							</div>
+							<ul class="list-tag">
+								<?php
+									if(isset($value['tags'])){
+										foreach ($value['tags'] as $key => $values) {
+											echo '<li><a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+										}
+									}
+								?>
 							</ul>
-						</div>
-					</li>
+							<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+						</li>	
+					<?php }	?>
+					<div class="page">
+						<ul>
+							<?php
+								$hot = $hot_type ? "&hot=hot":"";
+								if($page > 1){echo '<li><a href="./seconds/?page='.($page - 1).$hot.'">< 上一页</a></li>';}else{echo"<li></li>";}
+								$active = "";
+								$count = ceil($problem_list_count / 20);
+								for($index = 1; $index < $count + 1;$index ++){
+									if($index == $page)$active = " class='active' ";
+									echo '<li'.$active.'><a href="./seconds/?page='.($index).$hot.'">'.($index).'</a></li>';
+									$active = "";
+								}
+								if($page < $count){echo '<li><a href="./seconds/?page='.($page + 1).$hot.'">下一页 ></a></li>';}
+							?>
+						</ul>
+					</div>
 				</ul>
 			</div>
 

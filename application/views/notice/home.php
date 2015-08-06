@@ -1,6 +1,8 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/seconds/notice.css">
 <body>
+<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/windows.php' ); ?>
 	<!-- 用户通知中心 -->
 	<div class="wrapper">
 		<h2 class="box-title none-border title">通知</h2>
@@ -11,26 +13,28 @@
 		</div>
 		<div class="notice">
 			<table>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
-				<tr><td><input type="checkBox"></td><td><p class="notice-title">容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p></td><td><p class="notice-time">21:23:22</p></td></tr>
+				<?php
+					foreach ($news_list as $key => $value) {
+						echo '<tr><td><label><input type="checkBox" name="delete[]"></td><td><p class="notice-title">'.$value['content'].'</p></td><td><p class="notice-time">'.date("Y-m-d H:i:s",$value['time']).'</p></label></td></tr>';
+					}
+				?>	
+				
 			</table>
 			<div class="page">
 				<ul>
-					<li><a href="javascript:">< 上一页</a></li>
-					<li class="active"><a href="javascript:">1</a></li>
-					<li><a href="javascript:">2</a></li>
-					<li><a href="javascript:">3</a></li>
-					<li><a href="javascript:">下一页 ></a></li>
+					<?php
+						if($page > 1){echo '<li><a href="./notice/?page='.($page - 1).'">< 上一页</a></li>';}else{echo"<li></li>";}
+						$active = "";
+						$count = ceil($news_count / 20);
+						for($index = 1; $index < $count + 1;$index ++){
+							if($index == $page)$active = " class='active' ";
+							echo '<li'.$active.'><a href="./notice/?page='.($index).'">'.($index).'</a></li>';
+							$active = "";
+						}
+						if($page < $count){echo '<li><a href="./notice/?page='.($page + 1).'">下一页 ></a></li>';}
+					?>
 				</ul>
-			</div>
+			</div>	
 		</div>
 
 	</div>

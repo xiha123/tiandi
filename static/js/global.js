@@ -37,8 +37,17 @@ $(".button").on("click" , "#uncollect" , function(){
     });
 })
 
-$(".button").on("click" , "#uncollect" , function(){
-    _td.api.uncollectProblem({
+$(".button").on("click" , "#follow" , function(){
+    _td.api.followProblem({
+        problem_id : problem_id,
+    }).then(function(msg){
+            location.reload();
+    },function(msg){
+        showAlert(false,msg);
+    });
+})
+$(".button").on("click" , "#unfollow" , function(){
+    _td.api.unfollowProblem({
         problem_id : problem_id,
     }).then(function(msg){
             location.reload();

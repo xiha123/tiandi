@@ -36,8 +36,12 @@
 			?>
 
 			<div class="button">
-				<button class="none-background"><i class="fa fa-heart-o"></i> 关注</button>
+				
+				
 				<?php
+					echo $problem_follow == true ?
+					'<button id="follow" class="none-background"><i class="fa fa-heart-o"></i> 关注</button>':
+					'<button id="unfollow"><i class="fa fa-heart-o"></i> 取消关注</button>';
 					echo $problem_collect == true ?
 					'<button id="uncollect">★ 取消收藏</button>':
 					'<button id="collect" class="none-background">★ 收藏</button>';

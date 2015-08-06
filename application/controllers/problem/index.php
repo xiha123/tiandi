@@ -17,7 +17,10 @@ class index extends CI_Controller {
 		}
 		$userdata["problem_detaill"] = $this->problem_detail_model->get_detaill($userdata["problem_data"]['id']);
 		$userdata["problem_user"] = $this->user_model->get_user_data($userdata["problem_data"]["owner_id"]);
-		$userdata["problem_collect"] = $this->user_model->is_collect_problem($id) == true ? true : false;
+		$userdata["problem_collect"] = $this->user_model->is_problem($id) == true ? true : false;
+		$userdata["problem_follow"] = !$this->user_model->is_problem($id , "follow_problems")  ? true : false;
+
+
 		$this->load->library('parser');
 		$this->parser->parse("seconds/problem/problem.php" , $userdata);
 	}

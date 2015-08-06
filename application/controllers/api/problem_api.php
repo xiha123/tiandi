@@ -10,7 +10,9 @@ class problem_api extends base_api {
     	$this->load->model('problem_model');
             $this->load->model('problem_detail_model');
          $this->load->model('problem_comment_model');
-    	$this->load->model('tag_model');
+        $this->load->model('tag_model');
+    	$this->load->model('news_model');
+
     	$this->me = $this->user_model->check_login();
     }
 
@@ -178,19 +180,35 @@ class problem_api extends base_api {
     }
 
     public function follow_problem() {
-        parent::require_login();
+        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
 
-        $params = $this->get_params('POST', array('problem_id'));
-        extract($params);
+        // 通知消息给用户
+        $problem_data = $this->problem_model->get_list_by_id($problem_id);
+        $this->news_model->add_news($problem_data['owner_id'] , $this->me['nickname'] . " 关注了您的问题：".$problem_data['title'] , $this->me['id']);
 
-        $this->problem_model->follow($problem_id);
+        if($this->user_model->is_problem($problem_id , "follow_problems") == true)parent::finish(false , "您已经关注了该问题，请点击取消关注按钮");
+        if(!$this->problem_model->follow($problem_id))parent::finish(false , "失败！无法预料到的意外错误，请您稍后再试！");
+        if(!$this->user_model->follow_problem($problem_id)){
+            parent::finish(false , "失败！无法预料到的意外错误，请您稍后再试！2");
+        }else{
+            parent::finish(true);
+        }
     }
-
     public function unfollow_problem() {
-        parent::require_login();
+        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
 
-        $params = $this->get_params('POST', array('problem_id'));
-        extract($params);
+        // 通知消息给用户
+        $problem_data = $this->problem_model->get_list_by_id($problem_id);
+        $this->news_model->add_news($problem_data['owner_id'] , $this->me['nickname'] . " 取消关注了您的问题：".$problem_data['title'] , $this->me['id']);
+
+        if($this->user_model->is_problem($problem_id , "follow_problems") == false)parent::finish(false , "您还没有关注该问题，不能取消关注！");
+        if(!$this->problem_model->unfollow($problem_id))parent::finish(false , "失败！无法预料到的意外错误，请您稍后再试！");
+        if(!$this->user_model->unfollow_problem($problem_id)){
+            parent::finish(false , "失败！无法预料到的意外错误，请您稍后再试！2");
+        }else{
+            parent::finish(true);
+        }
+
     }
 
     public function collect_problem() {

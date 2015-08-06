@@ -14,12 +14,5 @@ class index extends CI_Controller {
 		$data_list = array("data_list" => $data_list);
 		$this->parser->parse('pages/home.php', $data_list);
 	}
-	public function myhome()
-	{
-		$userdata = $this->user_model->check_login();
-		if($userdata["avatar"] == NULL){
-			$userdata["avatar"] = "static/image/default.jpg";
-		}
-		$this->load->view("seconds/studentHome.php" , $userdata);
-	}
+
 }
