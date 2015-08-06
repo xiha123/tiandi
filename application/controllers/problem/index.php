@@ -20,11 +20,8 @@ class index extends CI_Controller {
 		$userdata["problem_collect"] = $this->user_model->is_problem($id) == true ? true : false;
 		$userdata["problem_follow"] = !$this->user_model->is_problem($id , "follow_problems")  ? true : false;
 
-
 		$this->load->library('parser');
 		$this->parser->parse("seconds/problem/problem.php" , $userdata);
 	}
-
-
 
 }

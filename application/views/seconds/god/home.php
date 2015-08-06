@@ -8,8 +8,8 @@
 		<div class="leftBox">
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
 			<h3 class="name"><?=$user["nickname"] ?></h3>
-			<p class="look"><img src="static/image/look.png" alt="" width="18px">99</p>
-			<p class="look"><img src="static/image/good.png" width="16px" alt="">999</p>
+			<p class="look"><img src="static/image/look.png" alt="" width="18px"><?=$user['collect_problem_count']?></p>
+			<p class="look"><img src="static/image/good.png" width="16px" alt=""><?=$user['follow_problem_count']?></p>
 			<p class="money">银币： <?=$user['gold_coin']?></p>
 			<p class="money">金币： <?=$user['silver_coin']?></p>
 			<p class="desc"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
@@ -50,9 +50,9 @@
 
 
 			<div class="tab" data-widget="tab" >
-				<ul class="title  cf js-tab-trigger" data-widget="tab" >
-					<li class="active"><a href="javascript:">最新未答</a></li>
-					<li><a href="javascript:">答过</a></li>
+				<ul class="title " >
+					<li <?=!$hot_type?'class="active"':""?>><a href="./home/?uid=<?=$user['id']?>">最新未答</a></li>
+					<li <?=$hot_type?'class="active"':""?>><a href="./home/?uid=<?=$user['id']?>&ok=hot">答过</a></li>
 				</ul>
 				<ul class="list-data">
 					<?php foreach ($news_problem as $key => $value) {?>
@@ -76,16 +76,16 @@
 					<div class="page">
 						<ul>
 							<?php
-								$hot = $hot_type ? "&hot=hot":"";
-								if($page > 1){echo '<li><a href="./seconds/?page='.($page - 1).$hot.'">< 上一页</a></li>';}else{echo"<li></li>";}
+								$hot = $hot_type ? "&uid=".$user['id']."&hot=hot":"&uid=".$user['id'];
+								if($page > 1){echo '<li><a href="./home/?page='.($page - 1).$hot.'">< 上一页</a></li>';}else{echo"<li></li>";}
 								$active = "";
-								$count = ceil($problem_list_count / 20);
+								$count = ceil($problem_list_count / 5);
 								for($index = 1; $index < $count + 1;$index ++){
 									if($index == $page)$active = " class='active' ";
-									echo '<li'.$active.'><a href="./seconds/?page='.($index).$hot.'">'.($index).'</a></li>';
+									echo '<li'.$active.'><a href="./home/?page='.($index).$hot.'">'.($index).'</a></li>';
 									$active = "";
 								}
-								if($page < $count){echo '<li><a href="./seconds/?page='.($page + 1).$hot.'">下一页 ></a></li>';}
+								if($page < $count){echo '<li><a href="./home/?page='.($page + 1).$hot.'">下一页 ></a></li>';}
 							?>
 						</ul>
 					</div>

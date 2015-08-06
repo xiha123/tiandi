@@ -115,42 +115,42 @@ api:
     args:
         - problem_id
 -
-    # 关注问题
+    # 关注问题 已实现
     url: problem_api/follow_problem
     type: post
     name: followProblem
     args:
         - problem_id
 -
-    # 取消关注问题
+    # 取消关注问题 已实现
     url: problem_api/unfollow_problem
     type: post
     name: unfollowProblem
     args:
         - problem_id
 -
-    # 收藏问题
+    # 收藏问题 已实现
     url: problem_api/collect_problem
     type: post
     name: collectProblem
     args:
         - problem_id
 -
-    # 取消收藏问题
+    # 取消收藏问题 已实现
     url: problem_api/uncollect_problem
     type: post
     name: uncollectProblem
     args:
         - problem_id
 -
-    # 点赞
+    # 点赞 已实现
     url: problem_api/up_problem
     type: post
     name: upProblem
     args:
         - problem_id
 -
-    # 点踩
+    # 点踩 已实现
     url: problem_api/down_problem
     type: post
     name: downProblem

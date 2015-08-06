@@ -134,11 +134,9 @@ class problem_api extends base_api {
 
     public function request_problem() {
         parent::require_login();
-
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
-
-        if ($this->me['type'] !== 1) {
+        if ($this->me['type'] != 1) {
             $this->finish(false, '没有权限');
         }
 
@@ -148,7 +146,7 @@ class problem_api extends base_api {
 
         if ($this->problem_model->request(array(
             'pid' => $problem_id,
-            'uid' => $me['id']
+            'uid' => $this->me['id']
         )) === false) {
             $this->finish(false, '问题不能认领');
         }
@@ -158,7 +156,6 @@ class problem_api extends base_api {
 
     public function close_problem() {
         parent::require_login();
-
         $params = $this->get_params('POST', array('problem_id'));
         extract($params);
 

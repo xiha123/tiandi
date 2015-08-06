@@ -22,6 +22,7 @@
 				?>
 			</div>
 			<div class="whyUser">
+
 				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
 				<div class="data">
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
@@ -34,10 +35,42 @@
 					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill["code"].'</textarea></div>';
 				}
 			?>
+			<br>	
 
+
+			<div class="whyUser">
+				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
+				<div class="data">
+					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
+					<p class="date">提问于：<?=$problem_data['ctime']?></p>
+				</div>
+				<div class="desc">不</div>
+			</div>
+			<?php
+				if($problem_detaill["code"] != NULL){
+					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill["code"].'</textarea></div>';
+				}
+			?>
+
+			<div class="doubt-time">
+				20:00
+			</div>
+			<?php if($problem_data['answer_id'] == $id){ ?>
+				<div class="doubt">
+					<table class="table">
+						<tr><td>
+							<div class="desc">
+								<script id="editor" type="text/plain" style="width:743px;height:180px;"></script>
+								<a href="javascript:" class="Language">选择语言</a>
+								<textarea  id="problem-code" class="code" style="margin-top: 0px;" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+							</div>
+						</td></tr>
+					</table>
+
+				</div>
+			<?php } ?>
+		
 			<div class="button">
-				
-				
 				<?php
 					echo $problem_follow == true ?
 					'<button id="follow" class="none-background"><i class="fa fa-heart-o"></i> 关注</button>':
@@ -47,6 +80,7 @@
 					'<button id="collect" class="none-background">★ 收藏</button>';
 				?>
 				<button>众筹</button>
+				<?=$type == 0 || $problem_data['type'] == 1? '<button id="answer">回答</button>' : '<button id="answer">认领问题</button>';?>
 			</div>
 
 		</div>
@@ -63,5 +97,8 @@
 
 	</div>
 <?php $this->load->view('widgets/footer.php'); ?>
+<script src="ueditor/ueditor.config.js"></script>
+<script src="ueditor/ueditor.all.min.js"></script>
+<script src="static/js/problem.js"></script>
 </body>
 </html>

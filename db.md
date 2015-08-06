@@ -73,6 +73,7 @@
 - type 0 为 course，1 为问题
 - name 有索引
 - count 属于这个 tag 的数量
+- content tag描述
 
 ### slide 表
 
@@ -123,6 +124,7 @@
 - title
 - owner_id 提问者 id
 - answer_id 回答者 id
+- answer_time 回答者认领的时间
 - details 问题详情（学生提问，老师回答）,JSON数组
 - comments 问题下面的评论，JSON数组
 - tags 标签列表，JSON对象，key 为 tag 表的 id
