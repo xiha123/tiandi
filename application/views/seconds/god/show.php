@@ -50,22 +50,16 @@
 				<?php }	?>
 			
 			</ul>
-			<div class="page">
-				<ul>
-					<?php
-						$hot = "&uid=" . $user['id'];
-						if($page > 1){echo '<li><a href="./home/?page='.($page - 1).$hot.'">< 上一页</a></li>';}else{echo"<li></li>";}
-						$active = "";
-						$count = ceil($answer_count / 20);
-						for($index = 1; $index < $count + 1;$index ++){
-							if($index == $page)$active = " class='active' ";
-							echo '<li'.$active.'><a href="./home/?page='.($index).$hot.'">'.($index).'</a></li>';
-							$active = "";
-						}
-						if($page < $count){echo '<li><a href="./home/?page='.($page + 1).$hot.'">下一页 ></a></li>';}
-					?>
-				</ul>
-			</div>
+			<?php
+				$this->load->view("seconds/page",array(
+					"page" => $page,
+					"page_max" => $answer_count,
+					"page_count" => 20,
+					"page_url" => "./home",
+					"hot" => "&uid=" . $user['id']
+				));
+			?>
+			
 
 			
 		</div>

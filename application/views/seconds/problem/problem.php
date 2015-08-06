@@ -3,8 +3,16 @@
 <body>
 
 <script>
-	var problem_id = <?=$problem_data["id"]?>;
+	var problem_id = <?=$problem_data["id"]?>,
+	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>;
 </script>
+	<?php
+		if($problem_data["answer_time"] + 1200 < time()){
+			$this->problem_model->def($problem_data["id"]);
+		}
+	?>
+
+
 
 <?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
@@ -22,40 +30,45 @@
 				?>
 			</div>
 			<div class="whyUser">
-
 				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
 				<div class="data">
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
 					<p class="date">提问于：<?=$problem_data['ctime']?></p>
 				</div>
-				<div class="desc"><?=$problem_detaill['content']?></div>
+				<div class="desc"><?=$problem_detaill[0]['content']?></div>
 			</div>
 			<?php
-				if($problem_detaill["code"] != NULL){
-					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill["code"].'</textarea></div>';
+				if($problem_detaill[0]["code"] != NULL){
+					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill[0]["code"].'</textarea></div>';
 				}
+				for ($index=1; $index < count($problem_detaill); $index++) { 
 			?>
-			<br>	
-
-
-			<div class="whyUser">
-				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
-				<div class="data">
-					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
-					<p class="date">提问于：<?=$problem_data['ctime']?></p>
-				</div>
-				<div class="desc">不</div>
-			</div>
+					<div class="whyUser">
+						<a href="./home?uid=<?=$problem_detaill[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detaill[$index]['user']['avatar']?>" alt="" width="35" height="35"></a>
+						<div class="data">
+							<p class="name">大神：<a href="./home?uid=<?=$problem_detaill[$index]['user']['id']?>" target="_blank"><?=$problem_detaill[$index]['user']['nickname']?></a></p>
+							<p class="date">回答于：<?=$problem_data['ctime']?></p>
+						</div>
+						<div class="desc"><?=$problem_detaill[$index]['content']?></div>
+					</div>
 			<?php
-				if($problem_detaill["code"] != NULL){
-					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill["code"].'</textarea></div>';
+					if($problem_detaill[$index]["code"] != NULL){
+						echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill[$index]["code"].'</textarea></div>';
+					}
 				}
 			?>
 
-			<div class="doubt-time">
-				20:00
-			</div>
-			<?php if($problem_data['answer_id'] == $id){ ?>
+
+
+
+
+			<?php
+				if(@$type == 1){
+					echo $problem_data['type'] == 1 ? '<div class="doubt-time">20:00</div>' :'';
+				}
+			?>
+			
+			<?php if($problem_data['answer_id'] == @$id && $problem_data['type'] == 1){ ?>
 				<div class="doubt">
 					<table class="table">
 						<tr><td>
@@ -66,23 +79,48 @@
 							</div>
 						</td></tr>
 					</table>
-
 				</div>
 			<?php } ?>
-		
+			<div class="button close">
+			<?php
+				if($problem_data['type'] == 2){
+					echo '<a href="#"><i class="fa fa-star"></i>收藏</a>
+						<a href="#"><i class="fa fa-star"></i>点赞</a>
+						<a href="#"><i class="fa fa-circle"></i>分享</a>';
+				}
+				if($problem_data['owner_id'] == @$id && $problem_data['type'] == 2){
+					echo '<button>满意</button> <button class="none-background">不满意</button>';
+				}
+			?>
+			</div>
+			
 			<div class="button">
 				<?php
-					echo $problem_follow == true ?
-					'<button id="follow" class="none-background"><i class="fa fa-heart-o"></i> 关注</button>':
-					'<button id="unfollow"><i class="fa fa-heart-o"></i> 取消关注</button>';
-					echo $problem_collect == true ?
-					'<button id="uncollect">★ 取消收藏</button>':
-					'<button id="collect" class="none-background">★ 收藏</button>';
+					if($problem_data['type'] != 2){
+						echo $problem_follow == true?
+						'<button id="follow" class="none-background"><i class="fa fa-heart-o"></i> 关注</button>':
+						'<button id="unfollow"><i class="fa fa-heart-o"></i> 取消关注</button>';
+						echo $problem_collect == true ?
+						'<button id="uncollect">★ 取消收藏</button>':
+						'<button id="collect" class="none-background">★ 收藏</button>';
+						echo '<button>众筹</button>';
+					}else if(@$type == 1){
+						echo $problem_data['type'] == 1 ? 
+						'<button id="reply">回答</button>' :
+						$problem_data['type'] == 0 ? 
+						'<button id="answer">认领问题</button>' : 
+						"";
+					}
 				?>
-				<button>众筹</button>
-				<?=$type == 0 || $problem_data['type'] == 1? '<button id="answer">回答</button>' : '<button id="answer">认领问题</button>';?>
 			</div>
-
+			<ul class="comment-list">
+				<!-- <i class="fa fa-thumbs-up"></i> 9</div> --> 
+				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
+				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
+				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
+				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
+				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p><div></li>
+			</ul>
 		</div>
 
 		<div class="rightBox">

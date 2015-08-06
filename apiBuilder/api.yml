@@ -83,7 +83,7 @@ api:
         - tags
         - code
 -
-    # 创建描述，即提问者的补充和老师的回答
+    # 创建描述，即提问者的补充和老师的回答 已实现
     url: problem_api/create_detail
     type: post
     name: createDetail

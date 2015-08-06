@@ -39,7 +39,7 @@ class home extends CI_Controller {
 				$userdata["recommend_list"] = $this->problem_model->get_list_by_hot(0, 5 , "random");
 				$userdata["hot_type"] = isset($_GET['ok']) ? true : false;
 				if(!$userdata["hot_type"]){
-					$userdata["news_problem"] = $this->problem_model->get_list_by_time($userdata["page"], 5);
+					$userdata["news_problem"] = $this->problem_model->get_list_by_time($userdata["page"]-1, 5);
 					$userdata["problem_list_count"] = $this->problem_model->get_list_count();
 				}else{
 					$userdata["news_problem"] = $this->problem_model->get_answer($uid , $userdata["page"] , 5);

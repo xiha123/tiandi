@@ -72,23 +72,17 @@
 							</ul>
 							<div class="list-date"> 提问于：<?=$value['ctime']?></div>
 						</li>	
-					<?php }	?>
-					<div class="page">
-						<ul>
-							<?php
-								$hot = $hot_type ? "&uid=".$user['id']."&hot=hot":"&uid=".$user['id'];
-								if($page > 1){echo '<li><a href="./home/?page='.($page - 1).$hot.'">< 上一页</a></li>';}else{echo"<li></li>";}
-								$active = "";
-								$count = ceil($problem_list_count / 5);
-								for($index = 1; $index < $count + 1;$index ++){
-									if($index == $page)$active = " class='active' ";
-									echo '<li'.$active.'><a href="./home/?page='.($index).$hot.'">'.($index).'</a></li>';
-									$active = "";
-								}
-								if($page < $count){echo '<li><a href="./home/?page='.($page + 1).$hot.'">下一页 ></a></li>';}
-							?>
-						</ul>
-					</div>
+					<?php }	
+
+						$this->load->view("seconds/page",array(
+							"page" => $page,
+							"page_max" => $problem_list_count,
+							"page_count" => 5,
+							"page_url" => "./home",
+							"hot" => $hot_type ? "&uid=" . $user['id'] . "&ok=hot" : "&uid=" . $user['id']
+						));
+					?>
+	
 				</ul>
 			</div>
 

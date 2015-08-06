@@ -41,19 +41,21 @@ class problem_api extends base_api {
                 # code...
                 break;
         }
-        $detail_id[] = $this->problem_detail_model->create(array(
-            'owner_id' => $this->me['id'],
-            'type' => 0,
-            'content' => $detail,
-            'code' => $code,
-            'problem_id' => "1"
-        ));
-        $this->problem_model->create(array(
+           $detail_id = $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
             'title' => $title,
             'tags' => $tags,
-            'details' => json_encode($detail_id)
+           // 'details' => json_encode($detail_id)
         ));
+           $this->load->helper('security');
+       $this->problem_detail_model->create(array(
+            'owner_id' => $this->me['id'],
+            'type' => 0,
+            'content' =>xss_clean( $detail ),
+            'code' => $code,
+            'problem_id' => $detail_id
+        ));
+
         $this->finish(true);
     }
 
@@ -91,25 +93,19 @@ class problem_api extends base_api {
 
     public function create_detail() {
         parent::require_login();
-
         $params = $this->get_params('POST', array(
             'content' => true,
             'type' => true,
             'problem_id' => true,
             'code' => false
-        ));
-        extract($params);
-
-        if ($this->problem_model->is_exist(array(
-            'id' => $problem_id
-        ))) {
-            $this->finish(false, '不存在的问题');
+        )); extract($params);
+        if(!$this->problem_model->is_exist(array( 'id' => $problem_id)))$this->finish(false, '不存在的问题');
+     
+        $problem = $this->problem_model->get(array( 'id' => $problem_id));
+        if($type == 1 && $problem["answer_time"] + 1200 < time()){
+            $this->problem_model->def($problem_id);
+            $this->finish(false, '问题已经过期，无法回答！');
         }
-
-        $problem = $this->problem_model->get(array(
-            'id' => $problem_id
-        ));
-
         if ($this->me['id'] !== $problem['owner_id'] && $this->me['type'] !== 1) {
             $this->finish(false, '没有权限');
         }
@@ -117,15 +113,14 @@ class problem_api extends base_api {
         $new_detail_id = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'content' => $content,
+            'problem_id' => $problem_id,
             'type' => $type
         ));
 
         $details = json_decode($problem['details']);
         $details[] = $new_detail_id;
 
-        $this->problem_model->edit($problem_id, array(
-            'details' => $details
-        ));
+
 
         $this->problem_model->done($problem_id);
 
@@ -133,9 +128,7 @@ class problem_api extends base_api {
     }
 
     public function request_problem() {
-        parent::require_login();
-        $params = $this->get_params('POST', array('problem_id'));
-        extract($params);
+        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
         if ($this->me['type'] != 1) {
             $this->finish(false, '没有权限');
         }
@@ -143,14 +136,16 @@ class problem_api extends base_api {
         $problem = $this->problem_model->get(array(
             'id' => $problem_id
         ));
+        if($problem["owner_id"] == $this->me['id']){
+            $this->finish(false, '你不能认领自己发布的问题！');
 
+        }
         if ($this->problem_model->request(array(
             'pid' => $problem_id,
             'uid' => $this->me['id']
         )) === false) {
-            $this->finish(false, '问题不能认领');
+            $this->finish(false, '您现在不能认领该问题，这个问题已经被人认领了，或者已经完成了回答！');
         }
-
         $this->finish(true);
     }
 
