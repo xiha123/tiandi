@@ -8,7 +8,7 @@
         <h3 class="information">基 础 资 料</h3>
         <div class="Photo"style="background-color:#209ba2;width:150px;height: 150px;margin: 25px auto;">
         </div>
-        <input type="text" placeholder="昵 称"/>
+        <input type="text" placeholder="昵 称" id="ajax_nickname" />
         <textarea name="" id="signature" cols="30" rows="10" placeholder="签名档" ></textarea>
         <h3 class="information">账户设置</h3>
         <input type="text" placeholder="邮箱"/>

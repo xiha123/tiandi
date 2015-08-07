@@ -70,9 +70,7 @@ class Admin extends CI_Controller {
 					'img' => $returnConfig['file_name'],
 					'link' => $link,
 					'color' => $color,
-					'time' => time(),
 					'text' => $description,
-
 				);
 				$this->db->where('id', $id);
 				$this->db->update('slide', $data);

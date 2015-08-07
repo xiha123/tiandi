@@ -7,6 +7,7 @@ class user_api extends base_api {
     public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
+        $this->me = $this->user_model->check_login();
     }   
 
     public function login() {
@@ -28,19 +29,31 @@ class user_api extends base_api {
     }
 
     // 编辑修改用户资料
-    // public function edit() {
-    //     $params = parent::getParams('POST', array('nickname')); if (empty($params)) return;extract($params);
-    //     $cur_id = $this->session->userdata('uid');
-    //     if (!isset($cur_id)) {
-    //         parent::finish(false, '没有权限');
-    //         return;
-    //     }
-    //     $this->user_model->edit(array(
-    //         'uid' => $cur_id,
-    //         'nickname' => $nickname
-    //     ));
-    //     parent::finish(true);
-    // }
+    public function edits() {
+
+        $params = parent::get_params('POST', array('nickname',"desk","email","phone")); if (empty($params)) return;extract($params);
+        //,"pwd_lost","pwd_new"
+        $pwd_lost = $this->input->post("pwd_lost");
+        $pwd_new = $this->input->post("pwd_new");
+        $cur_id = $this->session->userdata('uid');
+        if (!isset($cur_id)) {
+            parent::finish(false, '没有权限');
+            return;
+        }
+        $edit_array = array(
+            'nickname' => $nickname,
+            'description' => $desk,
+            'email' => $email,
+            'cellphone' => $phone,
+        );
+        if($pwd_lost !="" && md5($pwd_lost.$this->me['salt']) != $this->me["pwd"]){
+            parent::finish(false, '您输入的历史密码不正确');return;
+        }else{
+            $edit_array['pwd'] = md5($pwd_new . $this->me['salt']);
+        }
+        $this->user_model->edit($this->me['id'],$edit_array);
+        parent::finish(true);
+    }
 
 
 

@@ -38,22 +38,22 @@
 				<div class="desc"><?= $problem_detail[0]['content'] ?></div>
 			</div>
 			<?php
-				if($problem_detaill[0]["code"] != NULL){
-					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill[0]["code"].'</textarea></div>';
+				if($problem_detail[0]["code"] != NULL){
+					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detail[0]["code"].'</textarea></div>';
 				}
-				for ($index=1; $index < count($problem_detaill); $index++) {
+				for ($index=1; $index < count($problem_detail); $index++) {
 			?>
 					<div class="whyUser">
-						<a href="./home?uid=<?=$problem_detaill[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detaill[$index]['user']['avatar']?>" alt="" width="35" height="35"></a>
+						<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detail[$index]['user']['avatar']?>" alt="" width="35" height="35"></a>
 						<div class="data">
-							<p class="name">大神：<a href="./home?uid=<?=$problem_detaill[$index]['user']['id']?>" target="_blank"><?=$problem_detaill[$index]['user']['nickname']?></a></p>
+							<p class="name">大神：<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><?=$problem_detail[$index]['user']['nickname']?></a></p>
 							<p class="date">回答于：<?=$problem_data['ctime']?></p>
 						</div>
-						<div class="desc"><?=$problem_detaill[$index]['content']?></div>
+						<div class="desc"><?=$problem_detail[$index]['content']?></div>
 					</div>
 			<?php
-					if($problem_detaill[$index]["code"] != NULL){
-						echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill[$index]["code"].'</textarea></div>';
+					if($problem_detail[$index]["code"] != NULL){
+						echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detail[$index]["code"].'</textarea></div>';
 					}
 				}
 			?>

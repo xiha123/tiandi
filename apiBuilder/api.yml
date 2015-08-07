@@ -58,7 +58,7 @@ api:
         - nickname
         - pwd
 -
-    url: user_api/edit
+    url: user_api/edits
     type: post
     name: editUser
     args:
