@@ -1,5 +1,5 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/student.css">
+<link rel="stylesheet" href="./static/css/miaoda/student.css">
 <body>
 
 <script>
@@ -14,7 +14,7 @@
 
 
 
-<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="wrapper">
 		<div class="leftBox">
@@ -35,13 +35,13 @@
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
 					<p class="date">提问于：<?=$problem_data['ctime']?></p>
 				</div>
-				<div class="desc"><?=$problem_detaill[0]['content']?></div>
+				<div class="desc"><?= $problem_detail[0]['content'] ?></div>
 			</div>
 			<?php
 				if($problem_detaill[0]["code"] != NULL){
 					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detaill[0]["code"].'</textarea></div>';
 				}
-				for ($index=1; $index < count($problem_detaill); $index++) { 
+				for ($index=1; $index < count($problem_detaill); $index++) {
 			?>
 					<div class="whyUser">
 						<a href="./home?uid=<?=$problem_detaill[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detaill[$index]['user']['avatar']?>" alt="" width="35" height="35"></a>
@@ -67,7 +67,7 @@
 					echo $problem_data['type'] == 1 ? '<div class="doubt-time">20:00</div>' :'';
 				}
 			?>
-			
+
 			<?php if($problem_data['answer_id'] == @$id && $problem_data['type'] == 1){ ?>
 				<div class="doubt">
 					<table class="table">
@@ -84,7 +84,7 @@
 
 				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
 					echo '<div class="button close" data-id="' . $problem_data["id"] . '">
-						<a href="javascript:" class="ajax_up"><i class="fa fa-star"></i>点赞 
+						<a href="javascript:" class="ajax_up"><i class="fa fa-star"></i>点赞
 						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
 						<a href="#"><i class="fa fa-circle"></i>分享</a>';
 					echo $problem_data['owner_id'] == @$id && $problem_data['type'] == 2 ? '<button class="ajax_close">满意</button> <button class="none-background ajax_close_not">不满意</button>' :"";
@@ -92,7 +92,7 @@
 				}
 			?>
 
-			
+
 			<div class="button">
 				<?php
 					if($problem_data['type'] != 2 || $problem_data['type'] != 3){
@@ -137,12 +137,12 @@
 				}
 				echo '</ul>';
 				if($problem_data['type'] == 3){
-					$this->load->view("seconds/page",array(
+					$this->load->view("miaoda/page",array(
 						"page" => $page,
 						"page_max" => $page_max,
 						"page_count" => 5,
 						"page_url" => "./problem",
-						"hot" => "&p=" . $problem_data['id'] 
+						"hot" => "&p=" . $problem_data['id']
 					));
 				}
 			?>
