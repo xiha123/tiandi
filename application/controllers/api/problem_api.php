@@ -65,17 +65,13 @@ class problem_api extends base_api {
         $params = $this->get_params('POST', array('content', 'problem_id'));
         extract($params);
 
-        if ($this->problem_model->is_exist(array(
+        if (!$this->problem_model->is_exist(array(
             'id' => $problem_id
         ))) {
             $this->finish(false, '不存在的问题');
         }
 
-        $new_comment_id = $this->problem_comment_model->create(array(
-            'owner_id' => $this->me['id'],
-            'problem_id' => $problem_id,
-            'content' => $content
-        ));
+        $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'],$problem_id,$content);
 
         $problem = $this->problem_model->get(array(
             'id' => $problem_id
@@ -106,10 +102,9 @@ class problem_api extends base_api {
             $this->problem_model->def($problem_id);
             $this->finish(false, '问题已经过期，无法回答！');
         }
-        if ($this->me['id'] !== $problem['owner_id'] && $this->me['type'] !== 1) {
+        if ($this->me['id'] !== $problem['answer_id'] && $this->me['type'] !== 1) {
             $this->finish(false, '没有权限');
         }
-
         $new_detail_id = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'content' => $content,
@@ -119,9 +114,6 @@ class problem_api extends base_api {
 
         $details = json_decode($problem['details']);
         $details[] = $new_detail_id;
-
-
-
         $this->problem_model->done($problem_id);
 
         $this->finish(true);
@@ -138,7 +130,6 @@ class problem_api extends base_api {
         ));
         if($problem["owner_id"] == $this->me['id']){
             $this->finish(false, '你不能认领自己发布的问题！');
-
         }
         if ($this->problem_model->request(array(
             'pid' => $problem_id,
@@ -150,18 +141,13 @@ class problem_api extends base_api {
     }
 
     public function close_problem() {
-        parent::require_login();
-        $params = $this->get_params('POST', array('problem_id'));
-        extract($params);
-
-        $problem = $this->problem_model->get(array(
-            'id' => $problem_id
-        ));
-
-        if ($problem['owner_id'] !== $this->me['id']) {
-            $this->finish(false, '没有权限');
+        parent::require_login();$params = $this->get_params('POST', array('problem_id' , 'type'));extract($params);
+        $problem = $this->problem_model->get(array('id' => $problem_id));
+        if($problem['owner_id'] !== $this->me['id']){$this->finish(false, '您没有权利关闭这个问题！');}
+        if($type == "false"){
+            $this->problem_model->no($problem_id);
+            $this->finish(true);
         }
-
         if ($this->problem_model->close(array(
             'pid' => $problem_id
         )) === false) {

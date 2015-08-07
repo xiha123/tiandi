@@ -35,6 +35,7 @@
 		.tag .tag-box{background:#eee;top:-1px;padding:4px 3px 4px 7px;}
 			 .tag-box button{  cursor: pointer;outline: none; background: none;border:none;border-left:1px solid #ddd;color:#aaa;margin-left:5px;}
 
+.comment-list{margin-top:20px;float:left;width: 100%;}
 .comment-list li{color:#888;position:relative; float: left;width: 100%;margin-bottom:23px;}
 .comment-list img{width: 40px;margin-right: 10px;}
 .comment-list .name{color:#111;margin-bottom:5px;}

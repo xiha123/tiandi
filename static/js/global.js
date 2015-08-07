@@ -1,5 +1,6 @@
 $(".ajax_up").on("click" , function(){
     var _this= $(this);
+            
     var problem_id = $(this).parents().data('id');
     _td.api.upProblem({
         problem_id : problem_id,
@@ -17,7 +18,7 @@ $(".ajax_up").on("click" , function(){
     });
 })
 
-$(".button").on("click" , "#collect" , function(){
+$(".button").on("click" , ".collect" , function(){
     var _this = $(this);
     _td.api.collectProblem({
         problem_id : problem_id,
@@ -27,7 +28,7 @@ $(".button").on("click" , "#collect" , function(){
         showAlert(false,msg);
     });
 })
-$(".button").on("click" , "#uncollect" , function(){
+$(".button").on("click" , ".uncollect" , function(){
     _td.api.uncollectProblem({
         problem_id : problem_id,
     }).then(function(msg){
@@ -37,7 +38,7 @@ $(".button").on("click" , "#uncollect" , function(){
     });
 })
 
-$(".button").on("click" , "#follow" , function(){
+$(".button").on("click" , ".follow" , function(){
     _td.api.followProblem({
         problem_id : problem_id,
     }).then(function(msg){
@@ -46,7 +47,7 @@ $(".button").on("click" , "#follow" , function(){
         showAlert(false,msg);
     });
 })
-$(".button").on("click" , "#unfollow" , function(){
+$(".button").on("click" , ".unfollow" , function(){
     _td.api.unfollowProblem({
         problem_id : problem_id,
     }).then(function(msg){

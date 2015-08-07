@@ -101,7 +101,7 @@ api:
         - problem_id
         - content
 -
-    # 老师认领问题
+    # 老师认领问题 #已实现
     url: problem_api/request_problem
     type: post
     name: requestProblem

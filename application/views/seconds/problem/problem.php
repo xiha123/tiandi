@@ -80,47 +80,72 @@
 						</td></tr>
 					</table>
 				</div>
-			<?php } ?>
-			<div class="button close">
-			<?php
-				if($problem_data['type'] == 2){
-					echo '<a href="#"><i class="fa fa-star"></i>收藏</a>
-						<a href="#"><i class="fa fa-star"></i>点赞</a>
+			<?php }
+
+				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
+					echo '<div class="button close" data-id="' . $problem_data["id"] . '">
+						<a href="javascript:" class="ajax_up"><i class="fa fa-star"></i>点赞 
+						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
 						<a href="#"><i class="fa fa-circle"></i>分享</a>';
-				}
-				if($problem_data['owner_id'] == @$id && $problem_data['type'] == 2){
-					echo '<button>满意</button> <button class="none-background">不满意</button>';
+					echo $problem_data['owner_id'] == @$id && $problem_data['type'] == 2 ? '<button class="ajax_close">满意</button> <button class="none-background ajax_close_not">不满意</button>' :"";
+					echo "</div>";
 				}
 			?>
-			</div>
+
 			
 			<div class="button">
 				<?php
-					if($problem_data['type'] != 2){
+					if($problem_data['type'] != 2 || $problem_data['type'] != 3){
 						echo $problem_follow == true?
-						'<button id="follow" class="none-background"><i class="fa fa-heart-o"></i> 关注</button>':
-						'<button id="unfollow"><i class="fa fa-heart-o"></i> 取消关注</button>';
+						'<button class="none-background follow"><i class="fa fa-heart-o"></i> 关注</button>':
+						'<button class="unfollow"><i class="fa fa-heart-o"></i> 取消关注</button>';
 						echo $problem_collect == true ?
-						'<button id="uncollect">★ 取消收藏</button>':
-						'<button id="collect" class="none-background">★ 收藏</button>';
+						'<button class="uncollect">★ 取消收藏</button>':
+						'<button class="none-background collect">★ 收藏</button>';
 						echo '<button>众筹</button>';
-					}else if(@$type == 1){
-						echo $problem_data['type'] == 1 ? 
-						'<button id="reply">回答</button>' :
-						$problem_data['type'] == 0 ? 
-						'<button id="answer">认领问题</button>' : 
-						"";
+					} if(@$type == 1 && $problem_data["answer_id"] == @$id){
+						echo $problem_data['type'] == 0 ? '<button id="answer">认领问题</button>' : "";
+						echo $problem_data['type'] == 1 ? '<button id="reply">回答</button>' :"";
 					}
 				?>
 			</div>
+
+			<?php
+				if($problem_data['type'] == 3){
+			?>
+			<div class="doubt">
+				<table class="table">
+					<tr><td>
+						<div class="desc">
+							<script id="editor" type="text/plain" style="width:743px;height:140px;"></script>
+						</div>
+					</td></tr>
+				</table>
+			</div>
+			<div class="button">
+				<button id="ajax_comment">提交</button>
+			</div>
+			<?php }?>
+
+
 			<ul class="comment-list">
-				<!-- <i class="fa fa-thumbs-up"></i> 9</div> --> 
-				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
-				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
-				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
-				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p></li>
-				<li><img src="static/image/default.jpg" alt=""><p class="name">tocurd</p><p class="content">niu</p><div></li>
-			</ul>
+			<?php
+				if($problem_data['type'] == 3){
+					foreach ($problem_commenct as $key => $value) {
+						echo '<li><img src="'.$value['user']['avatar'].'" alt=""><p class="name">'.$value['user']['nickname'].' <span style="color:#aaa;margin-left:10px;font-size:12px;">'.$value['ctime'].'</span></p><p class="content">'.$value['content'].'</p></li>';
+					}
+				}
+				echo '</ul>';
+				if($problem_data['type'] == 3){
+					$this->load->view("seconds/page",array(
+						"page" => 1,
+						"page_max" => $page_max,
+						"page_count" => 5,
+						"page_url" => "./problem",
+						"hot" => "&p=" . $problem_data['id'] 
+					));
+				}
+			?>
 		</div>
 
 		<div class="rightBox">

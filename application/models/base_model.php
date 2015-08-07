@@ -31,6 +31,10 @@ class base_model extends CI_Model {
         return $this->db->where($params)->get($this->table_name, 1)->row_array();
     }
 
+	public function get_count($params) {
+		return $this->db->where($params)->count_all_results($this->table_name);
+	}
+
 	public function get_list($params, $page, $count) {
 		$page = $page < 0 ? 0 : $page;
 		return $this->db->where($params)->order_by('id', 'DESC')->limit($count, $page * $count)->get($this->table_name)->result_array();

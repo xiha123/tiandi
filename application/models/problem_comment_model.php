@@ -1,5 +1,1 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-include_once(APPPATH . 'models/base_model.php');
-
-class problem_comment_model extends base_model {	public function __construct() {		parent::__construct();		$this->tableName = 'problem_comment';	}}
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');include_once(APPPATH . 'models/base_model.php');class problem_comment_model extends base_model {	public function __construct() {		parent::__construct();		$this->table_name = 'problem_comment';	}	public function add_comment($owner_id , $problem_id , $content){		$this->db->insert($this->table_name, array(	            'owner_id' => $owner_id,	            'problem_id' => $problem_id,	            'content' => $content	        ));		return $this->db->insert_id();	}}
