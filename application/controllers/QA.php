@@ -1,6 +1,6 @@
 <?php
 
-class qa extends CI_Controller {
+class Qa extends CI_Controller {
 
 	function __construct() {
     	parent::__construct();
@@ -35,5 +35,3 @@ class qa extends CI_Controller {
 	}
 
 }
-
-

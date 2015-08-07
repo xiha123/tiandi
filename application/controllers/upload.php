@@ -1,12 +1,12 @@
 <?php
 
-class upload extends CI_Controller {
+class Upload extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		// $this->load->model('admin_model');
 		// $this->user_info = $this->admin_model->check_login();
 	}
-	
+
 
 	public function pic(){
 		$type = $this->input->post("type", true);
@@ -25,8 +25,8 @@ class upload extends CI_Controller {
 				$this -> model -> insertUploadPic($id , $type , $data["file_name"]);
 				echo  '{"status" : "true"}';
 			}
-		}		
-	}	
+		}
+	}
 
 
 }

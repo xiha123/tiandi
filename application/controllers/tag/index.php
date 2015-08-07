@@ -1,7 +1,7 @@
 <?php
 
 
-class index extends CI_Controller {
+class Index extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model("tag_model");
@@ -18,8 +18,8 @@ class index extends CI_Controller {
 		$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);
 		$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
-		
-	
+
+
 
 
 
