@@ -14,7 +14,7 @@ class index extends CI_Controller {
 		$id = $this->input->get("p");
 		$userdata = $this->user_model->check_login();
 		$userdata["problem_data"] = $this->problem_model->get_list_by_id($id);
-		if($userdata["problem_data"] == false){
+		if(!isset($userdata["problem_data"]["title"])){
 			show_404();
 		}
 		$userdata["problem_detaill"] = $this->problem_detail_model->get_detaill($userdata["problem_data"]['id']);
@@ -28,12 +28,8 @@ class index extends CI_Controller {
 		$index = 0;
 		foreach ($userdata["problem_commenct"] as $key => $value) {
 			$userdata["problem_commenct"][$index]['user']=$this->user_model->get_user_data($value['owner_id']);
-
 			$index ++;
 		}
-
-
-
 		$userdata["page_max"] = $this->problem_comment_model->get_count(array(
 				"problem_id" => $userdata["problem_data"]['id']
 		));

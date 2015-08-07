@@ -2,10 +2,15 @@
 class apply extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
+		$this->load->model("user_model");
+		$this->me = $this->user_model->check_login();
 	}
 	public function index() {
-		$userdata = $this->user_model->check_login();
-		$this->load->view('seconds/god/apply.php' , $userdata);
+		if($this->me['type'] == 1){exit ("您已经是大神了，无需再次申请！");}
+		
+
+
+		$this->load->view('seconds/god/apply.php' , $this->me);
 	}
 
 }

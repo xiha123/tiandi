@@ -57,6 +57,7 @@
 - alipay 支付宝账号
 - gold_coin 金币数量
 - silver_coin 银币数量
+- idcar 身份证
 
 ### class_guide
 

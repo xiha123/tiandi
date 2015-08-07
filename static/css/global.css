@@ -52,7 +52,7 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .seconds-nav li .active,
 .seconds-nav li a:hover{background-color: #2AC3CB}
 .seconds-nav .seacher{position:relative; margin-top:2px;width:290px;}
-.seconds-nav .seacher input[type="text"]{width:260px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
+.seconds-nav .seacher input[type="text"]{  line-height: 30px;width:260px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
 .seconds-nav .seacher button{position:absolute; right:5px; cursor:pointer; background: none;height:16px;top:6px;color:#219ba1;border:none;}
 
 
@@ -225,6 +225,16 @@ textarea ,button{
     color:#fff;
     padding:0 15px;
 }
+.user li{
+    position:relative;
+}
+.user .notice_news{
+    position: absolute;
+    right:45px;
+    top:0;
+    color:#fff;
+    font-size: 12px;
+}
 .user img {
     float:left;
     margin-right:10px;
@@ -247,6 +257,7 @@ textarea ,button{
 }
 .user-menu a {
     display:block;
+    padding:none !important;
     text-align:center;
 }
 .user-menu a:hover {

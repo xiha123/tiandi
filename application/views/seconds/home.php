@@ -84,10 +84,13 @@
 			<h2 class="box-title">热门标签</h2>
 
 			<ul class="list-tag">
-				<li><a href="#" class="tag-box">html5</a></li>
-				<li><a href="#" class="tag-box">javascript</a></li>
-				<li><a href="#" class="tag-box">jquery</a></li>
-				<li><a href="#" > 更多</a></li>
+				<?php
+					$tag_list = $this->tag_model->get_tag(0 , 20 , "all");
+					foreach ($tag_list as $key => $value) {
+						echo '<li><a href="./tag/?name=' . $value['name'] . '" class="tag-box">'.$value['name'].'</a></li>';
+					}
+				?>
+				<!-- <li><a href="#" > 更多</a></li> -->
 			</ul>
 		</div>
 

@@ -1,6 +1,5 @@
 $(".ajax_up").on("click" , function(){
     var _this= $(this);
-            
     var problem_id = $(this).parents().data('id');
     _td.api.upProblem({
         problem_id : problem_id,

@@ -12,8 +12,8 @@
     color: #209ba2;
     margin-bottom: 20px;
 }
-form [type=text],
-[type=submit],
+.submitbutton [type=text],
+[type=button],
 [type=password]{
     width: 100%;
     height: 40px;
@@ -42,6 +42,7 @@ textarea{
     margin-bottom: 15px;
 }
 .submitbutton button{
+    cursor: pointer;
     width: 120px;
     background-color: #209ba2;
     color: #FFFFFF;
@@ -52,7 +53,7 @@ textarea{
     margin: 20px auto;
 }
 
-.submitbutton [class=fa fa-arrow-circle-right]{
+.submitbutton .fa.fa-arrow-circle-right{
     margin-left: 10px;
 }
 

@@ -38,12 +38,37 @@
                 }
             ?>
         </ul>
+
+
         <div class="user">
-            <img src="./static/image/test.jpg" height="25" width="25" alt="avatar">用户昵称
-            <ul class="user-menu">
-                <li><a href="">用户资料</a></li>
-                <li><a href="">退出登录</a></li>
-            </ul>
+            <?php
+                if(isset($nickname)){
+            ?>
+                    <img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname?> 
+                    <ul class="user-menu seconds">
+                        <?php
+                            echo  $type == 0 ? 
+                            '<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>' : 
+                            '<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>';
+                        ?>
+                        <li><a href="./notice" target="_blank">通知<font class="notice_news"><i class="fa fa-bell-o"></i></font></a> </li>
+                        <li><a href="">设置</a></li>
+                        <li><a href="">充值</a></li>
+                        <li><a href="javascript:" id="ajax_outlogin">退出</a></li>
+                    </ul>
+            <?php
+                }else{
+                    echo '
+                        <div class="notLogin">
+                            <a href="javascript:" class="bomb-login"><i class="fa fa-user"></i>登录</a>
+                            <a href="javascript:" class="bomb-reg">注册</a>
+                        </div>';
+                }
+
+            ?>
+
+            <!--  -->
         </div>
     </div>
+
 </div>

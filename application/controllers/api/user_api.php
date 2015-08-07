@@ -48,7 +48,7 @@ class user_api extends base_api {
     public function create() {
         $params = parent::get_params('POST', array('name', 'nickname', 'pwd'));if (empty($params)) return; extract($params);
         if (false === $this->user_model->create(array(
-            'name' => $name,
+            'email' => $name,
             'nickname' => $nickname,
             'pwd' => $pwd
         ))) {

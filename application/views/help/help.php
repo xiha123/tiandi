@@ -4,8 +4,10 @@
 </head>
 
 <body>
+<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 3)); ?>
+<?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
-    <ul>
+    <ul class="help">
         <li>
             <h1>一、内容内容</h1>
             <p>资料介绍资料介绍资料介绍资料介绍资料介绍资料资料介绍资料介绍资料介绍资料介绍资料介绍资料资料介绍资料介绍资料介绍资料介绍资料介绍资料资料介绍资料介绍资料介绍资料介绍资料介绍资料资料介绍资料介绍资料介绍资料介绍资料介绍资料</p>

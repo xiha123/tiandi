@@ -7,6 +7,7 @@ p{
     color: #a9a9a9;
     margin-top: 10px;
 }
-li{
-    margin-top: 15px;
+.wrapper{padding-bottom:120px;}
+.wrapper .help li{
+    margin-top: 45px;
 }

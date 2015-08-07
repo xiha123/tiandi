@@ -17,7 +17,7 @@ class home extends CI_Controller {
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$uid = $this->input->get("uid");
 		$userdata["user"] = $this->user_model->get_user_data($this->input->get("uid" , true));if(!isset($userdata['user']['name'])){show_404();}
-		if($userdata["user"]["type"] == "0"){
+		if($userdata["user"]["type"] == "0" || $userdata["user"]["type"] == "2"){
 			$userdata['love'] = isset($_GET['love']) ? true : false;
 			$userdata['owner'] = isset($_GET['owner']) ? true : false;
 			if($userdata['love']){

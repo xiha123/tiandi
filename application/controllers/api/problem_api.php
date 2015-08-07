@@ -60,26 +60,18 @@ class problem_api extends base_api {
     }
 
     public function create_comment() {
-        parent::require_login();
-
-        $params = $this->get_params('POST', array('content', 'problem_id'));
-        extract($params);
-
+        parent::require_login(); $params = $this->get_params('POST', array('content', 'problem_id'));extract($params);
         if (!$this->problem_model->is_exist(array(
             'id' => $problem_id
         ))) {
             $this->finish(false, '不存在的问题');
         }
-
         $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'],$problem_id,$content);
-
         $problem = $this->problem_model->get(array(
             'id' => $problem_id
         ));
-
         $comments = json_decode($problem['comments']);
         $comments[] = $new_comment_id;
-
         $this->problem_model->edit($problem_id, array(
             'comments' => json_encode($comments)
         ));
@@ -115,6 +107,9 @@ class problem_api extends base_api {
         $details = json_decode($problem['details']);
         $details[] = $new_detail_id;
         $this->problem_model->done($problem_id);
+        if($type == 1){
+            $this->news_model->add_news($problem['owner_id'],"大神：" . $this->me['nickname'] . " 回答了您的问题，".$problem['title']."，快去看看吧！" );
+        }
 
         $this->finish(true);
     }

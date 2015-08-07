@@ -103,9 +103,9 @@
 						'<button class="uncollect">★ 取消收藏</button>':
 						'<button class="none-background collect">★ 收藏</button>';
 						echo '<button>众筹</button>';
-					} if(@$type == 1 && $problem_data["answer_id"] == @$id){
+					} if(@$type == 1 ){
 						echo $problem_data['type'] == 0 ? '<button id="answer">认领问题</button>' : "";
-						echo $problem_data['type'] == 1 ? '<button id="reply">回答</button>' :"";
+						echo $problem_data['type'] == 1 && $problem_data["answer_id"] == @$id ? '<button id="reply">回答</button>' :"";
 					}
 				?>
 			</div>
@@ -138,7 +138,7 @@
 				echo '</ul>';
 				if($problem_data['type'] == 3){
 					$this->load->view("seconds/page",array(
-						"page" => 1,
+						"page" => $page,
 						"page_max" => $page_max,
 						"page_count" => 5,
 						"page_url" => "./problem",
