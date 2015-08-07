@@ -1,7 +1,6 @@
 <?php
 
-
-class Seconds extends CI_Controller {
+class Miaoda extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 
@@ -33,7 +32,7 @@ class Seconds extends CI_Controller {
 			}
 		}
 		$this->load->library('parser');
-		$this->parser->parse("seconds/home.php" , $userdata);
+		$this->parser->parse("miaoda/home.php" , $userdata);
 	}
 
 
@@ -44,35 +43,35 @@ class Seconds extends CI_Controller {
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$this->load->view('seconds/god.php' , $userdata);
+		$this->load->view('miaoda/god.php' , $userdata);
 	}
 	public function search() {
 		$userdata = $this->user_model->check_login();
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$this->load->view('seconds/search.php' , $userdata);
+		$this->load->view('miaoda/search.php' , $userdata);
 	}
 	public function tag(){
 		$userdata = $this->user_model->check_login();
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$this->load->view('seconds/tag.php' , $userdata);
+		$this->load->view('miaoda/tag.php' , $userdata);
 	}
 	public function tacher(){
 		$userdata = $this->user_model->check_login();
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$this->load->view("seconds/tacher.php" , $userdata);
+		$this->load->view("miaoda/tacher.php" , $userdata);
 	}
 	public function student(){
 		$userdata = $this->user_model->check_login();
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$this->load->view("seconds/student.php" , $userdata);
+		$this->load->view("miaoda/student.php" , $userdata);
 	}
 
 	public function godhome(){
@@ -80,14 +79,14 @@ class Seconds extends CI_Controller {
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$this->load->view("seconds/godhome.php" , $userdata);
+		$this->load->view("miaoda/godhome.php" , $userdata);
 	}
 	public function closeProblem(){
 		$userdata = $this->user_model->check_login();
 		if($userdata["avatar"] == NULL){
 			$userdata["avatar"] = "static/image/default.jpg";
 		}
-		$this->load->view("seconds/closeProblem.php" , $userdata);
+		$this->load->view("miaoda/closeProblem.php" , $userdata);
 	}
 
 	public function p($id = NULL){
@@ -103,7 +102,7 @@ class Seconds extends CI_Controller {
 		$userdata["problem_detaill"] = $this->problem_detail_model->get_detaill($userdata["problem_data"]['id']);
 		$userdata["problem_user"] = $this->user_model->get_user_data($userdata["problem_data"]["owner_id"]);
 		$this->load->library('parser');
-		$this->parser->parse("seconds/problem.php" , $userdata);
+		$this->parser->parse("miaoda/problem.php" , $userdata);
 	}
 
 }

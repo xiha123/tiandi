@@ -1,8 +1,8 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/home.css">
+<link rel="stylesheet" href="./static/css/miaoda/home.css">
 
 <body>
-<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 
 <div class="wrapper">
@@ -26,20 +26,20 @@
 			<button id="ajax_problemSubmit">提交 <img src="static/image/sign-up.png"></button>
 		</div>
 	</div>
-	
+
 	<div class="content">
 		<div class="left-content">
 
 			<div class="tab">
 				<ul class="title" >
-					<li <?php if(!$hot_type){ echo 'class="active"'; } ?>><a href="./seconds">最新</a></li>
-					<li <?php if($hot_type){ echo 'class="active"'; } ?>><a href="./seconds?hot=hot">热门</a></li>
+					<li <?php if(!$hot_type){ echo 'class="active"'; } ?>><a href="./miaoda">最新</a></li>
+					<li <?php if($hot_type){ echo 'class="active"'; } ?>><a href="./miaoda?hot=hot">热门</a></li>
 					<li><a href="javascript:">众筹</a></li>
 				</ul>
 				<ul class="list-data">
 					<li>
 						<ul class="list-data">
-						<?php foreach($problem_list as $key => $value){ ?>			
+						<?php foreach($problem_list as $key => $value){ ?>
 							<li data-id="<?=$value['id']?>">
 								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
 								<div class="list-title">
@@ -54,18 +54,18 @@
 										}
 									?>
 								</ul>
-								
+
 								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
-							</li>	
+							</li>
 						<?php }?>
 						</ul>
-						
+
 						<?php
-							$this->load->view("seconds/page",array(
+							$this->load->view("miaoda/page",array(
 								"page" => $page,
 								"page_max" => $problem_list_count,
 								"page_count" => 20,
-								"page_url" => "./seconds",
+								"page_url" => "./miaoda",
 								"hot" => $hot_type ? "&hot=hot":""
 							));
 						?>
@@ -74,7 +74,7 @@
 			</div>
 
 
-			
+
 		</div>
 
 

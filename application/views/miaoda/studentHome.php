@@ -1,9 +1,9 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/tacher.css">
+<link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
-<?php 
-	$this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); 
-	$this->load->view('widgets/windows.php' ); 
+<?php
+	$this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); 
+	$this->load->view('widgets/windows.php' );
 ?>
 	<div class="wrapper">
 		<div class="tacher-data home">
@@ -24,7 +24,7 @@
 				if($user["skilled_tags"] == array()){
 					echo '<p class="not">还没有收藏标签</p>';
 				}else{
-					
+
 				}
 			?>
 			<!-- <a href="#" class="tag-box"></a> -->
@@ -57,7 +57,7 @@
 									?>
 								</ul>
 								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
-							</li>	
+							</li>
 						<?php }	?>
 					</ul>
 
@@ -83,7 +83,7 @@
 
 
 
-			
+
 		</div>
 
 	</div>

@@ -1,5 +1,5 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/search.css">
+<link rel="stylesheet" href="./static/css/miaoda/search.css">
 <body>
 	<div class="wrapper">
 
@@ -15,7 +15,7 @@
 				</ul>
 				<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
 			</li>
-		
+
 			<li>
 				<div class="link-num"><p>999</p><p>点赞</p></div>
 				<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
@@ -26,7 +26,7 @@
 				</ul>
 				<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
 			</li>
-		
+
 			<li>
 				<div class="link-num"><p>999</p><p>点赞</p></div>
 				<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
@@ -37,7 +37,7 @@
 				</ul>
 				<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
 			</li>
-		
+
 			<li>
 				<div class="link-num"><p>999</p><p>点赞</p></div>
 				<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>
@@ -48,7 +48,7 @@
 				</ul>
 				<div class="list-date">大神 <font>Tocurd</font> 回答于：20:30</div>
 			</li>
-		
+
 			<li>
 				<div class="link-num"><p>999</p><p>点赞</p></div>
 				<div class="list-title">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div>

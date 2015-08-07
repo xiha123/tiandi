@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class OlClass extends CI_Controller {
+class Olclass extends CI_Controller {
 
 	public function index() {
 		$this->load->model('slide_model');

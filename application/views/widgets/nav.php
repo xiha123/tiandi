@@ -6,12 +6,12 @@
                 $navList = array(
                     array(
                         'name' => '在线课堂',
-                        'link' => './olclass',
+                        'link' => 'olclass',
                         'active' => false
                     ),
                     array(
                         'name' => '实时答疑',
-                        'link' => './seconds',
+                        'link' => 'miaoda',
                         'active' => false
                     ),
                     array(
@@ -44,11 +44,11 @@
             <?php
                 if(isset($nickname)){
             ?>
-                    <img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname?> 
+                    <img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname?>
                     <ul class="user-menu seconds">
                         <?php
-                            echo  $type == 0 ? 
-                            '<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>' : 
+                            echo  $type == 0 ?
+                            '<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>' :
                             '<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>';
                         ?>
                         <li><a href="./notice" target="_blank">通知<font class="notice_news"><i class="fa fa-bell-o"></i></font></a> </li>
