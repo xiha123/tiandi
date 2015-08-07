@@ -8,8 +8,8 @@
 <div class="main">
 	<div class="stage">
 		<ul class="wrapper">
-			<li><a href="./olclass"><img src="./static/image/online.png" height="90" width="90"></a></li>
-			<li><a href="#"><img src="./static/image/problem.png" height="90" width="90"></a></li>
+			<li><a href="olclass"><img src="./static/image/online.png" height="90" width="90"></a></li>
+			<li><a href="miaoda"><img src="./static/image/problem.png" height="90" width="90"></a></li>
 			<li><a href="#"><img src="./static/image/study.png" height="90" width="90"></a></li>
 			<li><a href="#"><img src="./static/image/god.png" height="90" width="90"></a></li>
 			<li><a href="#"><img src="./static/image/Tree.png" height="90" width="90"></a></li>

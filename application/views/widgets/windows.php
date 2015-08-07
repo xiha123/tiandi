@@ -3,7 +3,7 @@
 	<div class="login" id="login">
 		<div class="login-title">
 			<h2>登录</h2>
-			<a href="javascript:" class="close">X</a>
+			<a href="javascript:;" class="close"><i class="fa fa-close"></i></a>
 		</div>
 		<div class="login-content">
 			<ul>
@@ -15,7 +15,7 @@
 					社交账号
 					<img src="static/image/qq.png" alt="" width="20">
 					<img src="static/image/weibo.png" alt=""width="25">
-					<a href="javascript:" class="bomb-reg" >注册账号</a>
+					<a href="javascript:;" class="bomb-reg">注册账号</a>
 				</li>
 			</ul>
 		</div>
@@ -24,7 +24,7 @@
 	<div class="login" id="reg">
 		<div class="login-title">
 			<h2>注册</h2>
-			<a href="javascript:" class="close">X</a>
+			<a href="javascript:;" class="close"><i class="fa fa-close"></i></a>
 		</div>
 		<div class="login-content">
 			<ul>
@@ -38,7 +38,7 @@
 					社交账号
 					<img src="static/image/qq.png" alt="" width="20">
 					<img src="static/image/weibo.png" alt=""width="25">
-					<a href="javascript:" class="bomb-login">点击登录</a>
+					<a href="javascript:;" class="bomb-login">直接登录</a>
 				</li>
 			</ul>
 		</div>
