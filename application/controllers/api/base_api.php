@@ -25,7 +25,18 @@ class base_api extends CI_Controller {
         )));
     }
 
- 
+ /**
+ * 邮件的正则表达式  @author：lijianghai
+ */
+    function  isEmail($email = null){ 
+
+        $preg = preg_match("/w+([-+.']w+)*@w+.w+([-.]w+)*/",trim($email));
+        if(!$preg){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     /**
      * @method get_params

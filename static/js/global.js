@@ -118,7 +118,7 @@ $("#ajax_reg").on('click' , function() {
             location.reload();
         },1000)
     },function(msg){
-        showAlert(msg);
+        showAlert(false,msg);
     });
 });
 

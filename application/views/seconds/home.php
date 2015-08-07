@@ -54,6 +54,7 @@
 										}
 									?>
 								</ul>
+								
 								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
 							</li>	
 						<?php }?>

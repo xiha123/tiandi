@@ -85,8 +85,8 @@ class problem_api extends base_api {
             'content' => true,
             'type' => true,
             'problem_id' => true,
-            'code' => false
         )); extract($params);
+        $code = $this->input->post("code");
         if(!$this->problem_model->is_exist(array( 'id' => $problem_id)))$this->finish(false, '不存在的问题');
      
         $problem = $this->problem_model->get(array( 'id' => $problem_id));
@@ -101,6 +101,7 @@ class problem_api extends base_api {
             'owner_id' => $this->me['id'],
             'content' => $content,
             'problem_id' => $problem_id,
+            'code' => $code,
             'type' => $type
         ));
 
