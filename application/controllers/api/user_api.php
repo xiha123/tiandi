@@ -90,6 +90,70 @@ class user_api extends base_api {
     //     print_r($this->get_user_data($id));
 
     // } 
+    public function edit_god(){
+        $params = parent::get_params('POST', array('alipay', 'goddesc'));if (empty($params)) return; extract($params);
+        if($this->user_model->edit($this->me['id'],array(
+            "description" => $goddesc,
+            "alipay" => $alipay
+        ))){
+            $this->finish(true);
+        }else{
+            $this->finish(false,"服务器异常！");
+        }
+    }
+    public function upload_pic(){
+        
+        if(isset($_FILES["userfile"])){
+            $config['upload_path'] = './static/uploads/';
+            $config['allowed_types'] = 'bmp|jpg|jpeg';
+
+            $config['max_size'] = '2048';
+            $config['file_name'] = $this->me["id"].".jpg";
+            $config['overwrite'] = true;
+            $this->load->library('upload', $config);
+            if($this->upload->do_upload("userfile")){
+                $config_img['image_library'] = 'gd2';
+                $data = $this->upload->data();
+                $config_img['source_image'] = './static/uploads/' . $data['file_name'];
+                $config_img['maintain_ratio'] = false;
+                $config_img['new_image'] =  './static/uploads/'.$this->me["id"].".jpg" ;
+                $config_img['create_thumb'] = false;
+                $config_img['width'] = 150;
+                $config_img['height'] = 150;
+                $this->load->library('image_lib', $config_img); 
+                $this->image_lib->resize();
+
+                if($this->user_model->updata_pic($this->me['id'])){
+
+                     $this->finish(true,"ok");
+                }else{
+                    $this->finish(false,"服务器异常！");
+                }
+            }else{
+                    $this->finish(false,$this->upload->display_errors("",""));
+            }
+        }else{
+            $this->finish(false,"没有照片被上传请选择照片后再上传！");
+        }
+
+    }
+  //       echo  '{"status" : "false" , "error" : "' . $this->upload->display_errors() . '"}';
+  //       }else{
+  //       $returnConfig = $this->upload->data();
+  //       $this->load->database();
+  //       $data = array(
+  //       'name' => $title,
+  //       'type' => $type,
+  //       'img' => $returnConfig['file_name'],
+  //       'link' => $link,
+  //       'color' => $color,
+  //       'text' => $description,
+  //       );
+  //       $this->db->where('id', $id);
+  //       $this->db->update('slide', $data);
+  //       echo  '{"status" : "true"}';
+  //       }
+
 
 
     public function get_collect_json($pid) {
@@ -121,4 +185,5 @@ class user_api extends base_api {
         }
         parent::finish(true);
     }
+
 }

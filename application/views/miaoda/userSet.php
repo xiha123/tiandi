@@ -10,15 +10,18 @@
 
 
 <div class="box">
-    <form action="javascript:;" method="get" class="submitbutton">
         <h3 class="information">基 础 资 料</h3>
         <div class="Photo"style="background-color:#209ba2;width:150px;height: 150px;margin: 25px auto;">
-            <img src="<?=$avatar?>"/>
+            <img src="<?=$avatar?>" width="150" height="150"/>
         </div>
-            <button class="file">
-                更换头像
-                <input type="file" id="ajax_userPic">
-            </button>
+    <form action="javascript:;" id="ajax_upload" enctype="multipart/form-data">
+        <button class="file">
+            更换头像
+            <input type="file" id="ajax_userPic" name="userfile">
+        </button>
+    </form>
+
+    <form action="javascript:;" method="get" class="submitbutton">
         <input type="text" placeholder="昵 称" id="ajax_nickname"  value="<?=$nickname?>"/>
         <textarea name="" id="signature" cols="30" rows="10" id="ajax_description" placeholder="签名档"><?=$description?></textarea>
         <h3 class="information">账户设置</h3>
@@ -45,17 +48,19 @@
             <div class="line"></div>
             <h3 class="information">大神资料设置</h3>
             <div class="personmessage">
-                <p>真 实 姓 名：某某某</p>
-                <p>支付宝账号：某某某</p>
+                <p>真 实 姓 名：<?=$name?></p>
+                <p>支付宝账号：<?=$alipay?></p>
             </div>
 
-            <input type="password" placeholder="支付宝账号"/>
-            <textarea name="" id="experience" cols="30" rows="10" placeholder="项目经历"></textarea>
-            <button type="submit"  id="ajax_userSet">
+            <input type="text" placeholder="支付宝账号" value="<?=$alipay?>" id="alipay" />
+            <textarea name="" id="experience" cols="30" rows="10" placeholder="项目经历" id="goddesc"><?=$description?></textarea>
+            <button type="submit"  id="ajax_godset">
                 提 交<i class="fa fa-arrow-circle-right"></i>
             </button>
         <?php } ?>
     </form>
+
 <?php $this->load->view('widgets/footer.php'); ?>
-    <script src="static/js/userSet.js"></script>
+<script src="static/lib/jquery.form/jquery.form.min.js"></script>
+<script src="static/js/userSet.js"></script>
 </div>

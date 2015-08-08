@@ -38,5 +38,69 @@ $("#ajax_userSet").click(function(){
 	}, function(msg){
 		showAlert(false,msg)
 	})
+})
 
+$("#ajax_userPic").change(function(e){
+	var reader = new FileReader();
+	reader.onload = function (e) {
+		$('.Photo img').attr('src', e.target.result);
+	}
+	var file = e.target.files[0];
+	reader.readAsDataURL(file);
+	var option = {
+		type : "post",
+		url:"api/user_api/upload_pic",
+		success:function (data) {
+			console.log(data);
+			data = JSON.parse(data);
+			  if(data.status ==true) {
+				showAlert(true,"上传成功！");
+				setTimeout(function(){
+					location.reload();
+				},1000);
+			} else {
+				showAlert(false,data.error);
+			}
+		},
+		error:function(){
+			showAlert(false,"网络异常，无法上传照片！");
+		}
+	};
+	$("#ajax_upload").ajaxSubmit(option);
+})
+
+
+$("#ajax_godset").click(function(){
+	var alipay = $("#alipay").val(),
+		goddesc = $("#experience").val();
+
+	if(goddesc.length< 15 || goddesc.length>200){
+		showAlert(false , "您输入的描述不太正确哟！");return false;
+	}
+	if(alipay.length<4){
+		showAlert(false , "您的支付宝输入的不太正常");return false;
+	}
+	$.ajax({
+		url : "api/user_api/edit_god",
+		type:"post",
+		data:{
+			"alipay" : alipay,
+			"goddesc" : goddesc
+		},
+		success:function(data){
+			console.log(data);
+			data = JSON.parse(data);
+			  if(data.status ==true) {
+				showAlert(true,"上传成功！");
+				setTimeout(function(){
+					location.reload();
+				},1000);
+			}else{
+				showAlert(false,data.error);
+			}
+		},
+		error : function() {
+			showAlert(false,"请求失败！");
+		}
+	})
 })

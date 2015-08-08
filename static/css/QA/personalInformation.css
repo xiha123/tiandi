@@ -12,8 +12,21 @@
     color: #209ba2;
     margin-bottom: 20px;
 }
-.file{cursor:pointer;}
-.file input[type='file']{
+#ajax_upload .file{cursor:pointer;    position: relative;
+    border:none;
+    font-family: "微软雅黑";
+    cursor: pointer;
+    width: 120px;
+    background-color: #209ba2;
+    color: #FFFFFF;
+    box-sizing: content-box;
+    font-weight: bolder;
+    font-size: 18px;
+    padding:4px 0px;
+    border-radius: 20px;
+    display: block;
+    margin: 20px auto;}
+#ajax_upload input[type='file']{
     opacity: 0;
     cursor:pointer;
     position: absolute;
