@@ -31,12 +31,3 @@ class god_api extends base_api {
 	}
 }
 
-// - name 有索引
-
-// - cellphone 手机号
-
-// - description 个人描述
-
-// - alipay 支付宝账号
-
-// - idcar 身份证

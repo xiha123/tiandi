@@ -2,14 +2,22 @@
 <link rel="stylesheet" href="./static/css/miaoda/home.css">
 <link rel="stylesheet" href="./static/css/miaoda/tag.css">
 <body>
+<script>
+	var tag = <?=$tag_data['id']?>;
+</script>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
+
 	<div class="wrapper">
 		<div class="left-content">
 
 			<div class="tag-desk">
 				<h1><?=$tag_data['name']?></h1>
-				<button>★ 收藏</button>
+				<?=!$collect_type ? 
+					'<button id="collect_tag">★ 收藏</button>' : 
+					'<button class="none-background" id="uncollect_tag">★ 取消收藏</button>'
+				?>
+				
 				<p class="desk">
 					<?=$tag_data['content'] == "" ? "" : $tag_data['content'];?>
 				</p>
@@ -85,5 +93,34 @@
 		</div>
 	</div>
 <?php $this->load->view('widgets/footer.php'); ?>
+<script type="text/javascript">
+	$("#collect_tag").click(function(event) {
+		/* Act on the event */
+		ajax("api/user_api/collect_tag",{"id" : tag});
+	});
+	$("#uncollect_tag").click(function(event) {
+		/* Act on the event */
+		ajax("api/user_api/uncollect_tag",{"id" : tag});
+	});
+	function ajax(url,data){
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'JSON',
+			data: data,
+			success:function(){
+				showAlert(true,"操作成功！");
+				 setTimeout(function(){
+			            location.reload();
+			        },1000)
+			},
+			error:function(){
+				showAlert(false,"网络异常！");
+			}
+		});
+		
+		
+	}
+</script>
 </body>
 </html>

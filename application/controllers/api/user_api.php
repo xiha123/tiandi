@@ -7,9 +7,25 @@ class user_api extends base_api {
     public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('tag_model');
         $this->me = $this->user_model->check_login();
     }   
-
+    public function collect_tag(){
+        $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
+        if($this->tag_model->collect_tag($id)){
+            $this->finish(true);
+        }else{
+            $this->finish(false,"操作失败！");
+        }
+    }
+    public function uncollect_tag(){
+        $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
+        if($this->tag_model->uncollect_tag($id)){
+            $this->finish(true);
+        }else{
+            $this->finish(false,"操作失败！");
+        }
+    }
     public function login() {
         $params = parent::get_params('POST', array('name', 'pwd'));if(empty($params)) return; extract($params);
         if ($this->user_model->login($name, $pwd) === false) {
@@ -137,22 +153,7 @@ class user_api extends base_api {
         }
 
     }
-  //       echo  '{"status" : "false" , "error" : "' . $this->upload->display_errors() . '"}';
-  //       }else{
-  //       $returnConfig = $this->upload->data();
-  //       $this->load->database();
-  //       $data = array(
-  //       'name' => $title,
-  //       'type' => $type,
-  //       'img' => $returnConfig['file_name'],
-  //       'link' => $link,
-  //       'color' => $color,
-  //       'text' => $description,
-  //       );
-  //       $this->db->where('id', $id);
-  //       $this->db->update('slide', $data);
-  //       echo  '{"status" : "true"}';
-  //       }
+  
 
 
 
@@ -185,5 +186,16 @@ class user_api extends base_api {
         }
         parent::finish(true);
     }
+
+
+
+
+
+
+
+
+
+
+
 
 }

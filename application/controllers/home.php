@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model("user_model");
 		$this->load->model("problem_model");
+		$this->load->model("tag_model");
 	}
 
 	public function index()
@@ -32,6 +33,14 @@ class Home extends CI_Controller {
 				$userdata["problem_list"] = $this->problem_model->get_collect($userdata['user']['collect_problems']);
 				$userdata["owner_list_count"] = count($userdata['user']['collect_problems']);
 			}
+			$index = 0;
+			$skilled_tags = json_decode($userdata['skilled_tags']);
+			foreach ($skilled_tags as $key => $value) {
+				$tagData = $this->tag_model->get(array("id" => $value->t));
+				$skilled_tags[$index]->t = $tagData['name'];
+				$index ++;
+			}
+			$userdata["skilled_tags"] = $skilled_tags;
 			$this->load->view("miaoda/studentHome.php" , $userdata);
 
 		}else{

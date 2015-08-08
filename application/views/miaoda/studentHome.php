@@ -21,10 +21,12 @@
 		<div class="tacher-tag ">
 			<h2>收藏标签：</h2>
 			<?php
-				if($user["skilled_tags"] == array()){
+				if($skilled_tags== array()){
 					echo '<p class="not">还没有收藏标签</p>';
 				}else{
-
+					foreach ($skilled_tags as $key => $value) {
+						echo '<a href="./tag/?name='.$value->t.'"  target="_blank" class="tag-box">'.$value->t.'</a>';
+					}
 				}
 			?>
 			<!-- <a href="#" class="tag-box"></a> -->
