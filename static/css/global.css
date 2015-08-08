@@ -120,7 +120,7 @@ html{
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
 	color:#333;
-	
+
     background:url(../image/footer.png) repeat-x bottom;
 }
 a {
@@ -133,7 +133,7 @@ a {
 
 .button{float:left;text-align: center; overflow: hidden; width:100%;}
 .button.submit{margin-top:20px;}
-.button.submit img{float: right;width: 24px;position: relative;right: 14px;}
+.button.submit img{float: right;width: 18px;position: relative;right: 18px; top:3px; }
 .button button{font-size:18px; cursor: pointer; font-weight:700;font-family: '微软雅黑'; text-align: center; background:#219ba1;color:#fff;margin:0px 15px;border:none;width:130px;height:30px; border-radius: 20px; left:0px;}
 .button .none-background{color:#219ba1;border:1px solid #219ba1;background: none}
 

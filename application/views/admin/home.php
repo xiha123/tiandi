@@ -1,8 +1,13 @@
 <?php $this->load->view('widgets/admin/header.php'); ?>
 	<link rel="stylesheet" href="static/css/admin/home.css">
-	<script type="text/javascript">
-
-
+	<script>
+		function signOut() {
+			_td.api.logoutAdmin().done(function () {
+				location = 'admin';
+			}).fail(function () {
+				showAlert('注销失败', 'danger');
+			});
+		}
 	</script>
 </head>
 
@@ -13,9 +18,7 @@
 	<div class="main-content">
 		<div class="main-title">
 			<ul class="nav nav-pills">
-				<li role="presentation" class="active"><a href="#"><i class="icon-home"></i>首页</a></li>
-				<li role="presentation"><a href="#">首页轮播设置</a></li>
-				<li role="presentation"><a href="#">课程表设置</a></li>
+				<li role="presentation"><a href="javascript:;" onclick="signOut()"><i class="fa fa-sign-out"></i>注销</a></li>
 			</ul>
 		</div>
 
@@ -28,9 +31,3 @@
 <?php $this->load->view('widgets/admin/footer.php'); ?>
 </body>
 </html>
-
-
-
-
-
-

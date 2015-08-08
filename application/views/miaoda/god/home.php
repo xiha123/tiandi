@@ -1,10 +1,10 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/godHome.css">
+<link rel="stylesheet" href="./static/css/miaoda/godHome.css">
 <body>
-<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="wrapper">
-	
+
 		<div class="leftBox">
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
 			<h3 class="name"><?=$user["nickname"] ?></h3>
@@ -13,7 +13,7 @@
 			<p class="money">银币： <?=$user['gold_coin']?></p>
 			<p class="money">金币： <?=$user['silver_coin']?></p>
 			<p class="desc"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
-			<h2 class="box-title">擅长标签</h2>	
+			<h2 class="box-title">擅长标签</h2>
 			<a href="#" class="tagBox">tag</a>
 			<a href="#" class="tagBox">tag</a>
 			<a href="#" class="tagBox">tag</a>
@@ -44,7 +44,7 @@
 								?>
 							</ul>
 							<div class="list-date"> 提问于：<?=$value['ctime']?></div>
-						</li>	
+						</li>
 				<?php }	?>
 			</ul>
 
@@ -71,10 +71,10 @@
 								?>
 							</ul>
 							<div class="list-date"> 提问于：<?=$value['ctime']?></div>
-						</li>	
-					<?php }	
+						</li>
+					<?php }
 
-						$this->load->view("seconds/page",array(
+						$this->load->view("miaoda/page",array(
 							"page" => $page,
 							"page_max" => $problem_list_count,
 							"page_count" => 5,
@@ -82,7 +82,7 @@
 							"hot" => $hot_type ? "&uid=" . $user['id'] . "&ok=hot" : "&uid=" . $user['id']
 						));
 					?>
-	
+
 				</ul>
 			</div>
 

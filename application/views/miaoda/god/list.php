@@ -1,7 +1,7 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/god.css">
+<link rel="stylesheet" href="./static/css/miaoda/god.css">
 <body>
-<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
 	<div class="tab" data-widget="tab">
@@ -33,7 +33,7 @@
 					<a href="javascript:" class="tagBox">tag</a>
 					<a href="javascript:" class="tagBox">tag</a>
 					<button> + 关注</button>
-				</div>				
+				</div>
 					<div class="page">
 						<ul>
 							<li><a href="javascript:">< 上一页</a></li>
@@ -45,16 +45,16 @@
 					</div>
 			</li>
 			<li>
-				
+
 			</li>
 			<li>
-				
+
 			</li>
 			<li>
-				
+
 			</li>
 			<li>
-				
+
 			</li>
 
 

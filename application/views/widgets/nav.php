@@ -26,7 +26,7 @@
                     ),
                     array(
                         'name' => '关于我们',
-                        'link' => '#',
+                        'link' => 'help',
                         'active' => false
                     )
                 );

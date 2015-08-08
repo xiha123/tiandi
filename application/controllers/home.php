@@ -32,7 +32,7 @@ class Home extends CI_Controller {
 				$userdata["problem_list"] = $this->problem_model->get_collect($userdata['user']['collect_problems']);
 				$userdata["owner_list_count"] = count($userdata['user']['collect_problems']);
 			}
-			$this->load->view("seconds/studentHome.php" , $userdata);
+			$this->load->view("miaoda/studentHome.php" , $userdata);
 
 		}else{
 			if(isset($userdata['name']) && $userdata['id'] == $uid){
@@ -45,12 +45,12 @@ class Home extends CI_Controller {
 					$userdata["news_problem"] = $this->problem_model->get_answer($uid , $userdata["page"] , 5);
 					$userdata["problem_list_count"] = $this->problem_model->answer_count($uid);
 				}
-				$this->load->view("seconds/god/home.php" , $userdata);
+				$this->load->view("miaoda/god/home.php" , $userdata);
 				return false;
 			}
 			$userdata["answer"] = $this->problem_model->get_answer($uid , $userdata["page"] , 10);
 			$userdata["answer_count"] = $this->problem_model->answer_count($uid);
-			$this->load->view("seconds/god/show.php" , $userdata);
+			$this->load->view("miaoda/god/show.php" , $userdata);
 		}
 	}
 }

@@ -5,7 +5,7 @@ class index extends CI_Controller {
 	}
 	public function index() {
 		$userdata = $this->user_model->check_login();
-		$this->load->view('seconds/god/list.php' , $userdata);
+		$this->load->view('miaoda/god/list.php' , $userdata);
 	}
 
 }

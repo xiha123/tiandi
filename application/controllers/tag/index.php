@@ -25,7 +25,7 @@ class Index extends CI_Controller {
 
 		$userdata['tag_count'] = $this->problem_model->get_list_by_tag_count($name);
 		$this->load->library('parser');
-		$this->parser->parse("seconds/tag/home.php" , $userdata);
+		$this->parser->parse("miaoda/tag/home.php" , $userdata);
 	}
 
 
