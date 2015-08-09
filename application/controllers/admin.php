@@ -4,7 +4,7 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-
+		$this -> load -> model ("guide_model" );
 		$this->load->model('admin_model' ,"model");
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
@@ -207,6 +207,7 @@ class Admin extends CI_Controller {
 		$data = array(
 			"me" => $this->user_info
 		);
+		$data['data_list'] = $this->guide_model->get_list();
 		$this->load->library('parser');
 		$this->parser->parse('admin/onlineClass/onlineGoTo.php', $data);
 	}
