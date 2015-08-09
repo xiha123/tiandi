@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-include_once(APPPATH . 'controllers/api/base_api.php');
+include_once(APPPATH . 'controllers/api/Base_api.php');
 
 class problem_api extends base_api {
 
@@ -88,7 +88,7 @@ class problem_api extends base_api {
         )); extract($params);
         $code = $this->input->post("code");
         if(!$this->problem_model->is_exist(array( 'id' => $problem_id)))$this->finish(false, '不存在的问题');
-     
+
         $problem = $this->problem_model->get(array( 'id' => $problem_id));
         if($type == 1 && $problem["answer_time"] + 1200 < time()){
             $this->problem_model->def($problem_id);
@@ -200,7 +200,7 @@ class problem_api extends base_api {
             parent::finish(true , "");
         }else{
             parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
-        }   
+        }
 
 
     }
@@ -225,8 +225,8 @@ class problem_api extends base_api {
         $up_users = $temp;
         if($up_down_type == true){
             if($this->problem_model->up(array(
-                "id" => $problem_id , 
-                "up_count" => $return_data[0]["up_count"] - 1 , 
+                "id" => $problem_id ,
+                "up_count" => $return_data[0]["up_count"] - 1 ,
                 "hot" =>$return_data[0]["hot"] - 5,
                 "up_users" => json_encode($up_users)
             ))){
@@ -237,8 +237,8 @@ class problem_api extends base_api {
         }else{
             array_push($up_users , array("id"=>$this->me['id']));
             if($this->problem_model->up(array(
-                    "id" => $problem_id , 
-                    "up_count" => $return_data[0]["up_count"] + 1 , 
+                    "id" => $problem_id ,
+                    "up_count" => $return_data[0]["up_count"] + 1 ,
                     "hot" =>$return_data[0]["hot"] + 5,
                     "up_users" => json_encode($up_users)
                 ))){
@@ -251,7 +251,7 @@ class problem_api extends base_api {
 
 
 
-  
+
 
 
 

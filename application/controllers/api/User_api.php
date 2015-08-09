@@ -1,7 +1,6 @@
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
-include_once(APPPATH . 'controllers/api/base_api.php');
+include_once(APPPATH . 'controllers/api/Base_api.php');
 
 class user_api extends base_api {
     public function __construct() {
@@ -9,7 +8,7 @@ class user_api extends base_api {
         $this->load->model('user_model');
         $this->load->model('tag_model');
         $this->me = $this->user_model->check_login();
-    }   
+    }
     public function collect_tag(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
         if($this->tag_model->collect_tag($id)){
@@ -110,7 +109,7 @@ class user_api extends base_api {
     //     $params = parent::getParams('POST', array('id'));if(empty($params)) return; extract($params);
     //     print_r($this->get_user_data($id));
 
-    // } 
+    // }
     public function edit_god(){
         $params = parent::get_params('POST', array('alipay', 'goddesc'));if (empty($params)) return; extract($params);
         if($this->user_model->edit($this->me['id'],array(
@@ -123,7 +122,7 @@ class user_api extends base_api {
         }
     }
     public function upload_pic(){
-        
+
         if(isset($_FILES["userfile"])){
             $config['upload_path'] = './static/uploads/';
             $config['allowed_types'] = 'bmp|jpg|jpeg';
@@ -141,7 +140,7 @@ class user_api extends base_api {
                 $config_img['create_thumb'] = false;
                 $config_img['width'] = 150;
                 $config_img['height'] = 150;
-                $this->load->library('image_lib', $config_img); 
+                $this->load->library('image_lib', $config_img);
                 $this->image_lib->resize();
 
                 if($this->user_model->updata_pic($this->me['id'])){
@@ -158,7 +157,7 @@ class user_api extends base_api {
         }
 
     }
-  
+
 
 
 

@@ -1,7 +1,7 @@
-<?php 
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
-include_once(APPPATH . 'controllers/api/base_api.php');
+include_once(APPPATH . 'controllers/api/Base_api.php');
+
 class god_api extends base_api {
 	public function __construct() {
 		parent::__construct();
@@ -30,4 +30,3 @@ class god_api extends base_api {
 		}
 	}
 }
-

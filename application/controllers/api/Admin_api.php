@@ -1,12 +1,12 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-include_once(APPPATH . 'controllers/api/base_api.php');
+include_once(APPPATH . 'controllers/api/Base_api.php');
 
 class admin_api extends base_api {
 
     public function __construct() {
 		parent::__construct();
-		
+
 		$this->load->model('admin_model');
 		$this->load->model('course_model');
     		$this->me = $this->admin_model->check_login();
@@ -86,7 +86,7 @@ class admin_api extends base_api {
 
 
 
-	
+
 	public function addClassContent(){
         	$params = parent::get_params('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
 		$this -> admin_model -> addClassContent(array(
