@@ -17,7 +17,7 @@
 			<ul class="slider-sheet fl js-slider-sheet">
 			{slide_list}
 				<li>
-					<img src="./static/uploads/{url}" height="370" width="615">
+					<img src="./static/uploads/{img}" height="370" width="615">
 					<div class="slider-summary">
 						<p>公开课</p>
 						<p>{public} {title} {/public}</p>

@@ -68,11 +68,11 @@
 		<div class="right-content">
 			<h2 class="box-title">标签大神榜</h2>
 			<ul class="tag-list">
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
+				<?php
+					foreach ($student as $key => $value) {
+						echo '<li><img src="'.$value['avatar'].'" alt="" class="pic"><h4 class="name">'.$value['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+					}
+				?>
 				<li>
 					<a href="javascript:">更多 ></a>
 				</li>
@@ -80,11 +80,11 @@
 
 			<h2 class="box-title">标签学员榜</h2>
 			<ul class="tag-list">
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
-				<li><img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic"><h4 class="name">tourd</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">999</div></li>
+				<?php
+					foreach ($god as $key => $value) {
+						echo '<li><img src="'.$value[$key]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[$key]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+					}
+				?>
 				<li>
 					<a href="javascript:">更多 ></a>
 				</li>

@@ -27,11 +27,11 @@
 				</tr>
 				{data_list}
 				<tr data-id="{id}" data-img="{img}" data-color="{color}" data-link="{link}">
-					<td>{title}</td>
+					<td>{name}</td>
 					<td><a href="{link}">点击浏览</a></td>
 					<td>{time}</td>
 					<td>{text}</td>
-					<td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-slider"></i></td>
+					<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-slider"></i></td>
 				</tr>
 				{/data_list}
 			</table>

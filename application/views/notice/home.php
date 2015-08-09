@@ -1,5 +1,5 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/notice.css">
+<link rel="stylesheet" href="./static/css/miaoda/notice.css">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>

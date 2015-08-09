@@ -20,6 +20,24 @@ class Index extends CI_Controller {
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$userdata['tag_count'] = $this->problem_model->get_list_by_tag_count($name);
 		$userdata['collect_type'] = $this->tag_model->is_collect_tag($userdata['tag_data']['id']);
+
+		// 标签大神榜与标签学员榜
+		$god_array = array();
+		$student_array = array();
+		$data = json_decode($this->tag_model->get(array("name" => $name))['json_who']);
+		foreach ($data as $key => $value) {
+			$user = $this->user_model->get_list(array("id"=>$value->t , "type" => 0),0,5);
+			$god = $this->user_model->get_list(array("id"=>$value->t , "type" => 1),0,5);
+			if($god != array()){
+				array_push($god_array , $god);
+			}
+			if($user != array()){
+				array_push($student_array ,$user );
+			}
+		}
+		$userdata['student'] = $student_array;
+		$userdata['god'] = $god_array;
+
 		$this->load->library('parser');
 		$this->parser->parse("miaoda/tag/home.php" , $userdata);
 	}

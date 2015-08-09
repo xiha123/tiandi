@@ -10,7 +10,7 @@ class apply extends CI_Controller {
 		
 
 
-		$this->load->view('seconds/god/apply.php' , $this->me);
+		$this->load->view('miaoda/god/apply.php' , $this->me);
 	}
 
 }

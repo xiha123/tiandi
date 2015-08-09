@@ -43,6 +43,7 @@
 - email 邮箱
 - cellphone 手机号
 - description 个人描述
+- god_description 大神描述
 - collect_problem_count 收藏的数量
 - follow_problem_count 关注的数量
 - ask_count 提问的数量

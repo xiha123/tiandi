@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="static/css/QA/personalInformation.css" />
 
 </head>
-<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 <div class="box" >
 <form action="javascript:" class="submitbutton">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-09 08:50:53
+-- Generation Time: 2015-08-09 10:31:11
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -254,19 +254,14 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `up_users` varchar(1024) NOT NULL DEFAULT '[]',
   `down_users` varchar(512) NOT NULL DEFAULT '[]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `problem`
 --
 
 INSERT INTO `problem` (`id`, `title`, `owner_id`, `answer_id`, `answer_time`, `details`, `comments`, `tags`, `up_count`, `down_count`, `collect_count`, `follow_count`, `view_count`, `ctime`, `type`, `hot`, `follow_users`, `collect_users`, `up_users`, `down_users`) VALUES
-(1, '如何理解这 14 道 JavaScript 题？', 3, 4, 1438965680, '[1]', '[]', '[{"name":"javascript"},]', 0, 0, 0, 0, 0, '2015-08-06 14:19:12', 2, 0, '[]', '[]', '[]', '[]'),
-(2, 'cscscscscscscscscscscscscscscscs', 3, 0, 0, '[3]', '[]', '[{"name":"cs"},{"name":"cs"},{"name":"cs"},]', 0, 0, 0, 0, 0, '2015-08-06 14:41:24', 0, 0, '[]', '[]', '[]', '[]'),
-(3, 'cscscscscscscscscscscs', 3, 0, 0, '[4]', '[]', '[{"name":"cscscscscs"},{"name":"cs"},]', 0, 0, 0, 0, 0, '2015-08-06 14:41:50', 0, 0, '[]', '[]', '[]', '[]'),
-(4, 'detail_iddetail_iddetail_iddetail_iddetail', 3, 3, 1438872314, '[]', '[]', '[{"name":"detail_id"},{"name":"detail_id"},{"name":"detail_id"},]', 1, 0, 1, 0, 0, '2015-08-06 14:45:09', 2, 8, '[]', '[]', '[{"id":"4"}]', '[]'),
-(5, '对问题的描对问题的描对问题的描对问题的描对问题的描', 3, 3, 1438875465, '[]', '[]', '[{"name":"的题的描对问题"},{"name":"描对问题的描对问"},{"name":"描对问题的描对问"},]', 0, 0, 0, 0, 0, '2015-08-06 15:36:16', 2, 0, '[]', '[]', '[]', '[]'),
-(6, '123213121232131212321312', 4, 0, 0, '[]', '[]', '[{"name":"12321312"},{"name":"12321312"},]', 1, 0, 0, 0, 0, '2015-08-07 14:57:51', 0, 5, '[]', '[]', '[{"id":"4"}]', '[]');
+(1, '测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章', 4, 0, 0, '[]', '[]', '[{"name":"测试文章"},{"name":"12231"},{"name":"javascript"},{"name":"php"},{"name":"jquery"},]', 0, 0, 0, 0, 0, '2015-08-09 06:51:39', 0, 0, '[]', '[]', '[]', '[]');
 
 -- --------------------------------------------------------
 
@@ -298,23 +293,14 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `problem_detail`
 --
 
 INSERT INTO `problem_detail` (`id`, `content`, `type`, `owner_id`, `ctime`, `problem_id`, `code`) VALUES
-(1, '<p>1.<br/>(function(){\n    return typeof arguments;})();答案："object"<br/>arguments 是对象，虽然像数组<br/><br/>但不是数组<br/>此外，就算是数组，typeof 返回的也是 "object" <br/><br/>2.<br/>var f = function g(){ return 23; };typeof g();答案：Error<br/>g 未定义。<br/><br/>在 JS 里，声明函数只有 2 种方法：<br/>第 1 种： function foo(){...} （函数声明）<br/>第 2 种： var foo = function(){...} （等号后面必须是匿名函数，这句实质是函数表达式）<br/><br/>除此之外，类似于 var foo = function bar(){...} 这样的东西统一按 2 方法处理，即在函数外部无法通过 bar 访问到函数，因为这已经变成了一个表达式。<br/><br/>但为什么不是 "undefined"？<br/>这里如果求 typeof g ，会返回 undefined，但求的是 g()，所以会去先去调用函数 g，这里就会直接抛出异常，所以是 Error。<br/><br/>3.(function(x){\n    delete x;\n    return x;})(1);答案：1<br/>delete 操作符用于删除对象的成员变量，不能删除函数的参数。<br/><br/>4.<br/>  var y = 1, x = y = typeof x;\n  x;答案："undefined"<br/>先定义了 y 并赋值为 1，然后将 typeof x 赋值给 y ，此时 x 未定义，故为 "undefined"，最后将 y 的值赋给 x<br/><br/>5.<br/>(function f(f){\n    return typeof f();})(function(){ return 1; });答案："number"<br/>在函数里的 f() 其实是参数的那个 f 的执行结果，所以是 typeof 1，也就是 "number"<br/><br/>6.  var foo = {\n    bar: function() { return this.baz; },\n    baz: 1\n  };\n  (function(){\n    return typeof arguments[0]();\n  })(foo.bar);答案："undefined"<br/>经 @里创意 指出，这里的 this 指的是 arguments，经测试确实如此：<br/>注意方括号。<br/><br/>7.<br/>  var foo = {\n    bar: function(){ return this.baz; },\n    baz: 1\n  }\n  typeof (f = foo.bar)();答案："undefined"<br/>这个题我不懂，直接上@Saviio 的回答：<br/>第7题的是因为CallExpression是不带有上下文信息，this会指向global；<br/>当你以foo.bar() 调用时，被调用的function是「MemberExpression」，而如果进行了f=foo.bar()赋值之后，那么function就会变成「CallExpression」了，因此this绑定就失效了。<br/>8.<br/>  var f = (function f(){ return "1"; }, function g(){ return 2; })();\n  typeof f;答案："number"<br/>只有最后面的函数会被执行。<br/><br/><br/>9.<br/>  var x = 1;\n  if (function f(){}) {\n    x += typeof f;\n  }\n  x;答案："1undefined"<br/>括号内的 function f(){} 不是函数声明，会被转换成 true ，因此 f 未定义。<br/><br/>10.<br/>  var x = [typeof x, typeof y][1];\n  typeof typeof x;答案："string"<br/>第一行执行完后 x === "undefined" ，所以连续求 2 次 typeof 还是 "string"<br/><br/>11.<br/> (function(foo){\n    return typeof foo.bar;\n  })({ foo: { bar: 1 } });答案："undefined"<br/>typeof foo.bar 中的 foo 是参数，不多解释了。<br/><br/>12.<br/>(function f(){\n    function f(){ return 1; }\n    return f();\n    function f(){ return 2; }\n  })();答案：2<br/>由于声明提前，后面的 f() 会覆盖前面的 f()<br/><br/>13.<br/>function f(){ return f; }new f() instanceof f;答案：false<br/><br/>因为 f() 内部返回了自己，故此时 new f() 的结果和 f 相等。<br/><br/>14.<br/>with (function(x, undefined){}) length;答案：2<br/>with 限定了作用域是这个函数，function.length 返回函数的参数个数，所以是 2。</p>', 0, 3, '2015-08-06 14:19:12', 1, ''),
-(2, '<p>在这里输入您对问题的描述!problemproblemproblemproblemproblemproblemproblem</p>', 1, 3, '2015-08-06 14:20:57', 1, ''),
-(3, '<p>在这里输入您对问题的描述!cscscscscscscscscscscscscscscscscscs</p>', 0, 3, '2015-08-06 14:41:24', 1, 'cscscscscscscscscscscscscscscscscscs'),
-(4, '<p>在这里输入您对问题的描述!cscscscscscscscscscscscscscscs</p>', 0, 3, '2015-08-06 14:41:50', 1, 'cscscscscscscscscscscscscscscscscscscscs'),
-(5, '<p>在这里输入您对问题的描述!detail_iddetail_iddetail_iddetail_iddetail_iddetail_iddetail_iddetail_iddetail_id</p>', 0, 3, '2015-08-06 14:45:09', 4, 'detail_iddetail_iddetail_iddetail_iddetail_iddetail_id'),
-(6, '<p>在这里输入您对问题的描述!_iddetail_iddetail_id_iddetail_iddetail_id_iddetail_iddetail_id_iddetail_iddetail_id_iddetail_iddetail_id_iddetail_iddetail_id_iddetail_iddetail_id</p>', 1, 3, '2015-08-06 14:45:21', 4, ''),
-(7, '<p>在这里输入您对问题的描述!对问题的描对问题的描对问题的描对问题的描</p>', 0, 3, '2015-08-06 15:36:16', 5, ''),
-(8, '<p>$problem_data[&#39;type&#39;] == 1</p>', 1, 3, '2015-08-06 15:37:55', 5, ''),
-(9, '<p>在这里输入您对问题的描述!312312</p>', 0, 4, '2015-08-07 14:57:51', 6, '31212312'),
-(10, '<p>在这里输入您对问题的描述!123$this->me</p>', 1, 4, '2015-08-07 16:41:25', 1, '$this->me$this->me$this->me');
+(1, '<p>测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章</p>', 0, 4, '2015-08-09 06:51:39', 1, '测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章');
 
 -- --------------------------------------------------------
 
@@ -369,7 +355,18 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `json_who` varchar(256) DEFAULT '[]',
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- 转存表中的数据 `tag`
+--
+
+INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`) VALUES
+(1, 1, 1, '测试文章', '', '[{"t":"4"},{"t":"3"}]'),
+(2, 1, 0, '12231', '', '[]'),
+(3, 1, 0, 'javascript', '', '[]'),
+(4, 1, 0, 'php', '', '[]'),
+(5, 1, 0, 'jquery', '', '[]');
 
 -- --------------------------------------------------------
 
@@ -388,6 +385,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(128) NOT NULL,
   `cellphone` char(11) NOT NULL,
   `description` text NOT NULL,
+  `god_description` varchar(256) NOT NULL,
   `collect_problem_count` int(11) NOT NULL DEFAULT '0',
   `follow_problem_count` int(11) NOT NULL DEFAULT '0',
   `ask_count` int(11) NOT NULL DEFAULT '0',
@@ -402,6 +400,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `follower_count` int(11) NOT NULL DEFAULT '0',
   `follow_users` varchar(1024) NOT NULL DEFAULT '[]',
   `followers` varchar(1024) NOT NULL DEFAULT '[]',
+  `idcar` varchar(44) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
@@ -410,9 +409,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- 转存表中的数据 `user`
 --
 
-INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`) VALUES
-(3, 'tocurd', 'tocurd@qq.com', 'deab84ffae16ca3b1c3cc035a5138112', '1f95e2b275', 1, '', '', '', '', 0, 0, 0, 0, '[]', '[]', '[{"t":"1"},{"t":"2"}]', '', 0, 0, 0, 0, '[]', '[]'),
-(4, '1312312312', '13', '956549baaa8c287fc7329137dae3dcd9', '377b1328b7', 0, './static/uploads/4.jpg', '123@qq.com', '13123123123', '131231231231312312312313123123123131231231231312312312313123123123131231231231312312312313123123123', 0, 0, 0, 0, '[{"t":"4"}]', '[]', '[{"t":"10"},{"t":"10"},{"t":"2"},{"t":"9"}]', '12312312', 0, 0, 0, 0, '[]', '[]');
+INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`, `idcar`) VALUES
+(3, 'tocurd', 'tocurd@qq.com', 'deab84ffae16ca3b1c3cc035a5138112', '1f95e2b275', 1, '', '', '', '', '', 0, 0, 0, 0, '[]', '[]', '[{"t":"1"},{"t":"2"}]', '', 0, 0, 0, 0, '[]', '[]', ''),
+(4, '1312312312', '123', '956549baaa8c287fc7329137dae3dcd9', '377b1328b7', 2, './static/uploads/4.jpg', '123@qq.com', '15562288082', '3123123', '', 0, 0, 0, 0, '[{"t":"4"}]', '[]', '[{"t":"10"},{"t":"10"},{"t":"2"},{"t":"9"},{"t":"1"}]', '123123', 0, 0, 0, 0, '[]', '[]', '37080219960126031X');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

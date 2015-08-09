@@ -19,7 +19,7 @@ class god_api extends base_api {
 		if($this->user_model->edit($this->me["id"],array(
 			"name" => $name,
 			"cellphone" => $cellphone,
-			"description" => $description,
+			"god_description" => $description,
 			"alipay" => $alipay,
 			"idcar" => $idcar,
 			"type" => 2,
