@@ -13,6 +13,7 @@ class user_api extends base_api {
     public function collect_tag(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
         if($this->tag_model->collect_tag($id)){
+            $this->tag_model->plus($id);
             $this->finish(true);
         }else{
             $this->finish(false,"操作失败！");
@@ -21,6 +22,7 @@ class user_api extends base_api {
     public function uncollect_tag(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
         if($this->tag_model->uncollect_tag($id)){
+            $this->tag_model->minus($id);
             $this->finish(true);
         }else{
             $this->finish(false,"操作失败！");

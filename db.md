@@ -75,6 +75,7 @@
 - name 有索引
 - count 属于这个 tag 的数量
 - content tag描述
+- json_who 谁关注了这个标签
 
 ### slide 表
 

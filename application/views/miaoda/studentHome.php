@@ -29,7 +29,6 @@
 					}
 				}
 			?>
-			<!-- <a href="#" class="tag-box"></a> -->
 		</div>
 
 
