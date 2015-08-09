@@ -1,6 +1,6 @@
 <?php
 
-class Upload extends CI_Controller {
+class upload extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		// $this->load->model('admin_model');
