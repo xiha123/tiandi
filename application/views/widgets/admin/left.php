@@ -37,6 +37,12 @@
 					"icon" => "fa fa-user",
 					"active" => false
 				),
+				array(
+					"title" => "帮助设置",
+					"link" => "admin/users",
+					"icon" => "fa fa-question-circle",
+					"active" => false
+				),
 			);
 			if (isset($activeNav)) $navList[$activeNav]['active'] = true;
 			for($index = 0;$index < count($navList);$index ++){
