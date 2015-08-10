@@ -19,6 +19,7 @@ class olclass extends CI_Controller {
 			"slide_list" => $slide_list,
 			"guide_list" => $guide_list
 		);
+
 		$this->parser->parse('pages/olClass.php', $data);
 	}
 

@@ -19,22 +19,26 @@
 
 		<div class="main-data">
 			<table class="table table-bordered">
-				<tr>
-					<th width="35%">标题</th>
-					<th width="20%">地址</th>
-					<th width="20%">描述</th>
-					<th width="10%">操作</th>
-				</tr>
-				{data_list}
-				<tr data-id="{id}" data-img="{img}" data-color="{color}" data-link="{link}">
-					<td>{name}</td>
-					<td><a href="{link}">点击浏览</a></td>
-					<td>{text}</td>
-					<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-slider"></i></td>
-				</tr>
-				{/data_list}
+				<thead>
+					<tr>
+						<th width="35%">标题</th>
+						<th width="20%">地址</th>
+						<th width="20%">描述</th>
+						<th width="10%">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					{data_list}
+					<tr data-id="{id}" data-img="{img}" data-color="{color}" data-link="{link}">
+						<td>{name}</td>
+						<td><a href="{link}">点击浏览</a></td>
+						<td>{text}</td>
+						<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-slider"></i></td>
+					</tr>
+					{/data_list}
+				</tbody>
 			</table>
-			
+
 			<div class="page">
 				<font>共 0 页，当前正在第 0 页，共有数据 0 条</font>
 				<div class="right">
@@ -46,7 +50,7 @@
 					<input type="submit" value="下一页">
 				</div>
 			</div>
-			
+
 		</div>
 	</div>
 </div>
