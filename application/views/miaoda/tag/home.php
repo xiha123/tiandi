@@ -70,7 +70,10 @@
 			<ul class="tag-list">
 				<?php
 					foreach ($student as $key => $value) {
-						echo '<li><img src="'.$value['avatar'].'" alt="" class="pic"><h4 class="name">'.$value['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+						if($value[$key]["avatar"] == ""){
+							$value[$key]["avatar"] = "static/image/default.jpg";
+						}
+						echo '<li><img src="'.$value[$key]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[$key]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
 					}
 				?>
 				<li>
@@ -82,6 +85,9 @@
 			<ul class="tag-list">
 				<?php
 					foreach ($god as $key => $value) {
+						if($value[$key]["avatar"] == ""){
+							$value[$key]["avatar"] = "static/image/default.jpg";
+						}
 						echo '<li><img src="'.$value[$key]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[$key]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
 					}
 				?>

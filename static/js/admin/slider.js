@@ -16,7 +16,7 @@ $(document).ready(function(){
 			"content" : "<p>您确定要删除掉这篇文章吗？</p><p>删除后将无法复原，点击确定按钮确认删除该条记录</p>",
 			"success" : function(){
 				$.ajax({
-					"url" : "admin_api/deleteSlider",
+					"url" : "api/admin_api/deleteSlider",
 					type : "POST",
 					data : {"id" : $parents.data("id")},
 					dataType : "JSON",

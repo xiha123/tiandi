@@ -87,8 +87,10 @@
 			<ul class="list-tag">
 				<?php
 					$tag_list = $this->tag_model->get_tag(0 , 20 , "all");
-					foreach ($tag_list as $key => $value) {
-						echo '<li><a href="./tag/?name=' . $value['name'] . '" class="tag-box">'.$value['name'].'</a></li>';
+					if($tag_list){
+						foreach ($tag_list as $key => $value) {
+							echo '<li><a href="./tag/?name=' . $value['name'] . '" class="tag-box">'.$value['name'].'</a></li>';
+						}
 					}
 				?>
 				<!-- <li><a href="#" > 更多</a></li> -->

@@ -25,7 +25,9 @@ class problem_api extends base_api {
         ));
         extract($params);
        $code = isset($_POST['code']) ? $this->input->post("code") : "";
-
+        if(!isset($this->me['id'])){
+               $this->finish(false, '您还没有登陆！');
+        }
         if ($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '重复的标题');
         }
@@ -41,6 +43,7 @@ class problem_api extends base_api {
                 # code...
                 break;
         }
+
            $detail_id = $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
             'title' => $title,
