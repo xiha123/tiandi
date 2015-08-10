@@ -1,13 +1,13 @@
 $(document).ready(function(){
-	
+
 	$imgLook = $(".imgLook");
-	$(".table-bordered tr").hover(function(e){
+	$(".table-bordered tbody tr").hover(function(e){
 		$imgLook.css({"display" : "block" , "left" : $(this).offset().left , "top" : $(this).offset().top + $(this).height() })
 		$imgLook.find("img").attr("src", "static/uploads/" + $(this).data("img"));
 	},function(){
 		$imgLook.hide();
 	});
-	
+
 	$(".remove-slider").click(function(){
 		$parents = $(this).parents().parents().eq(0);
 		confirms({
@@ -16,13 +16,12 @@ $(document).ready(function(){
 			"content" : "<p>您确定要删除掉这篇文章吗？</p><p>删除后将无法复原，点击确定按钮确认删除该条记录</p>",
 			"success" : function(){
 				$.ajax({
-					"url" : "api/admin_api/deleteSlider",
+					url : "api/admin_api/deleteSlider",
 					type : "POST",
 					data : {"id" : $parents.data("id")},
 					dataType : "JSON",
 					success: function(data){
-						console.log();
-						  if(data.status == true) {
+						if(data.status == true) {
 							$parents.hide();
 							close();
 						} else {
@@ -104,7 +103,7 @@ $(document).ready(function(){
 			'<tr><td>轮播描述：<input type="text" placeholder="请输入轮播描述" name="description">'+
 			'<tr><td>轮播背景：<input type="text" placeholder="在此填写轮播的背景颜色" name="color" maxlength=7 class=slider-color><div class=color></div>'+
 			'<tr><td class=updata><font>点击更换图片</font><input type="file" name="userfile" id="add_updata"><img src="./static/image/slide4.jpg" width="100%" id=preview>'+
-			'<tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400 ， 该图片尺寸：200 * 200</span ></table></form>',
+			'<tr><td><span style="color:#ccc">建议图片尺寸：1200 * 400</span ></table></form>',
 			"success" : function(){
 				$("#add").unbind("submit");
 				$("#add").on("submit",function(){
@@ -121,7 +120,7 @@ $(document).ready(function(){
 						return false
 					}
 					if($("input[name='color']").val() == ""){
-						showAlert("您必须填写一个颜色");
+						showAlert("您必须填写一个背景颜色");
 						return false
 					}
 					if($("#add_updata").val() == ""){

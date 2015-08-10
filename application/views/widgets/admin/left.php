@@ -4,7 +4,7 @@
 		<h2><?= $me['nickname'] ?></h2>
 	</div>
 	<ul>
-	
+
 		<?php
 			$navList = array(
 				array(
@@ -14,7 +14,7 @@
 					"active" => false
 				),
 				array(
-					"title" => "轮播管理",
+					"title" => "首页轮播管理",
 					"link" => "admin/slider",
 					"icon" => "fa fa-th-large",
 					"active" => false

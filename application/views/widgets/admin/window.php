@@ -5,7 +5,7 @@
 	<div class="confirm" id="alert" style="display:none">
 		<div class="confirm-title">
 			<h2>您确定删除吗</h2>
-			<a href="javascript:void(0)" class="close" id="close_window">X</a>
+			<a href="javascript:void(0)" class="close" id="close_window"><i class="fa fa-close"></i></a>
 		</div>
 		<div class="confirm-content">
 			<i class=""></i>
@@ -24,7 +24,7 @@
 	<div class="confirm" id="confirm" style="display:none">
 		<div class="confirm-title">
 			<h2>您确定删除吗</h2>
-			<a href="javascript:void(0)" class="close" id="close_window">X</a>
+			<a href="javascript:void(0)" class="close" id="close_window"><i class="fa fa-close"></i></a>
 		</div>
 		<div class="confirm-content">
 			<i class=""></i>
@@ -43,7 +43,7 @@
 	<div class="confirm" id="input" style="display:none">
 		<div class="confirm-title">
 			<h2>您确定删除吗</h2>
-			<a href="javascript:void(0)" class="close" id="close_window">X</a>
+			<a href="javascript:void(0)" class="close" id="close_window"><i class="fa fa-close"></i></a>
 		</div>
 		<div class="confirm-content">
 			<div class="con" style="padding:0px 20px;">
