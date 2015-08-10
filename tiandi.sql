@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-09 10:31:11
+-- Generation Time: 2015-08-10 16:21:32
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -86,7 +86,16 @@ CREATE TABLE IF NOT EXISTS `class_guide` (
   `img` varchar(128) NOT NULL,
   `link` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- 转存表中的数据 `class_guide`
+--
+
+INSERT INTO `class_guide` (`id`, `name`, `img`, `link`) VALUES
+(1, '', '', ''),
+(2, '', '', '\r\n'),
+(3, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -106,16 +115,14 @@ CREATE TABLE IF NOT EXISTS `course` (
   PRIMARY KEY (`id`),
   KEY `title` (`title`),
   KEY `type` (`type`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `course`
 --
 
 INSERT INTO `course` (`id`, `title`, `type`, `video`, `tags`, `description`, `chapters`, `steps`) VALUES
-(1, '123', 0, '312312', '[]', '12312', '[]', '[]'),
-(2, '1231', 0, '312312', '[]', '312', '[]', '[]'),
-(3, '12312', 0, '12312', '[]', '3', '[]', '[]');
+(5, '123', 0, '123123', '[]', '1321', '[]', '[]');
 
 -- --------------------------------------------------------
 
@@ -163,55 +170,6 @@ CREATE TABLE IF NOT EXISTS `news` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
---
--- 转存表中的数据 `news`
---
-
-INSERT INTO `news` (`id`, `type`, `content`, `from`, `to`, `time`) VALUES
-(1, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863663),
-(2, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863727),
-(3, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863727),
-(4, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863743),
-(5, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863744),
-(6, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863746),
-(7, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863752),
-(8, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438863810),
-(9, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868226),
-(10, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868231),
-(11, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868236),
-(12, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868266),
-(13, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868274),
-(14, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868290),
-(15, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868300),
-(16, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868382),
-(17, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868385),
-(18, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868438),
-(19, 0, '大神tocurd认领了您的问题，为什么说话时觉得自己说得很有道理，事后听录音时却感觉不对？', 0, 3, 1438868513),
-(20, 0, '大神tocurd认领了您的问题，测试测试测试测试测试测试测试测试', 0, 3, 1438868672),
-(21, 0, '大神tocurd认领了您的问题，测试测试测试测试测试测试测试测试', 0, 3, 1438870143),
-(22, 0, '大神tocurd认领了您的问题，测试测试测试测试测试测试测试测试', 0, 3, 1438870554),
-(23, 0, '大神tocurd认领了您的问题，测试测试测试测试测试测试测试测试', 0, 3, 1438870557),
-(24, 0, '大神tocurd认领了您的问题，测试测试测试测试测试测试测试测试', 0, 3, 1438870571),
-(25, 0, '大神tocurd认领了您的问题，测试测试测试测试测试测试测试测试', 0, 3, 1438870581),
-(26, 0, '大神tocurd认领了您的问题，测试测试测试测试测试测试测试测试', 0, 3, 1438870586),
-(27, 0, '大神tocurd认领了您的问题，如何理解这 14 道 JavaScript 题？', 0, 3, 1438870765),
-(28, 0, '大神tocurd认领了您的问题，如何理解这 14 道 JavaScript 题？', 0, 3, 1438870874),
-(29, 0, '大神tocurd认领了您的问题，如何理解这 14 道 JavaScript 题？', 0, 3, 1438870933),
-(30, 0, '大神tocurd认领了您的问题，detail_iddetail_iddetail_iddetail_iddetail', 0, 3, 1438872314),
-(31, 0, 'tocurd 关注了您的问题：detail_iddetail_iddetail_iddetail_iddetail', 3, 3, 1438872477),
-(32, 0, '13 关注了您的问题：detail_iddetail_iddetail_iddetail_iddetail', 4, 3, 1438873529),
-(33, 0, '13 取消关注了您的问题：detail_iddetail_iddetail_iddetail_iddetail', 4, 3, 1438873627),
-(34, 0, '13 关注了您的问题：detail_iddetail_iddetail_iddetail_iddetail', 4, 3, 1438873628),
-(35, 0, '13 取消关注了您的问题：detail_iddetail_iddetail_iddetail_iddetail', 4, 3, 1438874542),
-(36, 0, 'tocurd 取消关注了您的问题：detail_iddetail_iddetail_iddetail_iddetail', 3, 3, 1438875217),
-(37, 0, '大神tocurd认领了您的问题，对问题的描对问题的描对问题的描对问题的描对问题的描', 0, 3, 1438875465),
-(38, 0, '大神1312312312认领了您的问题，如何理解这 14 道 JavaScript 题？', 0, 3, 1438965680),
-(39, 0, '大神1312312312认领了您的问题，如何理解这 14 道 JavaScript 题？', 0, 3, 1438965686),
-(40, 0, '大神：1312312312 回答了您的问题，如何理解这 14 道 JavaScript 题？，快去看看吧！', 0, 3, 1438965686),
-(41, 0, '1312312312 关注了您的问题：123213121232131212321312', 4, 4, 1439102648),
-(42, 0, '1312312312 关注了您的问题：123213121232131212321312', 4, 4, 1439102648),
-(43, 0, '1312312312 取消关注了您的问题：123213121232131212321312', 4, 4, 1439102651);
-
 -- --------------------------------------------------------
 
 --
@@ -256,13 +214,6 @@ CREATE TABLE IF NOT EXISTS `problem` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
---
--- 转存表中的数据 `problem`
---
-
-INSERT INTO `problem` (`id`, `title`, `owner_id`, `answer_id`, `answer_time`, `details`, `comments`, `tags`, `up_count`, `down_count`, `collect_count`, `follow_count`, `view_count`, `ctime`, `type`, `hot`, `follow_users`, `collect_users`, `up_users`, `down_users`) VALUES
-(1, '测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章', 4, 0, 0, '[]', '[]', '[{"name":"测试文章"},{"name":"12231"},{"name":"javascript"},{"name":"php"},{"name":"jquery"},]', 0, 0, 0, 0, 0, '2015-08-09 06:51:39', 0, 0, '[]', '[]', '[]', '[]');
-
 -- --------------------------------------------------------
 
 --
@@ -295,13 +246,6 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
---
--- 转存表中的数据 `problem_detail`
---
-
-INSERT INTO `problem_detail` (`id`, `content`, `type`, `owner_id`, `ctime`, `problem_id`, `code`) VALUES
-(1, '<p>测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章</p>', 0, 4, '2015-08-09 06:51:39', 1, '测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章测试文章');
-
 -- --------------------------------------------------------
 
 --
@@ -331,14 +275,16 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `text` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `slide`
 --
 
 INSERT INTO `slide` (`id`, `name`, `img`, `link`, `color`, `type`, `text`) VALUES
-(1, '123123', '201508071246619388.jpg', '132123', '1123', 0, '13123123');
+(1, '', '', '', '', 1, ''),
+(2, '', '', '', '', 1, ''),
+(3, '', '', '', '', 1, '');
 
 -- --------------------------------------------------------
 
@@ -356,17 +302,6 @@ CREATE TABLE IF NOT EXISTS `tag` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- 转存表中的数据 `tag`
---
-
-INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`) VALUES
-(1, 1, 1, '测试文章', '', '[{"t":"4"},{"t":"3"}]'),
-(2, 1, 0, '12231', '', '[]'),
-(3, 1, 0, 'javascript', '', '[]'),
-(4, 1, 0, 'php', '', '[]'),
-(5, 1, 0, 'jquery', '', '[]');
 
 -- --------------------------------------------------------
 
@@ -404,14 +339,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- 转存表中的数据 `user`
---
-
-INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`, `idcar`) VALUES
-(3, 'tocurd', 'tocurd@qq.com', 'deab84ffae16ca3b1c3cc035a5138112', '1f95e2b275', 1, '', '', '', '', '', 0, 0, 0, 0, '[]', '[]', '[{"t":"1"},{"t":"2"}]', '', 0, 0, 0, 0, '[]', '[]', ''),
-(4, '1312312312', '123', '956549baaa8c287fc7329137dae3dcd9', '377b1328b7', 2, './static/uploads/4.jpg', '123@qq.com', '15562288082', '3123123', '', 0, 0, 0, 0, '[{"t":"4"}]', '[]', '[{"t":"10"},{"t":"10"},{"t":"2"},{"t":"9"},{"t":"1"}]', '123123', 0, 0, 0, 0, '[]', '[]', '37080219960126031X');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

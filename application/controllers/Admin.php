@@ -5,10 +5,10 @@ class admin extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this -> load -> model ("guide_model" );
-		$this->load->model('admin_model' ,"model");
+		$this->load->model('admin_model' );
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
-		$this->user_info = $this->model->check_login();
+		$this->user_info = $this->admin_model->check_login();
 
 	}
 
@@ -156,11 +156,11 @@ class admin extends CI_Controller {
 
 	public function classListSite($id = ""){
 		if(empty($this->user_info)) redirect('admin/login');
-		$return_data = $this -> admin_model -> getClassListData($id);
-		$return_tag = $this -> admin_model -> getClassListTag($id);
-		$return_chapter = $this -> admin_model -> getClassListChapter($id);
-		$return_course_0 = $this -> admin_model -> getClassListCourse($id);
-		$return_course_1 = $this -> admin_model -> getClassListCourse($id , "1");
+		// $return_data = $this -> admin_model -> getClassListData($id);
+		// $return_tag = $this -> admin_model -> getClassListTag($id);
+		// $return_chapter = $this -> admin_model -> getClassListChapter($id);
+		// $return_course_0 = $this -> admin_model -> getClassListCourse($id);
+		// $return_course_1 = $this -> admin_model -> getClassListCourse($id , "1");
 
 		$data = array (
 			"id" => $id,

@@ -69,7 +69,7 @@
 			<h2 class="box-title">标签大神榜</h2>
 			<ul class="tag-list">
 				<?php
-					foreach ($student as $key => $value) {
+					foreach ($god as $key => $value) {
 						if($value[$key]["avatar"] == ""){
 							$value[$key]["avatar"] = "static/image/default.jpg";
 						}
@@ -84,7 +84,7 @@
 			<h2 class="box-title">标签学员榜</h2>
 			<ul class="tag-list">
 				<?php
-					foreach ($god as $key => $value) {
+					foreach ($student as $key => $value) {
 						if($value[$key]["avatar"] == ""){
 							$value[$key]["avatar"] = "static/image/default.jpg";
 						}

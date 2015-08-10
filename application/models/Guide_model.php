@@ -1,5 +1,1 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-include_once(APPPATH . 'models/Base_model.php');
-
-class Guide_model extends Base_model {	public function __construct() {		parent::__construct();		$this->table_name = 'class_guide';	}	public function get_list($params = array(), $page = 0, $count = 3) {		return parent::get_list($params, $page, $count);	}}
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');include_once(APPPATH . 'models/Base_model.php');class Guide_model extends Base_model {	public function __construct() {		parent::__construct();		$this->table_name = 'class_guide';	}	public function get_list($params = array(), $page = 0, $count = 3) {		return parent::get_list($params, $page, $count);	}	public function edit_guide($params){					}}
