@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class admin extends CI_Controller {
+class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
@@ -134,7 +134,7 @@ class admin extends CI_Controller {
 	*/
 	public function classList(){
 		if (empty($this->user_info)) redirect('admin/login');
-		$returnData = $this -> course_model -> get_list(0);
+		$returnData = $this->course_model->get_list("all");
 		$data = array(
 			"data_list" => $returnData,
 			"me" => $this->user_info
@@ -156,21 +156,11 @@ class admin extends CI_Controller {
 
 	public function classListSite($id = ""){
 		if(empty($this->user_info)) redirect('admin/login');
-		// $return_data = $this -> admin_model -> getClassListData($id);
-		// $return_tag = $this -> admin_model -> getClassListTag($id);
-		// $return_chapter = $this -> admin_model -> getClassListChapter($id);
-		// $return_course_0 = $this -> admin_model -> getClassListCourse($id);
-		// $return_course_1 = $this -> admin_model -> getClassListCourse($id , "1");
+		$data = $this->course_model->get_list($id , 0 ,1);
+		$data = count($data) == 1 ? $data[0] : $data;
+		$data['me'] = $this->user_info;
+		print_r($data);
 
-		$data = array (
-			"id" => $id,
-			"data_tag" => $return_tag,
-			"data_list" => $return_data,
-			"data_chapter" => $return_chapter,
-			'me' => $this->user_info,
-			"course_0" => $return_course_0,
-			"course_1" => $return_course_1
-		);
 		$this->load->library('parser');
 		$this->parser->parse('admin/classList/classListSite.php', $data);
 	}

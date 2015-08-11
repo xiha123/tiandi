@@ -26,15 +26,14 @@
 					<th width="8%">操作</th>
 				</tr>
 				{data_list}
-				<tr data-id="{id}" >
+				<tr data-id="{id}" data-type="{type}"  >
 					<td>{title}</td>
 					<td>{video}</td>
 					<td>{description}</td>
-					<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-slider"></i></td>
+					<td><i class="fa fa-edit edit-slider"></i></td>
 				</tr>
 				{/data_list}
 			</table>
-			<button class="btn btn-primary" style="float:right" id="add-classList"><i class="icon-list"></i> &nbsp;添加课程</button>
 		</div>
 		
 	</div>

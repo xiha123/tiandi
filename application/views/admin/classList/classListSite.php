@@ -5,7 +5,7 @@
 <body>
 <?php $this->load->view('widgets/admin/left.php' , array("activeNav" => 3)); ?>
 	<script>
-		id = "{id}";
+		id = "{type}";
 	</script>
 	<div class="main">
 		<div class="main-content">
@@ -13,43 +13,43 @@
 			<div class="main-title">
 				<ul class="nav nav-pills title">
 					<?php $this->load->view('widgets/classList/min.nav.php' , array("activeNav" => 1)); ?>
-					<li style="float:right;font-weight:700"><p>当前操作的课程详情页：{data_list}{name}{/data_list}</p></li>
+					<li style="float:right;font-weight:700"><p>当前操作的课程详情页：{title}</p></li>
 				</ul>
 			</div>
 			
 			<div class="main-data">
 					<div class="site-box">
-						<h2><i class="icon-tag"></i>课程特色介绍</h2><br>
+						<h2><i class="fa fa-tag"></i>课程特色介绍</h2><br>
 						<table class="table table-bordered">
 							<tr>
 								<th width="40%">名称</th>
 								<th width="8%">地址</th>
 								<th width="8%">操作</th>
 							</tr>
-							{data_tag}
+							{tags}
 							<tr data-id="{id}">
 								<td>{name}</td>
-								<td><a href="{url}">点击浏览</a></td>
-								<td><i class="icon-edit edit-slider"></i><i class="icon-trash remove-tag"></i></td>
+								<td><a href="{link}">点击浏览</a></td>
+								<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-tag"></i></td>
 							</tr>
-							{/data_tag}
+							{/tags}
 						</table>
-						<button class="btn btn-primary" style="float:right" id="add-classList"><i class="icon-tag"></i> &nbsp;&nbsp;&nbsp;添加课程特色标签</button>
+						<button class="btn btn-primary" style="float:right" id="add-classList"><i class="fa fa-tag"></i> &nbsp;&nbsp;&nbsp;添加课程特色标签</button>
 					</div>
 					
 					
 					<div class="site-box">
-						<h2><i class="icon-external-link"></i>报名地址及描述</h2><br>
+						<h2><i class="fa fa-external-link"></i>报名地址及描述</h2><br>
 						<table>
 
 							<tr>
 								<td>报名按钮地址：</td>
-								<td><input type="text" class="link" value="{data_list}{link}{/data_list}" placeholder="请在此处填写报名地址"></td>
+								<td><input type="text" class="link" value="<?=$steps['link']?>" placeholder="请在此处填写报名地址"></td>
 							</tr>
 							<tr>
 								<td>课程详情描述：</td>
-								<td><textarea  name="direction" class="direction" placeholder="请在此处填写课程详情描述">{data_list}{direction}{/data_list}</textarea></td>
-								<td><button class="btn btn-primary" style="float:right" id="save-link" data-id="{id}"><i class="icon-save"></i> &nbsp;保存</button></td>
+								<td><textarea  name="direction" class="direction" placeholder="请在此处填写课程详情描述">{description}</textarea></td>
+								<td><button class="btn btn-primary" style="float:right" id="save-link" data-id="{id}"><i class="fa fa-save"></i> &nbsp;保存</button></td>
 							</tr>
 						</table>
 					</div>
@@ -69,11 +69,11 @@
 								<td>{title}</td>
 								<td>{time}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-public" data-type="0"></i><i class="icon-trash remove-public"></i></td>
+								<td><i class="fa fa-edit edit-public" data-type="0"></i><i class="fa fa-trash remove-public"></i></td>
 							</tr>
 							{/course_0}
 						</table>
-						<button class="btn btn-primary public-class" style="float:right" data-type="0"><i class="icon-list"></i> &nbsp;添加课程</button>
+						<button class="btn btn-primary public-class" style="float:right" data-type="0"><i class="fa fa-list"></i> &nbsp;添加课程</button>
 					</div>
 					
 					
@@ -91,11 +91,11 @@
 								<td>{title}</td>
 								<td>{time}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-public" data-type="1"></i><i class="icon-trash remove-public"></i></td>
+								<td><i class="fa fa-edit edit-public" data-type="1"></i><i class="fa fa-trash remove-public"></i></td>
 							</tr>
 							{/course_1}
 						</table>
-						<button class="btn btn-primary public-class" style="float:right" data-type="1"><i class="icon-list"></i> &nbsp;添加课程</button>
+						<button class="btn btn-primary public-class" style="float:right" data-type="1"><i class="fa fa-list"></i> &nbsp;添加课程</button>
 					</div>
 					
 					
@@ -113,11 +113,11 @@
 							<tr data-id="{id}">
 								<td>{title}</td>
 								<td>{content}</td>
-								<td><i class="icon-edit edit-classContent"></i><i class="icon-trash remove-classContent"></i></td>
+								<td><i class="fa fa-edit edit-classContent"></i><i class="fa fa-trash remove-classContent"></i></td>
 							</tr>
 							{/data_chapter}
 						</table>
-						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="icon-list"></i> &nbsp;添加课程</button>
+						<button class="btn btn-primary" style="float:right" id="add-classContent"><i class="fa fa-list"></i> &nbsp;添加课程</button>
 					</div> 			
 
 
@@ -125,16 +125,13 @@
 						
 							<h2>设置课程照片</h2><br>
 							<div class="updataBox">
-								{data_list}
-								<img src="./static/uploads/{url}" class="preview">
-								{/data_list}
-								<form enctype="multipart/form-data" action="upload/pic" id="classpic" method="post">
-									<input type="hidden" name="type" value="classPic" class="updata-class">
-									<input type="hidden" name="id" value="{id}" class="updata-class">
+								<img src="<?=!isset($steps['img']) ? "static/image/slide1.jpg" : './static/uploads/' . $$steps['img'] ?>" class="preview">
+								<form enctype="multipart/form-data" action="api/upload/pic" id="classpic" method="post">
+									<input type="hidden" name="type" value="{type}" class="updata-class">
 									<input type="file" name="userfile" class="updata-class">
 								</form>
 							</div>
-							<button class="btn btn-success" style="float:right" id="updataPic"><i class="icon-list"></i> &nbsp;保存</button>
+							<button class="btn btn-success" style="float:right" id="updataPic"><i class="fa fa-list"></i> &nbsp;保存</button>
 					</div> 
 					
 					

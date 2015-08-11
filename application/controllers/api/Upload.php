@@ -1,17 +1,30 @@
 <?php
+include_once(APPPATH . 'controllers/api/Base_api.php');
 
-class Upload extends CI_Controller {
+class Upload extends base_api {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');
-		// $this->user_info = $this->admin_model->check_login();
+		$this->load->model('course_model');
+		$this->me = $this->admin_model->check_login();
 	}
 
 
 	public function pic(){
+       	parent::require_login();
 		$type = $this->input->post("type", true);
-		$id = $this->input->post("id", true);
+
+
+
+
 		if(isset($_FILES["userfile"])){
+			$data = $this->course_model->get_list($type);
+			if(!isset($data[0]['steps']['img'])){
+				$config['file_name'] =date("Ymd"). rand(100000000000,9999999999999);
+			}else{
+				$config['file_name'] =$data[0]['steps']['img'];
+			}
+            	$config['overwrite'] = true;
 			$config['upload_path'] = './static/uploads/';
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size'] = '2048';

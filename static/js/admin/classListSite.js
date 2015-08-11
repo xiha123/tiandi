@@ -92,7 +92,6 @@ $("body").on("click" , ".edit-public" , function(){
 	$parents = $(this).parents().parents().eq(0);
 	var type = $(this).data("type") == 0 ? 'data-id="0"' : 'data-id="1"';
 	
-
 	input({
 		"title" : "编辑公开课设置",
 		"content" : 
@@ -186,10 +185,10 @@ $("body").on("click" , ".remove-public" , function(){
 
 $("#save-link").click(function(){
 	$.ajax({
-		"url" : "api/admin_api/addClassListLink",
+		"url" : "api/admin_api/edit_link",
 		type : "POST",
 		data : {
-			"id" : $(this).data("id"),
+			"type" : id,
 			"link" : $(".link").val(),
 			"direction" : $(".direction").val(),
 		},
@@ -224,7 +223,7 @@ $(".edit-slider").click(function(){
 				return false
 			}
 			$.ajax({
-				"url" : "api/admin_api/editClassListTag",
+				"url" : "api/admin_api/edit_tag",
 				type : "POST",
 				data : {
 					"id" : $parents.data("id"),
@@ -296,7 +295,7 @@ $(".remove-tag").click(function(){
 			$.ajax({
 				"url" : "api/admin_api/deleteClassListTag",
 				type : "POST",
-				data : {"id" : $parents.data("id")},
+				data : {"id" : $parents.data("id"),"fid" : id},
 				dataType : "JSON",
 				success: function(data){
 					  if(data.status == true) {

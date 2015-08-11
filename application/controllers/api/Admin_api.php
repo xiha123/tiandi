@@ -6,7 +6,7 @@ class admin_api extends base_api {
 
     public function __construct() {
 		parent::__construct();
-
+        $this->load->model('course_model');
 		$this->load->model('admin_model');
 		$this->load->model('course_model');
     		$this->me = $this->admin_model->check_login();
@@ -96,34 +96,53 @@ class admin_api extends base_api {
 		));
 		parent::finish(true);
 	}
-	public function addClassListTag(){
-        	$params = parent::get_params('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
-		$this -> admin_model -> addClassListTag(array(
-			"id" => $id,
-			"className" => $className,
-			"classLink" => $classLink
-		));
-		parent::finish(true);
-	}
-	public function addClassListLink(){
-        	$params = parent::get_params('POST', array('id' , 'direction' , 'link'));if(empty($params)) return;extract($params);
-		$this -> admin_model -> addClassListLink(array(
-			"id" => $id,
-			"link" => $link,
-			"direction" => $direction
-		));
-		parent::finish(true);
+
+            public function edit_link(){
+                $params = parent::get_params('POST', array('type' , 'direction' , 'link'));if(empty($params)) return;extract($params);
+                $course_data = $this->course_model->get(array("type" => $type));
+                $this->course_model->edit_tag($type,array("steps"=>$this->edit_json($course_data['steps'],"link",$link)));
+                $this->course_model->edit_tag($type,array(
+                    "description" => $direction
+                ));
+
+                parent::finish(true);
+            }
+
+
+
+            // 课程标签设置
+	public function edit_tag(){
+                $params = parent::get_params('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
+                if($this ->tag_model -> edit($id,array(
+                    "name" => $className,
+                    "link" => $classLink
+                ))){
+                    parent::finish(true);
+                }else{
+                    parent::finish(false,"未知的网络原因");
+                }
 	}
 
-	public function editClassListTag(){
-        	$params = parent::get_params('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
-		$this -> admin_model -> editClassListTag(array(
-			"id" => $id,
-			"className" => $className,
-			"classLink" => $classLink
-		));
-		parent::finish(true);
-	}
+            public function addClassListTag(){
+                $params = parent::get_params('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
+                if($insertid = $this->tag_model ->create(array(
+                    "name" => $className,
+                    "link" => $classLink,
+                    "type" => "1"
+                ))){
+                    $data = $this->course_model->get_list($id,0,5,true);
+                    $data = $this->add_json($data[0]['tags'],array("t"=>$insertid));
+                    if($this->course_model->edit_tag($id,array("tags" => $data))){
+                        $this->finish(true);
+                    }else{
+                        $this->finish(false,"未知的网络原因");
+                    }
+                }else{
+                    $this->finish(false,"未知的网络原因");
+                }
+            }
+
+
 
 	public function editClassContent(){
         	$params = parent::get_params('POST', array('id' , 'title' , 'content'));if(empty($params)) return;extract($params);
@@ -141,11 +160,12 @@ class admin_api extends base_api {
 
 
 	//删除课程列表
-
 	public function deleteClassListTag(){
-        	$params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
-		$this -> admin_model -> deleteClassListTag($id);
-		parent::finish(true);
+        	   $params = parent::get_params('POST', array("fid",'id'));if(empty($params)) return;extract($params);
+               $course_data = $this->course_model->get(array("type"=>$fid));
+               $this->course_model->edit_tag($fid,array("tags"=>$this->remove_json($course_data['tags'],$id)));
+               $this->tag_model->remove($id);
+	   parent::finish(true);
 	}
 	public function deleteClassContent(){
         	$params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
@@ -164,11 +184,9 @@ class admin_api extends base_api {
 	//删除课程列表
 	public function editClassList(){
         	$params = parent::get_params('POST', array('id' , "className" , "classVideo" , "text"));if(empty($params)) return;extract($params);
-		if($this -> admin_model -> editClassList(array(
-			"id" => $id,
-			"className" => $className,
-			"classVideo" => $classVideo,
-			"text" => $text
+		if($this -> course_model -> edit($id,array(
+			"title" => $className,
+			"video" => $classVideo,
 		))){
 			parent::finish(true);
 		}else{

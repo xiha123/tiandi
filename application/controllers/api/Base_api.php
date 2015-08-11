@@ -10,6 +10,36 @@ class base_api extends CI_Controller {
         if (!$this->input->is_ajax_request()) $this->finish(false, '非法请求');
     }
 
+
+    // 统一json处理
+    public function add_json($json,$data,$type = true){
+        $json = $type ? json_decode($json) : $json;
+        array_push($json, $data);
+        return json_encode($json);
+    }
+    public function remove_json($json,$input,$type = true){
+        $temp=array();
+        $json = $type ? json_decode($json) : $json;
+        foreach ($json as $key => $value) {
+            if($value->t != $input){
+                array_push($temp, array("t"=>$value->t));
+            }
+        }
+        return json_encode($temp);
+    }
+    public function edit_json($json,$name,$content,$type = true){
+        $temp=array();
+        $json = $type ? json_decode($json) : $json;
+        foreach ($json as $key => $value) {
+            if($value->t != $name){
+                array_push($temp, array("t"=>$value->t , "value" =>$value->value));
+            }
+        }
+        array_push($temp, array("t"=>$name , "value" =>$content));
+        return json_encode($temp);
+    }
+
+
     /**
      * @method finish
      * @description 输出JSON数据
@@ -29,7 +59,6 @@ class base_api extends CI_Controller {
  * 邮件的正则表达式  @author：lijianghai
  */
     function  isEmail($email = null){ 
-
         $preg = preg_match("/w+([-+.']w+)*@w+.w+([-.]w+)*/",trim($email));
         if(!$preg){
             return true;

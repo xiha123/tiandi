@@ -77,6 +77,7 @@
 - count 属于这个 tag 的数量
 - content tag描述
 - json_who 谁关注了这个标签
+- link tag对应的链接，仅
 
 ### slide 表
 
@@ -142,6 +143,7 @@
 - collect_users 被那些人收藏，JSON
 - up_users 被哪些人赞，JSON
 - down_users 被哪些人踩，JSON
+- value 问题价值
 
 ### problem_detail 表
 

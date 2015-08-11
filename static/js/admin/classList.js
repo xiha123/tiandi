@@ -31,42 +31,6 @@ $(".remove-slider").click(function(){
 
 
 
-$("#add-classList").click(function(){
-	input({
-		"title" : "添加课程",
-		"content" : 
-		'<form method="post" action="api/admin_api/addClassList" id="addClassList" enctype="multipart/form-data">'+
-		'<table class=table-form>'+
-		'<tr><td>课程名称：<input type="text" placeholder="请输入课程名称" name="className">'+
-		'<tr><td>视频地址：<input type="text" placeholder="请输入视频地址" name="classVideo">'+
-		'<tr><td>课程描述：<input type="text" placeholder="请输入课程描述" name="text">'+
-		'</table></form>',
-		"success" : function(){
-			if($("input[name='className']").val() == ""){
-				showAlert("您必须写清课程的名称");
-				return false
-			}
-			$.ajax({
-				url: 'api/admin_api/addClassList',
-				method: 'post',
-				data: {
-					className: $("input[name='className']").val(),
-					text: $("input[name='text']").val(),
-					classVideo: $("input[name='classVideo']").val()
-				},
-				dataType: 'json',
-				success: function (res) {
-					if (res.status) {
-						location.reload();
-					} else {
-						showAlert(res.error, 'danger');
-					}
-				}
-			});
-		}	
-	});
-});
-
 
 $(".edit-slider").click(function(){
 	
@@ -79,7 +43,7 @@ $(".edit-slider").click(function(){
 		'<input type="hidden" name="id" value="'+$parents.data("id")+'" >'+
 		'<tr><td>课程名称：<input type="text" placeholder="请输入课程名称" value="' + $parents.find("td").eq(0).text()+ '" name="className">'+
 		'<tr><td>视频地址：<input type="text" placeholder="请输入视频地址" value="' + $parents.find("td").eq(1).text()+ '" name="classVideo">'+
-		'<tr><td>课程描述：<input type="text" placeholder="请输入课程描述" value="' + $parents.find("td").eq(3).text()+ '" name="text">'+
+		'<tr><td>课程描述：<input type="text" placeholder="请输入课程描述" value="' + $parents.find("td").eq(2).text()+ '" name="text">'+
 		'</table></form>',
 		"success" : function(){
 			if($("input[name='className']").val() == ""){
@@ -111,6 +75,6 @@ $(".edit-slider").click(function(){
 
 
 $("tr").click(function(){
-	var id = $(this).data("id");
+	var id = $(this).data("type");
 	location.href = "admin/classListSite/" + id;
 })
