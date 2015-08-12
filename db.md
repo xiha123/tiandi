@@ -37,10 +37,9 @@
 - pwd
 - salt
 - nickname 昵称
+- email 邮箱，用作登录
 - type 0 为学生，1 为老师，2 为申请老师审核中
-- name 有索引
 - avatar 头像
-- email 邮箱
 - cellphone 手机号
 - description 个人描述
 - god_description 大神描述

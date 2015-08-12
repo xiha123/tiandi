@@ -91,8 +91,8 @@ $("#ajax_outlogin").on('click', function(event) {
             showAlert(false,"!");
         }
     });
-    
- 
+
+
 });
 
 
@@ -109,14 +109,14 @@ $("#ajax_reg").on('click' , function() {
         return;
     }
     _td.api.createUser({
-        "name" : email,
+        "email" : email,
         "nickname" : nick,
         "pwd" : password
     }).then(function(){
         showAlert(true , "注册账号成功！请重新登录");
         setTimeout(function(){
             location.reload();
-        },1000)
+        }, 1000)
     },function(msg){
         showAlert(false,msg);
     });

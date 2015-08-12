@@ -35,9 +35,9 @@ api:
 
 
 # user
-- 
+-
     #已实现
-    url: user_api/login     
+    url: user_api/login
     type: post
     name: loginUser
     args:
@@ -54,7 +54,7 @@ api:
     type: post
     name: createUser
     args:
-        - name
+        - email
         - nickname
         - pwd
 -
@@ -157,7 +157,7 @@ api:
     args:
         - problem_id
 
-# course-=-----
+# course
 -
     url: course_api/create
     type: post

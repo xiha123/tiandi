@@ -55,17 +55,6 @@ class base_api extends CI_Controller {
         )));
     }
 
- /**
- * 邮件的正则表达式  @author：lijianghai
- */
-    function  isEmail($email = null){ 
-        $preg = preg_match("/w+([-+.']w+)*@w+.w+([-.]w+)*/",trim($email));
-        if(!$preg){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     /**
      * @method get_params
@@ -73,8 +62,6 @@ class base_api extends CI_Controller {
      * @param {String} method 获取参数的方法 GET | POST, default = 'GET'
      * @param {Array} keys 要获取的参数名字，true 表示不能为空，false 则可以为空，默认为 true
      */
-
-
     public function get_params($method = 'GET', $keys) {
         if (strtoupper($method) === 'GET') {
             $params = $this->input->get(NULL, true);
