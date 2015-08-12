@@ -38,18 +38,16 @@
 					{/data_list}
 				</tbody>
 			</table>
-
-			<div class="page">
-				<font>共 0 页，当前正在第 0 页，共有数据 0 条</font>
-				<div class="right">
-					<input type="submit" value="上一页">
-					<form action="#" method="get">
-						<input type="text" placeholder="页数">
-						<input type="submit" value="跳转" style="margin-left:-5px;">
-					</form>
-					<input type="submit" value="下一页">
-				</div>
-			</div>
+			
+			<?php
+				$this->load->view("miaoda/page",array(
+					"page" => 1,
+					"page_max" => 200,
+					"page_count" => 10,
+					"page_url" => "./admin/slider",
+					"hot" => ""
+				));
+			?>
 
 		</div>
 	</div>

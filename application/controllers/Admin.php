@@ -8,6 +8,8 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model' );
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
+		$this->load->model('course_class_model');
+        	$this->load->model('course_chapter_model');
 		$this->user_info = $this->admin_model->check_login();
 
 	}
@@ -158,8 +160,21 @@ class Admin extends CI_Controller {
 		if(empty($this->user_info)) redirect('admin/login');
 		$data = $this->course_model->get_list($id , 0 ,1);
 		$data = count($data) == 1 ? $data[0] : $data;
+		$data['class_type'] = $this->input->get("type") == "" ? "tag" : $this->input->get("type");
 		$data['me'] = $this->user_info;
-		print_r($data);
+
+		// 简单粗暴！
+		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$data["tag_count"] = count($data['tags']);
+		$data["class_count"] = $this->course_class_model->get_count(array());
+		$data["chapter_count"] = $this->course_chapter_model->get_count(array());
+		$data['class'] = $this->course_class_model->get_list(array("form" => $id) ,$data['page']-1 * 10 , 10);
+		$data['chapter'] = $this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] -1* 10 , 10);
+		if($data['page'] -1* 10 > $data["tag_count"] ){
+			$data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 );
+		}else{
+			$data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 , 10);
+		}
 
 		$this->load->library('parser');
 		$this->parser->parse('admin/classList/classListSite.php', $data);

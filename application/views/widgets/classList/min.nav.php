@@ -9,37 +9,31 @@ $navList = array(
 	),
 	array(
 		"title" => "标签管理",
-		"link" => "javascript:void(0)",
+		"link" => "./admin/classListSite/{$type}?type=tag",
 		"icon" => "fa fa-tag",
 		"active" => false
 	),
 	array(
 		"title" => "地址及描述",
-		"link" => "javascript:void(0)",
+		"link" => "./admin/classListSite/{$type}?type=description",
 		"icon" => "fa fa-external-link",
 		"active" => false
 	),
 	array(
-		"title" => "公开课设置",
-		"link" => "javascript:void(0)",
+		"title" => "课程设置",
+		"link" => "./admin/classListSite/{$type}?type=class",
 		"icon" => "fa fa-film",
 		"active" => false
 	),
 	array(
-		"title" => "付费课设置",
-		"link" => "javascript:void(0)",
-		"icon" => "fa fa-qrcode",
-		"active" => false
-	),
-	array(
 		"title" => "章节设置",
-		"link" => "javascript:void(0)",
+		"link" => "./admin/classListSite/{$type}?type=chapter",
 		"icon" => "fa fa-tasks",
 		"active" => false
 	),
 	array(
 		"title" => "图片设置",
-		"link" => "javascript:void(0)",
+		"link" => "./admin/classListSite/{$type}?type=pic",
 		"icon" => "fa fa-picture",
 		"active" => false
 	),

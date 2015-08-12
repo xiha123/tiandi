@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-11 08:55:54
+-- Generation Time: 2015-08-11 16:39:40
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `tiandi`
@@ -27,12 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `activity` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) NOT NULL,
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `type` int(11) NOT NULL,
-  `target` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `target` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -45,7 +46,9 @@ CREATE TABLE IF NOT EXISTS `ad` (
   `name` varchar(32) NOT NULL,
   `img` varchar(128) NOT NULL,
   `link` varchar(128) NOT NULL,
-  `text` text
+  `text` text,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -55,12 +58,14 @@ CREATE TABLE IF NOT EXISTS `ad` (
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `pwd` char(32) NOT NULL,
   `salt` char(10) NOT NULL,
-  `nickname` varchar(32) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
+  `nickname` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Table for admin account' AUTO_INCREMENT=2 ;
 
 --
 -- 转存表中的数据 `admin`
@@ -76,11 +81,12 @@ INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `class_guide` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
-  `link` varchar(128) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `link` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `class_guide`
@@ -98,15 +104,18 @@ INSERT INTO `class_guide` (`id`, `name`, `img`, `link`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
   `type` int(11) NOT NULL,
   `video` varchar(128) NOT NULL,
   `tags` varchar(256) NOT NULL DEFAULT '[]',
   `description` text NOT NULL,
   `chapters` varchar(512) NOT NULL DEFAULT '[]',
-  `steps` varchar(512) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  `steps` varchar(512) NOT NULL DEFAULT '[]',
+  PRIMARY KEY (`id`),
+  KEY `title` (`title`),
+  KEY `type` (`type`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- 转存表中的数据 `course`
@@ -117,7 +126,7 @@ INSERT INTO `course` (`id`, `title`, `type`, `video`, `tags`, `description`, `ch
 (6, 'swift', 1, '#', '[]', '#', '[]', '[]'),
 (7, 'web', 2, '#', '[]', 'web', '[]', '[]'),
 (8, 'cocos2d-x', 3, '#', '[]', '#', '[]', '[]'),
-(9, 'android', 4, '#', '[{"t":2}]', '#', '[]', '[]');
+(9, 'android', 4, '#', '[{"t":2}]', '21321321', '[]', '[{"t":"img","value":"201508111290386719.jpg"}]');
 
 -- --------------------------------------------------------
 
@@ -126,11 +135,26 @@ INSERT INTO `course` (`id`, `title`, `type`, `video`, `tags`, `description`, `ch
 --
 
 CREATE TABLE IF NOT EXISTS `course_chapter` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(64) NOT NULL,
   `content` text NOT NULL,
-  `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `course_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `course_class`
+--
+
+CREATE TABLE IF NOT EXISTS `course_class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(125) NOT NULL,
+  `content` varchar(256) NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -139,13 +163,14 @@ CREATE TABLE IF NOT EXISTS `course_chapter` (
 --
 
 CREATE TABLE IF NOT EXISTS `course_step` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `level` smallint(6) NOT NULL,
-  `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `course_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -154,13 +179,14 @@ CREATE TABLE IF NOT EXISTS `course_step` (
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` tinyint(4) NOT NULL,
   `content` text NOT NULL,
   `from` int(11) NOT NULL,
   `to` int(11) NOT NULL,
-  `time` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 -- --------------------------------------------------------
 
@@ -169,11 +195,12 @@ CREATE TABLE IF NOT EXISTS `news` (
 --
 
 CREATE TABLE IF NOT EXISTS `note` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
   `content` text NOT NULL,
-  `owner_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `owner_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -182,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `note` (
 --
 
 CREATE TABLE IF NOT EXISTS `problem` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(256) NOT NULL,
   `owner_id` int(11) NOT NULL,
   `answer_id` int(11) NOT NULL,
@@ -201,8 +228,16 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `follow_users` varchar(1024) NOT NULL DEFAULT '[]',
   `collect_users` varchar(512) NOT NULL DEFAULT '[]',
   `up_users` varchar(1024) NOT NULL DEFAULT '[]',
-  `down_users` varchar(512) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `down_users` varchar(512) NOT NULL DEFAULT '[]',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `problem`
+--
+
+INSERT INTO `problem` (`id`, `title`, `owner_id`, `answer_id`, `answer_time`, `details`, `comments`, `tags`, `up_count`, `down_count`, `collect_count`, `follow_count`, `view_count`, `ctime`, `type`, `hot`, `follow_users`, `collect_users`, `up_users`, `down_users`) VALUES
+(2, '1232132132112321321321123213213211232132132112321321321', 5, 0, 0, '[]', '[]', '[{"name":"12321321321"},{"name":"12321321321"},{"name":"12321321321"},]', 0, 0, 0, 0, 0, '2015-08-11 14:34:58', 0, 0, '[]', '[]', '[]', '[]');
 
 -- --------------------------------------------------------
 
@@ -211,12 +246,13 @@ CREATE TABLE IF NOT EXISTS `problem` (
 --
 
 CREATE TABLE IF NOT EXISTS `problem_comment` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text NOT NULL,
   `owner_id` int(11) NOT NULL,
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `problem_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `problem_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -225,14 +261,22 @@ CREATE TABLE IF NOT EXISTS `problem_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `problem_detail` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text NOT NULL,
   `type` tinyint(4) NOT NULL,
   `owner_id` int(11) NOT NULL,
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `problem_id` int(11) NOT NULL,
-  `code` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `code` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `problem_detail`
+--
+
+INSERT INTO `problem_detail` (`id`, `content`, `type`, `owner_id`, `ctime`, `problem_id`, `code`) VALUES
+(2, '<p>12321321321123213213211232132132112321321321123213213211232132132112321321321</p>', 0, 5, '2015-08-11 14:34:58', 2, '123213213211232132132112321321321');
 
 -- --------------------------------------------------------
 
@@ -243,7 +287,8 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
 CREATE TABLE IF NOT EXISTS `site` (
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL COMMENT 'qq=0 | copyright=1 | icp=2 | tel=3',
-  `content` varchar(128) NOT NULL
+  `content` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -253,14 +298,16 @@ CREATE TABLE IF NOT EXISTS `site` (
 --
 
 CREATE TABLE IF NOT EXISTS `slide` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
   `link` varchar(128) NOT NULL,
   `color` varchar(32) NOT NULL,
   `type` int(11) NOT NULL,
-  `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `text` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `slide`
@@ -278,22 +325,23 @@ INSERT INTO `slide` (`id`, `name`, `img`, `link`, `color`, `type`, `text`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `tag` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` tinyint(4) NOT NULL,
   `count` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `content` varchar(256) DEFAULT NULL,
   `json_who` varchar(256) DEFAULT '[]',
-  `link` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `link` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `tag`
 --
 
 INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`, `link`) VALUES
-(2, 0, 0, '1231231', '312312312312', '[]', ''),
-(7, 0, 0, '', NULL, '[]', '');
+(8, 1, 1, '12321321321', '', '[{"t":"5"}]', '');
 
 -- --------------------------------------------------------
 
@@ -302,7 +350,7 @@ INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`, `link`)
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nickname` varchar(64) NOT NULL,
   `name` varchar(64) NOT NULL,
   `pwd` char(32) NOT NULL,
@@ -327,190 +375,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `follower_count` int(11) NOT NULL DEFAULT '0',
   `follow_users` varchar(1024) NOT NULL DEFAULT '[]',
   `followers` varchar(1024) NOT NULL DEFAULT '[]',
-  `idcar` varchar(44) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `idcar` varchar(44) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Indexes for dumped tables
+-- 转存表中的数据 `user`
 --
 
---
--- Indexes for table `activity`
---
-ALTER TABLE `activity`
-  ADD PRIMARY KEY (`id`);
+INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`, `idcar`) VALUES
+(5, 'tocurd', '', '83ae4fe597144cb330060fbcf9860592', 'a080b328b7', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, 0, '[]', '[]', '[{"t":"8"}]', '', 0, 0, 0, 0, '[]', '[]', '');
 
---
--- Indexes for table `ad`
---
-ALTER TABLE `ad`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `class_guide`
---
-ALTER TABLE `class_guide`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `course`
---
-ALTER TABLE `course`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `title` (`title`),
-  ADD KEY `type` (`type`);
-
---
--- Indexes for table `course_chapter`
---
-ALTER TABLE `course_chapter`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `course_step`
---
-ALTER TABLE `course_step`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `note`
---
-ALTER TABLE `note`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `problem`
---
-ALTER TABLE `problem`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `problem_comment`
---
-ALTER TABLE `problem_comment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `problem_detail`
---
-ALTER TABLE `problem_detail`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `site`
---
-ALTER TABLE `site`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `slide`
---
-ALTER TABLE `slide`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `tag`
---
-ALTER TABLE `tag`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `name` (`name`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `activity`
---
-ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `class_guide`
---
-ALTER TABLE `class_guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `course`
---
-ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `course_chapter`
---
-ALTER TABLE `course_chapter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `course_step`
---
-ALTER TABLE `course_step`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
---
--- AUTO_INCREMENT for table `note`
---
-ALTER TABLE `note`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `problem`
---
-ALTER TABLE `problem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `problem_comment`
---
-ALTER TABLE `problem_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `problem_detail`
---
-ALTER TABLE `problem_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `slide`
---
-ALTER TABLE `slide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `tag`
---
-ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
