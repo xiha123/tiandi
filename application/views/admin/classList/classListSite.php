@@ -20,7 +20,8 @@
 							case 'class':$activeNav = 3;break;
 							case 'chapter':$activeNav = 4;break;
 							case 'pic':$activeNav = 5;break;
-							default:$activeNav = 1;break;
+							case 'step':$activeNav = 6;break;
+							default:$activeNav = 0;break;
 						}
 					 $this->load->view('widgets/classList/min.nav.php' , array("activeNav" =>$activeNav)); ?>
 					<li style="float:right;font-weight:700"><p>当前操作的课程详情页：{title}</p></li>
@@ -28,13 +29,13 @@
 			</div>
 			
 			<div class="main-data">
+				<?php $this->load->view('widgets/admin/footer.php'); ?>
 				<?php $this->load->view('admin/classList/site/'.$class_type.'.php' , array("activeNav" =>$activeNav)); ?>
 			</div>
 			
 
 		</div>
 	</div>
-	<?php $this->load->view('widgets/admin/footer.php'); ?>
 	<link rel="stylesheet" href="./static/css/datepicker.css">
 	  <script src="./static/lib/bootstrap-datepicker.js"></script>
 	<script src="./static/js/admin/classListSite.js"></script>

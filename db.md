@@ -124,8 +124,12 @@
 - video 视频地址
 - tags 标签列表，JSON对象，key 为 tag 表的 id
 - description 课程描述
-- chapters 课程对应的章节，JSON数组，按照 id 排序，顺序为章节顺序
+- site 课程的一些设置
 - steps 课程对应的步骤，JSON数组，按照 id 排序，顺序为步骤顺序
+
+
+
+
 
 ### problem 表
 

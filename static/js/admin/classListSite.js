@@ -161,9 +161,8 @@ $("body").on("click" , ".remove-public" , function(){
 					  if(data.status == true) {
 						$parents.hide();
 						close();
-						
 					} else {
-						alertBox(data.error);
+						showAlert(data.error);
 					}
 				}
 			});

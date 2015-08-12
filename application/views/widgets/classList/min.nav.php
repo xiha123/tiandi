@@ -34,7 +34,13 @@ $navList = array(
 	array(
 		"title" => "图片设置",
 		"link" => "./admin/classListSite/{$type}?type=pic",
-		"icon" => "fa fa-picture",
+		"icon" => "fa fa-picture-o",
+		"active" => false
+	),
+	array(
+		"title" => "课程步骤设置",
+		"link" => "./admin/classListSite/{$type}?type=step",
+		"icon" => "fa fa-bars",
 		"active" => false
 	),
 );

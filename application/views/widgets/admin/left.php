@@ -33,6 +33,12 @@
 				),
 				array(
 					"title" => "用户管理",
+					"link" => "admin/user",
+					"icon" => "fa fa-users",
+					"active" => false
+				),
+				array(
+					"title" => "管理员设置",
 					"link" => "admin/users",
 					"icon" => "fa fa-user",
 					"active" => false

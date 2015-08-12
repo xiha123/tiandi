@@ -7,8 +7,19 @@ class user_api extends base_api {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('tag_model');
+        $this->load->model('problem_model');
         $this->me = $this->user_model->check_login();
     }
+
+    // 抹杀掉一个用户
+    public function remove_user(){
+        $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
+        // $this->user_model->remove($id);
+        $this->problem_model->delete_user($id);
+
+    }
+
+
     public function collect_tag(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
         if($this->tag_model->collect_tag($id)){

@@ -11,12 +11,10 @@ class Olclass extends CI_Controller {
 	}
 
 	public function index() {
-
-		$slide_list = $this->slide_model->get_list(1);
-		$guide_list = $this->guide_model->get_list();
 		$userdata = $this->user_model->check_login();
-		$userdata['slide_list'] = $slide_list;
-		$userdata['guide_list'] = $guide_list;
+		$userdata['slide_list'] = $this->slide_model->get_list(1);
+		$userdata['guide_list'] = $this->guide_model->get_list();
+		$userdata['guide_list'] = $this->guide_model->get_list();
 
 		$this->parser->parse('pages/olClass.php', $userdata);
 	}

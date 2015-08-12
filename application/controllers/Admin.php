@@ -10,8 +10,27 @@ class Admin extends CI_Controller {
 		$this->load->model('course_model');
 		$this->load->model('course_class_model');
         	$this->load->model('course_chapter_model');
+        	$this->load->model('user_model');
 		$this->user_info = $this->admin_model->check_login();
 
+	}
+
+	public function user(){
+		if($this->admin_model->require_login() === false) redirect('admin/login');
+		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$data['me'] = $this->user_info;
+		$data['user'] = $this->user_model->get_list(array() , ($data['page'] - 1) * 10 , 10);
+		foreach ($data['user'] as $key => $value) {
+			if($data['user'][$key]['type']  == "0"){
+				$data['user'][$key]['type'] = "学员";
+			}else{
+				$data['user'][$key]['type'] == "1" ? "大神" : "待审核";
+			}
+
+		}
+		$data['user_max'] = $this->user_model->get_count(array());
+		$this->load->library('parser');
+		$this->parser->parse('admin/user.php', $data);
 	}
 
 	public function index() {
@@ -163,18 +182,16 @@ class Admin extends CI_Controller {
 		$data['class_type'] = $this->input->get("type") == "" ? "tag" : $this->input->get("type");
 		$data['me'] = $this->user_info;
 
-		// 简单粗暴！
+		// 各种简单粗暴的Get！
 		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$data["tag_count"] = count($data['tags']);
+		$data["steps_count"] = count($data['steps']);
 		$data["class_count"] = $this->course_class_model->get_count(array());
 		$data["chapter_count"] = $this->course_chapter_model->get_count(array());
 		$data['class'] = $this->course_class_model->get_list(array("form" => $id) ,$data['page']-1 * 10 , 10);
 		$data['chapter'] = $this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] -1* 10 , 10);
-		if($data['page'] -1* 10 > $data["tag_count"] ){
-			$data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 );
-		}else{
-			$data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 , 10);
-		}
+		$data['tags'] =  $data['page'] -1* 10 > $data["tag_count"] ? array_slice($data['tags'],($data['page'] -1)* 10 ) : $data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 , 10);
+		$data['steps'] =  $data['page'] -1* 10 > $data["tag_count"] ? array_slice($data['steps'],($data['page'] -1)* 10 ) : $data['steps'] = array_slice($data['steps'],($data['page'] -1)* 10 , 10);
 
 		$this->load->library('parser');
 		$this->parser->parse('admin/classList/classListSite.php', $data);

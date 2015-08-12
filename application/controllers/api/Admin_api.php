@@ -11,8 +11,73 @@ class admin_api extends base_api {
         $this->load->model('course_model');
         $this->load->model('course_chapter_model');
         $this->load->model('course_class_model');
+        $this->load->model('course_step_model');
         $this->me = $this->admin_model->check_login();
     }
+
+    public function delect_steup(){
+        $params = parent::get_params('POST', array('type','id'));if(empty($params))return;extract($params);
+        $this->course_step_model->remove($id);
+        $course_data = $this->course_model->get(array("type" => $type));
+        $this->course_model->edit_tag($type,array("steps" => $this->remove_json( $course_data['steps'], $id)));
+         $this->finish(true,"Good!!");
+    }
+    public function add_steup(){
+        $params = parent::get_params('POST', array('type' , "title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
+        if(isset($_FILES["userfile"])){
+            $config['upload_path'] = './static/uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] =date("Ymd"). rand(100000000000,9999999999999);
+            $this->load->library('upload', $config);
+            if(!$this->upload->do_upload("userfile")){
+               $this->finish(false,"图片无法上传到服务器");
+            }else{
+                $data = $this->upload->data();
+                $id = $this->course_step_model->create(array(
+                    "title"=>$title,
+                    "img"=>$data['file_name'],
+                    "description"=>$description,
+                    "level"=>$difficulty,
+                    "course_id"=>$type,
+                ));
+               $course_data = $this->course_model->get(array("type" => $type));
+               $this->course_model->edit_tag($type,array("steps"=>$this->add_json($course_data['steps'] , array("t"=> $id)) ));
+               $this->finish(true,"添加成功！");
+            }
+        }
+    }
+
+    public function edit_steup(){
+        $params = parent::get_params('POST', array('type' , 'id' , "title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
+        $steup_data = $this->course_step_model->get(array('id' => $id));
+        $config['file_name'] = $steup_data['img'];
+
+        if(isset($_FILES["userfile"])){
+            $config['upload_path'] = './static/uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['overwrite'] = true;
+            $this->load->library('upload', $config);
+            if(!$this->upload->do_upload("userfile")){
+                $this->finish(false,"图片无法上传到服务器");  
+            }
+        }
+
+        $id = $this->course_step_model->edit($id,array(
+            "title"=>$title,
+            "img"=>$config['file_name'],
+            "description"=>$description,
+            "level"=>$difficulty,
+            "course_id"=>$type,
+        ));
+        $course_data = $this->course_model->get(array("type" => $type));
+        $this->course_model->edit_tag($type,array("steps"=>$this->add_json($course_data['steps'] , array("t"=> $id)) ));
+        $this->finish(true);
+    }
+
+
+
 
     public function editClassPublic() {
         $params = parent::get_params('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
@@ -105,7 +170,7 @@ class admin_api extends base_api {
             public function edit_link(){
                 $params = parent::get_params('POST', array('type' , 'direction' , 'link'));if(empty($params)) return;extract($params);
                 $course_data = $this->course_model->get(array("type" => $type));
-                $this->course_model->edit_tag($type,array("steps"=>$this->edit_json($course_data['steps'],"link",$link)));
+                $this->course_model->edit_tag($type,array("site"=>$this->edit_json($course_data['site'],"link",$link)));
                 $this->course_model->edit_tag($type,array(
                     "description" => $direction
                 ));

@@ -19,10 +19,10 @@ class Upload extends base_api {
 
 		if(isset($_FILES["userfile"])){
 			$data = $this->course_model->get_list($type);
-			if(!isset($data[0]['steps']['img'])){
+			if(!isset($data[0]['site']['img'])){
 				$config['file_name'] =date("Ymd"). rand(100000000000,9999999999999);
 			}else{
-				$config['file_name'] =$data[0]['steps']['img'];
+				$config['file_name'] =$data[0]['site']['img'];
 			}
             	$config['overwrite'] = true;
 			$config['upload_path'] = './static/uploads/';

@@ -4,7 +4,7 @@
 
 		<tr>
 			<td>报名按钮地址：</td>
-			<td><input type="text" class="link" value="<?=!isset($steps['link']) ? "" :$steps['link']?>" placeholder="请在此处填写报名地址"></td>
+			<td><input type="text" class="link" value="<?=!isset($site['link']) ? "" :$site['link']?>" placeholder="请在此处填写报名地址"></td>
 		</tr>
 		<tr>
 			<td>课程详情描述：</td>
