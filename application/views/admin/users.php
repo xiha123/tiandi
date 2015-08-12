@@ -11,7 +11,6 @@
         <li role="presentation"><a href="#self" aria-controls="self" role="tab" data-toggle="tab">大神审核</a></li>
         <li role="presentation" class="active"><a href="#self" aria-controls="self" role="tab" data-toggle="tab">个人设置</a></li>
         <li role="presentation"><a href="#admin" aria-controls="profile" role="tab" data-toggle="tab">管理员设置</a></li>
-        <li role="presentation"><a href="#user" aria-controls="messages" role="tab" data-toggle="tab">用户设置</a></li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="self">
@@ -47,20 +46,6 @@
                 <input type="submit" class="btn btn-danger" value="删除">
             </form>
         </div>
-        <div role="tabpanel" class="tab-pane" id="user">
-			<p>设置某个用户为老师</p>
-            <form onsubmit="editUser();return false;">
-                <div class="form-group">
-                    <label for="edit-user-username">用户名</label>
-                    <input type="text" class="form-control" id="edit-user-username" placeholder="用户名">
-                </div>
-                <div class="form-group">
-                    <label for="edit-user-type">身份</label>
-                    <input type="text" class="form-control" id="edit-user-type" placeholder="0为普通用户，1为老师">
-                </div>
-                <input type="submit" class="btn btn-success" value="修改">
-            </form>
-		</div>
     </div>
 </div>
 

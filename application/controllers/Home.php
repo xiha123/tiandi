@@ -9,15 +9,14 @@ class Home extends CI_Controller {
 		$this->load->model("tag_model");
 	}
 
-	public function index()
-	{
+	public function index() {
 		$userdata = $this->user_model->check_login();
 		if(!isset($_GET["uid"])){
 			show_404();
 		}
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$uid = $this->input->get("uid");
-		$userdata["user"] = $this->user_model->get_user_data($this->input->get("uid" , true));if(!isset($userdata['user']['name'])){show_404();}
+		$userdata["user"] = $this->user_model->get_user_data($this->input->get("uid" , true));
 		if($userdata["user"]["type"] == "0" || $userdata["user"]["type"] == "2"){
 			$userdata['love'] = isset($_GET['love']) ? true : false;
 			$userdata['owner'] = isset($_GET['owner']) ? true : false;
@@ -43,8 +42,8 @@ class Home extends CI_Controller {
 			$userdata["skilled_tags"] = $skilled_tags;
 			$this->load->view("miaoda/studentHome.php" , $userdata);
 
-		}else{
-			if(isset($userdata['name']) && $userdata['id'] == $uid){
+		} else {
+			if($userdata['id'] == $uid){
 				$userdata["recommend_list"] = $this->problem_model->get_list_by_hot(0, 5 , "random");
 				$userdata["hot_type"] = isset($_GET['ok']) ? true : false;
 				if(!$userdata["hot_type"]){
