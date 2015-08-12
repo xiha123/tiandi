@@ -10,7 +10,8 @@
 	<div class="main-content">
 		<div class="main-title">
 			<ul class="nav nav-pills">
-				<li role="presentation"><a href="javascript:;" onclick="signOut()"><i class="fa fa-sign-out"></i>注销</a></li>
+				<li role="presentation" class="active"><a href="javascript:;"><i class="fa fa-users"></i>用户管理</a></li>
+				<li role="presentation"><a href="javascript:;"><i class="fa fa-check-square"></i>大神审核</a></li>
 			</ul>
 		</div>
 
@@ -42,7 +43,7 @@
 						<td>{silver_coin}</td>
 						<td>{idcar}</td>
 						<td>{type}</td>
-						<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-user"></i></td>
+						<td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
 					</tr>
 				{/user}
 				</tbody>
