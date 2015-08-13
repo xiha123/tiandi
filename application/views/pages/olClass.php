@@ -2,11 +2,29 @@
 	$this->load->view('widgets/header.php'); 
 	$active = 'class="active"';
 ?>
+	<link rel="stylesheet" href="static/css/tanchuang_main.css"/>
 	<link rel="stylesheet" href="static/css/olClass.css">
 </head>
 <body>
 
 <?php $this->load->view('widgets/nav.php', array( "activeNav" => 0 )); ?>
+<div class="box" id="box">
+	<p>
+		<img src="" width="480" height="275">
+		<div class="title">
+			<div class="close fr" onclick="javascript:document.getElementById('box').style.display='none'">X</div>
+			<h2>重点一</h2>
+			<div class="level">
+				<h3>难度</h3>
+				<!-- <i class="fa fa-star"></i> -->
+			</div>
+		</div><p class="content">
+			内容内容容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+		</p></p>
+		<div class="button">
+			<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>"><button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
+		</div>
+</div>
 
 <div class="main">
 	<div class="wrapper">
@@ -52,18 +70,18 @@
 						<?php
 							for ($index = 0; $index < 4 ; $index++) { 
 								if($index < 3){
-									echo '<li><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-right"></i></li>';
+									echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-right"></i></li>';
 								}else{
-									echo '<li class="last"><h3>Step 4</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-down bottom"></i></li>';
+									echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'" class="last"><h3>Step 4</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-down bottom"></i></li>';
 								}
 							}
 							$index = 8;
 							while ($index --) {
 								if($index < 4)break;
 								if($index < 5){
-									echo '<li class="last"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p></li>';
+									echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'" class="last"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p></li>';
 								}else{
-									echo '<li><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-left"></i></li>';
+									echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-left"></i></li>';
 								}
 							}
 						?>

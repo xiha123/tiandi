@@ -37,8 +37,10 @@ class Olclass extends CI_Controller {
 			$userdata['types'] = 0;
 			$userdata['type_name'] = "u3d";
 		}
+		$steup_data = $this->course_model->get(array("type" => $userdata['types']));
 		$userdata['class'] = $this->course_step_model->get_list(array("course_id" => $userdata['types']) , 0 , 8);
-		$userdata['description'] = $this->course_model->get(array("type" => $userdata['types']))['description'];
+		$userdata['description'] = $steup_data['description'];
+		$userdata['site'] = $this->course_model->get_site_by_json($steup_data['site']);
 
 		$this->load->library('parser');
 		$this->parser->parse('pages/olClass.php', $userdata);

@@ -23,7 +23,8 @@ class admin_api extends base_api {
          $this->finish(true,"Good!!");
     }
     public function add_steup(){
-        $params = parent::get_params('POST', array('type' , "title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
+        $params = parent::get_params('POST', array("title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
+        $type = $this->input->post('type');
         if(isset($_FILES["userfile"])){
             $config['upload_path'] = './static/uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -49,7 +50,8 @@ class admin_api extends base_api {
     }
 
     public function edit_steup(){
-        $params = parent::get_params('POST', array('type' , 'id' , "title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
+        $params = parent::get_params('POST', array('id' , "title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
+        $type = $this->input->post('type');
         $steup_data = $this->course_step_model->get(array('id' => $id));
         $config['file_name'] = $steup_data['img'];
 
