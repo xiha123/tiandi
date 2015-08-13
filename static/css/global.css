@@ -4,7 +4,6 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .notLogin a{font-size:12px;color:#fff;padding:0px 7px;}
 .notLogin a i{margin-right: 4px;}
 
-
 /*登录框通用*/
 .window{display:none;width:100%;z-index:1023;position:fixed; top:0;left: 0;height: 100%;background: rgba(0,0,0,0.4);}
 
@@ -121,7 +120,7 @@ html{
     -moz-osx-font-smoothing:grayscale;
 	color:#333;
 
-    background:url(../image/footer.png) repeat-x bottom;
+    background:url(../image/footer.png) #f2f2f2  repeat-x bottom;
 }
 a {
 	text-decoration:none;
