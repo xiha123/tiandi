@@ -4,6 +4,9 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .notLogin a{font-size:12px;color:#fff;padding:0px 7px;}
 .notLogin a i{margin-right: 4px;}
 
+
+
+
 /*登录框通用*/
 .window{display:none;width:100%;z-index:1023;position:fixed; top:0;left: 0;height: 100%;background: rgba(0,0,0,0.4);}
 
@@ -45,7 +48,7 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .page .active a{color:#fff;}
 
 .seconds-nav {font-size:15px;margin-bottom:30px;width:100%;background:#219ba1;height:35px;}
-.seconds-nav .seacher{float: left;}
+.seconds-nav .seacher{float: left;position: relative;}
 .seconds-nav li{float: left;border-right: 1px solid #22a6a8;}
 .seconds-nav li a{ transition: background 0.2s ease-in-out;color:#fff;width: 150px;display:block;height: 35px;line-height: 35px;text-align: center;padding:0px 10px;}
 .seconds-nav li .active,

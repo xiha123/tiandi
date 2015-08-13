@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-12 17:16:10
+-- Generation Time: 2015-08-13 17:33:27
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -123,11 +123,11 @@ CREATE TABLE IF NOT EXISTS `course` (
 --
 
 INSERT INTO `course` (`id`, `title`, `type`, `video`, `tags`, `description`, `chapters`, `steps`, `site`) VALUES
-(10, '12', 1, '123', '[]', '', '[]', '[]', '[]'),
-(11, '', 2, '', '[]', '', '[]', '[]', '[]'),
-(12, '', 3, '', '[]', '', '[]', '[]', '[]'),
-(13, '', 4, '', '[]', '', '[]', '[]', '[]'),
-(14, '', 5, '', '[]', '', '[]', '[]', '[]');
+(10, 'Unity-3D', 0, '', '[]', '', '[]', '[]', '[]'),
+(11, 'Swift', 1, '', '[]', '', '[]', '[]', '[]'),
+(12, 'Web', 2, '', '[]', '', '[]', '[]', '[]'),
+(13, 'Cocos2d-x', 3, '', '[]', '', '[]', '[]', '[]'),
+(14, 'Android', 4, '', '[]', '', '[]', '[]', '[]');
 
 -- --------------------------------------------------------
 
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `to` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -232,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `up_users` varchar(1024) NOT NULL DEFAULT '[]',
   `down_users` varchar(512) NOT NULL DEFAULT '[]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `link` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -357,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `followers` varchar(1024) NOT NULL DEFAULT '[]',
   `idcar` varchar(44) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

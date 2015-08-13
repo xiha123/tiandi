@@ -4,6 +4,7 @@
 		<div class="seacher">
 			<input type="text" class="fl" placeholder="在此搜索你的问题">
 			<button><i class="fa fa-search"></i></button>
+
 		</div>
 		<ul class="fr">
 
@@ -65,7 +66,6 @@
 							<a href="javascript:" class="bomb-reg">注册</a>
 						</div>';
 				}
-
 			?>
 
 			<!--  -->
