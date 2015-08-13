@@ -17,7 +17,10 @@ class base_model extends CI_Model {
 		));
         return true;
 	}
-
+	public function edit_array($where , $params){
+		$this->db->where($where)->update($this->table_name, $params);
+		return true;
+	}
 	public function edit($id, $params) {
 		$this->db->where('id', $id)->update($this->table_name, $params);
 		return true;
@@ -30,6 +33,7 @@ class base_model extends CI_Model {
     public function get($params) {
         return $this->db->where($params)->get($this->table_name, 1)->row_array();
     }
+
 
 	public function get_count($params) {
 		return $this->db->where($params)->count_all_results($this->table_name);

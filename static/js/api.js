@@ -3,11 +3,11 @@
 window._td = {
     api: {
         _checkArg: function (need, target, next) {
-            if (target[need] === undefined || target[need].trim() === '') {
+            if (target[need] === undefined || $.trim(target[need]) === '') {
                 next.reject('No required argument: "' + need + '"');
                 return false;
             }
-            target[need] = target[need].trim();
+            target[need] = $.trim(target[need]);
             return true;
         },
         _doAjax: function (config, next) {
