@@ -17,7 +17,8 @@ class Upload extends base_api {
 		if(isset($_FILES["userfile"])){
 			$data = $this->course_model->get_list($type,0,1,true);
 			$temp=array();
-			$file = json_decode($data[0]['steps']);
+			print_r($data);
+			$file = json_decode($data[0]['site']);
 			foreach ($file as $key => $value) {
 				$temp[$value->t] = $value->value;
 			}
@@ -37,7 +38,7 @@ class Upload extends base_api {
 			}else{
 				$file = $this->upload->data();
 				$this->course_model->edit_tag($type,
-					array("steps" => $this->edit_json($data[0]['steps'],"img",$file['file_name'], true))
+					array("site" => $this->edit_json($data[0]['site'],"img",$file['file_name'], true))
 				);
 				$this->load->model ("admin_model" , "model");
 				echo  '{"status" : "true"}';
