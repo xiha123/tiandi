@@ -20,6 +20,9 @@ class Index extends CI_Controller {
 		$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$userdata['tag_count'] = $this->problem_model->get_list_by_tag_count($name);
+		if($userdata['tag_count'] <=0){
+			show_404();
+		}
 		$userdata['collect_type'] = $this->tag_model->is_collect_tag($userdata['tag_data']['id']);
 
 		// 标签大神榜与标签学员榜
