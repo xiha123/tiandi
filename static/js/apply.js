@@ -3,9 +3,9 @@ $("#ajax_apply").click(function(event) {
 	var idcard = $("#idcard").val();
 	var alipay = $("#alipay").val();
 	var phone = $("#phone").val();
+      var tag = $("#tag").val();
 	var desk = $("#desk").val();
 	var checkFlag = new clsIDCard(idcard);    
-
 
 	if(name.length > 4 || name.length < 2){showAlert(false,"姓名格式输入错误！");return;}
 	if(!checkFlag.IsValid()){showAlert(false,"身份证输入错误格式不正确！");return;}
@@ -20,6 +20,7 @@ $("#ajax_apply").click(function(event) {
 			"cellphone" : phone,
 			"description" : desk,
 			"alipay" : alipay,
+                  "tag" : tag,
 			"idcar" : idcard,
 		},
 		success : function(data){

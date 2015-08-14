@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
 			if($data['user'][$key]['type']  == "0"){
 				$data['user'][$key]['type'] = "学员";
 			}else{
-				$data['user'][$key]['type'] == "1" ? "大神" : "待审核";
+				$data['user'][$key]['type'] = $data['user'][$key]['type'] == "1" ? "大神" : "<font style='color:#cc0000;font-weight:700'>待审核</font>";
 			}
 
 		}

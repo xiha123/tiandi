@@ -1,61 +1,54 @@
-<?php $this->load->view('widgets/header.php'); ?>
+<?php 
+	$this->load->view('widgets/header.php'); 
+	$active = 'class="active"';
+?>
 <link rel="stylesheet" href="./static/css/miaoda/god.css">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
-	<div class="tab" data-widget="tab">
+	<div class="tab">
 		<ul class="tab-trigger cf js-tab-trigger">
-			<li data-id="3d"><a href="javascript:void(0)">Unity-3D</a></li>
-			<li data-id="swift"><a href="javascript:void(0)">Swift</a></li>
-			<li data-id="web"><a href="javascript:void(0)">Web</a></li>
-			<li data-id="coco"><a href="javascript:void(0)">Cocos2d-x</a></li>
-			<li data-id="android"><a href="javascript:void(0)">Android</a></li>
+			<li data-id="3d" <?=$types == 0 ? $active :"" ?>><a href="./god?type=u3d">Unity-3D</a></li>
+			<li data-id="swift" <?=$types == 1 ? $active :"" ?>><a href="./god?type=Swift">Swift</a></li>
+			<li data-id="Web" <?=$types == 2 ? $active :"" ?>><a href="./god?type=Web">Web</a></li>
+			<li data-id="Cocos2d-x" <?=$types == 3 ? $active :"" ?>><a href="./god?type=Cocos2d-x">Cocos2d-x</a></li>
+			<li data-id="Android" <?=$types == 4 ? $active :"" ?>><a href="./god?type=Android">Android</a></li>
 		</ul>
-		<ul class="tab-sheet js-tab-sheet">
-			<li>
-				<div class="data fl">
-					<img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic">
-					<p class="name">liu liu <font><img src="static/image/good.png" alt="" width="13px">999</font><font><img src="static/image/look.png" width="26px" alt="">999</font> </p>
-					<p class="desk">讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述</p>
-					<p class="class">正在开的课：2门</p>
-					<a href="javascript:" class="tagBox">tag</a>
-					<a href="javascript:" class="tagBox">tag</a>
-					<a href="javascript:" class="tagBox">tag</a>
-					<button> <font>+</font> 关注</button>
-				</div>
-				<div class="data fr">
-					<img src="http://show.ku6.com:8080/img/M00/00/22/egshUFWj9zuASaNkAAPtDBPT5xA585.png" alt="" class="pic">
-					<p class="name">liu liu <font><img src="static/image/good.png" alt="" width="13px">999</font><font><img src="static/image/look.png" width="26px" alt="">999</font> </p>
-					<p class="desk">讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述讲师描述</p>
-					<p class="class">正在开的课：2门</p>
-					<a href="javascript:" class="tagBox">tag</a>
-					<a href="javascript:" class="tagBox">tag</a>
-					<a href="javascript:" class="tagBox">tag</a>
-					<button> + 关注</button>
-				</div>
-					<div class="page">
-						<ul>
-							<li><a href="javascript:">< 上一页</a></li>
-							<li class="active"><a href="javascript:">1</a></li>
-							<li><a href="javascript:">2</a></li>
-							<li><a href="javascript:">3</a></li>
-							<li><a href="javascript:">下一页 ></a></li>
-						</ul>
-					</div>
+		<ul>
+			<li style="overflow: hidden;">
+				<?php
+					foreach ($data as $key => $value) {
+						$value['avatar'] = $value['avatar'] == "" ? "static/image/default.jpg" : $value['avatar'];
+						echo '<div class="data fl">
+							<div class="left_box">
+								<img src="' . $value['avatar'] . '" alt="" class="pic">
+								<button> <font>+</font> 关注</button>
+							</div>
+							<div class="right_box">
+									<p class="name">' . $value['nickname'] . '<font><img src="static/image/good.png" alt="" width="13px">999</font><font><img src="static/image/look.png" width="26px" alt="">999</font> </p>
+									<p class="desk">' . $value['god_description'] . '</p>
+									<p class="class">正在开的课：2门</p>
+									<a href="javascript:" class="tagBox">tag</a>
+									<a href="javascript:" class="tagBox">tag</a>
+									<a href="javascript:" class="tagBox">tag</a>
+							</div>
+						</div>';
+					}
+				?>
 			</li>
-			<li>
 
-			</li>
-			<li>
-
-			</li>
-			<li>
-
-			</li>
-			<li>
-
-			</li>
+							
+			<?php
+				$this->load->view("miaoda/page",array(
+					"page" => $page,
+					"page_max" => $page_max,
+					"page_count" => 10,
+					"page_url" => "./god",
+					"hot" => "?type=" . $type_name
+				));
+			?>
+			
 
 
 

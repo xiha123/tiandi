@@ -12,7 +12,7 @@
         <input type="text" placeholder="支付宝账号" id="alipay"/>
         <input type="text" placeholder="手机号码" id="phone"/>
         <h3 class="information">擅长的标签</h3>
-        <select name="tag">
+        <select id="tag">
             <option value="0">Unity-3D</option>
             <option value="1">Swift</option>
             <option value="2">Web</option>
