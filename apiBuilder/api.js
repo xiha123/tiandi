@@ -1,5 +1,4 @@
 "use strict";
-
 window._td = {
     api: {
         _checkArg: function (need, target, next) {
