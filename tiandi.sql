@@ -390,10 +390,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `follow_users` varchar(1024) NOT NULL DEFAULT '[]',
   `followers` varchar(1024) NOT NULL DEFAULT '[]',
   `idcar` varchar(44) NOT NULL,
-<<<<<<< HEAD
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-=======
+
   `notes` varchar(512) NOT NULL DEFAULT '[]'
   `father_tag` int(11) NOT NULL,
   `Integral` int(11) NOT NULL
