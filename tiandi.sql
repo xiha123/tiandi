@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2015 at 11:12 AM
+-- Generation Time: Aug 12, 2015 at 12:22 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -158,6 +158,20 @@ CREATE TABLE IF NOT EXISTS `note` (
   `id` int(11) NOT NULL,
   `title` varchar(128) NOT NULL,
   `content` text NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `note_group`
+--
+
+CREATE TABLE IF NOT EXISTS `note_group` (
+  `id` int(11) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `list` text NOT NULL,
   `owner_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -295,7 +309,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `follower_count` int(11) NOT NULL DEFAULT '0',
   `follow_users` varchar(1024) NOT NULL DEFAULT '[]',
   `followers` varchar(1024) NOT NULL DEFAULT '[]',
-  `idcar` varchar(44) NOT NULL
+  `idcar` varchar(44) NOT NULL,
+  `notes` varchar(512) NOT NULL DEFAULT '[]'
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
@@ -360,6 +375,12 @@ ALTER TABLE `news`
 -- Indexes for table `note`
 --
 ALTER TABLE `note`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `note_group`
+--
+ALTER TABLE `note_group`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -452,6 +473,11 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `note`
 --
 ALTER TABLE `note`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `note_group`
+--
+ALTER TABLE `note_group`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `problem`
