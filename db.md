@@ -58,6 +58,7 @@
 - gold_coin 金币数量
 - silver_coin 银币数量
 - idcar 身份证
+- notes 拥有的笔记组，JSON数组
 - fathcer_tag 父标签 0 3d，1 swift，2 web，3 coco，4 android
 - Integral 积分
 
@@ -202,4 +203,13 @@
 
 - title
 - content
-- owner_id
+- owner_id 所有者 id
+- group_id 所属笔记组 id
+
+### note_group 表
+
+存放笔记组
+
+- name 名字
+- list 笔记 id 列表
+- owner_id 所有者 id
