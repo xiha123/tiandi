@@ -51,7 +51,7 @@
                             '<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>' :
                             '<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>';
                         ?>
-                        <li><a href="./notice" target="_blank">通知<font class="notice_news"><i class="fa fa-bell-o"></i></font></a> </li>
+                        <li><a href="./notice" target="_blank">通知</a> </li>
                         <li><a href="">设置</a></li>
                         <li><a href="">充值</a></li>
                         <li><a href="javascript:" id="ajax_outlogin">退出</a></li>

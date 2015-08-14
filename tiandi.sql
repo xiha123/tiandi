@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.4.12
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 12, 2015 at 12:22 PM
--- Server version: 5.6.24
--- PHP Version: 5.6.8
+-- Host: localhost
+-- Generation Time: 2015-08-14 05:53:50
+-- 服务器版本： 5.6.11
+-- PHP Version: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `tiandi`
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity`
+-- 表的结构 `activity`
 --
 
 CREATE TABLE IF NOT EXISTS `activity` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ad`
+-- 表的结构 `ad`
 --
 
 CREATE TABLE IF NOT EXISTS `ad` (
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `ad` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- 表的结构 `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -60,12 +60,19 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `pwd` char(32) NOT NULL,
   `salt` char(10) NOT NULL,
   `nickname` varchar(32) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Table for admin account';
+
+--
+-- 转存表中的数据 `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `pwd`, `salt`, `nickname`) VALUES
+(2, 'tiandi', '48a4f75f294a467d8cff18b4d32350ea', '1', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class_guide`
+-- 表的结构 `class_guide`
 --
 
 CREATE TABLE IF NOT EXISTS `class_guide` (
@@ -73,12 +80,21 @@ CREATE TABLE IF NOT EXISTS `class_guide` (
   `name` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
   `link` varchar(128) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `class_guide`
+--
+
+INSERT INTO `class_guide` (`id`, `name`, `img`, `link`) VALUES
+(4, '', '', ''),
+(5, '', '', ''),
+(6, '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course`
+-- 表的结构 `course`
 --
 
 CREATE TABLE IF NOT EXISTS `course` (
@@ -89,13 +105,25 @@ CREATE TABLE IF NOT EXISTS `course` (
   `tags` varchar(256) NOT NULL DEFAULT '[]',
   `description` text NOT NULL,
   `chapters` varchar(512) NOT NULL DEFAULT '[]',
-  `steps` varchar(512) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+  `steps` varchar(512) NOT NULL DEFAULT '[]',
+  `site` varchar(256) DEFAULT '[]'
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `course`
+--
+
+INSERT INTO `course` (`id`, `title`, `type`, `video`, `tags`, `description`, `chapters`, `steps`, `site`) VALUES
+(10, 'Unity-3D', 0, '', '[]', '', '[]', '[]', '[]'),
+(11, 'Swift', 1, '', '[]', '', '[]', '[]', '[]'),
+(12, 'Web', 2, '', '[]', '', '[]', '[]', '[]'),
+(13, 'Cocos2d-x', 3, '', '[]', '', '[]', '[]', '[]'),
+(14, 'Android', 4, '', '[]', '', '[]', '[]', '[]');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course_chapter`
+-- 表的结构 `course_chapter`
 --
 
 CREATE TABLE IF NOT EXISTS `course_chapter` (
@@ -108,20 +136,21 @@ CREATE TABLE IF NOT EXISTS `course_chapter` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course_class`
+-- 表的结构 `course_class`
 --
 
 CREATE TABLE IF NOT EXISTS `course_class` (
   `id` int(11) NOT NULL,
   `title` varchar(125) NOT NULL,
   `content` varchar(256) NOT NULL,
-  `time` int(11) NOT NULL
+  `time` int(11) NOT NULL,
+  `form` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course_step`
+-- 表的结构 `course_step`
 --
 
 CREATE TABLE IF NOT EXISTS `course_step` (
@@ -136,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `course_step` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `news`
+-- 表的结构 `news`
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
@@ -146,12 +175,12 @@ CREATE TABLE IF NOT EXISTS `news` (
   `from` int(11) NOT NULL,
   `to` int(11) NOT NULL,
   `time` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `note`
+-- 表的结构 `note`
 --
 
 CREATE TABLE IF NOT EXISTS `note` (
@@ -178,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `note_group` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `problem`
+-- 表的结构 `problem`
 --
 
 CREATE TABLE IF NOT EXISTS `problem` (
@@ -202,12 +231,12 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `collect_users` varchar(512) NOT NULL DEFAULT '[]',
   `up_users` varchar(1024) NOT NULL DEFAULT '[]',
   `down_users` varchar(512) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `problem_comment`
+-- 表的结构 `problem_comment`
 --
 
 CREATE TABLE IF NOT EXISTS `problem_comment` (
@@ -221,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `problem_comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `problem_detail`
+-- 表的结构 `problem_detail`
 --
 
 CREATE TABLE IF NOT EXISTS `problem_detail` (
@@ -232,12 +261,12 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `site`
+-- 表的结构 `site`
 --
 
 CREATE TABLE IF NOT EXISTS `site` (
@@ -249,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `site` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `slide`
+-- 表的结构 `slide`
 --
 
 CREATE TABLE IF NOT EXISTS `slide` (
@@ -260,12 +289,21 @@ CREATE TABLE IF NOT EXISTS `slide` (
   `color` varchar(32) NOT NULL,
   `type` int(11) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `slide`
+--
+
+INSERT INTO `slide` (`id`, `name`, `img`, `link`, `color`, `type`, `text`) VALUES
+(4, '', '', '', '', 1, ''),
+(5, '', '', '', '', 1, ''),
+(6, '', '', '', '', 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag`
+-- 表的结构 `tag`
 --
 
 CREATE TABLE IF NOT EXISTS `tag` (
@@ -276,12 +314,12 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `content` varchar(256) DEFAULT NULL,
   `json_who` varchar(256) DEFAULT '[]',
   `link` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- 表的结构 `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -311,7 +349,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `followers` varchar(1024) NOT NULL DEFAULT '[]',
   `idcar` varchar(44) NOT NULL,
   `notes` varchar(512) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `father_tag` int(11) NOT NULL,
+  `Integral` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -327,13 +367,15 @@ ALTER TABLE `activity`
 -- Indexes for table `ad`
 --
 ALTER TABLE `ad`
-  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `class_guide`
@@ -345,7 +387,9 @@ ALTER TABLE `class_guide`
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
-  ADD PRIMARY KEY (`id`), ADD KEY `title` (`title`), ADD KEY `type` (`type`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `title` (`title`),
+  ADD KEY `type` (`type`);
 
 --
 -- Indexes for table `course_chapter`
@@ -411,13 +455,15 @@ ALTER TABLE `site`
 -- Indexes for table `slide`
 --
 ALTER TABLE `slide`
-  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `tag`
 --
 ALTER TABLE `tag`
-  ADD PRIMARY KEY (`id`), ADD KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
 
 --
 -- Indexes for table `user`
@@ -438,17 +484,17 @@ ALTER TABLE `activity`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `class_guide`
 --
 ALTER TABLE `class_guide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `course_chapter`
 --
@@ -468,7 +514,7 @@ ALTER TABLE `course_step`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `note`
 --
@@ -483,7 +529,7 @@ ALTER TABLE `note_group`
 -- AUTO_INCREMENT for table `problem`
 --
 ALTER TABLE `problem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `problem_comment`
 --
@@ -493,22 +539,22 @@ ALTER TABLE `problem_comment`
 -- AUTO_INCREMENT for table `problem_detail`
 --
 ALTER TABLE `problem_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `slide`
 --
 ALTER TABLE `slide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

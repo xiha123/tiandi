@@ -62,6 +62,11 @@ class problem_api extends base_api {
         $this->finish(true);
     }
 
+    /*
+        创建一条评论
+        - content
+        - problem_id 
+    */
     public function create_comment() {
         parent::require_login(); $params = $this->get_params('POST', array('content', 'problem_id'));extract($params);
         if (!$this->problem_model->is_exist(array(
@@ -78,7 +83,6 @@ class problem_api extends base_api {
         $this->problem_model->edit($problem_id, array(
             'comments' => json_encode($comments)
         ));
-
         $this->finish(true);
     }
 
@@ -136,6 +140,7 @@ class problem_api extends base_api {
         )) === false) {
             $this->finish(false, '您现在不能认领该问题，这个问题已经被人认领了，或者已经完成了回答！');
         }
+        $this->news_model->add_news($problem['owner_id'],"大神：" . $this->me['nickname'] . " 认领了您的问题".$problem['title']."，快去看看吧！" );
         $this->finish(true);
     }
 
@@ -144,6 +149,7 @@ class problem_api extends base_api {
         $problem = $this->problem_model->get(array('id' => $problem_id));
         if($problem['owner_id'] !== $this->me['id']){$this->finish(false, '您没有权利关闭这个问题！');}
         if($type == "false"){
+            $this->news_model->add_news($problem['answer_id'] , "" . $this->me['nickname'] . " 似乎并不满意您回答的问题：".$problem['title']."，再去帮下他吧" );
             $this->problem_model->no($problem_id);
             $this->finish(true);
         }
@@ -152,7 +158,7 @@ class problem_api extends base_api {
         )) === false) {
             $this->finish(false, '问题不能关闭');
         }
-
+        $this->news_model->add_news($problem['answer_id'] , "" . $this->me['nickname'] . " 满意了：".$problem['title'] );
         $this->finish(true);
     }
 

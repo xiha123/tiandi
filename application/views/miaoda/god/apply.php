@@ -11,6 +11,15 @@
         <input type="text" placeholder="身份证号" id="idcard"/>
         <input type="text" placeholder="支付宝账号" id="alipay"/>
         <input type="text" placeholder="手机号码" id="phone"/>
+        <h3 class="information">擅长的标签</h3>
+        <select id="tag">
+            <option value="0">Unity-3D</option>
+            <option value="1">Swift</option>
+            <option value="2">Web</option>
+            <option value="3">Cocos2d-x</option>
+            <option value="4">Android</option>
+        </select>
+
         <h3 class="information">写下您的项目经历</h3>
         <textarea name="" id="desk" cols="30" rows="10"></textarea>
         <label>

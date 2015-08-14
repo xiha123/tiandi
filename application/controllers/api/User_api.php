@@ -8,15 +8,21 @@ class user_api extends base_api {
         $this->load->model('user_model');
         $this->load->model('tag_model');
         $this->load->model('problem_model');
+        $this->load->model('problem_detail_model');
+        $this->load->model('problem_comment_model');
         $this->me = $this->user_model->check_login();
     }
 
     // 抹杀掉一个用户
     public function remove_user(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
-        // $this->user_model->remove($id);
+        $this->user_model->remove($id);
         $this->problem_model->delete_user($id);
+        $this->problem_detail_model->delete_all($id);
+        $this->problem_comment_model->delete_all($id);
 
+        
+        $this->finish(true);
     }
 
 
@@ -45,7 +51,6 @@ class user_api extends base_api {
         $params = parent::get_params('POST', array('name', 'pwd'));if(empty($params)) return; extract($params);
         if ($this->user_model->login($name, $pwd) === false) {
             parent::finish(false, '用户名或密码错误');
-            return;
         }
         parent::finish(true);
     }
@@ -102,7 +107,12 @@ class user_api extends base_api {
         if(strlen($nickname) < 6 || strlen($nickname) > 16){
             parent::finish(false, '昵称不规范，太长或太短');
         }
-
+        if(strlen($pwd) < 6 || strlen($pwd) > 16){
+            parent::finish(false, '密码长度不规范');
+        }
+        if(strlen($nickname) < 6 || strlen($nickname) > 16){
+            parent::finish(false, '昵称不规范，太长或太短');
+        }
         $result = $this->user_model->create(array(
             'email' => $email,
             'nickname' => $nickname,
@@ -113,6 +123,14 @@ class user_api extends base_api {
             parent::finish(false, $result);
         }
 
+        if (false === $this->user_model->create(array(
+            'email' => $email,
+            'nickname' => $nickname,
+            'pwd' => $pwd
+        ))) {
+            parent::finish(false, '用户名已存在');
+            return;
+        }
         parent::finish(true);
     }
 

@@ -10,7 +10,8 @@
 	<div class="main-content">
 		<div class="main-title">
 			<ul class="nav nav-pills">
-				<li role="presentation"><a href="javascript:;" onclick="signOut()"><i class="fa fa-sign-out"></i>注销</a></li>
+				<li role="presentation" class="active"><a href="javascript:;"><i class="fa fa-users"></i>用户管理</a></li>
+				<li role="presentation"><a href="javascript:;"><i class="fa fa-check-square"></i>大神审核</a></li>
 			</ul>
 		</div>
 
@@ -25,6 +26,7 @@
 						<th>支付宝号</th>
 						<th>银币</th>
 						<th>金币</th>
+						<th>积分</th>
 						<th>身份证</th>
 						<th>类型</th>
 						<th>操作</th>
@@ -40,9 +42,10 @@
 						<td>{alipay}</td>
 						<td>{gold_coin}</td>
 						<td>{silver_coin}</td>
+						<td>{Integral}</td>
 						<td>{idcar}</td>
 						<td>{type}</td>
-						<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-user"></i></td>
+						<td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
 					</tr>
 				{/user}
 				</tbody>

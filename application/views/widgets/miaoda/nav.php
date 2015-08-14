@@ -1,8 +1,10 @@
-<div class="seconds-nav">
+<div class="seconds-nav header">
 	<div class="wrapper">
+        	<a href="./"><img class="logo" src="static/image/logo.png" height="81" width="110" alt="天地培训logo"></a>
 		<div class="seacher">
 			<input type="text" class="fl" placeholder="在此搜索你的问题">
 			<button><i class="fa fa-search"></i></button>
+
 		</div>
 		<ul class="fr">
 
@@ -44,13 +46,14 @@
 				if(isset($nickname)){
 			?>
 					<img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname?>
+					<font class="news-number"><?=$news_nuw <= 0 ? "" : "($news_nuw)"?></font>
 					<ul class="user-menu seconds">
 						<?php
 							echo  $type == 0 || $type == 2 ?
 							'<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>' :
 							'<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>';
 						?>
-						<li><a href="./notice" target="_blank">通知<font class="notice_news"><i class="fa fa-bell-o"></i></font></a> </li>
+						<li><a href="./notice" target="_blank">通知<font class="notice_news"><?=$news_nuw <= 0 ? "" : "($news_nuw)"?></font></a> </li>
 						<li><a href="./userSet">设置</a></li>
 						<li><a href="javascript:;">充值</a></li>
 						<li><a href="javascript:" id="ajax_outlogin">退出</a></li>
@@ -63,7 +66,6 @@
 							<a href="javascript:" class="bomb-reg">注册</a>
 						</div>';
 				}
-
 			?>
 
 			<!--  -->

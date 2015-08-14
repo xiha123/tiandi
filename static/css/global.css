@@ -5,6 +5,8 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .notLogin a i{margin-right: 4px;}
 
 
+
+
 /*登录框通用*/
 .window{display:none;width:100%;z-index:1023;position:fixed; top:0;left: 0;height: 100%;background: rgba(0,0,0,0.4);}
 
@@ -46,7 +48,7 @@ html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fiel
 .page .active a{color:#fff;}
 
 .seconds-nav {font-size:15px;margin-bottom:30px;width:100%;background:#219ba1;height:35px;}
-.seconds-nav .seacher{float: left;}
+.seconds-nav .seacher{float: left;position: relative;}
 .seconds-nav li{float: left;border-right: 1px solid #22a6a8;}
 .seconds-nav li a{ transition: background 0.2s ease-in-out;color:#fff;width: 150px;display:block;height: 35px;line-height: 35px;text-align: center;padding:0px 10px;}
 .seconds-nav li .active,
@@ -121,7 +123,7 @@ html{
     -moz-osx-font-smoothing:grayscale;
 	color:#333;
 
-    background:url(../image/footer.png) repeat-x bottom;
+    background:url(../image/footer.png) #fff  repeat-x bottom;
 }
 a {
 	text-decoration:none;
@@ -185,6 +187,7 @@ textarea ,button{
 .header .wrapper {
     position:relative;
 }
+.news-number{margin-left:5px;}
 .header .logo {
     position:absolute;
     top:0px;
@@ -229,10 +232,10 @@ textarea ,button{
 }
 .user .notice_news{
     position: absolute;
-    right:45px;
+    right:38px;
     top:0;
     color:#fff;
-    font-size: 12px;
+    font-size: 14px;
 }
 .user img {
     float:left;

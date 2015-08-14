@@ -9,7 +9,7 @@ class Userset extends CI_Controller {
 	}
 	public function index()
 	{
-		if(!isset($this->me['name'])){show_404();}
+		if(!isset($this->me['email'])){show_404();}
 		$this->load->view('miaoda/userSet.php', $this->me);
 	}
 

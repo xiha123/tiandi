@@ -2,8 +2,8 @@
 	<h2>课程步骤设置</h2><br>
 	<table class="table table-bordered">
 		<tr>
-			<th width="40%">标题</th>
-			<th>描述</th>
+			<th width="30%">标题</th>
+			<th width="50%">描述</th>
 			<th>难度</th>
 			<th width="8%">操作</th>
 		</tr>

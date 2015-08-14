@@ -3,7 +3,20 @@
 .js-slider-trigger li{float:left;margin-right:6px;}
 .js-slider-trigger .active a{background:#aaa}
 .js-slider-trigger li a{   transition: background 0.4s ease-in-out;border-radius:10px;padding:5px;background:#fff;float:left}
+p{word-break:break-all}
+.course {overflow: hidden;}
+.course h2{margin-top:10px;margin-right:15px;margin-bottom:5px;padding:10px 25px;background: #219ba1;float: left;font-size: 26px;color:#fff;border-radius: 40px;}
+.course i{font-size: 32px;margin-left:10px;position:relative;top:2px;}
+.course .description{float: left;margin-top:10px;}
+.course .description p{ float: left;margin-top:14px;color:#aaa;}
 
+.course .list{cursor: pointer;width: 100%;float: left;margin-top:30px;}
+.course .last{margin-right: 0px !important;}
+.course .list li{background:#fff;position:relative; float:left;width:180px;margin-right:64px;padding:10px;margin-bottom:50px;height: 74px;border:1px solid #219ba1;border-radius: 10px;}
+.course .list li h3{font-size: 20px;color:#219ba1;}
+.course .list li p{float:left; overflow: hidden;height:35px; margin-top:7px;color: #aaa;font-size: 12px;}
+.course .list i{position:absolute;right: -48px;top:35px;color:#219ba1;}
+.course .list .bottom{position:absolute;right:70px;top:103px;color:#219ba1;}
 
 .slider {
 	position:relative;

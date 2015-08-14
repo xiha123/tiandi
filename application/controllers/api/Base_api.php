@@ -71,7 +71,7 @@ class base_api extends CI_Controller {
 
         foreach ($keys as $key => $val) {
             if (is_numeric($key)) {
-                if (!isset($params[$val]) || empty($params[$val])) $this->finish(false, '数据不能为空');
+                if (!isset($params[$val])) $this->finish(false, '数据不能为空');// || empty($params[$val])
                 $result[$val] = $params[$val];
             } else {
                 if (!isset($params[$key]) || empty($params[$key])) $this->finish(false, '数据不能为空');
