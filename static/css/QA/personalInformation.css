@@ -34,7 +34,8 @@
 }
 .submitbutton [type=text],
 [type=button],
-[type=password]{
+[type=password],select{
+    outline: none;
     width: 100%;
     height: 40px;
     line-height: 40px;

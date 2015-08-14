@@ -6,6 +6,7 @@ class god_api extends base_api {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model("user_model");
+		$this->load->model("news_model");
 		$this->me = $this->user_model->check_login();
 	}
 	public function addGodApply(){
@@ -14,7 +15,7 @@ class god_api extends base_api {
 			"id" => $this->me["id"],
 			"type" => "0"
 		))){
-			$this->finish(false , "无法添加大神审核，因为没有找到符合条件的用户");
+			$this->finish(false , "无法添加大神审核，您可能已经提交了申请大神请求！");
 		}
 		if($this->user_model->edit($this->me["id"],array(
 			"name" => $name,
@@ -24,6 +25,7 @@ class god_api extends base_api {
 			"idcar" => $idcar,
 			"type" => 2,
 		))){
+			$this->news_model->add_news($this->me['id'] , "您成功提交了大神申请请求，请等待审核通过！");
 			$this->finish(true );
 		}else{
 			$this->finish(false , "无法添加大神审核");

@@ -58,6 +58,8 @@
 - gold_coin 金币数量
 - silver_coin 银币数量
 - idcar 身份证
+- fathcer_tag 父标签 0 3d，1 swift，2 web，3 coco，4 android
+- Integral 积分
 
 ### class_guide
 
