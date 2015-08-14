@@ -18,47 +18,50 @@ class problem_api extends base_api {
 
     public function create() {
         parent::require_login();
-        $params = $this->get_params('POST', array(
-            'title' => true,
-            'detail' => true,
-            'tags' => false,
-        ));
-        extract($params);
-       $code = isset($_POST['code']) ? $this->input->post("code") : "";
-        if(!isset($this->me['id'])){
-               $this->finish(false, '您还没有登陆！');
-        }
+        $params = $this->get_params('POST', array('title' => true,'detail' => true,'tags' => false));extract($params);
+        $code = isset($_POST['code']) ? $this->input->post("code") : "";
+
         if ($this->problem_model->is_exist(array('title' => $title))) {
-            $this->finish(false, '重复的标题');
-        }
-        $tag_return = $this->tag_model->add_tag_json($tags);
-        switch ($tag_return) {
-            case -1:
-               $this->finish(false, '标签格式填写错误！');
-                break;
-            case -2:
-               $this->finish(false, '您输入的标签太长或者太短了！');
-                break;
-            default:
-                # code...
-                break;
+            // $this->finish(false, '重复的标题');
         }
 
-           $detail_id = $this->problem_model->create(array(
+        // 处理用户硬币信息
+        if(!$this->user_model->coin($this->me['id'] , 100 , false)){
+            $this->finish(false, '您的银币不足，并不能提问问题！');
+        }
+
+        // 处理标签请求
+        $tagTemp = array();
+        $tagArray = json_decode($tags);
+        if(!isset($tagArray[0]))parent::finish(false , "您输入的标签不太正确");
+        foreach ($tagArray as $key => $value) {
+            if(strlen($value) < 2 && strlen($value) > 12){
+                parent::finish(false , "您输入的标签太长或者太短了！");
+            }else{
+                if($this->tag_model->add_tag($value)){
+                   $tagTemp[] = array("t" => $value);
+                }
+            }
+        }
+        // 创建题主
+        $detail_id = $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
             'title' => $title,
-            'tags' => $tags,
-           // 'details' => json_encode($detail_id)
+            'tags' => json_encode($tagTemp),
         ));
-           $this->load->helper('security');
-       $this->problem_detail_model->create(array(
+        if($detail_id == false){parent::finish(false , "服务器异常，请尝试重新提交问题！problem");}
+
+        // 首位答主创建
+        $this->load->helper('security');
+        if(!$this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'type' => 0,
-            'content' =>xss_clean( $detail ),
+            'content' =>xss_clean($detail),
             'code' => $code,
             'problem_id' => $detail_id
-        ));
-
+        ))){
+            parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
+        }
         $this->finish(true);
     }
 

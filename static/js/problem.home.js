@@ -12,13 +12,11 @@ $("#ajax_problemSubmit").on("click",function(){
 		showAlert(false,"再多打几个字吧，您的描述实在是太短了！");
 		return false;
 	}
-
-	jsonText = '[';
+	jsonArray = new Array();
 	$.each($(".tag .tag-box"), function(index, val) {
-		 jsonText = jsonText + '{"name":"' +$(val).find("font").text()+ '"},';
+		jsonArray.push($(val).find("font").text());
 	});
-	jsonText =  jsonText + "]";
-
+	jsonText = JSON.stringify(jsonArray);
 	_td.api.createProblem({
 		"title" : title,
 		"detail" : content,

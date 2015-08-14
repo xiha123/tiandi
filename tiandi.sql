@@ -439,17 +439,7 @@ ALTER TABLE `course`
 --
 ALTER TABLE `course_chapter`
   ADD PRIMARY KEY (`id`);
->>>>>>> origin/master
 
---
--- 转存表中的数据 `user`
---
-
-<<<<<<< HEAD
-INSERT INTO `user` (`id`, `nickname`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`, `idcar`) VALUES
-(1, 'tocurd', 'af7c8f61b3587cad44e2f4b19ecf4ba1', 'dfb60d6199', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, 0, '[]', '[]', '[]', '', 0, 0, 0, 0, '[]', '[]', '');
-
-=======
 --
 -- Indexes for table `course_step`
 --
@@ -602,7 +592,7 @@ ALTER TABLE `tag`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
->>>>>>> origin/master
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

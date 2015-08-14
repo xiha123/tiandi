@@ -123,21 +123,25 @@ $("#ajax_reg").on('click' , function() {
 });
 
 
-
+var isShow = false;
 function showAlert(type , value){
-    $showAlert = $(".showAlert");
-    icon = type ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i> ";
-    color = type ? "aletrContent success" : "aletrContent danger";
-    $showAlert.find(".aletrContent").attr("class" , color);
-    $showAlert.find(".aletrContent").html(icon + value);
-    setTimeout(function(){
-        $showAlert.show();
-        $showAlert.css({"top": "13%"});
-    },100)
-    setTimeout(function(){
-        $showAlert.css({"top": "0px"});
-        $showAlert.fadeOut(500);
-    },1900)
+    if(isShow == false){
+        isShow = true;
+        $showAlert = $(".showAlert");
+        icon = type ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i> ";
+        color = type ? "aletrContent success" : "aletrContent danger";
+        $showAlert.find(".aletrContent").attr("class" , color);
+        $showAlert.find(".aletrContent").html(icon + value);
+        setTimeout(function(){
+            $showAlert.show();
+            $showAlert.css({"top": "13%"});
+        },100)
+        setTimeout(function(){
+            isShow = false;
+            $showAlert.css({"top": "0px"});
+            $showAlert.fadeOut(500);
+        },1500)
+    }
 }
 
 $(".bomb-login").click(function(event) {

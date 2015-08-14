@@ -83,9 +83,8 @@ class base_api extends CI_Controller {
     }
 
     public function require_login() {
-        if ($this->me === false) {
+        if ($this->me === false || !isset($this->me['id'])) {
             $this->finish(false, '您还没有登录，请登录以后再进行操作。');
-            exit;
         }
     }
 
