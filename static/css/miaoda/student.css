@@ -1,13 +1,12 @@
 .leftBox{padding-bottom:130px;width: 780px;float:left;}
-.leftBox .head{margin: 10px 0px;margin-bottom: 15px;font-size: 14px;color:#43a8ad;}
+.leftBox .head{margin-top:-9px;margin-bottom: 15px;font-size: 14px;color:#43a8ad;}
 .leftBox font{color:#333;}
 
 .rightBox{width: 200px;padding-left:10px;float:right;}
 .rightBox a{margin:10px 0px;padding-bottom:10px;border-bottom:1px solid #eee;float: left;color:#aaa;}
 
 .leftHeader,.whyUser{width: 100%;float: left}
-.code{width:760px;margin-top:14px;float:left;}
-.code h2{font-size: 18px;color:#43a8ad;margin-bottom:10px;}
+.code{background:##F8F8F8;max-height:280px;overflow-y:scroll; width:760px;margin-top:0px;float:left;}
 .code textarea{height:200px;width: 100%}
  .button button{font-size:18px; cursor: pointer; font-weight:700;font-family: '微软雅黑'; text-align: center; background:#219ba1;color:#fff;margin:0px 15px;margin-top:20px;border:none;width:130px;height:30px; border-radius: 20px; left:0px;}
 
@@ -16,6 +15,10 @@
 .button.close a{margin-right:18px;line-height: 40px;}
 .button.close i{margin-right:3px;}
 
+.code-tool{margin-top:20px;width:100%;float:left;}
+.code-tool .tool{overflow: hidden; width:760px;}
+.code-tool .tool a{float:left;background:#219ba1;color:#fff;padding: 4px 8px;}
+.code-tool h2{float:left;font-size: 18px;color:#43a8ad;margin-left:10px;}
 
 .button{float:left;text-align: center; overflow: hidden; width:100%;}
 .button a{float: left;color:#43a8ad;font-size: 16px;}
@@ -26,7 +29,7 @@
 	     .table .title{margin-bottom:10px;}
 	     .table .title,.input-content,.doubt .code{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}
 	     .table .input-content{height: 60px;}
-	     .table .code{height:110px;border-top:1px dashed #ddd;margin-top:-5px;}
+	     .table .code{border-top:1px dashed #ddd;margin-top:-5px;}
 	     .table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}
 	     .table .Language{position:absolute;right:15px;}
 

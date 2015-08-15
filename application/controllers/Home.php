@@ -59,6 +59,7 @@ class Home extends CI_Controller {
 				$this->load->view("miaoda/god/home.php" , $userdata);
 				return false;
 			}
+
 			$userdata["answer"] = $this->problem_model->get_answer($uid , $userdata["page"] , 10);
 			$userdata["answer_count"] = $this->problem_model->answer_count($uid);
 			$this->load->view("miaoda/god/show.php" , $userdata);

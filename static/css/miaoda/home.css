@@ -14,7 +14,8 @@
 		.tag .input-tag{margin-left:7px;border:none;height:25px;color:#aaa;}
 		.tag .tag-box{background:#eee;padding:4px 3px 4px 7px;top:-1px;}
 			 .tag-box button{  cursor: pointer;outline: none; background: none;border:none;border-left:1px solid #ddd;color:#aaa;margin-left:5px;}
-
+.doubt input[type="checkbox"]{margin-top:10px;margin-right:5px;}
+.doubt input[type="checkbox"] ~ span{color:#219ba1;}
 
 .left-content{padding-bottom:140px; overflow: hidden; margin-top:30px;}
 .left-content,.right-content{float: left}

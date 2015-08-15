@@ -19,7 +19,8 @@ class Admin extends CI_Controller {
 		if($this->admin_model->require_login() === false) redirect('admin/login');
 		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$data['me'] = $this->user_info;
-		$data['user'] = $this->user_model->get_list(array() , ($data['page'] - 1) * 10 , 10);
+		
+		$data['user'] = $this->user_model->get_list(array() , ($data['page'] - 1) , 10);
 		foreach ($data['user'] as $key => $value) {
 			if($data['user'][$key]['type']  == "0"){
 				$data['user'][$key]['type'] = "学员";

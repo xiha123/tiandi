@@ -17,6 +17,15 @@ $(".ajax_up").on("click" , function(){
     });
 })
 
+$(".seacher").on('keyup', 'input[type="text"]', function(event) {
+    if(event.keyCode === 13){
+        $(".seacher button").click();
+    }
+});
+$(".seacher button").click(function(){
+    window.location.href ="./seacher?key=";
+});
+
 $(".button").on("click" , ".collect" , function(){
     var _this = $(this);
     _td.api.collectProblem({

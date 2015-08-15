@@ -62,6 +62,7 @@
 - fathcer_tag 父标签 0 3d，1 swift，2 web，3 coco，4 android
 - Integral 积分
 - lost_time 上次登录时间，方便计算可否赠其银币
+- prestige 威望用于老师
 
 ### class_guide
 

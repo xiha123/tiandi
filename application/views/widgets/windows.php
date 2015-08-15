@@ -1,3 +1,6 @@
+<?php
+	if(!isset($nickname)){
+?>
 <!-- 登录窗口通用弹窗  -->
 <div class="window">
 	<div class="login" id="login">
@@ -43,10 +46,11 @@
 			</ul>
 		</div>
 	</div>
-
-
-
 </div>
+
+<?php
+	}
+?>
 
 <div class="showAlert">
 	<p class="aletrContent">

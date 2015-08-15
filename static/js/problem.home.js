@@ -3,7 +3,9 @@
 $("#ajax_problemSubmit").on("click",function(){
 	var title = $("#problem-title").val(),
 		content = ue.getContent();
-		code = $("#problem-code").val();
+		code = $("#problem-code").val(),
+		coinType = document.getElementById("js_coinType").checked;
+		console.log(coinType);
 	if(title.length < 10 || title.length > 60){
 		showAlert(false,"您输入的标题太长或者太短！");
 		return false;
@@ -22,6 +24,7 @@ $("#ajax_problemSubmit").on("click",function(){
 		"detail" : content,
 		"code" : code,
 		"tags" : jsonText,
+		"coinType" : coinType,
 	}).then(function(){
 		showAlert(true,"恭喜您，提问成功！");
 		 setTimeout(function(){

@@ -18,17 +18,28 @@ class problem_api extends base_api {
 
     public function create() {
         parent::require_login();
-        $params = $this->get_params('POST', array('title' => true,'detail' => true,'tags' => false));extract($params);
+        $params = $this->get_params('POST', array('coinType','title' => true,'detail' => true,'tags' => false));extract($params);
         $code = isset($_POST['code']) ? $this->input->post("code") : "";
 
         if($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
 
-        // 处理用户硬币信息
-        if(!$this->user_model->coin($this->me['id'] , 100 , false)){
-            $this->finish(false, '您的银币不足，所以并不能提问问题！');
+        // 处理硬币需求
+        $coinConfig = $coinType == "true" ? array(
+            "name" => "金币",
+            "type" =>"gold_coin",
+            "value" => 1,
+        ) : array(
+            "name" => "银币",
+            "type" =>"silver_coin",
+            "value" => 100,
+        );
+        if(!$this->user_model->coin($this->me['id'] , $coinConfig['value'] , false , $coinConfig['type'])){
+            $this->finish(false, '您的' . $coinConfig['name'] . '不足，所以并不能提问问题！');
         }
+
+
 
         // 处理标签请求
         $tagTemp = array();
@@ -38,7 +49,7 @@ class problem_api extends base_api {
             if(strlen($value) < 2 && strlen($value) > 12){
                 parent::finish(false , "您输入的标签太长或者太短了！");
             }else{
-                if($this->tag_model->add_tag($value)){
+                if($this->tag_model->add_tag(htmlspecialchars($value))){
                    $tagTemp[] = array("t" => $value);
                 }
             }
@@ -46,8 +57,9 @@ class problem_api extends base_api {
         // 创建题主
         $detail_id = $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
-            'title' => $title,
+            'title' => htmlspecialchars($title),
             'tags' => json_encode($tagTemp),
+            $coinConfig['type'] => $coinConfig['value']
         ));
         if($detail_id == false){parent::finish(false , "服务器异常，请尝试重新提交问题！problem");}
 
@@ -56,8 +68,8 @@ class problem_api extends base_api {
         if(!$this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'type' => 0,
-            'content' =>xss_clean($detail),
-            'code' => $code,
+            'content' =>htmlspecialchars(xss_clean($detail)),
+            'code' => htmlspecialchars($code),
             'problem_id' => $detail_id
         ))){
             parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
@@ -78,7 +90,7 @@ class problem_api extends base_api {
         ))) {
             $this->finish(false, '不存在的问题');
         }
-        $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'],$problem_id,$content);
+        $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'],$problem_id,htmlspecialchars($content));
         $problem = $this->problem_model->get(array(
             'id' => $problem_id
         ));
@@ -113,7 +125,7 @@ class problem_api extends base_api {
         }
         $new_detail_id = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
-            'content' => $content,
+            'content' => htmlspecialchars($content),
             'problem_id' => $problem_id,
             'code' => $code,
             'type' => $type

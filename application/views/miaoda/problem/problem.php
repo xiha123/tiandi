@@ -1,5 +1,7 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/miaoda/student.css">
+<link rel="stylesheet" href="./static/lib/syntax/shCore.css">
+<link rel="stylesheet" href="./static/lib/syntax/shThemeDefault.css">
 <body>
 
 <script>
@@ -18,7 +20,9 @@
 <?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="wrapper">
 		<div class="leftBox">
-			<!-- <div class="head">● 该问题赏金为<font>300银币</font>，共有<font>5位众筹者</font></div> -->
+			<?php
+				if(@$type == 1){echo '<div class="head">● 该问题赏金为<font>300银币</font>，<font>1金币</font>，共有<font>5位众筹者</font></div>';}
+			?>
 			<div class="leftHeader">
 				<h1><?=$problem_data["title"];?></h1>
 				<?php
@@ -35,11 +39,16 @@
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
 					<p class="date">提问于：<?=$problem_data['ctime']?></p>
 				</div>
-				<div class="desc"><?= $problem_detail[0]['content'] ?></div>
+				<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;") , array("</p>" ,"<p>","</br>") , $problem_detail[0]['content'])?></div>
 			</div>
 			<?php
 				if($problem_detail[0]["code"] != NULL){
-					echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detail[0]["code"].'</textarea></div>';
+					echo '<div class="code-tool">
+								<div class="tool">
+									<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code (html)</h2>
+								</div>
+							</div>
+							<div class="code"><pre class="brush: php">'.($problem_detail[0]["code"]).'</pre></div>';
 				}
 				for ($index=1; $index < count($problem_detail); $index++) {
 			?>
@@ -49,11 +58,16 @@
 							<p class="name">大神：<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><?=$problem_detail[$index]['user']['nickname']?></a></p>
 							<p class="date">回答于：<?=$problem_data['ctime']?></p>
 						</div>
-						<div class="desc"><?=$problem_detail[$index]['content']?></div>
+						<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;") , array("</p>" ,"<p>","</br>") , $problem_detail[$index]['content'])?></div>
 					</div>
 			<?php
 					if($problem_detail[$index]["code"] != NULL){
-						echo '<div class="code"><h2>code (html)</h2><textarea>'.$problem_detail[$index]["code"].'</textarea></div>';
+						echo '<div class="code-tool">
+							<div class="tool">
+								<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code (html)</h2>
+							</div>
+						</div>
+						<div class="code"><pre class="brush: php">'.($problem_detail[$index]["code"]).'</pre></div>';
 					}
 				}
 			?>
@@ -160,6 +174,7 @@
 
 	</div>
 <?php $this->load->view('widgets/footer.php'); ?>
+<script src="./static/lib/syntax/brush.js"></script>
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
 <script src="static/js/problem.js"></script>

@@ -9,7 +9,7 @@
 		<div class="tacher-data home">
 			<img src="<?=$user['avatar']?>" alt="" class="pic">
 			<h3 class="name"><?=$user['nickname']?> <a href="./god/apply" target="_blank">想成为大神？</a></h3>
-			<p class="money">银币：<?=$user['gold_coin']?>  金币：<?=$user['silver_coin']?></p>
+			<p class="money">银币：<?=$user['silver_coin']?>  金币：<?=$user['gold_coin']?></p>
 			<p class="desk"><?php
 				if($user['description'] == ""){
 					echo '这家伙还没有描述.....';
@@ -62,22 +62,16 @@
 						<?php }	?>
 					</ul>
 
-					<div class="page">
-						<ul>
-							<?php
-								@$hot = $hot_type ? "&uid=".$user['id']."&hot=hot":"&uid=".$user['id'];
-								if($page > 1){echo '<li><a href="./home/?page='.($page - 1).$hot.'">< 上一页</a></li>';}else{echo"<li></li>";}
-								$active = "";
-								$count = ceil($owner_list_count / 5);
-								for($index = 1; $index < $count + 1;$index ++){
-									if($index == $page)$active = " class='active' ";
-									echo '<li'.$active.'><a href="./home/?page='.($index).$hot.'">'.($index).'</a></li>';
-									$active = "";
-								}
-								if($page < $count){echo '<li><a href="./home/?page='.($page + 1).$hot.'">下一页 ></a></li>';}
-							?>
-						</ul>
-					</div>
+
+					<?php
+						$this->load->view("miaoda/page",array(
+							"page" => $page,
+							"page_max" => $owner_list_count,
+							"page_count" => 5,
+							"page_url" => "./home",
+							"hot" => @$hot_type ? "&uid=".$user['id']."&hot=hot":"&uid=".$user['id']
+						));
+					?>
 				</ul>
 			</div>
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-15 05:55:25
+-- Generation Time: 2015-08-15 10:53:55
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -245,15 +245,10 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `collect_users` varchar(512) NOT NULL DEFAULT '[]',
   `up_users` varchar(1024) NOT NULL DEFAULT '[]',
   `down_users` varchar(512) NOT NULL DEFAULT '[]',
+  `gold_coin` int(11) NOT NULL,
+  `silver_coin` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `problem`
---
-
-INSERT INTO `problem` (`id`, `title`, `owner_id`, `answer_id`, `answer_time`, `details`, `comments`, `tags`, `up_count`, `down_count`, `collect_count`, `follow_count`, `view_count`, `ctime`, `type`, `hot`, `follow_users`, `collect_users`, `up_users`, `down_users`) VALUES
-(1, '1231212312123121231212312123121231212312', 1, 0, 0, '[]', '[]', '[{"t":"12312"},{"t":"12312"}]', 0, 0, 0, 0, 0, '2015-08-14 15:16:20', 0, 2.02, '[]', '[]', '[]', '[]');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -285,14 +280,7 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `problem_detail`
---
-
-INSERT INTO `problem_detail` (`id`, `content`, `type`, `owner_id`, `ctime`, `problem_id`, `code`) VALUES
-(1, '<p>12312123121231212312123121231212312123121231212312123121231212312</p>', 0, 1, '2015-08-14 15:16:20', 1, '1231212312123121231212312');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -350,14 +338,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `link` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `tag`
---
-
-INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`, `link`) VALUES
-(1, 0, 0, '12312', '', '[]', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -394,15 +375,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `father_tag` int(11) NOT NULL,
   `Integral` int(11) NOT NULL,
   `notes` varchar(512) NOT NULL,
+  `lost_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- 转存表中的数据 `user`
---
-
-INSERT INTO `user` (`id`, `nickname`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`, `idcar`, `father_tag`, `Integral`, `notes`) VALUES
-(1, 'tocurd', 'af7c8f61b3587cad44e2f4b19ecf4ba1', 'dfb60d6199', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, 0, '[]', '[]', '[]', '', 0, 0, 0, 0, '[]', '[]', '', 0, 0, '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

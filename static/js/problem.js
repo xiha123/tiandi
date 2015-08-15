@@ -1,4 +1,5 @@
  var ue = UE.getEditor('editor');
+	SyntaxHighlighter.all();
 
 $("#answer").on('click' , function(event) {
 	_td.api.requestProblem({
@@ -12,7 +13,6 @@ $("#answer").on('click' , function(event) {
 		showAlert(false,msg);
 	})
 });
-
 $("#ajax_comment").click(function(){
 	var content = ue.getContent();
 	if(content.length<15){

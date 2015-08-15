@@ -21,6 +21,7 @@
 				<input type="hidden" class="form-tag" value="">
 				<input type="text" class="input-tag" placeholder="请输入标签">
 			</div></td></tr>
+			<tr><td><label><input type="checkbox" id="js_coinType"><span>使用金币提问</span></label></td></tr>
 		</table>
 		<div class="button submit">
 			<button id="ajax_problemSubmit">提交 <img src="static/image/sign-up.png"></button>
