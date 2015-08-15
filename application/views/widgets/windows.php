@@ -3,7 +3,7 @@
 	<div class="login" id="login">
 		<div class="login-title">
 			<h2>登录</h2>
-			<a href="javascript:;" class="close"><i class="fa fa-close"></i></a>
+			<a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>
 		</div>
 		<div class="login-content">
 			<ul>
@@ -24,7 +24,7 @@
 	<div class="login" id="reg">
 		<div class="login-title">
 			<h2>注册</h2>
-			<a href="javascript:;" class="close"><i class="fa fa-close"></i></a>
+			<a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>
 		</div>
 		<div class="login-content">
 			<ul>
