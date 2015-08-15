@@ -26,8 +26,7 @@
 
 
 
-.right-content{margin-left:10px;width:200px;}
-.right-content{margin-left:10px;width:200px;}
+.right-content{margin-left:10px;width:200px;margin-top: 2px;}
 .right-content .list-tag{position:relative;left:5px;top:0px;}
 .right-content .list-tag li{border:none;width:auto;margin-top:15px;}
 .right-content .list-tag .tag-box{top:0px;background:#d6edeb;color:#43a8ad;padding:5px 9px;margin-right: 4px}
