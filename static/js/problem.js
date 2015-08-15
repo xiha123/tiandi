@@ -23,7 +23,7 @@ $("#ajax_comment").click(function(){
 		"problem_id" : problem_id,
 		"content" : content	
 	}).then(function(){
-		showAlert(true,"吐槽成功！");
+		showAlert(true,"评论成功！银币 +20");
 		 setTimeout(function(){
 	            location.reload();
 	        },1000)
@@ -53,6 +53,40 @@ $("#reply").click(function(){
 		showAlert(false,msg);
 	})
 });
+$(".button_ok").click(function(){
+	api.api.chou({
+		"problem_id" : problem_id
+	}).then(function(){
+		showAlert(true,"众筹成功！");
+		 setTimeout(function(){
+	            location.reload();
+	        },1000)
+	},function(msg){
+		showAlert(false,msg);
+		 setTimeout(function(){
+	            close();
+	        },700)
+	})
+})
+
+
+$(".js_chou").click(function(event) {
+	$(".windows").show();
+	$(".confirm").show()
+	setTimeout(function(){
+		$(".confirm").css({"top" : "20%"});
+	},100)
+});
+$(document).on("click" , "#close_window" ,function(event) {
+	close();
+});
+function close(){
+	$(".confirm").css({"top" : "0px"});
+	setTimeout(function(){
+		$(".windows").fadeOut(200);
+		$(".confirm").fadeOut(200);
+	},250)
+}
 
 $(".ajax_close_not").click(function(event) {
 	_td.api.closeProblem({

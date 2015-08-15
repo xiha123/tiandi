@@ -27,6 +27,10 @@ class Home extends CI_Controller {
 				$userdata["problem_list"] = $this->problem_model->get_collect($userdata['user']['follow_problems']);
 				$userdata["owner_list_count"] = count($userdata['user']['follow_problems']);
 			}
+			if($userdata['chou']){
+				$userdata["problem_list"] = $this->problem_model->get_answer($uid,$userdata["page"],20,"owner_id");
+				$userdata["owner_list_count"] = $this->problem_model->answer_count($uid,"owner_id");
+			}
 			if($userdata['owner']){
 				$userdata["problem_list"] = $this->problem_model->get_answer($uid,$userdata["page"],20,"owner_id");
 				$userdata["owner_list_count"] = $this->problem_model->answer_count($uid,"owner_id");

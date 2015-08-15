@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-15 10:53:55
+-- Generation Time: 2015-08-15 20:23:35
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -188,7 +188,15 @@ CREATE TABLE IF NOT EXISTS `news` (
   `to` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `news`
+--
+
+INSERT INTO `news` (`id`, `type`, `content`, `from`, `to`, `time`) VALUES
+(1, 1, '欢迎您注册天地培训为表示感谢赠送您500银币，请注意查收！', 0, 1, 1439629257),
+(2, 1, '众筹成功，当问题被解答时将会推送给您信息。问题【哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈】', 0, 1, 1439662714);
 
 -- --------------------------------------------------------
 
@@ -247,8 +255,16 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `down_users` varchar(512) NOT NULL DEFAULT '[]',
   `gold_coin` int(11) NOT NULL,
   `silver_coin` int(11) NOT NULL,
+  `who` varchar(512) DEFAULT '[]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `problem`
+--
+
+INSERT INTO `problem` (`id`, `title`, `owner_id`, `answer_id`, `answer_time`, `details`, `comments`, `tags`, `up_count`, `down_count`, `collect_count`, `follow_count`, `view_count`, `ctime`, `type`, `hot`, `follow_users`, `collect_users`, `up_users`, `down_users`, `gold_coin`, `silver_coin`, `who`) VALUES
+(1, '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', 1, 0, 0, '[]', '[]', '[{"t":"\\u54c8\\u54c8\\u54c8\\u54c8\\u54c8"},{"t":"\\u54c8\\u54c8\\u54c8\\u54c8\\u54c8"},{"t":"\\u54c8\\u54c8\\u54c8\\u54c8\\u54c8"}]', 1, 0, 1, 1, 0, '2015-08-15 09:01:15', 0, 17.91, '[]', '[]', '[{"id":"1"}]', '[]', 0, 250, '["1"]');
 
 -- --------------------------------------------------------
 
@@ -280,7 +296,14 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `problem_detail`
+--
+
+INSERT INTO `problem_detail` (`id`, `content`, `type`, `owner_id`, `ctime`, `problem_id`, `code`) VALUES
+(1, '&lt;p&gt;哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈&lt;/p&gt;', 0, 1, '2015-08-15 09:01:15', 1, '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\n');
 
 -- --------------------------------------------------------
 
@@ -338,7 +361,14 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `link` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `tag`
+--
+
+INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`, `link`) VALUES
+(1, 0, 0, '哈哈哈哈哈', '0', '[]', '');
 
 -- --------------------------------------------------------
 
@@ -376,8 +406,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Integral` int(11) NOT NULL,
   `notes` varchar(512) NOT NULL,
   `lost_time` int(11) NOT NULL,
+  `chou` varchar(512) NOT NULL DEFAULT '[]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `user`
+--
+
+INSERT INTO `user` (`id`, `nickname`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`, `idcar`, `father_tag`, `Integral`, `notes`, `lost_time`, `chou`) VALUES
+(1, 'tocurd', '15802d6e9070e129d5949f43d2124824', 'effc915b23', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, 0, '[{"t":"1"}]', '[{"t":"1"}]', '[]', '', 1000000, 999900, 0, 0, '[]', '[]', '', 0, 120, '', 0, '["1"]');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

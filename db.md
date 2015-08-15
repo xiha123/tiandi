@@ -63,6 +63,7 @@
 - Integral 积分
 - lost_time 上次登录时间，方便计算可否赠其银币
 - prestige 威望用于老师
+- chou 我众筹了那些问题
 
 ### class_guide
 
@@ -159,7 +160,9 @@
 - collect_users 被那些人收藏，JSON
 - up_users 被哪些人赞，JSON
 - down_users 被哪些人踩，JSON
-- value 问题价值
+- gold_coin 问题价值，金币
+- silver_coin 问题价值，银币
+- who 谁参加了众筹
 
 ### problem_detail 表
 

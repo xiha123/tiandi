@@ -16,6 +16,40 @@ class problem_api extends base_api {
     	$this->me = $this->user_model->check_login();
     }
 
+    /**
+     * [chou 用户众筹]
+     * 自己可以众筹自己的问题，每众筹一次获得50积分
+     * 没有对每个用户每天众筹多少次做限制
+     * @param [1、不存在，2、已经参加国，3、银币不足，4、插入异常会返回扣除的积分]
+     */
+    public function chou(){
+        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
+        $problem_data = $this->problem_model->get(array("id" => $problem_id));
+        if(count($problem_data) <= 0) {
+            $this->finish(false, '无法完成您的请求，您要尝试操作的是一个不存在的问题');
+        }
+        $problem_json = json_decode($problem_data['who']);
+        foreach ($problem_json as $key => $value) {
+            if($value==$this->me['id']){
+                $this->finish(false, '您已经参加过该问题的众筹了。');
+            }
+        }
+        $problem_json[] = $this->me['id'];
+        $problem_json = json_encode($problem_json);
+        if(false === $this->user_model->coin($this->me['id'] , 50 , false)){
+            $this->finish(false, '您的银币不足，无法完成众筹');
+        }
+        if(false === $this->problem_model->edit($problem_id , array("silver_coin" => $problem_data['silver_coin'] + 50,"who" => $problem_json))){
+            $this->user_model->coin($this->me['id'] , 50);
+            $this->finish(false, '无法众筹！');
+        }else{
+            $this->user_model->add_chou($problem_id);
+            $this->news_model->add_news($this->me['id'] , "众筹成功，当问题被解答时将会推送给您信息。问题【".$problem_data['title']."】");
+            $this->user_model->Integral($this->me['id'] , 50);
+            $this->finish(true);
+        }
+    }
+
     public function create() {
         parent::require_login();
         $params = $this->get_params('POST', array('coinType','title' => true,'detail' => true,'tags' => false));extract($params);

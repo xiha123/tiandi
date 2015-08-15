@@ -13,15 +13,34 @@
 			$this->problem_model->def($problem_data["id"]);
 		}
 	?>
-
-
-
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
+	<div class="windows">
+		<div class="confirm" id="confirm">
+			<div class="confirm-title">
+				<h2>您确定参与众筹吗？</h2>
+				<a href="javascript:void(0)" class="close" id="close_window"><i class="fa fa-close"></i></a>
+			</div>
+			<div class="confirm-content">
+				<div class="con">
+					<p>您确定参与众筹吗？</p>
+					<p>参与众筹后将会扣除您50银币，该操作无法反悔！您确定那么做吗</p>
+				</div>
+			</div>
+			<div class="confirm-bottom">
+				<button class="btn btn-danger button_ok">确定</button>
+				<button class="btn btn-default" id="close_window">取消</button>
+			</div>
+		</div>
+	</div>
 	<div class="wrapper">
+
 		<div class="leftBox">
 			<?php
-				if(@$type == 1){echo '<div class="head">● 该问题赏金为<font>300银币</font>，<font>1金币</font>，共有<font>5位众筹者</font></div>';}
+				echo '<div class="head">● 该问题赏金为<font> '.
+				$problem_data["silver_coin"] . '银币</font>，<font>'.
+				$problem_data["gold_coin"] . '金币</font>，共有<font>'.
+				count(json_decode($problem_data['who'])).'位众筹者</font></div>';
 			?>
 			<div class="leftHeader">
 				<h1><?=$problem_data["title"];?></h1>
@@ -116,7 +135,7 @@
 						echo $problem_collect == true ?
 						'<button class="uncollect">★ 取消收藏</button>':
 						'<button class="none-background collect">★ 收藏</button>';
-						echo '<button>众筹</button>';
+						echo '<button class="js_chou">众筹</button>';
 					} if(@$type == 1 ){
 						echo $problem_data['type'] == 0 ? '<button id="answer">认领问题</button>' : "";
 						echo $problem_data['type'] == 1 && $problem_data["answer_id"] == @$id ? '<button id="reply">回答</button>' :"";
