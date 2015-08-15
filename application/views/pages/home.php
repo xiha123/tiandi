@@ -30,11 +30,11 @@
 	<div class="wrapper">
 		<h2>在线课堂</h2>
 		<ul class="class-list cf">
-			<li><a href="./olclass#3d"><img src="./static/image/3d.png" height="120" width="120"><p>Unity-3D</p></li>
-			<li><a href="./olclass#swift"><img src="./static/image/swit.png" height="120" width="120"><p>Swift</p></li>
-			<li><a href="./olclass#web"><img src="./static/image/web.png" height="120" width="120"><p>Web</p></li>
-			<li><a href="./olclass#coco"><img src="./static/image/coco.png" height="120" width="120"><p>Cocos2d-x</p></li>
-			<li><a href="./olclass#android"><img src="./static/image/Android.png" height="120" width="120"><p>Android</p></li>
+			<li><a href="./olclass?type=3d"><img src="./static/image/3d.png" height="120" width="120"><p>Unity-3D</p></li>
+			<li><a href="./olclass?type=Swift"><img src="./static/image/swit.png" height="120" width="120"><p>Swift</p></li>
+			<li><a href="./olclass?type=Web"><img src="./static/image/web.png" height="120" width="120"><p>Web</p></li>
+			<li><a href="./olclass?type=Coco"><img src="./static/image/coco.png" height="120" width="120"><p>Cocos2d-x</p></li>
+			<li><a href="./olclass?type=Android"><img src="./static/image/Android.png" height="120" width="120"><p>Android</p></li>
 		</ul>
 	</div>
 </div>

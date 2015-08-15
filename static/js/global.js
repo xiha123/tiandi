@@ -113,7 +113,7 @@ $("#ajax_reg").on('click' , function() {
         "nickname" : nick,
         "pwd" : password
     }).then(function(){
-        showAlert(true , "注册账号成功！请重新登录");
+        showAlert(true , "注册账号成功！请重新登录。首次注册赠送500银币已到帐请注意查收！");
         setTimeout(function(){
             location.reload();
         }, 1000)

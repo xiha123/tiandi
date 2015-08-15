@@ -21,13 +21,13 @@ class problem_api extends base_api {
         $params = $this->get_params('POST', array('title' => true,'detail' => true,'tags' => false));extract($params);
         $code = isset($_POST['code']) ? $this->input->post("code") : "";
 
-        if ($this->problem_model->is_exist(array('title' => $title))) {
-            // $this->finish(false, '重复的标题');
+        if($this->problem_model->is_exist(array('title' => $title))) {
+            $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
 
         // 处理用户硬币信息
         if(!$this->user_model->coin($this->me['id'] , 100 , false)){
-            $this->finish(false, '您的银币不足，并不能提问问题！');
+            $this->finish(false, '您的银币不足，所以并不能提问问题！');
         }
 
         // 处理标签请求
@@ -62,6 +62,7 @@ class problem_api extends base_api {
         ))){
             parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
         }
+
         $this->finish(true);
     }
 

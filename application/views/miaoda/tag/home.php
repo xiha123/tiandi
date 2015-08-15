@@ -77,7 +77,7 @@
 					}
 				?>
 				<li>
-					<a href="javascript:">更多 ></a>
+					<a href="./god">更多 ></a>
 				</li>
 			</ul>
 
@@ -92,7 +92,6 @@
 					}
 				?>
 				<li>
-					<a href="javascript:">更多 ></a>
 				</li>
 			</ul>
 

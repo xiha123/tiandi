@@ -98,28 +98,27 @@ class user_api extends base_api {
         $this->load->helper('email');
         $params = parent::get_params('POST', array('email', 'nickname', 'pwd'));if (empty($params)) return; extract($params);
 
-        if(!valid_email($email)){
-            parent::finish(false, '您输入的邮箱格式不太正确，请检查后再输入！');
-        }
-        if(strlen($pwd) < 6 || strlen($pwd) > 16){
-            parent::finish(false, '密码长度不规范');
-        }
-        if(strlen($nickname) < 6 || strlen($nickname) > 16){
-            parent::finish(false, '昵称不规范，太长或太短');
-        }
-        if(strlen($pwd) < 6 || strlen($pwd) > 16){
-            parent::finish(false, '密码长度不规范');
-        }
-        if(strlen($nickname) < 6 || strlen($nickname) > 16){
-            parent::finish(false, '昵称不规范，太长或太短');
-        }
+        // if(!valid_email($email)){
+        //     parent::finish(false, '您输入的邮箱格式不太正确，请检查后再输入！');
+        // }
+        // if(strlen($pwd) < 6 || strlen($pwd) > 16){
+        //     parent::finish(false, '密码长度不规范');
+        // }
+        // if(strlen($nickname) < 6 || strlen($nickname) > 16){
+        //     parent::finish(false, '昵称不规范，太长或太短');
+        // }
+        // if(strlen($pwd) < 6 || strlen($pwd) > 16){
+        //     parent::finish(false, '密码长度不规范');
+        // }
+        // if(strlen($nickname) < 6 || strlen($nickname) > 16){
+        //     parent::finish(false, '昵称不规范，太长或太短');
+        // }
         $result = $this->user_model->create(array(
             'email' => $email,
             'nickname' => $nickname,
             'pwd' => $pwd
         ));
-
-        if (!is_numeric($result)) {
+        if (!is_bool($result)) {
             parent::finish(false, $result);
         }
 
