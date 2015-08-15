@@ -39,6 +39,9 @@ class problem_api extends base_api {
             $this->finish(false, '您的' . $coinConfig['name'] . '不足，所以并不能提问问题！');
         }
 
+        // 积分需求
+        $this->user_model->Integral($this->me['id'] , 100);
+
 
 
         // 处理标签请求
@@ -99,6 +102,9 @@ class problem_api extends base_api {
         $this->problem_model->edit($problem_id, array(
             'comments' => json_encode($comments)
         ));
+        // 评论给用户积分
+        $this->user_model->Integral($this->me['id'] , 50);
+        $this->user_model->coin($this->me['id'] , 20);
 
         // 每次评论可获得一个火力值
         $this->problem_model->hot($problem_id , 1 , true);
@@ -198,6 +204,7 @@ class problem_api extends base_api {
         }else{
             // 每次关注获得火力值
             $this->problem_model->hot($problem_id , 3 , true);
+           $this->user_model->Integral($this->me['id'] , 20 );
             parent::finish(true);
         }
     }
@@ -215,6 +222,7 @@ class problem_api extends base_api {
         }else{
             // 取消关注则减少火力值
             $this->problem_model->hot($problem_id , 3 , false);
+           $this->user_model->Integral($this->me['id'] , 20 ,false);
             parent::finish(true);
         }
 
@@ -225,6 +233,7 @@ class problem_api extends base_api {
         if($this->problem_model->collect($problem_id)){
             // 取消关注则减少火力值
             $this->problem_model->hot($problem_id , 3 , true);
+           $this->user_model->Integral($this->me['id'] , 20 ,false);
             parent::finish(true);
         }else{
             parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
@@ -236,6 +245,7 @@ class problem_api extends base_api {
         if($this->problem_model->uncollect($problem_id)){
              // 取消关注则减少火力值
             $this->problem_model->hot($problem_id , 3 , false);
+           $this->user_model->Integral($this->me['id'] , 20 );
             parent::finish(true , "");
         }else{
             parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
@@ -269,6 +279,8 @@ class problem_api extends base_api {
                 "hot" =>$return_data[0]["hot"] - 5,
                 "up_users" => json_encode($up_users)
             ))){
+                // 积分需求
+                $this->user_model->Integral($this->me['id'] , 20 , false);
                 $this->finish(true , "","1");
             }else{
                 $this->finish(false , "未知的网络原因导致操作失败");
@@ -281,6 +293,7 @@ class problem_api extends base_api {
                     "hot" =>$return_data[0]["hot"] + 5,
                     "up_users" => json_encode($up_users)
                 ))){
+                    $this->user_model->Integral($this->me['id'] , 20 );
                     $this->finish(true , "","0");
                 }else{
                     $this->finish(false , "未知的网络原因导致操作失败");
