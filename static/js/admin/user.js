@@ -7,18 +7,20 @@ $(".edit-user").click(function(event) {
 		"title" : "编辑用户资料信息",
 		"icon" : "icon-trash",
 		"content" :
-		'<form method="post" action="api/user_api/edit" id="edit-user">'+
+		'<form method="post" action="api/admin_api/editData" id="edit-user">'+
 		'<table class=table-form>'+
 		'<input type="hidden" value="0" name="type">'+
 		'<input type="hidden" value="' + $parents.data("id")+ '" name="id">'+
 		'<tr><td>用户昵称：<input type="text" value="' + $parents_baby.eq(0).text()+ '" name="nickname">'+
 		'<tr><td>用户密码：<input type="text" value="" placeholder="如若为空则不修改用户密码" name="password">'+
 		'<tr><td>真实姓名：<input type="text" value="' + $parents_baby.eq(1).text()+ '" name="name">'+
-		'<tr><td>手 机 号：<input type="text" value="' + $parents_baby.eq(3).text()+ '" name="phone">'+
-		'<tr><td>支 付 宝：<input type="text" value="' + $parents_baby.eq(4).text()+ '" name="alipay">'+
+		'<tr><td>用户邮箱：<input type="text" value="' + $parents_baby.eq(2).text()+ '" name="email">'+
+		'<tr><td>手 机 号&nbsp;：<input type="text" value="' + $parents_baby.eq(3).text()+ '" name="cellphone">'+
+		'<tr><td>支 付 宝&nbsp;：<input type="text" value="' + $parents_baby.eq(4).text()+ '" name="alipay">'+
 		'<tr><td>银币数量：<input type="text" value="' + $parents_baby.eq(5).text()+ '" name="gold_coin">'+
 		'<tr><td>金币数量：<input type="text" value="' + $parents_baby.eq(6).text()+ '" name="silver_coin">'+
-		'<tr><td>身份证号：<input type="text" value="' + $parents_baby.eq(7).text()+ '" name="idcar">'+
+		'<tr><td>用户积分：<input type="text" value="' + $parents_baby.eq(7).text()+ '" name="Integral">'+
+		'<tr><td>身份证号：<input type="text" value="' + $parents_baby.eq(8).text()+ '" name="idcar">'+
 		'<tr><td>用户类型：<select name="type"><option value="0">学员</option><option value="1">大神</option></select>'+
 		'</table></form>',
 		"success" : function(){
@@ -28,7 +30,7 @@ $(".edit-user").click(function(event) {
 					type : "post",
 					success:function (data) {
 						data = JSON.parse(data);
-						  if(data.status == "true") {
+						  if(data.status == true) {
 							location.reload();
 						} else {
 							showAlert(data.error);

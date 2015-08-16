@@ -3,12 +3,10 @@
 </head>
 
 <body>
-<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 4)); ?>
+<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 5)); ?>
 
 <div class="main">
     <ul class="nav nav-pills" role="tablist">
-        <li role="presentation"><a href="#self" aria-controls="self" role="tab" data-toggle="tab">用户管理</a></li>
-        <li role="presentation"><a href="#self" aria-controls="self" role="tab" data-toggle="tab">大神审核</a></li>
         <li role="presentation" class="active"><a href="#self" aria-controls="self" role="tab" data-toggle="tab">个人设置</a></li>
         <li role="presentation"><a href="#admin" aria-controls="profile" role="tab" data-toggle="tab">管理员设置</a></li>
     </ul>

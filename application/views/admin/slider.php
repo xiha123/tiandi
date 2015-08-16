@@ -41,9 +41,9 @@
 			
 			<?php
 				$this->load->view("miaoda/page",array(
-					"page" => 1,
-					"page_max" => 200,
-					"page_count" => 10,
+					"page" => $page,
+					"page_max" => $data_count,
+					"page_count" => 5,
 					"page_url" => "./admin/slider",
 					"hot" => ""
 				));

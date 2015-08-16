@@ -53,7 +53,7 @@
             </div>
 
             <input type="text" placeholder="支付宝账号" value="<?=$alipay?>" id="alipay" />
-            <textarea name="" id="experience" cols="30" rows="10" placeholder="项目经历" id="goddesc"><?=$description?></textarea>
+            <textarea name="" id="experience" cols="30" rows="10" placeholder="项目经历" id="goddesc"><?=$god_description?></textarea>
             <button type="submit"  id="ajax_godset">
                 提 交<i class="fa fa-arrow-circle-right"></i>
             </button>

@@ -56,6 +56,24 @@ window.api = {
             isPassed = true;
             isPassed = _td.api._checkArg("problem_id",arguments[0], promise);
             if(isPassed){
-            _td.api._doAjax({url:"api/problem_api/chou",methodType:"post",data:arguments[0]}, promise);}return promise;}
+            _td.api._doAjax({url:"api/problem_api/chou",methodType:"post",data:arguments[0]}, promise);}return promise;},
+        forget:function(){
+            var promise = $.Deferred(),
+            isPassed = true;
+            isPassed = _td.api._checkArg("email",arguments[0], promise);
+            if(isPassed){
+            _td.api._doAjax({url:"api/user_api/forget",methodType:"post",data:arguments[0]}, promise);}return promise;},
+        applyNo:function(){
+            var promise = $.Deferred(),
+            isPassed = true;
+            isPassed = _td.api._checkArg("userid",arguments[0], promise);
+            if(isPassed){
+            _td.api._doAjax({url:"api/admin_api/apply_no",methodType:"post",data:arguments[0]}, promise);}return promise;},
+        applyOk:function(){
+            var promise = $.Deferred(),
+            isPassed = true;
+            isPassed = _td.api._checkArg("userid",arguments[0], promise);
+            if(isPassed){
+            _td.api._doAjax({url:"api/admin_api/apply_ok",methodType:"post",data:arguments[0]}, promise);}return promise;},
     }
 }

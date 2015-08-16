@@ -91,7 +91,7 @@ $("#ajax_godset").click(function(){
 			console.log(data);
 			data = JSON.parse(data);
 			  if(data.status ==true) {
-				showAlert(true,"上传成功！");
+				showAlert(true,"保存成功！");
 				setTimeout(function(){
 					location.reload();
 				},1000);

@@ -35,7 +35,6 @@ class Admin_model extends Base_model {
 	public function require_login() {
 		$id = $this->session->userdata($this->id_name);
 		if (!isset($id)) return false;
-
 		return $this->get(array(
 			'id' => $id
 		));
@@ -44,13 +43,10 @@ class Admin_model extends Base_model {
 
 
 	// name, nickname, pwd
-	public function create($params) {
-		if ($this->require_login()) return '没权限';
-
+	public function create_admin($params) {
+		if($this->require_login() == false) return false;
 		extract($params);
-
-		if ($this->is_exist(array('name' => $name))) return '用户名已存在';
-
+		if($this->is_exist(array('name' => $name))) return false;
 		$salt = substr(uniqid(rand()), -10);
 		return parent::create(array(
 			'nickname' => $nickname,
@@ -60,8 +56,9 @@ class Admin_model extends Base_model {
 		));
 	}
 
-	public function remove($id) {
-		if (!$this->require_login()) return '没权限';
-		return parent::remove($id);
+	public function remove($name) {
+		if($this->require_login() == false) return false;
+		if($name == $this->me['name'])return false;
+		return $this->db->delete($this->table_name, array("name" => $name));
 	}
 }

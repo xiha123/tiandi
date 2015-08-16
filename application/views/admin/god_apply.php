@@ -10,8 +10,8 @@
 	<div class="main-content">
 		<div class="main-title">
 			<ul class="nav nav-pills">
-				<li role="presentation" class="active"><a href="javascript:;"><i class="fa fa-users"></i>用户管理</a></li>
-				<li role="presentation"><a href="./admin/god_apply"><i class="fa fa-check-square"></i>大神审核</a></li>
+				<li role="presentation"><a href="./admin/user"><i class="fa fa-users"></i>用户管理</a></li>
+				<li role="presentation" class="active"><a href="javascript:;"><i class="fa fa-check-square"></i>大神审核</a></li>
 			</ul>
 		</div>
 
@@ -45,7 +45,7 @@
 						<td>{Integral}</td>
 						<td>{idcar}</td>
 						<td>{type}</td>
-						<td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
+						<td><i class="fa fa-check apply-ok"></i><i class="fa fa-remove apply-no"></i></td>
 					</tr>
 				{/user}
 				</tbody>
@@ -67,6 +67,6 @@
 </div>
 
 <?php $this->load->view('widgets/admin/footer.php'); ?>
-<script src="./static/js/admin/user.js"></script>
+<script src="./static/js/admin/god_apply.js"></script>
 </body>
 </html>

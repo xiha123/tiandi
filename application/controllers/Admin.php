@@ -15,6 +15,19 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function god_apply(){
+		if($this->admin_model->require_login() === false) redirect('admin/login');
+		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$data['me'] = $this->user_info;
+		$data['user'] = $this->user_model->get_list(array("type" => 2) , ($data['page'] - 1) , 10);
+		foreach ($data['user'] as $key => $value) {
+			$data['user'][$key]['type'] = $data['user'][$key]['type'] == "2" ? "<font style='color:#cc0000;font-weight:700'>待审核</font>" : "";
+		}
+		$data['user_max'] = $this->user_model->get_count(array("type" => 1));
+		$this->load->library('parser');
+		$this->parser->parse('admin/god_apply.php', $data);
+	}
+
 	public function user(){
 		if($this->admin_model->require_login() === false) redirect('admin/login');
 		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
@@ -27,7 +40,6 @@ class Admin extends CI_Controller {
 			}else{
 				$data['user'][$key]['type'] = $data['user'][$key]['type'] == "1" ? "大神" : "<font style='color:#cc0000;font-weight:700'>待审核</font>";
 			}
-
 		}
 		$data['user_max'] = $this->user_model->get_count(array());
 		$this->load->library('parser');
@@ -44,10 +56,14 @@ class Admin extends CI_Controller {
 
 	public function slider(){
 		if(empty($this->user_info)) redirect('admin/login');
-		$returnData = $this ->slide_model -> get_list(0);
+		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$returnData = $this ->slide_model -> get_list(0,($data['page']-1)*5);
+
 		$data = array(
+			"data_count" => $this ->slide_model -> get_count(array("type" => 0)),
 			"data_list" => $returnData,
-			"me" => $this->user_info
+			"me" => $this->user_info,
+			"page" => $data["page"]
 		);
 		$this->load->library('parser');
 		$this->parser->parse('admin/slider.php', $data);

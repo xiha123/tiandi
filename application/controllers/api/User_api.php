@@ -13,6 +13,8 @@ class user_api extends base_api {
         $this->me = $this->user_model->check_login();
     }
 
+
+
     // 抹杀掉一个用户
     public function remove_user(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
@@ -25,6 +27,37 @@ class user_api extends base_api {
         $this->finish(true);
     }
 
+    public function forget(){
+        $params = parent::get_params('POST', array('email'));if(empty($params)) return; extract($params);
+        if(!$this->user_model->is_exist(array("email" => $email))){
+            parent::finish(false , "您输入的邮箱格式不存在，请检查后再输入！");
+        }
+
+        
+        //以下设置Email参数
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'smtp.qq.com';
+        $config['smtp_user'] = '1137716847@qq.com';
+        $config['smtp_pass'] = '952467@Aa';
+        $config['smtp_port'] = '25';
+        $config['charset'] = 'utf-8';
+        $config['wordwrap'] = TRUE;
+        $config['mailtype'] = 'html';
+        $this->load->library('email',$config);            //加载CI的email类
+        
+        //以下设置Email内容
+        $this->email->from('1137716847@qq.com', 'fanteathy');
+        $this->email->to('1137716847@qq.com');
+        $this->email->subject('Email Test');
+        $this->email->message('<font color=red>Testing the email class.</font>');
+        // $this->email->attach('application\controllers\1.jpeg');         //相对于index.php的路径
+
+        $this->email->send();
+
+        echo $this->email->print_debugger();      //返回包含邮件内容的字符串，包括EMAIL头和EMAIL正文。用于调试。
+
+        parent::finish(false , "调试中！");
+    }
 
     public function collect_tag(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
@@ -141,7 +174,7 @@ class user_api extends base_api {
     public function edit_god(){
         $params = parent::get_params('POST', array('alipay', 'goddesc'));if (empty($params)) return; extract($params);
         if($this->user_model->edit($this->me['id'],array(
-            "description" => $goddesc,
+            "god_description" => $goddesc,
             "alipay" => $alipay
         ))){
             $this->finish(true);

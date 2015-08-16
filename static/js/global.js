@@ -16,6 +16,22 @@ $(".ajax_up").on("click" , function(){
         showAlert(false,msg);
     });
 })
+$(".forget").click(function(event) {
+    $("#reg").hide();
+    $("#login").hide();
+    bomb("forget");
+});
+
+$("#ajax_forget").click(function(){
+    var _this = $(this);
+    api.api.forget({
+        email : $("#userEmail").val(),
+    }).then(function(msg){
+        showAlert(true,"新的密码已经发送到您的邮箱，请注意查收！");
+    },function(msg){
+        showAlert(false,msg);
+    });
+})
 
 $(".seacher").on('keyup', 'input[type="text"]', function(event) {
     if(event.keyCode === 13){

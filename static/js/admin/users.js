@@ -23,7 +23,7 @@ function createAdmin() {
 
 function removeAdmin() {
     $.ajax({
-        url: 'admin_api/remove',
+        url: './api/admin_api/remove',
         method: 'post',
         data: {
             name: $('#remove-admin-username').val()
@@ -41,4 +41,4 @@ function removeAdmin() {
 
 function editUser() {
 	showAlert('还没开放用户注册', 'danger');
-}
+}

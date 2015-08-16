@@ -14,7 +14,64 @@ class admin_api extends base_api {
         $this->load->model('course_step_model');
         $this->me = $this->admin_model->check_login();
     }
+    /**
+     * 设置成为大神
+     * @return [type] [description]
+     */
+    public function apply_ok(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("userid"));if(empty($params)) return; extract($params);
+        if($this->user_model->edit($userid,array("type" => 1))){
+            $this->finish(true,"Good!!");
+        }else{
+            $this->finish(false,"服务器异常!!");
+        }
+    }
 
+    /**
+     * 拒绝成为大神返还成普通用户
+     * @return [type] [description]
+     */
+    public function apply_no(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("userid"));if(empty($params)) return; extract($params);
+        if($this->user_model->edit($userid,array("type" => 0))){
+            $this->finish(true,"Good!!");
+        }else{
+            $this->finish(false,"服务器异常!!");
+        }
+    }
+
+
+    /**
+     * 编辑用户信息
+     * @return [type] [description]
+     */
+   public function editData(){
+        parent::require_login();
+        $params = parent::get_params('POST', array(
+            "nickname",
+            "name",
+            "email",
+            "cellphone",
+            "alipay",
+            "gold_coin",
+            "silver_coin",
+            "idcar",
+            "type",
+        ));if(empty($params)) return; extract($params);
+        $id = $this->input->post("id");
+        $password = $this->input->post("password");
+        if($password != ""){
+            $userdata = $this->user_model->get(array("id" => $id));
+            $params['pwd'] = md5($password . $userdata['salt']);
+        }
+        if($this->user_model->edit($id , $params)){
+               $this->finish(true);
+           }else{
+               $this->finish(false,"无法修改用户资料");
+           }
+    }
     public function delect_steup(){
         $params = parent::get_params('POST', array('type','id'));if(empty($params))return;extract($params);
         $this->course_step_model->remove($id);
@@ -290,8 +347,7 @@ class admin_api extends base_api {
 
         $this->check_admin_login();
 
-		$this->admin_model->edit(array(
-            'auid' => $this->me['id'],
+	$this->admin_model->edit($this->me['id'],array(
             'nickname' => $nickname
         ));
 
@@ -301,34 +357,25 @@ class admin_api extends base_api {
     public function create() {
         $params = parent::get_params('POST', array('name', 'nickname', 'pwd'));
         extract($params);
-
         $this->check_admin_login();
-
-		if (false === $this->admin_model->create(array(
+        if (false === $this->admin_model->create_admin(array(
             'name' => $name,
             'nickname' => $nickname,
             'pwd' => $pwd
         ))) {
-			$this->finish(false, '用户名已存在');
+            $this->finish(false, '用户名已存在');
         }
-
-		$this->finish(true);
+        $this->finish(true);
     }
 
     public function remove() {
         $params = parent::get_params('POST', array('name'));
         extract($params);
-
         $this->check_admin_login();
-
-		if (false === $this->admin_model->remove(array(
-            'name' => $name,
-            'auid' => $cur_id
-        ))) {
-			parent::finish(false, '目标是自己或不存在');
+        if (false === $this->admin_model->remove($name)) {
+            parent::finish(false, '目标是自己或不存在');
         }
-
-		parent::finish(true);
+        parent::finish(true);
     }
 
     private function check_admin_login() {

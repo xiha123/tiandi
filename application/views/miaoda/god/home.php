@@ -12,7 +12,7 @@
 			<p class="look"><img src="static/image/good.png" width="16px" alt=""><?=$user['follow_problem_count']?></p>
 			<p class="money">银币： <?=$user['gold_coin']?></p>
 			<p class="money">金币： <?=$user['silver_coin']?></p>
-			<p class="desc"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
+			<p class="desc"><?php echo $user["god_description"] == "" ? "这货居然没写描述" : $user['god_description']; ?></p>
 			<h2 class="box-title">擅长标签</h2>
 			<a href="#" class="tagBox">tag</a>
 			<a href="#" class="tagBox">tag</a>

@@ -37,6 +37,7 @@
 - pwd
 - salt
 - nickname 昵称
+- name 真实姓名
 - email 邮箱，用作登录
 - type 0 为学生，1 为老师，2 为申请老师审核中
 - avatar 头像
