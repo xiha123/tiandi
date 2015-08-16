@@ -74,3 +74,4 @@
     </div>
 
 </div>
+<?php $this->load->view('widgets/windows.php' ); ?>

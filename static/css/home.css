@@ -15,7 +15,7 @@
 .slider-sheet .active {z-index:1;opacity:1; }
 .slider-sheet li img{margin:0 auto;position:absolute;top:0px;left:0px;right:0px;bottom:0px;margin:auto;max-height:350px;}
 
-h2 {margin-top:40px;font-size:20px;color:#219ba1;}
+.wrapper h2 {margin-top:40px;font-size:20px;color:#219ba1;}
 
 .class-list {border-top:1px solid #219ba1;margin-top:10px;padding:30px 0 80px;}
 .class-list li {float:left;width:20%;text-align:center;}
