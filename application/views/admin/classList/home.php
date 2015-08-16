@@ -21,8 +21,8 @@
 			<table class="table table-bordered">
 				<tr>
 					<th >课程名</th>
-					<th >视频地址</th>
-					<th>描述</th>
+					<th  width="18%">视频地址</th>
+					<th width="58%">描述</th>
 					<th width="8%">操作</th>
 				</tr>
 				{data_list}
