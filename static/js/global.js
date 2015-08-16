@@ -23,7 +23,7 @@ $(".seacher").on('keyup', 'input[type="text"]', function(event) {
     }
 });
 $(".seacher button").click(function(){
-    window.location.href ="./seacher?key=";
+    window.location.href ="./seacher?key=" +$(".seacher input[type='text']").val();
 });
 
 $(".button").on("click" , ".collect" , function(){

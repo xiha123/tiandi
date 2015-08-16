@@ -12,10 +12,15 @@ class Index extends CI_Controller {
 		$type = !isset($_GET['hot']) ? "ctime" : "hot";
 		$name = $this->input->get("name");
 		$userdata = $this->user_model->check_login();
+
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
-		if(!$userdata['tag_data'])show_404();
+		if(!isset($userdata['tag_data']['name'])) show_404();
+
+
 		$userdata["hot_type"] = !isset($_GET['hot']) ? false : true;
 		$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);
+
+
 		
 		$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");

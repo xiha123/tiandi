@@ -216,6 +216,9 @@ class problem_api extends base_api {
         )) === false) {
             $this->finish(false, '问题不能关闭');
         }
+        foreach (json_decode($problem['who']) as $key => $value) {
+            $this->news_model->add_news($value , " 您众筹的问题".$problem['title']."已经解决了，快去看看！" );
+        }
         $this->news_model->add_news($problem['answer_id'] , "" . $this->me['nickname'] . " 满意了：".$problem['title'] );
         $this->finish(true);
     }

@@ -12,17 +12,21 @@ class Miaoda extends CI_Controller {
 
 	public function index() {
 		$userdata = $this->user_model->check_login();
-
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
-
 		// 去你妹的体验！
 		if(isset($_GET['hot'])){
-			$userdata["hot_type"] = true;
-			$userdata["problem_list"] = $this->problem_model->get_list_by_hot($userdata["page"] -1);
+			if($_GET['hot'] == "chou"){
+				$userdata["hot_type"] = "2";
+				$userdata["problem_list"] = $this->problem_model->get_problem_value(($userdata["page"] -1) *10);
+			}else{
+				$userdata["hot_type"] = "0";
+				$userdata["problem_list"] = $this->problem_model->get_list_by_hot($userdata["page"] -1);
+			}
 		}else{
-			$userdata["hot_type"] = false;
+			$userdata["hot_type"] = "1";
 			$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
 		}
+
 		$userdata["problem_list_count"] = $this->problem_model->get_list_count();
 		if($userdata["page"] > ceil($userdata["problem_list_count"] / 20)){
 			if($userdata["page"] > 1){

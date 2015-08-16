@@ -1,9 +1,1 @@
-.list-data li{padding:5px;position:relative; float: left;width:100%;border-bottom:1px solid #eee;margin:7px 0px;}
-.list-data .search-result{border:none;color: #aaa}
-.list-data .link-num{float:left;text-align: center; background:#219ba1;padding:6px 12px;color:#fff;}
 .list-data .list-title{width:920px;font-size:16px;padding-left:14px;}
-.list-data .list-title,.list-date{float: left;float: left}
-.list-data .list-tag{position:relative;left:10px;top:-2px;}
-.list-data .list-tag li{border:none;width:auto;float: left}
-.list-data .list-tag .tag-box{background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-right: 4px}
-.list-data .list-date{color:#aaa;bottom:15px;position: absolute;right:10px;}
