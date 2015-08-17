@@ -16,7 +16,7 @@ p{word-break: break-all;}
                               .aletrContent.danger{background:#d9534f;}
                                .aletrContent i{margin-right: 10px;}
 
-.window #reg{height:450px;display:none;}
+.window #reg{height:500px;display:none;}
 
 .window .login {display:none;width:400px;height:370px;position:fixed; top:0;left: 0;right: 0;bottom: 0;margin: auto;background: #fff;z-index:1024;}
 .login .login-title{padding:5px 20px;height:30px;background:#219ba1;color:#fff;}
@@ -95,11 +95,15 @@ p{word-break: break-all;}
 .tab-sheet .active {
     display: block;
 }
-.tab .title{border-bottom:1px solid #219ba1; height:39px;}
-.title > li{margin-right:1px;float: left;padding:0px 30px;padding-bottom:9px;}
-.title a{font-size: 23px;color:#219ba1;}
-.title .active{font-weight:700;border-bottom:4px solid #219ba1;}
-.title li:hover{border-bottom:4px solid #219ba1;}
+
+.tab{overflow:hidden;}
+.tab .title{border-bottom:1px solid #219ba1; width:100%;margin-right:1px;float: left;}
+.tab .title > li{position:relative;top:5px; margin-right:1px;float: left;padding-bottom:8px;}
+
+.title a{line-height:39px;padding:0 34px;font-size: 23px;color:#219ba1;}
+.title .active {font-weight:700;border-bottom:4px solid #219ba1;}
+
+.title li:hover {border-bottom:4px solid #219ba1;}
 .title li{cursor:pointer; }
 
 /*列表通用*/
