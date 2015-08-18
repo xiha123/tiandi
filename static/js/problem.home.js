@@ -26,7 +26,7 @@ $("#ajax_problemSubmit").on("click",function(){
 		"tags" : jsonText,
 		"coinType" : coinType,
 	}).then(function(){
-		showAlert(true,"恭喜您，提问成功！");
+		showAlert(true,"恭喜您，提问成功！ 银币 -100个");
 		 setTimeout(function(){
 	            location.reload();
 	        },1000)

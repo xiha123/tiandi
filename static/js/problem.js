@@ -57,7 +57,7 @@ $(".button_ok").click(function(){
 	api.api.chou({
 		"problem_id" : problem_id
 	}).then(function(){
-		showAlert(true,"众筹成功！");
+		showAlert(true,"众筹成功！银币 -50");
 		 setTimeout(function(){
 	            location.reload();
 	        },1000)
