@@ -1,7 +1,7 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/seconds/tacher.css">
+<link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
-<?php $this->load->view('widgets/seconds/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="wrapper">
 		<div class="tacher-data">
@@ -51,7 +51,7 @@
 			
 			</ul>
 			<?php
-				$this->load->view("seconds/page",array(
+				$this->load->view("miaoda/page",array(
 					"page" => $page,
 					"page_max" => $answer_count,
 					"page_count" => 20,

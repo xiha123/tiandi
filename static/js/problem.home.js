@@ -9,7 +9,7 @@ $("#ajax_problemSubmit").on("click",function(){
 	if(title.length < 5 || title.length > 60){
 		showAlert(false,"您输入的标题太长或者太短！");
 		return false;
-	}	
+	}
 	if(ue.getContentTxt().length < 10 ){
 		showAlert(false,"再多打几个字吧，您的描述实在是太短了！");
 		return false;
@@ -33,4 +33,10 @@ $("#ajax_problemSubmit").on("click",function(){
 	},function(msg){
 		showAlert(false,msg);
 	})
-})
+});
+
+setInterval(function(){
+
+
+},20000)
+

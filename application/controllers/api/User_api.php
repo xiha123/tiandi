@@ -13,6 +13,10 @@ class user_api extends base_api {
         $this->me = $this->user_model->check_login();
     }
 
+    public function get_key(){
+        $params = parent::get_params('POST', array('key'));if(empty($params)) return; extract($params);
+        parent::finish(true , "" , $this->tag_model->get_tag_key($key));
+    }
 
 
     // 抹杀掉一个用户

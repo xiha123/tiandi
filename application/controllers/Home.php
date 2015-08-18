@@ -50,7 +50,7 @@ class Home extends CI_Controller {
 			$this->load->view("miaoda/studentHome.php" , $userdata);
 
 		} else {
-			if($userdata['id'] == $uid){
+			if(@$userdata['id'] == $uid){
 				$userdata["recommend_list"] = $this->problem_model->get_list_by_hot(0, 5 , "random");
 				$userdata["hot_type"] = isset($_GET['ok']) ? true : false;
 				if(!$userdata["hot_type"]){

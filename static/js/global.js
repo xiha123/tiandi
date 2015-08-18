@@ -214,35 +214,91 @@ $(document).ready(function() {
     });
 
     function initTag($tag){
-        var tagIndex = 0, value ="";
+        var tagIndex = 0, value ="",timeOut = true;
         $tag.find('input[type="text"]').blur(function(){
+            $(".tag-ide").hide();
             value = $(this).val();
             if(value == ""){return;}
-           if( addTag($tag , value)!=false){
-             $(this).val("");
-           }
+            if( addTag($tag , value)!=false){
+                $(this).val("");
+            }
         });
+        var index = 0 , temp_index = 0;
+        $tag.find('input[type="text"]').keyup(function(e) {
+            value = $(this).val();
+            $ideList = $(".tag-ide ul li");
+            if(e.keyCode == 13){
+                console.log(e.keyCode)
+                if(addTag($tag , value)!=false){
+                    $tag.find('input[type="text"]').val("");
+               }
+               return false;
+            }
+            if(e.keyCode == 40){
+                if(index >= $ideList.length){index = $ideList.length;return false};
+                index ++;
+                $ideList.eq(temp_index - 1).css({"background" : "#fff", "color":"#aaa"})
+                $ideList.eq(index - 1).css({"background" : "#219ba1" , "color" : "#fff"})
+                $tag.find('input[type="text"]').val($ideList.eq(index - 1).text());
+                temp_index = index;
+               return false;
+            }
+            if(e.keyCode == 38){
+                index --;
+                if(index <= 0){index = 0;return false};
+                $ideList.eq(temp_index - 1).css({"background" : "#fff", "color":"#aaa"})
+                $ideList.eq(index - 1).css({"background" : "#219ba1" , "color" : "#fff"})
+                $tag.find('input[type="text"]').val($ideList.eq(index - 1).text());
+                temp_index = index;
+               return false;
+            }
+
+          
+            if(timeOut == false) return false;
+            timeOut = false;
+            value = $(this).val();
+
+            $.ajax({
+                url: 'api/user_api/get_key',
+                dataType: 'json',
+                type: 'post',
+                data: {key: value},
+                success:function(msg){
+                    $(".tag-ide").show();
+                    data = JSON.parse(msg.data);
+                    $list = $(".tag-ide ul");
+                    $list.html("");
+                    for(var index = 0;index < data.length;index++){
+                        $list.append('<li>' + data[index].name + '</li>')
+                    }
+                }
+            });
+            setTimeout(function(){timeOut = true},200);
+            if(value !=""){
+                index = 0;
+                $(".tag-ide").show();
+            }else{
+                $(".tag-ide").hide();
+                index = 0;
+                return false;
+            }
+        });
+            
         $tag.on('click', '.close', function(event) {
             tagIndex = tagIndex - 1;
             console.log(tagIndex);
             $(this).parent().remove();
         });
-        $tag.keyup(function(e) {
-            value = $tag.find('input[type="text"]').val();
-            if(e.keyCode == 13){
-                if(addTag($tag , value)!=false){
-                    $tag.find('input[type="text"]').val("");
-               }
-            }
-        });
 
         function addTag($tag , tagName){
+            if(tagIndex >=  5){tagIndex = 5;return false;}
             tagIndex ++;
+            console.log("tagIndex:"+tagIndex);
+            $(".tag-ide").hide();
             value = $tag.find('input[type="text"]').val();
-            if(tagIndex >5){return false;}
             if(value.length <2){showAlert(false,"您输入的标签太短了");return false;}
             if(value.length >12){showAlert(false,"您输入的标签太长了");return false;}
-            $tag.append('<span class="tag-box"><font>'+tagName+'</font> <button class="close">X</button></span>');
+            $tag.find(".tag-list").append('<span class="tag-box"><font>'+tagName+'</font> <button class="close">X</button></span>');
             return true;
         }
 

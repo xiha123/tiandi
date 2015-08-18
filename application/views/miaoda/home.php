@@ -19,7 +19,18 @@
 			</td></tr>
 			<tr><td><div class="tag" data-widget="tag">
 				<input type="hidden" class="form-tag" value="">
-				<input type="text" class="input-tag" placeholder="请输入标签">
+				<div class="tag-list"></div>
+				<div class="input-tag">
+					<input type="text" class="input-tag" placeholder="请输入标签">
+					<div class="tag-ide">
+						<ul>
+							<li>C++</li>
+							<li>C++</li>
+							<li>C++</li>
+						</ul>
+					</div>
+				</div>
+				
 			</div></td></tr>
 			<tr><td><label><input type="checkbox" id="js_coinType"><span>使用金币提问</span></label></td></tr>
 		</table>
