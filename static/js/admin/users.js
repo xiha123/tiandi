@@ -4,8 +4,8 @@ function editAdmin() {
         nickname: nickname
     }).then(function () {
         $('.profile h2').text(nickname);
-    }, function (msg) {
-        showAlert(msg, 'danger');
+    }, function (res) {
+        showAlert(res.error, 'danger');
     });
 }
 
@@ -16,8 +16,8 @@ function createAdmin() {
         nickname: $('#create-admin-nickname').val()
     }).then(function () {
         showAlert('创建成功', 'success');
-    }, function (msg) {
-        showAlert(msg, 'danger');
+    }, function (res) {
+        showAlert(res.error, 'danger');
     });
 }
 

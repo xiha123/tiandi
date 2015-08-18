@@ -11,6 +11,6 @@
   },
   "homepage": "https://github.com/mangoCheese/tiandi",
   "dependencies": {
-    "js-api-generator": "0.0.3"
+    "js-api-generator": "0.0.5"
   }
 }

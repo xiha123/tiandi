@@ -2,18 +2,18 @@ api:
 
 # admin
 -
-    url: admin_api/login
+    url: api/admin_api/login
     type: post
     name: loginAdmin
     needs:
         - name
         - pwd
 -
-    url: admin_api/logout
+    url: api/admin_api/logout
     type: get
     name: logoutAdmin
 -
-    url: admin_api/create
+    url: api/admin_api/create
     type: post
     name: createAdmin
     needs:
@@ -21,13 +21,13 @@ api:
         - nickname
         - pwd
 -
-    url: admin_api/edit
+    url: api/admin_api/edit
     type: post
     name: editAdmin
     needs:
         - nickname
 -
-    url: admin_api/remove
+    url: api/admin_api/remove
     type: post
     name: removeAdmin
     needs:
@@ -37,7 +37,7 @@ api:
 # user
 -
     #已实现
-    url: user_api/login
+    url: api/user_api/login
     type: post
     name: loginUser
     needs:
@@ -45,12 +45,12 @@ api:
         - pwd
 -
     #已实现
-    url: user_api/logout
+    url: api/user_api/logout
     type: get
     name: logoutUser
 -
     #已实现
-    url: user_api/create
+    url: api/user_api/create
     type: post
     name: createUser
     needs:
@@ -58,13 +58,13 @@ api:
         - nickname
         - pwd
 -
-    url: user_api/edits
+    url: api/user_api/edits
     type: post
     name: editUser
     needs:
         - nickname
 -
-    url: user_api/remove
+    url: api/user_api/remove
     type: post
     name: removeUser
     needs:
@@ -74,7 +74,7 @@ api:
 # problem
 -
     # 创建问题 已实现
-    url: problem_api/create
+    url: api/problem_api/create
     type: post
     name: createProblem
     needs:
@@ -84,7 +84,7 @@ api:
         - code
 -
     # 创建描述，即提问者的补充和老师的回答 已实现
-    url: problem_api/create_detail
+    url: api/problem_api/create_detail
     type: post
     name: createDetail
     needs:
@@ -94,7 +94,7 @@ api:
         - type
 -
     # 创建评论
-    url: problem_api/create_comment
+    url: api/problem_api/create_comment
     type: post
     name: createComment
     needs:
@@ -102,56 +102,56 @@ api:
         - content
 -
     # 老师认领问题 #已实现
-    url: problem_api/request_problem
+    url: api/problem_api/request_problem
     type: post
     name: requestProblem
     needs:
         - problem_id
 -
     # 关闭问题
-    url: problem_api/close_problem
+    url: api/problem_api/close_problem
     type: post
     name: closeProblem
     needs:
         - problem_id
 -
     # 关注问题 已实现
-    url: problem_api/follow_problem
+    url: api/problem_api/follow_problem
     type: post
     name: followProblem
     needs:
         - problem_id
 -
     # 取消关注问题 已实现
-    url: problem_api/unfollow_problem
+    url: api/problem_api/unfollow_problem
     type: post
     name: unfollowProblem
     needs:
         - problem_id
 -
     # 收藏问题 已实现
-    url: problem_api/collect_problem
+    url: api/problem_api/collect_problem
     type: post
     name: collectProblem
     needs:
         - problem_id
 -
     # 取消收藏问题 已实现
-    url: problem_api/uncollect_problem
+    url: api/problem_api/uncollect_problem
     type: post
     name: uncollectProblem
     needs:
         - problem_id
 -
     # 点赞 已实现
-    url: problem_api/up_problem
+    url: api/problem_api/up_problem
     type: post
     name: upProblem
     needs:
         - problem_id
 -
     # 点踩 已实现
-    url: problem_api/down_problem
+    url: api/problem_api/down_problem
     type: post
     name: downProblem
     needs:
@@ -159,7 +159,7 @@ api:
 
 # course
 -
-    url: course_api/create
+    url: api/course_api/create
     type: post
     name: createCourse
     needs:
@@ -168,13 +168,13 @@ api:
         - video
         - description
 -
-    url: course_api/remove
+    url: api/course_api/remove
     type: post
     name: removeCourse
     needs:
         - course_id
 -
-    url: course_api/edit
+    url: api/course_api/edit
     type: post
     name: editCourse
     needs:
@@ -184,7 +184,7 @@ api:
         - video
         - description
 -
-    url: course_api/create_chapter
+    url: api/course_api/create_chapter
     type: post
     name: createChapter
     needs:
@@ -192,7 +192,7 @@ api:
         - content
         - title
 -
-    url: course_api/create_step
+    url: api/course_api/create_step
     type: post
     name: createStep
     needs:
@@ -202,7 +202,7 @@ api:
         - img
         - level
 -
-    url: course_api/edit_chapter
+    url: api/course_api/edit_chapter
     type: post
     name: editChapter
     needs:
@@ -210,7 +210,7 @@ api:
         - content
         - title
 -
-    url: course_api/edit_step
+    url: api/course_api/edit_step
     type: post
     name: editStep
     needs:
@@ -221,7 +221,6 @@ api:
         - level
 
 config:
-    jquery: $
     isSuccess:
         status: true
     success:

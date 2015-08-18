@@ -28,8 +28,8 @@ $("#ajax_forget").click(function(){
         email : $("#userEmail").val(),
     }).then(function(msg){
         showAlert(true,"新的密码已经发送到您的邮箱，请注意查收！");
-    },function(msg){
-        showAlert(false,msg);
+    },function(res){
+        showAlert(false, res.msg);
     });
 })
 
@@ -48,8 +48,8 @@ $(".button").on("click" , ".collect" , function(){
         problem_id : problem_id,
     }).then(function(msg){
             location.reload();
-    },function(msg){
-        showAlert(false,msg);
+    },function(res){
+        showAlert(false, res.msg);
     });
 })
 $(".button").on("click" , ".uncollect" , function(){
@@ -138,7 +138,7 @@ $("#ajax_reg").on('click' , function() {
        showAlert(false , "您需要先同意并接受服务条款");
         return;
     }
-    
+
     _td.api.createUser({
         "email" : email,
         "nickname" : nick,
@@ -148,8 +148,8 @@ $("#ajax_reg").on('click' , function() {
         setTimeout(function(){
             location.reload();
         }, 1000)
-    },function(msg){
-        showAlert(false,msg);
+    },function(res){
+        showAlert(false, res.msg);
     });
 });
 

@@ -23,8 +23,8 @@
             pwd: $.trim($('#pwd').val())
         }).then(function () {
             location.href = 'admin';
-        }, function (msg) {
-            showAlert(msg);
+        }, function (res) {
+            showAlert(res.error);
         });
     });
 </script>
