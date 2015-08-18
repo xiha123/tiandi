@@ -38,7 +38,7 @@
 								<?php
 									if(isset($value['tags'])){
 										foreach ($value['tags'] as $key => $values) {
-											echo '<li><a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 										}
 									}
 								?>
@@ -65,7 +65,7 @@
 								<?php
 									if(isset($value['tags'])){
 										foreach ($value['tags'] as $key => $values) {
-											echo '<li><a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 										}
 									}
 								?>

@@ -8,14 +8,17 @@ class Index extends CI_Controller {
 		$this->load->model("problem_model");
 	}
 	public function index(){
+		
 		if(!isset($_GET['name']) || $_GET['name'] == ""){show_404();}
 		$type = !isset($_GET['hot']) ? "ctime" : "hot";
-		$name = $this->input->get("name");
+		$name = $this->input->get("name",true);
 		$userdata = $this->user_model->check_login();
 
+		// <is tag>
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
 		if(!isset($userdata['tag_data']['name'])) show_404();
-
+		// </is tag>
+		
 
 		$userdata["hot_type"] = !isset($_GET['hot']) ? false : true;
 		$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);

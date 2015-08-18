@@ -25,7 +25,7 @@
 					echo '<p class="not">还没有收藏标签</p>';
 				}else{
 					foreach ($skilled_tags as $key => $value) {
-						echo '<a href="./tag/?name='.$value->t.'"  target="_blank" class="tag-box">'.$value->t.'</a>';
+						echo '<a href="./tag/?name='.urlencode($value->t).'"  target="_blank" class="tag-box">'.$value->t.'</a>';
 					}
 				}
 			?>
@@ -52,7 +52,7 @@
 									<?php
 										if(isset($value['tags'])){
 											foreach ($value['tags'] as $key => $values) {
-												echo '<li><a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+												echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 											}
 										}
 									?>

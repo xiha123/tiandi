@@ -47,7 +47,7 @@
 				<?php
 					if(isset($problem_data['tags'])){
 						foreach ($problem_data['tags'] as $key => $values) {
-							echo '<a href="./tag/?name='.$values['name'].'"  target="_blank" class="tag-box">'.$values['name'].'</a>';
+							echo '<a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a>';
 						}
 					}
 				?>
