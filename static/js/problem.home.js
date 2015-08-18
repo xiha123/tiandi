@@ -6,11 +6,11 @@ $("#ajax_problemSubmit").on("click",function(){
 		code = $("#problem-code").val(),
 		coinType = document.getElementById("js_coinType").checked;
 		console.log(coinType);
-	if(title.length < 10 || title.length > 60){
+	if(title.length < 5 || title.length > 60){
 		showAlert(false,"您输入的标题太长或者太短！");
 		return false;
 	}	
-	if(ue.getContentTxt().length < 14 ){
+	if(ue.getContentTxt().length < 10 ){
 		showAlert(false,"再多打几个字吧，您的描述实在是太短了！");
 		return false;
 	}
