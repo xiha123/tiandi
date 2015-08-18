@@ -1,6 +1,6 @@
 <div class="seconds-nav header">
 	<div class="wrapper">
-        	<a href="./"><img class="logo" src="static/image/logo.png" height="81" width="110" alt="天地培训logo"></a>
+        	<a href="./"><img class="logo" src="static/image/miaologo.png" style="  left: -224px;z-index: 999;background: none;border-radius: 0;padding: 0px; " alt="天地培训logo"></a>
 		<div class="seacher">
 			<input type="text" class="fl" placeholder="在此搜索你的问题">
 			<button><i class="fa fa-search"></i></button>

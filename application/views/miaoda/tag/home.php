@@ -70,10 +70,10 @@
 			<ul class="tag-list">
 				<?php
 					foreach ($god as $key => $value) {
-						if($value[$key]["avatar"] == ""){
-							$value[$key]["avatar"] = "static/image/default.jpg";
+						if($value[0]["avatar"] == ""){
+							$value[0]["avatar"] = "static/image/default.jpg";
 						}
-						echo '<li><img src="'.$value[$key]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[$key]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+						echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
 					}
 				?>
 				<li>
@@ -85,10 +85,12 @@
 			<ul class="tag-list">
 				<?php
 					foreach ($student as $key => $value) {
-						if($value[$key]["avatar"] == ""){
-							$value[$key]["avatar"] = "static/image/default.jpg";
+						if(@$value[0]["avatar"] == ""){
+							$value[0]["avatar"] = "static/image/default.jpg";
 						}
-						echo '<li><img src="'.$value[$key]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[$key]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+						if(isset($value[0]['nickname'])){
+							echo '<li><img src="'.@$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.@$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+						}
 					}
 				?>
 				<li>
