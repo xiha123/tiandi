@@ -12,6 +12,7 @@ class admin_api extends base_api {
         $this->load->model('course_chapter_model');
         $this->load->model('course_class_model');
         $this->load->model('course_step_model');
+        $this->load->model('news_model');
         $this->me = $this->admin_model->check_login();
     }
     /**
@@ -22,6 +23,7 @@ class admin_api extends base_api {
         parent::require_login();
         $params = parent::get_params('POST', array("userid"));if(empty($params)) return; extract($params);
         if($this->user_model->edit($userid,array("type" => 1))){
+            $this->news_model->add_news($userid,"恭喜您！您的大神申请审核通过！您已经成为大神了！");
             $this->finish(true,"Good!!");
         }else{
             $this->finish(false,"服务器异常!!");
@@ -36,6 +38,7 @@ class admin_api extends base_api {
         parent::require_login();
         $params = parent::get_params('POST', array("userid"));if(empty($params)) return; extract($params);
         if($this->user_model->edit($userid,array("type" => 0))){
+            $this->news_model->add_news($userid,"很遗憾，您的大神申请没有通过审核，不要气馁再提交次审核试试");
             $this->finish(true,"Good!!");
         }else{
             $this->finish(false,"服务器异常!!");
