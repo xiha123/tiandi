@@ -125,6 +125,7 @@ $("#ajax_reg").on('click' , function() {
     var password = $("#reg_password").val(),
     email = $("#reg_email").val(),
     nick = $("#reg_nick").val();
+
     if(password == "" || email == "" || nick == "" ){
         showAlert(false , "您输入的账号或密码不能为空");
         return;
@@ -133,12 +134,17 @@ $("#ajax_reg").on('click' , function() {
         showAlert(false , "两次输入的密码不一致");
         return;
     }
+    if(!document.getElementById("reg_ok").checked){
+       showAlert(false , "您需要先同意并接受服务条款");
+        return;
+    }
+    
     _td.api.createUser({
         "email" : email,
         "nickname" : nick,
         "pwd" : password
     }).then(function(){
-        showAlert(true , "注册账号成功！请重新登录。首次注册赠送500银币已到帐请注意查收！");
+        showAlert(true , "注册账号成功！首次注册赠送500银币已到帐请注意查收！");
         setTimeout(function(){
             location.reload();
         }, 1000)
