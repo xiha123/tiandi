@@ -111,8 +111,7 @@ class problem_api extends base_api {
         ))){
             parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
         }
-
-        $this->finish(true);
+        $this->finish(true,$detail_id,$detail_id);
     }
 
     /*

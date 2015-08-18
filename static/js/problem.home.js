@@ -25,10 +25,10 @@ $("#ajax_problemSubmit").on("click",function(){
 		"code" : code,
 		"tags" : jsonText,
 		"coinType" : coinType,
-	}).then(function(){
+	}).then(function(msg){
 		showAlert(true,"恭喜您，提问成功！ 银币 -100个");
 		 setTimeout(function(){
-	            location.reload();
+		 	window.location.href="./problem/?p=" + msg;
 	        },1000)
 	},function(msg){
 		showAlert(false,msg);

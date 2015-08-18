@@ -58,7 +58,7 @@
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
 					<p class="date">提问于：<?=$problem_data['ctime']?></p>
 				</div>
-				<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;") , array("</p>" ,"<p>","</br>") , $problem_detail[0]['content'])?></div>
+				<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;" ,"&lt;ul&gt;" ,"&lt;li&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>","<ul>","<li>") , $problem_detail[0]['content'])?></div>
 			</div>
 			<?php
 				if($problem_detail[0]["code"] != NULL){
@@ -77,7 +77,7 @@
 							<p class="name">大神：<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><?=$problem_detail[$index]['user']['nickname']?></a></p>
 							<p class="date">回答于：<?=$problem_data['ctime']?></p>
 						</div>
-						<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;") , array("</p>" ,"<p>","</br>") , $problem_detail[$index]['content'])?></div>
+						<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $problem_detail[$index]['content'])?></div>
 					</div>
 			<?php
 					if($problem_detail[$index]["code"] != NULL){
