@@ -9,8 +9,8 @@ class problem_api extends base_api {
             $this->table_name="problem_detail";
     	$this->load->model('problem_model');
             $this->load->model('problem_detail_model');
-         $this->load->model('problem_comment_model');
-        $this->load->model('tag_model');
+            $this->load->model('problem_comment_model');
+            $this->load->model('tag_model');
     	$this->load->model('news_model');
 
     	$this->me = $this->user_model->check_login();
@@ -129,6 +129,7 @@ class problem_api extends base_api {
         ))){
             parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
         }
+        $_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
         $this->finish(true,$detail_id,$detail_id);
     }
 

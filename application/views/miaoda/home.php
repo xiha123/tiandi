@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="./static/css/miaoda/home.css">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
-<?php $this->load->view('widgets/windows.php' ); ?>
+       
+<?php $this->load->view('widgets/windows.php' );  ?>
 
 <div class="wrapper">
 
