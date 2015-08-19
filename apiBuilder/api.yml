@@ -1,13 +1,7 @@
 api:
 
-#test
-- 
-    url: test.php
-    type: get
-    name: tests
-    needs:
-        - testname
-        - testvalue
+
+
 
 # admin
 -
@@ -78,6 +72,20 @@ api:
     name: removeUser
     needs:
         - name
+
+#online
+-
+    url: api/problem_api/online_save
+    type: post
+    name: onlineSave
+    needs:
+        - type
+        - title
+        - content
+        - tags
+        - code
+        - language
+        - problem_id
 
 
 # problem

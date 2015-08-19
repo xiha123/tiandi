@@ -16,6 +16,16 @@ class problem_api extends base_api {
     	$this->me = $this->user_model->check_login();
     }
 
+    public function online_save(){
+        $this->load->library('session');
+        $params = $this->get_params('POST', array('type' , "title" , "content" , "tags" , "code" , "language" , "problem_id"));extract($params);
+        if($type){
+            $this->session->problem_temp = $params;
+        }
+        print_r($_SESSION);
+        $this->finish(true);
+    }
+
     /**
      * [chou 用户众筹]
      * 自己可以众筹自己的问题，每众筹一次获得50积分
@@ -175,6 +185,9 @@ class problem_api extends base_api {
         if($type == 1 && $problem["answer_time"] + 1200 < time()){
             $this->problem_model->def($problem_id);
             $this->finish(false, '问题已经过期，无法回答！');
+        }
+        if($problem['type'] != 1){
+            $this->finish(false, '非法请求');
         }
         if ($this->me['id'] !== $problem['answer_id'] && $this->me['type'] !== 1) {
             $this->finish(false, '没有权限');

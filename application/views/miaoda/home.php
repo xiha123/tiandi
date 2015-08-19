@@ -1,6 +1,5 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/miaoda/home.css">
-
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
@@ -9,26 +8,34 @@
 
 	<div class="doubt">
 		<table class="table">
-			<tr><td><input type="text" class="title" id="problem-title" placeholder="一句话写下你遇到的问题"></td></tr>
+			<tr><td><input type="text" class="title" id="problem-title" value="<?=$_SESSION['problem_temp']['title']?>" placeholder="一句话写下你遇到的问题"></td></tr>
 			<tr><td>
 				<div class="desc">
-					<script id="editor" type="text/plain" style="width:980px;height:180px;"></script>
+					<script id="editor" type="text/plain" style="width:980px;height:180px;"><?=$_SESSION['problem_temp']['content']?></script>
 					<div class="code-box">
 						<select class="Language">
-							<option value="0">html</option>						
-							<option value="1">php</option>						
-							<option value="2">C++</option>						
-							<option value="3">javascript</option>
-							<option value="4">java</option>
-							<option value="5">其他</option>
+							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>						
+							<option value="1" <?=$_SESSION['problem_temp']['language'] == 1 ? 'selected=""' : ""?>>php</option>						
+							<option value="2" <?=$_SESSION['problem_temp']['language'] == 2 ? 'selected=""' : ""?>>C++</option>						
+							<option value="3" <?=$_SESSION['problem_temp']['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
+							<option value="4" <?=$_SESSION['problem_temp']['language'] == 4 ? 'selected=""' : ""?>>java</option>
+							<option value="5" <?=$_SESSION['problem_temp']['language'] == 5 ? 'selected=""' : ""?>>其他</option>
 						</select>
-						<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+						<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"><?=$_SESSION['problem_temp']['code']?></textarea>
 					</div>
 				</div>
 			</td></tr>
 			<tr><td><div class="tag" data-widget="tag">
 				<input type="hidden" class="form-tag" value="">
-				<div class="tag-list"></div>
+				<div class="tag-list">
+					<?php
+						$problemTagList = json_decode($_SESSION['problem_temp']['tags']);
+						foreach ($problemTagList as $key => $value) {
+							echo '<span class="tag-box"><font>'.$value.'</font> <button class="close">X</button></span>';
+						}
+					?>
+					
+				</div>
 				<div class="input-tag">
 					<input type="text" class="input-tag" placeholder="请输入标签">
 					<div class="tag-ide">
@@ -119,10 +126,15 @@
 
 
 </div>
-
+<script type="text/javascript">
+	var tagIndex = <?=count($problemTagList)?>;
+</script>
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+	var ue = UE.getEditor('editor');
+</script>
 <script src="./static/js/problem.home.js"></script>
 </body>
 </html>

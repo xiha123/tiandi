@@ -1,4 +1,4 @@
- var ue = UE.getEditor('editor');
+var ue = UE.getEditor('editor');
 
 $("#ajax_problemSubmit").on("click",function(){
 	var title = $("#problem-title").val(),
@@ -18,6 +18,15 @@ $("#ajax_problemSubmit").on("click",function(){
 		jsonArray.push($(val).find("font").text());
 	});
 	jsonText = JSON.stringify(jsonArray);
+	_td.api.onlineSave({
+		"type" : true,
+		"title" : title,
+		"content" : content,
+		"tags" : jsonText,
+		"code" : code,
+		"language" : $(".Language").val(),
+		"problem_id" : -1
+	});
 	_td.api.createProblem({
 		"title" : title,
 		"detail" : content,
@@ -26,7 +35,6 @@ $("#ajax_problemSubmit").on("click",function(){
 		"coinType" : coinType,
 		"language" : $(".Language").val(),
 	}).then(function(msg){
-		console.log(msg.status);
 		if(msg.status == true){
 			showAlert(true,"恭喜您，提问成功！ 银币 -100个");
 			setTimeout(function(){
@@ -39,7 +47,24 @@ $("#ajax_problemSubmit").on("click",function(){
 });
 
 setInterval(function(){
-
-
-},10000)
+	console.log("sda");
+	var title = $("#problem-title").val(),
+		content = ue.getContent();
+		code = $("#problem-code").val(),
+		jsonArray = new Array();
+	$.each($(".tag .tag-box"), function(index, val) {
+		jsonArray.push($(val).find("font").text());
+	});
+	if(title!="" && content !="" && code!=""){
+		_td.api.onlineSave({
+			"type" : true,
+			"title" : title,
+			"content" : content,
+			"tags" : JSON.stringify(jsonArray),
+			"code" : code,
+			"language" : $(".Language").val(),
+			"problem_id" : -1
+		});
+	}
+},8000)
 
