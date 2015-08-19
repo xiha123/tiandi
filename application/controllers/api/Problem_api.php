@@ -52,9 +52,16 @@ class problem_api extends base_api {
 
     public function create() {
         parent::require_login();
-        $params = $this->get_params('POST', array('coinType','title' => true,'detail' => true,'tags' => false));extract($params);
+        $params = $this->get_params('POST', array('coinType','title' => true,'detail' => true,'tags',"language"));extract($params);
         $code = isset($_POST['code']) ? $this->input->post("code") : "";
-
+        switch ($language) {
+            case '0':$language = "html";break;
+            case '1':$language = "php";break;
+            case '2':$language = "c";break;
+            case '3':$language = "javascript";break;
+            case '4':$language = "java";break;
+            default: $language = "php";break;
+        }
         if($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
@@ -107,7 +114,8 @@ class problem_api extends base_api {
             'type' => 0,
             'content' =>htmlspecialchars(xss_clean($detail)),
             'code' => htmlspecialchars($code),
-            'problem_id' => $detail_id
+            'problem_id' => $detail_id,
+            'language' => $language
         ))){
             parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
         }
@@ -151,7 +159,16 @@ class problem_api extends base_api {
             'content' => true,
             'type' => true,
             'problem_id' => true,
+            'language'
         )); extract($params);
+        switch ($language) {
+            case '0':$language = "html";break;
+            case '1':$language = "php";break;
+            case '2':$language = "c";break;
+            case '3':$language = "javascript";break;
+            case '4':$language = "java";break;
+            default: $language = "php";break;
+        }
         $code = $this->input->post("code");
         if(!$this->problem_model->is_exist(array( 'id' => $problem_id)))$this->finish(false, '不存在的问题');
         $problem = $this->problem_model->get(array( 'id' => $problem_id));
@@ -167,7 +184,8 @@ class problem_api extends base_api {
             'content' => htmlspecialchars($content),
             'problem_id' => $problem_id,
             'code' => $code,
-            'type' => $type
+            'type' => $type,
+            'language' => $language
         ));
         $details = json_decode($problem['details']);
         $details[] = $new_detail_id;

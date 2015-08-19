@@ -44,6 +44,7 @@ $("#reply").click(function(){
 		"content" :content ,
 		"code" : $("#problem-code").val(),
 		"type" : "1",
+		"language" : $(".Language").val(),
 	}).then(function(){
 		showAlert(true,"回答成功！");
 		 setTimeout(function(){
@@ -54,7 +55,7 @@ $("#reply").click(function(){
 	})
 });
 $(".button_ok").click(function(){
-	api.api.chou({
+	_td.api.chou({
 		"problem_id" : problem_id
 	}).then(function(){
 		showAlert(true,"众筹成功！银币 -50");

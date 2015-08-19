@@ -13,8 +13,17 @@
 			<tr><td>
 				<div class="desc">
 					<script id="editor" type="text/plain" style="width:980px;height:180px;"></script>
-					<a href="javascript:" class="Language">选择语言</a>
-					<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+					<div class="code-box">
+						<select class="Language">
+							<option value="0">html</option>						
+							<option value="1">php</option>						
+							<option value="2">C++</option>						
+							<option value="3">javascript</option>
+							<option value="4">java</option>
+							<option value="5">其他</option>
+						</select>
+						<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+					</div>
 				</div>
 			</td></tr>
 			<tr><td><div class="tag" data-widget="tag">
@@ -24,9 +33,6 @@
 					<input type="text" class="input-tag" placeholder="请输入标签">
 					<div class="tag-ide">
 						<ul>
-							<li>C++</li>
-							<li>C++</li>
-							<li>C++</li>
 						</ul>
 					</div>
 				</div>

@@ -8,7 +8,9 @@
 .doubt >.table .input-content{height: 60px;}
 .doubt >.table .code{height:110px;border-top:1px dashed #ddd;}
 .doubt >.table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
-.doubt >.table .Language{position:absolute;right:15px;}
+.doubt >.table .Language{padding:5px;border:none;outline:none;cursor:pointer; position:absolute;right:5px;top:5px;}
+.doubt >.table .code-box{position:relative}
+
 .doubt .tag{color:#aaa;padding:5px 5px;height:25px;background:#fff;border:1px solid #7cc4c7;width: 970px;}
 		.tag .input-tag{margin-left:7px;border:none;height:25px;color:#aaa;}
 		.tag .tag-box{background:#eee;padding:4px 3px 4px 7px;top:-1px;}

@@ -5,7 +5,6 @@ $("#ajax_problemSubmit").on("click",function(){
 		content = ue.getContent();
 		code = $("#problem-code").val(),
 		coinType = document.getElementById("js_coinType").checked;
-		console.log(coinType);
 	if(title.length < 5 || title.length > 60){
 		showAlert(false,"您输入的标题太长或者太短！");
 		return false;
@@ -25,18 +24,22 @@ $("#ajax_problemSubmit").on("click",function(){
 		"code" : code,
 		"tags" : jsonText,
 		"coinType" : coinType,
+		"language" : $(".Language").val(),
 	}).then(function(msg){
-		showAlert(true,"恭喜您，提问成功！ 银币 -100个");
-		 setTimeout(function(){
-		 	window.location.href="./problem/?p=" + msg;
-	        },1000)
-	},function(msg){
-		showAlert(false,msg);
+		console.log(msg.status);
+		if(msg.status == true){
+			showAlert(true,"恭喜您，提问成功！ 银币 -100个");
+			setTimeout(function(){
+				window.location.href="./problem/?p=" + msg.data;
+			},1000)
+		}else{
+			showAlert(false,msg.error);
+		}
 	})
 });
 
 setInterval(function(){
 
 
-},20000)
+},10000)
 

@@ -12,8 +12,9 @@ $(".ajax_up").on("click" , function(){
             _this.find('.upCount').text(parseInt(_this.find('.upCount').text()) - 1);
         }
     },function(msg){
+        console.log(msg);
         bomb("login");
-        showAlert(false,msg);
+        showAlert(false,msg.msg);
     });
 })
 $(".forget").click(function(event) {

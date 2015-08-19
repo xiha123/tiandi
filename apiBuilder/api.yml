@@ -91,6 +91,8 @@ api:
         - detail
         - tags
         - code
+        - coinType
+        - language
 -
     # 创建描述，即提问者的补充和老师的回答 已实现
     url: api/problem_api/create_detail
@@ -101,6 +103,7 @@ api:
         - content
         - code
         - type
+        - language
 -
     # 创建评论
     url: api/problem_api/create_comment

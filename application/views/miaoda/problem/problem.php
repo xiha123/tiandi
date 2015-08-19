@@ -64,7 +64,7 @@
 				if($problem_detail[0]["code"] != NULL){
 					echo '<div class="code-tool">
 								<div class="tool">
-									<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code (html)</h2>
+									<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code ('.($problem_detail[0]["language"]).')</h2>
 								</div>
 							</div>
 							<div class="code"><pre class="brush: php">'.($problem_detail[0]["code"]).'</pre></div>';
@@ -83,7 +83,7 @@
 					if($problem_detail[$index]["code"] != NULL){
 						echo '<div class="code-tool">
 							<div class="tool">
-								<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code (html)</h2>
+								<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code ('.($problem_detail[$index]["language"]).')</h2>
 							</div>
 						</div>
 						<div class="code"><pre class="brush: php">'.($problem_detail[$index]["code"]).'</pre></div>';
@@ -107,8 +107,17 @@
 						<tr><td>
 							<div class="desc">
 								<script id="editor" type="text/plain" style="width:743px;height:180px;"></script>
-								<a href="javascript:" class="Language">选择语言</a>
-								<textarea  id="problem-code" class="code" style="margin-top: 0px;" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+								<div class="code-box">
+									<select class="Language">
+										<option value="0">html</option>						
+										<option value="1">php</option>						
+										<option value="2">C++</option>						
+										<option value="3">javascript</option>
+										<option value="4">java</option>
+										<option value="5">其他</option>
+									</select>
+									<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+								</div>
 							</div>
 						</td></tr>
 					</table>
