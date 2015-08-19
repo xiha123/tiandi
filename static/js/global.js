@@ -215,7 +215,7 @@ $(document).ready(function() {
     });
 
     function initTag($tag){
-        var tagIndex = 0, value ="",timeOut = true;
+        var  value ="",timeOut = true;
 
         /*处理用户鼠标移入IDE*/
         $tag.on('mouseover', 'li', function(event) {
