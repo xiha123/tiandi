@@ -1,0 +1,16 @@
+{
+  "name": "tiandi",
+  "version": "0.1.0",
+  "description": "Build tiandi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mangoCheese/tiandi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mangoCheese/tiandi/issues"
+  },
+  "homepage": "https://github.com/mangoCheese/tiandi",
+  "dependencies": {
+    "js-api-generator": "0.0.5"
+  }
+}

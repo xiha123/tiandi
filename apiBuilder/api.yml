@@ -1,5 +1,14 @@
 api:
 
+#test
+- 
+    url: test.php
+    type: get
+    name: tests
+    needs:
+        - testname
+        - testvalue
+
 # admin
 -
     url: api/admin_api/login

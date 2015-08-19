@@ -215,6 +215,20 @@ $(document).ready(function() {
 
     function initTag($tag){
         var tagIndex = 0, value ="",timeOut = true;
+
+        /*处理用户鼠标移入IDE*/
+        $tag.on('mouseover', 'li', function(event) {
+            $tag.find('li').css({
+                background: '#fff',
+                color: '#aaa'
+            });
+            $(this).css({
+                background: '#219ba1',
+                color: '#fff'
+            });
+            $tag.find('input[type="text"]').val($(this).text());
+        });
+
         $tag.find('input[type="text"]').blur(function(){
             $(".tag-ide").hide();
             value = $(this).val();
