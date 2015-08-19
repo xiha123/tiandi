@@ -3,7 +3,12 @@
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
        
-<?php $this->load->view('widgets/windows.php' );  ?>
+<?php 
+	$this->load->view('widgets/windows.php' ); 
+	if(!isset($_SESSION['problem_temp'])){
+		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
+	}
+?>
 
 <div class="wrapper">
 

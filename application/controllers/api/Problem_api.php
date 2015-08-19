@@ -22,7 +22,6 @@ class problem_api extends base_api {
         if($type){
             $this->session->problem_temp = $params;
         }
-        print_r($_SESSION);
         $this->finish(true);
     }
 

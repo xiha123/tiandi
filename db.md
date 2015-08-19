@@ -174,6 +174,7 @@
 - owner_id 发表这个详情的人的 id
 - ctime 创建时间
 - problem_id
+- language
 
 ### problem_comment 表
 
