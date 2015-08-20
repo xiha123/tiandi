@@ -138,9 +138,6 @@
 			<div class="button">
 				<?php
 					if($problem_data['type'] != 2 || $problem_data['type'] != 3){
-						echo $problem_follow == true?
-						'<button class="none-background follow"><i class="fa fa-heart-o"></i> 关注</button>':
-						'<button class="unfollow"><i class="fa fa-heart-o"></i> 取消关注</button>';
 						echo $problem_collect == true ?
 						'<button class="uncollect">★ 取消收藏</button>':
 						'<button class="none-background collect">★ 收藏</button>';

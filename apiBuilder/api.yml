@@ -73,6 +73,15 @@ api:
     needs:
         - name
 
+#user Type为true则关注否则取消关注
+-
+    url: api/user_api/eye
+    type: post
+    name: eye
+    needs:
+        - user_id
+        - type
+
 #online
 -
     url: api/problem_api/online_save

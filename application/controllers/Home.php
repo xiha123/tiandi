@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 
 	public function index() {
 		$userdata = $this->user_model->check_login();
+		$userdata['follow_type'] = false;
 		if(!isset($_GET["uid"])){
 			show_404();
 		}
@@ -24,11 +25,11 @@ class Home extends CI_Controller {
 			$userdata['love'] = isset($_GET['love']) ? true : false;
 			$userdata['owner'] = isset($_GET['owner']) ? true : false;
 			if($userdata['love']){
-				$userdata["problem_list"] = $this->problem_model->get_collect($userdata['user']['follow_problems']);
-				$userdata["owner_list_count"] = count($userdata['user']['follow_problems']);
-			}
-			if($userdata['chou']){
-				$userdata["problem_list"] = $this->problem_model->get_answer($uid,$userdata["page"],20,"owner_id");
+				$userdata['follow_type'] = true;
+				$userdata["problem_list"] = array();
+				foreach (json_decode($userdata['follow_users']) as $key => $value) {
+					array_push($userdata["problem_list"] , $this->user_model->get(array("id" => $value[0])));
+				}
 				$userdata["owner_list_count"] = $this->problem_model->answer_count($uid,"owner_id");
 			}
 			if($userdata['owner']){

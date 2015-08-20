@@ -83,6 +83,25 @@ $(".button").on("click" , ".unfollow" , function(){
 })
 
 
+/*关注用户*/
+$("#ajax_eye,#ajax_uneye").click(function(event) {
+    var type = event.target.id == "ajax_uneye" ? false : true;
+    _td.api.eye({
+        "user_id" : $(this).data('id'),
+        "type" : type
+    }).then(function(msg){
+        console.log(msg);
+        if(msg.status == false){
+            showAlert(false,msg.error);return;
+        }
+        showAlert(true,type ? "恭喜您！关注成功" : "取消关注成功！");
+
+        setTimeout(function(){
+            location.reload();
+        },600)
+    })
+});
+
 
 
 

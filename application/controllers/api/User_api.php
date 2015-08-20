@@ -13,6 +13,32 @@ class user_api extends base_api {
         $this->me = $this->user_model->check_login();
     }
 
+    /**
+    * 关注用户与取消用户关注
+    */
+    public function eye(){
+        $params = parent::get_params('POST', array('user_id' , 'type'));if(empty($params)) return; extract($params);
+        if($this->user_model->is_exist(array("id" , $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
+        if($this->me['id'] == $user_id) parent::finish(false,"您无法关注自己！");
+        $follow_type = false;
+        foreach (json_decode($this->me['follow_users']) as $key => $value) {
+            if($value[0] == $user_id){
+                $follow_type = true;
+                break;
+            }
+        }
+        $follow_users = !$follow_type ? $this->add_json($this->me['follow_users'] , array($user_id)) : $this->remove_json_v($this->me['follow_users'] , $user_id);
+        if($this->user_model->edit($this->me['id'],array("follow_users" => $follow_users))){
+            $this->news_model->add_news($user_id , "用户:" . $this->me['nickname'] . $follow_type ? "关注了您" : "取消了对您的关注");
+            parent::finish(true);
+        }else{
+            parent::finish(false,"服务器异常！");
+        }
+    }
+
+
+
+
     public function get_key(){
         $params = parent::get_params('POST', array('key'));if(empty($params)) return; extract($params);
         parent::finish(true , "" , $this->tag_model->get_tag_key($key));

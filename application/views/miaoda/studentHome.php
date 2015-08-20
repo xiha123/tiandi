@@ -1,4 +1,14 @@
-<?php $this->load->view('widgets/header.php'); ?>
+<?php $this->load->view('widgets/header.php'); 
+	$follow_users = json_decode($follow_users);
+	function check_follow($follow_users , $user_id){
+		foreach ($follow_users as $key => $value) {
+			if($value[0] == $user_id){
+				return true;
+			}
+		}
+		return false;
+	}
+?>
 <link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
 <?php
@@ -37,12 +47,12 @@
 			<div class="tab"  >
 				<ul class="title  cf js-tab-trigger" data-widget="tab" >
 					<li <?=!$owner&&!$love?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>">收藏</a></li>
-					<li <?=$love?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&love=love">关注</a></li>
 					<li <?=$owner?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&owner=owner">问过</a></li>
+					<li <?=$love?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&love=love">关注</a></li>
 				</ul>
 				<ul class="list-data">
 					<ul class="list-data">
-						<?php foreach ($problem_list as $key => $value) {?>
+						<?php if($follow_type == false){ foreach ($problem_list as $key => $value) {?>
 							<li data-id="<?=$value['id']?>">
 								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
 								<div class="list-title">
@@ -59,7 +69,26 @@
 								</ul>
 								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
 							</li>
-						<?php }	?>
+						<?php }	}else{
+							foreach ($problem_list as $key => $value) {
+								$value['avatar'] = $value['avatar'] == "" ? "static/image/default.jpg" : $value['avatar'];
+								$button =  check_follow($follow_users,$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
+								echo '<div class="data fl">
+									<div class="left_box">
+										<img src="' . $value['avatar'] . '" alt="" class="pic">
+										'.$button.'
+									</div>
+									<div class="right_box">
+											<p class="name">' . $value['nickname'] . '<font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.count(json_decode($value['follow_users'])).'</font> </p>
+											<p class="desk">' . $value['god_description'] . '</p>
+											<p class="class">正在开的课：2门</p>
+											<a href="javascript:" class="tagBox">tag</a>
+											<a href="javascript:" class="tagBox">tag</a>
+											<a href="javascript:" class="tagBox">tag</a>
+									</div>
+								</div>';
+							}
+						}?>
 					</ul>
 
 
