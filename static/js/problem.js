@@ -54,6 +54,7 @@ $("#reply").click(function(){
 		showAlert(false,msg);
 	})
 });
+
 $(".button_ok").click(function(){
 	_td.api.chou({
 		"problem_id" : problem_id

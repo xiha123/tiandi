@@ -1,8 +1,9 @@
 <?php 
 	$this->load->view('widgets/header.php'); 
 	$active = 'class="active"';
-	$follow_users = json_decode($follow_users);
+	@$follow_users = json_decode($follow_users);
 	function check_follow($follow_users , $user_id){
+		if($follow_users == ""){return false;}
 		foreach ($follow_users as $key => $value) {
 			if($value[0] == $user_id){
 				return true;

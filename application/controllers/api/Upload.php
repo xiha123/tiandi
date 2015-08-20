@@ -17,13 +17,12 @@ class Upload extends base_api {
 		if(isset($_FILES["userfile"])){
 			$data = $this->course_model->get_list($type,0,1,true);
 			$temp=array();
-			print_r($data);
 			$file = json_decode($data[0]['site']);
 			foreach ($file as $key => $value) {
 				$temp[$value->t] = $value->value;
 			}
 			$file=$temp;
-			if($file["img"] ==""){
+			if(@$file["img"] ==""){
 				$config['file_name'] = date("Ymd"). rand(100000000000,9999999999999);
 			}else{
 				$config['file_name'] = $file['img'];

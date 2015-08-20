@@ -29,7 +29,7 @@ class user_api extends base_api {
         }
         $follow_users = !$follow_type ? $this->add_json($this->me['follow_users'] , array($user_id)) : $this->remove_json_v($this->me['follow_users'] , $user_id);
         if($this->user_model->edit($this->me['id'],array("follow_users" => $follow_users))){
-            $this->news_model->add_news($user_id , "用户:" . $this->me['nickname'] . $follow_type ? "关注了您" : "取消了对您的关注");
+            $this->news_model->add_news($user_id , "用户:" . $this->me['nickname'] . ($follow_type ? "关注了您" : "取消了对您的关注"));
             parent::finish(true);
         }else{
             parent::finish(false,"服务器异常！");

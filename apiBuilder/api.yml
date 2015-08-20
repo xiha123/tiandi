@@ -1,5 +1,12 @@
 api:
 
+# 众筹
+-
+    url: api/problem_api/chou
+    type: post
+    name: chou
+    needs:
+        - problem_id
 
 
 
