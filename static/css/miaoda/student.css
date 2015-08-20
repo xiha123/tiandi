@@ -74,3 +74,5 @@
 .leftHeader h1{font-size: 23px;font-weight: 700;margin-bottom:10px; }
 
 .doubt-time{float:left;font-size:40px;color:#219ba1;width: 100%; text-align: center;}
+.online{position:relative;top:-2px;color:#219ba1;}
+.online font{position:relative;top:-3px;margin-right:5px;color:#219ba1;}

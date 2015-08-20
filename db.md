@@ -164,6 +164,7 @@
 - gold_coin 问题价值，金币
 - silver_coin 问题价值，银币
 - who 谁参加了众筹
+- online 谁在线围观了这个问题 ,JSON数组
 
 ### problem_detail 表
 

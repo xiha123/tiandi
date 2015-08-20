@@ -38,6 +38,8 @@ class Index extends CI_Controller {
 		$userdata["page_max"] = $this->problem_comment_model->get_count(array(
 				"problem_id" => $userdata["problem_data"]['id']
 		));
+
+		$this->problem_model->online_problem($id);
 		$this->load->library('parser');
 		$this->parser->parse("miaoda/problem/problem.php" , $userdata);
 	}

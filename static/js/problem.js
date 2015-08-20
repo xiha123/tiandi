@@ -117,12 +117,12 @@ $(".ajax_close").click(function(event) {
 	});
 });
 
-timeOut_fun();
-
-var timeOut = setInterval(function(){
+if(problem_type == 1){
 	timeOut_fun();
-},1000);
-
+	var timeOut = setInterval(function(){
+		timeOut_fun();
+	},1000);
+}
 function timeOut_fun(){
 	var time = new Date();
 	time = Math.floor(time.getTime() / 1000 , 0) ;
@@ -132,5 +132,12 @@ function timeOut_fun(){
 	}
 	min = Math.floor(time / 60 , 0) % 60;
 	s = time - (min * 60);
+	if(s < 10){s = "0" + s}
 	$(".doubt-time").text(min + ":" + s);
+	if(min < 0){
+		showAlert(false,"已过期，无法回答！");
+		 setTimeout(function(){
+	            location.reload();
+	        },1000)
+	}
 }

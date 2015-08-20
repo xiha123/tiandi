@@ -6,7 +6,8 @@
 
 <script>
 	var problem_id = <?=$problem_data["id"]?>,
-	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>;
+	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
+	problem_type = <?=$problem_data["type"]?>;
 </script>
 	<?php
 		if($problem_data["answer_time"] + 1200 < time()){
@@ -104,6 +105,9 @@
 			<?php if($problem_data['answer_id'] == @$id && $problem_data['type'] == 1){ ?>
 				<div class="doubt">
 					<table class="table">
+						<tr><td>
+							<span class="online fr"><i class="fa fa-user fr"></i><font class="fr"><?=count(json_decode($problem_data['online'])) - 1;//不记录自己的在线?></font></span>
+						</td></tr>
 						<tr><td>
 							<div class="desc">
 								<script id="editor" type="text/plain" style="width:743px;height:180px;"></script>
