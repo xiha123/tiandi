@@ -66,7 +66,7 @@
 
 		</div>
 		<div class="right-content">
-			<h2 class="box-title">标签大神榜</h2>
+			<h2 class="box-title">标签活跃大神</h2>
 			<ul class="tag-list">
 				<?php
 					foreach ($god as $key => $value) {
@@ -81,7 +81,7 @@
 				</li>
 			</ul>
 
-			<h2 class="box-title">标签学员榜</h2>
+			<h2 class="box-title">标签活跃学员</h2>
 			<ul class="tag-list">
 				<?php
 					foreach ($student as $key => $value) {

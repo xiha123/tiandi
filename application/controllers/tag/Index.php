@@ -33,7 +33,7 @@ class Index extends CI_Controller {
 		}
 		$userdata['collect_type'] = $this->tag_model->is_collect_tag($userdata['tag_data']['id']);
 
-		// 标签大神榜与标签学员榜
+		// height:174px与标签学员榜
 		$god_array = array();
 		$student_array = array();
 		$data = json_decode($this->tag_model->get(array("name" => $name))['json_who']);

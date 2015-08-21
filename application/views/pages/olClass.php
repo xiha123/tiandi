@@ -17,14 +17,17 @@
 			<h2>重点一</h2>
 			<div class="level">
 				<h3>难度</h3>
-				<!-- <i class="fa fa-star"></i> -->
+				 <!--<i class="fa fa-star"></i> -->
 			</div>
 		</div><p class="content">
 			
 		</p></p>
 		<div class="button">
-			<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>"><button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
+			<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>">
+			<button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
 		</div>
+
+
 </div>
 </div>
 
