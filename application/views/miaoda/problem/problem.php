@@ -8,7 +8,13 @@
 	var problem_id = <?=$problem_data["id"]?>,
 	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
 	problem_type = <?=$problem_data["type"]?>,
-	max_god = <?=$god_count?>;
+	max_god = <?=$god_count?>,
+	online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>;
+	first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>;
+	<?php
+		// 改变第首次提问状态
+		$_SESSION['first'] = false;
+	?>
 </script>
 
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
@@ -34,11 +40,10 @@
 	<div class="wrapper">
 
 		<div class="leftBox">
-			<?php
-				echo '<div class="head">● 该问题赏金为<font> '.
+			<?=$problem_data['type'] != 3 ? '<div class="head">● 该问题赏金为<font> '.
 				$problem_data["silver_coin"] . '银币</font>，<font>'.
 				$problem_data["gold_coin"] . '金币</font>，共有<font>'.
-				count(json_decode($problem_data['who'])).'位众筹者</font></div>';
+				count(json_decode($problem_data['who'])).'位众筹者</font></div>' : "";
 			?>
 			<div class="leftHeader">
 				<h1><?=$problem_data["title"];?></h1>
@@ -94,12 +99,12 @@
 
 
 			<?php
-				if(@$type == 1 && @$id = $problem_data['answer_id'] ){
+				if($problem_data['type'] == "1" && @$id == $problem_data['answer_id']  || @$id == $problem_data['owner_id']){
 					echo $problem_data['type'] == 1 ? '<div class="doubt-time">20:00</div>' :'';
 				}
-				if($problem_data['type'] == "0"){
+				if($problem_data['type'] == "0" && @$id == $problem_data['owner_id']){
 					echo '<div class="user_list_data"><div class="doubt-time disable">20:00</div>
-					<h3 class="center tishi">您的问题已经发送给了<span>10</span>位大神，请耐心等待······</h3>
+					<h3 class="center tishi">您的问题已经推送给了<span>'.($frist ? "全部" : "1").'</span>大神，请耐心等待······</h3>
 					<h2 class="title">这些问题可能对您有用</h2>
 					<ul>
 						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
@@ -111,11 +116,11 @@
 				}
 			?>
 
-			<?php if($problem_data['answer_id'] == @$id && $problem_data['type'] == 1){ ?>
+			<?php if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){ ?>
 				<div class="doubt">
 					<table class="table">
 						<tr><td>
-							<span class="online fr"><i class="fa fa-user fr"></i><font class="fr"><?=count(json_decode($problem_data['online'])) - 1;//不记录自己的在线?></font></span>
+							<span class="online fr"><font class="fr"><?=$problem_data['owner_id'] == @$id ? "问题正在被大神解答中" : (count(json_decode($problem_data['online'])) - 1) .'<i class="fa fa-user fr"></i>';?></font></span>
 						</td></tr>
 						<tr><td>
 							<div class="desc">
@@ -135,7 +140,7 @@
 						</td></tr>
 					</table>
 				</div>
-			<?php }
+			<?php }}
 
 				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
 					echo '<div class="button close" data-id="' . $problem_data["id"] . '">
@@ -154,9 +159,10 @@
 						echo $problem_collect == true ?
 						'<button class="uncollect">★ 取消收藏</button>':
 						'<button class="none-background collect">★ 收藏</button>';
-						echo '<button class="js_chou">众筹</button>';
+
+						echo $problem_data['type'] != 3 ? '<button class="js_chou">众筹</button>' : "";
 					} if(@$type == 1 ){
-						echo $problem_data['type'] == 0 && @$id != $problem_data['answer_id'] ? '<button id="answer">认领问题</button>' : "";
+						echo $problem_data['type'] == 0  ? '<button id="answer">认领问题</button>' : "";
 						echo $problem_data['type'] == 1 && $problem_data["answer_id"] == @$id ? '<button id="reply">回答</button>' :"";
 					}
 				?>

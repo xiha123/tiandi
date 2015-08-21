@@ -117,31 +117,47 @@ $(".ajax_close").click(function(event) {
 	});
 });
 
+if(first){
+	var max = 1;
+	var god = setInterval(function(){
+		 rand = Math.ceil(Math.random() * 5);
+		 max += rand;
+		 if(max >= max_god){
+		 	max = "全部";
+		 	clearInterval(god);
+		 	$(".user_list_data h3 span").text(max);
+		 }else{
+		 	$(".user_list_data h3 span").text(max + "位");
+		 }
+	},800);
+}
+
 if(problem_type == 1){
 	timeOut_fun();
 	var timeOut = setInterval(function(){
 		timeOut_fun();
 	},1000);
-	setInterval(function(){
-		var content = ue.getContent();
-			code = $("#problem-code").val(),
-			jsonArray = new Array();
-			console.log($("#problem-code").html())
-		$.each($(".tag .tag-box"), function(index, val) {
-			jsonArray.push($(val).find("font").text());
-		});
-		if(content !="" && code!=""){
-			_td.api.onlineSave({
-				"type" : false,
-				"title" : "none",
-				"content" : content,
-				"tags" : "[]",
-				"code" : code,
-				"language" : $(".Language").val(),
-				"problem_id" : problem_id
+	if(online_save_type){
+		setInterval(function(){
+			var content = ue.getContent();
+				code = $("#problem-code").val(),
+				jsonArray = new Array();
+			$.each($(".tag .tag-box"), function(index, val) {
+				jsonArray.push($(val).find("font").text());
 			});
-		}
-	},11000)
+			if(content !="" && code!=""){
+				_td.api.onlineSave({
+					"type" : false,
+					"title" : "none",
+					"content" : content,
+					"tags" : "[]",
+					"code" : code,
+					"language" : $(".Language").val(),
+					"problem_id" : problem_id
+				});
+			}
+		},11000);
+	}
 }
 function timeOut_fun(){
 	var time = new Date();

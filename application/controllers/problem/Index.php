@@ -55,7 +55,7 @@ class Index extends CI_Controller {
 			$this->news_model->add_news($userdata["problem_data"]["answer_id"] , "您认领的问题已经过期，如若超时两次则24小时内不能再认领任何问题！");
 
 			//Empty problem temp data
-			$this->problem_detail->remove_where(array("problem_id" => $id , "type" => 3));
+			$this->problem_detail_model->remove_where(array("problem_id" => $id , "type" => 3));
 		}
 
 

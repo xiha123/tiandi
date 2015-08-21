@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-21 16:40:57
+-- Generation Time: 2015-08-21 18:49:13
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -380,6 +380,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Integral` int(11) NOT NULL,
   `notes` varchar(512) NOT NULL,
   `lost_time` int(11) NOT NULL,
+  `prestige` int(11) NOT NULL,
   `chou` varchar(512) NOT NULL DEFAULT '[]',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;

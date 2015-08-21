@@ -24,19 +24,25 @@ class problem_api extends base_api {
             $this->session->problem_temp = $params;
         }else{
             // 回答在线保存处理
-            $result = array(
-                "content" => $content,
-                "type" => 3,
-                "owner_id" => "-1",
-                "ctime" => time(),
-                "problem_id" => $problem_id,
-                "code" => $code,
-                "language" => $language,
-            );
-            if($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3))){
-                $this->problem_detail_model->edit_array(array("problem_id" => $problem_id, "type" => 3) , $result);
+            parent::require_login();
+            $problem = $this->problem_model->get(array("id"=>$problem_id));
+            if($this->me['id'] == $problem['answer_id']){
+                $result = array(
+                    "content" => $content,
+                    "type" => 3,
+                    "owner_id" => "-1",
+                    "ctime" => time(),
+                    "problem_id" => $problem_id,
+                    "code" => $code,
+                    "language" => $language,
+                );
+                if($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3))){
+                    $this->problem_detail_model->edit_array(array("problem_id" => $problem_id, "type" => 3) , $result);
+                }else{
+                    $this->problem_detail_model->create($result);
+                }
             }else{
-                $this->problem_detail_model->create($result);
+                $this->finish(false,"异常");
             }
         }
         $this->finish(true);
@@ -109,6 +115,7 @@ class problem_api extends base_api {
 
         // 积分需求
         $this->user_model->Integral($this->me['id'] , 100);
+        $_SESSION['first'] = true;
 
 
 
@@ -269,7 +276,18 @@ class problem_api extends base_api {
         foreach (json_decode($problem['who']) as $key => $value) {
             $this->news_model->add_news($value , " 您众筹的问题".$problem['title']."已经解决了，快去看看！" );
         }
+
+
+        // 给大神结算问题报酬
+        $max_coin = (100 + count(json_decode($problem['who'])) * 50);
+        $this->user_model->coin($this->me['id'] , $max_coin);
         $this->news_model->add_news($problem['answer_id'] , "" . $this->me['nickname'] . " 满意了：".$problem['title'] );
+
+        // 给大神威望
+        $prestige = $max_coin / 100;
+        $this->user_model->edit($this->me['id'] , array("prestige" => $prestige));
+
+        $this->news_model->add_news("本次回答问题的报酬已到帐，总计：" . $max_coin . "银币");
         $this->finish(true);
     }
 
