@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2015-08-16 14:21:26
+-- Generation Time: 2015-08-21 16:40:57
 -- 服务器版本： 5.6.11
 -- PHP Version: 5.5.1
 
@@ -248,6 +248,7 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `gold_coin` int(11) NOT NULL,
   `silver_coin` int(11) NOT NULL,
   `who` varchar(512) DEFAULT '[]',
+  `online` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
@@ -280,6 +281,7 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL,
+  `language` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
