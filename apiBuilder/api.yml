@@ -258,7 +258,7 @@ api:
 
 config:
     isSuccess:
-        status: true
+        status: True
     success:
         - data
     fail:

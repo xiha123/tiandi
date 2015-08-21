@@ -34,16 +34,14 @@ $("#ajax_problemSubmit").on("click",function(){
 		"tags" : jsonText,
 		"coinType" : coinType,
 		"language" : $(".Language").val(),
-	}).then(function(msg){
-		if(msg.status == true){
-			showAlert(true,"恭喜您，提问成功！ 银币 -100个");
-			setTimeout(function(){
-				window.location.href="./problem/?p=" + msg.data;
-			},1000)
-		}else{
-			showAlert(false,msg.error);
-		}
-	})
+	}).then(function(res) {
+		showAlert(true, "恭喜您，提问成功！ 银币 -100 个");
+		setTimeout(function() {
+			window.location.href="./problem/?p=" + res.data;
+		}, 1000);
+	}, function (res) {
+		showAlert(false, res.error);
+	});
 });
 
 setInterval(function(){
@@ -67,4 +65,3 @@ setInterval(function(){
 		});
 	}
 },8000)
-
