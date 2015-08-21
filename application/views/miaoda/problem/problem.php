@@ -7,7 +7,8 @@
 <script>
 	var problem_id = <?=$problem_data["id"]?>,
 	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
-	problem_type = <?=$problem_data["type"]?>;
+	problem_type = <?=$problem_data["type"]?>,
+	max_god = <?=$god_count?>;
 </script>
 
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
@@ -93,8 +94,20 @@
 
 
 			<?php
-				if(@$type == 1){
+				if(@$type == 1 && @$id = $problem_data['answer_id'] ){
 					echo $problem_data['type'] == 1 ? '<div class="doubt-time">20:00</div>' :'';
+				}
+				if($problem_data['type'] == "0"){
+					echo '<div class="user_list_data"><div class="doubt-time disable">20:00</div>
+					<h3 class="center tishi">您的问题已经发送给了<span>10</span>位大神，请耐心等待······</h3>
+					<h2 class="title">这些问题可能对您有用</h2>
+					<ul>
+						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
+						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
+						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
+						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
+					</ul></div>';
+
 				}
 			?>
 
@@ -143,7 +156,7 @@
 						'<button class="none-background collect">★ 收藏</button>';
 						echo '<button class="js_chou">众筹</button>';
 					} if(@$type == 1 ){
-						echo $problem_data['type'] == 0 ? '<button id="answer">认领问题</button>' : "";
+						echo $problem_data['type'] == 0 && @$id != $problem_data['answer_id'] ? '<button id="answer">认领问题</button>' : "";
 						echo $problem_data['type'] == 1 && $problem_data["answer_id"] == @$id ? '<button id="reply">回答</button>' :"";
 					}
 				?>

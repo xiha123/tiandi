@@ -33,10 +33,8 @@ class problem_api extends base_api {
                 "code" => $code,
                 "language" => $language,
             );
-            var_dump($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3)));
             if($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3))){
-                $this->problem_detail_model->edit_array(array("problem_id" => $problem_id) , $result);
-
+                $this->problem_detail_model->edit_array(array("problem_id" => $problem_id, "type" => 3) , $result);
             }else{
                 $this->problem_detail_model->create($result);
             }
@@ -93,6 +91,7 @@ class problem_api extends base_api {
         if($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
+        $_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 
         // 处理硬币需求
         $coinConfig = $coinType == "true" ? array(
@@ -110,7 +109,6 @@ class problem_api extends base_api {
 
         // 积分需求
         $this->user_model->Integral($this->me['id'] , 100);
-        $_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 
 
 
@@ -225,6 +223,9 @@ class problem_api extends base_api {
         if($type == 1){
             $this->news_model->add_news($problem['owner_id'],"大神：" . $this->me['nickname'] . " 回答了您的问题，".$problem['title']."，快去看看吧！" );
         }
+
+        //Empty problem temp data
+        $this->problem_detail_model->remove_where(array("problem_id" => $problem_id , "type" => 3));
 
         $this->finish(true);
     }

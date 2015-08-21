@@ -74,5 +74,16 @@
 .leftHeader h1{font-size: 23px;font-weight: 700;margin-bottom:10px; }
 
 .doubt-time{float:left;font-size:40px;color:#219ba1;width: 100%; text-align: center;}
+.doubt-time.disable{color:#AaA;}
+.leftBox .center{text-align: center;width: 100%;float: left}
+.leftBox .tishi{font-size:19px;margin:8px 0px;font-weight:400;color:#219ba1;}
+.leftBox .title{float:left;font-size:14px;margin:8px 0px;font-weight:400;color:#219ba1;}
+
+.user_list_data li,.user_list_data ul{float:left;width: 100%}
+.user_list_data li{padding:9px 0;border-bottom: 1px solid #eee}
+.user_list_data a{color:#aaa;padding-left:7px;}
+.user_list_data span{color:#aaa;padding:0 4px;}
+
+
 .online{position:relative;top:-2px;color:#219ba1;}
 .online font{position:relative;top:-3px;margin-right:5px;color:#219ba1;}

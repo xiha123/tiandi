@@ -10,12 +10,16 @@ class base_model extends CI_Model {
 		$this->db->insert($this->table_name, $params);
 		return $this->db->insert_id();
 	}
+	public function remove_where($where = array(0)){
+		$this->db->delete($this->table_name,$where);
+		return true;
+	}
 
 	public function remove($id) {
 		$this->db->delete($this->table_name, array(
 			'id' => $id
 		));
-        return true;
+        	return true;
 	}
 	public function edit_array($where , $params){
 		$this->db->where($where)->update($this->table_name, $params);

@@ -10,7 +10,7 @@ $("#answer").on('click' , function(event) {
 	            location.reload();
 	        },1000)
 	},function(msg){
-		showAlert(false,msg);
+		showAlert(false,msg.error);
 	})
 });
 $("#ajax_comment").click(function(){
@@ -28,7 +28,7 @@ $("#ajax_comment").click(function(){
 	            location.reload();
 	        },1000)
 	}, function(msg){
-		showAlert(false,msg);
+		showAlert(false,msg.error);
 	})
 
 });
@@ -51,7 +51,7 @@ $("#reply").click(function(){
 	            location.reload();
 	        },1000)
 	},function(msg){
-		showAlert(false,msg);
+		showAlert(false,msg.error);
 	})
 });
 
@@ -64,7 +64,7 @@ $(".button_ok").click(function(){
 	            location.reload();
 	        },1000)
 	},function(msg){
-		showAlert(false,msg);
+		showAlert(false,msg.error);
 		 setTimeout(function(){
 	            close();
 	        },700)
@@ -100,7 +100,7 @@ $(".ajax_close_not").click(function(event) {
 	            location.reload();
 	        },1000)
 	},function(msg){
-		showAlert(false,msg);
+		showAlert(false,msg.error);
 	});
 });
 $(".ajax_close").click(function(event) {
@@ -113,7 +113,7 @@ $(".ajax_close").click(function(event) {
 	            location.reload();
 	        },1000)
 	},function(msg){
-		showAlert(false,msg);
+		showAlert(false,msg.error);
 	});
 });
 

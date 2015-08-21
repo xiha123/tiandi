@@ -39,6 +39,8 @@ class Index extends CI_Controller {
 				"problem_id" => $userdata["problem_data"]['id']
 		));
 
+		//Get god max count
+		$userdata['god_count'] = $this->user_model->get_count(array("type" => 1));
 
 		// User online  problem handle
 		$this->problem_model->online_problem($id);
@@ -50,7 +52,10 @@ class Index extends CI_Controller {
 		if($userdata["problem_data"]["type"] == 1 && $userdata["problem_data"]["answer_time"] + 1200 < time()){
 			$this->problem_model->def($userdata["problem_data"]["id"]);
 			$userdata["problem_data"]["type"] = "0";
-			$this->news_model->add_news($userdata["problem_data"]["answer_id"] , "您认领的问题已经过期，如若超时两次将不能再认领问题！");
+			$this->news_model->add_news($userdata["problem_data"]["answer_id"] , "您认领的问题已经过期，如若超时两次则24小时内不能再认领任何问题！");
+
+			//Empty problem temp data
+			$this->problem_detail->remove_where(array("problem_id" => $id , "type" => 3));
 		}
 
 
