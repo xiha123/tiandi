@@ -220,7 +220,10 @@ textarea ,button{
     background-color:#2AC3CB;
 }
 /* user widget */
-.user-menu.seconds{width:150px;padding:none;background: #219ba1; overflow: hidden;}
+.user-menu.seconds {
+    background:#219ba1;
+    overflow: hidden;
+}
 .user {
     position:absolute;
     top:0;
@@ -261,11 +264,21 @@ textarea ,button{
     border:1px solid #f0f0f0;
     border-top:0;
 }
-.user-menu a {
+
+.user-menu.seconds li {
+    float:none;
+}
+.user-menu.seconds li a {
     display:block;
-    padding:none !important;
     text-align:center;
+    width:100%;
+    padding:0;
+}
+.user-menu a,
+.user-menu a:visited {
+    color:#fff;
 }
 .user-menu a:hover {
     background:#f0f0f0;
+    color:#219ba1;
 }

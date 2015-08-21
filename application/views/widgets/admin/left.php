@@ -21,7 +21,7 @@
 				),
 				array(
 					"title" => "在线课堂设置",
-					"link" => "admin/onlineSlider",
+					"link" => "admin/onlineGoTo",
 					"icon" => "fa fa-shopping-cart",
 					"active" => false
 				),

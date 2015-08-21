@@ -21,7 +21,7 @@
                     ),
                     array(
                         'name' => '神码来了',
-                        'link' => '#',
+                        'link' => 'god',
                         'active' => false
                     ),
                     array(
@@ -41,7 +41,7 @@
 
 
         <div class="user">
- 
+
             <?php
                 if(isset($nickname)){
             ?>

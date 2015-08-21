@@ -2,6 +2,7 @@
 
 $imgLook = $(".imgLook");
 $("tbody tr").hover(function(e){
+	if (!$(this).data('img')) return;
 	$imgLook.css({"display" : "block" , "left" : $(this).offset().left , "top" : $(this).offset().top + $(this).height() })
 	$imgLook.find("img").attr("src", "static/uploads/" + $(this).data("img"));
 },function(){
@@ -12,8 +13,8 @@ $(".edit-guide").click(function(event) {
 	$parents = $(this).parents().parents().eq(0);
 	$parents_baby = $parents.find("td");
 	input({
-		"title" : "编辑新手指南",	
-		"content" : 
+		"title" : "编辑新手指南",
+		"content" :
 		'<form method="post" action="api/guide_api/edit_guide" id="edit-form" enctype="multipart/form-data">'+
 		'<table class=table-form>'+
 		'<input type="hidden" value="' + $parents.data("id")+ '" name="id">'+
@@ -76,10 +77,3 @@ $(".edit-guide").click(function(event) {
 // 	});
 // 	return false;
 // })
-
-
-
-
-
-
-

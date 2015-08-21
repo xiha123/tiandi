@@ -9,10 +9,20 @@ class Admin extends CI_Controller {
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
 		$this->load->model('course_class_model');
-        	$this->load->model('course_chapter_model');
-        	$this->load->model('user_model');
+    	$this->load->model('course_chapter_model');
+    	$this->load->model('user_model');
 		$this->user_info = $this->admin_model->check_login();
+	}
 
+	public function fake_users() {
+		if($this->admin_model->require_login() === false) redirect('admin/login');
+		for ($i = 0; $i < 100; $i++) {
+			$this->user_model->create(array(
+				"nickname" => $i,
+				"email" => $i . '@kingcraft.cc',
+				"pwd" => 'miaoda'
+			));
+		}
 	}
 
 	public function god_apply(){
@@ -32,7 +42,7 @@ class Admin extends CI_Controller {
 		if($this->admin_model->require_login() === false) redirect('admin/login');
 		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$data['me'] = $this->user_info;
-		
+
 		$data['user'] = $this->user_model->get_list(array() , ($data['page'] - 1) , 10);
 		foreach ($data['user'] as $key => $value) {
 			if($data['user'][$key]['type']  == "0"){
@@ -229,17 +239,6 @@ class Admin extends CI_Controller {
 			'guide' => $this->guide_model->get_guide()
 		);
 		$this->load->view('admin/onlineClass/home.php', $data);
-	}
-	public function onlineSlider(){
-		if (empty($this->user_info)) redirect('admin/login');
-		$this -> load -> model ("admin_model" , "model");
-		$returnData = $this -> slide_model -> get_list(1);
-		$data = array(
-			"data_list" => $returnData,
-			"me" => $this->user_info
-		);
-		$this->load->library('parser');
-		$this->parser->parse('admin/onlineClass/onlineSlider.php', $data);
 	}
 	public function onlineGoTo(){
 		if (empty($this->user_info)) redirect('admin/login');

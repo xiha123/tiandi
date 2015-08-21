@@ -15,7 +15,7 @@
 					<?php $this->load->view('widgets/online/nav.php' , array("activeNav" => 1)); ?>
 				</ul>
 			</div>
-			
+
 			<div class="main-data">
 				<table class="table table-bordered">
 					<tr>
@@ -32,9 +32,9 @@
 					</tr>
 					{/data_list}
 					</tbody>
-				</table>			
+				</table>
 			</div>
-			
+
 
 		</div>
 	</div>
