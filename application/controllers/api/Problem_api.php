@@ -19,8 +19,27 @@ class problem_api extends base_api {
     public function online_save(){
         $this->load->library('session');
         $params = $this->get_params('POST', array('type' , "title" , "content" , "tags" , "code" , "language" , "problem_id"));extract($params);
-        if($type){
+        if($type == "true"){
+            // 提问在线保存处理
             $this->session->problem_temp = $params;
+        }else{
+            // 回答在线保存处理
+            $result = array(
+                "content" => $content,
+                "type" => 3,
+                "owner_id" => "-1",
+                "ctime" => time(),
+                "problem_id" => $problem_id,
+                "code" => $code,
+                "language" => $language,
+            );
+            var_dump($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3)));
+            if($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3))){
+                $this->problem_detail_model->edit_array(array("problem_id" => $problem_id) , $result);
+
+            }else{
+                $this->problem_detail_model->create($result);
+            }
         }
         $this->finish(true);
     }
@@ -91,6 +110,7 @@ class problem_api extends base_api {
 
         // 积分需求
         $this->user_model->Integral($this->me['id'] , 100);
+        $_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 
 
 
@@ -128,7 +148,6 @@ class problem_api extends base_api {
         ))){
             parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
         }
-        $_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
         $this->finish(true,$detail_id,$detail_id);
     }
 

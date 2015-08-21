@@ -9,11 +9,7 @@
 	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
 	problem_type = <?=$problem_data["type"]?>;
 </script>
-	<?php
-		if($problem_data["answer_time"] + 1200 < time()){
-			$this->problem_model->def($problem_data["id"]);
-		}
-	?>
+
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="windows">
@@ -110,17 +106,17 @@
 						</td></tr>
 						<tr><td>
 							<div class="desc">
-								<script id="editor" type="text/plain" style="width:743px;height:180px;"></script>
+								<script id="editor" type="text/plain" style="width:743px;height:180px;"><?=$temp_data['content']?></script>
 								<div class="code-box">
 									<select class="Language">
-										<option value="0">html</option>						
-										<option value="1">php</option>						
-										<option value="2">C++</option>						
-										<option value="3">javascript</option>
-										<option value="4">java</option>
-										<option value="5">其他</option>
+										<option value="0" <?=$temp_data['language'] == 0 ? 'selected=""' : ""?>>html</option>						
+										<option value="1" <?=$temp_data['language'] == 1 ? 'selected=""' : ""?>>php</option>						
+										<option value="2" <?=$temp_data['language'] == 2 ? 'selected=""' : ""?>>C++</option>						
+										<option value="3" <?=$temp_data['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
+										<option value="4" <?=$temp_data['language'] == 4 ? 'selected=""' : ""?>>java</option>
+										<option value="5" <?=$temp_data['language'] == 5 ? 'selected=""' : ""?>>其他</option>
 									</select>
-									<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"></textarea>
+									<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"><?=$temp_data['code']?></textarea>
 								</div>
 							</div>
 						</td></tr>

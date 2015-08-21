@@ -171,7 +171,7 @@
 存放问题详情。
 
 - content
-- type 0 为提问，1 为回答
+- type 0 为提问，1 为回答，3 为在线保存
 - owner_id 发表这个详情的人的 id
 - ctime 创建时间
 - problem_id

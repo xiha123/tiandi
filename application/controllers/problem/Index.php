@@ -39,7 +39,21 @@ class Index extends CI_Controller {
 				"problem_id" => $userdata["problem_data"]['id']
 		));
 
+
+		// User online  problem handle
 		$this->problem_model->online_problem($id);
+
+		// God of temporary storage
+		$userdata['temp_data'] = $this->problem_detail_model->get(array("problem_id" => $id , "type" => 3));
+
+		// Problem time out
+		if($userdata["problem_data"]["type"] == 1 && $userdata["problem_data"]["answer_time"] + 1200 < time()){
+			$this->problem_model->def($userdata["problem_data"]["id"]);
+			$userdata["problem_data"]["type"] = "0";
+			$this->news_model->add_news($userdata["problem_data"]["answer_id"] , "您认领的问题已经过期，如若超时两次将不能再认领问题！");
+		}
+
+
 		$this->load->library('parser');
 		$this->parser->parse("miaoda/problem/problem.php" , $userdata);
 	}

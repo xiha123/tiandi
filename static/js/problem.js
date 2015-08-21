@@ -122,6 +122,26 @@ if(problem_type == 1){
 	var timeOut = setInterval(function(){
 		timeOut_fun();
 	},1000);
+	setInterval(function(){
+		var content = ue.getContent();
+			code = $("#problem-code").val(),
+			jsonArray = new Array();
+			console.log($("#problem-code").html())
+		$.each($(".tag .tag-box"), function(index, val) {
+			jsonArray.push($(val).find("font").text());
+		});
+		if(content !="" && code!=""){
+			_td.api.onlineSave({
+				"type" : false,
+				"title" : "none",
+				"content" : content,
+				"tags" : "[]",
+				"code" : code,
+				"language" : $(".Language").val(),
+				"problem_id" : problem_id
+			});
+		}
+	},11000)
 }
 function timeOut_fun(){
 	var time = new Date();

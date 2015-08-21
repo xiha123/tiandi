@@ -234,7 +234,7 @@ $(document).ready(function() {
     });
 
     function initTag($tag){
-        var  value ="",timeOut = true;
+        var  value ="",timeOut = true,index = 0 , temp_index = 0;
 
         /*处理用户鼠标移入IDE*/
         $tag.on('mouseover', 'li', function(event) {
@@ -246,6 +246,7 @@ $(document).ready(function() {
                 background: '#219ba1',
                 color: '#fff'
             });
+            index = $tag.index(event.target)
             $tag.find('input[type="text"]').val($(this).text());
         });
 
@@ -257,7 +258,6 @@ $(document).ready(function() {
                 $(this).val("");
             }
         });
-        var index = 0 , temp_index = 0;
         $tag.find('input[type="text"]').keyup(function(e) {
             value = $(this).val();
             $ideList = $(".tag-ide ul li");
