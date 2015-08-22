@@ -14,6 +14,8 @@
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
+
+
 	?>
 </script>
 
@@ -61,7 +63,7 @@
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
 					<p class="date">提问于：<?=$problem_data['ctime']?></p>
 				</div>
-				<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;" ,"&lt;ul&gt;" ,"&lt;li&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>","<ul>","<li>") , $problem_detail[0]['content'])?></div>
+				<div class="desc"><?=$problem_detail[0]['content']?></div>
 			</div>
 			<?php
 				if($problem_detail[0]["code"] != NULL){
@@ -70,7 +72,7 @@
 									<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code ('.($problem_detail[0]["language"]).')</h2>
 								</div>
 							</div>
-							<div class="code"><pre class="brush: php">'.($problem_detail[0]["code"]).'</pre></div>';
+							<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.($problem_detail[0]["code"]).'</pre></div>';
 				}
 				for ($index=1; $index < count($problem_detail); $index++) {
 			?>
@@ -80,7 +82,7 @@
 							<p class="name">大神：<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><?=$problem_detail[$index]['user']['nickname']?></a></p>
 							<p class="date">回答于：<?=$problem_data['ctime']?></p>
 						</div>
-						<div class="desc"><?=str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $problem_detail[$index]['content'])?></div>
+						<div class="desc"><?=$problem_detail[$index]['content']?></div>
 					</div>
 			<?php
 					if($problem_detail[$index]["code"] != NULL){
@@ -89,7 +91,7 @@
 								<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code ('.($problem_detail[$index]["language"]).')</h2>
 							</div>
 						</div>
-						<div class="code"><pre class="brush: php">'.($problem_detail[$index]["code"]).'</pre></div>';
+						<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.($problem_detail[$index]["code"]).'</pre></div>';
 					}
 				}
 			?>

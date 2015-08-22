@@ -64,4 +64,4 @@ setInterval(function(){
 			"problem_id" : -1
 		});
 	}
-},8000)
+},12000)

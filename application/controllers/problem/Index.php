@@ -1,6 +1,5 @@
 <?php
 
-
 class Index extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
@@ -38,6 +37,8 @@ class Index extends CI_Controller {
 		$userdata["page_max"] = $this->problem_comment_model->get_count(array(
 				"problem_id" => $userdata["problem_data"]['id']
 		));
+
+
 
 		//Get god max count
 		$userdata['god_count'] = $this->user_model->get_count(array("type" => 1));

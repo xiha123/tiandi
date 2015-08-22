@@ -3,11 +3,20 @@
  * base_api
  * 提供基本的检测和数据获取，返回的数据为JSON格式
  */
+include_once(APPPATH . 'controllers/api/base_class_html.php');
 class base_api extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // 非ajax请求拒绝
         if (!$this->input->is_ajax_request()) $this->finish(false, '非法请求');
+    }
+
+    // 处理用户提交的内容
+    public function HTML($content){
+        $HTML = new HtmlAttributeFilter(); 
+        $HTML->setAllow(array('title','alt',"src"));
+        $content = $HTML->strip($content); 
+        return strip_tags($content , "<p><li><ul><img><br>");
     }
 
 

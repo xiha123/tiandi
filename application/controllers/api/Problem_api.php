@@ -18,7 +18,8 @@ class problem_api extends base_api {
 
     public function online_save(){
         $this->load->library('session');
-        $params = $this->get_params('POST', array('type' , "title" , "content" , "tags" , "code" , "language" , "problem_id"));extract($params);
+        $params = $this->get_params('POST', array('type' , "title" , "tags" , "code" , "language" , "problem_id"));extract($params);
+        $params['content'] = $this->input->post("content");
         if($type == "true"){
             // 提问在线保存处理
             $this->session->problem_temp = $params;
@@ -33,7 +34,7 @@ class problem_api extends base_api {
                     "owner_id" => "-1",
                     "ctime" => time(),
                     "problem_id" => $problem_id,
-                    "code" => $code,
+                    "code" => htmlspecialchars($code),
                     "language" => $language,
                 );
                 if($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3))){
@@ -84,7 +85,9 @@ class problem_api extends base_api {
 
     public function create() {
         parent::require_login();
-        $params = $this->get_params('POST', array('coinType','title' => true,'detail' => true,'tags',"language"));extract($params);
+        $params = $this->get_params('POST', array('coinType','title' => true,'tags',"language"));extract($params);
+        $detail = isset($_POST['detail']) ? $this->input->post("detail") : "";
+
         $code = isset($_POST['code']) ? $this->input->post("code") : "";
         switch ($language) {
             case '0':$language = "html";break;
@@ -128,15 +131,17 @@ class problem_api extends base_api {
             if(strlen($value) < 2 && strlen($value) > 12){
                 parent::finish(false , "您输入的标签太长或者太短了！");
             }else{
-                if($this->tag_model->add_tag(htmlspecialchars($value))){
+                if($this->tag_model->add_tag($this->HTML($value))){
                    $tagTemp[] = array("t" => $value);
                 }
             }
         }
+
+
         // 创建题主
         $detail_id = $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
-            'title' => htmlspecialchars($title),
+            'title' => $this->HTML($title),
             'tags' => json_encode($tagTemp),
             $coinConfig['type'] => $coinConfig['value']
         ));
@@ -147,7 +152,7 @@ class problem_api extends base_api {
         if(!$this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'type' => 0,
-            'content' =>htmlspecialchars(xss_clean($detail)),
+            'content' =>$this->HTML(($detail)),
             'code' => htmlspecialchars($code),
             'problem_id' => $detail_id,
             'language' => $language
@@ -169,7 +174,7 @@ class problem_api extends base_api {
         ))) {
             $this->finish(false, '不存在的问题');
         }
-        $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'],$problem_id,htmlspecialchars($content));
+        $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'],$problem_id,$this->HTML($content));
         $problem = $this->problem_model->get(array(
             'id' => $problem_id
         ));
@@ -219,9 +224,9 @@ class problem_api extends base_api {
         }
         $new_detail_id = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
-            'content' => htmlspecialchars($content),
+            'content' => $this->HTML($content),
             'problem_id' => $problem_id,
-            'code' => $code,
+            'code' => htmlspecialchars($code),
             'type' => $type,
             'language' => $language
         ));
