@@ -36,6 +36,9 @@ $("#ajax_problemSubmit").on("click",function(){
 		"language" : $(".Language").val(),
 	}).then(function(res) {
 		showAlert(true, "恭喜您，提问成功！ 银币 -100 个");
+		$("#problem-title").val("");
+		ue.setContent("");
+		$("#problem-code").val("")
 		setTimeout(function() {
 			window.location.href="./problem/?p=" + res.data;
 		}, 1000);
