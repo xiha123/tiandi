@@ -20,4 +20,4 @@
 .box .level i{margin-right:5px;color:#219ba1;margin-top:10px;position: relative;top:-3px;}
 .box .button {margin-top:20px;}
 .box .button i{margin-left: 4px;}
-.box .close{background:#eee;padding:3px 10px;color:#219ba1;font-weight:700;font-size:23px; cursor:pointer; border-radius: 20px;}
+.box .close{background:url(../image/btn_X.png) no-repeat;background-size:74%;padding:3px 10px;color:#219ba1;height:30px;width:20px;font-weight:700;font-size:23px; cursor:pointer; border-radius: 20px;}

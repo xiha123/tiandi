@@ -8,11 +8,12 @@
 <body>
 
 <?php $this->load->view('widgets/nav.php', array( "activeNav" => 0 )); ?>
+<div class="windows" >
 <div class="box" id="box">
 	<p>
 		<img src="" width="480" height="275">
 		<div class="title">
-			<div class="close fr" onclick="javascript:document.getElementById('box').style.display='none'">X</div>
+			<div class="close fr"></div>
 			<h2>重点一</h2>
 			<div class="level">
 				<h3>难度</h3>
@@ -24,6 +25,7 @@
 		<div class="button">
 			<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>"><button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
 		</div>
+</div>
 </div>
 
 <div class="main">

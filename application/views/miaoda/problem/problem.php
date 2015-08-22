@@ -96,7 +96,12 @@
 
 
 
-
+			<?php
+				if($problem_data['type'] == "1" && @$id != $problem_data['answer_id']  || @$id != $problem_data['owner_id']){
+					echo '<h3 class="center tishi">『问题正被解答中』</h3>';
+				}
+			?>
+			
 
 			<?php
 				if($problem_data['type'] == "1" && @$id == $problem_data['answer_id']  || @$id == $problem_data['owner_id']){

@@ -97,6 +97,7 @@ class problem_api extends base_api {
         if($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
+        $_SESSION['first'] = true;
         $_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 
         // 处理硬币需求
