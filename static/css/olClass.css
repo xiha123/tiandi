@@ -91,22 +91,10 @@ p{word-break:break-all}
 .tab {
 	margin-top:50px;
 }
-.tab-trigger li {
-	float:left;
-	width:20%;
-	border-bottom:1px solid #219ba1;
-}
-.tab-trigger a {
-	display:block;
-	text-align:center;
-	padding:10px 0;
-	color:#219ba1;
-	font-size:22px;
-	font-weight:bolder;
-}
 .tab-trigger li:hover,
 .tab-trigger .active {
 	border-bottom:5px solid #219ba1;
+	font-weight:700;
 }
 .tab-sheet {
 	position:relative;
