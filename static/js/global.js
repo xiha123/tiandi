@@ -4,7 +4,7 @@ $(".ajax_up").on("click" , function(){
     _td.api.upProblem({
         problem_id : problem_id,
     }).then(function(msg){
-        if(msg == "0"){
+        if(msg.data == "0"){
             showAlert(true , "点赞成功！");
             _this.find('.upCount').text(parseInt(_this.find('.upCount').text()) + 1);
         }else{
@@ -12,9 +12,7 @@ $(".ajax_up").on("click" , function(){
             _this.find('.upCount').text(parseInt(_this.find('.upCount').text()) - 1);
         }
     },function(msg){
-        console.log(msg);
-        bomb("login");
-        showAlert(false,msg.msg);
+       showAlert(false , msg);
     });
 })
 $(".forget").click(function(event) {
