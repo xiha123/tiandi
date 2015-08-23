@@ -1,0 +1,12 @@
+.table {
+    margin:0;
+}
+.table .fa {
+    margin:0 0 0 5px;
+}
+.table i.fa-edit {
+    color:#219ba1;
+}
+.table i.fa-trash {
+    color:#c00;
+}

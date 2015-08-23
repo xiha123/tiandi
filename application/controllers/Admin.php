@@ -79,6 +79,53 @@ class Admin extends CI_Controller {
 		$this->parser->parse('admin/slider.php', $data);
 	}
 
+	public function tags() {
+		if (empty($this->user_info)) redirect('admin/login');
+		$this->load->model('tag_model');
+		$list = $this->tag_model->get_list(array(), 0, 100);
+		foreach ($list as &$item) {
+			$item['type'] = $item['type'] === 0 ? '课程' : '秒答';
+		}
+		$data = array (
+			'me' => $this->user_info,
+			'tags' => $list
+		);
+		$this->parser->parse('admin/tags.php', $data);
+	}
+
+	public function problems() {
+		if (empty($this->user_info)) redirect('admin/login');
+		$this->load->model('problem_model');
+		$list = $this->problem_model->get_list(array(), 0, 100);
+		foreach ($list as &$item) {
+			switch($item['type']) {
+				case '0':
+					$item['type'] = '未认领';
+					break;
+				case '1':
+					$item['type'] = '认领中';
+					break;
+				case '2':
+					$item['type'] = '已回答';
+					break;
+				case '3':
+					$item['type'] = '已关闭';
+					break;
+			}
+			$item['owner'] = $this->user_model->get(array(
+				'id' => $item['owner_id']
+			))['nickname'];
+			$item['answer'] = $this->user_model->get(array(
+				'id' => $item['answer_id']
+			))['nickname'];
+		}
+		$data = array (
+			'me' => $this->user_info,
+			'list' => $list
+		);
+		$this->parser->parse('admin/problems.php', $data);
+	}
+
 	public function users() {
 		if (empty($this->user_info)) redirect('admin/login');
 		$data = array (

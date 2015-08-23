@@ -8,6 +8,21 @@ api:
     needs:
         - problem_id
 
+# tag
+-
+    url: api/tag_api/remove
+    type: post
+    name: removeTag
+    needs:
+        - id
+-
+    url: api/tag_api/edit
+    type: post
+    name: editTag
+    needs:
+        - id
+        - content
+        - name
 
 
 # admin
@@ -117,6 +132,12 @@ api:
         - code
         - coinType
         - language
+-
+    url: api/problem_api/remove
+    type: post
+    name: removeProblem
+    needs:
+        - id
 -
     # 创建描述，即提问者的补充和老师的回答 已实现
     url: api/problem_api/create_detail

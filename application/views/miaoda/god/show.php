@@ -2,16 +2,7 @@
 <link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
-<?php $this->load->view('widgets/windows.php' ); echo $follow_users;
-
-	$follow_type = false;
-	$follow_users = json_decode($follow_users);
-	foreach ($follow_users as $key => $value) {
-		if($value[0] == $user['id']){
-			$follow_type = true;
-			break;
-		}
-	}
+<?php $this->load->view('widgets/windows.php' );
 ?>
 	<div class="wrapper">
 		<div class="tacher-data">

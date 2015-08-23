@@ -88,15 +88,12 @@ $("#ajax_eye,#ajax_uneye").click(function(event) {
         "user_id" : $(this).data('id'),
         "type" : type
     }).then(function(msg){
-        console.log(msg);
-        if(msg.status == false){
-            showAlert(false,msg.error);return;
-        }
         showAlert(true,type ? "恭喜您！关注成功" : "取消关注成功！");
-
         setTimeout(function(){
             location.reload();
         },600)
+    },function(msg){
+        showAlert(false,msg.error);
     })
 });
 
@@ -159,14 +156,23 @@ $("#register").on('submit' , function(event) {
         return;
     }
 
+
     _td.api.createUser({
         "email" : email,
         "nickname" : nick,
         "pwd" : password
     }).then(function(){
-        showAlert(true , "注册账号成功！首次注册赠送500银币已到帐请注意查收！");
+        if(document.getElementById("reg_god").checked){
+                showAlert(true , "注册账号成功！请继续填写详细信息，首次注册赠送500银币已到帐请注意查收！");
+        }else{
+                showAlert(true , "注册账号成功！首次注册赠送500银币已到帐请注意查收！");
+        }
         setTimeout(function(){
-            location.reload();
+            if(document.getElementById("reg_god").checked){
+               window.location.href="./god/apply";
+            }else{
+                location.reload();
+            }
         }, 1000)
     },function(res){
         showAlert(false, res.msg);

@@ -3,7 +3,7 @@
 </head>
 
 <body>
-<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 4)); ?>
+<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 6)); ?>
 
 <div class="main">
 	<?php $this->load->view('widgets/admin/window.php'); ?>
@@ -50,7 +50,7 @@
 				{/user}
 				</tbody>
 			</table>
-			
+
 			<?php
 				$this->load->view("miaoda/page",array(
 					"page" => $page,
