@@ -35,7 +35,7 @@
 							</div>
 							<ul class="list-tag">
 								<?php
-									if(isset($value['tags'])){
+									if(!empty($value['tags'])){
 										foreach ($value['tags'] as $key => $values) {
 											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 										}
@@ -62,7 +62,7 @@
 							</div>
 							<ul class="list-tag">
 								<?php
-									if(isset($value['tags'])){
+									if(!empty($value['tags'])){
 										foreach ($value['tags'] as $key => $values) {
 											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 										}
