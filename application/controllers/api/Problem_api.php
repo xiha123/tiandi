@@ -5,15 +5,32 @@ include_once(APPPATH . 'controllers/api/Base_api.php');
 class problem_api extends base_api {
 
     public function __construct() {
-	parent::__construct();
-            $this->table_name="problem_detail";
-    	$this->load->model('problem_model');
-            $this->load->model('problem_detail_model');
-            $this->load->model('problem_comment_model');
-            $this->load->model('tag_model');
-    	$this->load->model('news_model');
+        parent::__construct();
+        $this->table_name="problem_detail";
+        $this->load->model('problem_model');
+        $this->load->model('problem_detail_model');
+        $this->load->model('problem_comment_model');
+        $this->load->model('tag_model');
+        $this->load->model('news_model');
 
-    	$this->me = $this->user_model->check_login();
+        $this->me = $this->user_model->check_login();
+    }
+
+    public function remove() {
+        $this->load->model('admin_model');
+        $this->me = $this->admin_model->check_login();
+        parent::require_login();
+
+        $params = $this->get_params('POST', array('id'));
+        extract($params);
+
+        if (!$this->problem_model->is_exist(array(
+            'id' => $id
+        ))) {
+            $this->finish(false, '不存在的 id');
+        }
+        $this->problem_model->remove($id);
+        $this->finish(true);
     }
 
     public function online_save(){
@@ -165,7 +182,7 @@ class problem_api extends base_api {
     /*
         创建一条评论
         - content
-        - problem_id 
+        - problem_id
     */
     public function create_comment() {
         parent::require_login(); $params = $this->get_params('POST', array('content', 'problem_id'));extract($params);

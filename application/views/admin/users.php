@@ -3,7 +3,7 @@
 </head>
 
 <body>
-<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 6)); ?>
+<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 7)); ?>
 
 <div class="main">
     <ul class="nav nav-pills" role="tablist">

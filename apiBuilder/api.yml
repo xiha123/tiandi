@@ -133,6 +133,12 @@ api:
         - coinType
         - language
 -
+    url: api/problem_api/remove
+    type: post
+    name: removeProblem
+    needs:
+        - id
+-
     # 创建描述，即提问者的补充和老师的回答 已实现
     url: api/problem_api/create_detail
     type: post
