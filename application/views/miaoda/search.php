@@ -9,14 +9,17 @@
 		<li class="search-result">为您搜索到{count}个结果</li>
 		{data}
 		<ul class="list-data">
-		<li data-id="{id}">
-				<div class="link-num ajax_up"><p class="upCount">0</p><p>点赞</p></div>
+			<li data-id="{id}">
+				<div class="link-num ajax_up"><p class="upCount">{up_count}</p><p>点赞</p></div>
 				<div class="list-title">
-				<a href="./problem/?p={id}" target="_blank">{title}</a>
+					<a href="./problem/?p={id}" target="_blank">{title}</a>
 				</div>
 				<ul class="list-tag">
-				<li><a href="./tag/?name=type"  target="_blank" class="tag-box">type</a></li><li><a href="./tag/?name=type"  target="_blank" class="tag-box">type</a></li><li><a href="./tag/?name=type"  target="_blank" class="tag-box">type</a></li>
-			</ul>
+					{tags}
+					<li><a href="./tag/?name={url}"  target="_blank" class="tag-box">{name}</a></li>
+					{/tags}
+				</ul>
+			</li>
 		</ul>
 		{/data}
 							

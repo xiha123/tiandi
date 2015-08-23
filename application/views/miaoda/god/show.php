@@ -19,9 +19,7 @@
 		<div class="tacher-class">
 			<h2>正在开的课程：</h2>
 			<ul>
-				<li></li>
-				<li></li>
-				<li class="last"></li>
+				{course}<a href="olclass?type={type}"><li>{site}{img}{/site}</li></a>{/course}
 			</ul>
 		</div>
 

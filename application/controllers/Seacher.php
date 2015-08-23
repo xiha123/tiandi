@@ -15,11 +15,12 @@ class Seacher extends CI_Controller {
 		$this->me["key"] = $key;
 
 		$count = 20; // 需要获取多少个
-		$result = $this->problem_model->search($key, $count); // array_merge(); //$this->problem_detail_model->search($key, $count)
+		$result = $this->problem_model->search($key, $count); 
+		$result = $this->problem_model->handle_tag($result);
+
 		$this->me['count'] = count($result);
 		$result = array_slice($result, 0, $count);
 		$this->me['data'] = $result;
-		$this->load->library('parser');
 		$this->parser->parse('miaoda/search.php', $this->me);
 	}
 

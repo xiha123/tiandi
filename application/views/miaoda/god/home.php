@@ -9,9 +9,9 @@
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
 			<h3 class="name"><?=$user["nickname"] ?></h3>
 			<p class="look"><img src="static/image/look.png" alt="" width="18px"><?=$user['collect_problem_count']?></p>
-			<p class="look"><img src="static/image/good.png" width="16px" alt=""><?=$user['follow_problem_count']?></p>
-			<p class="money">银币： <?=$user['gold_coin']?></p>
-			<p class="money">金币： <?=$user['silver_coin']?></p>
+			<p class="look"><img src="static/image/good.png" width="16px" alt=""><?=$user['follow_user_count']?></p>
+			<p class="money">银币： <?=$user['silver_coin']?></p>
+			<p class="money">金币： <?=$user['gold_coin']?></p>
 			<p class="desc"><?php echo $user["god_description"] == "" ? "这货居然没写描述" : $user['god_description']; ?></p>
 			<h2 class="box-title">擅长标签</h2>
 			<a href="#" class="tagBox">tag</a>
@@ -20,8 +20,7 @@
 			<a href="#" class="tagBox">tag</a>
 			<h2 class="box-title">正在开的课程</h2>
 			<ul class="classList">
-				<li></li>
-				<li></li>
+				{course}<a href="olclass?type={type}"><li>{site}{img}{/site}</li></a>{/course}
 			</ul>
 			<a href="#" class="help">帮助说明</a>
 		</div>

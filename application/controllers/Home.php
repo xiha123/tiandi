@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model("user_model");
 		$this->load->model("problem_model");
+		$this->load->model('course_model');
 		$this->load->model("tag_model");
 		$this->me = $this->user_model->check_login();
 	}
@@ -26,6 +27,7 @@ class Home extends CI_Controller {
 
 		// 构造数据准备传递
 		$push_data = $this->me;
+		$push_data['data'] = array("u3d","Swift","Web","Cocos2d-x","Android");
 		$push_data['user'] = $user_data;
 		$push_data['love'] = isset($_GET['love']) ? true : false;
 		$push_data['owner'] = isset($_GET['owner']) ? true : false;
@@ -56,29 +58,41 @@ class Home extends CI_Controller {
 			$push_data['owner_list_count'] = $owner_list_count;
 		}
 		if($user_type == 1){
+			$temp_data = array();
+			$course_data = $this->course_model->get_list("all" , 0 , 2 , true , true);
+			foreach ($course_data as $key => $value) {
+				$value['type'] = $push_data['data'][$value['type']];
+				$temp_data[] = $value;
+			}
+			$push_data["course"] = $temp_data;
 			$push_data["recommend_list"] = $this->problem_model->get_list_by_hot(0, 5 , "random","hot",false);
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
 			if(!$push_data["hot_type"]){
 				$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"]-1, 5);
 				$push_data["problem_list_count"] = $this->problem_model->get_list_count();
 			}else{
-				$push_data["news_problem"] = $this->problem_model->get_answer($uid , $push_data["page"] , 5);
-				$push_data["problem_list_count"] = $this->problem_model->answer_count($uid);
+				$push_data["news_problem"] = $this->problem_model->get_answer($id , $push_data["page"] , 5);
+				$push_data["problem_list_count"] = $this->problem_model->answer_count($id);
 			}
 		}
 		if($user_type == 2){
+			$temp_data = array();
+			$course_data = $this->course_model->get_list("all" , 0 , 3 , true , true);
+			foreach ($course_data as $key => $value) {
+				$value['type'] = $push_data['data'][$value['type']];
+				$temp_data[] = $value;
+			}
+			$push_data["course"] = $temp_data;
 			$push_data["answer"] = $this->problem_model->get_answer($id , $push_data["page"] , 10);
 			$push_data["answer_count"] = $this->problem_model->answer_count($id);
 		}
-
-
 
 		switch ($user_type) {
 			case 0:$file_name = "studentHome.php";break;
 			case 1:$file_name = "god/home.php";break;
 			case 2:$file_name = "god/show.php";break;
 		}
-		$this->load->view("miaoda/" . $file_name , $push_data);
+		$this->parser->parse("miaoda/" . $file_name , $push_data);
 	}
 
 }
