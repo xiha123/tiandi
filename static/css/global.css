@@ -238,13 +238,6 @@ textarea ,button{
 .user li{
     position:relative;
 }
-.user .notice_news{
-    position: absolute;
-    right:38px;
-    top:0;
-    color:#fff;
-    font-size: 14px;
-}
 .user img {
     float:left;
     margin-right:10px;

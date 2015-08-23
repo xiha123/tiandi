@@ -64,7 +64,7 @@ p,td{word-break:break-all}
 .left-nav li:hover {background:#333;color:#CCC; cursor:pointer}
 .left-nav .hover{background:#333;color:#CCC;}
 .left-nav .hover a{color:#CCC;}
-.left-nav .logo{position:absolute;bottom:30px;left:0;right:0;margin:0 auto}
+.left-nav .logo{position:absolute;bottom:15px;left:0;right:0;margin:0 auto}
 
 /* 核心页面 */
 .main {position:absolute;left:200px;top:0;right:0;bottom:0;}

@@ -50,10 +50,10 @@
                     <ul class="user-menu seconds">
                         <?php
                             echo  $type == 0 || $type == 2 ?
-                            '<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>' :
+                            '<li><a href="./home?uid='.$id.'" target="_blank">个人主页</a></li>':
                             '<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>';
                         ?>
-                        <li><a href="./notice" target="_blank">通知<font class="notice_news"><?=$news_nuw <= 0 ? "" : "($news_nuw)"?></font></a> </li>
+                        <li><a href="./notice" target="_blank">通知<?= $news_nuw <= 0 ? "" : " ($news_nuw)" ?></a></li>
                         <li><a href="./userSet">设置</a></li>
                         <li><a href="javascript:;">充值</a></li>
                         <li><a href="javascript:" id="ajax_outlogin">退出</a></li>
