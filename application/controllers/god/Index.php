@@ -29,7 +29,6 @@ class index extends CI_Controller {
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$userdata['page_max'] = $this->user_model->get_count(array("type" => 1 , "father_tag" => $userdata['types']));
 		$userdata['data'] = $this->user_model->get_list(array("type" => 1 , "father_tag" => $userdata['types']) , $userdata["page"] - 1 *10 , 10);
-
 		$this->load->view('miaoda/god/list.php' , $userdata);
 	}
 

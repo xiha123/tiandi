@@ -18,8 +18,8 @@ class user_api extends base_api {
     */
     public function eye(){
         parent::require_login();$params = parent::get_params('POST', array('user_id' , 'type'));if(empty($params)) return; extract($params);
-        if($this->user_model->is_exist(array("id" , $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
         if($this->me['id'] == $user_id) parent::finish(false,"您无法关注自己！");
+        if(!$this->user_model->is_exist(array("id" , $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
         $follow_type = false;
         foreach (json_decode($this->me['follow_users']) as $key => $value) {
             if($value[0] == $user_id){
@@ -27,8 +27,14 @@ class user_api extends base_api {
                 break;
             }
         }
+        $from_user = $this->user_model->get(array("id" => $user_id));
         $follow_users = !$follow_type ? $this->add_json($this->me['follow_users'] , array($user_id)) : $this->remove_json_v($this->me['follow_users'] , $user_id);
         if($this->user_model->edit($this->me['id'],array("follow_users" => $follow_users))){
+             if($follow_type){
+                $this->user_model->edit($user_id,array("follower_count" => $from_user['follower_count'] - 1));
+            }else{
+                $this->user_model->edit($user_id,array("follower_count" => $from_user['follower_count'] + 1));
+            }
             $this->news_model->add_news($user_id , "用户:" . $this->me['nickname'] . ($follow_type ? "关注了您" : "取消了对您的关注"));
             parent::finish(true);
         }else{

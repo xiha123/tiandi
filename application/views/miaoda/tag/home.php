@@ -26,13 +26,13 @@
 
 			<div class="tab">
 				<ul class="title">
-					<li <?php if(!$hot_type){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>">最新</a></li>
-					<li <?php if($hot_type){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>&hot=hot">热门</a></li>
-					<li><a href="javascript:">众筹</a></li>
+					<li <?php if($hot_type == ""){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>">最新</a></li>
+					<li <?php if($hot_type == "hot"){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>&hot=hot">热门</a></li>
+					<li <?php if($hot_type == "love"){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>&love=love">众筹</a></li>
 				</ul>
 				<ul class="list-data tab-sheet  js-tab-sheet">
 					<ul class="list-data">
-						<?php foreach ($tag_list as $key => $value) { ?>
+						<?php if(isset($tag_list[0]['id'])){ foreach ($tag_list as $key => $value) { ?>
 							<li data-id="<?=$value['id']?>">
 								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
 								<div class="list-title">
@@ -49,7 +49,7 @@
 								</ul>
 								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
 							</li>
-						<?php } ?>
+						<?php }} ?>
 					</ul>
 					<?php
 						$this->load->view("miaoda/page",array(
@@ -73,7 +73,7 @@
 						if($value[0]["avatar"] == ""){
 							$value[0]["avatar"] = "static/image/default.jpg";
 						}
-						echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+						echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
 					}
 				?>
 				<li>
@@ -89,7 +89,7 @@
 							$value[0]["avatar"] = "static/image/default.jpg";
 						}
 						if(isset($value[0]['nickname'])){
-							echo '<li><img src="'.@$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.@$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">0</div></li>';
+							echo '<li><img src="'.@$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.@$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
 						}
 					}
 				?>

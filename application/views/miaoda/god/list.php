@@ -37,7 +37,7 @@
 								'.$button.'
 							</div>
 							<div class="right_box">
-									<p class="name">' . $value['nickname'] . '<font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.count(json_decode($value['follow_users'])).'</font> </p>
+									<p class="name">' . $value['nickname'] . '<font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font> </p>
 									<p class="desk">' . $value['god_description'] . '</p>
 									<p class="class">正在开的课：2门</p>
 									<a href="javascript:" class="tagBox">tag</a>

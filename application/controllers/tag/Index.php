@@ -11,6 +11,18 @@ class Index extends CI_Controller {
 		
 		if(!isset($_GET['name']) || $_GET['name'] == ""){show_404();}
 		$type = !isset($_GET['hot']) ? "ctime" : "hot";
+
+		if(isset($_GET['hot'])){
+			$problem_type = "hot";
+		}else{
+			if(isset($_GET['love'])){
+				$problem_type = "love";
+			}else{
+				$problem_type = "";
+			}
+		}
+
+
 		$name = $this->input->get("name",true);
 		$userdata = $this->user_model->check_login();
 
@@ -18,14 +30,28 @@ class Index extends CI_Controller {
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
 		if(!isset($userdata['tag_data']['name'])) show_404();
 		// </is tag>
-		
 
-		$userdata["hot_type"] = !isset($_GET['hot']) ? false : true;
-		$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);
+		switch ($problem_type) {
+			case 'hot':
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "hot");
+				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
+				break;
+			case 'love':
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "chou");
+				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
+				break;
+			default:
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);
+				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
+				break;
+		}
 
 
-		
-		$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
+		/*开始构造数据准备传递*/
+		$userdata['hot_type'] = $problem_type;
+
+
+
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$userdata['tag_count'] = $this->problem_model->get_list_by_tag_count($name);
 		if($userdata['tag_count'] <=0){
@@ -33,7 +59,8 @@ class Index extends CI_Controller {
 		}
 		$userdata['collect_type'] = $this->tag_model->is_collect_tag($userdata['tag_data']['id']);
 
-		// height:174px与标签学员榜
+
+		// 大神与标签学员榜
 		$god_array = array();
 		$student_array = array();
 		$data = json_decode($this->tag_model->get(array("name" => $name))['json_who']);
