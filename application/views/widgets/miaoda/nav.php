@@ -2,7 +2,7 @@
 	<div class="wrapper">
         	<a href="./"><img class="logo" src="static/image/miaoda_logo.gif" height="29" width="120" style="left: -140px;z-index: 999;background: none;border-radius: 0;padding: 3px; " alt="天地培训logo"></a>
 		<div class="seacher">
-			<input type="text" class="fl" placeholder="在此搜索你的问题">
+			<input type="text" class="fl" placeholder="搜索问题">
 			<button><i class="fa fa-search"></i></button>
 		</div>
 		<ul class="fr">
