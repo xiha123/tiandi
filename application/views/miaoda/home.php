@@ -92,14 +92,18 @@
 						</ul>
 
 						<?php
+							if($hot_type == "1") $hot = "";
+							if($hot_type == "0") $hot = "&hot=hot";
+							if($hot_type == "2") $hot = "&hot=chou";
 							$this->load->view("miaoda/page",array(
 								"page" => $page,
 								"page_max" => $problem_list_count,
 								"page_count" => 20,
 								"page_url" => "./miaoda",
-								"hot" => $hot_type ? "&hot=hot":""
+								"hot" => $hot
 							));
 						?>
+
 					</li>
 				</ul>
 			</div>

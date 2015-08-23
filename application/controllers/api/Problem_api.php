@@ -36,7 +36,8 @@ class problem_api extends base_api {
     public function online_save(){
         $this->load->library('session');
         $params = $this->get_params('POST', array('type' , "title" , "tags" , "code" , "language" , "problem_id"));extract($params);
-        $params['content'] = $this->input->post("content");
+        $content = $this->input->post("content");
+        $params['content'] = $content;
         if($type == "true"){
             // 提问在线保存处理
             $this->session->problem_temp = $params;
@@ -303,14 +304,14 @@ class problem_api extends base_api {
 
         // 给大神结算问题报酬
         $max_coin = (100 + count(json_decode($problem['who'])) * 50);
-        $this->user_model->coin($this->me['id'] , $max_coin);
+        $this->user_model->coin($problem['answer_id'] , $max_coin);
+        $this->news_model->add_news($problem['answer_id'],"本次回答问题的报酬已到帐，总计：" . $max_coin . "银币");
         $this->news_model->add_news($problem['answer_id'] , "" . $this->me['nickname'] . " 满意了：".$problem['title'] );
 
         // 给大神威望
         $prestige = $max_coin / 100;
-        $this->user_model->edit($this->me['id'] , array("prestige" => $prestige));
+        $this->user_model->edit($problem['answer_id'] , array("prestige" => $prestige));
 
-        $this->news_model->add_news("本次回答问题的报酬已到帐，总计：" . $max_coin . "银币");
         $this->finish(true);
     }
 
