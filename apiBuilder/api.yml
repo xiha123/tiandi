@@ -8,6 +8,21 @@ api:
     needs:
         - problem_id
 
+# tag
+-
+    url: api/tag_api/remove
+    type: post
+    name: removeTag
+    needs:
+        - id
+-
+    url: api/tag_api/edit
+    type: post
+    name: editTag
+    needs:
+        - id
+        - content
+        - name
 
 
 # admin

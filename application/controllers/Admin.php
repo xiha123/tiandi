@@ -79,6 +79,20 @@ class Admin extends CI_Controller {
 		$this->parser->parse('admin/slider.php', $data);
 	}
 
+	public function tags() {
+		if (empty($this->user_info)) redirect('admin/login');
+		$this->load->model('tag_model');
+		$list = $this->tag_model->get_list(array(), 0, 100);
+		foreach ($list as &$item) {
+			$item['type'] = $item['type'] === 0 ? '课程' : '秒答';
+		}
+		$data = array (
+			'me' => $this->user_info,
+			'tags' => $list
+		);
+		$this->parser->parse('admin/tags.php', $data);
+	}
+
 	public function users() {
 		if (empty($this->user_info)) redirect('admin/login');
 		$data = array (

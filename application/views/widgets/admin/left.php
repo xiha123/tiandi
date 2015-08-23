@@ -32,6 +32,12 @@
 					"active" => false
 				),
 				array(
+					"title" => "标签管理",
+					"link" => "admin/tags",
+					"icon" => " fa fa-tags",
+					"active" => false
+				),
+				array(
 					"title" => "用户管理",
 					"link" => "admin/user",
 					"icon" => "fa fa-users",

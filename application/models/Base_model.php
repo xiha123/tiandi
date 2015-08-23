@@ -19,7 +19,7 @@ class base_model extends CI_Model {
 		$this->db->delete($this->table_name, array(
 			'id' => $id
 		));
-        	return true;
+    	return true;
 	}
 	public function edit_array($where , $params){
 		$this->db->where($where)->update($this->table_name, $params);
