@@ -35,8 +35,8 @@ p{word-break: break-all;}
 
           .login-content input[type='text'],
           .login-content input[type='password'],
-          .login-content input[type="button"]{width:288px;margin-left:20px;font-size:16px;margin-top:20px;border-radius: 20px;padding:8px 15px;border:1px solid #219ba1;}
-          .login-content input[type="button"]{width:318px;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
+          .login-content input[type="submit"]{width:288px;margin-left:20px;font-size:16px;margin-top:20px;border-radius: 20px;padding:8px 15px;border:1px solid #219ba1;}
+          .login-content input[type="submit"]{width:318px;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
 
 
 

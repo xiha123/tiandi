@@ -104,7 +104,8 @@ $("#ajax_eye,#ajax_uneye").click(function(event) {
 
 
 
-$("#ajax_login").on('click' , function(event) {
+$("#login-form").on('submit' , function(event) {
+    event.preventDefault();
     var username = $("#login_username").val(),
     password = $("#login_password").val();
     _td.api.loginUser({
@@ -139,7 +140,8 @@ $("#ajax_outlogin").on('click', function(event) {
 });
 
 
-$("#ajax_reg").on('click' , function() {
+$("#register").on('submit' , function(event) {
+    event.preventDefault();
     var password = $("#reg_password").val(),
     email = $("#reg_email").val(),
     nick = $("#reg_nick").val();
