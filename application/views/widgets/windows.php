@@ -50,8 +50,9 @@
 				<li><input type="text" placeholder="邮箱" id="reg_email"></li>
 				<li><input type="password" placeholder="密码" id="reg_password_r"></li>
 				<li><input type="password" placeholder="确认密码" id="reg_password"></li>
-				<li class="login-click"> <label><input type="checkBox" id="reg_ok"><span>同意并接受服务条款</span></label></li>
+				<li class="login-click"> <label><input type="checkBox" id="reg_ok"><span>同意并接受服务条款</span></label><label class="fr" style="margin-right:50px;"><input type="checkBox" id="reg_god"><span>我想成为大神</span></label></li>
 				<li><input type="button" value="注册" id="ajax_reg"></li>
+
 				<li class="sociality">
 					社交账号
 					<img src="static/image/qq.png" alt="" width="20">
