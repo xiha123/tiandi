@@ -1,5 +1,4 @@
 <?php $this->load->view('widgets/header.php'); 
-	$follow_users = json_decode($follow_users);
 	function check_follow($follow_users , $user_id){
 		foreach ($follow_users as $key => $value) {
 			if($value[0] == $user_id){
@@ -16,26 +15,24 @@
 	$this->load->view('widgets/windows.php' );
 ?>
 	<div class="wrapper">
+
+
 		<div class="tacher-data home">
 			<img src="<?=$user['avatar']?>" alt="" class="pic">
 			<h3 class="name"><?=$user['nickname']?> <a href="./god/apply" target="_blank">想成为大神？</a></h3>
 			<p class="money">银币：<?=$user['silver_coin']?>  金币：<?=$user['gold_coin']?></p>
-			<p class="desk"><?php
-				if($user['description'] == ""){
-					echo '这家伙还没有描述.....';
-				}else{
-					echo $description;
-				}
-			?></p>
+			<p class="desk"><?= $user['description'] == "" ? '这家伙还没有描述.....' : $user['description'];?></p>
 		</div>
+
+
 		<div class="tacher-tag ">
 			<h2>收藏标签：</h2>
 			<?php
-				if($skilled_tags== array()){
+				if($user['skilled_tags']== array()){
 					echo '<p class="not">还没有收藏标签</p>';
 				}else{
-					foreach ($skilled_tags as $key => $value) {
-						echo '<a href="./tag/?name='.urlencode($value->t).'"  target="_blank" class="tag-box">'.$value->t.'</a>';
+					foreach ($user['skilled_tags'] as $key => $value) {
+						echo '<a href="./tag/?name='.urlencode($value['name']).'"  target="_blank" class="tag-box">'.$value['name'].'</a>';
 					}
 				}
 			?>
@@ -72,7 +69,7 @@
 						<?php }	}else{
 							foreach ($problem_list as $key => $value) {
 								$value['avatar'] = $value['avatar'] == "" ? "static/image/default.jpg" : $value['avatar'];
-								$button =  check_follow($follow_users,$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
+								$button =  check_follow(json_decode($user['follow_users']),$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
 								echo '<div class="data fl">
 									<div class="left_box">
 										<img src="' . $value['avatar'] . '" alt="" class="pic">
@@ -93,12 +90,13 @@
 
 
 					<?php
+						$page_count = $follow_type == false ? 20 : 5;
 						$this->load->view("miaoda/page",array(
 							"page" => $page,
 							"page_max" => $owner_list_count,
-							"page_count" => 5,
+							"page_count" => $page_count,
 							"page_url" => "./home",
-							"hot" => @$hot_type ? "&uid=".$user['id']."&hot=hot":"&uid=".$user['id']
+							"hot" => $hot . "&uid=".$user['id']
 						));
 					?>
 				</ul>

@@ -17,7 +17,7 @@ class user_api extends base_api {
     * 关注用户与取消用户关注
     */
     public function eye(){
-        $params = parent::get_params('POST', array('user_id' , 'type'));if(empty($params)) return; extract($params);
+        parent::require_login();$params = parent::get_params('POST', array('user_id' , 'type'));if(empty($params)) return; extract($params);
         if($this->user_model->is_exist(array("id" , $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
         if($this->me['id'] == $user_id) parent::finish(false,"您无法关注自己！");
         $follow_type = false;
@@ -62,7 +62,6 @@ class user_api extends base_api {
         if(!$this->user_model->is_exist(array("email" => $email))){
             parent::finish(false , "您输入的邮箱格式不存在，请检查后再输入！");
         }
-
         
         //以下设置Email参数
         $config['protocol'] = 'smtp';
