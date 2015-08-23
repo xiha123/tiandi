@@ -56,7 +56,7 @@ class Home extends CI_Controller {
 			$push_data['owner_list_count'] = $owner_list_count;
 		}
 		if($user_type == 1){
-			$push_data["recommend_list"] = $this->problem_model->get_list_by_hot(0, 5 , "random");
+			$push_data["recommend_list"] = $this->problem_model->get_list_by_hot(0, 5 , "random","hot",false);
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
 			if(!$push_data["hot_type"]){
 				$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"]-1, 5);
