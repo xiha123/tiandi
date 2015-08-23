@@ -160,13 +160,13 @@ $("#ajax_reg").on('click' , function() {
         "nickname" : nick,
         "pwd" : password
     }).then(function(){
-        if(!document.getElementById("reg_god").checked){
+        if(document.getElementById("reg_god").checked){
                 showAlert(true , "注册账号成功！请继续填写详细信息，首次注册赠送500银币已到帐请注意查收！");
         }else{
                 showAlert(true , "注册账号成功！首次注册赠送500银币已到帐请注意查收！");
         }
         setTimeout(function(){
-            if(!document.getElementById("reg_god").checked){
+            if(document.getElementById("reg_god").checked){
                window.location.href="./god/apply";
             }else{
                 location.reload();
