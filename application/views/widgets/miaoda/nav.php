@@ -61,8 +61,8 @@
 				}else{
 					echo '
 						<div class="notLogin">
-							<a href="javascript:" class="bomb-login"><i class="fa fa-user"></i>登录</a>
-							<a href="javascript:" class="bomb-reg">注册</a>
+							<a href="javascript:;" class="bomb-login"><i class="fa fa-user"></i>登录</a>
+                            <a href="javascript:;" class="bomb-reg"><i class="fa fa-user-plus"></i>注册</a>
 						</div>';
 				}
 			?>

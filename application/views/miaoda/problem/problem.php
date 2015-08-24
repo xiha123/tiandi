@@ -14,8 +14,6 @@
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
-
-
 	?>
 </script>
 
@@ -103,7 +101,7 @@
 					echo '<h3 class="center tishi">『问题正被解答中』</h3>';
 				}
 			?>
-			
+
 
 			<?php
 				if($problem_data['type'] == "1" && @$id == $problem_data['answer_id']  || @$id == $problem_data['owner_id']){
@@ -134,9 +132,9 @@
 								<script id="editor" type="text/plain" style="width:743px;height:180px;"><?=$temp_data['content']?></script>
 								<div class="code-box">
 									<select class="Language">
-										<option value="0" <?=$temp_data['language'] == 0 ? 'selected=""' : ""?>>html</option>						
-										<option value="1" <?=$temp_data['language'] == 1 ? 'selected=""' : ""?>>php</option>						
-										<option value="2" <?=$temp_data['language'] == 2 ? 'selected=""' : ""?>>C++</option>						
+										<option value="0" <?=$temp_data['language'] == 0 ? 'selected=""' : ""?>>html</option>
+										<option value="1" <?=$temp_data['language'] == 1 ? 'selected=""' : ""?>>php</option>
+										<option value="2" <?=$temp_data['language'] == 2 ? 'selected=""' : ""?>>C++</option>
 										<option value="3" <?=$temp_data['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
 										<option value="4" <?=$temp_data['language'] == 4 ? 'selected=""' : ""?>>java</option>
 										<option value="5" <?=$temp_data['language'] == 5 ? 'selected=""' : ""?>>其他</option>
