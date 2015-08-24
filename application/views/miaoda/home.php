@@ -9,7 +9,6 @@
 		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 	}
 ?>
-
 <div class="wrapper">
 
 	<div class="doubt">
@@ -92,7 +91,7 @@
 									?>
 								</ul>
 
-								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+								<div class="list-date"> 大神XXX回答于：<?=$value['ctime']?></div>
 							</li>
 						<?php }?>
 						</ul>
