@@ -8,7 +8,6 @@
 ?>
 
 
-
 <div class="box">
         <h3 class="information">基 础 资 料</h3>
         <div class="Photo"style="background-color:#209ba2;width:150px;height: 150px;margin: 25px auto;">
@@ -48,8 +47,8 @@
             <div class="line"></div>
             <h3 class="information">大神资料设置</h3>
             <div class="personmessage">
-                <p>真 实 姓 名：<?=$name?></p>
-                <p>支付宝账号：<?=$alipay?></p>
+                <p>真 实 姓 名：<?= $name ?></p>
+                <p>支付宝账号：<?= $alipay ?></p>
             </div>
 
             <input type="text" placeholder="支付宝账号" value="<?=$alipay?>" id="alipay" />
@@ -72,6 +71,7 @@
                     </div>
                 </div>
             </div>
+            <input type="text" placeholder="擅长标签">
             <button type="submit"  id="ajax_godset">
                 提 交<i class="fa fa-arrow-circle-right"></i>
             </button>
