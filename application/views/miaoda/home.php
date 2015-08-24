@@ -16,7 +16,7 @@
 			<tr><td><input type="text" class="title" id="problem-title" value="<?=$_SESSION['problem_temp']['title']?>" placeholder="一句话写下你遇到的问题"></td></tr>
 			<tr><td>
 				<div class="desc">
-					<script id="editor" type="text/plain" style="width:980px;height:180px;"><?=$_SESSION['problem_temp']['content']?></script>
+					<script id="editor" type="text/plain" style="color:#aaa;width:980px;height:180px;"><?=$_SESSION['problem_temp']['content']?></script>
 					<div class="code-box">
 						<select class="Language">
 							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>						
@@ -40,7 +40,6 @@
 							echo '<span class="tag-box"><font>'.$value.'</font> <button class="close">X</button></span>';
 						}
 					?>
-					
 				</div>
 				<div class="input-tag">
 					<input type="text" class="input-tag" placeholder="请输入标签">
@@ -148,7 +147,19 @@
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript">
-	var ue = UE.getEditor('editor');
+	var ue = UE.getEditor('editor');	
+	ue.execCommand( 'forecolor', '#ccc' );
+	 var range = new UE.dom.Range({
+	     type:'element',
+	     nodeType:"1",
+	     tagName:'span',
+	     attrs:{'style':'font-size:14px;'}
+	 });
+	 var node = new UE.uNode({
+	     type:'element',
+	     tagName:'p',
+	 })
+	 console.log(range.selectNodeContents(node));
 </script>
 <script src="./static/js/problem.home.js"></script>
 </body>
