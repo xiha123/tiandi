@@ -1,16 +1,17 @@
 var ue = UE.getEditor('editor');
 
-$("#ajax_problemSubmit").on("click",function(){
+$("#ajax_problemSubmit").on("click",function() {
 	var title = $("#problem-title").val(),
-		content = ue.getContent();
+		content = ue.getContent(),
 		code = $("#problem-code").val(),
 		coinType = document.getElementById("js_coinType").checked;
+
 	if(title.length < 5 || title.length > 60){
-		showAlert(false,"您输入的标题太长或者太短！");
+		showAlert(false, "您输入的标题太长或者太短！");
 		return false;
 	}
 	if(ue.getContentTxt().length < 10 ){
-		showAlert(false,"再多打几个字吧，您的描述实在是太短了！");
+		showAlert(false, "再多打几个字吧，您的描述实在是太短了！");
 		return false;
 	}
 	jsonArray = new Array();
@@ -48,7 +49,6 @@ $("#ajax_problemSubmit").on("click",function(){
 });
 
 setInterval(function(){
-	console.log("sda");
 	var title = $("#problem-title").val(),
 		content = ue.getContent();
 		code = $("#problem-code").val(),

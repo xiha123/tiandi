@@ -121,15 +121,12 @@ api:
 
 # problem
 -
-    # 创建问题 已实现
     url: api/problem_api/create
     type: post
     name: createProblem
     needs:
         - title
         - detail
-        - tags
-        - code
         - coinType
         - language
 -

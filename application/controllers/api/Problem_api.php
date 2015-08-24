@@ -103,17 +103,17 @@ class problem_api extends base_api {
 
     public function create() {
         parent::require_login();
-        $params = $this->get_params('POST', array('coinType','title' => true,'tags',"language"));extract($params);
-        $detail = isset($_POST['detail']) ? $this->input->post("detail") : "";
+        $params = $this->get_params('POST', array('coinType','title' => true, 'detail' => true, 'code', 'tags', "language"));
+        extract($params);
 
-        $code = isset($_POST['code']) ? $this->input->post("code") : "";
         switch ($language) {
             case '0':$language = "html";break;
             case '1':$language = "php";break;
             case '2':$language = "c";break;
             case '3':$language = "javascript";break;
             case '4':$language = "java";break;
-            default: $language = "php";break;
+            case '5':$language = "c#";break;
+            default: $language = "html";break;
         }
         if($this->problem_model->is_exist(array('title' => $title))) {
             $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
@@ -144,13 +144,12 @@ class problem_api extends base_api {
         // 处理标签请求
         $tagTemp = array();
         $tagArray = json_decode($tags);
-        if(!isset($tagArray[0]))parent::finish(false , "您输入的标签不太正确");
-        foreach ($tagArray as $key => $value) {
-            if(strlen($value) < 2 && strlen($value) > 12){
-                parent::finish(false , "您输入的标签太长或者太短了！");
-            }else{
-                if($this->tag_model->add_tag($this->HTML($value))){
-                   $tagTemp[] = array("t" => $value);
+        if (!empty($tagArray)) {
+            foreach ($tagArray as $key => $value) {
+                if(strlen($value) < 2 && strlen($value) > 12){
+                    parent::finish(false , "您输入的标签太长或者太短了！");
+                }else if($this->tag_model->add_tag($this->HTML($value))){
+                    $tagTemp[] = array("t" => $value);
                 }
             }
         }

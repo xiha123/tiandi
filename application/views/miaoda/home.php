@@ -25,7 +25,8 @@
 							<option value="2" <?=$_SESSION['problem_temp']['language'] == 2 ? 'selected=""' : ""?>>C++</option>
 							<option value="3" <?=$_SESSION['problem_temp']['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
 							<option value="4" <?=$_SESSION['problem_temp']['language'] == 4 ? 'selected=""' : ""?>>java</option>
-							<option value="5" <?=$_SESSION['problem_temp']['language'] == 5 ? 'selected=""' : ""?>>其他</option>
+							<option value="5" <?=$_SESSION['problem_temp']['language'] == 5 ? 'selected=""' : ""?>>C#</option>
+							<option value="6" <?=$_SESSION['problem_temp']['language'] == 6 ? 'selected=""' : ""?>>其他</option>
 						</select>
 						<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"><?=$_SESSION['problem_temp']['code']?></textarea>
 					</div>
@@ -83,7 +84,7 @@
 								</div>
 								<ul class="list-tag">
 									<?php
-										if(isset($value['tags'])){
+										if(!empty($value['tags'])){
 											foreach ($value['tags'] as $key => $values) {
 												echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 											}
