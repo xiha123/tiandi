@@ -13,7 +13,7 @@ class Miaoda extends CI_Controller {
 	public function index() {
 		$userdata = $this->user_model->check_login();
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
-		// 去你妹的体验！
+
 		if(isset($_GET['hot'])){
 			if($_GET['hot'] == "chou"){
 				$userdata["hot_type"] = "2";

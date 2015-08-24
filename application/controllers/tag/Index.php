@@ -65,7 +65,7 @@ class Index extends CI_Controller {
 		$student_array = array();
 		$data = json_decode($this->tag_model->get(array("name" => $name))['json_who']);
 		foreach ($data as $key => $value) {
-			$user = $this->user_model->get_user_list(array("id"=>$value->t , "type" => 0 , "type" => 2),0,5);
+			$user = $this->user_model->get_user_list(array("id"=>$value->t , "type" => 0 , "type" => 2),0,13);
 			$god = $this->user_model->get_list(array("id"=>$value->t , "type" => 1),0,5);
 			if($god != array()){
 				array_push($god_array , $god);
