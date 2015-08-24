@@ -10,7 +10,7 @@
 		<?php
 			$navList = array(
 			    array(
-			        'name' => '秒答解惑',
+			        'name' => '秒答',
 			        'link' => 'miaoda',
 			        'active' => false
 			    ),
@@ -20,7 +20,7 @@
 			        'active' => false
 			    ),
 			    array(
-			        'name' => '大神来了',
+			        'name' => '大神',
 			        'link' => 'god',
 			        'active' => false
 			    ),
