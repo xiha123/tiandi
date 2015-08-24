@@ -103,7 +103,7 @@
 					echo '<h3 class="center tishi">『问题正被解答中』</h3>';
 				}
 			?>
-			
+
 
 			<?php
 				if($problem_data['type'] == "1" && @$id == $problem_data['answer_id']  || @$id == $problem_data['owner_id']){
@@ -134,9 +134,9 @@
 								<script id="editor" type="text/plain" style="width:743px;height:180px;"><?=$temp_data['content']?></script>
 								<div class="code-box">
 									<select class="Language">
-										<option value="0" <?=$temp_data['language'] == 0 ? 'selected=""' : ""?>>html</option>						
-										<option value="1" <?=$temp_data['language'] == 1 ? 'selected=""' : ""?>>php</option>						
-										<option value="2" <?=$temp_data['language'] == 2 ? 'selected=""' : ""?>>C++</option>						
+										<option value="0" <?=$temp_data['language'] == 0 ? 'selected=""' : ""?>>html</option>
+										<option value="1" <?=$temp_data['language'] == 1 ? 'selected=""' : ""?>>php</option>
+										<option value="2" <?=$temp_data['language'] == 2 ? 'selected=""' : ""?>>C++</option>
 										<option value="3" <?=$temp_data['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
 										<option value="4" <?=$temp_data['language'] == 4 ? 'selected=""' : ""?>>java</option>
 										<option value="5" <?=$temp_data['language'] == 5 ? 'selected=""' : ""?>>其他</option>
@@ -161,18 +161,25 @@
 
 
 			<div class="button">
-				<?php
-					if($problem_data['type'] != 2 || $problem_data['type'] != 3){
-						echo $problem_collect == true ?
-						'<button class="uncollect">★ 取消收藏</button>':
-						'<button class="none-background collect">★ 收藏</button>';
+			<?php if($problem_data['type'] != 2 || $problem_data['type'] != 3) { ?>
+				<?php if (empty($id) || $id != $problem_data['owner_id']) { ?>
+					<?php if ($problem_collect == true) { ?>
+						<button class="uncollect">取消收藏</button>
+					<?php } else { ?>
+						<button class="none-background collect"><i class="fa fa-star"></i> 收藏</button>
+					<?php } ?>
+				<?php } ?>
 
-						echo $problem_data['type'] != 3 ? '<button class="js_chou">众筹</button>' : "";
-					} if(@$type == 1 ){
-						echo $problem_data['type'] == 0  ? '<button id="answer">认领问题</button>' : "";
-						echo $problem_data['type'] == 1 && $problem_data["answer_id"] == @$id ? '<button id="reply">回答</button>' :"";
-					}
-				?>
+				<?php if ($problem_data['type'] != 3) { ?>
+					<button class="js_chou">众筹</button>
+				<?php } ?>
+			<?php } if(@$type == 1 ) { ?>
+				<?php if ($problem_data['type'] == 0) { ?>
+					<button id="answer">认领问题</button>
+				<?php } if ($problem_data['type'] == 1 && $problem_data["answer_id"] == @$id) { ?>
+					<button id="reply">回答</button>
+				<?php } ?>
+			<?php } ?>
 			</div>
 
 			<?php

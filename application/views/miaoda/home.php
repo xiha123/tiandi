@@ -2,9 +2,9 @@
 <link rel="stylesheet" href="./static/css/miaoda/home.css">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
-       
-<?php 
-	$this->load->view('widgets/windows.php' ); 
+
+<?php
+	$this->load->view('widgets/windows.php' );
 	if(!isset($_SESSION['problem_temp'])){
 		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 	}
@@ -20,9 +20,9 @@
 					<script id="editor" type="text/plain" style="width:980px;height:180px;"><?=$_SESSION['problem_temp']['content']?></script>
 					<div class="code-box">
 						<select class="Language">
-							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>						
-							<option value="1" <?=$_SESSION['problem_temp']['language'] == 1 ? 'selected=""' : ""?>>php</option>						
-							<option value="2" <?=$_SESSION['problem_temp']['language'] == 2 ? 'selected=""' : ""?>>C++</option>						
+							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>
+							<option value="1" <?=$_SESSION['problem_temp']['language'] == 1 ? 'selected=""' : ""?>>php</option>
+							<option value="2" <?=$_SESSION['problem_temp']['language'] == 2 ? 'selected=""' : ""?>>C++</option>
 							<option value="3" <?=$_SESSION['problem_temp']['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
 							<option value="4" <?=$_SESSION['problem_temp']['language'] == 4 ? 'selected=""' : ""?>>java</option>
 							<option value="5" <?=$_SESSION['problem_temp']['language'] == 5 ? 'selected=""' : ""?>>其他</option>
@@ -40,7 +40,7 @@
 							echo '<span class="tag-box"><font>'.$value.'</font> <button class="close">X</button></span>';
 						}
 					?>
-					
+
 				</div>
 				<div class="input-tag">
 					<input type="text" class="input-tag" placeholder="请输入标签">
@@ -49,7 +49,7 @@
 						</ul>
 					</div>
 				</div>
-				
+
 			</div></td></tr>
 			<tr><td><label><input type="checkbox" id="js_coinType"><span>使用金币提问</span></label></td></tr>
 		</table>
@@ -72,7 +72,12 @@
 						<ul class="list-data">
 						<?php foreach($problem_list as $key => $value){ ?>
 							<li data-id="<?=$value['id']?>">
-								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
+								<div class="link-num ajax_up">
+                                    <?php if ($value['type'] != 3) { ?>
+                                        <p class="upCount"><?= count($value['who']) ?></p><p>众筹</p></div>
+                                    <?php } else { ?>
+                                        <p class="upCount"><?= $value['up_count'] ?></p><p>点赞</p></div>
+                                    <?php } ?>
 								<div class="list-title">
 									<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
 								</div>
