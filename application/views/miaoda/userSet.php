@@ -71,7 +71,6 @@
                     </div>
                 </div>
             </div>
-            <input type="text" placeholder="擅长标签">
             <button type="submit"  id="ajax_godset">
                 提 交<i class="fa fa-arrow-circle-right"></i>
             </button>
