@@ -175,7 +175,7 @@ $("#register").on('submit' , function(event) {
             }
         }, 1000)
     },function(res){
-        showAlert(false, res.msg);
+        showAlert(false, res.error);
     });
 });
 
@@ -240,7 +240,7 @@ $(document).ready(function() {
     });
 
     function initTag($tag){
-        var  value ="",timeOut = true,index = 0 , temp_index = 0;
+        var  value ="",timeOut = true,index = 0 , temp_index = 0 , tagIndex = 0;
 
         /*处理用户鼠标移入IDE*/
         $tag.on('mouseover', 'li', function(event) {
@@ -326,12 +326,13 @@ $(document).ready(function() {
             
         $tag.on('click', '.close', function(event) {
             tagIndex = tagIndex - 1;
+            if(tagIndex < 0){tagIndex = 0;}
             console.log(tagIndex);
             $(this).parent().remove();
         });
 
         function addTag($tag , tagName){
-            if(tagIndex >=  5){tagIndex = 5;return false;}
+            if(tagIndex >=  5){tagIndex = 5;showAlert(false,"您最多只能添加五个标签");return false;}
             tagIndex ++;
             console.log("tagIndex:"+tagIndex);
             $(".tag-ide").hide();

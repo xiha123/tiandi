@@ -53,6 +53,7 @@
 - collect_problems 收藏列表，JSON数组
 - follow_problems 关注列表，JSON数组
 - skilled_tags 擅长的标签，JSON数组
+- god_skilled_tags 大神擅长的标签，JSON数组
 - follow_users 关注的用户，JSON数组
 - followers 被哪些用户关注，JSON数组
 - alipay 支付宝账号

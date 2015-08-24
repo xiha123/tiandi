@@ -21,7 +21,7 @@
         </button>
     </form>
 
-    <form action="javascript:;" method="get" class="submitbutton">
+    <div class="submitbutton">
         <input type="text" placeholder="昵 称" id="ajax_nickname"  value="<?=$nickname?>"/>
         <textarea name="" id="signature" cols="30" rows="10" id="ajax_description" placeholder="签名档"><?=$description?></textarea>
         <h3 class="information">账户设置</h3>
@@ -40,7 +40,7 @@
                 <i class="fa fa-weibo"></i>
             </li>
         </ul>
-        <button type="submit" id="ajax_userSet">
+        <button type="submit" id="ajax_userSet"> <!---->
             提 交<i class="fa fa-arrow-circle-right"></i>
         </button>
 
@@ -54,11 +54,31 @@
 
             <input type="text" placeholder="支付宝账号" value="<?=$alipay?>" id="alipay" />
             <textarea name="" id="experience" cols="30" rows="10" placeholder="项目经历" id="goddesc"><?=$god_description?></textarea>
+            <h3 class="information">擅长标签设置</h3>
+
+            <div class="tag" data-widget="tag">
+                <input type="hidden" class="form-tag" value="">
+                <div class="tag-list">
+                    <?php
+                        foreach (count($god_skilled_tags) > 0 ? $god_skilled_tags : array() as $key => $value) {
+                            echo '<span class="tag-box"><font>'.$value.'</font> <button class="close">X</button></span>';
+                        }
+                    ?>
+                </div>
+                <div class="input-tag">
+                    <input type="text" class="input-tag" placeholder="请输入标签">
+                    <div class="tag-ide" style="display: none;">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
             <button type="submit"  id="ajax_godset">
                 提 交<i class="fa fa-arrow-circle-right"></i>
             </button>
+
+
         <?php } ?>
-    </form>
+    </div>
 
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="static/lib/jquery.form/jquery.form.min.js"></script>

@@ -36,7 +36,7 @@ $("#ajax_userSet").click(function(){
 	            location.reload();
 	        },1000)
 	}, function(msg){
-		showAlert(false,msg)
+		showAlert(false,msg.error)
 	})
 })
 
@@ -80,12 +80,20 @@ $("#ajax_godset").click(function(){
 	if(alipay.length<4){
 		showAlert(false , "您的支付宝输入的不太正常");return false;
 	}
+	jsonArray = new Array();
+	$.each($(".tag .tag-box"), function(index, val) {
+		jsonArray.push($(val).find("font").text());
+	});
+	
+
+
 	$.ajax({
 		url : "api/user_api/edit_god",
 		type:"post",
 		data:{
 			"alipay" : alipay,
-			"goddesc" : goddesc
+			"goddesc" : goddesc,
+			"tags" : JSON.stringify(jsonArray),
 		},
 		success:function(data){
 			console.log(data);

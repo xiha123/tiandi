@@ -19,7 +19,7 @@ class user_api extends base_api {
     public function eye(){
         parent::require_login();$params = parent::get_params('POST', array('user_id' , 'type'));if(empty($params)) return; extract($params);
         if($this->me['id'] == $user_id) parent::finish(false,"您无法关注自己！");
-        if(!$this->user_model->is_exist(array("id" , $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
+        if(!$this->user_model->is_exist(array("id" => $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
         $follow_type = false;
         foreach (json_decode($this->me['follow_users']) as $key => $value) {
             if($value[0] == $user_id){
@@ -137,6 +137,9 @@ class user_api extends base_api {
 
         $params = parent::get_params('POST', array('nickname',"desk","email","phone")); if (empty($params)) return;extract($params);
         //,"pwd_lost","pwd_new"
+        if($this->user_model->is_exist(array("email" => $email))){parent::finish(false, '该邮箱已经被人使用了');}
+        if($this->user_model->is_exist(array("nickname" => $nickname))){parent::finish(false, '该昵称已经被人使用了');}
+        if($this->user_model->is_exist(array("cellphone" => $phone))){parent::finish(false, '该手机已经被人使用了');}
         $pwd_lost = $this->input->post("pwd_lost");
         $pwd_new = $this->input->post("pwd_new");
         $cur_id = $this->session->userdata('uid');
@@ -166,21 +169,21 @@ class user_api extends base_api {
         $this->load->helper('email');
         $params = parent::get_params('POST', array('email', 'nickname', 'pwd'));if (empty($params)) return; extract($params);
 
-        // if(!valid_email($email)){
-        //     parent::finish(false, '您输入的邮箱格式不太正确，请检查后再输入！');
-        // }
-        // if(strlen($pwd) < 6 || strlen($pwd) > 16){
-        //     parent::finish(false, '密码长度不规范');
-        // }
-        // if(strlen($nickname) < 6 || strlen($nickname) > 16){
-        //     parent::finish(false, '昵称不规范，太长或太短');
-        // }
-        // if(strlen($pwd) < 6 || strlen($pwd) > 16){
-        //     parent::finish(false, '密码长度不规范');
-        // }
-        // if(strlen($nickname) < 6 || strlen($nickname) > 16){
-        //     parent::finish(false, '昵称不规范，太长或太短');
-        // }
+        if(!valid_email($email)){
+            parent::finish(false, '您输入的邮箱格式不太正确，请检查后再输入！');
+        }
+        if(strlen($pwd) < 6 || strlen($pwd) > 16){
+            parent::finish(false, '密码长度不规范');
+        }
+        if(strlen($nickname) < 6 || strlen($nickname) > 16){
+            parent::finish(false, '昵称不规范，太长或太短');
+        }
+        if(strlen($pwd) < 6 || strlen($pwd) > 16){
+            parent::finish(false, '密码长度不规范');
+        }
+        if(strlen($nickname) < 6 || strlen($nickname) > 16){
+            parent::finish(false, '昵称不规范，太长或太短');
+        }
         $result = $this->user_model->create(array(
             'email' => $email,
             'nickname' => $nickname,
@@ -201,16 +204,26 @@ class user_api extends base_api {
         parent::finish(true);
     }
 
-    // public function get_user_data(){
-    //     $params = parent::getParams('POST', array('id'));if(empty($params)) return; extract($params);
-    //     print_r($this->get_user_data($id));
 
-    // }
     public function edit_god(){
-        $params = parent::get_params('POST', array('alipay', 'goddesc'));if (empty($params)) return; extract($params);
+        $params = parent::get_params('POST', array('alipay', 'goddesc','tags'));if (empty($params)) return; extract($params);
+        $temp_tags = json_decode($tags,true);
+        if(count($temp_tags) < 0 || count($temp_tags)>5) parent::finish(false,"输入的标签太多或者太少");
+
+        // 处理标签请求
+        foreach ($temp_tags as $key => $value) {
+            if(strlen($value) < 2 && strlen($value) > 12){
+                parent::finish(false , "您输入的标签太长或者太短了！");
+            }
+            if(!$this->tag_model->is_exist(array("name" => $value ,"type" => "0"))){
+                parent::finish(false,"您输入的标签：" . $value . "不存在！");
+            }
+        }
+
         if($this->user_model->edit($this->me['id'],array(
             "god_description" => $goddesc,
-            "alipay" => $alipay
+            "alipay" => $alipay,
+            "god_skilled_tags" => json_encode($temp_tags)
         ))){
             $this->finish(true);
         }else{
