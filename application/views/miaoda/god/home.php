@@ -14,13 +14,16 @@
 			<p class="money">金币： <?=$user['gold_coin']?></p>
 			<p class="desc"><?php echo $user["god_description"] == "" ? "这货居然没写描述" : $user['god_description']; ?></p>
 			<h2 class="box-title">擅长标签</h2>
-			<a href="#" class="tagBox">tag</a>
-			<a href="#" class="tagBox">tag</a>
-			<a href="#" class="tagBox">tag</a>
-			<a href="#" class="tagBox">tag</a>
+			<?php foreach (count(json_decode($user['god_skilled_tags'])) > 0 ? json_decode($user['god_skilled_tags']) : array() as $key => $value) {
+                            echo '<a href="./tag/?name='. urldecode($value).'" class="tagBox">'.$value.'</a>';
+                        }?>
 			<h2 class="box-title">正在开的课程</h2>
 			<ul class="classList">
-				{course}<a href="olclass?type={type}"><li>{site}{img}{/site}</li></a>{/course}
+				<?php
+					foreach ($course as $key => $value) {
+						echo '<a href="olclass?type='.$value['type'].'"><li><img src="./static/uploads/'.@$value['site']['img'].'" width="100%" height="100%"/></li></a>';
+					}
+				?>
 			</ul>
 			<a href="#" class="help">帮助说明</a>
 		</div>

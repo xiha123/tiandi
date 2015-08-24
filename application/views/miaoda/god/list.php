@@ -39,12 +39,13 @@
 							<div class="right_box">
 									<p class="name">' . $value['nickname'] . '<font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font> </p>
 									<p class="desk">' . $value['god_description'] . '</p>
-									<p class="class">正在开的课：2门</p>
-									<a href="javascript:" class="tagBox">tag</a>
-									<a href="javascript:" class="tagBox">tag</a>
-									<a href="javascript:" class="tagBox">tag</a>
-							</div>
-						</div>';
+									<p class="class">正在开的课：2门</p>';
+
+						$skilled_tags = json_decode($value['god_skilled_tags']);
+						foreach (count($skilled_tags) > 0 ? $skilled_tags : array() as $key => $value) {
+							echo '<a href="javascript:" class="tagBox">'.$value.'</a>';
+						}
+						echo '</div></div>';
 					}
 				?>
 			</li>

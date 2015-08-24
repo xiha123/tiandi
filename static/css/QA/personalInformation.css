@@ -6,6 +6,9 @@
     padding: 0 25%;
 }
 
+
+
+
 .information{
     font-weight: bold;
     font-size: 16px;
@@ -102,3 +105,20 @@ label{
     font-size: 40px;
     text-align: center;
 }
+
+.box{padding-bottom: 50px;}
+.tag{width:100%;float:left;position:relative; height:auto; }
+.tag .input-tag{position:relative; float:left;width:100%;color:#aaa;}
+        .tag .tag-box{background:#eee;padding:4px 3px 4px 7px;top:-1px;}
+             .tag-box button{
+    width: auto;
+    box-sizing: content-box;
+    font-weight: 100;
+    font-size: 12px;
+    padding:4px;
+    border-radius:0px;
+    display: block;
+    margin: 0;float:right;
+                cursor: pointer;outline: none; background: none;border:none;border-left:1px solid #ddd;color:#aaa;margin-left:5px;}
+.tag-ide{display:none;z-index:1024;width:140px;border:1px solid #7cc4c7;margin-left:20px;border-top:none;background: #fff;position:absolute;top:41px;}
+.tag-ide li{padding:7px;transition:background 0.1s;}

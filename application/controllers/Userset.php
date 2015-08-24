@@ -10,6 +10,7 @@ class UserSet extends CI_Controller {
 	public function index()
 	{
 		if(!isset($this->me['email'])){show_404();}
+		$this->me['god_skilled_tags'] = json_decode($this->me['god_skilled_tags']);
 		$this->load->view('miaoda/userSet.php', $this->me);
 	}
 

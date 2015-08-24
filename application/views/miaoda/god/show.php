@@ -12,14 +12,23 @@
 		</div>
 		<div class="tacher-tag">
 			<h2>擅长标签：</h2>
-			<p class="not">他还没有擅长的标签</p>
-			<!-- <a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a><a href="#" class="tag-box">12312</a> -->
+			<?php 
+				$god_skilled_tags = json_decode($user['god_skilled_tags']);
+				echo count($god_skilled_tags) <= 0 ? '<p class="not">他还没有擅长的标签</p>' : '';
+				foreach (count($god_skilled_tags) > 0 ? $god_skilled_tags : array() as $key => $value) {
+					echo '<a href="./tag/?name='. urldecode($value).'" class="tagBox">'.$value.'</a>';
+				}
+			?>
 		</div>
 
 		<div class="tacher-class">
 			<h2>正在开的课程：</h2>
 			<ul>
-				{course}<a href="olclass?type={type}"><li>{site}{img}{/site}</li></a>{/course}
+				<?php
+					foreach ($course as $key => $value) {
+						echo '<a href="olclass?type='.$value['type'].'"><li><img src="./static/uploads/'.@$value['site']['img'].'" width="100%" height="100%"/></li></a>';
+					}
+				?>
 			</ul>
 		</div>
 
