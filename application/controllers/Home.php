@@ -68,10 +68,10 @@ class Home extends CI_Controller {
 			$push_data["recommend_list"] = $this->problem_model->get_list_by_hot(0, 5 , "random","hot",false);
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
 			if(!$push_data["hot_type"]){
-				$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"]-1, 5);
+				$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"]-1, 5,0);
 				$push_data["problem_list_count"] = $this->problem_model->get_list_count();
 			}else{
-				$push_data["news_problem"] = $this->problem_model->get_answer($id , $push_data["page"] , 5);
+				$push_data["news_problem"] = $this->problem_model->get_answer($id , $push_data["page"]);
 				$push_data["problem_list_count"] = $this->problem_model->answer_count($id);
 			}
 		}
