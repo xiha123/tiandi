@@ -27,7 +27,7 @@
 .doubt  >.table{position:relative;width:100%;}
 .doubt  .table td{position:relative;width:743px;}
 	     .table .title{margin-bottom:10px;}
-	     .table .title,.input-content,.doubt .code{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}
+	     .table .title,.input-content,.doubt .code{color:#333;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}
 	     .table .input-content{height: 60px;}
 	     .table .code{border-top:1px dashed #ddd;margin-top:-5px;}
 	     .table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}

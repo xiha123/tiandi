@@ -122,7 +122,6 @@
 
 		<div class="right-content">
 			<h2 class="box-title">热门标签</h2>
-
 			<ul class="list-tag">
 				<?php
 					$tag_list = $this->tag_model->get_tag(0 , 20 , "all");
@@ -132,13 +131,9 @@
 						}
 					}
 				?>
-				<!-- <li><a href="#" > 更多</a></li> -->
 			</ul>
 		</div>
-
 	</div>
-
-
 </div>
 <script type="text/javascript">
 	var tagIndex = <?=count($problemTagList)?>;
@@ -146,21 +141,10 @@
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript">
-	var ue = UE.getEditor('editor');	
-	ue.execCommand( 'forecolor', '#ccc' );
-	 var range = new UE.dom.Range({
-	     type:'element',
-	     nodeType:"1",
-	     tagName:'span',
-	     attrs:{'style':'font-size:14px;'}
-	 });
-	 var node = new UE.uNode({
-	     type:'element',
-	     tagName:'p',
-	 })
-	 console.log(range.selectNodeContents(node));
-</script>
 <script src="./static/js/problem.home.js"></script>
+<script type="text/javascript">
+	var ue = UE.getEditor('editor');
+
+</script>
 </body>
 </html>
