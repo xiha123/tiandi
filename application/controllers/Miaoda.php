@@ -29,6 +29,9 @@ class Miaoda extends CI_Controller {
 			$userdata["problem_list_count"] = $this->problem_model->get_list_count();
 			$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
 		}
+		foreach ($userdata["problem_list"] as $key => $value) {
+			$userdata["problem_list"][$key]['answer_id'] = $this->user_model->get(array("id"=>$userdata["problem_list"][$key]['answer_id']));
+		}
 
 		if($userdata["page"] > ceil($userdata["problem_list_count"] / 20)){
 			if($userdata["page"] > 1){

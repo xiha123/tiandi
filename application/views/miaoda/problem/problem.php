@@ -59,7 +59,7 @@
 				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
 				<div class="data">
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
-					<p class="date">提问于：<?=$problem_data['ctime']?></p>
+					<p class="date">提问于：<?=$problem_detail[0]['ctime']?></p>
 				</div>
 				<div class="desc"><?=$problem_detail[0]['content']?></div>
 			</div>
@@ -78,7 +78,7 @@
 						<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detail[$index]['user']['avatar']?>" alt="" width="35" height="35"></a>
 						<div class="data">
 							<p class="name">大神：<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><?=$problem_detail[$index]['user']['nickname']?></a></p>
-							<p class="date">回答于：<?=$problem_data['ctime']?></p>
+							<p class="date">回答于：<?=$problem_detail[$index]['ctime']?></p>
 						</div>
 						<div class="desc"><?=$problem_detail[$index]['content']?></div>
 					</div>

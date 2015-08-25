@@ -62,6 +62,7 @@ $(".button_ok").click(function(){
 	            location.reload();
 	        },1000)
 	},function(msg){
+		console.log(msg);
 		showAlert(false,msg.error);
 		 setTimeout(function(){
 	            close();
@@ -72,7 +73,7 @@ $(".button_ok").click(function(){
 
 $(".js_chou").click(function(event) {
 	$(".windows").show();
-	$(".confirm").show()
+	$(".confirm").show();
 	setTimeout(function(){
 		$(".confirm").css({"top" : "20%"});
 	},100)

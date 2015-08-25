@@ -90,7 +90,7 @@
 									?>
 								</ul>
 
-								<div class="list-date"> 大神XXX回答于：<?=$value['ctime']?></div>
+								<div class="list-date"> 大神<?=$value['answer_id']['nickname']?>回答于：<?=date("H:i:s",$value['answer_time'])?></div>
 							</li>
 						<?php }?>
 						</ul>
@@ -142,9 +142,5 @@
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
 <script src="./static/js/problem.home.js"></script>
-<script type="text/javascript">
-	var ue = UE.getEditor('editor');
-
-</script>
 </body>
 </html>

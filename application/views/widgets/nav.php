@@ -10,7 +10,7 @@
                         'active' => false
                     ),
                     array(
-                        'name' => '实时答疑',
+                        'name' => '秒答',
                         'link' => 'miaoda',
                         'active' => false
                     ),
@@ -20,7 +20,7 @@
                         'active' => false
                     ),
                     array(
-                        'name' => '神码来了',
+                        'name' => '大神',
                         'link' => 'god',
                         'active' => false
                     ),

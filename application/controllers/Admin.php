@@ -33,7 +33,7 @@ class Admin extends CI_Controller {
 		foreach ($data['user'] as $key => $value) {
 			$data['user'][$key]['type'] = $data['user'][$key]['type'] == "2" ? "<font style='color:#cc0000;font-weight:700'>待审核</font>" : "";
 		}
-		$data['user_max'] = $this->user_model->get_count(array("type" => 1));
+		$data['user_max'] = $this->user_model->get_count(array("type" => 2));
 		$this->load->library('parser');
 		$this->parser->parse('admin/god_apply.php', $data);
 	}
