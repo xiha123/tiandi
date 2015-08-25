@@ -179,7 +179,7 @@ function timeOut_fun(){
 if(problem_type == 3){
 	value = '在此处输入评论';
 }else{
-	value = '在此处输入您对问题的描述';
+	value = '详细描述你的解答';
 }
 var is_one = true , is_ok = false , is = false;
 ue.ready(function(){

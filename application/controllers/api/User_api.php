@@ -135,11 +135,11 @@ class user_api extends base_api {
     // 编辑修改用户资料
     public function edits() {
 
-        $params = parent::get_params('POST', array('nickname',"desk","email","phone")); if (empty($params)) return;extract($params);
+        $params = parent::get_params('POST', array('nickname',"desk","email","phone","id")); if (empty($params)) return;extract($params);
         //,"pwd_lost","pwd_new"
-        if($this->user_model->is_exist(array("email" => $email))){parent::finish(false, '该邮箱已经被人使用了');}
-        if($this->user_model->is_exist(array("nickname" => $nickname))){parent::finish(false, '该昵称已经被人使用了');}
-        if($this->user_model->is_exist(array("cellphone" => $phone))){parent::finish(false, '该手机已经被人使用了');}
+        if($this->user_model->is_exist(array("email" => $email , "id !=" => $id))){parent::finish(false, '该邮箱已经被人使用了');}
+        if($this->user_model->is_exist(array("nickname" => $nickname , "id !=" => $id))){parent::finish(false, '该昵称已经被人使用了');}
+        if($this->user_model->is_exist(array("cellphone" => $phone , "id !=" => $id))){parent::finish(false, '该手机已经被人使用了');}
         $pwd_lost = $this->input->post("pwd_lost");
         $pwd_new = $this->input->post("pwd_new");
         $cur_id = $this->session->userdata('uid');

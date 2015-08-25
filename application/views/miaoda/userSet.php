@@ -6,6 +6,9 @@
     $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); 
     $this->load->view('widgets/windows.php' );
 ?>
+<script type="text/javascript">
+    uid = <?=$id?>
+</script>
 
 
 <div class="box">
