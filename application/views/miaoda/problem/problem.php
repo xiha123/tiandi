@@ -41,9 +41,8 @@
 
 		<div class="leftBox">
 			<?=$problem_data['type'] != 3 ? '<div class="head">● 该问题赏金为<font> '.
-				$problem_data["silver_coin"] . '银币</font>，<font>'.
-				$problem_data["gold_coin"] . '金币</font>，共有<font>'.
-				count(json_decode($problem_data['who'])).'位众筹者</font></div>' : "";
+				$problem_data["silver_coin"] . '银币</font>，共有<font>'.  //，<font>'.$problem_data["gold_coin"] . '金币</font>
+				(count(json_decode($problem_data['who'])) + 1).'位众筹者</font></div>' : "";
 			?>
 			<div class="leftHeader">
 				<h1><?=$problem_data["title"];?></h1>
@@ -67,7 +66,7 @@
 				if($problem_detail[0]["code"] != NULL){
 					echo '<div class="code-tool">
 								<div class="tool">
-									<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code ('.($problem_detail[0]["language"]).')</h2>
+									<!--<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a>--><h2>code ('.($problem_detail[0]["language"]).')</h2>
 								</div>
 							</div>
 							<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.($problem_detail[0]["code"]).'</pre></div>';
@@ -86,7 +85,7 @@
 					if($problem_detail[$index]["code"] != NULL){
 						echo '<div class="code-tool">
 							<div class="tool">
-								<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a><h2>code ('.($problem_detail[$index]["language"]).')</h2>
+								<!--<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a>--><h2>code ('.($problem_detail[$index]["language"]).')</h2>
 							</div>
 						</div>
 						<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.($problem_detail[$index]["code"]).'</pre></div>';
