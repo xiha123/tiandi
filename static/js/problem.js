@@ -1,5 +1,3 @@
- var ue = UE.getEditor('editor');
-	SyntaxHighlighter.all();
 
 $("#answer").on('click' , function(event) {
 	_td.api.requestProblem({
@@ -64,6 +62,7 @@ $(".button_ok").click(function(){
 	            location.reload();
 	        },1000)
 	},function(msg){
+		console.log(msg);
 		showAlert(false,msg.error);
 		 setTimeout(function(){
 	            close();
@@ -74,7 +73,7 @@ $(".button_ok").click(function(){
 
 $(".js_chou").click(function(event) {
 	$(".windows").show();
-	$(".confirm").show()
+	$(".confirm").show();
 	setTimeout(function(){
 		$(".confirm").css({"top" : "20%"});
 	},100)
@@ -177,3 +176,35 @@ function timeOut_fun(){
 	        },1000)
 	}
 }
+ var ue = UE.getEditor('editor');SyntaxHighlighter.all();
+if(problem_type == 3){
+	value = '在此处输入评论';
+}else{
+	value = '详细描述你的解答';
+}
+var is_one = true , is_ok = false , is = false;
+ue.ready(function(){
+	ue.execCommand('inserthtml', '<span></span>');
+	if(ue.getContentTxt() == "" && is == false){
+		ueSetColor("#aaa",value);
+		is = true;
+	}
+	ue.blur();
+	setTimeout(function(){
+		ue.addListener('selectionchange', function( editor ) {
+			if(is_one == false){
+				is_one = true;
+				if(ue.getContentTxt() == value && is == true){
+					ueSetColor("#333" , "");
+					setTimeout(function(){
+						ue.focus();
+					},100)
+				}
+			}
+			if(!is_ok){
+				is_one = false;
+			}
+			is_ok = true;
+		});
+	},500)
+});

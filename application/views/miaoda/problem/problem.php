@@ -14,8 +14,6 @@
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
-
-
 	?>
 </script>
 
@@ -61,7 +59,7 @@
 				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
 				<div class="data">
 					<p class="name"><a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><?=$problem_user['nickname']?></a></p>
-					<p class="date">提问于：<?=$problem_data['ctime']?></p>
+					<p class="date">提问于：<?=$problem_detail[0]['ctime']?></p>
 				</div>
 				<div class="desc"><?=$problem_detail[0]['content']?></div>
 			</div>
@@ -80,7 +78,7 @@
 						<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detail[$index]['user']['avatar']?>" alt="" width="35" height="35"></a>
 						<div class="data">
 							<p class="name">大神：<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><?=$problem_detail[$index]['user']['nickname']?></a></p>
-							<p class="date">回答于：<?=$problem_data['ctime']?></p>
+							<p class="date">回答于：<?=$problem_detail[$index]['ctime']?></p>
 						</div>
 						<div class="desc"><?=$problem_detail[$index]['content']?></div>
 					</div>
@@ -148,10 +146,10 @@
 					</table>
 				</div>
 			<?php }}
-
 				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
-					echo '<div class="button close" data-id="' . $problem_data["id"] . '">
-						<a href="javascript:" class="ajax_up"><i class="fa fa-star"></i>点赞
+					echo '<div class="button close" data-id="' . $problem_data["id"] . '">';
+					echo $problem_collect == true ? '<a href="javascript:;" class="uncollect"><i class="fa fa-star"></i> 取消收藏</a>':'<a  href="javascript:;" class="collect"><i class="fa fa-star"></i> 收藏</a>';
+					echo '<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞
 						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
 						<a href="#"><i class="fa fa-circle"></i>分享</a>';
 					echo $problem_data['owner_id'] == @$id && $problem_data['type'] == 2 ? '<button class="ajax_close">满意</button> <button class="none-background ajax_close_not">不满意</button>' :"";
@@ -161,31 +159,24 @@
 
 
 			<div class="button">
-			<?php if($problem_data['type'] != 2 || $problem_data['type'] != 3) { ?>
-				<?php if (empty($id) || $id != $problem_data['owner_id']) { ?>
-					<?php if ($problem_collect == true) { ?>
-						<button class="uncollect">取消收藏</button>
-					<?php } else { ?>
-						<button class="none-background collect"><i class="fa fa-star"></i> 收藏</button>
-					<?php } ?>
-				<?php } ?>
-
-				<?php if ($problem_data['type'] != 3) { ?>
-					<button class="js_chou">众筹</button>
-				<?php } ?>
-			<?php } if(@$type == 1 ) { ?>
-				<?php if ($problem_data['type'] == 0) { ?>
-					<button id="answer">认领问题</button>
-				<?php } if ($problem_data['type'] == 1 && $problem_data["answer_id"] == @$id) { ?>
-					<button id="reply">回答</button>
-				<?php } ?>
-			<?php } ?>
+				<?php
+					if($problem_data['type'] != 3){
+						echo $problem_collect == true ?
+						'<button class="uncollect">★ 取消收藏</button>':
+						'<button class="none-background collect">★ 收藏</button>';
+						echo '<button class="js_chou">众筹</button>';
+					}
+					if(@$type == 1 ){
+						echo $problem_data['type'] == 0  ? '<button id="answer">认领问题</button>' : "";
+						echo $problem_data['type'] == 1 && $problem_data["answer_id"] == @$id ? '<button id="reply">回答</button>' :"";
+					}
+				?>
 			</div>
-
 			<?php
 				if($problem_data['type'] == 3){
 			?>
-			<div class="doubt">
+			<h2 class="tishi fl">发表评论</h2>
+			<div class="doubt" style="margin-top:0px;">
 				<table class="table">
 					<tr><td>
 						<div class="desc">

@@ -41,7 +41,7 @@
 						<td>{cellphone}</td>
 						<td>{alipay}</td>
 						<td>{gold_coin}</td>
-						<td>{silver_coin}</td>
+						<td>{silver_coin}</td>p
 						<td>{Integral}</td>
 						<td>{idcar}</td>
 						<td>{type}</td>

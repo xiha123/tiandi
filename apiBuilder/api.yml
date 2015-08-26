@@ -143,7 +143,6 @@ api:
     needs:
         - problem_id
         - content
-        - code
         - type
         - language
 -

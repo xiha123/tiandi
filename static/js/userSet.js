@@ -28,6 +28,7 @@ $("#ajax_userSet").click(function(){
 		"desk" : signature,
 		"email" : email,
 		"phone" : phone,
+		"id" : uid,
 		"pwd_lost" : pwd_lost,
 		"pwd_new" : pwd_new,
 	}).then(function(){
@@ -94,6 +95,7 @@ $("#ajax_godset").click(function(){
 			"alipay" : alipay,
 			"goddesc" : goddesc,
 			"tags" : JSON.stringify(jsonArray),
+			"id" : uid,
 		},
 		success:function(data){
 			console.log(data);

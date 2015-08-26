@@ -239,6 +239,7 @@ class problem_api extends base_api {
         if ($this->me['id'] !== $problem['answer_id'] && $this->me['type'] !== 1) {
             $this->finish(false, '没有权限');
         }
+        $this->problem_model->edit($problem_id , array("answer_time" => time()));
         $new_detail_id = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'content' => $this->HTML($content),

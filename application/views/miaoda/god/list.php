@@ -14,7 +14,7 @@
 ?>
 <link rel="stylesheet" href="./static/css/miaoda/god.css">
 <body>
-<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 2)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
 	<div class="tab">

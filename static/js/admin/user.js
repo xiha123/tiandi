@@ -12,7 +12,7 @@ $(".edit-user").click(function(event) {
 		'<input type="hidden" value="0" name="type">'+
 		'<input type="hidden" value="' + $parents.data("id")+ '" name="id">'+
 		'<tr><td>用户昵称：<input type="text" value="' + $parents_baby.eq(0).text()+ '" name="nickname">'+
-		//'<tr><td>用户密码：<input type="text" value="" placeholder="如若为空则不修改用户密码" name="password">'+
+		'<tr><td>用户密码：<input type="text" value="" placeholder="如若为空则不修改用户密码" name="password">'+
 		'<tr><td>真实姓名：<input type="text" value="' + $parents_baby.eq(1).text()+ '" name="name">'+
 		'<tr><td>用户邮箱：<input type="text" value="' + $parents_baby.eq(2).text()+ '" name="email">'+
 		'<tr><td>手 机 号&nbsp;：<input type="text" value="' + $parents_baby.eq(3).text()+ '" name="cellphone">'+

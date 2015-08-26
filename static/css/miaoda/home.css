@@ -32,7 +32,7 @@
 .right-content{margin-left:10px;width:200px;margin-top: 13px;}
 .right-content .list-tag{position:relative;left:5px;top:0px;}
 .right-content .list-tag li{border:none;width:auto;margin-top:15px;}
-.right-content .list-tag .tag-box{top:0px;background:#d6edeb;color:#43a8ad;padding:5px 9px;margin-right: 4px}
+.right-content .list-tag .tag-box{  line-height: 22px;top:0px;background:#d6edeb;color:#43a8ad;padding:5px 9px;margin-right: 4px}
 .right-content .list-date{color:#aaa;bottom:15px;position: absolute;right:10px;}
 .right-content .box-title{position:relative;margin-top:28px;}
 

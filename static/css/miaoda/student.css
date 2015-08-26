@@ -27,7 +27,7 @@
 .doubt  >.table{position:relative;width:100%;}
 .doubt  .table td{position:relative;width:743px;}
 	     .table .title{margin-bottom:10px;}
-	     .table .title,.input-content,.doubt .code{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}
+	     .table .title,.input-content,.doubt .code{color:#333;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}
 	     .table .input-content{height: 60px;}
 	     .table .code{border-top:1px dashed #ddd;margin-top:-5px;}
 	     .table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 733px;}
@@ -65,7 +65,8 @@
 .whyUser > .data,.data>p,img{float: left}
 .whyUser > .data{width:710px;padding-left:10px;height:35px;display:inline-block;}
 .whyUser > .data p{position: relative;top:18px;font-size: 14px;color:#aaa;margin-right: 10px;}
-.whyUser > .data .name{color:#333;margin-left:10px;}
+.whyUser > .data .name a { color:#333; }
+.whyUser > .data .name a:hover { color:#219ba1; }
 .whyUser > .data .date{float: right}
 .whyUser .desc{padding-right:20px;margin:15px 0;padding-top:5px;float:left;color:#333;}
 .whyUser .desc *{word-break:break-all; line-height:20px;max-width: 760px;}
@@ -78,7 +79,7 @@
 .doubt-time.disable{color:#AaA;}
 .leftBox .center{text-align: center;width: 100%;float: left}
 .leftBox .tishi{font-size:19px;margin:8px 0px;font-weight:400;color:#219ba1;}
-.leftBox .title{float:left;font-size:14px;margin:8px 0px;font-weight:400;color:#219ba1;}
+.leftBox .title{float:left;font-size:14px;margin:40px 0 5px;font-weight:400;color:#219ba1;}
 
 .user_list_data li,.user_list_data ul{float:left;width: 100%}
 .user_list_data li{padding:9px 0;border-bottom: 1px solid #eee}
@@ -88,3 +89,8 @@
 
 .online{position:relative;top:-2px;color:#219ba1;}
 .online font{position:relative;top:-3px;margin-right:5px;color:#219ba1;}
+
+.user_list_data {
+    float:left;
+    margin:60px 0 40px;
+}

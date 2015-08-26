@@ -9,7 +9,6 @@
 		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 	}
 ?>
-
 <div class="wrapper">
 
 	<div class="doubt">
@@ -17,7 +16,7 @@
 			<tr><td><input type="text" class="title" id="problem-title" value="<?=$_SESSION['problem_temp']['title']?>" placeholder="一句话写下你遇到的问题"></td></tr>
 			<tr><td>
 				<div class="desc">
-					<script id="editor" type="text/plain" style="width:980px;height:180px;"><?=$_SESSION['problem_temp']['content']?></script>
+					<script id="editor" type="text/plain" style="color:#aaa;width:980px;height:180px;"><?=$_SESSION['problem_temp']['content']?></script>
 					<div class="code-box">
 						<select class="Language">
 							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>
@@ -41,7 +40,6 @@
 							echo '<span class="tag-box"><font>'.$value.'</font> <button class="close">X</button></span>';
 						}
 					?>
-
 				</div>
 				<div class="input-tag">
 					<input type="text" class="input-tag" placeholder="请输入标签">
@@ -92,7 +90,7 @@
 									?>
 								</ul>
 
-								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+								<div class="list-date"> 大神<?=$value['answer_id']['nickname']?>回答于：<?=date("H:i:s",$value['answer_time'])?></div>
 							</li>
 						<?php }?>
 						</ul>
@@ -124,7 +122,6 @@
 
 		<div class="right-content">
 			<h2 class="box-title">热门标签</h2>
-
 			<ul class="list-tag">
 				<?php
 					$tag_list = $this->tag_model->get_tag(0 , 20 , "all");
@@ -134,13 +131,9 @@
 						}
 					}
 				?>
-				<!-- <li><a href="#" > 更多</a></li> -->
 			</ul>
 		</div>
-
 	</div>
-
-
 </div>
 <script type="text/javascript">
 	var tagIndex = <?=count($problemTagList)?>;
@@ -148,9 +141,6 @@
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript">
-	var ue = UE.getEditor('editor');
-</script>
 <script src="./static/js/problem.home.js"></script>
 </body>
 </html>

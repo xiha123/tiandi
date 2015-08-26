@@ -10,7 +10,7 @@
                         'active' => false
                     ),
                     array(
-                        'name' => '实时答疑',
+                        'name' => '秒答',
                         'link' => 'miaoda',
                         'active' => false
                     ),
@@ -20,7 +20,7 @@
                         'active' => false
                     ),
                     array(
-                        'name' => '神码来了',
+                        'name' => '大神',
                         'link' => 'god',
                         'active' => false
                     ),
@@ -62,8 +62,8 @@
                 }else{
                     echo '
                         <div class="notLogin">
-                            <a href="javascript:" class="bomb-login"><i class="fa fa-user"></i>登录</a>
-                            <a href="javascript:" class="bomb-reg">注册</a>
+                            <a href="javascript:;" class="bomb-login"><i class="fa fa-user"></i>登录</a>
+                            <a href="javascript:;" class="bomb-reg"><i class="fa fa-user-plus"></i>注册</a>
                         </div>';
                 }
             ?>
