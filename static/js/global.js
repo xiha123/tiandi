@@ -45,38 +45,38 @@ $(".button").on("click" , ".collect" , function(){
     var _this = $(this);
     _td.api.collectProblem({
         problem_id : problem_id,
-    }).then(function(msg){
-            location.reload();
-    },function(res){
-        showAlert(false, res.msg);
+    }).then(function() {
+        location.reload();
+    },function(res) {
+        showAlert(false, res.error);
     });
 })
 $(".button").on("click" , ".uncollect" , function(){
     _td.api.uncollectProblem({
         problem_id : problem_id,
-    }).then(function(msg){
+    }).then(function() {
             location.reload();
-    },function(msg){
-        showAlert(false,msg);
+    },function(res) {
+        showAlert(false, res.error);
     });
 })
 
 $(".button").on("click" , ".follow" , function(){
     _td.api.followProblem({
         problem_id : problem_id,
-    }).then(function(msg){
+    }).then(function() {
             location.reload();
-    },function(msg){
-        showAlert(false,msg);
+    },function(res) {
+        showAlert(false, res.error);
     });
 })
 $(".button").on("click" , ".unfollow" , function(){
     _td.api.unfollowProblem({
         problem_id : problem_id,
-    }).then(function(msg){
+    }).then(function() {
             location.reload();
-    },function(msg){
-        showAlert(false,msg);
+    },function(res) {
+        showAlert(false, res.error);
     });
 })
 
@@ -293,7 +293,7 @@ $(document).ready(function() {
                return false;
             }
 
-          
+
             if(timeOut == false) return false;
             timeOut = false;
             value = $(this).val();
@@ -323,7 +323,7 @@ $(document).ready(function() {
                 return false;
             }
         });
-            
+
         $tag.on('click', '.close', function(event) {
             tagIndex = tagIndex - 1;
             if(tagIndex < 0){tagIndex = 0;}
