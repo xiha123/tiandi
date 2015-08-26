@@ -112,10 +112,9 @@
 					<h3 class="center tishi">您的问题已经推送给了<span>'.($frist ? "全部" : "1").'</span>大神，请耐心等待······</h3>
 					<h2 class="title">这些问题可能对您有用</h2>
 					<ul>
-						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
-						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
-						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
-						<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
+						{useful_list}
+							<li><a href="./problem/?p={id}" target="_blank">{title}</a></li>
+						{/useful_list}
 					</ul></div>';
 
 				}
@@ -195,7 +194,7 @@
 			<?php
 				if($problem_data['type'] == 3){
 					foreach ($problem_commenct as $key => $value) {
-						echo '<li><img src="'.$value['user']['avatar'].'" alt=""><p class="name">'.$value['user']['nickname'].' <span style="color:#aaa;margin-left:10px;font-size:12px;">'.$value['ctime'].'</span></p><p class="content">'.str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $value['content']).'</p></li>';
+						echo '<li><img src="'.$value['user']['avatar'].'" alt=""><p class="name">'.$value['user']['nickname'].' <span style="color:#aaa;margin-left:10px;font-size:12px;">'.$value['ctime'].'</span><a href="javascript:;" class="data fr">有用 / (1)</a></p><p class="content">'.str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $value['content']).'</p></li>';
 					}
 				}
 				echo '</ul>';
@@ -214,10 +213,9 @@
 		<div class="rightBox">
 			<h2 class="box-title">相关问题</h2>
 			<ul>
-				<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
-				<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
-				<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
-				<li><a href="javascript:">相关问题相关问题相关问题相关问题相关问题</a></li>
+				{recommend_list}
+					<li><a href="./problem/?p={id}" target="_blank">{title}</a></li>
+				{/recommend_list}
 			</ul>
 		</div>
 

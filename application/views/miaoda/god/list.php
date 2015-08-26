@@ -33,11 +33,11 @@
 						$button =  check_follow($follow_users,$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
 						echo '<div class="data fl">
 							<div class="left_box">
-								<img src="' . $value['avatar'] . '" alt="" class="pic">
+								<a href="./home?uid=' . $value['id'] . '" target="_blank"><img src="' . $value['avatar'] . '" alt="" class="pic"></a>
 								'.$button.'
 							</div>
 							<div class="right_box">
-									<p class="name">' . $value['nickname'] . '<font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font> </p>
+									<p class="name"><a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['nickname'] . '</a><font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font> </p>
 									<p class="desk">' . $value['god_description'] . '</p>
 									<p class="class">正在开的课：2门</p>';
 

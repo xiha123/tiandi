@@ -43,17 +43,25 @@ class Home extends CI_Controller {
 				}
 				$owner_list_count = count(json_decode($push_data['user']['follow_users']));
 				$push_data['hot'] = "&love=love";
+
 			}
 			if($push_data['owner']){
 				$problem_list = $this->problem_model->handle_tag($this->problem_model->get_list(array("owner_id" => $id) , $push_data['page'] - 1 , 20));
 				$owner_list_count = $this->problem_model->get_count(array("owner_id" => $id));
 				$push_data['hot'] = "&owner=owner";
+				foreach ($problem_list as $key => $value) {
+					$problem_list[$key]['answer_id'] = $this->user_model->get(array("id" => $value['answer_id']) , array("nickname"));
+				}
 			}
 			if(!$push_data['love'] && !$push_data['owner'] ){
 				$problem_list = $this->problem_model->get_collect($push_data['user']['collect_problems']);
 				$owner_list_count = count($push_data['user']['collect_problems']);
 				$push_data['hot'] = "";
+				foreach ($problem_list as $key => $value) {
+					$problem_list[$key]['answer_id'] = $this->user_model->get(array("id" => $value['answer_id']) , array("nickname"));
+				}
 			}
+
 			$push_data['problem_list'] = $problem_list;
 			$push_data['owner_list_count'] = $owner_list_count;
 		}

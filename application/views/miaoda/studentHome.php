@@ -64,7 +64,7 @@
 										}
 									?>
 								</ul>
-								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+								<div class="list-date"> <?=$value['type'] == 3 ? "大神".$value['answer_id']['nickname']."回答于：".date("Y-m-d H:i:s",$value['answer_time']) : "提问于：".$value['ctime'] ?></div>
 							</li>
 						<?php }	}else{
 							foreach ($problem_list as $key => $value) {
@@ -72,11 +72,11 @@
 								$button =  check_follow(json_decode($user['follow_users']),$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
 								echo '<div class="data fl">
 									<div class="left_box">
-										<img src="' . $value['avatar'] . '" alt="" class="pic">
+										<a href="./home?uid=' . $value['id'] . '" target="_blank"><img src="' . $value['avatar'] . '" alt="" class="pic"></a>
 										'.$button.'
 									</div>
 									<div class="right_box">
-											<p class="name">' . $value['nickname'] . '<font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.count(json_decode($value['follow_users'])).'</font> </p>
+											<p class="name"><a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['nickname'] . '</a><font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.count(json_decode($value['follow_users'])).'</font> </p>
 											<p class="desk">' . $value['god_description'] . '</p>';
 								$skilled_tags = json_decode($value['god_skilled_tags']);
 								foreach (count($skilled_tags) > 0 ? $skilled_tags : array() as $key => $value) {

@@ -1,4 +1,6 @@
 <?php
+include_once(APPPATH . 'controllers/api/Base_api.php');
+include_once('./static/lib/phpanalysis/index.php');
 
 class Index extends CI_Controller {
 	public function __construct() {
@@ -8,6 +10,7 @@ class Index extends CI_Controller {
 		$this->load->model("problem_comment_model");
 		$this->load->model("user_model");
 	}
+
 	public function index(){
 		if(!isset($_GET['p']) || $_GET['p'] == ""){show_404();}
 		$id = $this->input->get("p");
@@ -35,10 +38,26 @@ class Index extends CI_Controller {
 			$index ++;
 		}
 		$userdata["page_max"] = $this->problem_comment_model->get_count(array(
-				"problem_id" => $userdata["problem_data"]['id']
+			"problem_id" => $userdata["problem_data"]['id']
 		));
 
-
+		// 推送相关问题推荐 列出关键词
+		$problem_temp = array();
+		$problem_key = get_tags_arr($userdata["problem_data"]['title'] ." ". strip_tags($userdata['problem_detail'][0]['content']));
+		$problem_key = array_unique($problem_key);
+		if($userdata['problem_data']['type'] == 0){
+			$problem_data = $this->problem_model->search_key($problem_key , 4 , array("type" => 3));
+			$userdata['useful_list'] = $problem_data;
+		}
+		$problem_data = $this->problem_model->search_key($problem_key , 4);
+		$userdata['recommend_list'] = $problem_data;
+		// $detail_content = $this->problem_detail_model->search_key($problem_key , 2);
+		// foreach ($detail_content as $key => $value) {
+		// 	$problem_temp[$value['problem_id']] = $this->problem_model->get(array('id'=>$value['problem_id']) , array("title","id"));
+		// }
+		// foreach ($problem_data as $key => $value) {
+		// 	$problem_temp[$value['id']] = array("title" => $value['title'] , "id" => $value['id']);
+		// }
 
 		//Get god max count
 		$userdata['god_count'] = $this->user_model->get_count(array("type" => 1));

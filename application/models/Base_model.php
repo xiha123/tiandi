@@ -34,8 +34,8 @@ class base_model extends CI_Model {
 		return $this->db->select('id')->where($params)->get($this->table_name)->num_rows() > 0;
 	}
 
-    public function get($params) {
-        return $this->db->where($params)->get($this->table_name, 1)->row_array();
+    public function get($params,$select=array()) {
+        return $this->db->select($select)->where($params)->get($this->table_name, 1)->row_array();
     }
 
 
