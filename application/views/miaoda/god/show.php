@@ -2,13 +2,22 @@
 <link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
-<?php $this->load->view('widgets/windows.php' );
+<?php 
+	$this->load->view('widgets/windows.php' );
+	function check_follow($follow_users , $user_id){
+		foreach ($follow_users as $key => $value) {
+			if($value[0] == $user_id){
+				return true;
+			}
+		}
+		return false;
+	}
 ?>
 	<div class="wrapper">
 		<div class="tacher-data">
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic"><h3 class="name"><?=$user["nickname"] ?></h3>
 			<p class="desk"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
-			<?=!$follow_type ? '<button id="ajax_eye" data-id="'.$user["id"].'">+ 关注</button>' : '<button id="ajax_uneye" data-id="'.$user["id"].'">取消关注</button>';?>
+			<?=!check_follow(json_decode($follow_users) , $user['id']) ? '<button id="ajax_eye" data-id="'.$user["id"].'">+ 关注</button>' : '<button id="ajax_uneye" data-id="'.$user["id"].'">取消关注</button>';?>
 		</div>
 		<div class="tacher-tag">
 			<h2>擅长标签：</h2>

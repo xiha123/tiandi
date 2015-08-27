@@ -193,7 +193,7 @@
 			<?php
 				if($problem_data['type'] == 3){
 					foreach ($problem_commenct as $key => $value) {
-						echo '<li><img src="'.$value['user']['avatar'].'" alt=""><p class="name">'.$value['user']['nickname'].' <span style="color:#aaa;margin-left:10px;font-size:12px;">'.$value['ctime'].'</span><a href="javascript:;" class="data fr">有用 / (1)</a></p><p class="content">'.str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $value['content']).'</p></li>';
+						echo '<li><img src="'.$value['user']['avatar'].'" alt=""><p class="name">'.$value['user']['nickname'].' <span style="color:#aaa;margin-left:10px;font-size:12px;">'.$value['ctime'].'</span><!--<a href="javascript:;" class="data fr">有用 / (1)</a>--></p><p class="content">'.str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $value['content']).'</p></li>';
 					}
 				}
 				echo '</ul>';

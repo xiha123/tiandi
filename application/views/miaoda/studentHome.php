@@ -89,7 +89,7 @@
 
 
 					<?php
-						$page_count = $follow_type == false ? 20 : 5;
+						$page_count = $follow_type == false ? 20 : 6;
 						$this->load->view("miaoda/page",array(
 							"page" => $page,
 							"page_max" => $owner_list_count,

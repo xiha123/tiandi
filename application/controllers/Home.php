@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 		// 决定给用户展示什么页面
 		$user_type = $user_data['type'] == 2 ? 0 : $user_data['type'];
 		if($user_type > 2 || $user_type < 0) show_404();
-		$user_type = $user_type == 1 && !isset($this->me['id']) ? 2 : $user_type;
+		$user_type = $user_type == 1 && $this->me['id'] != $id ? 2 : $user_type;
 
 
 		// 构造数据准备传递
@@ -37,11 +37,13 @@ class Home extends CI_Controller {
 		if($user_type == 0){
 			if($push_data['love']){
 				$push_data['follow_type'] = true;
+				$love_user = json_decode($push_data['user']['follow_users']);
+				$owner_list_count = count($love_user);
 				$problem_list = array();
-				foreach (json_decode($push_data['user']['follow_users']) as $key => $value) {
+				$love_user = array_slice($love_user, ($push_data["page"] - 1) * 6 , 6);
+				foreach ($love_user as $key => $value) {
 					array_push($problem_list , $this->user_model->get(array("id" => $value[0])));
 				}
-				$owner_list_count = count(json_decode($push_data['user']['follow_users']));
 				$push_data['hot'] = "&love=love";
 
 			}
@@ -91,7 +93,7 @@ class Home extends CI_Controller {
 				$temp_data[] = $value;
 			}
 			$push_data["course"] = $temp_data;
-			$push_data["answer"] = $this->problem_model->get_answer($id , $push_data["page"] , 10);
+			$push_data["answer"] = $this->problem_model->get_answer($id , $push_data["page"]  , 10);
 			$push_data["answer_count"] = $this->problem_model->answer_count($id);
 		}
 
