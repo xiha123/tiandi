@@ -1,5 +1,14 @@
 api:
 
+# 找回密码
+-
+    url: api/user_api/forget
+    type: post
+    name: forget
+    needs:
+        - email
+        - verification
+
 # 众筹
 -
     url: api/problem_api/chou

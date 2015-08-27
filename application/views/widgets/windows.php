@@ -13,7 +13,7 @@
 				<ul>
 					<li><input type="text" id="login_username" placeholder="请输入您的邮箱"></li>
 					<li><input type="password" id="login_password" placeholder="请输入您的登陆密码"></li>
-					<li class="login-click"> <label><input type="checkBox"><span>记住密码</span></label>  <a href="javascript:;" class="fr forget">忘记密码</a> </li>
+					<li class="login-click"> <label><input type="checkBox"><span>记住密码</span></label>  <a href="javascript:;" class="fr forget" onclick="document.getElementById('image_id').src='./Verification'">忘记密码</a> </li>
 					<li><input type="submit" value="登录" id="ajax_login"></li>
 					<li class="sociality">
 						社交账号
@@ -34,8 +34,8 @@
 		<div class="login-content">
 			<ul>
 				<li><input type="text" id="userEmail" placeholder="请输入您的邮箱"></li>
-				<li><input type="password" id="login_password" placeholder="请输入验证码"></li>
-				<li class="login-click"><img src="http://staticlive.douyutv.com/common/douyu/images/box/lw_time.png" alt="" width="120" height="48"></li>
+				<li><input type="text" id="verification" placeholder="请输入验证码"></li>
+				<li class="login-click"><img src="" onclick="document.getElementById('image_id').src='./Verification'" id="image_id" alt="" width="120" height="40"></li>
 				<li><input type="button" value="找回密码" id="ajax_forget"></li>
 			</ul>
 		</div>

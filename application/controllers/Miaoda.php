@@ -26,7 +26,7 @@ class Miaoda extends CI_Controller {
 			}
 		}else{
 			$userdata["hot_type"] = "1";
-			$userdata["problem_list_count"] = $this->problem_model->get_list_count();
+			$userdata["problem_list_count"] = $this->problem_model->count(array("type" => 3));
 			$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
 		}
 		foreach ($userdata["problem_list"] as $key => $value) {

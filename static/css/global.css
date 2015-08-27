@@ -61,6 +61,10 @@ a,p{word-break: break-all;}
 
 .tag-box,.tagBox{float:left;margin-bottom:7px;font-size:14px;background:#d6edeb;color:#43a8ad;padding:3px 9px;position:relative;top:5px; margin-right: 4px}
 
+.window{display: block;}
+#forget {height:330px;display: block;}
+#forget input[type='button']{width:90%;background: #219ba1;color:#fff;border:none;padding:8px 0px;margin-left:20px;border-radius: 10px; cursor: pointer;font-size: 18px;}
+
 
 /* tab */
 .tab {

@@ -22,13 +22,21 @@ $(".forget").click(function(event) {
 });
 
 $("#ajax_forget").click(function(){
-    var _this = $(this);
-    api.api.forget({
-        email : $("#userEmail").val(),
+    var _this = $(this),
+    email = $("#userEmail").val(),
+    verification = $("#verification").val();
+    if(email == ""){ showAlert(false, "请输入正确的邮箱");}
+    if(verification == "" || verification.length < 6){ showAlert(false, "请输入正确的验证码");}
+    _td.api.forget({
+        email : email,
+        verification : verification
     }).then(function(msg){
+        $("#forget").hide();
+        $(".window").hide();
         showAlert(true,"新的密码已经发送到您的邮箱，请注意查收！");
-    },function(res){
-        showAlert(false, res.msg);
+    },function(msg){
+        $("#image_id").attr("src" , "./Verification");
+        showAlert(false, msg.error);
     });
 })
 

@@ -28,7 +28,7 @@ class Index extends CI_Controller {
 
 		// <is tag>
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
-		if(!isset($userdata['tag_data']['name'])) show_404();
+		if(count($userdata['tag_data']) <= 0) show_404();
 		// </is tag>
 
 		switch ($problem_type) {
