@@ -38,6 +38,14 @@ class Miaoda extends CI_Controller {
 				show_404();
 			}
 		}
+
+		$hot_tags = $this->tag_model->get_tag(0 , 20 , "all");
+		$hot_tags = empty($hot_tags) ? array() : $hot_tags;
+		foreach ($hot_tags as &$tag) {
+			$tag['encode_name'] = urlencode($tag['name']);
+		}
+		$userdata['hot_tags'] = $hot_tags;
+
 		$this->load->library('parser');
 		$this->parser->parse("miaoda/home.php" , $userdata);
 	}

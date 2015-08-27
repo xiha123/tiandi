@@ -13,11 +13,11 @@
 
 			<div class="tag-desk">
 				<h1><?=$tag_data['name']?></h1>
-				<?=!$collect_type ? 
-					'<button id="collect_tag">★ 收藏</button>' : 
-					'<button class="none-background" id="uncollect_tag">★ 取消收藏</button>'
+				<?=!$collect_type ?
+					'<button id="collect_tag"><i class="fa fa-star-o"></i> 收藏</button>' :
+					'<button class="none-background" id="uncollect_tag"><i class="fa fa-star"></i> 取消收藏</button>'
 				?>
-				
+
 				<p class="desk">
 					<?=$tag_data['content'] == "" ? "" : $tag_data['content'];?>
 				</p>
@@ -125,8 +125,8 @@
 				showAlert(false,"网络异常！");
 			}
 		});
-		
-		
+
+
 	}
 </script>
 </body>

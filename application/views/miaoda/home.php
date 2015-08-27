@@ -81,13 +81,13 @@
 									<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
 								</div>
 								<ul class="list-tag">
-									<?php
-										if(!empty($value['tags'])){
-											foreach ($value['tags'] as $key => $values) {
-												echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
-											}
+								<?php
+									if(!empty($value['tags'])){
+										foreach ($value['tags'] as $key => $values) {
+											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 										}
-									?>
+									}
+								?>
 								</ul>
 
 								<div class="list-date"> 大神<?=$value['answer_id']['nickname']?>回答于：<?=date("H:i:s",$value['answer_time'])?></div>
@@ -112,25 +112,15 @@
 				</ul>
 			</div>
 
-
-
 		</div>
-
-
-
 
 
 		<div class="right-content">
 			<h2 class="box-title">热门标签</h2>
 			<ul class="list-tag">
-				<?php
-					$tag_list = $this->tag_model->get_tag(0 , 20 , "all");
-					if($tag_list){
-						foreach ($tag_list as $key => $value) {
-							echo '<li><a href="./tag/?name=' . urlencode($value['name']) . '" class="tag-box">'.$value['name'].'</a></li>';
-						}
-					}
-				?>
+				{hot_tags}
+				<li><a href="./tag?name={encode_name}" class="tag-box">{name}</a></li>
+				{/hot_tags}
 			</ul>
 		</div>
 	</div>

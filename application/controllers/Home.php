@@ -1,7 +1,7 @@
- <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends CI_Controller {
+
 	function __construct() {
 		parent::__construct();
 		$this->load->model("user_model");
@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 		$this->me = $this->user_model->check_login();
 	}
 
-	public function index(){
+	public function index() {
 		$id = !isset($_GET['uid']) ? false : $this->input->get("uid");
 		if($id == false) show_404();
 
