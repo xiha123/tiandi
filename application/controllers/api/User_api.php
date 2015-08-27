@@ -59,7 +59,7 @@ class user_api extends base_api {
         $this->problem_detail_model->delete_all($id);
         $this->problem_comment_model->delete_all($id);
 
-        
+
         $this->finish(true);
     }
 
@@ -100,7 +100,8 @@ class user_api extends base_api {
         }
     }
     public function uncollect_tag(){
-        $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
+        $params = parent::get_params('POST', array('id'));
+        extract($params);
         if($this->tag_model->uncollect_tag($id)){
             $this->tag_model->minus($id);
             $this->tag_model->un_user_tag($id);
@@ -109,12 +110,17 @@ class user_api extends base_api {
             $this->finish(false,"操作失败！");
         }
     }
+
     public function login() {
-        $params = parent::get_params('POST', array('name', 'pwd'));if(empty($params)) return; extract($params);
-        if ($this->user_model->login($name, $pwd) === false) {
+        $params = parent::get_params('POST', array('name', 'pwd'));
+        extract($params);
+
+        $result = $this->user_model->login($name, $pwd);
+        if ($result === false) {
             parent::finish(false, '用户名或密码错误');
         }
-        parent::finish(true);
+
+        parent::finish(true, '', $result);
     }
 
 

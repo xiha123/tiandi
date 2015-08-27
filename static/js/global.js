@@ -116,13 +116,17 @@ $("#login-form").on('submit' , function(event) {
     _td.api.loginUser({
         "name" : username,
         "pwd" : password
-    }).then(function(){
-        showAlert(true,"登录成功！");
-         setTimeout(function(){
-            location.reload();
-        },1000)
+    }).then(function(res) {
+        showAlert(true, "登录成功！");
+        setTimeout(function() {
+            if (res.data.type === '1') {
+                location.href = 'home?uid=' + res.data.id;
+            } else {
+                location.reload();
+            }
+        }, 1000)
     }, function(){
-        showAlert(false,"您输入的账号或密码错误，请检查后再试");
+        showAlert(false, "您输入的账号或密码错误，请检查后再试");
     });
 });
 
@@ -169,7 +173,7 @@ $("#register").on('submit' , function(event) {
         "email" : email,
         "nickname" : nick,
         "pwd" : password
-    }).then(function(){
+    }).then(function() {
         if(document.getElementById("reg_god").checked){
                 showAlert(true , "注册账号成功！请继续填写详细信息，首次注册赠送500银币已到帐请注意查收！");
         }else{
@@ -181,8 +185,8 @@ $("#register").on('submit' , function(event) {
             }else{
                 location.reload();
             }
-        }, 1000)
-    },function(res){
+        }, 1000);
+    }, function(res) {
         showAlert(false, res.error);
     });
 });

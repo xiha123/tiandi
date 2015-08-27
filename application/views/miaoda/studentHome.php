@@ -1,4 +1,4 @@
-<?php $this->load->view('widgets/header.php'); 
+<?php $this->load->view('widgets/header.php');
 	function check_follow($follow_users , $user_id){
 		foreach ($follow_users as $key => $value) {
 			if($value[0] == $user_id){
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
 <?php
-	$this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); 
+	$this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0));
 	$this->load->view('widgets/windows.php' );
 ?>
 	<div class="wrapper">
@@ -57,7 +57,7 @@
 								</div>
 								<ul class="list-tag">
 									<?php
-										if(isset($value['tags'])){
+										if(!empty($value['tags'])) {
 											foreach ($value['tags'] as $key => $values) {
 												echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 											}

@@ -70,7 +70,6 @@ api:
 
 # user
 -
-    #已实现
     url: api/user_api/login
     type: post
     name: loginUser
@@ -78,12 +77,10 @@ api:
         - name
         - pwd
 -
-    #已实现
     url: api/user_api/logout
     type: get
     name: logoutUser
 -
-    #已实现
     url: api/user_api/create
     type: post
     name: createUser
