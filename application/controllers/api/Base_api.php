@@ -2,8 +2,8 @@
 /**
  * base_api
  * 提供基本的检测和数据获取，返回的数据为JSON格式
+ * 再加需求就活剥了你们 - 来自程序员们的怨念
  */
-include_once(APPPATH . 'controllers/api/base_class_html.php');
 class base_api extends CI_Controller {
     public function __construct() {
         parent::__construct();
@@ -13,6 +13,7 @@ class base_api extends CI_Controller {
 
     // 处理用户提交的内容
     public function HTML($content){
+        include_once(APPPATH . 'controllers/api/base_class_html.php');
         $HTML = new HtmlAttributeFilter(); 
         $HTML->setAllow(array('title','alt',"src"));
         $content = $HTML->strip($content); 
@@ -59,6 +60,27 @@ class base_api extends CI_Controller {
         return json_encode($temp);
     }
 
+    /**
+     * [is 用来检测用户传递过来的数据是否超出长度限制]
+     * @param  [type]  $array [description]
+     * @return boolean        [description]
+     */
+    public function is_length($array , $type = false){
+        if($type == false){
+            foreach ($array as $key => $value) {
+                $value_length = strlen($value['value']);
+                if(isset($value['max']) && $value_length > $value['max']){
+                    $this->finish(false, '您输入的'.$value['name'].'太长了，请检查后重新输入');
+                }
+                if(isset($value['min']) && $value_length < $value['min']){
+                    $this->finish(false, '您输入的'.$value['name'].'太短了，请检查后重新输入');
+                }
+            }
+        }else{
+
+        }
+        return true;
+    }
 
     /**
      * @method finish

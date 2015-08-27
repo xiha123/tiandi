@@ -22,7 +22,11 @@ class Home extends CI_Controller {
 		// 决定给用户展示什么页面
 		$user_type = $user_data['type'] == 2 ? 0 : $user_data['type'];
 		if($user_type > 2 || $user_type < 0) show_404();
-		$user_type = $user_type == 1 && $this->me['id'] != $id ? 2 : $user_type;
+		if(!isset($_GET["page"])){
+			$user_type = $user_type == 1 && $this->me['id'] != $id ? 2 : $user_type;
+		}else{
+			$user_type = 0;
+		}
 
 
 		// 构造数据准备传递

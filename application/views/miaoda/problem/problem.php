@@ -119,11 +119,13 @@
 				}
 			?>
 
-			<?php if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){ ?>
+			<?php if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
+				$problem_online_count = count(json_decode($problem_data['online'])) - 1;
+			?>
 				<div class="doubt">
 					<table class="table">
 						<tr><td>
-							<span class="online fr"><font class="fr"><?=$problem_data['owner_id'] == @$id ? "问题正在被大神解答中" : (count(json_decode($problem_data['online'])) - 1) .'<i class="fa fa-user fr"></i>';?></font></span>
+							<span class="online fr"><font class="fr"><?=$problem_data['owner_id'] == @$id ? "问题正在被大神解答中" : ($problem_online_count < 0 ? 0 : $problem_online_count) .'<i class="fa fa-user fr"></i>';?></font></span>
 						</td></tr>
 						<tr><td>
 							<div class="desc">
@@ -150,7 +152,7 @@
 					echo '<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞
 						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
 						<a href="#"><i class="fa fa-circle"></i>分享</a>';
-					echo $problem_data['owner_id'] == @$id && $problem_data['type'] == 2 ? '<button class="ajax_close">满意</button> <button class="none-background ajax_close_not">不满意</button>' :"";
+					echo $problem_data['owner_id'] == @$id && $problem_data['type'] == 2 ? '<button class="ajax_close">满意</button> ' :"";
 					echo "</div>";
 				}
 			?>

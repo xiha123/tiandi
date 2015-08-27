@@ -89,19 +89,7 @@ function close(){
 	},250)
 }
 
-$(".ajax_close_not").click(function(event) {
-	_td.api.closeProblem({
-		"problem_id" : problem_id,
-		"type" : "false"
-	}).then(function(){
-		showAlert(true,"操作成功，请继续等待大神来认领问题");
-		 setTimeout(function(){
-	            location.reload();
-	        },1000)
-	},function(msg){
-		showAlert(false,msg.error);
-	});
-});
+
 $(".ajax_close").click(function(event) {
 	_td.api.closeProblem({
 		"problem_id" : problem_id,
