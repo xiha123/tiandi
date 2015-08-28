@@ -111,6 +111,7 @@ class problem_api extends base_api {
         if($this->problem_model->is_exist(array('title' => $title))) {
            $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
+        
         switch ($language) {
             case '0':$language = "html";break;
             case '1':$language = "php";break;
@@ -222,7 +223,15 @@ class problem_api extends base_api {
         $this->finish(true);
     }
 
-    /*创建一个新的回答*/
+
+    /**
+     * 创建一个新的回答   [已重构]
+     * @param content
+     * @param type
+     * @param problem_id
+     * @param language
+     * @return bool
+     */
     public function create_detail() {
         parent::require_login();
         $params = $this->get_params('POST', array(
@@ -231,6 +240,7 @@ class problem_api extends base_api {
             'problem_id' => true,
             'language'
         )); extract($params);
+
         switch ($language) {
             case '0':$language = "html";break;
             case '1':$language = "php";break;
@@ -240,37 +250,40 @@ class problem_api extends base_api {
             default: $language = "php";break;
         }
         $code = $this->input->post("code");
-        if(!$this->problem_model->is_exist(array( 'id' => $problem_id)))$this->finish(false, '不存在的问题');
+
+        parent::is_length(array(
+            array("name" => "解答描述" , "value" => $content , "min" => 6)
+        ));
+
         $problem = $this->problem_model->get(array( 'id' => $problem_id));
-        if($type == 1 && $problem["answer_time"] + 1200 < time()){
+        if($this->me['id'] !== $problem['answer_id'] && $this->me['type'] !== 1) $this->finish(false, '您并不是大神用户，无法回答问题');
+        if(!isset($problem['id'])) $this->finish(false, '该问题不存在，请您回答其他的问题！');
+        if($problem['type'] != 1)  $this->finish(false, '问题还没有被认领，无法回答问题！');
+
+
+        // Problem answer time out
+        if($problem["answer_time"] + 1200 < time()){
             $this->problem_model->def($problem_id);
             $this->finish(false, '问题已经过期，无法回答！');
         }
-        if($problem['type'] != 1){
-            $this->finish(false, '非法请求');
-        }
-        if ($this->me['id'] !== $problem['answer_id'] && $this->me['type'] !== 1) {
-            $this->finish(false, '没有权限');
-        }
+
+        // Create problem detail
         $this->problem_model->edit($problem_id , array("answer_time" => time()));
         $new_detail_id = $this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
-            'content' => $this->HTML($content),
+            'content' => parent::HTML($content),
             'problem_id' => $problem_id,
             'code' => htmlspecialchars($code),
             'type' => $type,
             'language' => $language
         ));
-        $details = json_decode($problem['details']);
-        $details[] = $new_detail_id;
-        $this->problem_model->done($problem_id);
-        if($type == 1){
-            $this->news_model->add_news($problem['owner_id'],"大神：" . $this->me['nickname'] . " 回答了您的问题，".$problem['title']."，快去看看吧！" );
-        }
 
         //Empty problem temp data
         $this->problem_detail_model->remove_where(array("problem_id" => $problem_id , "type" => 3));
-        
+
+        //Close problem
+        $this->problem_model->done($problem_id);
+        $this->news_model->add_news($problem['owner_id'],"大神：" . $this->me['nickname'] . " 回答了您的问题，".$problem['title']."，快去看看吧！" );
         foreach (json_decode($problem['who']) as $key => $value) {
             $this->news_model->add_news($value , " 您众筹的问题".$problem['title']."已经解决了，快去看看！" );
         }
@@ -279,7 +292,6 @@ class problem_api extends base_api {
         $max_coin = (100 + count(json_decode($problem['who'])) * 50);
         $this->user_model->coin($problem['answer_id'] , $max_coin);
         $this->news_model->add_news($problem['answer_id'],"本次回答问题的报酬已到帐，总计：" . $max_coin . "银币");
-        $this->news_model->add_news($problem['answer_id'] , "" . $this->me['nickname'] . " 满意了：".$problem['title'] );
 
         // 给大神威望
         $prestige = $max_coin / 100;
@@ -292,6 +304,7 @@ class problem_api extends base_api {
         }
         $this->finish(true);
     }
+
 
     public function request_problem() {
         parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
@@ -315,52 +328,36 @@ class problem_api extends base_api {
         $this->finish(true);
     }
 
+
+    /**
+     * 满意某个问题
+     * @param [problem_id]
+     */
     public function close_problem() {
-        parent::require_login();$params = $this->get_params('POST', array('problem_id' , 'type'));extract($params);
+        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
         $problem = $this->problem_model->get(array('id' => $problem_id));
-        if($problem['owner_id'] !== $this->me['id']){$this->finish(false, '没有权限！');}
+        if(!isset($problem['owner_id']) || $problem['agree'] == 1) $this->finish(false, '该问题已经不存在，请刷新页面后重试！');
+        if($problem['owner_id'] !== $this->me['id']) $this->finish(false, '没有权限！');
+        if($this->problem_model->edit($problem_id , array("agree" => 1))){
+            if($this->user_model->add_agree_count($this->me['id'])){
+                $this->news_model->add_news($problem['answer_id'] , "用户：" . $this->nickname . "，满意了您回答的问题！【" . $problem['title'] . "】");
+                
+                // Up agree problem
+                $up_users = json_decode($problem['up_users']);
+                array_push($up_users , array("id" => $this->me['id']));
+                $up_users = json_encode($up_users);
+                $this->problem_model->edit($problem_id , array("up_users" => $up_users));
 
-        $temp = array();
-        $return_data = $this->problem_model->get_problem($problem_id);
-        $up_users = json_decode($return_data[0]['up_users']);
-        foreach ($up_users as $key => $value) {
-            if($value->id != $this->me['id']){
-                array_push($temp, array("id"=>$value->id));
+                parent::finish(true);
             }else{
-                $up_down_type = true;
+             parent::finish(false , "服务器异常，请尝试重新提交请求！");
             }
-        }
-        $up_users = $temp;
-        if($this->problem_model->up(array(
-            "id" => $problem_id ,
-            "up_count" => $return_data[0]["up_count"] + 1 ,
-            "hot" =>$return_data[0]["hot"] + 5,
-            "up_users" => json_encode($up_users)
-        ))){
-            // 积分需求
-            $this->user_model->Integral($this->me['id'] , 20 , false);
-            $this->finish(true , "","1");
         }else{
-            $this->finish(false , "未知的网络原因导致操作失败");
+            parent::finish(false , "服务器异常，请尝试重新提交请求！");
         }
-
-
-        // foreach (json_decode($problem['who']) as $key => $value) {
-        //     $this->news_model->add_news($value , " 您众筹的问题".$problem['title']."已经解决了，快去看看！" );
-        // }
-
-        // // 给大神结算问题报酬
-        // $max_coin = (100 + count(json_decode($problem['who'])) * 50);
-        // $this->user_model->coin($problem['answer_id'] , $max_coin);
-        // $this->news_model->add_news($problem['answer_id'],"本次回答问题的报酬已到帐，总计：" . $max_coin . "银币");
-        // $this->news_model->add_news($problem['answer_id'] , "" . $this->me['nickname'] . " 满意了：".$problem['title'] );
-
-        // // 给大神威望
-        // $prestige = $max_coin / 100;
-        // $this->user_model->edit($problem['answer_id'] , array("prestige" => $prestige));
-
-        // $this->finish(true);
     }
+
+
 
     public function follow_problem() {
         parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);

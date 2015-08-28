@@ -1,3 +1,7 @@
+
+
+
+
 var curId,
     $editForm = $('#tag-edit-form');
 
@@ -48,4 +52,4 @@ function editTag() {
     }, function (res) {
         alert('编辑失败: ' + res.error)
     });
-}
+}

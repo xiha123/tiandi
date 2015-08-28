@@ -22,7 +22,7 @@ class Home extends CI_Controller {
 		// 决定给用户展示什么页面
 		$user_type = $user_data['type'] == 2 ? 0 : $user_data['type'];
 		if($user_type > 2 || $user_type < 0) show_404();
-		if(!isset($_GET["page"])){
+		if(!isset($_GET["home"])){
 			$user_type = $user_type == 1 && $this->me['id'] != $id ? 2 : $user_type;
 		}else{
 			$user_type = 0;
@@ -83,7 +83,7 @@ class Home extends CI_Controller {
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
 			if(!$push_data["hot_type"]){
 				$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"]-1, 5,0);
-				$push_data["problem_list_count"] = $this->problem_model->get_list_count();
+				$push_data["problem_list_count"] = $this->problem_model->get_count(array("type" => 0));
 			}else{
 				$push_data["news_problem"] = $this->problem_model->get_answer($id , $push_data["page"]);
 				$push_data["problem_list_count"] = $this->problem_model->answer_count($id);

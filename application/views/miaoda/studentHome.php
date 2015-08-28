@@ -43,9 +43,9 @@
 		<div class="tacher-why">
 			<div class="tab"  >
 				<ul class="title  cf js-tab-trigger" data-widget="tab" >
-					<li <?=!$owner&&!$love?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>">收藏</a></li>
-					<li <?=$owner?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&owner=owner">问过</a></li>
-					<li <?=$love?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&love=love">关注</a></li>
+					<li <?=!$owner&&!$love?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&home=index">收藏</a></li>
+					<li <?=$owner?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&owner=owner&home=index">问过</a></li>
+					<li <?=$love?'class="active"':''?>><a href="home/?uid=<?=$user['id']?>&love=love&home=index">关注</a></li>
 				</ul>
 				<ul class="list-data">
 					<ul class="list-data">
@@ -95,7 +95,7 @@
 							"page_max" => $owner_list_count,
 							"page_count" => $page_count,
 							"page_url" => "./home",
-							"hot" => $hot . "&uid=".$user['id']
+							"hot" => $hot . "&uid=".$user['id']."&home=index"
 						));
 					?>
 				</ul>

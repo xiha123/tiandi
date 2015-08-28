@@ -9,6 +9,7 @@ class Index extends CI_Controller {
 		$this->load->model("problem_detail_model");
 		$this->load->model("problem_comment_model");
 		$this->load->model("user_model");
+		$this->load->model("tag_model");
 	}
 
 	public function index(){
@@ -22,9 +23,20 @@ class Index extends CI_Controller {
 
 		// 用户每次访问问题增加火力值
 		$this->problem_model->hot($id , "0.01" , true);
-
-
+		$tag_replace_temp = array();
+		$tag_list_temp = array();
+		$tag_list = $this->tag_model->get_list(array() , 0 , 50 , array("name"));
+		foreach ($tag_list as $key => $value) {
+			array_push($tag_list_temp , $value['name']);
+			array_push($tag_replace_temp , "<a href='./tag?name=" . urldecode($value['name']) ."'>" . $value['name'] . "</a>");
+		}
 		$userdata["problem_detail"] = $this->problem_detail_model->get_detail($userdata["problem_data"]['id']);
+		foreach ($userdata['problem_detail'] as $key => $value) {
+			$content = $userdata["problem_detail"][$key]['content'];
+			$int = 1;
+			$userdata["problem_detail"][$key]['content'] = str_replace($tag_list_temp, $tag_replace_temp , $content , $int);
+		}
+
 		$userdata["problem_user"] = $this->user_model->get_user_data($userdata["problem_data"]["owner_id"]);
 		@$userdata["problem_collect"] = $this->user_model->is_problem($id) == true ? true : false;
 		$userdata["problem_follow"] = !$this->user_model->is_problem($id , "follow_problems")  ? true : false;

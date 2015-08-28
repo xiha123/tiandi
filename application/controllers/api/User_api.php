@@ -11,10 +11,13 @@ class user_api extends base_api {
         $this->load->model('problem_detail_model');
         $this->load->model('problem_comment_model');
         $this->me = $this->user_model->check_login();
+        $this->server_error = "服务器繁忙，无法处理您的请求，请尝试重新操作！";
     }
 
     /**
     * 关注用户与取消用户关注
+     * @param [user_id] [要搜索的标签索引值]
+     * @param [key] [要搜索的标签索引值]
     */
     public function eye(){
         parent::require_login();$params = parent::get_params('POST', array('user_id' , 'type'));if(empty($params)) return; extract($params);
@@ -45,10 +48,40 @@ class user_api extends base_api {
 
 
 
+    /**
+     * 返回给用户KEY值对应的10个TAG
+     * @param [key] [要搜索的标签索引值]
+     */
     public function get_key(){
         $params = parent::get_params('POST', array('key'));if(empty($params)) return; extract($params);
         parent::finish(true , "" , $this->tag_model->get_tag_key($key));
     }
+
+
+
+
+    public function forget(){
+        $params = parent::get_params('POST', array('email','verification'));if(empty($params)) return; extract($params);
+        if($_SESSION['verification'] != md5($verification)) parent::finish(false , "验证码错误！");
+        if(!$this->user_model->is_exist(array("email" => $email))) parent::finish(false , "您输入的邮箱格式不存在，请检查后再输入！");
+        $new_password = rand(100000000,999999999);
+
+        $salt = $this->user_model->get(array("email" => $email) , array("salt" , "id"));
+        if(!$this->user_model->edit_array(array("email" => $email) , array("pwd" => md5($new_password . $salt['salt'])))){
+            parent::finish(false , $this->server_error);
+        }else{
+            $this->load->library('email');
+            $this->email->from('tdmiaoda@yeah.net');
+            $this->email->to($email);
+            $this->email->subject('新密码重置通知');
+            $this->email->message('<table width="700" border="0" align="center" cellspacing="0" style="width:700px"><tbody><tr><td><div style="width:700px;margin:0 auto;border-bottom:1px solid #ccc;margin-bottom:30px"><table border="0" cellpadding="0" cellspacing="0" width="700" height="39" style="font:12px Tahoma,Arial,宋体"><tbody><tr><td width="210"></td></tr></tbody></table></div><div style="width:680px;padding:0 10px;margin:0 auto"><div style="line-height:1.5;font-size:14px;margin-bottom:25px;color:#4d4d4d"><strong style="display:block;margin-bottom:15px">亲爱的会员： <span style="color:#f60;font-size:16px"></span>您好！</strong> <strong style="display:block;margin-bottom:15px">我们已经重置了您的密码，您的新密码为： <span style="color:#f60;font-size:24px"><span style="border-bottom:1px dashed #ccc;z-index:1" t="7" onclick="return!1" data="469899">'.$new_password.'</span></span></strong></div><div style="margin-bottom:30px"><small style="display:block;margin-bottom:20px;font-size:12px"><p style="color:#747474">注意：此操作可能已经修改您的密码。如非本人操作，请无视该邮件（该密码为随机密码请尽快进入网站修改）<br>（工作人员不会向你索取密码，请勿泄漏！)</p></small></div></div><div style="width:700px;margin:0 auto"><div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px"><p>此为系统邮件，请勿回复<br>请保管好您的邮箱，避免账号被他人盗用</p><p>天地培训 <span style="border-bottom:1px dashed #ccc;z-index:1" t="7" onclick="return!1" data="1999-2014">' .date("Y-m-d H:i:s"). '</span></p></div></div></td></tr></tbody></table>');
+            $this->email->send();
+            $this->news_model->add_news($salt['id'] , "您的密码已经被重置，请及时修改您的新密码已保证您的账号安全！");
+            parent::finish(true);
+        }
+    }
+
+
 
 
     // 抹杀掉一个用户
@@ -63,30 +96,7 @@ class user_api extends base_api {
         $this->finish(true);
     }
 
-    public function forget(){
-        $params = parent::get_params('POST', array('email','verification'));if(empty($params)) return; extract($params);
 
-        if($_SESSION['verification'] != md5($verification)){
-            parent::finish(false , "验证码错误！");
-        }
-        if(!$this->user_model->is_exist(array("email" => $email))){
-            parent::finish(false , "您输入的邮箱格式不存在，请检查后再输入！");
-        }
-        $new_password = rand(100000000,999999999);
-        $salt = $this->user_model->get(array("email" => $email) , array("salt" , "id"));
-        if(!$this->user_model->edit_array(array("email" => $email) , array("pwd" => md5($new_password . $salt['salt'])))){
-            parent::finish(false , "服务器异常，无法重置密码！");
-        }else{
-            $this->load->library('email');
-            $this->email->from('tdmiaoda@yeah.net');
-            $this->email->to($email);
-            $this->email->subject('新密码重置通知');
-            $this->email->message('<table width="700" border="0" align="center" cellspacing="0" style="width:700px"><tbody><tr><td><div style="width:700px;margin:0 auto;border-bottom:1px solid #ccc;margin-bottom:30px"><table border="0" cellpadding="0" cellspacing="0" width="700" height="39" style="font:12px Tahoma,Arial,宋体"><tbody><tr><td width="210"></td></tr></tbody></table></div><div style="width:680px;padding:0 10px;margin:0 auto"><div style="line-height:1.5;font-size:14px;margin-bottom:25px;color:#4d4d4d"><strong style="display:block;margin-bottom:15px">亲爱的会员： <span style="color:#f60;font-size:16px"></span>您好！</strong> <strong style="display:block;margin-bottom:15px">我们已经重置了您的密码，您的新密码为： <span style="color:#f60;font-size:24px"><span style="border-bottom:1px dashed #ccc;z-index:1" t="7" onclick="return!1" data="469899">'.$new_password.'</span></span></strong></div><div style="margin-bottom:30px"><small style="display:block;margin-bottom:20px;font-size:12px"><p style="color:#747474">注意：此操作可能已经修改您的密码。如非本人操作，请无视该邮件（该密码为随机密码请尽快进入网站修改）<br>（工作人员不会向你索取密码，请勿泄漏！)</p></small></div></div><div style="width:700px;margin:0 auto"><div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px"><p>此为系统邮件，请勿回复<br>请保管好您的邮箱，避免账号被他人盗用</p><p>天地培训 <span style="border-bottom:1px dashed #ccc;z-index:1" t="7" onclick="return!1" data="1999-2014">' .date("Y-m-d H:i:s"). '</span></p></div></div></td></tr></tbody></table>');
-            $this->email->send();
-            $this->news_model->add_news($salt['id'] , "您的密码已经被重置，请及时修改您的新密码已保证您的账号安全！");
-            parent::finish(true);
-        }
-    }
 
     public function collect_tag(){
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
@@ -135,9 +145,18 @@ class user_api extends base_api {
     // 编辑修改用户资料
     public function edits() {
 
-        $params = parent::get_params('POST', array('nickname',"desk","email","phone","id")); if (empty($params)) return;extract($params);
-        //,"pwd_lost","pwd_new"
-        if($this->user_model->is_exist(array("email" => $email , "id !=" => $id))){parent::finish(false, '该邮箱已经被人使用了');}
+        $params = parent::get_params('POST', array('nickname',"desk","phone","id")); if (empty($params)) return;extract($params);
+        
+        if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$nickname)){
+            parent::finish(false , "您的昵称中存在特殊字符，请检查后重新提交");
+        }
+        
+        parent::is_length(array(
+            array("name" => "昵称" , "value" => $nickname , "min" => 4 , "max" => 16),
+            array("name" => "手机" , "value" => $nickname , "min" => 6 , "max" => 11),
+        ));
+
+
         if($this->user_model->is_exist(array("nickname" => $nickname , "id !=" => $id))){parent::finish(false, '该昵称已经被人使用了');}
         if($this->user_model->is_exist(array("cellphone" => $phone , "id !=" => $id))){parent::finish(false, '该手机已经被人使用了');}
         $pwd_lost = $this->input->post("pwd_lost");
@@ -172,24 +191,21 @@ class user_api extends base_api {
         if(!valid_email($email)){
             parent::finish(false, '您输入的邮箱格式不太正确，请检查后再输入！');
         }
-        if(strlen($pwd) < 6 || strlen($pwd) > 16){
-            parent::finish(false, '密码长度不规范');
+        if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$nickname)){
+            parent::finish(false , "您的昵称中存在特殊字符，请检查后重新提交");
         }
-        if(strlen($nickname) < 6 || strlen($nickname) > 16){
-            parent::finish(false, '昵称不规范，太长或太短');
-        }
-        if(strlen($pwd) < 6 || strlen($pwd) > 16){
-            parent::finish(false, '密码长度不规范');
-        }
-        if(strlen($nickname) < 6 || strlen($nickname) > 16){
-            parent::finish(false, '昵称不规范，太长或太短');
-        }
+        parent::is_length(array(
+            array("name" => "密码" , "value" => $pwd , "min" => 6 , "max" => 16),
+            array("name" => "昵称" , "value" => $nickname , "min" => 4 , "max" => 16)
+        ));
+
+
         $result = $this->user_model->create(array(
             'email' => $email,
             'nickname' => $nickname,
             'pwd' => $pwd
         ));
-        if (!is_bool($result)) {
+        if(!is_bool($result)) {
             parent::finish(false, $result);
         }
 
@@ -199,7 +215,6 @@ class user_api extends base_api {
             'pwd' => $pwd
         ))) {
             parent::finish(false, '用户名已存在');
-            return;
         }
         parent::finish(true);
     }

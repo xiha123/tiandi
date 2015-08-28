@@ -10,7 +10,9 @@
 	problem_type = <?=$problem_data["type"]?>,
 	max_god = <?=$god_count?>,
 	online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>;
-	first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>;
+	first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>,
+	problem_content = "<?=$problem_detail[0]['content']?>",
+	problem_code = "<?=$problem_detail[0]['code']?>";
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
@@ -152,7 +154,8 @@
 					echo '<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞
 						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
 						<a href="#"><i class="fa fa-circle"></i>分享</a>';
-					echo $problem_data['owner_id'] == @$id && $problem_data['type'] == 2 ? '<button class="ajax_close">满意</button> ' :"";
+
+					echo $problem_data['owner_id'] == @$id && $problem_data['agree'] == 0 ? '<button class="ajax_close">满意</button> ' :"";
 					echo "</div>";
 				}
 			?>

@@ -1,7 +1,6 @@
 $("#ajax_userSet").click(function(){
 	var namenick = $("#ajax_nickname").val(),
 		signature = $("#signature").val(),
-		email = $("#ajax_email").val(),
 		phone = $("#ajax_phone").val(),
 		pwd_lost = $("#ajax_lost").val(),
 		pwd_new = $("#ajax_new").val(),
@@ -11,9 +10,7 @@ $("#ajax_userSet").click(function(){
 			showAlert(false , "两次输入的密码不一致，请更改后再次提交");return false;
 		}
 	}
-	if(email.length<6){
-		showAlert(false , "邮箱好像不正确哟");return false;
-	}
+
 	if(phone.length!=11){
 		showAlert(false , "电话号码好像不正确哟");return false;
 	}
@@ -26,7 +23,7 @@ $("#ajax_userSet").click(function(){
 	_td.api.editUser({
 		"nickname" : namenick,
 		"desk" : signature,
-		"email" : email,
+		"email" : "",
 		"phone" : phone,
 		"id" : uid,
 		"pwd_lost" : pwd_lost,

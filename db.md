@@ -39,7 +39,7 @@
 - nickname 昵称
 - name 真实姓名
 - email 邮箱，用作登录
-- type 0 为学生，1 为老师，2 为申请老师审核中
+- type -1 邮箱未认证 ， 0 为学生，1 为老师，2 为申请老师审核中
 - avatar 头像
 - cellphone 手机号
 - description 个人描述
@@ -47,6 +47,7 @@
 - collect_problem_count 收藏的数量
 - follow_problem_count 关注的数量
 - ask_count 提问的数量
+- agree_count 被满意的人数
 - answer_count 回答的数量
 - follow_user_count 关注的人的数量
 - follower_count 被多少人关注
@@ -166,6 +167,7 @@
 - silver_coin 问题价值，银币
 - who 谁参加了众筹
 - online 谁在线围观了这个问题 ,JSON数组
+- agree 是不是满意了
 
 ### problem_detail 表
 

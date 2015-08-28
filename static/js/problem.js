@@ -1,3 +1,36 @@
+if(problem_type == 1){
+	UE.registerUI('引用提问者问题', function(editor, uiName) {
+	    editor.registerCommand(uiName, {
+	        execCommand: function() {
+	            alert('execCommand:' + uiName)
+	        }
+	    });
+	    var btn = new UE.ui.Button({
+	        name: uiName,
+	        title: uiName,
+	        cssRules: 'background-position: -220px 0;',
+	        onclick: function() {
+	            //这里可以不用执行命令,做你自己的操作也可
+	            ue.setContent(problem_content);
+	            $("#problem-code").val(problem_code);
+	            showAlert(true , "引用成功，提问者的问题已被引入到编辑框中！");
+	        }
+	    });
+	    editor.addListener('selectionchange', function() {
+	        var state = editor.queryCommandState(uiName);
+	        if (state == -1) {
+	            btn.setDisabled(true);
+	            btn.setChecked(false);
+	        } else {
+	            btn.setDisabled(false);
+	            btn.setChecked(state);
+	        }
+	    });
+	    return btn;
+	});
+}
+
+
 
 $("#answer").on('click' , function(event) {
 	_td.api.requestProblem({
@@ -95,7 +128,7 @@ $(".ajax_close").click(function(event) {
 		"problem_id" : problem_id,
 		"type" : "true"
 	}).then(function(){
-		showAlert(true,"操作成功，该问题已关闭！");
+		showAlert(true,"感谢您的支持，您已经满意了这个问题！");
 		 setTimeout(function(){
 	            location.reload();
 	        },1000)
