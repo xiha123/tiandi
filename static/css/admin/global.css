@@ -51,9 +51,9 @@ p,td{word-break:break-all}
 
 /* 左侧导航样式 */
 .left-nav {position:fixed;top:0px;left:0;width:200px;height:100%;color:#fff;background:#32363E}
-.left-nav .profile{width:200px;height:45px;padding:8px;background:#219ba1}
-	       .profile img{margin-left:30px;float:left;width:30px;height:30px;border-radius:15px}
-	       .profile h2{ margin-left:80px;color:#c6fcff;line-height:30px; }
+.left-nav .profile{width:200px;padding:10px;min-height:45px;background:#219ba1}
+	       .profile img{margin-left:10px;float:left;width:25px;height:25px;border-radius:15px}
+	       .profile h2{ margin-left:50px;line-height:25px;color:#c6fcff;}
 
 .left-nav li{margin-bottom:1px;float:left;width:100%;color:#8B97A5;font-size:18px;height:65px;line-height:65px;border-bottom:1px solid #2d2d2d;}
 .left-nav li .content{padding:0px 10px;}

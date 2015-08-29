@@ -1,6 +1,6 @@
 <div class="left-nav">
 	<div class="profile">
-		<img src="static/image/user_pic.jpg" />
+		<img src="./static/image/admin_logo.png" />
 		<h2><?= $me['nickname'] ?></h2>
 	</div>
 	<ul>

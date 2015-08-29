@@ -3,10 +3,14 @@ function editAdmin() {
     _td.api.editAdmin({
         nickname: nickname
     }).then(function () {
-        $('.profile h2').text(nickname);
+        $('.profile h2').text("" + nickname);
     }, function (res) {
         showAlert(res.error, 'danger');
     });
+}
+
+function limitAdmin(){
+    $.ajax
 }
 
 function createAdmin() {

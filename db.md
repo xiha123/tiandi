@@ -29,6 +29,8 @@
 - salt
 - nickname 昵称
 - name 有索引
+- type 1 最高权限管理员，2 普通权限管理员
+- limit 限制普通管理员可以使用那些功能，JSON数组
 
 ### user 表
 
@@ -198,6 +200,7 @@
 - to
 - content
 - time
+- link
 
 ### activity 表
 

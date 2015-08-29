@@ -9,6 +9,7 @@
     <ul class="nav nav-pills" role="tablist">
         <li role="presentation" class="active"><a href="#self" aria-controls="self" role="tab" data-toggle="tab">个人设置</a></li>
         <li role="presentation"><a href="#admin" aria-controls="profile" role="tab" data-toggle="tab">管理员设置</a></li>
+        <li role="presentation"><a href="#limit" aria-controls="profile" role="tab" data-toggle="tab">管理员功能限制</a></li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="self">
@@ -20,6 +21,7 @@
                 <input type="submit" class="btn btn-success" value="修改">
             </form>
         </div>
+
         <div role="tabpanel" class="tab-pane" id="admin">
             <form onsubmit="createAdmin();return false;">
                 <div class="form-group">
@@ -44,6 +46,20 @@
                 <input type="submit" class="btn btn-danger" value="删除">
             </form>
         </div>
+
+        <div role="tabpanel" class="tab-pane" id="limit">
+            <form onsubmit="limitAdmin();return false;">
+                <div class="form-group">
+                    <label for="edit-profile-nickname">输入要操作的管理员名称</label>
+                    <input type="text" class="form-control" id="edit-profile-nickname" placeholder="管理员名称">
+                </div>
+                <input type="submit" class="btn btn-success" style="width:100%;" value="查询">
+            </form>
+
+
+        </div>
+
+
     </div>
 </div>
 

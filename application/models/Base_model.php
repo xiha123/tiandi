@@ -43,12 +43,10 @@ class base_model extends CI_Model {
 		return $this->db->where($params)->count_all_results($this->table_name);
 	}
 
-	public function get_list($params, $page, $count , $select = array() , $all = "") {
+	public function get_list($params, $page, $count) {
 		$page = $page < 0 ? 0 : $page;
-		if($all != "all"){
-			$this->db->limit($count, $page * $count);
-		}
-		return $this->db->select($select)->where($params)->order_by('id', 'DESC')->get($this->table_name)->result_array();
+
+		return $this->db->where($params)->order_by('id', 'DESC')->get($this->table_name)->result_array();
 	}
 
     public function require_login() {

@@ -4,7 +4,7 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this -> load -> model ("guide_model" );
+		$this->load-> model ("guide_model" );
 		$this->load->model('admin_model' );
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
