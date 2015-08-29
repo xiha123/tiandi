@@ -12,7 +12,10 @@ function checkParam(config) {
     var value = config.target[config.need];
     value = typeof value === 'string' ? jQuery.trim(value) : value;
 
-    if ((config.value !== undefined && value !== config.value) || (config.value === undefined && value === undefined)) {
+    if (config.value && value !== config.value) {
+        return false;
+    }
+    if (!config.value && value === '') {
         config.promise.reject('请求失败: 缺少参数' + config.need);
         return false;
     }

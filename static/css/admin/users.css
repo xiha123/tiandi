@@ -8,3 +8,6 @@ form {
     padding: 40px;
     margin: 40px;
 }
+
+.check label{cursor:pointer; margin-right: 15px;font-weight: 100}
+.check input[type='checkbox']{cursor:pointer;margin-right:4px;position:relative;top:2px;}

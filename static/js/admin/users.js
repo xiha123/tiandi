@@ -9,8 +9,64 @@ function editAdmin() {
     });
 }
 
+function checkAdmin(){
+    var nickname_value = $("#check-profile-nickname").val();
+    if(nickname_value == ""){showAlert("请输入正确的管理员昵称");return false;}
+    $.ajax({
+        url:"api/admin_api/check_admin",
+        type:"post",
+        data:{nickname:nickname_value}
+    }).then(function(data){
+        try{
+            data = JSON.parse(data);
+            console.log(data);
+        }catch(e){
+            showAlert("服务器异常，请尝试重新提交！");
+        }
+        if(data.status){
+            var limit = JSON.parse(data.data) , index = 0;
+            $(".check input:checkbox").each(function(){
+                this.checked = false;
+                console.log(limit[index])
+                if(limit[index] != undefined){
+                    this.checked = true;
+                }
+                index ++;
+            });
+            $("#admin_nickname").text("当前选中的管理员：" + nickname_value);
+        }else{
+            showAlert(data.error);
+        }
+    })
+}
 function limitAdmin(){
-    $.ajax
+    var limit = new Array() , index = 0;
+    $(".check input:checkbox").each(function(){
+        index ++;
+        if(this.checked){
+            limit.push(index);
+        }
+    });
+    limit = JSON.stringify(limit);
+    var nickname_value = $("#check-profile-nickname").val();
+    if(nickname_value == ""){showAlert("请输入正确的管理员昵称");return false;}
+    $.ajax({
+        url:"api/admin_api/set_admin_limit",
+        type:"post",
+        data:{nickname:nickname_value , limit : limit}
+    }).then(function(data){
+        try{
+            data = JSON.parse(data);
+            console.log(data);
+        }catch(e){
+            showAlert("服务器异常，请尝试重新提交！");
+        }
+        if(data.status){
+            showAlert("修改限制成功！" , "success");
+        }else{
+            showAlert(data.error);
+        }
+    });
 }
 
 function createAdmin() {

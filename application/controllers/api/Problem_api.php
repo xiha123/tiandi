@@ -346,7 +346,11 @@ class problem_api extends base_api {
                 $up_users = json_decode($problem['up_users']);
                 array_push($up_users , array("id" => $this->me['id']));
                 $up_users = json_encode($up_users);
-                $this->problem_model->edit($problem_id , array("up_users" => $up_users));
+                $this->problem_model->edit($problem_id , array(
+                    "up_users" => $up_users,
+                    "hot" => $problem['hot'] + 5
+                    "up_count" => $problem['up_count'] + 1
+                ));
 
                 parent::finish(true);
             }else{

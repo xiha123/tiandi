@@ -15,6 +15,68 @@ class admin_api extends base_api {
         $this->load->model('news_model');
         $this->me = $this->admin_model->check_login();
     }
+
+    /**
+     * 检查管理的限制权限
+     * @param nickname
+     */
+    public function check_admin(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("nickname"));if(empty($params))return; extract($params);
+        if($this->me['type'] != 0 ) parent::finish(false , "您没有权限修改或获取管理员限制权限");
+        $admin_data = $this->admin_model->get(array("nickname" => $nickname) , array("limit"));
+        if(!isset($admin_data['limit'])) parent::finish(false , "不存在的管理员，请检查后重新输入");
+        $limit = array();
+        foreach (json_decode($admin_data['limit']) as $key => $value) {
+            switch ($value) {
+                case 'slider': $limit[$key] = "1";break;
+                case 'online': $limit[$key] = "2";break;
+                case 'course': $limit[$key] = "3";break;
+                case 'problem': $limit[$key] = "4";break;
+                case 'tag': $limit[$key] = "5";break;
+                case 'user': $limit[$key] = "6";break;
+            }
+        }
+        parent::finish(true , "" , json_encode($limit));
+    }
+
+
+    /**
+     * [set_admin_limit 设置管理员可以使用那些功能的限制]
+     * @param nickname 管理员昵称
+     * @param limit 限制列表，json
+     */
+    public function set_admin_limit(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("nickname","limit"));if(empty($params))return; extract($params);
+        if($this->me['type'] != 0 ) parent::finish(false , "您没有权限修改或获取管理员限制权限");
+        $admin_data = $this->admin_model->get(array("nickname" => $nickname) , array("limit"));
+        if(!isset($admin_data['limit'])) parent::finish(false , "不存在的管理员，请检查后重新输入");
+        if(count($limit) > 6) parent::finish("错误，限制了太多");
+        $shit = true;
+        $limit = json_decode($limit);
+
+        if(count($limit) > 1){
+            foreach ($limit as $key => $value) {
+                switch ($limit[$key]) {
+                    case '1': $limit[$key] = "slider";break;
+                    case '2': $limit[$key] = "online";break;
+                    case '3': $limit[$key] = "course";break;
+                    case '4': $limit[$key] = "problem";break;
+                    case '5': $limit[$key] = "tag";break;
+                    case '6': $limit[$key] = "user";break;
+                    default: $shit = false;break;
+                }
+            }
+        }else{
+            $limit = array();
+        }
+        if($shit == false)  parent::finish("设置了错误的限制");
+        $this->admin_model->edit_array(array("nickname" => $nickname) , array("limit" => json_encode($limit)));
+        parent::finish(true);
+    }
+
+
     /**
      * 设置成为大神
      * @return [type] [description]
