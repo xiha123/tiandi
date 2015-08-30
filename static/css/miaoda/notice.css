@@ -3,3 +3,9 @@
 .notice table td{padding:14px 0px;border-bottom:1px solid #eee;}
 .notice table .notice-title{margin-left:10px;}
 .notice table .notice-time{color: #aaa}
+.notice a {
+    color:#219ba1;
+}
+.notice a:hover {
+    text-decoration:underline;
+}

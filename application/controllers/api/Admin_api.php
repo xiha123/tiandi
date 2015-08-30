@@ -84,11 +84,14 @@ class admin_api extends base_api {
     public function apply_ok(){
         parent::require_login();
         $params = parent::get_params('POST', array("userid"));if(empty($params)) return; extract($params);
-        if($this->user_model->edit($userid,array("type" => 1))){
-            $this->news_model->add_news($userid,"恭喜您！您的大神申请审核通过！您已经成为大神了！");
-            $this->finish(true,"Good!!");
+        if($this->user_model->edit($userid, array("type" => 1))){
+            $this->news_model->create(array(
+                'target' => $userid,
+                'type' => '101'
+            ));
+            $this->finish(true, "Good!!");
         }else{
-            $this->finish(false,"服务器异常!!");
+            $this->finish(false, "服务器异常!!");
         }
     }
 
@@ -100,10 +103,13 @@ class admin_api extends base_api {
         parent::require_login();
         $params = parent::get_params('POST', array("userid"));if(empty($params)) return; extract($params);
         if($this->user_model->edit($userid,array("type" => 0))){
-            $this->news_model->add_news($userid,"很遗憾，您的大神申请没有通过审核，不要气馁再提交次审核试试");
-            $this->finish(true,"Good!!");
+            $this->news_model->create(array(
+                'target' => $userid,
+                'type' => '102'
+            ));
+            $this->finish(true, "Good!!");
         }else{
-            $this->finish(false,"服务器异常!!");
+            $this->finish(false, "服务器异常!!");
         }
     }
 
@@ -184,7 +190,7 @@ class admin_api extends base_api {
             $config['overwrite'] = true;
             $this->load->library('upload', $config);
             if(!$this->upload->do_upload("userfile")){
-                $this->finish(false,"图片无法上传到服务器");  
+                $this->finish(false,"图片无法上传到服务器");
             }
         }
 

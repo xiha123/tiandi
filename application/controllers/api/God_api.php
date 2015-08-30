@@ -26,8 +26,11 @@ class god_api extends base_api {
 			"idcar" => $idcar,
 			"type" => 2,
 			"father_tag" => $tag
-		))){
-			$this->news_model->add_news($this->me['id'] , "您成功提交了大神申请请求，请等待审核通过！");
+		))) {
+			$this->news_model->create(array(
+				'target' => $this->me['id'],
+				'type' => '100'
+			));
 			$this->finish(true );
 		}else{
 			$this->finish(false , "无法添加大神审核");

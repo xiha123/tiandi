@@ -150,7 +150,7 @@
 			<?php }}
 				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
 					echo '<div class="button close" data-id="' . $problem_data["id"] . '">';
-					echo $problem_collect == true ? '<a href="javascript:;" class="uncollect"><i class="fa fa-star"></i> 取消收藏</a>':'<a  href="javascript:;" class="collect"><i class="fa fa-star"></i> 收藏</a>';
+					echo $problem_collect == true ? '<a href="javascript:;" class="uncollect"><i class="fa fa-star"></i> 取消收藏</a>':'<a  href="javascript:;" class="collect"><i class="fa fa-star-o"></i> 收藏</a>';
 					echo '<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞
 						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
 						<a href="#"><i class="fa fa-circle"></i>分享</a>';
@@ -163,15 +163,17 @@
 
 			<div class="button">
 				<?php
-					if($problem_data['type'] != 3){
+					if (!empty($type) && $type == 1) {
+						if ($problem_data['answer_id'] === $id) {
+							echo $problem_data['type'] == 1 ? '<button id="reply">提交</button>' :"";
+						} else {
+							echo $problem_data['type'] == 0  ? '<button id="answer">认领问题</button>' : "";
+						}
+					} else if ($problem_data['type'] != 3) {
 						echo $problem_collect == true ?
 						'<button class="uncollect">★ 取消收藏</button>':
 						'<button class="none-background collect">★ 收藏</button>';
 						echo '<button class="js_chou">众筹</button>';
-					}
-					if(@$type == 1 ){
-						echo $problem_data['type'] == 0  ? '<button id="answer">认领问题</button>' : "";
-						echo $problem_data['type'] == 1 && $problem_data["answer_id"] == @$id ? '<button id="reply">回答</button>' :"";
 					}
 				?>
 			</div>

@@ -97,7 +97,12 @@ class problem_api extends base_api {
             $this->finish(false, '无法众筹！');
         }else{
             $this->user_model->add_chou($problem_id);
-            $this->news_model->add_news($this->me['id'] , "众筹成功，当问题被解答时将会推送给您信息。问题【".$problem_data['title']."】");
+            $this->news_model->add_news(array(
+                'target' => $this->me['id'],
+                'type' => '300',
+                'problem_id' => $problem_id
+            ));
+
             $this->user_model->Integral($this->me['id'] , 50);
             $this->finish(true);
         }
@@ -111,7 +116,7 @@ class problem_api extends base_api {
         if($this->problem_model->is_exist(array('title' => $title))) {
            $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
-        
+
         switch ($language) {
             case '0':$language = "html";break;
             case '1':$language = "php";break;
@@ -283,20 +288,35 @@ class problem_api extends base_api {
 
         //Close problem
         $this->problem_model->done($problem_id);
-        $this->news_model->add_news($problem['owner_id'],"大神：" . $this->me['nickname'] . " 回答了您的问题，".$problem['title']."，快去看看吧！" );
+        $this->news_model->create(array(
+            'target' => $problem['owner_id'],
+            'type' => '201',
+            'problem_id' => $problem_id,
+            'from_id' => $this->me['id']
+        ));
         foreach (json_decode($problem['who']) as $key => $value) {
-            $this->news_model->add_news($value , " 您众筹的问题".$problem['title']."已经解决了，快去看看！" );
+            $this->news_model->create(array(
+                'target' => $value,
+                'type' => '301',
+                'problem_id' => $problem_id,
+                'from_id' => $this->me['id']
+            ));
         }
 
         // 给大神结算问题报酬
         $max_coin = (100 + count(json_decode($problem['who'])) * 50);
         $this->user_model->coin($problem['answer_id'] , $max_coin);
-        $this->news_model->add_news($problem['answer_id'],"本次回答问题的报酬已到帐，总计：" . $max_coin . "银币");
+        $this->news_model->create(array(
+            'target' => $this->me['id'],
+            'type' => '402',
+            'problem_id' => $problem_id,
+            'from_id' => $max_coin
+        ));
 
         // 给大神威望
         $prestige = $max_coin / 100;
         $this->user_model->edit($problem['answer_id'] , array("prestige" => $prestige));
-        
+
         if($this->problem_model->close(array(
             'pid' => $problem_id
         )) === false) {
@@ -324,7 +344,12 @@ class problem_api extends base_api {
         )) === false) {
             $this->finish(false, '您现在不能认领该问题，这个问题已经被人认领了，或者已经完成了回答！');
         }
-        $this->news_model->add_news($problem['owner_id'],"大神：" . $this->me['nickname'] . " 认领了您的问题".$problem['title']."，快去看看吧！" );
+        $this->news_model->create(array(
+            'target' => $problem['owner_id'],
+            'type' => '200',
+            'problem_id' => $problem_id,
+            'from_id' => $this->me['id']
+        ));
         $this->finish(true);
     }
 
@@ -334,21 +359,29 @@ class problem_api extends base_api {
      * @param [problem_id]
      */
     public function close_problem() {
-        parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
+        parent::require_login();
+        $params = $this->get_params('POST', array('problem_id'));
+        extract($params);
+
         $problem = $this->problem_model->get(array('id' => $problem_id));
         if(!isset($problem['owner_id']) || $problem['agree'] == 1) $this->finish(false, '该问题已经不存在，请刷新页面后重试！');
         if($problem['owner_id'] !== $this->me['id']) $this->finish(false, '没有权限！');
         if($this->problem_model->edit($problem_id , array("agree" => 1))){
             if($this->user_model->add_agree_count($this->me['id'])){
-                $this->news_model->add_news($problem['answer_id'] , "用户：" . $this->nickname . "，满意了您回答的问题！【" . $problem['title'] . "】");
-                
+                $this->news_model->create(array(
+                    'target' => $problem['answer_id'],
+                    'type' => '400',
+                    'problem_id' => $problem_id,
+                    'from_id' => $this->me['id']
+                ));
+
                 // Up agree problem
                 $up_users = json_decode($problem['up_users']);
                 array_push($up_users , array("id" => $this->me['id']));
                 $up_users = json_encode($up_users);
                 $this->problem_model->edit($problem_id , array(
                     "up_users" => $up_users,
-                    "hot" => $problem['hot'] + 5
+                    "hot" => $problem['hot'] + 5,
                     "up_count" => $problem['up_count'] + 1
                 ));
 
@@ -366,10 +399,6 @@ class problem_api extends base_api {
     public function follow_problem() {
         parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
 
-        // 推送消息给用户
-        $problem_data = $this->problem_model->get_list_by_id($problem_id);
-        $this->news_model->add_news($problem_data['owner_id'] , $this->me['nickname'] . " 关注了您的问题：".$problem_data['title'] , $this->me['id']);
-
         if($this->user_model->is_problem($problem_id , "follow_problems") == true)
          parent::finish(false , "您已经关注了该问题，请点击取消关注按钮");
 
@@ -381,7 +410,7 @@ class problem_api extends base_api {
         }else{
             // 每次关注获得火力值
             $this->problem_model->hot($problem_id , 3 , true);
-           $this->user_model->Integral($this->me['id'] , 20 );
+            $this->user_model->Integral($this->me['id'] , 20 );
             parent::finish(true);
         }
     }
@@ -390,7 +419,6 @@ class problem_api extends base_api {
 
         // 通知消息给用户
         $problem_data = $this->problem_model->get_list_by_id($problem_id);
-        $this->news_model->add_news($problem_data['owner_id'] , $this->me['nickname'] . " 取消关注了您的问题：".$problem_data['title'] , $this->me['id']);
 
         if($this->user_model->is_problem($problem_id , "follow_problems") == false)parent::finish(false , "您还没有关注该问题，不能取消关注！");
         if(!$this->problem_model->unfollow($problem_id))parent::finish(false , "失败！无法预料到的意外错误，请您稍后再试！");

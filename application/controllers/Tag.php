@@ -31,7 +31,7 @@ class Tag extends CI_Controller {
 		// <is tag>
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
 		if(count($userdata['tag_data']) <= 0) show_404();
-		$userdata['tag_data'] = $userdata['tag_data'][0];
+		//$userdata['tag_data'] = $userdata['tag_data'][0];
 		// </is tag>
 
 		switch ($problem_type) {
@@ -58,12 +58,12 @@ class Tag extends CI_Controller {
 
 
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
-		
+
 		$userdata['tag_count'] = $this->problem_model->get_list_by_tag_count($name);
 		if($userdata['tag_count'] <=0){
 			show_404();
 		}
-		
+
 		$userdata['collect_type'] = $this->tag_model->is_collect_tag($userdata['tag_data']['id']);
 
 

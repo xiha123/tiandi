@@ -1,3 +1,7 @@
+<div class="js-back-to-top back-to-top" onclick="javascript:gotoTop()">
+    <i class="fa fa-chevron-up"></i>
+</div>
+
 <?php
 switch($this->agent->browser()) {
     case 'Opera':

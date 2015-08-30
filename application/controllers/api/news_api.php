@@ -16,6 +16,6 @@ class News_api extends base_api {
     	 foreach ($data as $key => $value) {
     	 	$this->news_model->remove($value->id);
     	 }
-   	$this->finish(true);
+       	$this->finish(true);
     }
 }

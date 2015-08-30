@@ -15,7 +15,7 @@ class Seacher extends CI_Controller {
 		$this->me["key"] = $key;
 
 		$count = 20; // 需要获取多少个
-		$result = $this->problem_model->search($key, $count); 
+		$result = $this->problem_model->search($key, $count);
 		$result = $this->problem_model->handle_tag($result);
 
 		$this->me['count'] = count($result);

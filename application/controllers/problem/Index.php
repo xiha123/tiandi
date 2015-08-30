@@ -84,7 +84,10 @@ class Index extends CI_Controller {
 		if($userdata["problem_data"]["type"] == 1 && $userdata["problem_data"]["answer_time"] + 1200 < time()){
 			$this->problem_model->def($userdata["problem_data"]["id"]);
 			$userdata["problem_data"]["type"] = "0";
-			$this->news_model->add_news($userdata["problem_data"]["answer_id"] , "您认领的问题已经过期，如若超时两次则24小时内不能再认领任何问题！");
+			$this->news_model->create(array(
+				'target' => $userdata["problem_data"]["answer_id"],
+				'type' => '401'
+			));
 
 			//Empty problem temp data
 			$this->problem_detail_model->remove_where(array("problem_id" => $id , "type" => 3));

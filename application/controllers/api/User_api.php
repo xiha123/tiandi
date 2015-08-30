@@ -37,11 +37,15 @@ class user_api extends base_api {
                 $this->user_model->edit($user_id,array("follower_count" => $from_user['follower_count'] - 1));
             }else{
                 $this->user_model->edit($user_id,array("follower_count" => $from_user['follower_count'] + 1));
+                $this->news_model->create(array(
+                    'target' => $user_id,
+                    'from_id' => $this->me['id'],
+                    'type' => '500'
+                ));
             }
-            $this->news_model->add_news($user_id , "用户:" . $this->me['nickname'] . ($follow_type ? "关注了您" : "取消了对您的关注"));
             parent::finish(true);
         }else{
-            parent::finish(false,"服务器异常！");
+            parent::finish(false, "服务器异常！");
         }
     }
 
@@ -76,7 +80,10 @@ class user_api extends base_api {
             $this->email->subject('新密码重置通知');
             $this->email->message('<table width="700" border="0" align="center" cellspacing="0" style="width:700px"><tbody><tr><td><div style="width:700px;margin:0 auto;border-bottom:1px solid #ccc;margin-bottom:30px"><table border="0" cellpadding="0" cellspacing="0" width="700" height="39" style="font:12px Tahoma,Arial,宋体"><tbody><tr><td width="210"></td></tr></tbody></table></div><div style="width:680px;padding:0 10px;margin:0 auto"><div style="line-height:1.5;font-size:14px;margin-bottom:25px;color:#4d4d4d"><strong style="display:block;margin-bottom:15px">亲爱的会员： <span style="color:#f60;font-size:16px"></span>您好！</strong> <strong style="display:block;margin-bottom:15px">我们已经重置了您的密码，您的新密码为： <span style="color:#f60;font-size:24px"><span style="border-bottom:1px dashed #ccc;z-index:1" t="7" onclick="return!1" data="469899">'.$new_password.'</span></span></strong></div><div style="margin-bottom:30px"><small style="display:block;margin-bottom:20px;font-size:12px"><p style="color:#747474">注意：此操作可能已经修改您的密码。如非本人操作，请无视该邮件（该密码为随机密码请尽快进入网站修改）<br>（工作人员不会向你索取密码，请勿泄漏！)</p></small></div></div><div style="width:700px;margin:0 auto"><div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px"><p>此为系统邮件，请勿回复<br>请保管好您的邮箱，避免账号被他人盗用</p><p>天地培训 <span style="border-bottom:1px dashed #ccc;z-index:1" t="7" onclick="return!1" data="1999-2014">' .date("Y-m-d H:i:s"). '</span></p></div></div></td></tr></tbody></table>');
             $this->email->send();
-            $this->news_model->add_news($salt['id'] , "您的密码已经被重置，请及时修改您的新密码已保证您的账号安全！");
+            $this->news_model->create(array(
+                'target' => $salt['id'],
+                'type' => '001'
+            ));
             parent::finish(true);
         }
     }
@@ -146,11 +153,11 @@ class user_api extends base_api {
     public function edits() {
 
         $params = parent::get_params('POST', array('nickname',"desk","phone","id")); if (empty($params)) return;extract($params);
-        
+
         if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$nickname)){
             parent::finish(false , "您的昵称中存在特殊字符，请检查后重新提交");
         }
-        
+
         parent::is_length(array(
             array("name" => "昵称" , "value" => $nickname , "min" => 4 , "max" => 16),
             array("name" => "手机" , "value" => $nickname , "min" => 6 , "max" => 11),

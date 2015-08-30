@@ -13,12 +13,14 @@
 		</div>
 		<div class="notice">
 			<table>
-				<?php
-					foreach ($news_list as $key => $value) {
-						echo '<tr><td><label><input type="checkBox" name="delete" data-id="'.$value['id'].'" class="delete"></td><td><p class="notice-title">'.$value['content'].'</p></td><td><p class="notice-time">'.date("Y-m-d H:i:s",$value['time']).'</p></label></td></tr>';
-					}
-				?>	
-				
+				{news_list}
+				<tr>
+					<td><input type="checkBox" name="delete" data-id="{id}" class="delete"></td>
+					<td><p class="notice-title">{content}</p></td>
+					<!--<td><p class="notice-time">date("Y-m-d H:i:s",$value['time'])</p></td>-->
+					<td><p class="notice-time">{ctime}</p></td>
+				</tr>
+				{/news_list}
 			</table>
 			<?php
 				$this->load->view("miaoda/page",array(
@@ -29,9 +31,7 @@
 					"hot" => ""
 				));
 			?>
-			
 		</div>
-
 	</div>
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="static/js/admin/notice.js"></script>
