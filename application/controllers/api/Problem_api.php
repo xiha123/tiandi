@@ -374,7 +374,7 @@ class problem_api extends base_api {
                     'problem_id' => $problem_id,
                     'from_id' => $this->me['id']
                 ));
-
+                
                 // Up agree problem
                 $up_users = json_decode($problem['up_users']);
                 array_push($up_users , array("id" => $this->me['id']));

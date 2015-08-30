@@ -89,6 +89,7 @@
 .user_list_data a{color:#aaa;padding-left:7px;}
 .user_list_data span{color:#aaa;padding:0 4px;}
 
+.split{width:100%;height:1px;background:#eee;float: left;margin-top:20px;}
 
 .online{position:relative;top:-2px;color:#219ba1;}
 .online font{position:relative;top:-3px;margin-right:5px;color:#219ba1;}

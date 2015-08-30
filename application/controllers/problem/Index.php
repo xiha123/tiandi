@@ -32,9 +32,9 @@ class Index extends CI_Controller {
 		}
 		$userdata["problem_detail"] = $this->problem_detail_model->get_detail($userdata["problem_data"]['id']);
 		foreach ($userdata['problem_detail'] as $key => $value) {
-			$content = $userdata["problem_detail"][$key]['content'];
-			$int = 1;
-			$userdata["problem_detail"][$key]['content'] = str_replace($tag_list_temp, $tag_replace_temp , $content , $int);
+			foreach ($tag_list_temp as $keys => $value_content) {
+				$userdata["problem_detail"][$key]['content'] = str_replace_once($value_content , "<a href='./tag?name=" . urldecode($value_content) ."'>" .$value_content . "</a>" , $userdata["problem_detail"][$key]['content']);
+			}
 		}
 
 		$userdata["problem_user"] = $this->user_model->get_user_data($userdata["problem_data"]["owner_id"]);
