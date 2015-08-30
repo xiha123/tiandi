@@ -340,7 +340,7 @@ class problem_api extends base_api {
         if($problem['owner_id'] !== $this->me['id']) $this->finish(false, '没有权限！');
         if($this->problem_model->edit($problem_id , array("agree" => 1))){
             if($this->user_model->add_agree_count($this->me['id'])){
-                $this->news_model->add_news($problem['answer_id'] , "用户：" . $this->nickname . "，满意了您回答的问题！【" . $problem['title'] . "】");
+                $this->news_model->add_news($problem['answer_id'] , "用户：" . $this->me['nickname'] . "，满意了您回答的问题！【" . $problem['title'] . "】");
                 
                 // Up agree problem
                 $up_users = json_decode($problem['up_users']);
@@ -348,7 +348,7 @@ class problem_api extends base_api {
                 $up_users = json_encode($up_users);
                 $this->problem_model->edit($problem_id , array(
                     "up_users" => $up_users,
-                    "hot" => $problem['hot'] + 5
+                    "hot" => $problem['hot'] + 5,
                     "up_count" => $problem['up_count'] + 1
                 ));
 

@@ -10,9 +10,8 @@
 	problem_type = <?=$problem_data["type"]?>,
 	max_god = <?=$god_count?>,
 	online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>;
-	first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>,
-	problem_content = "<?=$problem_detail[0]['content']?>",
-	problem_code = "<?=$problem_detail[0]['code']?>";
+	first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>;
+	var problem_content = "<?=$problem_detail[0]['content']?>";
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
@@ -73,8 +72,9 @@
 							</div>
 							<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.($problem_detail[0]["code"]).'</pre></div>';
 				}
-				for ($index=1; $index < count($problem_detail); $index++) {
+				for ($index = 1; $index < count($problem_detail); $index++) {
 			?>
+					<div class="split"></div>
 					<div class="whyUser">
 						<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detail[$index]['user']['avatar']?>" alt="" width="35" height="35"></a>
 						<div class="data">
@@ -96,21 +96,17 @@
 			?>
 
 
-
 			<?php
 				if($problem_data['type'] == "1" && @$id != $problem_data['answer_id']  && @$id != $problem_data['owner_id']){
 					echo '<h3 class="center tishi">『问题正被解答中』</h3>';
 				}
-			?>
 
-
-			<?php
 				if($problem_data['type'] == "1" && @$id == $problem_data['answer_id']  || @$id == $problem_data['owner_id']){
 					echo $problem_data['type'] == 1 ? '<div class="doubt-time">20:00</div>' :'';
 				}
 				if($problem_data['type'] == "0" && @$id == $problem_data['owner_id']){
-					echo '<div class="user_list_data"><div class="doubt-time disable">20:00</div>
-					<h3 class="center tishi">您的问题已经推送给了<span>'.($frist ? "全部" : "1").'</span>大神，请耐心等待······</h3>
+					echo '<div class="user_list_data"><!--<div class="doubt-time disable">20:00</div>-->
+					<h3 class="center tishi">您的问题已经推送给了<span>'.($frist ? $god_count . "位" : "1").'</span>大神，请耐心等待······</h3>
 					<h2 class="title">这些问题可能对您有用</h2>
 					<ul>
 						{useful_list}
@@ -119,9 +115,7 @@
 					</ul></div>';
 
 				}
-			?>
-
-			<?php if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
+				if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
 				$problem_online_count = count(json_decode($problem_data['online'])) - 1;
 			?>
 				<div class="doubt">
@@ -150,11 +144,10 @@
 			<?php }}
 				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
 					echo '<div class="button close" data-id="' . $problem_data["id"] . '">';
-					echo $problem_collect == true ? '<a href="javascript:;" class="uncollect"><i class="fa fa-star"></i> 取消收藏</a>':'<a  href="javascript:;" class="collect"><i class="fa fa-star"></i> 收藏</a>';
+					echo $problem_collect == true ? '<a href="javascript:;" class="uncollect"><i class="fa fa-star"></i> 取消收藏</a>':'<a  href="javascript:;" class="collect"><i class="fa fa-star-o"></i> 收藏</a>';
 					echo '<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞
 						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
 						<a href="#"><i class="fa fa-circle"></i>分享</a>';
-
 					echo $problem_data['owner_id'] == @$id && $problem_data['agree'] == 0 ? '<button class="ajax_close">满意</button> ' :"";
 					echo "</div>";
 				}
@@ -163,7 +156,7 @@
 
 			<div class="button">
 				<?php
-					if($problem_data['type'] != 3){
+					if($problem_data['type'] != 3 && $problem_data['owner_id'] != @$id && $problem_data['answer_id'] != @$id){
 						echo $problem_collect == true ?
 						'<button class="uncollect">★ 取消收藏</button>':
 						'<button class="none-background collect">★ 收藏</button>';

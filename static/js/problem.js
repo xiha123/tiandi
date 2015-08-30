@@ -1,3 +1,4 @@
+problem_type = 1;
 if(problem_type == 1){
 	UE.registerUI('引用提问者问题', function(editor, uiName) {
 	    editor.registerCommand(uiName, {
@@ -140,10 +141,10 @@ $(".ajax_close").click(function(event) {
 if(first){
 	var max = 1;
 	var god = setInterval(function(){
-		 rand = Math.ceil(Math.random() * 5);
+		 rand = Math.ceil(Math.random() * 2);
 		 max += rand;
 		 if(max >= max_god){
-		 	max = "全部";
+		 	max = max_god;
 		 	clearInterval(god);
 		 	$(".user_list_data h3 span").text(max);
 		 }else{
@@ -190,7 +191,10 @@ function timeOut_fun(){
 	s = time - (min * 60);
 	if(s < 10){s = "0" + s}
 	$(".doubt-time").text(min + ":" + s);
-	if(min < 0){
+	if(min == 20 && s > 0){
+		s = "00";
+	}
+	if(min < 0 && s <= 0){
 		showAlert(false,"已过期，无法回答！");
 		 setTimeout(function(){
 	            location.reload();

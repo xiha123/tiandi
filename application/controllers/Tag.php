@@ -31,7 +31,7 @@ class Tag extends CI_Controller {
 		// <is tag>
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
 		if(count($userdata['tag_data']) <= 0) show_404();
-		$userdata['tag_data'] = $userdata['tag_data'][0];
+		@$userdata['tag_data'] = $userdata['tag_data'][0];
 		// </is tag>
 
 		switch ($problem_type) {
