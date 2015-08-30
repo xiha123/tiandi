@@ -169,7 +169,6 @@ class user_api extends base_api {
         $edit_array = array(
             'nickname' => $nickname,
             'description' => $desk,
-            'email' => $email,
             'cellphone' => $phone,
         );
         if($pwd_lost !="" && md5($pwd_lost.$this->me['salt']) != $this->me["pwd"]){
