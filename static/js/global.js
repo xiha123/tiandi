@@ -12,7 +12,7 @@ $(".ajax_up").on("click" , function(){
             _this.find('.upCount').text(parseInt(_this.find('.upCount').text()) - 1);
         }
     },function(msg){
-       showAlert(false , msg);
+       showAlert(false , msg.error);
     });
 })
 $(".forget").click(function(event) {

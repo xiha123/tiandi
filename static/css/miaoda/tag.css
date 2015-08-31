@@ -10,3 +10,5 @@
 .left-content{width: 760px;margin-top: 0;}
 .list-title{width: 680px !important;}
 .right-content{float: right;}
+.right-content li{position: relative;}
+.right-content .god{position:absolute;left:38px;top:31px;width: 19px;}
