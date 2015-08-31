@@ -34,4 +34,8 @@ class Qa extends CI_Controller {
 		$this->load->view('pages/QA/essentialInformation.php');
 	}
 
+	public function money() {
+	$this->load->view('pages/QA/money.php');
+	}
+
 }

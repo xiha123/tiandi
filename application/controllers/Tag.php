@@ -31,25 +31,25 @@ class Tag extends CI_Controller {
 		// <is tag>
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
 		if(count($userdata['tag_data']) <= 0) show_404();
-		$userdata['tag_data'] = $userdata['tag_data'][0];
-		// </is tag>
 
 		switch ($problem_type) {
 			case 'hot':
 				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "hot");
+				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name , array("who !=" => "[]"));
 				break;
 			case 'love':
 				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "chou");
+				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name , array("up_count >=" => 1));
 				break;
 			default:
 				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);
+				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 				break;
 		}
-		//$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
-		$userdata['problem_list_count'] = $this->tag_model->get(array(
-			'type' => 1,
-			'name' => $name
-		))['count'];
+		// $userdata['problem_list_count'] = $this->tag_model->get(array(
+		// 	'type' => 1,
+		// 	'name' => $name
+		// ))['count'];
 
 
 		/*开始构造数据准备传递*/

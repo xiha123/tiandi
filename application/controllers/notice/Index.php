@@ -21,7 +21,7 @@ class index extends CI_Controller {
 		));
 		$me['news_list'] = $this->news_model->get_list(array(
 			'target' => $me['id']
-		), $me['page'], 20);
+		), ($me['page'] - 1) * 20, 20);
 
 		$contentArr = array(
 			'000' => '欢迎您注册天地君道秒答平台，为表示感谢赠送您500银币！',

@@ -17,7 +17,7 @@
 		<div class="tacher-data">
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic"><h3 class="name"><?=$user["nickname"] ?></h3>
 			<p class="desk"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
-			<?=!check_follow(json_decode($follow_users) , $user['id']) ? '<button id="ajax_eye" data-id="'.$user["id"].'">+ 关注</button>' : '<button id="ajax_uneye" data-id="'.$user["id"].'">取消关注</button>';?>
+			<?=!check_follow(json_decode($user["follow_users"]) , $user['id']) ? '<button id="ajax_eye" data-id="'.$user["id"].'">+ 关注</button>' : '<button id="ajax_uneye" data-id="'.$user["id"].'">取消关注</button>';?>
 		</div>
 		<div class="tacher-tag">
 			<h2>擅长标签：</h2>

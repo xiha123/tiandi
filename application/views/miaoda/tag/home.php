@@ -73,7 +73,7 @@
 						if($value[0]["avatar"] == ""){
 							$value[0]["avatar"] = "static/image/default.jpg";
 						}
-						echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
+						echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><img class="god" src="./static/image/god_right.png"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
 					}
 				?>
 				<li>
