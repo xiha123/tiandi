@@ -4,16 +4,36 @@ include_once(APPPATH . 'controllers/api/Base_api.php');
 
 class course_api extends base_api {
     public function __construct() {
-		parent::__construct();
-		$this->load->model('course_model');
-		$this->load->model('course_step_model');
-		$this->load->model('course_chapter_model');
-
-    	$this->me = $this->admin_model->check_login();
+        parent::__construct();
+        $this->load->model('course_model');
+        $this->load->model('course_step_model');
+        $this->load->model('admin_model');
+        $this->load->model('course_chapter_model');
+        $this->me = $this->admin_model->check_login();
         if ($this->me === false) {
             $this->finish(false, '未登录');
         }
     }
+
+
+    /**
+     * 添加一个新的课程
+     * @param title
+     * @param type
+     * @return  bool [<description>]
+     */
+    public function add_class(){
+        $params = $this->get_params('POST', array("title" , "type"));extract($params);
+        if($this->course_model->is_exist(array('title' => $title))) $this->finish(false, '您输入的课程已经存在了');
+        if($type < 0 || $type > 4) $this->finish(false, '您输入的父类分类错误');
+        $this->course_model->create(array(
+            'title' => $title,
+            'type' => $type,
+        ));
+        $this->finish(true);
+    }
+
+    
 
     public function create() {
         $params = $this->get_params('POST', array(
