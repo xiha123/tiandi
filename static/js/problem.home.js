@@ -1,4 +1,5 @@
 var ue = UE.getEditor('editor');
+	UE.getEditor('editor').setDisabled('fullscreen');
 
 $("#ajax_problemSubmit").on("click",function() {
 	var title = $("#problem-title").val(),

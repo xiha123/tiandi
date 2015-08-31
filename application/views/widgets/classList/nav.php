@@ -2,11 +2,12 @@
 
 $navList = array(
 	array(
-		"title" => "课程管理",
+		"title" => "添加新课程",
 		"link" => "javascript:void(0)",
-		"icon" => "fa fa-home",
+		"icon" => "fa fa-plus-circle",
 		"active" => false
 	),
+
 );
 
 

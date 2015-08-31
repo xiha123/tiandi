@@ -1,5 +1,4 @@
-problem_type = 1;
-if(problem_type == 1){
+if(window.problem_type == 1){
 	UE.registerUI('引用提问者问题', function(editor, uiName) {
 	    editor.registerCommand(uiName, {
 	        execCommand: function() {
@@ -138,7 +137,7 @@ $(".ajax_close").click(function(event) {
 	});
 });
 
-if(first){
+if(window.first){
 	var max = 1;
 	var god = setInterval(function(){
 		 rand = Math.ceil(Math.random() * 2);
@@ -153,7 +152,7 @@ if(first){
 	},800);
 }
 
-if(problem_type == 1){
+if(window.problem_type == 1){
 	timeOut_fun();
 	var timeOut = setInterval(function(){
 		timeOut_fun();
@@ -178,6 +177,8 @@ if(problem_type == 1){
 				});
 			}
 		},11000);
+	}else{
+		
 	}
 }
 function timeOut_fun(){
@@ -201,8 +202,11 @@ function timeOut_fun(){
 	        },1000)
 	}
 }
- var ue = UE.getEditor('editor');SyntaxHighlighter.all();
-if(problem_type == 3){
+ var ue = UE.getEditor('editor');
+
+
+ SyntaxHighlighter.all();
+if(window.problem_type == 3){
 	value = '在此处输入评论';
 }else{
 	value = '详细描述你的解答';

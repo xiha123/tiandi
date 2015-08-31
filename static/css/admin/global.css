@@ -90,6 +90,7 @@ p,td{word-break:break-all}
 .nav-pills {  background-color: #fff;font-size:14px;float: left;margin-left:13px;}
 .nav-pills a{color:#bbb;margin-right:10px;padding:6px 14px !important;}
 .nav-pills a i{color:#bbb;margin-right:9px;}
+.nav-pills .active i{color:#fff}
 
 
 .imgLook{position:absolute;display:none;z-index:99999;background:#fff;max-height:80px;max-width:400px;padding:4px;border:1px solid #dcdcdc}

@@ -47,21 +47,12 @@ class Tag extends CI_Controller {
 				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 				break;
 		}
-		// $userdata['problem_list_count'] = $this->tag_model->get(array(
-		// 	'type' => 1,
-		// 	'name' => $name
-		// ))['count'];
 
 
 		/*开始构造数据准备传递*/
 		$userdata['hot_type'] = $problem_type;
-
-
-
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
-
-		$userdata['tag_count'] = $this->problem_model->get_list_by_tag_count($name);
-		if($userdata['tag_count'] <=0){
+		if($userdata['problem_list_count'] <=0){
 			show_404();
 		}
 

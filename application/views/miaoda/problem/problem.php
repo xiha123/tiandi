@@ -5,16 +5,18 @@
 <body>
 
 <script>
+	window.problem_type = <?=$problem_data["type"]?>;
+	window.first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>;
+
 	var problem_id = <?=$problem_data["id"]?>,
 	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
 	problem_type = <?=$problem_data["type"]?>,
 	max_god = <?=$god_count?>,
 	online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>;
-	first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>;
-	var problem_content = "<?=$problem_detail[0]['content']?>";
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
+		$online = false;
 	?>
 </script>
 
@@ -117,11 +119,18 @@
 				}
 				if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
 				$problem_online_count = count(json_decode($problem_data['online'])) - 1;
+				
 			?>
 				<div class="doubt">
 					<table class="table">
 						<tr><td>
-							<span class="online fr"><font class="fr"><?=$problem_data['owner_id'] == @$id ? "问题正在被大神解答中" : ($problem_online_count < 0 ? 0 : $problem_online_count) .'<i class="fa fa-user fr"></i>';?></font></span>
+						
+							<?php
+								if($problem_data['owner_id'] == @$id){
+									$online = true;
+								}
+							?>
+							<span class="online fr"><font class="fr"><?=$problem_data['owner_id'] == @$id ? "问题正在被大神" .  "解答中" : ($problem_online_count < 0 ? 0 : $problem_online_count) .'<i class="fa fa-user fr"></i>';?></font></span>
 						</td></tr>
 						<tr><td>
 							<div class="desc">
@@ -141,6 +150,7 @@
 						</td></tr>
 					</table>
 				</div>
+
 			<?php }}
 				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
 					echo '<div class="button close" data-id="' . $problem_data["id"] . '">';
@@ -156,18 +166,20 @@
 
 			<div class="button">
 				<?php
-					if (!empty($type) && $type == 1) {
-						if ($problem_data['answer_id'] === $id) {
-							echo $problem_data['type'] == 1 ? '<button id="reply">提交</button>' :"";
-						} else {
-							echo $problem_data['type'] == 0  ? '<button id="answer">认领问题</button>' : "";
-						}
-					} else if ($problem_data['type'] != 3 && $problem_data['owner_id'] != @$id && $problem_data['answer_id'] != @$id){
+					if ($problem_data['type'] != 3 && $problem_data['owner_id'] != @$id && $problem_data['answer_id'] != @$id){
 						echo $problem_collect == true ?
 						'<button class="uncollect">★ 取消收藏</button>':
 						'<button class="none-background collect">★ 收藏</button>';
 						echo '<button class="js_chou">众筹</button>';
 					}
+					if (!empty($type) && $type == 1) {
+						if ($problem_data['answer_id'] === $id) {
+							echo $problem_data['type'] == 1 ? '<button id="reply">提交</button>' :"";
+						} else {
+							echo $problem_data['type'] == 0 && $problem_data['owner_id'] != @$id ? '<button id="answer">认领问题</button>' : "";
+						}
+					} 
+
 				?>
 			</div>
 			<?php
@@ -220,9 +232,13 @@
 
 	</div>
 <?php $this->load->view('widgets/footer.php'); ?>
+
 <script src="./static/lib/syntax/brush.js"></script>
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
 <script src="static/js/problem.js"></script>
+
+<?=$online == true ? "<script>ue.addListener( 'ready', function(){UE.getEditor('editor').setDisabled('fullscreen');});$('#problem-code').attr('readOnly' , true).css('color','#aaa')</script>" : ""?>
+
 </body>
 </html>

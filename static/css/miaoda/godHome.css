@@ -1,6 +1,6 @@
 .leftBox,.rightBox{padding-bottom:120px;float:left;}
 
-.leftBox{padding-top:15px;width: 230px;padding-right: 10px;}
+.leftBox{ position: relative; padding-top:15px;width: 230px;padding-right: 10px;}
 .leftBox .pic{margin-right:10px;width:125px;height: 125px;float: left;}
 .leftBox p{font-size:12px;float: left;margin-top:4px;}
 .leftBox .look,.leftBox .money{width: 75px;}
@@ -17,3 +17,4 @@
 .rightBox{width: 750px;margin-left:10px;}
 .rightBox .box-title{border: none;margin-bottom: 10px;}
 
+.god{position: absolute;left:100px;top:110px;}

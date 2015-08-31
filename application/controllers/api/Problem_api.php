@@ -17,6 +17,16 @@ class problem_api extends base_api {
         $this->me = $this->user_model->check_login();
     }
 
+    public function get_online_problem(){
+        parent::require_login();
+        $params = $this->get_params('POST' , array("problem_id"));
+        $problem = $this->problem_model->get(array("id" => $problem_id) , array("type"))
+        if(!isset($problem['type'])) parent::finish(false , "您尝试着获取不存在的问题");
+        if($problem['type'] != 1) parent::finish(false , "未被认领的问题");
+        
+
+    }
+
     public function remove() {
         $this->load->model('admin_model');
         $this->me = $this->admin_model->check_login();
@@ -53,7 +63,7 @@ class problem_api extends base_api {
                     "owner_id" => "-1",
                     "ctime" => time(),
                     "problem_id" => $problem_id,
-                    "code" => htmlspecialchars($code),
+                    "code" => ($code),
                     "language" => $language,
                 );
                 if($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3))){
@@ -97,7 +107,7 @@ class problem_api extends base_api {
             $this->finish(false, '无法众筹！');
         }else{
             $this->user_model->add_chou($problem_id);
-            $this->news_model->add_news(array(
+            $this->news_model->create(array(
                 'target' => $this->me['id'],
                 'type' => '300',
                 'problem_id' => $problem_id
@@ -331,7 +341,10 @@ class problem_api extends base_api {
         if ($this->me['type'] != 1) {
             $this->finish(false, '没有权限');
         }
-
+        $this->problem_detail_model->remove_where(array(
+            "problem_id" => $problem_id,
+            "type" => 3
+        ));
         $problem = $this->problem_model->get(array(
             'id' => $problem_id
         ));
