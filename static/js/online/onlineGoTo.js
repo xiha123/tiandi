@@ -1,6 +1,7 @@
 var curId,
     defaultImg = 'static/image/slide1.jpg',
-    $editForm = $('#guide-edit-form');
+    $editForm = $('#guide-edit-form'),
+    $scheduleForm = $('#schedule-form');
 
 $('table').delegate('.fa', 'click', function () {
     var $ele = $(this),
@@ -61,3 +62,24 @@ function editGuide(e) {
         }
     });
 }
+
+$scheduleForm.bind('submit', function (e) {
+    e.preventDefault();
+
+    var course = $scheduleForm.find('#schedule-form-course').val(),
+        date = $scheduleForm.find('#schedule-form-date').val();
+
+    _td.api.editSite({
+        type: '001',
+        content: course
+    }).then(function () {
+        setTimeout(function () {
+            _td.api.editSite({
+                type: '002',
+                content: date
+            }).then(function (res) {
+                location.reload();
+            });
+        }, 0);
+    });
+});

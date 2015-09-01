@@ -38,7 +38,7 @@
 			在线课堂轮播
         </div>
         <div role="tabpanel" class="tab-pane" id="schedule">
-			<form id="schedule-form" onsubmit="editSchedule()">
+			<form id="schedule-form" method="post" action="api/site_api/update">
 				<div class="form-group">
 					<label for="schedule-form-course">课程</label>
 					<textarea class="form-control" id="schedule-form-course" placeholder="课程内容">{schedule_course}</textarea>

@@ -278,6 +278,14 @@ api:
         - description
         - img
         - level
+-
+    url: api/site_api/update
+    type: post
+    name: editSite
+    needs:
+        - type
+        - content
+
 
 config:
     isSuccess:

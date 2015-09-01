@@ -1,5 +1,5 @@
 <?php
-	$this->load->view('widgets/header.php'); 
+	$this->load->view('widgets/header.php');
 	$active = 'class="active"';
 ?>
 	<link rel="stylesheet" href="static/css/tanchuang_main.css"/>
@@ -10,7 +10,7 @@
 <?php $this->load->view('widgets/nav.php', array( "activeNav" => 0 )); ?>
 <div class="windows" >
 <div class="box" id="box">
-	<p>
+	<div>
 		<img src="" width="480" height="275">
 		<div class="title">
 			<div class="close fr"></div>
@@ -19,15 +19,13 @@
 				<h3>难度</h3>
 				 <!--<i class="fa fa-star"></i> -->
 			</div>
-		</div><p class="content">
-			
-		</p></p>
-		<div class="button">
-			<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>">
-			<button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
 		</div>
-
-
+		<p class="content"></p>
+	</div>
+	<div class="button">
+		<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>">
+		<button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
+	</div>
 </div>
 </div>
 
@@ -38,24 +36,21 @@
 			{guide_list}
 				<li><a href="{link}" target=""><img src="./static/uploads/{img}" height="120" width="200"></a></li>
 			{/guide_list}
-
 			</ul>
+
 			<ul class="slider-sheet fl js-slider-sheet">
-
-			<?php
-				foreach ($slide_list as $key => $value) {
-					echo '<li><img src="./static/uploads/'.@$value['site']['img'] . '" height="370" width="615"><div class="slider-summary"><p>课程</p><p> 
-					' .$value['class']['title'] . '</p></div><div class="slider-summary"><p>课表</p><p>
-					' .$value['class']['content'] . '</p></div></li>';
-				}
-			?>
-
+			{slide_list}
+				<li><a href="{link}"><img src="./static/uploads/{img}" height="370" width="615"></a></li>
+			{/slide_list}
 			</ul>
+
 			<ul class="js-slider-trigger">
-				{slide_list}
+			{slide_list}
 				<li><a href="javascript:void(0)"></a></li>
-				{/slide_list}
+			{/slide_list}
 			</ul>
+			<div class="slider-summary"><p>课程</p><p>{schedule_course}</p></div>
+			<div class="slider-summary"><p>课表</p><p>{schedule_date}</p></div>
 		</div>
 		<div class="tab" style="height:530px;">
 			<ul class="tab-trigger cf js-tab-trigger">
@@ -73,7 +68,7 @@
 					</div>
 					<ul class="list">
 						<?php
-							for ($index = 0; $index < 4 ; $index++) { 
+							for ($index = 0; $index < 4 ; $index++) {
 								if($index < 3){
 									echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-right"></i></li>';
 								}else{
@@ -92,7 +87,7 @@
 						?>
 					</ul>
 				</div>
-				
+
 			</ul>
 		</div>
 	</div>
