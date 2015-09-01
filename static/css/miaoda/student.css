@@ -75,6 +75,7 @@
 .whyUser .desc *{word-break:break-all; line-height:20px;max-width: 760px;}
 .whyUser .desc br{margin:14px 0px;}
 .whyUser .desc img{margin:10px 0px;}
+.whyUser .desc a{color:#43a8ad;}
 .whyUser .god{position:absolute;left:24px;top:21px;width: 15px;}
 
 .leftHeader h1{font-size: 23px;font-weight: 700;margin-bottom:10px; }
@@ -96,6 +97,6 @@
 .online font{position:relative;top:-3px;margin-right:5px;color:#219ba1;}
 
 .user_list_data {
-    float:left;
+    float:left;    width: 100%;
     margin:60px 0 40px;
 }

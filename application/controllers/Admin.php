@@ -229,11 +229,18 @@ class Admin extends CI_Controller {
 	*/
 	public function classList(){
 		if (empty($this->user_info)) redirect('admin/login');
-		$returnData = $this->course_model->get_list("all");
+		$page = isset($_GET['page']) ? $this->input->get("page") : 1;
+		$returnData = $this->course_model->get_list("all" , ($page - 1) * 10 ,10);
+		$course_max = $this->course_model->get_count(array());
 		$data = array(
+			"page" => $page,
 			"data_list" => $returnData,
-			"me" => $this->user_info
+			"me" => $this->user_info,
+			"course_max" => $course_max,
 		);
+
+
+
 		$this->load->library('parser');
 		$this->parser->parse('admin/classList/home.php' , $data);
 	}

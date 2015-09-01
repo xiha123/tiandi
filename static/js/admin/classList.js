@@ -1,4 +1,56 @@
-// JavaScript Document
+
+
+var addClass = function(){
+	var ajaxClassName = $("#ajaxClassName").val(),
+		ajxaFather = $("#ajxaFather").val();
+	if(ajaxClassName.length > 20){showAlert("您输入的课程名字太长了");return;}
+	if(ajaxClassName.length < 4){showAlert("您输入的课程名字太短了");return;}
+	$.ajax({
+		url : "api/Course_api/add_class",
+		data : {title : ajaxClassName , type : ajxaFather },
+		type : "POST"
+	}).then(function(msg){
+		try{data = JSON.parse(msg);}catch(e){showAlert("请求失败，请稍候重试重新提交");return;}
+		if(data.status){
+			showAlert("新的课程添加成功！" , "success");
+			setTimeout(function(){
+				location.reload();
+			},700);
+		}else{
+			showAlert(data.error);
+		}
+	});
+}
+
+// 添加新的课程
+$("#addClass").click(function(){
+	var formData = new Array();
+	formData.push({
+		"chinaName" : "课程名称" , 
+		"name" : "className" ,
+		"id" : "ajaxClassName"  , 
+	})
+	formData.push({
+		"chinaName" : "所属父类" , 
+		"name" : "class" , 
+		"id" : "ajxaFather" , 
+		"type" : "select", 
+		"data" :  [
+			{"value":"0" , "name" : "3d"} , 
+			{"value":"1" , "name" : "swift"},
+			{"value":"2" , "name" : "web"},
+			{"value":"3" , "name" : "coco"},
+			{"value":"4" , "name" : "android"}
+		]
+	})
+	confirms({
+		"title" : "添加一个新的课程",
+		"content" : commit(formData , {"submitFunctionName" : "addClass()" , "header" : "<tr><td>" , "footer" : "</tr></td>"}),
+		"success" : addClass
+	});
+});
+
+
 
 
 
@@ -33,7 +85,6 @@ $(".remove-slider").click(function(){
 
 
 $(".edit-slider").click(function(){
-	
 	$parents = $(this).parents().parents().eq(0);
 	input({
 		"title" : "编辑该课程",

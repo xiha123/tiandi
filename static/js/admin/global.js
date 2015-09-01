@@ -3,6 +3,46 @@ $(document).ready(function(){
 	$(".close_window , #close_window").click(close);
 });
 
+/**
+ * form 表单处理
+ * @param  {[type]} formData   [description]
+ * @param  {[type]} formConfig [description]
+ * @return {[type]}            [description]
+ * 
+ * type string
+ * name string
+ * data [value , name]
+ *
+ * formConfig
+ * submitFunctionName
+ * header
+ * footer
+ */
+function commit(formData , formConfig){
+	var formInput = '<form action="javascript:;" onsubmit = "' + formConfig.submitFunctionName + '"><table class="table-form">',
+		type , name , value , value_data = "" , inputValue , id;
+	for (var i = 0; i < formData.length; i++) {
+		type = formData[i].type == undefined ? "text" : formData[i].type;
+		name = formData[i].name == undefined ? "" : 'name="' + formData[i].name + '"' ;
+		inputValue = formData[i].value == undefined ? "" : 'value="' +formData[i].value + '"' ;
+		id = formData[i].id == undefined ? "" : 'id="' +formData[i].id + '"';
+		value = formData[i].data == undefined ? "" : formData[i].data;
+		if(formData[i].type == "select"){
+			for (var index = 0;index < value.length;index ++) {
+				value_data += "<option value='" + value[index].value + "'>" + value[index].name + "</option>";
+			};
+			formInput += formConfig.header +formData[i].chinaName+ "：<select " + name + ' ' + id + ">" + value_data + "</select>"+ formConfig.footer;
+		}else{
+			formInput += formConfig.header + formData[i].chinaName+'：<input type="' + type + '" ' + name + ' ' + id +' ' +inputValue+ ' ' + (value != undefined ? value : "") + '/>' + formConfig.footer ;
+		}
+	};
+	formInput =  formInput + "</table>" + "</form>";
+	return formInput;
+}
+
+
+
+
 function alertBox(config){
 	$(".window,#alert").fadeIn(200);
 	setTimeout(function(){
@@ -94,6 +134,7 @@ function showAlert(text, type) {
     $alertBox.show();
 	alertTimer && clearTimeout(alertTimer);
 	alertTimer = setTimeout(hideAlert, 2000);
+	return false;
 }
 function hideAlert() {
     $alertBox.hide();

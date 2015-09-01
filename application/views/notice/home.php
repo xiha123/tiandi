@@ -15,6 +15,11 @@
 			<table>
 				{news_list}
 				<tr>
+					<th></th>
+					<th></th>
+					<th width="170"></th>
+				</tr>
+				<tr>
 					<td><input type="checkBox" name="delete" data-id="{id}" class="delete"></td>
 					<td><p class="notice-title">{content}</p></td>
 					<!--<td><p class="notice-time">date("Y-m-d H:i:s",$value['time'])</p></td>-->

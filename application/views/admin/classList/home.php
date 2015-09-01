@@ -33,7 +33,17 @@
 					<td><i class="fa fa-edit edit-slider"></i></td>
 				</tr>
 				{/data_list}
+
 			</table>
+			<?php
+				$this->load->view("miaoda/page",array(
+					"page" => $page,
+					"page_max" => $course_max,
+					"page_count" => 10,
+					"page_url" => "./admin/classList",
+					"hot" => ""
+				));
+			?>
 		</div>
 		
 	</div>

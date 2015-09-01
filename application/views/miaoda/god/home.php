@@ -7,6 +7,7 @@
 
 		<div class="leftBox">
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
+			<img class="god" src="./static/image/god_right.png">
 			<h3 class="name"><?=$user["nickname"] ?></h3>
 			<p class="look"><img src="static/image/look.png" alt="" width="18px"><?=$user['collect_problem_count']?></p>
 			<p class="look"><img src="static/image/good.png" width="16px" alt=""><?=$user['follow_user_count']?></p>
