@@ -65,12 +65,7 @@
 			</div>
 			<?php
 				if($problem_detail[0]["code"] != NULL){
-					echo '<div class="code-tool">
-								<div class="tool">
-									<!--<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a>--><h2>('.($problem_detail[0]["language"]).')</h2>
-								</div>
-							</div>
-							<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.($problem_detail[0]["code"]).'</pre></div>';
+					echo '<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.($problem_detail[0]["code"]).'</pre></div>';
 				}
 				for ($index = 1; $index < count($problem_detail); $index++) {
 			?>
@@ -85,12 +80,7 @@
 					</div>
 			<?php
 					if($problem_detail[$index]["code"] != NULL){
-						echo '<div class="code-tool">
-							<div class="tool">
-								<!--<a href="javascript:;" id="code_copy"><i class="fa fa-code"></i> 复制代码</a>--><h2>('.($problem_detail[$index]["language"]).')</h2>
-							</div>
-						</div>
-						<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.($problem_detail[$index]["code"]).'</pre></div>';
+						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.($problem_detail[$index]["code"]).'</pre></div>';
 					}
 				}
 			?>

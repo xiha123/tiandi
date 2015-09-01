@@ -287,13 +287,13 @@ class Admin extends CI_Controller {
 		);
 		$this->load->view('admin/onlineClass/home.php', $data);
 	}
+
 	public function onlineGoTo(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$data = array(
 			"me" => $this->user_info
 		);
-		$data['data_list'] = $this->guide_model->get_list();
-		$this->load->library('parser');
+		$data['guide_list'] = $this->guide_model->get_list();
 		$this->parser->parse('admin/onlineClass/onlineGoTo.php', $data);
 	}
 

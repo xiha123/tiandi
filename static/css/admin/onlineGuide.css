@@ -1,0 +1,20 @@
+.table {
+    margin:0;
+}
+.table .fa {
+    margin:0 0 0 5px;
+}
+.table i.fa-edit {
+    color:#219ba1;
+}
+
+#guide-edit-form img {
+    cursor:pointer;
+}
+
+#schedule-form {
+    padding:5% 10%;
+}
+#schedule-form textarea {
+    height:200px;
+}

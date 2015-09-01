@@ -7,3 +7,4 @@
 <link rel="stylesheet" href="static/lib/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="static/lib/fa/css/font-awesome.min.css">
 <link rel="stylesheet" href="static/css/admin/global.css">
+<link rel="Shortcut Icon" href="favicon.ico">

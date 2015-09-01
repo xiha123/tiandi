@@ -47,9 +47,8 @@ $("#ajax_userPic").change(function(e){
 	reader.readAsDataURL(file);
 	var option = {
 		type : "post",
-		url:"api/user_api/upload_pic",
+		url: "api/user_api/upload_pic",
 		success:function (data) {
-			console.log(data);
 			data = JSON.parse(data);
 			  if(data.status ==true) {
 				showAlert(true,"上传成功！");
@@ -60,7 +59,7 @@ $("#ajax_userPic").change(function(e){
 				showAlert(false,data.error);
 			}
 		},
-		error:function(){
+		error: function() {
 			showAlert(false,"网络异常，无法上传照片！");
 		}
 	};
@@ -82,7 +81,7 @@ $("#ajax_godset").click(function(){
 	$.each($(".tag .tag-box"), function(index, val) {
 		jsonArray.push($(val).find("font").text());
 	});
-	
+
 
 
 	$.ajax({

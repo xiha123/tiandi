@@ -48,6 +48,9 @@
     border-radius: 30px;
     margin-bottom: 25px;
 }
+.email {
+    margin-bottom: 15px;
+}
 
 textarea{
     padding:8px;
