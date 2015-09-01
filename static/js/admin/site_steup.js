@@ -5,7 +5,7 @@ $(".add-steup").click(function(event) {
 			"content" :
 			'<form method="post" action="api/admin_api/add_steup" id="add" enctype="multipart/form-data">'+
 			'<table class=table-form>'+
-			'<input type="hidden" value="'+id+'" name="type">'+
+			'<input type="hidden" value="'+id+'" name="id">'+
 			'<tr><td>轮播标题：<input type="text" placeholder="请输入课程标题" name="title">'+
 			'<tr><td>课程难度：<select name="difficulty"><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>'+
 			'<tr><td>轮播描述：<textarea name="description" placeholder="请输入课程描述"></textarea>'+

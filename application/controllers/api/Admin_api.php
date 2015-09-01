@@ -150,9 +150,10 @@ class admin_api extends base_api {
         $this->course_model->edit_tag($type,array("steps" => $this->remove_json( $course_data['steps'], $id)));
          $this->finish(true,"Good!!");
     }
+
+
     public function add_steup(){
-        $params = parent::get_params('POST', array("title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
-        $type = $this->input->post('type');
+        $params = parent::get_params('POST', array("id","title" , "difficulty" , "description" ));if(empty($params))return;extract($params);
         if(isset($_FILES["userfile"])){
             $config['upload_path'] = './static/uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -163,15 +164,16 @@ class admin_api extends base_api {
                $this->finish(false,"图片无法上传到服务器");
             }else{
                 $data = $this->upload->data();
-                $id = $this->course_step_model->create(array(
+                $course_data = $this->course_model->get(array("id" => $id));
+                $insert_id = $this->course_step_model->create(array(
                     "title"=>$title,
                     "img"=>$data['file_name'],
                     "description"=>$description,
                     "level"=>$difficulty,
-                    "course_id"=>$type,
+                    "course_id"=>$id,
                 ));
-               $course_data = $this->course_model->get(array("type" => $type));
-               $this->course_model->edit_tag($type,array("steps"=>$this->add_json($course_data['steps'] , array("t"=> $id)) ));
+
+               $this->course_model->edit($id,array("steps"=>$this->add_json($course_data['steps'] , array("t"=> $insert_id)) ));
                $this->finish(true,"添加成功！");
             }
         }
@@ -248,6 +250,49 @@ class admin_api extends base_api {
         }
     }
 
+    /**
+     * 添加课程的标签
+     * @param $[id] [<description>]
+     * @param $[tagName] [<description>]
+     * @param $[tagLink] [<description>]
+     */
+    public function addClassListTag(){
+        $params = parent::get_params('POST', array('id' , 'TagName' , 'TagLink'));if(empty($params))return;extract($params);
+
+        if($insertid = $this->tag_model ->create(array(
+            "name" => $TagName,
+            "link" => $TagLink,
+            "type" => "1",
+            "content" => "",
+        ))){
+            $course_data = $this->course_model->get(array("id" => $id));
+            $course_data = $this->add_json($course_data['tags'] , array("t"=>$insertid));
+            if($this->course_model->edit($id,array("tags" => $course_data))){
+                $this->finish(true);
+            }else{
+                $this->finish(false,"未知的网络原因");
+            }
+        }else{
+            $this->finish(false,"未知的网络原因");
+        }
+    }
+
+    /**
+     * 编辑课程连接和描述
+     * @param  description $[name] [<description>]
+     * @param  link $[name] [<description>]
+     * @return [type] [description]
+     */
+    public function edit_link(){
+        $params = parent::get_params('POST', array('id' , 'description' , 'link'));if(empty($params)) return;extract($params);
+        $course_data = $this->course_model->get(array("id" => $id));
+        $this->course_model->edit($id,array("site"=>$this->edit_json($course_data['site'],"link",$link)));
+        $this->course_model->edit($id,array(
+            "description" => $description
+        ));
+        parent::finish(true);
+    }
+
 
 	//添加新的课程列表
 	public function addClassList(){
@@ -295,16 +340,7 @@ class admin_api extends base_api {
                 parent::finish(true);
 	}
 
-            public function edit_link(){
-                $params = parent::get_params('POST', array('type' , 'direction' , 'link'));if(empty($params)) return;extract($params);
-                $course_data = $this->course_model->get(array("type" => $type));
-                $this->course_model->edit_tag($type,array("site"=>$this->edit_json($course_data['site'],"link",$link)));
-                $this->course_model->edit_tag($type,array(
-                    "description" => $direction
-                ));
-
-                parent::finish(true);
-            }
+    
 
 
 
@@ -321,24 +357,7 @@ class admin_api extends base_api {
                 }
 	}
 
-            public function addClassListTag(){
-                $params = parent::get_params('POST', array('id' , 'className' , 'classLink'));if(empty($params)) return;extract($params);
-                if($insertid = $this->tag_model ->create(array(
-                    "name" => $className,
-                    "link" => $classLink,
-                    "type" => "1"
-                ))){
-                    $data = $this->course_model->get_list($id,0,5,true);
-                    $data = $this->add_json($data[0]['tags'],array("t"=>$insertid));
-                    if($this->course_model->edit_tag($id,array("tags" => $data))){
-                        $this->finish(true);
-                    }else{
-                        $this->finish(false,"未知的网络原因");
-                    }
-                }else{
-                    $this->finish(false,"未知的网络原因");
-                }
-            }
+
 
 
 

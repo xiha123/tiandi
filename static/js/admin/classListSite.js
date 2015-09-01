@@ -18,6 +18,51 @@ $faterBox.on("click" , "a" , function(){
 	temp_index = index;
 })
 
+var commitConfig = {"header" : "<tr><td>" , "footer" : "</tr></td>"};
+
+
+
+/**
+ * 添加一个新的标签
+ * @param {TagName} [varname] [description]
+ * @param {TagLink} [varname] [description]
+ */
+var addTag = function(){
+	var TagName = $("#ajaxTagName").val(),
+		TagLink = $("#ajaxTagLink").val();
+	if(TagName == ""){showAlert("您必须写清课程的名称");return false}
+	if(TagLink == ""){showAlert("您必须写清课程的连接");return false}
+	$.ajax({
+		url : "api/admin_api/addClassListTag",
+        	dataType: 'JSON',
+        	type: 'POST',
+		data : {id:id , TagName:TagName , TagLink:TagLink}
+	}).then(function(data){
+		if(data.status){
+			showAlert("添加标签成功！" , "success");
+			setTimeout(function(){
+				location.reload();
+			},500);
+		}else{
+			showAlert(data.error);
+		}
+	});
+}
+$("#add-classList").click(function(){
+	var formData = new Array();
+	formData.push({"chinaName":"标签名称" , "id":"ajaxTagName" , "placeholder":"请输入课程名称"});
+	formData.push({"chinaName":"标签地址" , "id":"ajaxTagLink" , "placeholder":"请输入视频地址"});
+	commitConfig.submitFunctionName = "addTag()";
+	input({
+		title : "添加一个新的标签",
+		content : commit(formData , commitConfig),
+		success : addTag
+	});
+});
+
+
+
+
 $("#updataPic").click(function(){
 	var option = {
 		type : "post",
@@ -187,14 +232,14 @@ $("#save-link").click(function(){
 		"url" : "api/admin_api/edit_link",
 		type : "POST",
 		data : {
-			"type" : id,
+			"id" : id,
 			"link" : $(".link").val(),
-			"direction" : $(".direction").val(),
+			"description" : $(".direction").val(),
 		},
 		dataType : "JSON",
 		success: function(data){
 			  if(data.status == true) {
-				alertBox({"title":"保存成功","icon":"icon-ok","content":"<p>恭喜您！</p><p>保存成功</p>",});
+				showAlert("恭喜您！您成功修改了报名地址和相关描述",'success');
 			} else {
 				showAlert(data.error);
 			}
@@ -242,43 +287,6 @@ $(".edit-slider").click(function(){
 	});
 })
 
-$("#add-classList").click(function(){
-	input({
-		"title" : "添加特色课程",
-		"content" : 
-		'<table class=table-form>'+
-		'<tr><td>课程名称：<input type="text" placeholder="请输入课程名称" class="className">'+
-		'<tr><td>课程地址：<input type="text" placeholder="请输入视频地址" class="classLink">'+
-		'</table>',
-		"success" : function(){
-			if($("input[name='className']").val() == ""){
-				showAlert("您必须写清课程的名称");
-				return false
-			}
-			if($("input[name='classLink']").val() == ""){
-				showAlert("您必须写清课程的连接");
-				return false
-			}
-			$.ajax({
-				"url" : "api/admin_api/addClassListTag",
-				type : "POST",
-				data : {
-					"id" : id,
-					"className" : $(".className").val(),
-					"classLink" : $(".classLink").val(),
-				},
-				dataType : "JSON",
-				success: function(data){
-					  if(data.status == true) {
-						location.reload();
-					} else {
-						showAlert(data.error);
-					}
-				}
-			});				
-		}
-	});
-})
 
 
 

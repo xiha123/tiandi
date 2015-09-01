@@ -12,6 +12,7 @@ $(document).ready(function(){
  * type string
  * name string
  * data [value , name]
+ * placeholder
  *
  * formConfig
  * submitFunctionName
@@ -20,20 +21,22 @@ $(document).ready(function(){
  */
 function commit(formData , formConfig){
 	var formInput = '<form action="javascript:;" onsubmit = "' + formConfig.submitFunctionName + '"><table class="table-form">',
-		type , name , value , value_data = "" , inputValue , id;
+		type , name , value , value_data = "" , inputValue , id , placeholder;
 	for (var i = 0; i < formData.length; i++) {
 		type = formData[i].type == undefined ? "text" : formData[i].type;
 		name = formData[i].name == undefined ? "" : 'name="' + formData[i].name + '"' ;
 		inputValue = formData[i].value == undefined ? "" : 'value="' +formData[i].value + '"' ;
 		id = formData[i].id == undefined ? "" : 'id="' +formData[i].id + '"';
 		value = formData[i].data == undefined ? "" : formData[i].data;
+		placeholder = formData[i].placeholder == undefined ? "" : formData[i].placeholder;
+
 		if(formData[i].type == "select"){
 			for (var index = 0;index < value.length;index ++) {
 				value_data += "<option value='" + value[index].value + "'>" + value[index].name + "</option>";
 			};
 			formInput += formConfig.header +formData[i].chinaName+ "：<select " + name + ' ' + id + ">" + value_data + "</select>"+ formConfig.footer;
 		}else{
-			formInput += formConfig.header + formData[i].chinaName+'：<input type="' + type + '" ' + name + ' ' + id +' ' +inputValue+ ' ' + (value != undefined ? value : "") + '/>' + formConfig.footer ;
+			formInput += formConfig.header + formData[i].chinaName+'：<input type="' + type + '" ' + name + ' ' + id +' ' +inputValue+ ' ' + (value != undefined ? value : "") + ' placeholder="' + placeholder+ '" />' + formConfig.footer ;
 		}
 	};
 	formInput =  formInput + "</table>" + "</form>";

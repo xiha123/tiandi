@@ -3,7 +3,7 @@
 	<div class="updataBox">
 		<img src="<?=!isset($site['img']) ? "static/image/slide1.jpg" : './static/uploads/' . $site['img'] ?>" class="preview">
 		<form enctype="multipart/form-data" action="api/upload/pic" id="classpic" method="post">
-			<input type="hidden" name="type" value="{type}" class="updata-class">
+			<input type="hidden" name="id" value="{id}" class="updata-class">
 			<input type="file" name="userfile" class="updata-class">
 		</form>
 	</div>

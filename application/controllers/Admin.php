@@ -237,8 +237,6 @@ class Admin extends CI_Controller {
 			"course_max" => $course_max,
 		);
 
-
-
 		$this->load->library('parser');
 		$this->parser->parse('admin/classList/home.php' , $data);
 	}
@@ -256,23 +254,47 @@ class Admin extends CI_Controller {
 
 	public function classListSite($id = ""){
 		if(empty($this->user_info)) redirect('admin/login');
-		$data = $this->course_model->get_list($id , 0 ,1);
-		$data = count($data) == 1 ? $data[0] : $data;
-		$data['class_type'] = $this->input->get("type") == "" ? "tag" : $this->input->get("type");
-		$data['me'] = $this->user_info;
 
-		// 各种简单粗暴的Get！
+		$data = $this->course_model->get_list($id , 0 , 1)[0];
+		if(count($data) <= 0) show_404();
+
+		$data['class_type'] = $this->input->get("type");
 		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
-		$data["tag_count"] = count($data['tags']);
-		$data["steps_count"] = count($data['steps']);
-		$data["class_count"] = $this->course_class_model->get_count(array());
-		$data["chapter_count"] = $this->course_chapter_model->get_count(array());
-		$data['class'] = $this->course_class_model->get_list(array("form" => $id) ,$data['page']-1 * 10 , 10);
-		$data['chapter'] = $this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] -1* 10 , 10);
-		$data['tags'] =  $data['page'] -1* 10 > $data["tag_count"] ? array_slice($data['tags'],($data['page'] -1)* 10 ) : $data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 , 10);
-		$data['steps'] =  $data['page'] -1* 10 > $data["tag_count"] ? array_slice($data['steps'],($data['page'] -1)* 10 ) : $data['steps'] = array_slice($data['steps'],($data['page'] -1)* 10 , 10);
 
-		$this->load->library('parser');
+		switch ($data['class_type']) {
+			case 'tag':
+				$data["tag_count"] = count($data['tags'] );
+				$data['tags'] =  $data['page'] -1* 10 > $data["tag_count"] ? array_slice($data['tags'],($data['page'] -1)* 10 ) : $data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 , 10);
+				break;
+
+			case 'step':
+				$data["steps_count"] = count($data['steps'] );
+				$data['steps'] =  $data['page'] -1* 10 > $data["steps"] ? array_slice($data['steps'],($data['page'] -1)* 10 ) : $data['steps'] = array_slice($data['steps'],($data['page'] -1)* 10 , 10);
+				break;
+			
+			case 'chapter':
+				$data["chapter_count"] = $this->course_chapter_model->get_count(array());
+				$data['chapter'] = $this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] -1* 10 , 10);
+				break;
+
+			case 'class':
+				$data["class_count"] = $this->course_class_model->get_count(array());
+				$data['class'] = $this->course_class_model->get_list(array("form" => $id) ,$data['page']-1 * 10 , 10);
+				break;
+
+			default:
+				$data["tag_count"] = count($data['tags'] );
+				$data['tags'] =  $data['page'] -1* 10 > $data["tag_count"] ? array_slice($data['tags'],($data['page'] -1)* 10 ) : $data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 , 10);
+				foreach ($data['tags'] as $key => $value) {
+
+				}
+				break;
+		}
+
+		$data['me'] = $this->user_info;
+		$data['type'] = $id;
+
+
 		$this->parser->parse('admin/classList/classListSite.php', $data);
 	}
 

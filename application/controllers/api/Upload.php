@@ -12,10 +12,10 @@ class Upload extends base_api {
 
 	public function pic(){
        	parent::require_login();
-		$type = $this->input->post("type", true);
+		$id = $this->input->post("id", true);
 
 		if(isset($_FILES["userfile"])){
-			$data = $this->course_model->get_list($type,0,1,true);
+			$data = $this->course_model->get_list($id,0,1,true);
 			$temp=array();
 			$file = json_decode($data[0]['site']);
 			foreach ($file as $key => $value) {
@@ -36,7 +36,7 @@ class Upload extends base_api {
 				echo  '{"status" : "false","error":"无法上传照片到服务器"}';
 			}else{
 				$file = $this->upload->data();
-				$this->course_model->edit_tag($type,
+				$this->course_model->edit($id,
 					array("site" => $this->edit_json($data[0]['site'],"img",$file['file_name'], true))
 				);
 				$this->load->model ("admin_model" , "model");

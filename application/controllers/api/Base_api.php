@@ -24,6 +24,7 @@ class base_api extends CI_Controller {
     // 统一json处理
     public function add_json($json,$data,$type = true){
         $json = $type ? json_decode($json) : $json;
+        $json = count($json) <= 0 ? array() : $json;
         array_push($json, $data);
         return json_encode($json);
     }

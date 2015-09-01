@@ -26,7 +26,7 @@
 					<th width="8%">操作</th>
 				</tr>
 				{data_list}
-				<tr data-id="{id}" data-type="{type}"  >
+				<tr data-id="{id}" data-type="{id}"  >
 					<td>{title}</td>
 					<td>{video}</td>
 					<td>{description}</td>
