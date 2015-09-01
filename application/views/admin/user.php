@@ -57,7 +57,9 @@
 					"page_max" => $user_max,
 					"page_count" => 10,
 					"page_url" => "./admin/user",
-					"hot" => ""
+					"hot" => "",
+					"search" => true,
+					"search_function_name" => "search('./admin/user')",
 				));
 			?>
 

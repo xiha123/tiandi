@@ -13,10 +13,10 @@
         <div role="tabpanel" class="tab-pane active" id="tags">
 			<table class="table table-bordered">
 				<thead><tr>
-					<th width="10%">名字</th>
+					<th width="15%">名字</th>
 					<th width="10%">类型</th>
 					<th width="10%">数量</th>
-					<th width="60%">描述</th>
+					<th width="50%">描述</th>
 					<th width="10%">操作</th>
 				</tr></thead>
 				<tbody>
@@ -33,7 +33,18 @@
 					</tr>
 				{/tags}
 				</tbody>
-			</table>
+			</table><br>
+			<?php
+				$this->load->view("miaoda/page",array(
+					"page" => $page,
+					"page_max" => $tag_count,
+					"page_count" => 10,
+					"page_url" => "./admin/tags",
+					"hot" => "",
+					"search" => true,
+					"search_function_name" => "search('./admin/tags')",
+				));
+			?>
         </div>
     </div>
 

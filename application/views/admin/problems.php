@@ -13,12 +13,12 @@
         <div role="tabpanel" class="tab-pane active" id="tags">
 			<table class="table table-bordered">
 				<thead><tr>
-					<th width="50%">标题</th>
-					<th width="10%">状态</th>
-					<th width="10%">提问者</th>
-					<th width="10%">回答者</th>
-					<th width="10%">创建时间</th>
-					<th width="10%">操作</th>
+					<th>标题</th>
+					<th width="6%">状态</th>
+					<th width="9%">提问者</th>
+					<th width="9%">回答者</th>
+					<th width="13%">创建时间</th>
+					<th width="5%">操作</th>
 				</tr></thead>
 				<tbody>
 				{list}
@@ -35,7 +35,18 @@
 					</tr>
 				{/list}
 				</tbody>
-			</table>
+			</table><br>
+			<?php
+				$this->load->view("miaoda/page",array(
+					"page" => $page,
+					"page_max" => $problem_count,
+					"page_count" => 10,
+					"page_url" => "./admin/problems",
+					"hot" => "",
+					"search" => true,
+					"search_function_name" => "search('./admin/problems')",
+				));
+			?>
         </div>
     </div>
 
@@ -70,4 +81,4 @@
 <?php $this->load->view('widgets/admin/footer.php'); ?>
 <script src="static/js/admin/problems.js"></script>
 </body>
-</html>
+</html>

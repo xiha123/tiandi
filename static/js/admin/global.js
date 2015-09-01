@@ -3,6 +3,10 @@ $(document).ready(function(){
 	$(".close_window , #close_window").click(close);
 });
 
+function search(link){
+	window.location = link + "?search=" + $("#searchName").val();
+}
+
 /**
  * form 表单处理
  * @param  {[type]} formData   [description]

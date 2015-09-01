@@ -42,8 +42,8 @@ class Admin extends CI_Controller {
 		if($this->admin_model->require_login() === false) redirect('admin/login');
 		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$data['me'] = $this->user_info;
-
-		$data['user'] = $this->user_model->get_list(array() , ($data['page'] - 1) , 10);
+		$where = !isset($_GET['search']) ? array() : array("id" => $this->input->get("search"));
+		$data['user'] = $this->user_model->get_list($where, ($data['page'] - 1) , 10);
 		foreach ($data['user'] as $key => $value) {
 			if($data['user'][$key]['type']  == "0"){
 				$data['user'][$key]['type'] = "学员";
@@ -51,7 +51,7 @@ class Admin extends CI_Controller {
 				$data['user'][$key]['type'] = $data['user'][$key]['type'] == "1" ? "大神" : "<font style='color:#cc0000;font-weight:700'>待审核</font>";
 			}
 		}
-		$data['user_max'] = $this->user_model->get_count(array());
+		$data['user_max'] = $this->user_model->get_count($where);
 		$this->load->library('parser');
 		$this->parser->parse('admin/user.php', $data);
 	}
@@ -82,13 +82,20 @@ class Admin extends CI_Controller {
 	public function tags() {
 		if (empty($this->user_info)) redirect('admin/login');
 		$this->load->model('tag_model');
-		$list = $this->tag_model->get_list(array(), 0, 100);
+		$page = !isset($_GET['page']) ? 1 : $this->input->get('page');
+		$where = !isset($_GET['search']) ? array() : array("id" => $this->input->get("search"));
+		$search_type = !isset($_GET['search']) ? false : true;
+
+		$list = $this->tag_model->get_list($where, ($page - 1) * 10, 10);
+		$tag_count = $this->tag_model->get_count($where);
 		foreach ($list as &$item) {
 			$item['type'] = $item['type'] === 0 ? '课程' : '秒答';
 		}
 		$data = array (
 			'me' => $this->user_info,
-			'tags' => $list
+			'tags' => $list,
+			"page" => $page,
+			"tag_count" => $tag_count
 		);
 		$this->parser->parse('admin/tags.php', $data);
 	}
@@ -96,7 +103,13 @@ class Admin extends CI_Controller {
 	public function problems() {
 		if (empty($this->user_info)) redirect('admin/login');
 		$this->load->model('problem_model');
-		$list = $this->problem_model->get_list(array(), 0, 100);
+		$page = !isset($_GET['page']) ? 1 : $this->input->get['page'];
+		$where = !isset($_GET['search']) ? array() : array("id" => $this->input->get("search"));
+		$search_type = !isset($_GET['search']) ? false : true;
+		$list = $this->problem_model->get_list($where , ($page - 1) * 10, 10);
+		$problem_count = $this->problem_model->get_count($where);
+
+
 		foreach ($list as &$item) {
 			switch($item['type']) {
 				case '0':
@@ -121,7 +134,10 @@ class Admin extends CI_Controller {
 		}
 		$data = array (
 			'me' => $this->user_info,
-			'list' => $list
+			'list' => $list,
+			'page' => $page,
+			'problem_count' => $problem_count,
+			'search_type' => $search_type,
 		);
 		$this->parser->parse('admin/problems.php', $data);
 	}

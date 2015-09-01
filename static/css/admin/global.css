@@ -13,6 +13,8 @@ body,html {
 
 a {text-decoration:none;}
 p,td{word-break:break-all}
+.fl{float: left;}
+.fr{float:right;}
 .table {margin-top:40px;width:100%;background:#fff}
 .table>th,td{height:40px;line-height:40px !important;padding:10px 16px;color:#666}
 .table th{height:20px;background:#eee;line-height:20px !important;color:#888}
@@ -31,6 +33,13 @@ p,td{word-break:break-all}
 .page li a{color:#249ca2;}
 .page .active{background: #249ca2;color:#fff;}
 .page .active a{color:#fff;}
+
+.page .search{padding:5px 7px;float:left;height:100%;}
+.page .search input{padding:3px 5px;border:2px solid #219ba1;}
+.page .search input[type="submit"]{background:#219ba1;color:#fff;}
+
+
+
 /* 弹窗样式 */
 .window {display:none;width:calc(100% - 200px);height:100%;position:fixed;top:0px;left:200px;z-index:9;background:rgba(0,0,0,0.5)}
 .window .confirm{transition:top 0.5s;width:600px;height:auto;border:1px solid #777;background:#fff;position:absolute;top:0px;left:0;right:0;margin:auto}

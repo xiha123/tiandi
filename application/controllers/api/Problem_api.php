@@ -20,7 +20,7 @@ class problem_api extends base_api {
     public function get_online_problem(){
         parent::require_login();
         $params = $this->get_params('POST' , array("problem_id"));
-        $problem = $this->problem_model->get(array("id" => $problem_id) , array("type"))
+        $problem = $this->problem_model->get(array("id" => $problem_id) , array("type"));
         if(!isset($problem['type'])) parent::finish(false , "您尝试着获取不存在的问题");
         if($problem['type'] != 1) parent::finish(false , "未被认领的问题");
         
