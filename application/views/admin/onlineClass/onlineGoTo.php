@@ -35,7 +35,29 @@
 			</table>
         </div>
         <div role="tabpanel" class="tab-pane" id="slide">
-			在线课堂轮播
+			<table class="table table-bordered">
+				<thead><tr>
+					<th width="40%">标题</th>
+					<th width="30%">图片</th>
+					<th width="10%">链接</th>
+					<th width="10%">背景色</th>
+					<th width="10%">操作</th>
+				</tr></thead>
+				<tbody>
+				{slide_list}
+					<tr data-id="{id}" data-img="{img}">
+						<td>{name}</td>
+						<td><a href="static/uploads/{img}">{img}</a></td>
+						<td><a href="{link}">{link}</a></td>
+						<td>{color}</td>
+						<td>
+							<i class="fa fa-trash" data-toggle="modal" data-target="#editSlide" data-type="remove"></i>
+						</td>
+					</tr>
+				{/slide_list}
+				</tbody>
+			</table>
+			<a style="margin:20px 0 0 10px;" class="btn btn-success" data-toggle="modal" data-target="#editSlide">添加</a>
         </div>
         <div role="tabpanel" class="tab-pane" id="schedule">
 			<form id="schedule-form" method="post" action="api/site_api/update">
@@ -79,6 +101,42 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" data-dismiss="modal" class="btn btn-primary submit-guide-edit">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="editSlide" tabindex="-1" role="dialog" aria-labelledby="editSlideLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="editSlideLabel">编辑轮播图</h4>
+				</div>
+				<div class="modal-body">
+					<form id="slide-edit-form" method="post" action="api/slide_api/create" enctype="multipart/form-data" onsubmit="editSlide()">
+						<input class="hidden" name="type" value="1">
+						<div class="form-group">
+							<label for="slide-edit-form-name">标题</label>
+							<input type="text" class="form-control" id="slide-edit-form-name" placeholder="名称" name="name">
+						</div>
+						<div class="form-group">
+							<label for="slide-edit-form-link">链接</label>
+							<input type="text" class="form-control" id="slide-edit-form-link" placeholder="链接" name="link">
+						</div>
+						<div class="form-group">
+							<label for="slide-edit-form-color">背景色</label>
+							<input type="text" class="form-control" id="slide-edit-form-color" placeholder="背景色" name="color">
+						</div>
+						<div class="form-group">
+							<label for="slide-edit-form-img">图片</label>
+							<label><img src="static/image/slide1.jpg" width="100%"><input class="hidden" type="file" name="userfile"></label>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" data-dismiss="modal" class="btn btn-primary submit-slide-edit">保存</button>
 				</div>
 			</div>
 		</div>

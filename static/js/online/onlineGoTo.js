@@ -83,3 +83,20 @@ $scheduleForm.bind('submit', function (e) {
         }, 0);
     });
 });
+
+$('.submit-slide-edit').bind('click', editSlide);
+function editSlide(e) {
+    e.preventDefault();
+
+    $('#slide-edit-form').ajaxSubmit({
+        type: "post",
+        success: function (data) {
+            data = JSON.parse(data);
+            if(data.status === true) {
+                location.reload();
+            } else {
+                showAlert(data.error);
+            }
+        }
+    });
+};

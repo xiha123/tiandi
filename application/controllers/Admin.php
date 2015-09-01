@@ -158,7 +158,6 @@ class Admin extends CI_Controller {
 				echo  '{"status" : "false" , "error" : "' . $this->upload->display_errors() . '"}';
 			}else{
 				$returnConfig = $this->upload->data();
-				$this->load->database();
 				$data = array(
 					'name' => $title,
 					'type' => $type,
@@ -172,7 +171,6 @@ class Admin extends CI_Controller {
 				echo  '{"status" : "true"}';
 			}
 		}else{
-			$this->load->database();
 			$data = array(
 				'name' => $title,
 				'type' => $type,
@@ -301,6 +299,7 @@ class Admin extends CI_Controller {
 		$this->parser->parse('admin/onlineClass/onlineGoTo.php', array(
 			"me" => $this->user_info,
 			'guide_list' => $this->guide_model->get_list(),
+			'slide_list' => $this->slide_model->get_list(1),
 			'schedule_course' => $this->site_model->get_content('001'),
 			'schedule_date' => $this->site_model->get_content('002'),
 		));
