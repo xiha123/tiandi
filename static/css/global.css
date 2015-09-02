@@ -199,11 +199,11 @@ textarea ,button{
 .news-number{margin-left:5px;}
 .header .logo {
     position:absolute;
-    top:0px;
-    left:-140px;
+    top:2px;
+    left:-170px;
     z-index:999;
-    background:#219ba1;
-    border-radius:0 0 5px 5px;
+    height: 30px;
+    width: 150px;
     padding:8px;
     padding-top:0px;
 }

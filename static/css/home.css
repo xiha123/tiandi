@@ -1,7 +1,8 @@
 .stage { background:url(../image/header.png); }
 .stage .wrapper { height:60px; }
 .stage li { position:relative; float:left; width:20%; text-align:center; }
-.stage li:after { content:'';width:2px;height:40px;display:inline-block;background:#219ba1; }
+.stage li:after { content:'';width:2px;height:40px;display:inline-block; }
+.MiaoDa{margin-top:25px; }
 .stage li:hover img { top:15px; }
 .stage img { position:absolute; top:10px; left:50%; margin-left:-45px;transition:top 0.2s ease-in-out; }
 

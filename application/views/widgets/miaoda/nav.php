@@ -1,6 +1,6 @@
 <div class="seconds-nav header">
 	<div class="wrapper">
-        	<a href="./"><img class="logo" src="static/image/miaoda_logo.gif" height="29" width="120" style="left: -140px;z-index: 999;background: none;border-radius: 0;padding: 3px; " alt="天地培训logo"></a>
+        	<a href="./"><img class="logo" src="static/image/tiandijundaoLogo.png" height="29" width="120" style="left: -170px;top:0px;background: none;border-radius: 0;padding: 3px; " alt="天地培训logo"></a>
 		<div class="seacher">
 			<input type="text" class="fl" placeholder="搜索问题">
 			<button><i class="fa fa-search"></i></button>
@@ -52,7 +52,7 @@
 		                            echo  $type == 1 ? '<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>' : "";
 		                        ?>
 						<li><a href="./notice" target="_blank">通知<?= $news_nuw <= 0 ? "" : " ($news_nuw)" ?></a></li>
-						<li><a href="./userset">设置</a></li>
+						<li><a href="./userset">设置</a></LI>
 						<li><a href="javascript:;">充值</a></li>
 						<li><a href="javascript:" id="ajax_outlogin">退出</a></li>
 					</ul>

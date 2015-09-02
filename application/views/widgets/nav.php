@@ -1,31 +1,35 @@
 <div class="header">
     <div class="wrapper">
-        <a href="./"><img class="logo" src="static/image/logo.png" height="81" width="110" alt="天地培训logo"></a>
+        <a href="./"><img class="logo" src="static/image/tiandijundaoLogo.png" height="81" width="110" alt="天地培训logo"></a>
         <ul class="nav cf">
             <?php
                 $navList = array(
                     array(
-                        'name' => '在线课堂',
-                        'link' => 'olclass',
-                        'active' => false
-                    ),
-                    array(
-                        'name' => '实时答疑',
+                        'name' => '秒答',
                         'link' => 'miaoda',
                         'active' => false
                     ),
+
+                    array(
+                        'name' => '大神',
+                        'link' => 'god',
+                        'active' => false
+                    ),
+
                     array(
                         'name' => '学习印记',
                         'link' => '#',
                         'active' => false
                     ),
+
                     array(
-                        'name' => '神码来了',
-                        'link' => 'god',
+                        'name' => '在线课堂',
+                        'link' => 'olclass',
                         'active' => false
                     ),
+
                     array(
-                        'name' => '关于我们',
+                        'name' => '精英汇',
                         'link' => 'help',
                         'active' => false
                     )
