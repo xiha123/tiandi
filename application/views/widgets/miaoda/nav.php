@@ -5,25 +5,27 @@
 			<input type="text" class="fl" placeholder="搜索">
 			<button><i class="fa fa-search"></i></button>
 		</div>
-		<ul class="fr">
+		<ul class="fl">
 
 		<?php
 			$navList = array(
 			    array(
-			        'name' => '秒答',
+			        'name' => '<img src="./static/image/miaodatr.png" alt="秒答" width="125";height="47";/>',
 			        'link' => 'miaoda',
 			        'active' => false
 			    ),
+
 				array(
 					'name' => '大神',
 					'link' => 'god',
 					'active' => false
 				),
-				<!--array(-->
-					<!--'name' => '学习印记',-->
-					<!--'link' => '#',-->
-					<!--'active' => false-->
-				<!--),-->
+
+				array(
+					'name' => '学习印记',
+					'link' => '#',
+					'active' => false
+				),
 
 			    array(
 			        'name' => '在线课堂',

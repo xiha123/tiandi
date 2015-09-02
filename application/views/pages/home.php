@@ -10,8 +10,8 @@
 		<ul class="wrapper">
 			<li><a href="miaoda"><img src="./static/image/miaodaLogoBlueColor.png" height="33" width="130" class="MiaoDa"></a></li>
 			<li><a href="god"><img src="./static/image/god.png" height="90" width="90"></a></li>
-			<li><a href="olclass"><img src="./static/image/study.png" height="90" width="90"></a></li>
-			<li><a href="#"><img src="./static/image/online.png" height="90" width="90"></a></li>
+			<li><a href="#"><img src="./static/image/study.png" height="90" width="90"></a></li>
+			<li><a href="olclass"><img src="./static/image/online.png" height="90" width="90"></a></li>
 			<li><a href="#"><img src="./static/image/jingyinghui.png" height="96" width="78"></a></li>
 		</ul>
 	</div>
