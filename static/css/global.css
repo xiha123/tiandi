@@ -54,8 +54,8 @@ a,p{word-break: break-all;}
 .seconds-nav li a{ transition: background 0.2s ease-in-out;color:#fff;width: 150px;display:block;height: 35px;line-height: 35px;text-align: center;padding:0px 10px;}
 .seconds-nav li .active,
 .seconds-nav li a:hover{background-color: #2AC3CB}
-.seconds-nav .seacher{position:relative; margin-top:2px;width:290px;}
-.seconds-nav .seacher input[type="text"]{  line-height: 30px;width:260px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
+.seconds-nav .seacher{position:relative; margin-top:2px;width:175px;}
+.seconds-nav .seacher input[type="text"]{  line-height: 30px;width:148px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
 .seconds-nav .seacher button{position:absolute; right:5px; cursor:pointer; background: none;height:16px;top:6px;color:#219ba1;border:none;}
 .seconds-nav .seacher i { font-size:13px }
 
