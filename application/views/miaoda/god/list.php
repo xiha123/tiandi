@@ -33,7 +33,7 @@
 						$button =  check_follow($follow_users,$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
 						echo '<div class="data fl">
 							<div class="left_box">
-								<a href="./home?uid=' . $value['id'] . '" target="_blank"><img src="' . $value['avatar'] . '" alt="" class="pic"></a>
+								<a href="./home?uid=' . $value['id'] . '" target="_blank"><img src="' . $value['avatar'] . '" alt="" class="pic"><img class="god" src="./static/image/god_right.png"></a>
 								'.$button.'
 							</div>
 							<div class="right_box">
