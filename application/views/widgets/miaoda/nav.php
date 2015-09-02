@@ -10,7 +10,7 @@
 		<?php
 			$navList = array(
 			    array(
-			        'name' => '<img src="./static/image/miaodatr.png" alt="秒答" width="125";height="47";/>',
+			        'name' => '<img src="./static/image/miaodatr.png" alt="秒答"; width="118" height="27" class="miaodatr" />',
 			        'link' => 'miaoda',
 			        'active' => false
 			    ),
@@ -61,7 +61,7 @@
 		                            echo  $type == 1 ? '<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>' : "";
 		                        ?>
 						<li><a href="./notice" target="_blank">通知<?= $news_nuw <= 0 ? "" : " ($news_nuw)" ?></a></li>
-						<li><a href="./userset">设置</a></LI>
+						<li><a href="./userset">设置</a></li>
 						<li><a href="javascript:;">充值</a></li>
 						<li><a href="javascript:" id="ajax_outlogin">退出</a></li>
 					</ul>

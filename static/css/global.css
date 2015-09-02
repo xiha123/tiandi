@@ -58,6 +58,7 @@ a,p{word-break: break-all;}
 .seconds-nav .seacher input[type="text"]{  line-height: 30px;width:148px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
 .seconds-nav .seacher button{position:absolute; right:5px; cursor:pointer; background: none;height:16px;top:6px;color:#219ba1;border:none;}
 .seconds-nav .seacher i { font-size:13px }
+.miaodatr{margin-top: 2px;}
 
 
 .tag-box,.tagBox{float:left;margin-bottom:7px;font-size:14px;background:#d6edeb;color:#43a8ad;padding:3px 9px;position:relative;top:5px; margin-right: 4px}
