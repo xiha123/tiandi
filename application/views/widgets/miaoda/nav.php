@@ -14,18 +14,25 @@
 			        'link' => 'miaoda',
 			        'active' => false
 			    ),
+				array(
+					'name' => '大神',
+					'link' => 'god',
+					'active' => false
+				),
+				<!--array(-->
+					<!--'name' => '学习印记',-->
+					<!--'link' => '#',-->
+					<!--'active' => false-->
+				<!--),-->
+
 			    array(
 			        'name' => '在线课堂',
 			        'link' => 'olclass',
 			        'active' => false
 			    ),
+
 			    array(
-			        'name' => '大神',
-			        'link' => 'god',
-			        'active' => false
-			    ),
-			    array(
-			        'name' => '帮助',
+			        'name' => '精英汇',
 			        'link' => 'help',
 			        'active' => false
 			    ),
