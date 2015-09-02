@@ -40,7 +40,5 @@
 </div>
 
 <?php $this->load->view('widgets/footer.php'); ?>
-<!--<script src="./static/js/home.js"></script>-->
-
 </body>
 </html>
