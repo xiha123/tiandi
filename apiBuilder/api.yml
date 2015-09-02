@@ -286,6 +286,25 @@ api:
         - type
         - content
 
+-
+    url: api/problem_api/get_new_problems
+    type: get
+    name: getNewProblems
+    needs:
+        - page
+-
+    url: api/problem_api/get_hot_problems
+    type: get
+    name: getHotProblems
+    needs:
+        - page
+-
+    url: api/problem_api/get_fund_problems
+    type: get
+    name: getFundProblems
+    needs:
+        - page
+
 
 config:
     isSuccess:

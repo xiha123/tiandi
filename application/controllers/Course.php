@@ -18,7 +18,7 @@ class Course extends CI_Controller {
 		$data['courseData'] = $this->course_model->get_list($id,0,1)[0];
 		$data['chapters'] = $this->course_chapter_model->get_lists(array("course_id" => $id));
 
-		
+
 		$this->load->library('parser');
 		$this->parser->parse('pages/course.php' , $data);
 	}

@@ -90,6 +90,7 @@ p{word-break:break-all}
 /* tab */
 .tab {
 	margin-top:50px;
+    margin-bottom:100px;
 }
 .tab-trigger li:hover,
 .tab-trigger .active {

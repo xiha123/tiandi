@@ -15,9 +15,9 @@ switch($this->agent->browser()) {
         break;
 }
 ?>
-<script src="static/js/global.js"></script>
 <script src="static/js/api.js"></script>
 <script>
     window._td = {};
     _td.api = require('api');
 </script>
+<script src="static/js/global.js"></script>

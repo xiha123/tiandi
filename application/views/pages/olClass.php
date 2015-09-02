@@ -52,7 +52,7 @@
 			<div class="slider-summary"><p>课程</p><p>{schedule_course}</p></div>
 			<div class="slider-summary"><p>课表</p><p>{schedule_date}</p></div>
 		</div>
-		<div class="tab" style="height:530px;">
+		<div class="tab">
 			<ul class="tab-trigger cf js-tab-trigger">
 				<li data-id="3d" <?=$types == 0 ? $active :"" ?>><a href="./olclass?type=u3d">Unity-3D</a></li>
 				<li data-id="swift" <?=$types == 1 ? $active :"" ?>><a href="./olclass?type=Swift">Swift</a></li>
@@ -64,7 +64,7 @@
 				<div class="course">
 					<div class="description">
 						<h2><?=$type_name?> 快速入门 <i class="fa fa-arrow-circle-right"></i></h2>
-						<p><?=$description?></p>
+						<p><?= $description ?></p>
 					</div>
 					<ul class="list">
 						<?php

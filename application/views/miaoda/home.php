@@ -1,11 +1,12 @@
-<?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/miaoda/home.css">
+	<?php $this->load->view('widgets/header.php'); ?>
+	<link rel="stylesheet" href="static/css/miaoda/home.css">
+    <link href="ueditor/themes/default/css/ueditor.min.css" rel="stylesheet">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 
 <?php
-	$this->load->view('widgets/windows.php' );
-	if(!isset($_SESSION['problem_temp'])){
+	$this->load->view('widgets/windows.php');
+	if(!isset($_SESSION['problem_temp'])) {
 		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 	}
 ?>
@@ -125,12 +126,14 @@
 		</div>
 	</div>
 </div>
+
+
 <script type="text/javascript">
 	var tagIndex = <?=count($problemTagList)?>;
 </script>
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="ueditor/ueditor.config.js"></script>
 <script src="ueditor/ueditor.all.min.js"></script>
-<script src="./static/js/problem.home.js"></script>
+<script src="static/js/problem.home.js"></script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-
 include_once(APPPATH . 'controllers/api/Base_api.php');
 
 class problem_api extends base_api {
@@ -20,11 +19,14 @@ class problem_api extends base_api {
     public function get_online_problem(){
         parent::require_login();
         $params = $this->get_params('POST' , array("problem_id"));
-        $problem = $this->problem_model->get(array("id" => $problem_id) , array("type"))
-        if(!isset($problem['type'])) parent::finish(false , "您尝试着获取不存在的问题");
-        if($problem['type'] != 1) parent::finish(false , "未被认领的问题");
-        
+        $problem = $this->problem_model->get(array("id" => $problem_id) , array("type"));
 
+        if (!isset($problem['type'])) {
+            parent::finish(false , "您尝试着获取不存在的问题");
+        }
+        if ($problem['type'] != 1) {
+            parent::finish(false , "未被认领的问题");
+        }
     }
 
     public function remove() {
@@ -387,7 +389,7 @@ class problem_api extends base_api {
                     'problem_id' => $problem_id,
                     'from_id' => $this->me['id']
                 ));
-                
+
                 // Up agree problem
                 $up_users = json_decode($problem['up_users']);
                 array_push($up_users , array("id" => $this->me['id']));
@@ -521,10 +523,6 @@ class problem_api extends base_api {
 
 
 
-
-
-
-
     public function down_problem() {
         parent::require_login();
         $params = $this->get_params('POST', array('problem_id'));
@@ -534,6 +532,28 @@ class problem_api extends base_api {
         }else{
             $this->finish(false ,"可以因为某些网络原因导致操作失败，请尝试重试！");
         }
+    }
+
+
+    public function get_new_problems() {
+        $params = $this->get_params('GET', array('page'));
+        extract($params);
+
+        parent::finish(true, '', $this->problem_model->get_list_by_time($page));
+    }
+
+    public function get_hot_problems() {
+        $params = $this->get_params('GET', array('page'));
+        extract($params);
+
+        parent::finish(true, '', $this->problem_model->get_list_by_hot($page));
+    }
+
+    public function get_fund_problems() {
+        $params = $this->get_params('GET', array('page'));
+        extract($params);
+
+        parent::finish(true, '', $this->problem_model->get_list_by_fund($page));
     }
 
 }

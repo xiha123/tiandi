@@ -2,7 +2,7 @@
 .doubt .tools {padding-bottom: 10px;}
 .doubt .tools i{margin:0px 6px; cursor:pointer; color:#209ba2;}
 .doubt > .table{position:relative;width:980px;}
-.doubt >.table td{width:980px;}
+.doubt >.table > tr > td{width:980px;}
 .doubt >.table .title{margin-bottom:10px;}
 .doubt >.table .title,.input-content,.code{color:#333 !important;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
 .doubt >.table .input-content{height: 60px;}
@@ -39,7 +39,7 @@
 .left-content .tag-desk{width: 100%;margin-bottom:30px;overflow: hidden}
 			  .tag-desk h1{float:left;color:#219ba1;font-size: 24px;margin:5px 0;font-weight: 700}
 			  .tag-desk .desk{float:left;color:#aaa;margin-top:20px;}
-			  .tag-desk button{ font-family: '微软雅黑'; margin-top:10px;float:right;font-size:16px; cursor: pointer; font-weight:700;background:#219ba1;color:#fff;border:none;width:130px;height:27px; border-radius: 20px; margin-right: 10px;} 
+			  .tag-desk button{ font-family: '微软雅黑'; margin-top:10px;float:right;font-size:16px; cursor: pointer; font-weight:700;background:#219ba1;color:#fff;border:none;width:130px;height:27px; border-radius: 20px; margin-right: 10px;}
 
 
 
