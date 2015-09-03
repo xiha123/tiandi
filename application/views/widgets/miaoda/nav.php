@@ -63,6 +63,7 @@
 						<li><a href="./notice" target="_blank">通知<?= $news_nuw <= 0 ? "" : " ($news_nuw)" ?></a></li>
 						<li><a href="./userset">设置</a></li>
 						<li><a href="javascript:;">充值</a></li>
+						<li><a href="./help">帮助</a></li>
 						<li><a href="javascript:" id="ajax_outlogin">退出</a></li>
 					</ul>
 			<?php
