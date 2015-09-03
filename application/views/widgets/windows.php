@@ -17,8 +17,8 @@
 					<li><input type="submit" value="登录" id="ajax_login"></li>
 					<li class="sociality">
 						社交账号
-						<img src="static/image/qq.png" alt="" width="20">
-						<img src="static/image/weibo.png" alt=""width="25">
+						<img src="static/image/QQcolor.png" alt="" width="20">
+						<img src="static/image/weibocolor.png" alt=""width="25">
 						<a href="javascript:;" class="bomb-reg">注册账号</a>
 					</li>
 				</ul>
@@ -57,8 +57,8 @@
 					<li><input type="submit" value="注册" id="ajax_reg"></li>
 					<li class="sociality">
 						社交账号
-						<img src="static/image/qq.png" alt="" width="20">
-						<img src="static/image/weibo.png" alt=""width="25">
+						<img src="static/image/QQcolor.png" alt="" width="20">
+						<img src="static/image/weibocolor.png" alt=""width="25">
 						<a href="javascript:;" class="bomb-login">直接登录</a>
 					</li>
 					<li class="login-click regGod"><label class="fr" style="margin-right:40px;"><input type="checkBox" id="reg_god"><span>注册成为大神</span></label></li>
