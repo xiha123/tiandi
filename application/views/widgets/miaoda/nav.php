@@ -35,7 +35,7 @@
 
 			    array(
 			        'name' => '精英汇',
-			        'link' => 'help',
+			        'link' => '#',
 			        'active' => false
 			    ),
 			);
