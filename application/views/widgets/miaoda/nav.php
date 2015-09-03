@@ -5,7 +5,7 @@
 			<input type="text" class="fl" placeholder="搜索">
 			<button><i class="fa fa-search"></i></button>
 		</div>
-		<ul class="fl">
+		<ul class="fr">
 
 		<?php
 			$navList = array(
