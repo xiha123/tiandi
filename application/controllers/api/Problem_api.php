@@ -546,14 +546,14 @@ class problem_api extends base_api {
         $params = $this->get_params('GET', array('page'));
         extract($params);
 
-        parent::finish(true, '', $this->problem_model->get_list_by_hot($page));
+        parent::finish(true, '', $this->problem_model->get_hot_list($page));
     }
 
     public function get_fund_problems() {
         $params = $this->get_params('GET', array('page'));
         extract($params);
 
-        parent::finish(true, '', $this->problem_model->get_list_by_fund($page));
+        parent::finish(true, '', $this->problem_model->get_fund_list($page));
     }
 
 }

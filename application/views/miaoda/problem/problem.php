@@ -1,7 +1,8 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/miaoda/student.css">
-<link rel="stylesheet" href="./static/lib/syntax/shCore.css">
-<link rel="stylesheet" href="./static/lib/syntax/shThemeDefault.css">
+<link rel="stylesheet" href="static/css/miaoda/student.css">
+<link rel="stylesheet" href="static/lib/syntax/shCore.css">
+<link rel="stylesheet" href="static/lib/syntax/shThemeDefault.css">
+<link href="ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
 <body>
 
 <script>
@@ -109,12 +110,12 @@
 				}
 				if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
 				$problem_online_count = count(json_decode($problem_data['online'])) - 1;
-				
+
 			?>
 				<div class="doubt">
 					<table class="table">
 						<tr><td>
-						
+
 							<?php
 								if($problem_data['owner_id'] == @$id){
 									$online = true;
@@ -168,7 +169,7 @@
 						} else {
 							echo $problem_data['type'] == 0 && $problem_data['owner_id'] != @$id ? '<button id="answer">认领问题</button>' : "";
 						}
-					} 
+					}
 
 				?>
 			</div>
@@ -224,8 +225,8 @@
 <?php $this->load->view('widgets/footer.php'); ?>
 
 <script src="./static/lib/syntax/brush.js"></script>
-<script src="ueditor/ueditor.config.js"></script>
-<script src="ueditor/ueditor.all.min.js"></script>
+<script src="ueditor/umeditor.config.js"></script>
+<script src="ueditor/umeditor.min.js"></script>
 <script src="static/js/problem.js"></script>
 
 <?=$online == true ? "<script>ue.addListener( 'ready', function(){UE.getEditor('editor').setDisabled('fullscreen');});$('#problem-code').attr('readOnly' , true).css('color','#aaa')</script>" : ""?>

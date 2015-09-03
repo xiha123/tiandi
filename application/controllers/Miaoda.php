@@ -17,11 +17,11 @@ class Miaoda extends CI_Controller {
 		if(isset($_GET['hot'])){
 			if($_GET['hot'] == "chou"){
 				$userdata["hot_type"] = "2";
-				$userdata["problem_list"] = $this->problem_model->get_problem_value(($userdata["page"] -1) *10);
+				$userdata["problem_list"] = $this->problem_model->get_fund_list(($userdata["page"] -1));
 				$userdata["problem_list_count"] = $this->problem_model->get_count(array("who !=" => "[]"));
 			}else{
 				$userdata["hot_type"] = "0";
-				$userdata["problem_list"] = $this->problem_model->get_list_by_hot($userdata["page"] -1);
+				$userdata["problem_list"] = $this->problem_model->get_hot_list($userdata["page"] -1);
 				$userdata["problem_list_count"] = $this->problem_model->get_count(array("up_count >" => 1));
 			}
 		}else{
@@ -46,7 +46,6 @@ class Miaoda extends CI_Controller {
 		}
 		$userdata['hot_tags'] = $hot_tags;
 
-		$this->load->library('parser');
 		$this->parser->parse("miaoda/home.php" , $userdata);
 	}
 

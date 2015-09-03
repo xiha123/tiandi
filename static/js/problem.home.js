@@ -1,5 +1,5 @@
 $(function () {
-	var ue = UE.getEditor('editor');
+	var ue = UM.getEditor('editor');
 
 	$("#ajax_problemSubmit").on("click", function() {
 		var title = $("#problem-title").val(),
@@ -100,9 +100,4 @@ $(function () {
 		},500)
 	});
 
-	_td.api.getNewProblems({
-		page: 0
-	}).done(function (res) {
-		console.log(res);
-	});
 });

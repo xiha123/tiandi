@@ -10,7 +10,7 @@
 		<?php
 			$navList = array(
 			    array(
-			        'name' => '<img src="./static/image/miaodatr.png" alt="秒答"; width="118" height="27" class="miaodatr" />',
+			        'name' => '<img src="./static/image/miaodatr.png" alt="秒答"; width="118" height="20" class="miaodatr" />',
 			        'link' => 'miaoda',
 			        'active' => false
 			    ),

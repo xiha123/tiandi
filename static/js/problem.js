@@ -1,11 +1,11 @@
 if(window.problem_type == 1){
-	UE.registerUI('引用提问者问题', function(editor, uiName) {
+	UM.registerUI('引用提问者问题', function(editor, uiName) {
 	    editor.registerCommand(uiName, {
 	        execCommand: function() {
 	            alert('execCommand:' + uiName)
 	        }
 	    });
-	    var btn = new UE.ui.Button({
+	    var btn = new UM.ui.Button({
 	        name: uiName,
 	        title: uiName,
 	        cssRules: 'background-position: -220px 0;',
@@ -52,7 +52,7 @@ $("#ajax_comment").click(function(){
 	}
 	_td.api.createComment({
 		"problem_id" : problem_id,
-		"content" : content	
+		"content" : content
 	}).then(function(){
 		showAlert(true,"评论成功！银币 +20");
 		 setTimeout(function(){
@@ -178,7 +178,7 @@ if(window.problem_type == 1){
 			}
 		},11000);
 	}else{
-		
+
 	}
 }
 function timeOut_fun(){
@@ -202,7 +202,7 @@ function timeOut_fun(){
 	        },1000)
 	}
 }
- var ue = UE.getEditor('editor');
+ var ue = UM.getEditor('editor');
 
 
  SyntaxHighlighter.all();
