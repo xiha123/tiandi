@@ -40,13 +40,22 @@ $("#ajax_forget").click(function(){
     });
 })
 
-$(".seacher").on('keyup', 'input[type="text"]', function(event) {
-    if(event.keyCode === 13){
-        $(".seacher button").click();
-    }
+$('.js-search-input').bind('focus', function () {
+    $(this).animate({
+        width: '+=400px'
+    }, 400);
+    $('.js-nav').hide();
+}).bind('blur', function () {
+    $(this).animate({
+        width: '-=400px'
+    }, 400, function () {
+        $('.js-nav').show();
+    });
 });
-$(".seacher button").click(function(){
-    window.location.href ="./seacher?key=" +$(".seacher input[type='text']").val();
+
+$('.js-search-form').bind('submit', function (e) {
+    e.preventDefault();
+    window.location.href ="./seacher?key=" +$(".js-search-input").val();
 });
 
 $(".button").on("click" , ".collect" , function(){

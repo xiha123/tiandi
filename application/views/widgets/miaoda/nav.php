@@ -1,11 +1,11 @@
 <div class="seconds-nav header">
 	<div class="wrapper">
         	<a href="./"><img class="logo" src="static/image/tiandijundaoLogo.png" height="29" width="120" style="left: -170px;top:0px;background: none;border-radius: 0;padding: 3px; " alt="天地培训logo"></a>
-		<div class="seacher">
-			<input type="text" class="fl" placeholder="搜索">
-			<button><i class="fa fa-search"></i></button>
-		</div>
-		<ul class="fr">
+		<form class="seacher js-search-form">
+			<input type="text" class="js-search-input fl" placeholder="搜索">
+			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+		<ul class="fr js-nav">
 
 		<?php
 			$navList = array(
