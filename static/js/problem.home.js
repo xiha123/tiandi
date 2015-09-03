@@ -1,8 +1,6 @@
 $(function () {
 	var ue = UE.getEditor('editor');
 
-	ue.setDisabled('fullscreen');
-
 	$("#ajax_problemSubmit").on("click", function() {
 		var title = $("#problem-title").val(),
 			content = ue.getContent(),
@@ -49,7 +47,7 @@ $(function () {
 				window.location.href="./problem/?p=" + res.data;
 			}, 1000);
 		}, function (res) {
-			showAlert(false, res.error);
+			showAlert(false, res);
 		});
 	});
 

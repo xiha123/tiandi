@@ -135,6 +135,7 @@ api:
         - detail
         - coinType
         - language
+
 -
     url: api/problem_api/remove
     type: post

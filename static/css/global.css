@@ -233,7 +233,7 @@ textarea ,button{
     position:absolute;
     top:0;
     cursor:pointer;
-    right:-140px;
+    right:-155px;
     height:35px;
     line-height:35px;
     color:#fff;
@@ -259,8 +259,6 @@ textarea ,button{
     z-index:1000;
     width:100%;
     background:#fff;
-    border:1px solid #f0f0f0;
-    border-top:0;
 }
 
 .user-menu.seconds li {
