@@ -51,13 +51,14 @@ a,p{word-break: break-all;}
 .seconds-nav {font-size:15px;margin-bottom:30px;width:100%;background:#219ba1;height:35px;}
 .seconds-nav .seacher{float: left;position: relative;}
 .seconds-nav li{float: left;border-right: 1px solid #22a6a8;}
-.seconds-nav li a{ transition: background 0.2s ease-in-out;color:#fff;width: 150px;display:block;height: 35px;line-height: 35px;text-align: center;padding:0px 10px;}
+.seconds-nav li a{ transition: background 0.2s ease-in-out;color:#fff;width: 130px;display:block;height: 35px;line-height: 35px;text-align: center;padding:0px 10px;}
 .seconds-nav li .active,
-.seconds-nav li a:hover{background-color: #2AC3CB}
-.seconds-nav .seacher{position:relative; margin-top:2px;width:290px;}
-.seconds-nav .seacher input[type="text"]{  line-height: 30px;width:260px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
+.seconds-nav li a:hover{background-color: #2AC3CB;margin-left: 30px;}
+.seconds-nav .seacher{position:relative; margin-top:2px;width:175px;}
+.seconds-nav .seacher input[type="text"]{  line-height: 30px;width:148px;border:none;padding:6px 15px;height:18px;font-size:12px;border-radius: 15px;}
 .seconds-nav .seacher button{position:absolute; right:5px; cursor:pointer; background: none;height:16px;top:6px;color:#219ba1;border:none;}
 .seconds-nav .seacher i { font-size:13px }
+.miaodatr{margin-top: 2px;}
 
 
 .tag-box,.tagBox{float:left;margin-bottom:7px;font-size:14px;background:#d6edeb;color:#43a8ad;padding:3px 9px;position:relative;top:5px; margin-right: 4px}
@@ -199,11 +200,11 @@ textarea ,button{
 .news-number{margin-left:5px;}
 .header .logo {
     position:absolute;
-    top:0px;
-    left:-140px;
+    top:2px;
+    left:-170px;
     z-index:999;
-    background:#219ba1;
-    border-radius:0 0 5px 5px;
+    height: 30px;
+    width: 150px;
     padding:8px;
     padding-top:0px;
 }

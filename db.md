@@ -74,6 +74,7 @@
 - lost_time 上次登录时间，方便计算可否赠其银币
 - prestige 威望用于老师
 - chou 我众筹了那些问题
+- teacher 是否为讲师
 
 ### class_guide
 

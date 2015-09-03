@@ -22,6 +22,7 @@ $(".edit-user").click(function(event) {
 		'<tr><td>用户积分：<input type="text" value="' + $parents_baby.eq(7).text()+ '" name="Integral">'+
 		'<tr><td>身份证号：<input type="text" value="' + $parents_baby.eq(8).text()+ '" name="idcar">'+
 		'<tr><td>用户类型：<select name="type"><option value="0">学员</option><option value="1">大神</option></select>'+
+		'<tr><td>置顶讲师：<input type="checkbox" style="position:relative;top:2px;" name="teacher">'+
 		'</table></form>',
 		"success" : function(){
 			$("#edit-user").unbind("submit");

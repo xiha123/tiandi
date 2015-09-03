@@ -1,7 +1,7 @@
 <div class="page">
 	<?php
 		if(isset($search) && $search){
-			echo '<div class="search fl"><form action="javascript:;" onsubmit="' . $search_function_name . '"><input type="text" placeholder="请输入问题编号" value="' . $this->input->get('search') . '" id="searchName"><input type="submit" value="搜索"></form></div>';
+			echo '<div class="search fl"><form action="javascript:;" onsubmit="' . $search_function_name . '"><input type="text" placeholder="请输入搜索编号" value="' . $this->input->get('search') . '" id="searchName"><input type="submit" value="搜索"></form></div>';
 		}
 	?>
 

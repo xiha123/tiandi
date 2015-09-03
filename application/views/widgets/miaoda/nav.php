@@ -1,31 +1,40 @@
 <div class="seconds-nav header">
 	<div class="wrapper">
-        	<a href="./"><img class="logo" src="static/image/miaoda_logo.gif" height="29" width="120" style="left: -140px;z-index: 999;background: none;border-radius: 0;padding: 3px; " alt="天地培训logo"></a>
+        	<a href="./"><img class="logo" src="static/image/tiandijundaoLogo.png" height="29" width="120" style="left: -170px;top:0px;background: none;border-radius: 0;padding: 3px; " alt="天地培训logo"></a>
 		<div class="seacher">
-			<input type="text" class="fl" placeholder="搜索问题">
+			<input type="text" class="fl" placeholder="搜索">
 			<button><i class="fa fa-search"></i></button>
 		</div>
-		<ul class="fr">
+		<ul class="fl">
 
 		<?php
 			$navList = array(
 			    array(
-			        'name' => '秒答',
+			        'name' => '<img src="./static/image/miaodatr.png" alt="秒答"; width="118" height="27" class="miaodatr" />',
 			        'link' => 'miaoda',
 			        'active' => false
 			    ),
+
+				array(
+					'name' => '大神',
+					'link' => 'god',
+					'active' => false
+				),
+
+				array(
+					'name' => '学习印记',
+					'link' => '#',
+					'active' => false
+				),
+
 			    array(
 			        'name' => '在线课堂',
 			        'link' => 'olclass',
 			        'active' => false
 			    ),
+
 			    array(
-			        'name' => '大神',
-			        'link' => 'god',
-			        'active' => false
-			    ),
-			    array(
-			        'name' => '帮助',
+			        'name' => '精英汇',
 			        'link' => 'help',
 			        'active' => false
 			    ),
