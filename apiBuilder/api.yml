@@ -305,6 +305,14 @@ api:
     name: getFundProblems
     needs:
         - page
+-
+    url: api/tag_api/add
+    type: post
+    name: addTag
+    needs:
+        - name
+        - content
+
 
 
 config:

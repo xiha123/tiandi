@@ -1,4 +1,5 @@
 if(window.problem_type == 1){
+	/*
 	UM.registerUI('引用提问者问题', function(editor, uiName) {
 	    editor.registerCommand(uiName, {
 	        execCommand: function() {
@@ -28,6 +29,7 @@ if(window.problem_type == 1){
 	    });
 	    return btn;
 	});
+	*/
 }
 
 
@@ -85,42 +87,6 @@ $("#reply").click(function(){
 		showAlert(false,msg.error);
 	})
 });
-
-$(".button_ok").click(function(){
-	_td.api.chou({
-		"problem_id" : problem_id
-	}).then(function(){
-		showAlert(true,"众筹成功！银币 -50");
-		 setTimeout(function(){
-	            location.reload();
-	        },1000)
-	},function(msg){
-		console.log(msg);
-		showAlert(false,msg.error);
-		 setTimeout(function(){
-	            close();
-	        },700)
-	})
-})
-
-
-$(".js_chou").click(function(event) {
-	$(".windows").show();
-	$(".confirm").show();
-	setTimeout(function(){
-		$(".confirm").css({"top" : "20%"});
-	},100)
-});
-$(document).on("click" , "#close_window" ,function(event) {
-	close();
-});
-function close(){
-	$(".confirm").css({"top" : "0px"});
-	setTimeout(function(){
-		$(".windows").fadeOut(200);
-		$(".confirm").fadeOut(200);
-	},250)
-}
 
 
 $(".ajax_close").click(function(event) {

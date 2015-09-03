@@ -1,8 +1,8 @@
-<?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="static/css/miaoda/student.css">
-<link rel="stylesheet" href="static/lib/syntax/shCore.css">
-<link rel="stylesheet" href="static/lib/syntax/shThemeDefault.css">
-<link href="ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
+	<?php $this->load->view('widgets/header.php'); ?>
+	<link rel="stylesheet" href="static/css/miaoda/student.css">
+	<link rel="stylesheet" href="static/lib/syntax/shCore.css">
+	<link rel="stylesheet" href="static/lib/syntax/shThemeDefault.css">
+	<link href="ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
 <body>
 
 <script>
@@ -44,19 +44,17 @@
 	<div class="wrapper">
 
 		<div class="leftBox">
-			<?=$problem_data['type'] != 3 ? '<div class="head">● 该问题赏金为<font> '.
+			<?= $problem_data['type'] != 3 ? '<div class="head">● 该问题赏金为<font> '.
 				$problem_data["silver_coin"] . '银币</font>，共有<font>'.  //，<font>'.$problem_data["gold_coin"] . '金币</font>
 				(count(json_decode($problem_data['who'])) + 1).'位众筹者</font></div>' : "";
 			?>
 			<div class="leftHeader">
-				<h1><?=$problem_data["title"];?></h1>
-				<?php
-					if(!empty($problem_data['tags'])){
-						foreach ($problem_data['tags'] as $key => $values) {
-							echo '<a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a>';
-						}
+				<h1><?= $problem_data["title"]; ?></h1>
+				<?php if(!empty($problem_data['tags'])) {
+					foreach ($problem_data['tags'] as $key => $values) {
+						echo '<a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a>';
 					}
-				?>
+				} ?>
 			</div>
 			<div class="whyUser">
 				<a href="./home?uid=<?=$problem_user['id']?>" target="_blank"><img src="<?=$problem_user['avatar']?>" alt="" width="35" height="35"></a>
@@ -67,7 +65,7 @@
 				<div class="desc"><?=$problem_detail[0]['content']?></div>
 			</div>
 			<?php
-				if($problem_detail[0]["code"] != NULL){
+				if ($problem_detail[0]["code"] != NULL) {
 					echo '<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.($problem_detail[0]["code"]).'</pre></div>';
 				}
 				for ($index = 1; $index < count($problem_detail); $index++) {
@@ -82,7 +80,7 @@
 						<div class="desc"><?=$problem_detail[$index]['content']?></div>
 					</div>
 			<?php
-					if($problem_detail[$index]["code"] != NULL){
+					if ($problem_detail[$index]["code"] != NULL) {
 						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.($problem_detail[$index]["code"]).'</pre></div>';
 					}
 				}
@@ -94,10 +92,10 @@
 					echo '<h3 class="center tishi">『问题正被解答中』</h3>';
 				}
 
-				if($problem_data['type'] == "1" && @$id == $problem_data['answer_id']  || @$id == $problem_data['owner_id']){
+				if($problem_data['type'] == "1" && (@$id == $problem_data['answer_id'] || @$id == $problem_data['owner_id'])){
 					echo $problem_data['type'] == 1 ? '<div class="doubt-time">20:00</div>' :'';
 				}
-				if($problem_data['type'] == "0" && @$id == $problem_data['owner_id']){
+				if($problem_data['type'] == "0" && @$id == $problem_data['owner_id'] || $is_fund) {
 					echo '<div class="user_list_data"><!--<div class="doubt-time disable">20:00</div>-->
 					<h3 class="center tishi">您的问题已经推送给了<span>'.($frist ? $god_count . "位" : "1").'</span>大神，请耐心等待······</h3>
 					<h2 class="title">这些问题可能对您有用</h2>
@@ -106,7 +104,6 @@
 							<li><a href="./problem/?p={id}" target="_blank">{title}</a></li>
 						{/useful_list}
 					</ul></div>';
-
 				}
 				if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
 				$problem_online_count = count(json_decode($problem_data['online'])) - 1;
@@ -142,55 +139,51 @@
 					</table>
 				</div>
 
-			<?php }}
-				if($problem_data['type'] == 2 || $problem_data['type'] == 3){
-					echo '<div class="button close" data-id="' . $problem_data["id"] . '">';
-					echo $problem_collect == true ? '<a href="javascript:;" class="uncollect"><i class="fa fa-star"></i> 取消收藏</a>':'<a  href="javascript:;" class="collect"><i class="fa fa-star-o"></i> 收藏</a>';
-					echo '<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞
-						(<p class="upCount" style="display:inline;margin-left:4px;">'.$problem_data['up_count'].'</p> )</a>
-						<a href="#"><i class="fa fa-circle"></i>分享</a>';
-					echo $problem_data['owner_id'] == @$id && $problem_data['agree'] == 0 ? '<button class="ajax_close">满意</button> ' :"";
-					echo "</div>";
-				}
-			?>
+			<?php }} ?>
+			<?php if($problem_data['type'] == 2 || $problem_data['type'] == 3) { // 已回答的问题，显示收藏、点赞和评论
+				$cls = $problem_collect == true ? 'uncollect' : 'collect';
+				$cls2 = $problem_collect == true ? 'fa-star' : 'fa-star-o';
+				$name = $problem_collect == true ? '取消收藏' : '收藏';
+				$btn = $problem_data['owner_id'] == @$id && $problem_data['agree'] == 0 ? '<button class="ajax_close">满意</button> ' : ""; ?>
 
-
-			<div class="button">
-				<?php
-					if ($problem_data['type'] != 3 && $problem_data['owner_id'] != @$id && $problem_data['answer_id'] != @$id){
-						echo $problem_collect == true ?
-						'<button class="uncollect">★ 取消收藏</button>':
-						'<button class="none-background collect">★ 收藏</button>';
-						echo '<button class="js_chou">众筹</button>';
-					}
-					if (!empty($type) && $type == 1) {
-						if ($problem_data['answer_id'] === $id) {
-							echo $problem_data['type'] == 1 ? '<button id="reply">提交</button>' :"";
-						} else {
-							echo $problem_data['type'] == 0 && $problem_data['owner_id'] != @$id ? '<button id="answer">认领问题</button>' : "";
+				<div class="button close" data-id="<?= $problem_data["id"] ?>">
+					<a href="javascript:;" class="<?= $cls ?>"><i class="fa <?= $cls2 ?>"></i> <?= $name ?></a>
+					<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞 ( <span class="upCount"><?= $problem_data['up_count'] ?></span> ) </a>
+					<a href="#"><i class="fa fa-circle"></i>分享</a>
+					<?= $btn ?>
+				</div>
+				<h2 class="tishi fl">发表评论</h2>
+				<div class="doubt" style="margin-top:0px;">
+					<table class="table">
+						<tr><td>
+							<div class="desc">
+								<script id="editor" type="text/plain" style="width:743px;height:140px;"></script>
+							</div>
+						</td></tr>
+					</table>
+				</div>
+				<div class="button">
+					<button id="ajax_comment">评论</BUTTON>
+				</div>
+			<?php } else { ?>
+				<div class="button">
+					<?php
+						if ($problem_data['owner_id'] != $id && $problem_data['answer_id'] != $id && !$is_fund) {
+							echo $problem_collect == true ?
+							'<button class="uncollect">★ 取消收藏</button>':
+							'<button class="none-background collect">★ 收藏</button>';
+							echo '<button data-id="' . $problem_data['id'] . '" class="js_chou">众筹</button>';
 						}
-					}
-
-				?>
-			</div>
-			<?php
-				if($problem_data['type'] == 3){
-			?>
-			<h2 class="tishi fl">发表评论</h2>
-			<div class="doubt" style="margin-top:0px;">
-				<table class="table">
-					<tr><td>
-						<div class="desc">
-							<script id="editor" type="text/plain" style="width:743px;height:140px;"></script>
-						</div>
-					</td></tr>
-				</table>
-			</div>
-			<div class="button">
-				<button id="ajax_comment">评论</BUTTON>
-			</div>
-			<?php }?>
-
+						if (!empty($type) && $type == 1) {
+							if ($problem_data['answer_id'] === $id) {
+								echo $problem_data['type'] == 1 ? '<button id="reply">提交</button>' :"";
+							} else {
+								echo $problem_data['type'] == 0 && $problem_data['owner_id'] != @$id ? '<button id="answer">认领问题</button>' : "";
+							}
+						}
+					?>
+				</div>
+			<?php } ?>
 
 			<ul class="comment-list">
 			<?php

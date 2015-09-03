@@ -16,7 +16,7 @@ class Index extends CI_Controller {
 		if(!isset($_GET['p']) || $_GET['p'] == ""){show_404();}
 		$id = $this->input->get("p");
 		$userdata = $this->user_model->check_login();
-		$userdata["problem_data"] = $this->problem_model->get_list_by_id($id);
+		$userdata["problem_data"] = $this->problem_model->get_by_id($id);
 		if(!isset($userdata["problem_data"]["title"])){
 			show_404();
 		}
@@ -93,8 +93,9 @@ class Index extends CI_Controller {
 			$this->problem_detail_model->remove_where(array("problem_id" => $id , "type" => 3));
 		}
 
+		$fund_list = json_decode($userdata['problem_data']['who']);
+		$userdata['is_fund'] = in_array($userdata['id'], $fund_list);
 
-		$this->load->library('parser');
 		$this->parser->parse("miaoda/problem/problem.php" , $userdata);
 	}
 

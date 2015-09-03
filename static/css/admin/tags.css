@@ -1,3 +1,11 @@
+.navbar {
+    margin-bottom:0;
+    min-height:auto;
+    padding:5px;
+}
+
+
+
 .table {
     margin:0;
 }

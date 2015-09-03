@@ -12,7 +12,7 @@ function search(link){
  * @param  {[type]} formData   [description]
  * @param  {[type]} formConfig [description]
  * @return {[type]}            [description]
- * 
+ *
  * type string
  * name string
  * data [value , name]
@@ -50,7 +50,7 @@ function commit(formData , formConfig){
 
 
 
-function alertBox(config){
+function alertBox(config) {
 	$(".window,#alert").fadeIn(200);
 	setTimeout(function(){
 		$("#alert").css({"top" : "10%"});
@@ -59,9 +59,10 @@ function alertBox(config){
 	$("#alert .confirm-content .con").html(config.content);
 	$("#alert .confirm-content i").addClass(config.icon);
 	$("#alert .confirm-bottom").find(".button_ok").on("click",function(){
-	
+
 	})
 }
+
 function confirms(config){
 	$(".window,#confirm").fadeIn(200);
 	setTimeout(function(){
@@ -109,7 +110,7 @@ function window_init(){
 			$(".color").css({"background-color" : $(".slider-color").val()});
 		},200);
 	})
-	
+
 	 $("body").on("change" , 'input[type="file"]' , function (e) {
 		var file = e.target.files[0];
 		reader.readAsDataURL(file);

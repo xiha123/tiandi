@@ -14,7 +14,32 @@ $(".ajax_up").on("click" , function(){
     },function(msg){
        showAlert(false , msg.error);
     });
-})
+});
+
+$("#confirm .button_ok").click(function(){
+	_td.api.chou({
+		"problem_id" : $(this).attr('data-id')
+	}).then(function(){
+		showAlert(true,"众筹成功！银币 -50");
+		 setTimeout(function() {
+			 location.reload();
+		 }, 1000)
+	}, function() {
+		showAlert(false, '您已参加过该众筹！');
+		setTimeout(function(){
+			close();
+		}, 700)
+	})
+});
+
+$(".js_chou").click(function(event) {
+	$(".windows").show();
+	$(".confirm").show().find('.button_ok').attr('data-id', $(this).attr('data-id'));
+	setTimeout(function(){
+		$(".confirm").css({"top" : "20%"});
+	}, 100);
+});
+
 $(".forget").click(function(event) {
     $("#reg").hide();
     $("#login").hide();
@@ -96,6 +121,17 @@ $(".button").on("click" , ".unfollow" , function(){
         showAlert(false, res.error);
     });
 })
+
+$(document).on("click" , "#close_window" ,function(event) {
+	close();
+});
+function close(){
+	$(".confirm").css({"top" : "0px"});
+	setTimeout(function(){
+		$(".windows").fadeOut(200);
+		$(".confirm").fadeOut(200);
+	},250)
+}
 
 
 /*关注用户*/

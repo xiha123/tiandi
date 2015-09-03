@@ -1,7 +1,7 @@
 /* css reset from yui */
 html{color:#333;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;*font-size:100%}legend{color:#000}#yui3-css-stamp.cssreset{display:none}
 
-.notLogin a{font-size:12px;color:#fff;padding:0px 7px;}
+.notLogin a{font-size:12px;color:#fff;padding:0px 4px;}
 .notLogin a i{margin-right: 4px; font-size:14px;}
 a,p{word-break: break-all;}
 
@@ -233,7 +233,7 @@ textarea ,button{
     position:absolute;
     top:0;
     cursor:pointer;
-    right:-155px;
+    right:-135px;
     height:35px;
     line-height:35px;
     color:#fff;
@@ -297,3 +297,19 @@ textarea ,button{
 .back-to-top i {
     font-size:18px;
 }
+
+
+
+/* fund dialog */
+.windows {display:none;width:100%;float:left;height:100%;position:fixed;top:0px;left:0px;z-index:1119;background:rgba(0,0,0,0.5)}
+.windows .confirm{display:none;transition:top 0.5s;width:600px;height:auto;border:1px solid #777;background:#fff;position:absolute;top:0px;left:0;right:0;margin:auto}
+   .confirm .confirm-title{height:40px;padding:10px 20px;}
+   		     .confirm-title h2{color:#333;float:left;line-height:40px;font-size:16px;}
+   		     .confirm-title .close{float:right;line-height:40px;color:#999;margin-right:5px;}
+   .confirm .confirm-content{padding:18px;padding-top:0px;color:#999;}
+  		     .confirm-content i{margin:0px 15px;margin-right:33px;position:relative;top:2px;float:left;font-size:56px;}
+  		     .confirm-content p{margin-left:15px;line-height:30px;}
+     .confirm-content .icon-remove{color:#ff5757}
+     .confirm-content .icon-ok{color:#0C3}
+   .confirm .confirm-bottom{width:100%;height:50px; text-align:center;}
+   		     .confirm-bottom button{background:#219ba1;border:none;font-family: '微软雅黑'; cursor:pointer; color:#fff;font-size:16px;outline:none;width:140px;height:30px;line-height:0px;margin-right:8px;}

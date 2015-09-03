@@ -6,12 +6,30 @@
 
 <?php
 	$this->load->view('widgets/windows.php');
-	if(!isset($_SESSION['problem_temp'])) {
+	if (!isset($_SESSION['problem_temp'])) {
 		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 	}
 ?>
-<div class="wrapper">
+<div class="windows">
+	<div class="confirm" id="confirm">
+		<div class="confirm-title">
+			<h2>您确定参与众筹吗？</h2>
+			<a href="javascript:void(0)" class="close" id="close_window"><i class="fa fa-close"></i></a>
+		</div>
+		<div class="confirm-content">
+			<div class="con">
+				<p>您确定参与众筹吗？</p>
+				<p>参与众筹后将会扣除您50银币，该操作无法反悔！您确定那么做吗</p>
+			</div>
+		</div>
+		<div class="confirm-bottom">
+			<button class="btn btn-danger button_ok">确定</button>
+			<button class="btn btn-default" id="close_window">取消</button>
+		</div>
+	</div>
+</div>
 
+<div class="wrapper">
 	<div class="doubt">
 		<table class="table">
 			<tr><td><input type="text" class="title" id="problem-title" value="<?=$_SESSION['problem_temp']['title']?>" placeholder="一句话写下你遇到的问题"></td></tr>
@@ -67,15 +85,16 @@
 					<li <?php if($hot_type == "0"){ echo 'class="active"'; } ?>><a href="./miaoda?hot=hot">热门</a></li>
 					<li <?php if($hot_type == "2"){ echo 'class="active"'; } ?>> <a href="./miaoda?hot=chou">众筹</a></li>
 				</ul>
-				<ul class="list-data">
+				<ul class="outer-list">
 					<li>
 						<ul class="list-data">
 						<?php foreach($problem_list as $key => $value){ ?>
 							<li data-id="<?=$value['id']?>">
-								<div class="link-num ajax_up">
                                     <?php if ($value['type'] != 3) { ?>
-                                        <p class="upCount"><?= count($value['who']) ?></p><p>众筹</p></div>
+								<div class="link-num js_chou" data-id="<?= $value['id'] ?>">
+                                        <p class="upCount"><?= count(json_decode($value['who'])) + 1 ?></p><p>众筹</p></div>
                                     <?php } else { ?>
+								<div class="link-num ajax_up">
                                         <p class="upCount"><?= $value['up_count'] ?></p><p>点赞</p></div>
                                     <?php } ?>
 								<div class="list-title">

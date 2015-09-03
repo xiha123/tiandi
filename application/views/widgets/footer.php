@@ -20,4 +20,22 @@ switch($this->agent->browser()) {
     window._td = {};
     _td.api = require('api');
 </script>
+<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://test.tiandipeixun.com/qq_cb" charset="utf-8"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2108328168" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/global.js"></script>
+<script>
+WB2.anyWhere(function (W) {
+    W.widget.connectButton({
+        id: "wb_connect_btn",
+        type: '3,2',
+        callback: {
+            login: function (o) { //登录后的回调函数
+                alert("login: " + o.screen_name)
+            },
+            logout: function () { //退出后的回调函数
+                alert('logout');
+            }
+        }
+    });
+});
+</script>

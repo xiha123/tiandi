@@ -13,27 +13,19 @@ class Olclass extends CI_Controller {
 	}
 
 	public function index() {
+		$courseType = array(
+			'u3d' => 0,
+			'Swift' => 1,
+			'Web' => 2,
+			'Cocos2d-x' => 3,
+			'Android' => 4,
+		);
+		$type = $this->input->get('type');
 		$userdata = $this->user_model->check_login();
 		$userdata['guide_list'] = $this->guide_model->get_list();
-		$userdata['type_name'] = $this->input->get('type');
-		if(isset($_GET['type'])){
-			switch ($userdata['type_name']) {
-				case 'u3d':$type = 0;break;
-				case 'Swift':$type = 1;break;
-				case 'Web':$type = 2;break;
-				case 'Cocos2d-x':$type = 3;break;
-				case 'Android':$type = 4;break;
-				default:$type = 0;$userdata['type_name'] = "u3d";break;
-			}
-			$userdata['types'] = $type;
-		}else{
-			$userdata['types'] = 0;
-			$userdata['type_name'] = "u3d";
-		}
-		$steup_data = $this->course_model->get(array("type" => $userdata['types']));
+		$userdata['types'] = isset($courseType[$type]) ? $courseType[$type] : 0;
+		$userdata['course_list'] = $this->course_model->get_list_by_type($userdata['types']);
 		$userdata['class'] = $this->course_step_model->get_list(array("course_id" => $userdata['types']) , 0 , 8);
-		$userdata['description'] = $steup_data['description'];
-		$userdata['site'] = $this->course_model->get_site_by_json($steup_data['site']);
 		$userdata['slide_list'] = $this->slide_model->get_list(1);
 		$userdata['schedule_course'] = $this->site_model->get_content('001');
 		$userdata['schedule_date'] = $this->site_model->get_content('002');

@@ -115,12 +115,13 @@
 - course_id
 
 ### course_class 表
+
 用于存在线课堂右侧框的东西，我也不知道叫他什么。
+
 - title 上面框的的内容
 - content 下面框的内容
 - time 设置开始的时间
 - form 父
-
 
 ### course_step 表
 

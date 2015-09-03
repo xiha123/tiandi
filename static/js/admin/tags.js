@@ -1,5 +1,6 @@
 var curId,
-    $editForm = $('#tag-edit-form');
+    $editForm = $('#tag-edit-form'),
+    $addForm = $('#tag-add-form');
 
 $('table').delegate('.fa', 'click', function () {
     var $ele = $(this),
@@ -29,9 +30,7 @@ $editForm.bind('submit', function (e) {
     e.preventDefault();
     editTag();
 });
-
 $('.submit-tag-edit').bind('click', editTag);
-
 function editTag() {
     var curName = $editForm.find('input').eq(0).val(),
         curContent = $editForm.find('input').eq(1).val();
@@ -47,5 +46,24 @@ function editTag() {
             .eq(3).text(curContent);
     }, function (res) {
         alert('编辑失败: ' + res.error)
+    });
+}
+
+$addForm.bind('submit', function (e) {
+    e.preventDefault();
+    editTag();
+});
+$('.submit-tag-add').bind('click', addTag);
+function addTag() {
+    var curName = $addForm.find('input').eq(0).val(),
+        curContent = $addForm.find('input').eq(1).val();
+
+    _td.api.addTag({
+        name: curName,
+        content: curContent
+    }).then(function (res) {
+        location.reload();
+    }, function (res) {
+        alert('添加失败: ' + res)
     });
 }

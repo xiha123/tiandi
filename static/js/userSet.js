@@ -11,11 +11,11 @@ $("#ajax_userSet").click(function(){
 		}
 	}
 
-	if(phone.length!=11){
+	if(phone.length !== 11){
 		showAlert(false , "电话号码好像不正确哟");return false;
 	}
-	if(signature.length< 15 || signature.length>200){
-		showAlert(false , "您输入的描述不太正确哟！");return false;
+	if(signature.length > 200){
+		showAlert(false , "签名档太长");return false;
 	}
 	if(namenick.length<4 || namenick.length>16){
 		showAlert(false , "您的昵称太长或者太短了！");return false;
@@ -71,10 +71,10 @@ $("#ajax_godset").click(function(){
 	var alipay = $("#alipay").val(),
 		goddesc = $("#experience").val();
 
-	if(goddesc.length< 15 || goddesc.length>200){
-		showAlert(false , "您输入的描述不太正确哟！");return false;
+	if(goddesc.length < 15 || goddesc.length > 200){
+		showAlert(false , "项目描述太短！");return false;
 	}
-	if(alipay.length<4){
+	if(alipay.length < 4){
 		showAlert(false , "您的支付宝输入的不太正常");return false;
 	}
 	jsonArray = new Array();

@@ -32,22 +32,22 @@
 			<h2 class="box-title">推荐您来回答</h2>
 			<ul class="list-data">
 				<?php foreach ($recommend_list as $key => $value) {?>
-						<li data-id="<?=$value['id']?>">
-							<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
-							<div class="list-title">
-								<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
-							</div>
-							<ul class="list-tag">
-								<?php
-									if(!empty($value['tags'])){
-										foreach ($value['tags'] as $key => $values) {
-											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
-										}
+					<li data-id="<?=$value['id']?>">
+						<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
+						<div class="list-title">
+							<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
+						</div>
+						<ul class="list-tag">
+							<?php
+								if(!empty($value['tags'])){
+									foreach ($value['tags'] as $key => $values) {
+										echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
 									}
-								?>
-							</ul>
-							<div class="list-date"> 提问于：<?=$value['ctime']?></div>
-						</li>
+								}
+							?>
+						</ul>
+						<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+					</li>
 				<?php }	?>
 			</ul>
 

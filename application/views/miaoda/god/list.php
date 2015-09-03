@@ -1,5 +1,5 @@
-<?php 
-	$this->load->view('widgets/header.php'); 
+<?php
+	$this->load->view('widgets/header.php');
 	$active = 'class="active"';
 	@$follow_users = json_decode($follow_users);
 	function check_follow($follow_users , $user_id){
@@ -14,7 +14,7 @@
 ?>
 <link rel="stylesheet" href="./static/css/miaoda/god.css">
 <body>
-<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 2)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 1)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
 	<div class="tab">
@@ -49,7 +49,7 @@
 					}
 				?>
 			</li>
-							
+
 			<?php
 				$this->load->view("miaoda/page",array(
 					"page" => $page,

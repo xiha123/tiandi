@@ -53,4 +53,4 @@ class tag_api extends base_api {
         $this->finish(true);
     }
 
-}
+    public function add() {        $this->load->model('admin_model');        $this->me = $this->admin_model->check_login();        parent::require_login();        $params = $this->get_params('POST', array('name', 'content'));        extract($params);        if ($this->tag_model->is_exist(array(            'name' => $name        ))) {            $this->finish(false, '重复的名字');        }        $this->tag_model->add_tag($name, '0', $content);        $this->finish(true);    }}

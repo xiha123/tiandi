@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<?php $this->load->view('widgets/nav.php', array( "activeNav" => 0 )); ?>
+<?php $this->load->view('widgets/nav.php', array( "activeNav" => 3 )); ?>
 <div class="windows" >
 <div class="box" id="box">
 	<div>
@@ -23,8 +23,7 @@
 		<p class="content"></p>
 	</div>
 	<div class="button">
-		<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>">
-		<button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
+		<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>"><button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
 	</div>
 </div>
 </div>
@@ -61,10 +60,11 @@
 				<li data-id="Android" <?=$types == 4 ? $active :"" ?>><a href="./olclass?type=Android">Android</a></li>
 			</ul>
 			<ul class="tab-sheet">
+				{course_list}
 				<div class="course">
 					<div class="description">
-						<h2><?=$type_name?> 快速入门 <i class="fa fa-arrow-circle-right"></i></h2>
-						<p><?= $description ?></p>
+						<a href="course?id={id}"><h2>{title}<i class="fa fa-arrow-circle-right"></i></h2></a>
+						<p>{description}</p>
 					</div>
 					<ul class="list">
 						<?php
@@ -87,7 +87,7 @@
 						?>
 					</ul>
 				</div>
-
+				{/course_list}
 			</ul>
 		</div>
 	</div>
