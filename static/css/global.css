@@ -23,9 +23,9 @@ a,p{word-break: break-all;}
 .login .login-title{padding:5px 25px;height:30px;background:#219ba1;color:#fff;}
          .login-title h2{font-size:20px;float: left}
          .login-title .close{line-height:30px;color:#fff;font-size:20px;float:right;}
-.login .login-content{padding:20px;}
+.login .login-content{padding:20px 45px;}
           .login-content li{float: left;width:100%;}
-          .login-content .login-click{margin:18px 29px;}
+          .login-content .login-click{margin:18px 0;}
                                 .login-click a,.login-click{color:#219ba1;}
                                 .login-click a{margin-right: 50px;}
                                 .login-click span{margin-left:5px;}
@@ -36,8 +36,8 @@ a,p{word-break: break-all;}
 
           .login-content input[type='text'],
           .login-content input[type='password'],
-          .login-content input[type="submit"]{width:288px;margin-left:20px;font-size:14px;margin-top:20px;border-radius: 30px;padding:8px 15px;border:1px solid #219ba1;}
-          .login-content input[type="submit"]{width:318px;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
+          .login-content input[type="submit"]{width:100%;box-sizing: border-box;font-size:14px;margin-top:20px;border-radius: 30px;padding:8px 15px;border:1px solid #219ba1;}
+          .login-content input[type="submit"]{width:100%;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
 
 
 
