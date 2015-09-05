@@ -17,12 +17,13 @@ $(".ajax_up").on("click" , function(){
 });
 
 $("#confirm .button_ok").click(function(){
+    var id = $(this).attr('data-id');
 	_td.api.chou({
-		"problem_id" : $(this).attr('data-id')
+		"problem_id" : id
 	}).then(function(){
 		showAlert(true,"众筹成功！银币 -50");
 		 setTimeout(function() {
-			 location.reload();
+             location.href = 'problem/?p=' + id;
 		 }, 1000)
 	}, function() {
 		showAlert(false, '您已参加过该众筹！');
@@ -182,11 +183,11 @@ $("#ajax_outlogin").on('click', function(event) {
         success:function(){
              showAlert(true,"退出成功！");
              setTimeout(function(){
-                location.reload();
+                location.href = '';
             },1000)
         },
         error:function(){
-            showAlert(false,"!");
+            showAlert(false, "!");
         }
     });
 

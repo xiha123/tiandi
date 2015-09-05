@@ -46,9 +46,10 @@ $("#answer").on('click' , function(event) {
 		showAlert(false,msg.error);
 	})
 });
+
 $("#ajax_comment").click(function(){
 	var content = ue.getContent();
-	if(content.length<15){
+	if(content.length < 15) {
 		showAlert(false,"再多写几个字吧，这样才能帮助他解决问题哟！（不能少于15个字）");
 		return false;
 	}
@@ -57,17 +58,17 @@ $("#ajax_comment").click(function(){
 		"content" : content
 	}).then(function(){
 		showAlert(true,"评论成功！银币 +20");
-		 setTimeout(function(){
-	            location.reload();
-	        },1000)
-	}, function(msg){
-		showAlert(false,msg.error);
+		setTimeout(function() {
+			location.reload();
+		}, 1000);
+	}, function(msg) {
+		showAlert(false, msg.error);
 	})
 
 });
 
 $("#reply").click(function(){
-	content = ue.getContent();
+	var content = ue.getContent();
 	if(content.length<15){
 		showAlert(false,"再多写几个字吧，这样才能帮助他解决问题哟！（不能少于15个字）");
 		return false;
@@ -95,9 +96,9 @@ $(".ajax_close").click(function(event) {
 		"type" : "true"
 	}).then(function(){
 		showAlert(true,"感谢您的支持，您已经满意了这个问题！");
-		 setTimeout(function(){
-	            location.reload();
-	        },1000)
+		setTimeout(function() {
+			location.reload();
+		}, 1000)
 	},function(msg){
 		showAlert(false,msg.error);
 	});
@@ -171,12 +172,15 @@ function timeOut_fun(){
  var ue = UM.getEditor('editor');
 
 
- SyntaxHighlighter.all();
+SyntaxHighlighter.all();
+
 if(window.problem_type == 3){
 	value = '在此处输入评论';
 }else{
 	value = '详细描述你的解答';
 }
+
+/*
 var is_one = true , is_ok = false , is = false;
 ue.ready(function(){
 	ue.execCommand('inserthtml', '<span></span>');
@@ -203,3 +207,4 @@ ue.ready(function(){
 		});
 	},500)
 });
+	*/

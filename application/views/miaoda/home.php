@@ -35,7 +35,7 @@
 			<tr><td><input type="text" class="title" id="problem-title" value="<?=$_SESSION['problem_temp']['title']?>" placeholder="一句话写下你遇到的问题"></td></tr>
 			<tr><td>
 				<div class="desc">
-					<script id="editor" type="text/plain" style="color:#aaa;width:980px;height:180px;"><?=$_SESSION['problem_temp']['content']?></script>
+					<script id="editor" type="text/plain" style="color:#333;width:980px;height:200px;"><?=$_SESSION['problem_temp']['content']?></script>
 					<div class="code-box">
 						<select class="Language">
 							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>
@@ -80,7 +80,7 @@
 		<div class="left-content">
 
 			<div class="tab">
-				<ul class="title" >
+				<ul class="title cf" >
 					<li <?php if($hot_type == "1"){ echo 'class="active"'; } ?>><a href="./miaoda">最新</a></li>
 					<li <?php if($hot_type == "0"){ echo 'class="active"'; } ?>><a href="./miaoda?hot=hot">热门</a></li>
 					<li <?php if($hot_type == "2"){ echo 'class="active"'; } ?>> <a href="./miaoda?hot=chou">众筹</a></li>

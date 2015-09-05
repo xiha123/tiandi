@@ -30,12 +30,15 @@ WB2.anyWhere(function (W) {
         type: '3,2',
         callback: {
             login: function (o) { //登录后的回调函数
-                alert("login: " + o.screen_name)
+                console.log("wb login: " + o.screen_name)
             },
             logout: function () { //退出后的回调函数
-                alert('logout');
+                console.log('wb logout');
             }
         }
     });
+});
+QC.Login({
+    btnId:"qq-login-btn"    //插入按钮的节点id
 });
 </script>

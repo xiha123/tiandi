@@ -93,8 +93,12 @@ class Index extends CI_Controller {
 			$this->problem_detail_model->remove_where(array("problem_id" => $id , "type" => 3));
 		}
 
-		$fund_list = json_decode($userdata['problem_data']['who']);
-		$userdata['is_fund'] = in_array($userdata['id'], $fund_list);
+		if (isset($userdata['id'])) {
+			$fund_list = json_decode($userdata['problem_data']['who']);
+			$userdata['is_fund'] = in_array($userdata['id'], $fund_list);
+		} else {
+			$userdata['is_fund'] = false;
+		}
 
 		$this->parser->parse("miaoda/problem/problem.php" , $userdata);
 	}

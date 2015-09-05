@@ -17,9 +17,9 @@
 					<li><input type="submit" value="登录" id="ajax_login"></li>
 					<li class="sociality">
 						社交账号
-						<img src="static/image/QQcolor.png" width="20">
+						<span id="qq-login-btn"></span>
 						<span id="wb_connect_btn"></span>
-						<a href="javascript:;" class="bomb-reg">注册账号</a>
+						<p><a href="javascript:;" class="bomb-reg">注册账号</a></p>
 					</li>
 				</ul>
 			</form>

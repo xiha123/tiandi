@@ -174,10 +174,10 @@
 							'<button class="none-background collect">★ 收藏</button>';
 							echo '<button data-id="' . $problem_data['id'] . '" class="js_chou">众筹</button>';
 						}
-						if (!empty($type) && $type == 1) {
-							if ($problem_data['answer_id'] === $id) {
+						if (!empty($type) && $type == 1) { // 是大神
+							if ($problem_data['answer_id'] === $id) { // 已认领
 								echo $problem_data['type'] == 1 ? '<button id="reply">提交</button>' :"";
-							} else {
+							} else if (!$is_fund) { // 未认领且自己没众凑
 								echo $problem_data['type'] == 0 && $problem_data['owner_id'] != @$id ? '<button id="answer">认领问题</button>' : "";
 							}
 						}

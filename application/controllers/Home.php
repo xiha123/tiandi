@@ -46,7 +46,7 @@ class Home extends CI_Controller {
 				$problem_list = array();
 				$love_user = array_slice($love_user, ($push_data["page"] - 1) * 6 , 6);
 				foreach ($love_user as $key => $value) {
-					array_push($problem_list , $this->user_model->get(array("id" => $value[0])));
+					array_push($problem_list, $this->user_model->get(array("id" => $value[0])));
 				}
 				$push_data['hot'] = "&love=love";
 
@@ -106,6 +106,15 @@ class Home extends CI_Controller {
 			case 1:$file_name = "god/home.php";break;
 			case 2:$file_name = "god/show.php";break;
 		}
+
+		// 在问过列表中添加众筹的问题
+		function custom_sort($a, $b) {
+			return $b['id']  - $a['id'];
+		}
+		$fund_list = $this->problem_model->get_json($user_data['chou']);
+		$push_data['problem_list'] = array_merge($push_data['problem_list'], $fund_list);
+		usort($push_data['problem_list'], "custom_sort");
+
 		$this->parser->parse("miaoda/" . $file_name , $push_data);
 	}
 

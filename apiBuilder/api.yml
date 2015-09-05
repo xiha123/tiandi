@@ -132,7 +132,7 @@ api:
     name: createProblem
     needs:
         - title
-        - detail
+        - content
         - coinType
         - language
 

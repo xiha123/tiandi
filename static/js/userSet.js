@@ -30,11 +30,11 @@ $("#ajax_userSet").click(function(){
 		"pwd_new" : pwd_new,
 	}).then(function(){
 		showAlert(true,"编辑个人资料成功！")
-		 setTimeout(function(){
-	            location.reload();
-	        },1000)
+		setTimeout(function() {
+			location.reload();
+		}, 1000);
 	}, function(msg){
-		showAlert(false,msg.error)
+		showAlert(false, msg.error)
 	})
 })
 

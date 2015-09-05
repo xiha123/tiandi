@@ -22,18 +22,9 @@ $(function () {
 		});
 		jsonText = JSON.stringify(jsonArr);
 
-		_td.api.onlineSave({
-			"type" : true,
-			"title" : title,
-			"content" : content,
-			"tags" : jsonText,
-			"code" : code,
-			"language" : $(".Language").val(),
-			"problem_id" : -1
-		});
 		_td.api.createProblem({
 			"title" : title,
-			"detail" : content,
+			"content" : content,
 			"code" : code,
 			"tags" : jsonText,
 			"coinType" : coinType,
@@ -47,7 +38,7 @@ $(function () {
 				window.location.href="./problem/?p=" + res.data;
 			}, 1000);
 		}, function (res) {
-			showAlert(false, res);
+			showAlert(false, res.error);
 		});
 	});
 
@@ -59,7 +50,7 @@ $(function () {
 		$.each($(".tag .tag-box"), function(index, val) {
 			jsonArr.push($(val).find("font").text());
 		});
-		if(title!="" && content !="" && code!=""){
+		if(title !== "" && content != "") {
 			_td.api.onlineSave({
 				"type" : true,
 				"title" : title,
@@ -70,11 +61,11 @@ $(function () {
 				"problem_id" : -1
 			});
 		}
-	}, 12000);
+	}, 10000);
 
-
+/*
 	var is_one = true , is_ok = false , is = false;
-	ue.ready(function(){
+	ue.ready(function() {
 		ue.execCommand('inserthtml', '<span></span>');
 		if(ue.getContentTxt() == "" && is == false){
 			ueSetColor("#aaa","在此处输入您对问题的描述");
@@ -83,6 +74,7 @@ $(function () {
 		ue.blur();
 		setTimeout(function(){
 			ue.addListener('selectionchange', function( editor ) {
+				console.log(123);
 				if(is_one == false){
 					is_one = true;
 					if(ue.getContentTxt() == "在此处输入您对问题的描述" && is == true){
@@ -99,5 +91,6 @@ $(function () {
 			});
 		},500)
 	});
+		*/
 
 });

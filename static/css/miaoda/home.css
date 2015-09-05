@@ -4,7 +4,14 @@
 .doubt > .table{position:relative;width:980px;}
 .doubt >.table > tr > td{width:980px;}
 .doubt >.table .title{margin-bottom:10px;}
-.doubt >.table .title,.input-content,.code{color:#333 !important;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
+.doubt >.table .title,
+.doubt .input-content,
+.doubt .code {
+	color:#333 !important;
+	padding:10px;
+	border:1px solid #7cc4c7;
+	width: 960px;
+}
 .doubt >.table .input-content{height: 60px;}
 .doubt >.table .code{height:110px;border-top:1px dashed #ddd;}
 .doubt >.table .title{color:#aaa;padding:5px 5px;border:1px solid #7cc4c7;width: 970px;}
@@ -17,6 +24,23 @@
 			 .tag-box button{  cursor: pointer;outline: none; background: none;border:none;border-left:1px solid #ddd;color:#aaa;margin-left:5px;}
 .doubt input[type="checkbox"]{margin-top:10px;margin-right:5px;}
 .doubt input[type="checkbox"] ~ span{color:#219ba1;}
+
+.edui-editor-body ul {
+	list-style: disc;
+	padding-left: 40px;
+}
+.edui-editor-body ol {
+	list-style:decimal;
+	padding-left: 35px;
+}
+.edui-editor-body strong,
+.edui-editor-body b {
+	font-weight:bold;
+}
+.edui-editor-body em,
+.edui-editor-body i {
+	font-style: italic;
+}
 
 .left-content{padding-bottom:140px; overflow: hidden; margin-top:30px;}
 .left-content,.right-content{float: left}

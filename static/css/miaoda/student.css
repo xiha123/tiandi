@@ -44,6 +44,25 @@
 			 .tag-box button{  cursor: pointer;outline: none; background: none;border:none;border-left:1px solid #ddd;color:#aaa;margin-left:5px;}
 
 
+.edui-editor-body ul {
+	list-style: disc;
+	padding-left: 40px;
+}
+.edui-editor-body ol {
+	list-style:decimal;
+	padding-left: 35px;
+}
+.edui-editor-body strong,
+.edui-editor-body b {
+	font-weight:bold;
+}
+.edui-editor-body em,
+.edui-editor-body i {
+	font-style: italic;
+}
+
+
+
 .comment-list{margin-top:20px;float:left;width: 100%;}
 .comment-list li{color:#888;position:relative; float: left;width: 100%;margin-bottom:23px;}
 .comment-list img{width: 40px;margin-right: 10px;}
@@ -53,10 +72,13 @@
 
 
 .whyUser {margin-top:20px;position:relative;}
-.whyUser > .data,.data>p,img{float: left}
+.whyUser > .data,
+.whyUser > .data > p,
+.whyUser img,
+.comment-list li img {float: left}
 .whyUser > .data{width:710px;padding-left:10px;height:35px;display:inline-block;}
 .whyUser > .data p{position: relative;top:18px;font-size: 14px;color:#aaa;margin-right: 10px;}
-.whyUser > .data .name a {position:relativecolor:#333; }
+.whyUser > .data .name a { color:#333; }
 .whyUser > .data .name a:hover { color:#219ba1; }
 .whyUser > .data .date{float: right}
 .whyUser .desc{padding-right:20px;margin:15px 0;padding-top:5px;float:left;color:#333;}

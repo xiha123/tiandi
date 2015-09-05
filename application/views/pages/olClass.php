@@ -63,8 +63,8 @@
 				{course_list}
 				<div class="course">
 					<div class="description">
-						<a href="course?id={id}"><h2>{title}<i class="fa fa-arrow-circle-right"></i></h2></a>
-						<p>{description}</p>
+						<h2><a href="course?id={id}">{title}<i class="fa fa-arrow-circle-right"></i></a></h2>
+						<span>{description}</span>
 					</div>
 					<ul class="list">
 						<?php

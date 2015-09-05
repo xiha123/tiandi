@@ -47,14 +47,13 @@ class problem_api extends base_api {
     }
 
     public function online_save(){
-        $this->load->library('session');
-        $params = $this->get_params('POST', array('type' , "title" , "tags" , "code" , "language" , "problem_id"));extract($params);
-        $content = $this->input->post("content");
-        $params['content'] = $content;
+        $params = $this->get_params('POST', array('type' , 'content', "title" , "tags" , "code" , "language" , "problem_id"));
+        extract($params);
+
         if($type == "true"){
             // 提问在线保存处理
             $this->session->problem_temp = $params;
-        }else{
+        } else {
             // 回答在线保存处理
             parent::require_login();
             $problem = $this->problem_model->get(array("id"=>$problem_id));
@@ -122,8 +121,15 @@ class problem_api extends base_api {
 
     public function create() {
         parent::require_login();
-        $params = $this->get_params('POST', array('coinType','title' => true, 'detail' => true, 'code', 'tags', "language"));
+        $params = $this->get_params('POST', array(
+            'title' => true,
+            'coinType',
+            'code',
+            'tags',
+            "language"
+        ));
         extract($params);
+        $content = $_POST['content'];
 
         if($this->problem_model->is_exist(array('title' => $title))) {
            $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
@@ -140,18 +146,16 @@ class problem_api extends base_api {
         }
 
         $is_length = parent::is_length(array(
-            array("name" => "标题" , "value" => $title , "min" => 5,"max" => 60),
-            array("name" => "描述" , "value" => $detail , "min" => 10),
+            array("name" => "标题" , "value" => $title, "min" => 5,"max" => 60),
+            array("name" => "描述" , "value" => $content, "min" => 10),
         ));
 
         $_SESSION['first'] = true;
         $_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
 
-
+        // 判断 tag
         $tagArray = json_decode($tags);
         if(count($tagArray) <= 0) parent::finish(false , "您必须输入一个标签才能发表问题！");
-
-
 
         // 处理硬币需求
         $coinConfig = $coinType == "true" ? array(
@@ -171,8 +175,6 @@ class problem_api extends base_api {
         $this->user_model->Integral($this->me['id'] , 100);
         $_SESSION['first'] = true;
 
-
-
         // 处理标签请求
         $tagTemp = array();
         if (!empty($tagArray)) {
@@ -184,7 +186,6 @@ class problem_api extends base_api {
                 }
             }
         }
-
 
         // 创建题主
         $detail_id = $this->problem_model->create(array(
@@ -200,13 +201,16 @@ class problem_api extends base_api {
         if(!$this->problem_detail_model->create(array(
             'owner_id' => $this->me['id'],
             'type' => 0,
-            'content' =>$this->HTML(($detail)),
+            'content' =>$this->HTML(($content)),
             'code' => htmlspecialchars($code),
             'problem_id' => $detail_id,
             'language' => $language
         ))){
             parent::finish(false , "服务器异常，请尝试重新提交问题！detail");
         }
+
+        // 清除在线保存中的问题
+        $this->session->unset_userdata('problem_temp');
         $this->finish(true,$detail_id,$detail_id);
     }
 
@@ -216,13 +220,18 @@ class problem_api extends base_api {
         - problem_id
     */
     public function create_comment() {
-        parent::require_login(); $params = $this->get_params('POST', array('content', 'problem_id'));extract($params);
+        parent::require_login();
+        $params = $this->get_params('POST', array('problem_id'));
+        extract($params);
+        $content = $_POST['content'];
+
         if (!$this->problem_model->is_exist(array(
             'id' => $problem_id
         ))) {
             $this->finish(false, '不存在的问题');
         }
-        $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'],$problem_id,$this->HTML($content));
+
+        $new_comment_id = $this->problem_comment_model->add_comment($this->me['id'], $problem_id, $this->HTML($content));
         $problem = $this->problem_model->get(array(
             'id' => $problem_id
         ));
@@ -252,11 +261,12 @@ class problem_api extends base_api {
     public function create_detail() {
         parent::require_login();
         $params = $this->get_params('POST', array(
-            'content' => true,
             'type' => true,
             'problem_id' => true,
             'language'
-        )); extract($params);
+        ));
+        extract($params);
+        $content = $_POST['content'];
 
         switch ($language) {
             case '0':$language = "html";break;

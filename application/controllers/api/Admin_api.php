@@ -132,12 +132,14 @@ class admin_api extends base_api {
             "type",
         ));if(empty($params)) return; extract($params);
         $id = $this->input->post("id");
+        /*
         $teacher = !isset($_POST['teacher']) ? false : true;
         if(isset($_POST['teacher'])){
             $params['teacher'] = 1;
         }else{
             $params['teacher'] = 0;
         }
+        */
         $password = $this->input->post("password");
         if($password != ""){
             $userdata = $this->user_model->get(array("id" => $id));
@@ -346,7 +348,7 @@ class admin_api extends base_api {
                 parent::finish(true);
 	}
 
-    
+
 
 
 

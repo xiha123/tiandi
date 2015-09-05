@@ -14,10 +14,10 @@ class base_api extends CI_Controller {
     // 处理用户提交的内容
     public function HTML($content){
         include_once(APPPATH . 'controllers/api/base_class_html.php');
-        $HTML = new HtmlAttributeFilter(); 
-        $HTML->setAllow(array('title','alt',"src"));
-        $content = $HTML->strip($content); 
-        return strip_tags($content , "<p><li><ul><img><br>");
+        $HTML = new HtmlAttributeFilter();
+        $HTML->setAllow(array('title', 'alt', "src", 'style'));
+        $content = $HTML->strip($content);
+        return strip_tags($content, "<span><em><i><strike><u><b><strong><p><li><ul><img><br>");
     }
 
 

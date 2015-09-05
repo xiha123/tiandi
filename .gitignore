@@ -1,3 +1,4 @@
 .idea
 static/uploads/
 node_modules
+ueditor/php/upload

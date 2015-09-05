@@ -1,5 +1,5 @@
 <div class="header">
-    <div class="wrapper">
+    <div class="wrapper cf">
         <a href="./"><img class="logo" src="static/image/tiandijundaoLogo.png" height="81" width="110" alt="天地培训logo"></a>
         <ul class="nav cf">
             <?php
