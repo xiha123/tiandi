@@ -111,9 +111,11 @@ class Home extends CI_Controller {
 		function custom_sort($a, $b) {
 			return $b['id']  - $a['id'];
 		}
-		$fund_list = $this->problem_model->get_json($user_data['chou']);
-		$push_data['problem_list'] = array_merge($push_data['problem_list'], $fund_list);
-		usort($push_data['problem_list'], "custom_sort");
+		if (isset($push_data['problem_list'])) {
+			$fund_list = $this->problem_model->get_json($user_data['chou']);
+			$push_data['problem_list'] = array_merge($push_data['problem_list'], $fund_list);
+			usort($push_data['problem_list'], "custom_sort");
+		}
 
 		$this->parser->parse("miaoda/" . $file_name , $push_data);
 	}

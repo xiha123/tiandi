@@ -49,7 +49,8 @@
 				</ul>
 				<ul class="list-data">
 					<ul class="list-data">
-						<?php if($follow_type == false){ foreach ($problem_list as $key => $value) {?>
+						<?php if($follow_type == false){ foreach ($problem_list as $key => $value) {
+							if (empty($value['id'])) continue; ?>
 							<li data-id="<?=$value['id']?>">
 								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
 								<div class="list-title">

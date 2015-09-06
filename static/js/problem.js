@@ -1,5 +1,4 @@
 if(window.problem_type == 1){
-	/*
 	UM.registerUI('引用提问者问题', function(editor, uiName) {
 	    editor.registerCommand(uiName, {
 	        execCommand: function() {
@@ -29,7 +28,6 @@ if(window.problem_type == 1){
 	    });
 	    return btn;
 	});
-	*/
 }
 
 

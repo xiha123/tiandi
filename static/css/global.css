@@ -16,10 +16,10 @@ a,p{word-break: break-all;}
                               .aletrContent.danger{background:#d9534f;}
                                .aletrContent i{margin-right: 10px;}
 
-.window #reg{height:530px;display:none;}
+.window #reg{height:480px;display:none;}
 .regGod span{text-decoration: underline;}
 
-.window .login {display:none;width:400px;height:385px;position:fixed; top:0;left: 0;right: 0;bottom: 0;margin: auto;background: #fff;z-index:1024;}
+.window .login {display:none;width:400px;height:390px;position:fixed; top:0;left: 0;right: 0;bottom: 0;margin: auto;background: #fff;z-index:1024;}
 .login .login-title{padding:5px 25px;height:30px;background:#219ba1;color:#fff;}
          .login-title h2{font-size:20px;float: left}
          .login-title .close{line-height:30px;color:#fff;font-size:20px;float:right;}
@@ -27,17 +27,19 @@ a,p{word-break: break-all;}
           .login-content li{float: left;width:100%;}
           .login-content .login-click{margin:18px 0;}
                                 .login-click a,.login-click{color:#219ba1;}
-                                .login-click a{margin-right: 50px;}
                                 .login-click span{margin-left:5px;}
-.login .sociality {margin-top:25px;line-height:24px;margin-left: 25px;color:#219ba1;}
+.login .sociality {margin-top:25px;line-height:24px;color:#219ba1;}
          .sociality a{color:#219ba1;}
-         .sociality li{width: auto}
-         .sociality img{position: relative;top:4px;margin-left: 10px;}
+         .sociality img{margin-left: 10px;}
 
           .login-content input[type='text'],
           .login-content input[type='password'],
           .login-content input[type="submit"]{width:100%;box-sizing: border-box;font-size:14px;margin-top:20px;border-radius: 30px;padding:8px 15px;border:1px solid #219ba1;}
           .login-content input[type="submit"]{width:100%;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
+
+          #qq-login-btn img {
+              vertical-align: middle;
+          }
 
 
 
@@ -120,6 +122,9 @@ a,p{word-break: break-all;}
 .list-data .list-tag li{border:none;width:auto;float: left}
 .list-data .list-tag .tag-box{margin-top:4px;font-size:12px;margin-top:7px;background:#d6edeb;color:#43a8ad;padding:1px 7px;margin-left: 5px}
 .list-data .list-date{color:#aaa;bottom:15px;position: absolute;right:15px;}
+.list-data li:last-child {
+    border-bottom:0;
+}
 
 
 /* global tags */

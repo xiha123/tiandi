@@ -30,10 +30,7 @@ WB2.anyWhere(function (W) {
         type: '3,2',
         callback: {
             login: function (o) { //登录后的回调函数
-                console.log("wb login: " + o.screen_name)
-            },
-            logout: function () { //退出后的回调函数
-                console.log('wb logout');
+                console.log(o);
             }
         }
     });

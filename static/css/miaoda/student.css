@@ -74,7 +74,7 @@
 .whyUser {margin-top:20px;position:relative;}
 .whyUser > .data,
 .whyUser > .data > p,
-.whyUser img,
+.whyUser >a img,
 .comment-list li img {float: left}
 .whyUser > .data{width:710px;padding-left:10px;height:35px;display:inline-block;}
 .whyUser > .data p{position: relative;top:18px;font-size: 14px;color:#aaa;margin-right: 10px;}

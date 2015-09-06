@@ -8,7 +8,7 @@
 			<h2>登录</h2>
 			<a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>
 		</div>
-		<div class="login-content">
+		<div class="login-content cf">
 			<form action="#" method="get" id="login-form">
 				<ul>
 					<li><input type="text" id="login_username" placeholder="请输入您的邮箱"></li>
@@ -46,7 +46,7 @@
 			<h2>注册</h2>
 			<a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>
 		</div>
-		<div class="login-content">
+		<div class="login-content cf">
 			<form action="" id="register">
 				<ul>
 					<li><input type="text" placeholder="昵称" id="reg_nick"></li>
@@ -55,13 +55,10 @@
 					<li><input type="password" placeholder="确认密码" id="reg_password"></li>
 					<li class="login-click"> <label><input type="checkBox" id="reg_ok"><span>同意并接受服务条款</span></label></li>
 					<li><input type="submit" value="注册" id="ajax_reg"></li>
-					<li class="sociality">
-						社交账号
-						<img src="static/image/QQcolor.png" width="20">
-						<img src="static/image/weibocolor.png" width="20">
-						<a href="javascript:;" class="bomb-login">直接登录</a>
+					<li class="login-click regGod">
+						<label><input type="checkBox" id="reg_god"><span>注册成为大神</span></label>
+						<a href="javascript:;" class="bomb-login fr">直接登录</a>
 					</li>
-					<li class="login-click regGod"><label class="fr" style="margin-right:40px;"><input type="checkBox" id="reg_god"><span>注册成为大神</span></label></li>
 				</ul>
 			</form>
 		</div>

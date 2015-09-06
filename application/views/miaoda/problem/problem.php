@@ -106,7 +106,7 @@
 					</ul></div>';
 				}
 				if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
-				$problem_online_count = count(json_decode($problem_data['online'])) - 1;
+				$problem_online_count = count(json_decode($problem_data['online']));
 
 			?>
 				<div class="doubt">
@@ -118,7 +118,7 @@
 									$online = true;
 								}
 							?>
-							<span class="online fr"><font class="fr"><?=$problem_data['owner_id'] == @$id ? "问题正在被大神" .  "解答中" : ($problem_online_count < 0 ? 0 : $problem_online_count) .'<i class="fa fa-user fr"></i>';?></font></span>
+							<span class="online fr"><font><?=$problem_data['owner_id'] == @$id ? "问题正在被大神" .  "解答中" : ($problem_online_count < 0 ? 0 : $problem_online_count) .'<i class="fa fa-user "></i>';?></font></span>
 						</td></tr>
 						<tr><td>
 							<div class="desc">

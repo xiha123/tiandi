@@ -63,7 +63,6 @@ $(function () {
 		}
 	}, 10000);
 
-/*
 	var is_one = true , is_ok = false , is = false;
 	ue.ready(function() {
 		ue.execCommand('inserthtml', '<span></span>');
@@ -74,7 +73,6 @@ $(function () {
 		ue.blur();
 		setTimeout(function(){
 			ue.addListener('selectionchange', function( editor ) {
-				console.log(123);
 				if(is_one == false){
 					is_one = true;
 					if(ue.getContentTxt() == "在此处输入您对问题的描述" && is == true){
@@ -91,6 +89,5 @@ $(function () {
 			});
 		},500)
 	});
-		*/
 
 });
