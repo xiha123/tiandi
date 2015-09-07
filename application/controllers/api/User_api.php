@@ -160,7 +160,7 @@ class user_api extends base_api {
 
         parent::is_length(array(
             array("name" => "昵称" , "value" => $nickname , "min" => 2 , "max" => 16),
-            array("name" => "手机" , "value" => $phone , "min" => 6 , "max" => 11),
+            array("name" => "手机号" , "value" => $phone , "min" => 6 , "max" => 11),
         ));
 
 

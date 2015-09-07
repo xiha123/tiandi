@@ -104,7 +104,7 @@ class Admin extends CI_Controller {
 	public function problems() {
 		if (empty($this->user_info)) redirect('admin/login');
 		$this->load->model('problem_model');
-		$page = !isset($_GET['page']) ? 1 : $this->input->get['page'];
+		$page = !isset($_GET['page']) ? 1 : $this->input->get('page');
 		$where = !isset($_GET['search']) ? array() : array("title" => $this->input->get("search"));
 		$search_type = !isset($_GET['search']) ? false : true;
 		$list = count($where) <= 0 ? $this->problem_model->get_list($where, ($page - 1) * 10, 10) : $this->problem_model->search_where($where , ($page - 1) * 10, 10);
