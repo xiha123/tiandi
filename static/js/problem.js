@@ -1,33 +1,33 @@
 if(window.problem_type == 1){
-	UM.registerUI('引用提问者问题', function(editor, uiName) {
-	    editor.registerCommand(uiName, {
-	        execCommand: function() {
-	            alert('execCommand:' + uiName)
-	        }
-	    });
-	    var btn = new UM.ui.Button({
-	        name: uiName,
-	        title: uiName,
-	        cssRules: 'background-position: -220px 0;',
-	        onclick: function() {
-	            //这里可以不用执行命令,做你自己的操作也可
-	            ue.setContent(problem_content);
-	            $("#problem-code").val(problem_code);
-	            showAlert(true , "引用成功，提问者的问题已被引入到编辑框中！");
-	        }
-	    });
-	    editor.addListener('selectionchange', function() {
-	        var state = editor.queryCommandState(uiName);
-	        if (state == -1) {
-	            btn.setDisabled(true);
-	            btn.setChecked(false);
-	        } else {
-	            btn.setDisabled(false);
-	            btn.setChecked(state);
-	        }
-	    });
-	    return btn;
-	});
+	// UM.registerUI('引用提问者问题', function(editor, uiName) {
+	//     editor.registerCommand(uiName, {
+	//         execCommand: function() {
+	//             alert('execCommand:' + uiName)
+	//         }
+	//     });
+	//     var btn = new UM.ui.Button({
+	//         name: uiName,
+	//         title: uiName,
+	//         cssRules: 'background-position: -220px 0;',
+	//         onclick: function() {
+	//             //这里可以不用执行命令,做你自己的操作也可
+	//             ue.setContent(problem_content);
+	//             $("#problem-code").val(problem_code);
+	//             showAlert(true , "引用成功，提问者的问题已被引入到编辑框中！");
+	//         }
+	//     });
+	//     editor.addListener('selectionchange', function() {
+	//         var state = editor.queryCommandState(uiName);
+	//         if (state == -1) {
+	//             btn.setDisabled(true);
+	//             btn.setChecked(false);
+	//         } else {
+	//             btn.setDisabled(false);
+	//             btn.setChecked(state);
+	//         }
+	//     });
+	//     return btn;
+	// });
 }
 
 
