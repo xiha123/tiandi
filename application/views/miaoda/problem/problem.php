@@ -66,7 +66,7 @@
 			</div>
 			<?php
 				if ($problem_detail[0]["code"] != NULL) {
-					echo '<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.($problem_detail[0]["code"]).'</pre></div>';
+					echo '<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[0]["code"]).'</pre></div>';
 				}
 				for ($index = 1; $index < count($problem_detail); $index++) {
 			?>
@@ -81,7 +81,7 @@
 					</div>
 			<?php
 					if ($problem_detail[$index]["code"] != NULL) {
-						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.($problem_detail[$index]["code"]).'</pre></div>';
+						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[0]["code"]).'</pre></div>';
 					}
 				}
 			?>

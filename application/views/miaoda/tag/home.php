@@ -25,7 +25,7 @@
 
 
 			<div class="tab">
-				<ul class="title">
+				<ul class="title   cf js-tab-trigger">
 					<li <?php if($hot_type == ""){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>">最新</a></li>
 					<li <?php if($hot_type == "hot"){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>&hot=hot">热门</a></li>
 					<li <?php if($hot_type == "love"){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>&love=love">众筹</a></li>

@@ -20,12 +20,32 @@ class Olclass extends CI_Controller {
 			'Cocos2d-x' => 3,
 			'Android' => 4,
 		);
+		$index = 0;
 		$type = $this->input->get('type');
 		$userdata = $this->user_model->check_login();
 		$userdata['guide_list'] = $this->guide_model->get_list();
 		$userdata['types'] = isset($courseType[$type]) ? $courseType[$type] : 0;
 		$userdata['course_list'] = $this->course_model->get_list_by_type($userdata['types']);
-		$userdata['class'] = $this->course_step_model->get_list(array("course_id" => $userdata['types']) , 0 , 8);
+		foreach ($userdata['course_list'] as &$this_temp){
+			foreach ($this_temp['class'] as &$value) {
+				$index ++;
+				$value['step'] = $index;
+				if($index <= 3) $value['type'] = "fa-arrow-right";
+				if($index == 4) $value['type'] = "fa-arrow-down bottom";
+				if($index > 4 && $index < 5) $value['type'] = "";
+				if($index >= 5 && $index < 8) $value['type'] = "fa-arrow-left";
+				if($index == 4 || $index == 8) $value['li_class'] = "last";
+
+				if($value['type'] != ""){
+					$value['type'] = "<i class='fa " . $value['type'] . "'></i>";
+				}else{
+					$value['type'] = "";
+				}
+			}
+		}
+
+		print_r($userdata['course_list']);
+
 		$userdata['slide_list'] = $this->slide_model->get_list(1);
 		$userdata['schedule_course'] = $this->site_model->get_content('001');
 		$userdata['schedule_date'] = $this->site_model->get_content('002');
