@@ -40,10 +40,11 @@ class Admin extends CI_Controller {
 
 	public function user(){
 		if($this->admin_model->require_login() === false) redirect('admin/login');
-		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$page = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$data['page'] = $page < 1 ? '1' : $page;
 		$data['me'] = $this->user_info;
 		$where = !isset($_GET['search']) ? array() : array("nickname" => $this->input->get("search"));
-		$data['user'] = count($where) <= 0 ? $this->user_model->get_list($where, ($data['page'] - 1) * 10, 10) : $this->user_model->search_where($where , ($data['page'] - 1) * 10, 10);
+		$data['user'] = count($where) <= 0 ? $this->user_model->get_list($where, $data['page'] - 1, 20) : $this->user_model->search_where($where , $data['page'] - 1, 20);
 
 		foreach ($data['user'] as $key => $value) {
 			if($data['user'][$key]['type']  == "0"){
@@ -53,7 +54,7 @@ class Admin extends CI_Controller {
 			}
 		}
 		$data['user_max'] = $this->user_model->get_count($where);
-		$this->load->library('parser');
+
 		$this->parser->parse('admin/user.php', $data);
 	}
 
@@ -87,7 +88,7 @@ class Admin extends CI_Controller {
 		$where = !isset($_GET['search']) ? array() : array("name" => $this->input->get("search"));
 		$search_type = !isset($_GET['search']) ? false : true;
 
-		$list = count($where) <= 0 ? $this->tag_model->get_list($where, ($page - 1) * 10, 10) : $this->tag_model->search_where($where , ($page - 1) * 10, 10);
+		$list = count($where) <= 0 ? $this->tag_model->get_list($where, $page - 1, 10) : $this->tag_model->search_where($where , $page - 1, 10);
 		$tag_count = $this->tag_model->get_count($where);
 		foreach ($list as &$item) {
 			$item['type'] = $item['type'] === 0 ? '课程' : '秒答';
@@ -107,7 +108,7 @@ class Admin extends CI_Controller {
 		$page = !isset($_GET['page']) ? 1 : $this->input->get('page');
 		$where = !isset($_GET['search']) ? array() : array("title" => $this->input->get("search"));
 		$search_type = !isset($_GET['search']) ? false : true;
-		$list = count($where) <= 0 ? $this->problem_model->get_list($where, ($page - 1) * 10, 10) : $this->problem_model->search_where($where , ($page - 1) * 10, 10);
+		$list = count($where) <= 0 ? $this->problem_model->get_list($where, $page - 1 , 10) : $this->problem_model->search_where($where, $page - 1, 10);
 		$problem_count = $this->problem_model->get_count($where);
 
 

@@ -18,7 +18,7 @@
 							<input type="text" class="form-control" id="searchName" placeholder="搜索">
 							<div class="input-group-addon"><button class="search"><i class="fa fa-search"></i></button></div>
 						</div>
-					</form>				
+					</form>
 				</li>
 			</ul>
 
@@ -64,7 +64,7 @@
 				$this->load->view("miaoda/page",array(
 					"page" => $page,
 					"page_max" => $user_max,
-					"page_count" => 10,
+					"page_count" => 20,
 					"page_url" => "./admin/user",
 					"hot" => "",
 				));
