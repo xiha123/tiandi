@@ -51,7 +51,7 @@ p,td{word-break:break-all}
 
 /* 弹窗样式 */
 .window {display:none;width:calc(100% - 200px);height:100%;position:fixed;top:0px;left:200px;z-index:9;background:rgba(0,0,0,0.5)}
-.window .confirm{transition:top 0.5s;width:600px;max-height:80%;overflow-y:scroll;border:1px solid #777;background:#fff;position:absolute;top:0px;left:0;right:0;margin:auto}
+.window .confirm{transition:top 0.5s;width:600px;border:1px solid #777;background:#fff;position:absolute;top:0px;left:0;right:0;margin:auto}
 	       .confirm .confirm-title{height:40px;padding:10px 20px;}
 	       		     .confirm-title h2{color:#333;float:left;line-height:40px;font-size:16px;}
 	       		     .confirm-title .close{float:right;line-height:40px;color:#999;margin-right:5px;}

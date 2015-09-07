@@ -69,7 +69,7 @@ class base_api extends CI_Controller {
     public function is_length($array , $type = false){
         if($type == false){
             foreach ($array as $key => $value) {
-                $value_length = strlen($value['value']);
+                $value_length = strlen(trim($value['value']));
                 if(isset($value['max']) && $value_length > $value['max']){
                     $this->finish(false, '您输入的'.$value['name'].'太长了，请检查后重新输入');
                 }

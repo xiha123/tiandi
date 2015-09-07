@@ -44,8 +44,6 @@ class Olclass extends CI_Controller {
 			}
 		}
 
-		print_r($userdata['course_list']);
-
 		$userdata['slide_list'] = $this->slide_model->get_list(1);
 		$userdata['schedule_course'] = $this->site_model->get_content('001');
 		$userdata['schedule_date'] = $this->site_model->get_content('002');
