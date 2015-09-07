@@ -288,7 +288,7 @@ class Admin extends CI_Controller {
 				$data["steps_count"] = count($data['steps'] );
 				$data['steps'] =  $data['page'] -1* 10 > $data["steps"] ? array_slice($data['steps'],($data['page'] -1)* 10 ) : $data['steps'] = array_slice($data['steps'],($data['page'] -1)* 10 , 10);
 				break;
-			
+
 			case 'chapter':
 				$data["chapter_count"] = $this->course_chapter_model->get_count(array());
 				$data['chapter'] = $this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] -1* 10 , 10);
@@ -302,9 +302,6 @@ class Admin extends CI_Controller {
 			default:
 				$data["tag_count"] = count($data['tags'] );
 				$data['tags'] =  $data['page'] -1* 10 > $data["tag_count"] ? array_slice($data['tags'],($data['page'] -1)* 10 ) : $data['tags'] = array_slice($data['tags'],($data['page'] -1)* 10 , 10);
-				foreach ($data['tags'] as $key => $value) {
-
-				}
 				break;
 		}
 
