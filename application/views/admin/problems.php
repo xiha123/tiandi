@@ -7,7 +7,15 @@
 
 <div class="main">
     <ul class="nav nav-pills" role="tablist">
-        <li role="presentation" class="active"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">问题管理</a></li>
+        <!-- <li role="presentation" class="active"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">问题管理</a></li> -->
+		<li class="fr">
+			<form class="form-inline fr" action="javascript:;" onsubmit="search('./admin/problems')">
+				<div class="input-group">
+					<input type="text" class="form-control" id="searchName" placeholder="搜索">
+					<div class="input-group-addon"><button class="search"><i class="fa fa-search"></i></button></div>
+				</div>
+			</form>				
+		</li>
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tags">
@@ -43,8 +51,6 @@
 					"page_count" => 10,
 					"page_url" => "./admin/problems",
 					"hot" => "",
-					"search" => true,
-					"search_function_name" => "search('./admin/problems')",
 				));
 			?>
         </div>

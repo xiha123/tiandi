@@ -8,10 +8,10 @@
 <div class="main">
 	<div class="navbar navbar-default">
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addTag">创建标签</button>
-		<form class="form-inline fr">
+		<form class="form-inline fr" action="javascript:;" onsubmit="search('./admin/tags')">
 			<div class="input-group">
-				<input type="text" class="form-control" id="search-tag-input" placeholder="搜索">
-				<div class="input-group-addon"><i class="fa fa-search"></i></div>
+				<input type="text" class="form-control" id="searchName" placeholder="搜索">
+				<div class="input-group-addon"><button class="search"><i class="fa fa-search"></i></button></div>
 			</div>
 		</form>
 	</div>
@@ -92,7 +92,15 @@
 			</div>
 		</div>
 	</div>
-
+	<?php
+		$this->load->view("miaoda/page",array(
+			"page" => $page,
+			"page_max" => $tag_count,
+			"page_count" => 10,
+			"page_url" => "./admin/tags",
+			"hot" => "",
+		));
+	?>
 </div>
 
 <?php $this->load->view('widgets/admin/footer.php'); ?>

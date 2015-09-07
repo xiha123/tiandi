@@ -9,10 +9,19 @@
 	<?php $this->load->view('widgets/admin/window.php'); ?>
 	<div class="main-content">
 		<div class="main-title">
-			<ul class="nav nav-pills">
+			<ul class="nav nav-pills fl">
 				<li role="presentation" class="active"><a href="javascript:;"><i class="fa fa-users"></i>用户管理</a></li>
 				<li role="presentation"><a href="./admin/god_apply"><i class="fa fa-check-square"></i>大神审核</a></li>
+				<li class="fr">
+					<form class="form-inline fr" action="javascript:;" onsubmit="search('./admin/user')">
+						<div class="input-group">
+							<input type="text" class="form-control" id="searchName" placeholder="搜索">
+							<div class="input-group-addon"><button class="search"><i class="fa fa-search"></i></button></div>
+						</div>
+					</form>				
+				</li>
 			</ul>
+
 		</div>
 
 		<div class="main-data">
@@ -58,8 +67,6 @@
 					"page_count" => 10,
 					"page_url" => "./admin/user",
 					"hot" => "",
-					"search" => true,
-					"search_function_name" => "search('./admin/user')",
 				));
 			?>
 
