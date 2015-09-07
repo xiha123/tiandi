@@ -44,11 +44,18 @@ class base_model extends CI_Model {
 	}
 
 	public function get_list($params, $page, $count) {
+		if(isset($params['s'])){
+			$params = array("course_id" => $params['course_id']);
+			$type = "aec";
+		}else{
+			$type="desc";
+		}
 		if($params != "all"){
 			$this->db->where($params);
 		}
+
 		$page = $page < 0 ? 0 : $page;
-		return $this->db->limit($count , $page)->order_by('id', 'DESC')->get($this->table_name)->result_array();
+		return $this->db->limit($count , $page)->order_by('id',$type)->get($this->table_name)->result_array();
 	}
 	public function search_where($params , $page = 0 , $count = 20){
     		return $this->db->like($params)->limit($count , $page)->get($this->table_name)->result_array();
