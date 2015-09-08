@@ -176,7 +176,7 @@ class Admin extends CI_Controller {
 		$color = $this->input->post("color", true);
 		$id = $this->input->post("id", true);
 		$type = $this->input->post("type", true);
-		
+
 
 		if(isset($_FILES["userfile"])){
 			$config['upload_path'] = './static/uploads/';
@@ -258,7 +258,7 @@ class Admin extends CI_Controller {
 	public function classList(){
 		if (empty($this->user_info)) redirect('admin/login');
 		$page = isset($_GET['page']) ? $this->input->get("page") : 1;
-		$returnData = $this->course_model->get_list("all" , ($page - 1) * 10 ,10);
+		$returnData = $this->course_model->get_list("all" , $page - 1 ,10);
 		$courseType = array('u3d' , 'Swift' , 'Web' , 'Cocos2d-x' , 'Android');
 		foreach ($returnData as &$value) {
 			$value['type'] = $courseType[$value['type']];
@@ -271,7 +271,6 @@ class Admin extends CI_Controller {
 			"course_max" => $course_max,
 		);
 
-		$this->load->library('parser');
 		$this->parser->parse('admin/classList/home.php' , $data);
 	}
 
@@ -307,8 +306,8 @@ class Admin extends CI_Controller {
 				break;
 
 			case 'chapter':
-				$data["chapter_count"] = $this->course_chapter_model->get_count(array());
-				$data['chapter'] = $this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] -1* 10 , 10);
+				$data["chapter_count"] = $this->course_chapter_model->get_count(array('course_id' => $id));
+				$data['chapter'] = array_reverse($this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] - 1, 10));
 				break;
 
 			case 'class':
