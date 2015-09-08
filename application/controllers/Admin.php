@@ -25,6 +25,17 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function fake_users2() {
+		if($this->admin_model->require_login() === false) redirect('admin/login');
+		for ($i = 100; $i < 150; $i++) {
+			$this->user_model->create(array(
+				"nickname" => $i,
+				"email" => $i . '@kingcraft.cc',
+				"pwd" => 'miaoda'
+			));
+		}
+	}
+
 	public function god_apply(){
 		if($this->admin_model->require_login() === false) redirect('admin/login');
 		$data['page'] = !isset($_GET['page']) ? "1" : $this->input->get("page");
@@ -287,7 +298,7 @@ class Admin extends CI_Controller {
 				$data["steps_count"] = count($data['steps'] );
 				$data['steps'] =  $data['page'] -1* 10 > $data["steps"] ? array_slice($data['steps'],($data['page'] -1)* 10 ) : $data['steps'] = array_slice($data['steps'],($data['page'] -1)* 10 , 10);
 				break;
-			
+
 			case 'chapter':
 				$data["chapter_count"] = $this->course_chapter_model->get_count(array());
 				$data['chapter'] = $this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] -1* 10 , 10);
