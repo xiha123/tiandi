@@ -31,11 +31,10 @@ class Olclass extends CI_Controller {
 				$index ++;
 				$value['step'] = $index;
 				if($index <= 3) $value['type'] = "fa-arrow-right";
+				if($index < 4) { $value['float'] = "fl";} else{ $value['float'] = "fr"; }
 				if($index == 4) $value['type'] = "fa-arrow-down bottom";
-				//if($index > 4 && $index < 5) $value['type'] = "";
 				if($index >= 5 && $index <= 8) $value['type'] = "fa-arrow-left";
-				if($index == 4 || $index == 8) $value['li_class'] = "last";
-
+				$value['li_class'] = $index == 4 || $index == 5  ? "last" : "";
 				if($value['type'] != ""){
 					$value['type'] = "<i class='fa " . $value['type'] . "'></i>";
 				}else{

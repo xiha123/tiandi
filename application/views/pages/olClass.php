@@ -68,29 +68,8 @@
 					</div>
 					<ul class="list">
 						{class}
-							<li class="{li_class}" data-index='{class}' data-img='{img}' data-level='{level}'><h3>Step {step}</h3><p>{description}</p>{type}</li>
+							<li class="{li_class} {float}" data-index='{class}' data-img='{img}' data-level='{level}'><h3>Step {step}</h3><p>{description}</p>{type}</li>
 						{/class}
-						<?php
-							// for ($index = 0; $index  < 8; $index ++) {
-							// 	echo "<li data-index='{class}' data-img='' data-level=''><h3>Step " . ($index + 1) . "</h3><p></p><i class='fa fa-arrow-right'></i></li>";
-							// }
-							// for ($index = 0; $index < 4 ; $index++) {
-							// 	if($index < 3){
-							// 		echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-right"></i></li>';
-							// 	}else{
-							// 		echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'" class="last"><h3>Step 4</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-down bottom"></i></li>';
-							// 	}
-							// }
-							// $index = 8;
-							// while ($index --) {
-							// 	if($index < 4)break;
-							// 	if($index < 5){
-							// 		echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'" class="last"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p></li>';
-							// 	}else{
-							// 		echo '<li data-index="'.($index + 1).'" data-img="'.@$class[$index]['img'].'" data-level="'.@$class[$index]['level'].'"><h3>Step '.($index + 1).'</h3><p>'. @$class[$index]['description'] . '</p><i class="fa fa-arrow-left"></i></li>';
-							// 	}
-							// }
-						?>
 					</ul>
 				</div>
 				{/course_list}

@@ -1,3 +1,11 @@
+$("#activa").click(function(event) {
+	$.ajax({
+		"url" : "api/user_api/activa_email",
+	}).then(function(msg){
+		console.log(mgs);
+	});
+	/* Act on the event */
+});
 $("#ajax_userSet").click(function(){
 	var namenick = $("#ajax_nickname").val(),
 		signature = $("#signature").val(),

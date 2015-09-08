@@ -53,7 +53,7 @@
 
 
 			<div class="tab" data-widget="tab" >
-				<ul class="title " >
+				<ul class="title cf" >
 					<li <?=!$hot_type?'class="active"':""?>><a href="./home/?uid=<?=$user['id']?>">最新未答</a></li>
 					<li <?=$hot_type?'class="active"':""?>><a href="./home/?uid=<?=$user['id']?>&ok=hot">答过</a></li>
 				</ul>

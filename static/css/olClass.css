@@ -23,7 +23,7 @@ p{word-break:break-all}
 
 .course .list{width: 100%;float: left;margin-bottom:30px;}
 .course .last{margin-right: 0px !important;}
-.course .list li{cursor:pointer; background:#fff;position:relative; float:left;width:180px;margin-right:64px;padding:10px;margin-bottom:50px;height: 74px;border:1px solid #219ba1;border-radius: 10px;}
+.course .list li{cursor:pointer; background:#fff;position:relative;width:180px;margin-right:64px;padding:10px;margin-bottom:50px;height: 74px;border:1px solid #219ba1;border-radius: 10px;}
 .course .list li h3{font-size: 20px;color:#219ba1;}
 .course .list li p{overflow: hidden;height:35px; margin-top:7px;color: #aaa;font-size: 12px;}
 .course .list i{position:absolute;right: -48px;top:30px;color:#219ba1;}

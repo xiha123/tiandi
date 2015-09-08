@@ -62,13 +62,26 @@ class user_api extends base_api {
     }
 
 
+    public function activa_email(){
+        parent::require_login();
+        $user_key = md5(rand(100000000,999999999));
+        $user_key = $user_key . md5(rand(100000000,999999999));
+        echo $user_key;
+        $_SESSION['activa_email_time_out'] = time();
+        $this->load->library('email');
+        $this->email->from('tdmiaoda@yeah.net');
+        $this->email->to($this->me['email']);
+        $this->email->subject('账户邮箱激活邮件');
+        $this->email->message('<table width="700" border="0" align="center" cellspacing="0" style="width:700px"><tbody><tr><td><div style="width:700px;margin:0 auto;border-bottom:1px solid #ccc;margin-bottom:30px"><table border="0" cellpadding="0" cellspacing="0" width="700" height="39" style="font:12px Tahoma,Arial,宋体"><tbody><tr><td width="210" style="background:#CC0000;color:#fff;text-align:center">天地培训激活账户邮箱邮件，请勿直接回复邮件!</td></tr></tbody></table></div><div style="width:680px;padding:0 10px;margin:0 auto"><div style="line-height:1.5;font-size:14px;margin-bottom:25px;color:#4d4d4d"><strong style="display:block;margin-bottom:15px">亲爱的会员： <span style="color:#f60;font-size:16px"></span>您好！</strong> <strong style="display:block;margin-bottom:15px">欢迎您注册天地秒答平台，点击下面的链接可以激活您的邮箱，如若无法点击，请复制链接到浏览器地址<br><br><a href="#" style="font-weight:100">http://test.tiandipeixun.com/god/?page=2&type=Web</a></strong></div><div style="margin-bottom:30px"><small style="display:block;margin-bottom:20px;font-size:12px"><p style="color:#747474">如果您并没有进行上述操作，请忽略该邮件。您不需要退订或进行其他进一步的操作。<br>此邮件为系统自动发出的邮件，请勿直接回复</p></small></div></div><div style="width:700px;margin:0 auto"><div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px"><p>此为系统邮件，请勿回复<br>请保管好您的邮箱，避免账号被他人盗用</p><p>天地培训 <span style="border-bottom:1px dashed #ccc;z-index:1" t="7" onclick="return!1" data="1999-2014">' .date("Y-m-d H:i:s"). '</span></p></div></div></td></tr></tbody></table>');
+        $this->email->send();
 
+    }
 
     public function forget(){
         $params = parent::get_params('POST', array('email','verification'));if(empty($params)) return; extract($params);
         if($_SESSION['verification'] != md5($verification)) parent::finish(false , "验证码错误！");
         if(!$this->user_model->is_exist(array("email" => $email))) parent::finish(false , "您输入的邮箱格式不存在，请检查后再输入！");
-        $new_password = rand(100000000,999999999);
+        $new_password = rand(100000000,999999999); 
 
         $salt = $this->user_model->get(array("email" => $email) , array("salt" , "id"));
         if(!$this->user_model->edit_array(array("email" => $email) , array("pwd" => md5($new_password . $salt['salt'])))){

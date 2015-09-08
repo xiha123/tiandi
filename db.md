@@ -75,6 +75,8 @@
 - prestige 威望用于老师
 - chou 我众筹了那些问题
 - teacher 是否为讲师
+- key 一个随机的字符串（长度随机）用来激活邮箱或找回密码等操作，该字符串不是永久固定的
+- email_activa 邮箱是否激活了
 
 ### class_guide
 

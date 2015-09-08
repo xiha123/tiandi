@@ -15,8 +15,8 @@ body,html {
 .button-search i{margin-right:10px;}
 a {text-decoration:none;}
 p,td{word-break:break-all}
-.fl{float: left!important;}
-.fr{float:right!important;}
+.fl{float: left !important;}
+.fr{float:right !important;}
 .table {margin-top:40px;width:100%;background:#fff}
 .table>th,td{height:40px;line-height:40px !important;padding:10px 16px;color:#666}
 .table th{height:20px;background:#eee;line-height:20px !important;color:#888}

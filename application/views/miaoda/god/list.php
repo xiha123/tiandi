@@ -64,7 +64,7 @@
 					"page_max" => $page_max,
 					"page_count" => 10,
 					"page_url" => "./god",
-					"hot" => "?type=" . $type_name
+					"hot" => "&type=" . $type_name
 				));
 			?>
 		</ul>
