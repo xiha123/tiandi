@@ -29,7 +29,7 @@
 			<li style="overflow: hidden;">
 				<?php foreach ($data as $key => $value) {
 					$value['avatar'] = $value['avatar'] == "" ? "static/image/default.jpg" : $value['avatar'];
-					if ($value['id'] == $id) {
+					if ($value['id'] == @$id) {
 						$button = '<button disabled="disabled" style="background:#ccc">自己</button>';
 					} else {
 						$button =  check_follow($follow_users,$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';

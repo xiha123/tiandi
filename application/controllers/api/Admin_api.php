@@ -153,10 +153,11 @@ class admin_api extends base_api {
     }
     public function delect_steup(){
         $params = parent::get_params('POST', array('type','id'));if(empty($params))return;extract($params);
+        $course_data = $this->course_model->get(array("id" => $type));
+
         $this->course_step_model->remove($id);
-        $course_data = $this->course_model->get(array("type" => $type));
-        $this->course_model->edit_tag($type,array("steps" => $this->remove_json( $course_data['steps'], $id)));
-         $this->finish(true,"Good!!");
+        $this->course_model->edit($type,array("steps" => $this->remove_json( $course_data['steps'], $id)));
+        $this->finish(true,"Good!!");
     }
 
 

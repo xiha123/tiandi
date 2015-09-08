@@ -168,7 +168,7 @@
 			<?php } else { ?>
 				<div class="button">
 					<?php
-						if ($problem_data['owner_id'] != $id && $problem_data['answer_id'] != $id && !$is_fund) {
+						if ($problem_data['owner_id'] != @$id && $problem_data['answer_id'] != @$id && !$is_fund) {
 							echo $problem_collect == true ?
 							'<button class="uncollect">★ 取消收藏</button>':
 							'<button class="none-background collect">★ 收藏</button>';
