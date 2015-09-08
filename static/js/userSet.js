@@ -2,9 +2,13 @@ $("#activa").click(function(event) {
 	$.ajax({
 		"url" : "api/user_api/activa_email",
 	}).then(function(msg){
-		console.log(mgs);
+		data = JSON.parse(msg);
+		if(data.status ==true) {
+			showAlert(true , "激活邮件已经发送到了您的邮箱中了，请注意查收！");
+		} else {
+			showAlert(false,data.error);
+		}
 	});
-	/* Act on the event */
 });
 $("#ajax_userSet").click(function(){
 	var namenick = $("#ajax_nickname").val(),
