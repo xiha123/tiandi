@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>404</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        .box{
+            position: relative;
+            height: 100%;
+        }
+        .content{
+            text-align: center;
+        }
+       .content p,
+       a{
+           position: absolute;
+           color: #209ba2;
+           font-size: large;
+           font-weight: bold;
+           left: 18%;
+           top: 10%;
+           z-index: 99;
+        }
+        .content a{
+            text-decoration: none;
+            position: absolute;
+            border: 1px solid #209ba2;
+            border-radius: 21px;
+            width: 133px;
+            height: 26px;
+            display: inline-block;
+            color: white;
+            background-color: #209ba2;
+            text-align: center;
+            line-height: 26px;
+            margin-top: 16px;
+            margin-left: 500px;
+        }
+        img{
+            position: fixed;
+            top: 215px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="content">
+            <p>不好意思，页面找不到啦，先去首页看看吧~</p>
+            <a href="#">返回首页</a>
+        </div>
+
+        <img src="../../../../static/image/404.jpg" alt="404" width="100%" height="910px"/>
+    </div>
+</body>
+</html>
