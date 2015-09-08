@@ -66,22 +66,33 @@ $("#ajax_forget").click(function(){
     });
 })
 
+var searchHoverType = true;
+$(".js-search-submit").hover(function() {
+    searchHoverType = false;
+}, function() {
+    searchHoverType = true;
+});
+
 $('.js-search-input').bind('focus', function () {
     $(this).animate({
-        width: '+=400px'
+        width: '+=300px'
     }, 400);
     $('.js-nav').hide();
 }).bind('blur', function () {
-    $(this).animate({
-        width: '-=400px'
-    }, 400, function () {
-        $('.js-nav').show();
-    });
+    if(searchHoverType){
+        $(this).animate({
+            width: '-=300px'
+        }, 400, function () {
+            $('.js-nav').show();
+        });
+    }
 });
 
 $('.js-search-form').bind('submit', function (e) {
+    console.log("dsadsa");
     e.preventDefault();
     window.location.href ="./seacher?key=" +$(".js-search-input").val();
+    return false;
 });
 
 $(".button").on("click" , ".collect" , function(){

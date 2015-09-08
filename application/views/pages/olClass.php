@@ -62,7 +62,7 @@
 			<ul class="tab-sheet">
 				{course_list}
 				<div class="course">
-					<div class="description">
+					<div class="description cf">
 						<h2><a href="course?id={id}">{title}<i class="fa fa-arrow-circle-right"></i></a></h2>
 						<span>{description}</span>
 					</div>
@@ -71,7 +71,7 @@
 							<li class="{li_class}" data-index='{class}' data-img='{img}' data-level='{level}'><h3>Step {step}</h3><p>{description}</p>{type}</li>
 						{/class}
 						<?php
-							// for ($index = 0; $index  < 8; $index ++) { 
+							// for ($index = 0; $index  < 8; $index ++) {
 							// 	echo "<li data-index='{class}' data-img='' data-level=''><h3>Step " . ($index + 1) . "</h3><p></p><i class='fa fa-arrow-right'></i></li>";
 							// }
 							// for ($index = 0; $index < 4 ; $index++) {

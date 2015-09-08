@@ -17,17 +17,17 @@ class Miaoda extends CI_Controller {
 		if(isset($_GET['hot'])){
 			if($_GET['hot'] == "chou"){
 				$userdata["hot_type"] = "2";
-				$userdata["problem_list"] = $this->problem_model->get_fund_list(($userdata["page"] -1));
+				$userdata["problem_list"] = $this->problem_model->get_fund_list(($userdata["page"] - 1));
 				$userdata["problem_list_count"] = $this->problem_model->get_count(array("who !=" => "[]"));
 			}else{
 				$userdata["hot_type"] = "0";
-				$userdata["problem_list"] = $this->problem_model->get_hot_list($userdata["page"] -1);
+				$userdata["problem_list"] = $this->problem_model->get_hot_list($userdata["page"] - 1);
 				$userdata["problem_list_count"] = $this->problem_model->get_count(array("up_count >" => 1));
 			}
 		}else{
 			$userdata["hot_type"] = "1";
 			$userdata["problem_list_count"] = $this->problem_model->count(array("type" => 3));
-			$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] -1);
+			$userdata["problem_list"] = $this->problem_model->get_list_by_time($userdata["page"] - 1);
 		}
 		foreach ($userdata["problem_list"] as $key => $value) {
 			$userdata["problem_list"][$key]['answer_id'] = $this->user_model->get(array("id"=>$userdata["problem_list"][$key]['answer_id']));

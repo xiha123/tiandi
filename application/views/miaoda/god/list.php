@@ -27,27 +27,35 @@
 		</ul>
 		<ul>
 			<li style="overflow: hidden;">
-				<?php
-					foreach ($data as $key => $value) {
-						$value['avatar'] = $value['avatar'] == "" ? "static/image/default.jpg" : $value['avatar'];
+				<?php foreach ($data as $key => $value) {
+					$value['avatar'] = $value['avatar'] == "" ? "static/image/default.jpg" : $value['avatar'];
+					if ($value['id'] == $id) {
+						$button = '<button disabled="disabled" style="background:#ccc">自己</button>';
+					} else {
 						$button =  check_follow($follow_users,$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
-						echo '<div class="data fl">
-							<div class="left_box">
-								<a href="./home?uid=' . $value['id'] . '" target="_blank"><img src="' . $value['avatar'] . '" alt="" class="pic"><img class="god" src="./static/image/god_right.png"></a>
-								'.$button.'
-							</div>
-							<div class="right_box">
-									<p class="name"><a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['nickname'] . '</a><font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" class="eyes";width="24px" alt="">'.$value['follower_count'].'</font> </p>
-									<p class="desk">' . $value['god_description'] . '</p>
-									<p class="class">正在开的课：2门</p>';
+					} ?>
 
-						$skilled_tags = json_decode($value['god_skilled_tags']);
-						foreach (count($skilled_tags) > 0 ? $skilled_tags : array() as $key => $value) {
-							echo '<a href="javascript:" class="tagBox">'.$value.'</a>';
-						}
-						echo '</div></div>';
+					<div class="data fl">
+						<div class="left_box">
+							<a href="./home?uid=<?= $value['id'] ?>" target="_blank"><img src="<?= $value['avatar'] ?>" alt="" class="pic"><img class="god" src="./static/image/god_right.png"></a>
+							<?= $button ?>
+						</div>
+						<div class="right_box">
+							<p class="name">
+								<a href="./home?uid=<?= $value['id'] ?>" target="_blank"><?= $value['nickname'] ?></a>
+								<font><img src="static/image/good.png" alt="" width="13px">0</font>
+								<font><img src="static/image/look.png" class="eyes";width="24px" alt=""><?= $value['follower_count'] ?></font>
+							</p>
+							<p class="desk"><?= $value['god_description'] ?></p>
+							<p class="class">正在开的课：2门</p>
+
+					<?php
+					$skilled_tags = json_decode($value['god_skilled_tags']);
+					foreach (count($skilled_tags) > 0 ? $skilled_tags : array() as $key => $value) {
+						echo '<a href="javascript:" class="tagBox">'.$value.'</a>';
 					}
-				?>
+					echo '</div></div>';
+				} ?>
 			</li>
 
 			<?php

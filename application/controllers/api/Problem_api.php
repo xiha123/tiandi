@@ -122,7 +122,6 @@ class problem_api extends base_api {
     public function create() {
         parent::require_login();
         $params = $this->get_params('POST', array(
-            'title' => true,
             'coinType',
             'code',
             'tags',
@@ -130,6 +129,7 @@ class problem_api extends base_api {
         ));
         extract($params);
         $content = $_POST['content'];
+        $title = $_POST['title'];
 
         if($this->problem_model->is_exist(array('title' => $title))) {
            $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
@@ -190,7 +190,7 @@ class problem_api extends base_api {
         // 创建题主
         $detail_id = $this->problem_model->create(array(
             'owner_id' => $this->me['id'],
-            'title' => $this->HTML($title),
+            'title' => htmlspecialchars($title),
             'tags' => json_encode($tagTemp),
             $coinConfig['type'] => $coinConfig['value']
         ));

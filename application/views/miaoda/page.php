@@ -3,6 +3,9 @@
 		if(isset($search) && $search){
 			echo '<div class="search fl"><form action="javascript:;" onsubmit="' . $search_function_name . '"><input type="text" placeholder="请输入搜索编号" value="' . $this->input->get('search') . '" id="searchName"><input type="submit" value="搜索"></form></div>';
 		}
+		if(isset($_GET['search'])){
+			echo "<button class='btn btn-success button-search' onclick='window.location.href=\"" . $page_url . "\" '><i class='fa fa-arrow-left'></i>返回列表</button>";
+		}
 	?>
 
 

@@ -17,7 +17,7 @@ $("#ajax_userSet").click(function(){
 	if(signature.length > 200){
 		showAlert(false , "签名档太长");return false;
 	}
-	if(namenick.length<4 || namenick.length>16){
+	if(namenick.length< 2 || namenick.length > 16){
 		showAlert(false , "您的昵称太长或者太短了！");return false;
 	}
 	_td.api.editUser({

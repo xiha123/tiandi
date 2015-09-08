@@ -2,13 +2,13 @@
 <link rel="stylesheet" href="./static/css/miaoda/search.css">
 <body>
 <?php
-	$this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); 
+	$this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0));
 	$this->load->view('widgets/windows.php' );
-?>	
-	<div class="wrapper">
-		<li class="search-result">为您搜索到{count}个结果</li>
-		{data}
+?>
+	<div class="wrapper cf">
+		<p class="search-result">为您搜索到{count}个结果</p>
 		<ul class="list-data">
+		{data}
 			<li data-id="{id}">
 				<div class="link-num ajax_up"><p class="upCount">{up_count}</p><p>点赞</p></div>
 				<div class="list-title">
@@ -20,9 +20,9 @@
 					{/tags}
 				</ul>
 			</li>
-		</ul>
 		{/data}
-							
+		</ul>
+
 			<?php
 				$this->load->view("miaoda/page",array(
 					"page" => $page,

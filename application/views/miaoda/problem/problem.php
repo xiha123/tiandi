@@ -222,7 +222,16 @@
 <script src="ueditor/umeditor.min.js"></script>
 <script src="static/js/problem.js"></script>
 
-<?=$online == true ? "<script>ue.addListener( 'ready', function(){UE.getEditor('editor').setDisabled('fullscreen');});$('#problem-code').attr('readOnly' , true).css('color','#aaa')</script>" : ""?>
+<?php if ($online) { ?>
+<script>
+$(function () {
+	ue.addListener('ready', function() {
+		UM.getEditor('editor').setDisabled('fullscreen');
+	});
+	$('#problem-code').attr('readOnly' , true).css('color','#aaa');
+});
+</script>
+<?php } ?>
 
 </body>
 </html>

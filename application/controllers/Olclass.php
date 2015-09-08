@@ -32,8 +32,8 @@ class Olclass extends CI_Controller {
 				$value['step'] = $index;
 				if($index <= 3) $value['type'] = "fa-arrow-right";
 				if($index == 4) $value['type'] = "fa-arrow-down bottom";
-				if($index > 4 && $index < 5) $value['type'] = "";
-				if($index >= 5 && $index < 8) $value['type'] = "fa-arrow-left";
+				//if($index > 4 && $index < 5) $value['type'] = "";
+				if($index >= 5 && $index <= 8) $value['type'] = "fa-arrow-left";
 				if($index == 4 || $index == 8) $value['li_class'] = "last";
 
 				if($value['type'] != ""){
@@ -43,8 +43,6 @@ class Olclass extends CI_Controller {
 				}
 			}
 		}
-
-		print_r($userdata['course_list']);
 
 		$userdata['slide_list'] = $this->slide_model->get_list(1);
 		$userdata['schedule_course'] = $this->site_model->get_content('001');

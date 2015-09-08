@@ -159,8 +159,8 @@ class user_api extends base_api {
         }
 
         parent::is_length(array(
-            array("name" => "昵称" , "value" => $nickname , "min" => 4 , "max" => 16),
-            array("name" => "手机" , "value" => $nickname , "min" => 6 , "max" => 11),
+            array("name" => "昵称" , "value" => $nickname , "min" => 2 , "max" => 16),
+            array("name" => "手机号" , "value" => $phone , "min" => 6 , "max" => 11),
         ));
 
 
@@ -178,10 +178,12 @@ class user_api extends base_api {
             'description' => $desk,
             'cellphone' => $phone,
         );
-        if($pwd_lost !="" && md5($pwd_lost.$this->me['salt']) != $this->me["pwd"]){
-            parent::finish(false, '您输入的历史密码不正确');return;
-        }else{
-            $edit_array['pwd'] = md5($pwd_new . $this->me['salt']);
+        if($pwd_lost !="" ){
+            if(md5($pwd_lost.$this->me['salt']) != $this->me["pwd"]){
+                parent::finish(false, '您输入的历史密码不正确');return;
+            }else{
+                $edit_array['pwd'] = md5($pwd_new . $this->me['salt']);
+            }
         }
         $this->user_model->edit($this->me['id'],$edit_array);
         parent::finish(true);

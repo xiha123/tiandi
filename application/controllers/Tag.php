@@ -28,21 +28,22 @@ class Tag extends CI_Controller {
 		$name = $this->input->get("name", true);
 		$userdata = $this->user_model->check_login();
 
-		// <is tag>
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
+		$page = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$userdata["page"] = $page < 1 ? '1' : $page;
 		if(count($userdata['tag_data']) <= 0) show_404();
 
 		switch ($problem_type) {
 			case 'hot':
-				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "hot");
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "hot", $userdata['page'] - 1);
 				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name , array("who !=" => "[]"));
 				break;
 			case 'love':
-				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "chou");
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "chou", $userdata['page'] - 1);
 				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name , array("up_count >=" => 1));
 				break;
 			default:
-				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type);
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type, $userdata['page'] - 1);
 				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 				break;
 		}
@@ -50,7 +51,6 @@ class Tag extends CI_Controller {
 
 		/*开始构造数据准备传递*/
 		$userdata['hot_type'] = $problem_type;
-		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$userdata['tag_count'] = $this->tag_model->get(array(
 			'type' => 1,
 			'name' => $name
@@ -76,7 +76,6 @@ class Tag extends CI_Controller {
 		$userdata['student'] = $student_array;
 		$userdata['god'] = $god_array;
 
-		$this->load->library('parser');
 		$this->parser->parse("miaoda/tag/home.php" , $userdata);
 	}
 

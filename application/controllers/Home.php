@@ -36,7 +36,8 @@ class Home extends CI_Controller {
 		$push_data['love'] = isset($_GET['love']) ? true : false;
 		$push_data['owner'] = isset($_GET['owner']) ? true : false;
 		$push_data['follow_type'] = false;
-		$push_data["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$page = !isset($_GET['page']) ? "1" : $this->input->get("page");
+		$push_data["page"] = $page < 1 ? '1' : $page;
 
 		if($user_type == 0){
 			if($push_data['love']){
@@ -111,7 +112,7 @@ class Home extends CI_Controller {
 		function custom_sort($a, $b) {
 			return $b['id']  - $a['id'];
 		}
-		if (isset($push_data['problem_list'])) {
+		if (!empty($push_data['problem_list'])) {
 			$fund_list = $this->problem_model->get_json($user_data['chou']);
 			$push_data['problem_list'] = array_merge($push_data['problem_list'], $fund_list);
 			usort($push_data['problem_list'], "custom_sort");
