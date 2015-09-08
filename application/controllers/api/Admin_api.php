@@ -13,6 +13,8 @@ class admin_api extends base_api {
         $this->load->model('course_class_model');
         $this->load->model('course_step_model');
         $this->load->model('news_model');
+        $this->load->model('slide_model');
+
         $this->me = $this->admin_model->check_login();
     }
 
@@ -38,6 +40,34 @@ class admin_api extends base_api {
             }
         }
         parent::finish(true , "" , json_encode($limit));
+    }
+
+    public function remove_slider(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("id"));if(empty($params))return;extract($params);
+        $slider_data = $this->slide_model->get(array("id" => $id));
+        if(count($slider_data) <= 0) parent::finish(false,"您欲删除的课程不存在请检查");
+        $this->slide_model->remove($id);
+        parent::finish(true);
+    }
+
+    public function remove_course(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("id"));if(empty($params))return;extract($params);
+        $course_data = $this->course_model->get(array("id" => $id));
+        if(count($course_data) <= 0) parent::finish(false,"您欲删除的课程不存在请检查");
+
+
+        // 删除课程之前将其旗下的标签、课程、章节、步骤、图片 全部删除、
+        $course_tags = json_decode($course_data['tags'],true);
+        foreach ($course_tags as $value) {
+            $this->tag_model->remove($value['t']);
+        }
+        $this->course_class_model->remove_where(array("form" => $id));
+        $this->course_chapter_model->remove_where(array("course_id" => $id));
+        $this->course_step_model->remove_where(array("course_id" => $id));
+        $this->course_model->remove($id);
+        parent::finish(true);
     }
 
 
@@ -387,8 +417,8 @@ class admin_api extends base_api {
 	//删除课程列表
 	public function deleteClassListTag(){
         	   $params = parent::get_params('POST', array("fid",'id'));if(empty($params)) return;extract($params);
-               $course_data = $this->course_model->get(array("type"=>$fid));
-               $this->course_model->edit_tag($fid,array("tags"=>$this->remove_json($course_data['tags'],$id)));
+               $course_data = $this->course_model->get(array("id"=>$fid));
+               $this->course_model->edit($fid,array("tags"=>$this->remove_json($course_data['tags'],$id)));
                $this->tag_model->remove($id);
 	   parent::finish(true);
 	}
@@ -398,27 +428,25 @@ class admin_api extends base_api {
                 parent::finish(true);
 	}
 	public function deleteSlider(){
-		$params = parent::get_params('POST', array('id'));
-		if(empty($params))return;
-		extract($params);
-		$this->admin_model->deleteSlider($id);
-		parent::finish(true);
+                $params = parent::get_params('POST', array('id'));
+                if(empty($params))return;
+                extract($params);
+                $this->slide_model->remove($id);
+                parent::finish(true);
 	}
 
 
-	//删除课程列表
-	public function editClassList(){
-        	$params = parent::get_params('POST', array('id' , "className" , "classVideo" , "text"));if(empty($params)) return;extract($params);
-		if($this -> course_model -> edit($id,array(
-			"title" => $className,
-			"video" => $classVideo,
-		))){
-			parent::finish(true);
-		}else{
-			parent::finish(false , "填写的新课程名与其他课程重名了");
-		}
-
-	}
+    //删除课程列表
+    public function editClassList(){
+        parent::require_login();
+        $params = parent::get_params('POST', array('id' , "name" , "link" , "type"));if(empty($params)) return;extract($params);
+        if(!$this->course_model->is_exist(array("id" => $id))) parent::finish(false , "您欲编辑的课程不存在请检查后再试");
+        if($this->course_model->edit($id , array("title" => $name,"video"=>$link,"type" => $type))){
+            parent::finish(true);
+        }else{
+            parent::finish(false,"服务器异常，请稍候再试");
+        }
+    }
 
 
 

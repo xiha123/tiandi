@@ -176,6 +176,7 @@ class Admin extends CI_Controller {
 		$color = $this->input->post("color", true);
 		$id = $this->input->post("id", true);
 		$type = $this->input->post("type", true);
+		
 
 		if(isset($_FILES["userfile"])){
 			$config['upload_path'] = './static/uploads/';
@@ -258,6 +259,10 @@ class Admin extends CI_Controller {
 		if (empty($this->user_info)) redirect('admin/login');
 		$page = isset($_GET['page']) ? $this->input->get("page") : 1;
 		$returnData = $this->course_model->get_list("all" , ($page - 1) * 10 ,10);
+		$courseType = array('u3d' , 'Swift' , 'Web' , 'Cocos2d-x' , 'Android');
+		foreach ($returnData as &$value) {
+			$value['type'] = $courseType[$value['type']];
+		}
 		$course_max = $this->course_model->get_count(array());
 		$data = array(
 			"page" => $page,

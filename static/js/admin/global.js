@@ -33,10 +33,11 @@ function commit(formData , formConfig){
 		id = formData[i].id == undefined ? "" : 'id="' +formData[i].id + '"';
 		value = formData[i].data == undefined ? "" : formData[i].data;
 		placeholder = formData[i].placeholder == undefined ? "" : formData[i].placeholder;
-
 		if(formData[i].type == "select"){
 			for (var index = 0;index < value.length;index ++) {
-				value_data += "<option value='" + value[index].value + "'>" + value[index].name + "</option>";
+				selected = value[index].selected == undefined ? "" : "selected='"+value[index].selected+"'";
+
+				value_data += "<option value='" + value[index].value + "' "+selected+">" + value[index].name + "</option>";
 			};
 			formInput += formConfig.header +formData[i].chinaName+ "：<select " + name + ' ' + id + ">" + value_data + "</select>"+ formConfig.footer;
 		}else{

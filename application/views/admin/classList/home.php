@@ -21,16 +21,16 @@
 			<table class="table table-bordered">
 				<tr>
 					<th >课程名</th>
-					<th  width="18%">视频地址</th>
-					<th width="58%">描述</th>
+					<th  width="48%">视频地址</th>
+					<th width="28%">所属分类</th>
 					<th width="8%">操作</th>
 				</tr>
 				{data_list}
-				<tr data-id="{id}" data-type="{id}"  >
+				<tr data-id="{id}" data-type="{id}" data-listType="{type}">
 					<td>{title}</td>
 					<td>{video}</td>
-					<td>{description}</td>
-					<td><i class="fa fa-edit edit-slider"></i></td>
+					<td>{type}</td>
+					<td><i class="fa fa-edit edit-slider"></i><i class="fa fa-trash remove-course" style="color:#cc0000"></i></td>
 				</tr>
 				{/data_list}
 

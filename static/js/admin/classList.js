@@ -54,15 +54,15 @@ $("#addClass").click(function(){
 
 
 
-$(".remove-slider").click(function(){
+$(".remove-course").click(function(){
 	$parents = $(this).parents().parents().eq(0);
 	confirms({
 		"title" : "您确定要删除吗",
 		"icon" : "icon-trash",
-		"content" : "<p>您确定要删除掉这个课程吗？</p><p>删除后将无法复原，点击确定按钮确认删除该课程</p>",
+		"content" : "<p>您确定要删除掉这个课程吗？</p><p>点击确认后系统会删除课程下的所有的内容</p><p>例如，标签、课程、章节、步骤、图片将会全部删除</p>",
 		"success" : function(){
 			$.ajax({
-				"url" : "api/admin_api/deleteClassList",
+				"url" : "api/admin_api/remove_course",
 				type : "POST",
 				data : {"id" : $parents.data("id")},
 				dataType : "JSON",
@@ -83,46 +83,72 @@ $(".remove-slider").click(function(){
 
 
 
-
+var editCourse = function(){
+	var _this = this;
+	if($("input[name='className']").val() == ""){
+		showAlert("您必须写清课程的名称");
+		return false
+	}
+	$.ajax({
+		url: 'api/admin_api/editClassList',
+		method: 'POST',
+		dataType: 'JSON',
+		data: {
+			id: _this.id,
+			name : $("#ajaxClassName").val(),
+			link : $("#ajaxViodeLink").val(),
+			type : $("#ajxaFather").val(),
+		},
+	}).then(function (res) {
+		if (res.status) {
+			location.reload();
+		} else {
+			showAlert(res.error, 'danger');
+		}
+	});
+}
 $(".edit-slider").click(function(){
 	$parents = $(this).parents().parents().eq(0);
+	var formData = new Array();
+	formData.push({
+		"chinaName" : "课程名称" , 
+		"name" : "className" ,
+		"id" : "ajaxClassName"  , 
+		"value" : $parents.find("td").eq(0).text(),
+		"placeholder" : "请在此输入课程的名称"
+	});
+	formData.push({
+		"chinaName" : "视频地址" , 
+		"name" : "viodeLink" ,
+		"id" : "ajaxViodeLink"  , 
+		"value" : $parents.find("td").eq(1).text(),
+		"placeholder" : "请在此输入课程的视频地址"
+	});
+	formData.push({
+		"chinaName" : "所属父类" , 
+		"name" : "class" , 
+		"id" : "ajxaFather" , 
+		"type" : "select", 
+		"data" :  [
+			{"value":"0" , "name" : "3d"} , 
+			{"value":"1" , "name" : "swift"},
+			{"value":"2" , "name" : "web"},
+			{"value":"3" , "name" : "coco"},
+			{"value":"4" , "name" : "android"}
+		]
+	});
+	formData[2].data[$parents.data('listtype')].selected = "selected";
 	input({
 		"title" : "编辑该课程",
-		"content" : 
-		'<form method="post" action="api/admin_api/editClassList" id="editClassList" enctype="multipart/form-data">'+
-		'<table class=table-form>'+
-		'<input type="hidden" name="id" value="'+$parents.data("id")+'" >'+
-		'<tr><td>课程名称：<input type="text" placeholder="请输入课程名称" value="' + $parents.find("td").eq(0).text()+ '" name="className">'+
-		'<tr><td>视频地址：<input type="text" placeholder="请输入视频地址" value="' + $parents.find("td").eq(1).text()+ '" name="classVideo">'+
-		'<tr><td>课程描述：<input type="text" placeholder="请输入课程描述" value="' + $parents.find("td").eq(2).text()+ '" name="text">'+
-		'</table></form>',
-		"success" : function(){
-			if($("input[name='className']").val() == ""){
-				showAlert("您必须写清课程的名称");
-				return false
-			}
-			$.ajax({
-				url: 'api/admin_api/editClassList',
-				method: 'post',
-				data: {
-					id: $("input[name='id']").val(),
-					className: $("input[name='className']").val(),
-					text: $("input[name='text']").val(),
-					classVideo: $("input[name='classVideo']").val()
-				},
-				dataType: 'json',
-				success: function (res) {
-					if (res.status) {
-						location.reload();
-					} else {
-						showAlert(res.error, 'danger');
-					}
-				}
-			});
-		}	
+		"id" : $parents.data('id'),
+		"content" : commit(formData , {"submitFunctionName" : "addClass()" , "header" : "<tr><td>" , "footer" : "</tr></td>"}),
+		"success" : editCourse
 	});
 	return false;
 });
+
+
+
 
 
 $("tr").click(function(){

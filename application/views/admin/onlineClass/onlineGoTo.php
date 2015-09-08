@@ -3,7 +3,7 @@
 </head>
 
 <body>
-<?php $this->load->view('widgets/admin/left.php' , array("activeNav" => 2)); ?>
+<?php $this->load->view('widgets/admin/window.php' );$this->load->view('widgets/admin/left.php' , array("activeNav" => 2)); ?>
 
 <div class="main">
     <ul class="nav nav-pills" role="tablist">
@@ -34,7 +34,7 @@
 				</tbody>
 			</table>
         </div>
-        <div role="tabpanel" class="tab-pane" id="slide">
+        <div role="tabpanel" class="tab-pane " id="slide">
 			<table class="table table-bordered">
 				<thead><tr>
 					<th width="40%">标题</th>
@@ -51,7 +51,8 @@
 						<td><a href="{link}">{link}</a></td>
 						<td>{color}</td>
 						<td>
-							<i class="fa fa-trash" data-toggle="modal" data-target="#editSlide" data-type="remove"></i>
+							<i class="fa fa-edit editOnlineClassSlider"></i>
+							<i class="fa fa-trash remove" style="color:#cc0000"></i>
 						</td>
 					</tr>
 				{/slide_list}
