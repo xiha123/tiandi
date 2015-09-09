@@ -49,7 +49,7 @@
 				(count(json_decode($problem_data['who'])) + 1).'位众筹者</font></div>' : "";
 			?>
 			<div class="leftHeader">
-				<h1><?= $problem_data["title"]; ?></h1>
+				<h1><?= htmlspecialchars($problem_data["title"]) ?></h1>
 				<?php if(!empty($problem_data['tags'])) {
 					foreach ($problem_data['tags'] as $key => $values) {
                         if (isset($values['name'])) {
@@ -70,6 +70,7 @@
 				if ($problem_detail[0]["code"] != NULL) {
 					echo '<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[0]["code"]).'</pre></div>';
 				}
+
 				for ($index = 1; $index < count($problem_detail); $index++) {
 			?>
 					<div class="split"></div>
@@ -85,6 +86,7 @@
 						<div class="desc"><?=$problem_detail[$index]['content']?></div>
 					</div>
 			<?php
+				print_r($problem_detail);
 					if ($problem_detail[$index]["code"] != NULL) {
 						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[0]["code"]).'</pre></div>';
 					}

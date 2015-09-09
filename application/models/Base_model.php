@@ -52,10 +52,11 @@ class base_model extends CI_Model {
 		}
 		if($params != "all"){
 			$this->db->where($params);
+			$this->db->limit($count , $page * $count);
 		}
 
 		$page = $page < 0 ? 0 : $page;
-		return $this->db->limit($count , $page * $count)->order_by('id', $type)->get($this->table_name)->result_array();
+		return $this->db->order_by('id', $type)->get($this->table_name)->result_array();
 	}
 	public function search_where($params , $page = 0 , $count = 20){
     		return $this->db->like($params)->limit($count , $page * $count)->get($this->table_name)->result_array();

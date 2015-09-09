@@ -16,6 +16,7 @@ class Index extends CI_Controller {
 		if(!isset($_GET['p']) || $_GET['p'] == ""){show_404();}
 		$id = $this->input->get("p");
 		$userdata = $this->user_model->check_login();
+		$userdata["page"] = !isset($_GET['page']) ? 1 : $this->input->get("page");
 		$userdata["problem_data"] = $this->problem_model->get_by_id($id);
 		if(!isset($userdata["problem_data"]["title"])){
 			show_404();
@@ -25,46 +26,69 @@ class Index extends CI_Controller {
 		$this->problem_model->hot($id , "0.01" , true);
 		$tag_replace_temp = array();
 		$tag_list_temp = array();
-		$tag_list = $this->tag_model->get_list(array() , 0 , 50 , array("name"));
+		$tag_list = $this->tag_model->get_list(array() , 0 , 100 , array("name"));
+		$problem_detail = $this->problem_detail_model->get_detail($userdata["problem_data"]['id']);
 		foreach ($tag_list as $key => $value) {
+			$tag_list[$key] = $value['name'];
 			array_push($tag_list_temp , $value['name']);
 			array_push($tag_replace_temp , "<a href='./tag?name=" . urldecode($value['name']) ."'>" . $value['name'] . "</a>");
 		}
-		$userdata["problem_detail"] = $this->problem_detail_model->get_detail($userdata["problem_data"]['id']);
-		foreach ($userdata['problem_detail'] as $key => $value) {
-			foreach ($tag_list_temp as $keys => $value_content) {
-				$value_content = strip_tags($value_content, "<p><span><strong><em><i>");
-				$value_content = str_replace($value_content , "white-space" , "");
-				$userdata["problem_detail"][$key]['content'] = str_replace_once($value_content , "<a href='./tag?name=" . urldecode($value_content) ."'>" .$value_content . "</a>" , $userdata["problem_detail"][$key]['content']);
-			}
-		}
 
+		foreach ($problem_detail as &$value) {
+			$temp_array = array();
+			preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $matches);
+			for ($index=0; $index < count($matches[0]); $index++) { 
+				$key = "{t:" . rand(1000000 , 9999999) . "}";
+				array_push($temp_array, $key);
+			}
+			$value['content'] = str_replace("white-space", "tocurd", $value['content']);
+			$value['content'] = str_replace($matches[0] , $temp_array , $value['content']);
+			foreach ($tag_list_temp as $key => $values) {
+				$value['content'] = str_replace_once($tag_list_temp[$key] , $tag_replace_temp[$key] , $value['content']);
+			}
+			$value['content'] = str_replace($temp_array , $matches[0] , $value['content']);
+		}
+		$userdata["problem_detail"]  = $problem_detail;
+
+
+
+		// problem from user
 		$userdata["problem_user"] = $this->user_model->get_user_data($userdata["problem_data"]["owner_id"]);
-		@$userdata["problem_collect"] = $this->user_model->is_problem($id) == true ? true : false;
-		$userdata["problem_follow"] = !$this->user_model->is_problem($id , "follow_problems")  ? true : false;
-		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
+
+		// problem is collect
+		$userdata["problem_collect"] = $this->user_model->is_problem($id) ? true : false;
+
+		// problem get commenct list
 		$userdata["problem_commenct"] = $this->problem_comment_model->get_list(array(
 				"problem_id" => $userdata["problem_data"]['id']
-		),$userdata["page"] - 1, 5);
-		$index = 0;
-		foreach ($userdata["problem_commenct"] as $key => $value) {
-			$userdata["problem_commenct"][$index]['user']=$this->user_model->get_user_data($value['owner_id']);
-			$index ++;
+		),($userdata["page"] - 1) * 5, 5);
+		foreach ($userdata["problem_commenct"] as &$value) {
+			$value['user']=$this->user_model->get_user_data($value['owner_id']);
 		}
+
 		$userdata["page_max"] = $this->problem_comment_model->get_count(array(
 			"problem_id" => $userdata["problem_data"]['id']
 		));
 
+
+
 		// 推送相关问题推荐 列出关键词
 		$problem_temp = array();
-		$problem_key = get_tags_arr($userdata["problem_data"]['title'] ." ". strip_tags($userdata['problem_detail'][0]['content']));
-		$problem_key = array_unique($problem_key);
+		// $problem_key = get_tags_arr($userdata["problem_data"]['title'] ." ". strip_tags($userdata['problem_detail'][0]['content']));
+		// $problem_key = array_unique($problem_key);
+		// $problem_key = $userdata['problem_data'][''];
+		foreach ($userdata['problem_data']['tags'] as $keys => $values) {
+			$problem_key[] = $values['name'];
+		}
+
 		if($userdata['problem_data']['type'] == 0){
 			$problem_data = $this->problem_model->search_key($problem_key , 4 , array("type" => 3));
 			$userdata['useful_list'] = $problem_data;
 		}
 		$problem_data = $this->problem_model->search_key($problem_key , 4);
 		$userdata['recommend_list'] = $problem_data;
+
+
 		// $detail_content = $this->problem_detail_model->search_key($problem_key , 2);
 		// foreach ($detail_content as $key => $value) {
 		// 	$problem_temp[$value['problem_id']] = $this->problem_model->get(array('id'=>$value['problem_id']) , array("title","id"));
