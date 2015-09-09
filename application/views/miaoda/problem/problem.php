@@ -52,7 +52,9 @@
 				<h1><?= $problem_data["title"]; ?></h1>
 				<?php if(!empty($problem_data['tags'])) {
 					foreach ($problem_data['tags'] as $key => $values) {
-						echo '<a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a>';
+                        if (isset($values['name'])) {
+                            echo '<a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a>';
+                        }
 					}
 				} ?>
 			</div>
@@ -72,7 +74,10 @@
 			?>
 					<div class="split"></div>
 					<div class="whyUser">
-						<a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><img src="<?=$problem_detail[$index]['user']['avatar']?>" alt="" width="35" height="35"><img class="god" src="./static/image/god_right.png"></a>
+                        <a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank">
+                            <img src="<?=$problem_detail[$index]['user']['avatar']?>" alt="" width="35" height="35">
+                            <img class="god" src="./static/image/god_right.png">
+                        </a>
 						<div class="data">
 							<p class="name"><a href="./home?uid=<?=$problem_detail[$index]['user']['id']?>" target="_blank"><?=$problem_detail[$index]['user']['nickname']?></a></p>
 							<p class="date">回答于：<?=$problem_detail[$index]['ctime']?></p>
