@@ -308,7 +308,7 @@ $(document).ready(function() {
         }
     });
 
-    function initTag($tag){
+    function initTag($tag) {
         var  value ="",timeOut = true,index = 0 , temp_index = 0 , tagIndex = 0;
 
         /*处理用户鼠标移入IDE*/
@@ -329,7 +329,7 @@ $(document).ready(function() {
             $(".tag-ide").hide();
             value = $(this).val();
             if(value == ""){return;}
-            if( addTag($tag , value)!=false){
+            if(addTag($tag , value)!=false){
                 $(this).val("");
             }
         });
@@ -337,7 +337,6 @@ $(document).ready(function() {
             value = $(this).val();
             $ideList = $(".tag-ide ul li");
             if(e.keyCode == 13){
-                console.log(e.keyCode)
                 if(addTag($tag , value)!=false){
                     $tag.find('input[type="text"]').val("");
                }
@@ -396,22 +395,22 @@ $(document).ready(function() {
         $tag.on('click', '.close', function(event) {
             tagIndex = tagIndex - 1;
             if(tagIndex < 0){tagIndex = 0;}
-            console.log(tagIndex);
             $(this).parent().remove();
         });
 
-        function addTag($tag , tagName){
+        function addTag($tag , tagName) {
             if(tagIndex >=  5){tagIndex = 5;showAlert(false,"您最多只能添加五个标签");return false;}
             tagIndex ++;
-            console.log("tagIndex:"+tagIndex);
             $(".tag-ide").hide();
-            value = $tag.find('input[type="text"]').val();
-            if(value.length <2){showAlert(false,"您输入的标签太短了");return false;}
-            if(value.length >12){showAlert(false,"您输入的标签太长了");return false;}
+            if(tagName.length < 2){showAlert(false,"您输入的标签太短了");return false;}
+            if(tagName.length >12){showAlert(false,"您输入的标签太长了");return false;}
             $tag.find(".tag-list").append('<span class="tag-box"><font>'+tagName+'</font> <button class="close">X</button></span>');
             return true;
         }
 
+        $tag.bind('add', function () {
+            addTag($tag, arguments[1]);
+        });
     }
 
 

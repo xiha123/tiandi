@@ -9,11 +9,12 @@ p{word-break:break-all}
 .course h2 a {
     color:#fff;
 }
-.course i{font-size: 32px;margin-left:10px;position:relative;top:2px;}
+.course h2 i {font-size: 32px;margin-left:10px;position:relative;top:2px;}
 .course .description{margin:30px 0;}
 .course .description p{ float: left;margin-top:14px;color:#aaa;}
 
-.windows{    display: none;
+.windows{
+    display: none;
     position:fixed;
     top: 0px;
     left: 0px;
@@ -21,13 +22,31 @@ p{word-break:break-all}
     height: 100%;
     z-index: 99999;}
 
-.course .list{width: 100%;float: left;margin-bottom:30px;}
+.course .list{width: 100%;float: left;margin-top:30px;}
 .course .last{margin-right: 0px !important;}
 .course .list li{cursor:pointer; background:#fff;position:relative;width:180px;margin-right:64px;padding:10px;margin-bottom:50px;height: 74px;border:1px solid #219ba1;border-radius: 10px;}
 .course .list li h3{font-size: 20px;color:#219ba1;}
 .course .list li p{overflow: hidden;height:35px; margin-top:7px;color: #aaa;font-size: 12px;}
-.course .list i{position:absolute;right: -48px;top:30px;color:#219ba1;}
-.course .list .bottom{position:absolute;right:70px;top:103px;color:#219ba1;}
+.course .list i {
+    position:absolute;
+    right:-48px;
+    top:30px;
+    color:#219ba1;
+    font-size:32px;
+}
+.course .list .fa-arrow-left {
+    left:-48px;
+    right:auto;
+}
+.course .list li:last-child i {
+    display:none;
+}
+.course .list .bottom {
+    position:absolute;
+    right:82px;
+    top:103px;
+    color:#219ba1;
+}
 
 .slider {
 	position:relative;
@@ -71,14 +90,26 @@ p{word-break:break-all}
 	margin-left:5px;
 	word-break:break-all;
 	border-top:solid 1px #f0f0f0;
-	background-color:#fff
+	background-color:#fff;
+    overflow: hidden;
+}
+.slider-summary li {
+    font-size:12px;
+    /*
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    */
+}
+.slider-summary li a {
+    color:#219ba1;
 }
 .slider-sheet img + .slider-summary {
 	border-top:0;
 }
 .slider-summary p:first-child {
 	font-size:18px;
-	margin-bottom:20px;
+	margin-bottom:10px;
 }
 .slider-trigger .active:after {
 	opacity:0;

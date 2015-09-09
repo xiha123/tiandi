@@ -1,6 +1,11 @@
 $(function () {
 	var ue = UM.getEditor('editor');
 
+	$('.Language').bind('change', function () {
+		var tag = $('.Language').children('option[value="' + this.value + '"]').text();
+		$('.js-tag-box').trigger('add', tag);
+	});
+
 	$("#ajax_problemSubmit").on("click", function() {
 		var title = $("#problem-title").val(),
 			content = ue.getContent(),

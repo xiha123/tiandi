@@ -22,14 +22,22 @@ h2 { font-size:20px;height:40px;line-height:40px; }
 .content-outline i { position:absolute;height:12px;width:12px;top:0;border-radius:6px;background:#219ba1; }
 .content-outline .fr,
 .content-outline .fl { position:relative;width:50%;padding:0 20px;box-sizing:border-box; }
-.content-outline .fr { margin-top:100px; }
-.content-outline .fl { margin-bottom:100px; }
+.content-outline .fr { margin-top:100px; clear:right; }
+.content-outline .fl { margin-bottom:100px; clear:left; }
 .content-outline .fr i { left:0;margin-left:-6px; }
 .content-outline .fl i { right:0;margin-right:-6px; }
 .content-outline .fr h3 { text-align:left; }
 .content-outline .fl h3 { text-align:right;}
-.content-outline .fl p {color:#aaa;position:relative;top:10px;}
-.content-outline .fr p {color:#aaa;position:relative;top:10px;}
+.content-outline .fl p,
+.content-outline .fr p {
+    position:relative;
+    top:10px;
+    color:#aaa;
+    word-break: normal;
+}
+.content-outline .fl p {
+    text-align: right;
+}
 .content-outline div:last-child:after { content:'';position:absolute; }
 
 .sidebar { background:#fff;margin:0 0 20px 10px;width:190px;padding:30px 0 15px; }

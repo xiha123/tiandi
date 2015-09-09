@@ -50,7 +50,7 @@
 					</div>
 				</div>
 			</td></tr>
-			<tr><td><div class="tag" data-widget="tag">
+			<tr><td><div class="tag js-tag-box" data-widget="tag">
 				<input type="hidden" class="form-tag" value="">
 				<div class="tag-list">
 					<?php

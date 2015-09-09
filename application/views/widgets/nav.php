@@ -18,7 +18,7 @@
 
                     array(
                         'name' => '学习印记',
-                        'link' => '#',
+                        'link' => 'javascript:;',
                         'active' => false
                     ),
 
@@ -30,7 +30,7 @@
 
                     array(
                         'name' => '精英汇',
-                        'link' => '#',
+                        'link' => 'javascript:;',
                         'active' => false
                     )
                 );

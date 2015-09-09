@@ -2,7 +2,7 @@
 	<div class="wrapper cf">
         	<a href="./"><img class="logo" src="static/image/tiandijundaoLogo.png" height="29" width="120" style="left: -170px;top:0px;background: none;border-radius: 0;padding: 3px; " alt="天地培训logo"></a>
 		<form class="seacher js-search-form">
-			
+
 			<input type="text" class="js-search-input fl" value="<?=isset($_GET['key']) ? $this->input->get('key') : "" ;?>" placeholder="搜索">
 			<button type="submit" class="js-search-submit"><i class="fa fa-search"></i></button>
 		</form>
@@ -24,7 +24,7 @@
 
 				array(
 					'name' => '学习印记',
-					'link' => '#',
+					'link' => 'javascript:;',
 					'active' => false
 				),
 
@@ -36,7 +36,7 @@
 
 			    array(
 			        'name' => '精英汇',
-			        'link' => '#',
+			        'link' => 'javascript:;',
 			        'active' => false
 			    ),
 			);

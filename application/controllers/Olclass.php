@@ -20,13 +20,13 @@ class Olclass extends CI_Controller {
 			'Cocos2d-x' => 3,
 			'Android' => 4,
 		);
-		$index = 0;
 		$type = $this->input->get('type');
 		$userdata = $this->user_model->check_login();
 		$userdata['guide_list'] = $this->guide_model->get_list();
 		$userdata['types'] = isset($courseType[$type]) ? $courseType[$type] : 0;
 		$userdata['course_list'] = $this->course_model->get_list_by_type($userdata['types']);
 		foreach ($userdata['course_list'] as &$this_temp){
+			$index = 0;
 			foreach ($this_temp['class'] as &$value) {
 				$index ++;
 				$value['step'] = $index;
