@@ -83,11 +83,13 @@ $("#ajax_godset").click(function(){
 	var alipay = $("#alipay").val(),
 		goddesc = $("#experience").val();
 
-	if(goddesc.length < 15 || goddesc.length > 200){
-		showAlert(false , "项目描述太短！");return false;
+	if(goddesc.length < 15 || goddesc.length > 400){
+		showAlert(false , "项目描述太短或太长");
+		return false;
 	}
 	if(alipay.length < 4){
-		showAlert(false , "您的支付宝输入的不太正常");return false;
+		showAlert(false , "您的支付宝输入的不太正常");
+		return false;
 	}
 	jsonArray = new Array();
 	$.each($(".tag .tag-box"), function(index, val) {

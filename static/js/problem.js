@@ -1,3 +1,4 @@
+/*
 if(window.problem_type == 1){
 	// UM.registerUI('引用提问者问题', function(editor, uiName) {
 	//     editor.registerCommand(uiName, {
@@ -29,8 +30,11 @@ if(window.problem_type == 1){
 	//     return btn;
 	// });
 }
+*/
 
+var ue = UM.getEditor('editor');
 
+SyntaxHighlighter.all();
 
 $("#answer").on('click' , function(event) {
 	_td.api.requestProblem({
@@ -121,16 +125,16 @@ if(window.problem_type == 1){
 	timeOut_fun();
 	var timeOut = setInterval(function(){
 		timeOut_fun();
-	},1000);
-	if(online_save_type){
-		setInterval(function(){
+	}, 1000);
+	if(online_save_type) {
+		setInterval(function() {
 			var content = ue.getContent();
 				code = $("#problem-code").val(),
 				jsonArray = new Array();
 			$.each($(".tag .tag-box"), function(index, val) {
 				jsonArray.push($(val).find("font").text());
 			});
-			if(content !="" && code!=""){
+			if(content != ""){
 				_td.api.onlineSave({
 					"type" : false,
 					"title" : "none",
@@ -141,9 +145,15 @@ if(window.problem_type == 1){
 					"problem_id" : problem_id
 				});
 			}
-		},11000);
-	}else{
-
+		}, 10000);
+	} else {
+		setInterval(function () {
+			_td.api.syncGodAnswer({
+				problem_id: problem_id
+			}).then(function (res) {
+				ue.setContent(res.data.content);
+			});
+		}, 10000);
 	}
 }
 function timeOut_fun(){
@@ -167,18 +177,14 @@ function timeOut_fun(){
 	        },1000)
 	}
 }
- var ue = UM.getEditor('editor');
 
-
-SyntaxHighlighter.all();
-
+/*
 if(window.problem_type == 3){
 	value = '在此处输入评论';
 }else{
 	value = '详细描述你的解答';
 }
 
-/*
 var is_one = true , is_ok = false , is = false;
 ue.ready(function(){
 	ue.execCommand('inserthtml', '<span></span>');

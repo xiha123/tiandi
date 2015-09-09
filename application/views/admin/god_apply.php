@@ -50,7 +50,7 @@
 				{/user}
 				</tbody>
 			</table>
-			
+
 			<?php
 				$this->load->view("miaoda/page",array(
 					"page" => $page,

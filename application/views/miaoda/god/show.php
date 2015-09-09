@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
-<?php 
+<?php
 	$this->load->view('widgets/windows.php' );
 	function check_follow($follow_users , $user_id){
 		foreach ($follow_users as $key => $value) {
@@ -21,7 +21,7 @@
 		</div>
 		<div class="tacher-tag">
 			<h2>擅长标签：</h2>
-			<?php 
+			<?php
 				$god_skilled_tags = json_decode($user['god_skilled_tags']);
 				echo count($god_skilled_tags) <= 0 ? '<p class="not">他还没有擅长的标签</p>' : '';
 				foreach (count($god_skilled_tags) > 0 ? $god_skilled_tags : array() as $key => $value) {
@@ -44,7 +44,7 @@
 		<div class="tacher-why">
 			<h2>回答的问题</h2>
 			<ul class="list-data">
-				<?php 
+				<?php
 					echo $answer_count <= 0 ? "<p class='not'>这货居然还没有回答过任何问题！</p>" : "";
 					foreach ($answer as $key => $value) {?>
 						<li data-id="<?=$value['id']?>">
@@ -56,15 +56,17 @@
 								<?php
 									if(isset($value['tags'])){
 										foreach ($value['tags'] as $key => $values) {
-											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+											if (isset($values['name'])) {
+												echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+											}
 										}
 									}
 								?>
 							</ul>
 							<div class="list-date"> 提问于：<?=$value['ctime']?></div>
-						</li>	
+						</li>
 				<?php }	?>
-			
+
 			</ul>
 			<?php
 				$this->load->view("miaoda/page",array(
@@ -75,9 +77,9 @@
 					"hot" => "&uid=" . $user['id']
 				));
 			?>
-			
 
-			
+
+
 		</div>
 
 	</div>

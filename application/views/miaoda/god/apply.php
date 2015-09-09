@@ -29,6 +29,9 @@
             提 交<i class="fa fa-arrow-circle-right"></i>
         </button></form>
 </div>
-    
+
 <?php $this->load->view('widgets/footer.php'); ?>
+<script>
+    var uid = <?= $id ?>;
+</script>
 <script src="static/js/apply.js"></script>
