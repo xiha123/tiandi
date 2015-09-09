@@ -30,10 +30,10 @@
 		<table class="main">
 			<tr><td><img src="./static/image/home/nav.jpg" alt=""></td></tr>
 			<tr class="hr"><td><img src="./static/image/home/god.jpg" alt=""></td></tr>
-			<tr><td><img src="./static/image/home/problem.bmp" alt=""></td></tr>
-			<tr class="hr"><td><img src="./static/image/home/student.bmp" alt=""></td></tr>
-			<tr><td><img src="./static/image/home/zhan.bmp" alt=""></td></tr>
-			<tr class="hr"><td><img src="./static/image/home/elite.bmp" alt=""></td></tr>
+			<tr><td><img src="./static/image/home/problem.jpg" alt=""></td></tr>
+			<tr class="hr"><td><img src="./static/image/home/student.jpg" alt=""></td></tr>
+			<tr><td><img src="./static/image/home/zhan.jpg" alt=""></td></tr>
+			<tr class="hr"><td><img src="./static/image/home/elite.jpg" alt=""></td></tr>
 		</table>
 
 		<!-- <h2>在线课堂</h2>
