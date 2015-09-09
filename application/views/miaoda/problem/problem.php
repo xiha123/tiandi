@@ -10,10 +10,10 @@
 	window.first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>;
 
 	var problem_id = <?=$problem_data["id"]?>,
-	problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
-	problem_type = <?=$problem_data["type"]?>,
-	max_god = <?=$god_count?>,
-	online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>;
+		problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
+		problem_type = <?=$problem_data["type"]?>,
+		max_god = <?=$god_count?>,
+		online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>;
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
@@ -88,7 +88,7 @@
 			<?php
 				print_r($problem_detail);
 					if ($problem_detail[$index]["code"] != NULL) {
-						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[0]["code"]).'</pre></div>';
+						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[$index]["code"]).'</pre></div>';
 					}
 				}
 			?>
@@ -119,7 +119,6 @@
 				<div class="doubt">
 					<table class="table">
 						<tr><td>
-
 							<?php
 								if($problem_data['owner_id'] == @$id){
 									$online = true;
@@ -129,7 +128,7 @@
 						</td></tr>
 						<tr><td>
 							<div class="desc">
-								<script id="editor" type="text/plain" style="width:743px;height:180px;"><?=$temp_data['content']?></script>
+								<script id="editor" type="text/plain" style="width:743px;height:180px;"><?= $temp_data['content'] ?></script>
 								<div class="code-box">
 									<select class="Language">
 										<option value="0" <?=$temp_data['language'] == 0 ? 'selected=""' : ""?>>html</option>

@@ -73,7 +73,7 @@ class problem_api extends base_api {
                     $this->problem_detail_model->create($result);
                 }
             }else{
-                $this->finish(false,"异常");
+                $this->finish(false, "异常");
             }
         }
         $this->finish(true);
@@ -267,6 +267,7 @@ class problem_api extends base_api {
         ));
         extract($params);
         $content = $_POST['content'];
+        $code = $_POST["code"];
 
         switch ($language) {
             case '0':$language = "html";break;
@@ -276,7 +277,6 @@ class problem_api extends base_api {
             case '4':$language = "java";break;
             default: $language = "php";break;
         }
-        $code = $this->input->post("code");
 
         parent::is_length(array(
             array("name" => "解答描述" , "value" => $content , "min" => 6)
@@ -564,6 +564,20 @@ class problem_api extends base_api {
         extract($params);
 
         parent::finish(true, '', $this->problem_model->get_fund_list($page));
+    }
+
+    public function get_god_temp_answer() {
+        $params = $this->get_params('GET', array('problem_id'));
+        extract($params);
+
+        if (!$this->problem_model->is_exist(array(
+            'id' => $problem_id
+        ))) {
+            parent::finish(false, '问题不存在');
+        }
+
+        $res = $this->problem_detail_model->get(array("problem_id" => $problem_id, "type" => 3));
+		parent::finish(true, '', $res);
     }
 
 }

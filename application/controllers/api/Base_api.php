@@ -15,9 +15,9 @@ class base_api extends CI_Controller {
     public function HTML($content){
         include_once(APPPATH . 'controllers/api/base_class_html.php');
         $HTML = new HtmlAttributeFilter();
-        $HTML->setAllow(array('title', 'alt', "src", 'style'));
+        $HTML->setAllow(array('title', 'alt', "src", 'style', 'href'));
         $content = $HTML->strip($content);
-        return strip_tags($content, "<span><em><i><strike><u><b><strong><p><li><ul><img><br>");
+        return strip_tags($content, "<span><em><i><strike><u><b><strong><p><li><ul><img><br><a>");
     }
 
 

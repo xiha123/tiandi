@@ -3,7 +3,7 @@ $("#ajax_apply").click(function(event) {
 	var idcard = $("#idcard").val();
 	var alipay = $("#alipay").val();
 	var phone = $("#phone").val();
-      var tag = $("#tag").val();
+	var tag = $("#tag").val();
 	var desk = $("#desk").val();
 	var checkFlag = new clsIDCard(idcard);
 
@@ -20,13 +20,16 @@ $("#ajax_apply").click(function(event) {
 			"cellphone" : phone,
 			"description" : desk,
 			"alipay" : alipay,
-                  "tag" : tag,
+			"tag" : tag,
 			"idcar" : idcard,
 		},
 		success : function(data){
 			json = JSON.parse(data);
 			if(json.status == true){
 				showAlert(true,"恭喜您，添加成功！请等待审核通过！");
+				setTimeout(function () {
+					location.href = 'home?uid=' + uid;
+				}, 1000);
 			}else{
 				showAlert(false,json.error);
 			}

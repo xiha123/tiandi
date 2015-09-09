@@ -112,7 +112,14 @@
 								?>
 								</ul>
 
-								<div class="list-date"> 大神<?=$value['answer_id']['nickname']?>回答于：<?=date("H:i:s",$value['answer_time'])?></div>
+								<?php if ($value['type'] >= 2) { ?>
+								<div class="list-date">大神<?=$value['answer_id']['nickname']?>回答于：<?=date("H:i:s",$value['answer_time'])?></div>
+								<?php } else {
+									$owner = $this->user_model->get(array(
+										'id' => $value['owner_id']
+									)); ?>
+								<div class="list-date"><?= $owner['nickname'] ?>创建于：<?= $value['ctime'] ?></div>
+								<?php } ?>
 							</li>
 						<?php }?>
 						</ul>

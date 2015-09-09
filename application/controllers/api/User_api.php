@@ -81,7 +81,7 @@ class user_api extends base_api {
         $params = parent::get_params('POST', array('email','verification'));if(empty($params)) return; extract($params);
         if($_SESSION['verification'] != md5($verification)) parent::finish(false , "验证码错误！");
         if(!$this->user_model->is_exist(array("email" => $email))) parent::finish(false , "您输入的邮箱格式不存在，请检查后再输入！");
-        $new_password = rand(100000000,999999999); 
+        $new_password = rand(100000000,999999999);
 
         $salt = $this->user_model->get(array("email" => $email) , array("salt" , "id"));
         if(!$this->user_model->edit_array(array("email" => $email) , array("pwd" => md5($new_password . $salt['salt'])))){
@@ -164,8 +164,8 @@ class user_api extends base_api {
 
     // 编辑修改用户资料
     public function edits() {
-
-        $params = parent::get_params('POST', array('nickname',"desk","phone","id")); if (empty($params)) return;extract($params);
+        $params = parent::get_params('POST', array('nickname',"desk","phone","id"));
+        extract($params);
 
         if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$nickname)){
             parent::finish(false , "您的昵称中存在特殊字符，请检查后重新提交");

@@ -52,11 +52,11 @@
                     <img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname?>
                     <font class="news-number"><?=$news_nuw <= 0 ? "" : "($news_nuw)"?></font>
                     <ul class="user-menu seconds">
-                        <li><a href="./home?uid=<?=$id?>&home=index" target="_blank">个人中心</a></li>
+                        <li><a href="./home?uid=<?=$id?>&home=index">个人中心</a></li>
                         <?php
-                            echo  $type == 1 ? '<li><a href="./home?uid='.$id.'" target="_blank">大神主页</a></li>' : "";
+                            echo  $type == 1 ? '<li><a href="./home?uid='.$id.'">大神主页</a></li>' : "";
                         ?>
-                        <li><a href="./notice" target="_blank">通知<?= $news_nuw <= 0 ? "" : " ($news_nuw)" ?></a></li>
+                        <li><a href="./notice">通知<?= $news_nuw <= 0 ? "" : " ($news_nuw)" ?></a></li>
                         <li><a href="./userset">设置</a></li>
                         <li><a href="javascript:;">充值</a></li>
                         <li><a href="./help">帮助</a></li>

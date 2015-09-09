@@ -306,6 +306,12 @@ api:
     needs:
         - page
 -
+    url: api/problem_api/get_god_temp_answer
+    type: get
+    name: syncGodAnswer
+    needs:
+        - problem_id
+-
     url: api/tag_api/add
     type: post
     name: addTag

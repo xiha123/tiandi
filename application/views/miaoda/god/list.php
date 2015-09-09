@@ -43,7 +43,6 @@
 						<div class="right_box">
 							<p class="name">
 								<a href="./home?uid=<?= $value['id'] ?>" target="_blank"><?= $value['nickname'] ?></a>
-								<font><img src="static/image/good.png" alt="" width="13px">0</font>
 								<font><img src="static/image/look.png" class="eyes";width="24px" alt=""><?= $value['follower_count'] ?></font>
 							</p>
 							<p class="desk"><?= $value['god_description'] ?></p>
