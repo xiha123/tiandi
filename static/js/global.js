@@ -1,3 +1,40 @@
+// 定时获取新消息
+if (_td.info.id !== -1) {
+    setInterval(function () {
+        _td.api.getNews().then(function (res) {
+            var msg = [];
+
+            $.each(res.data, function (index, item) {
+                if (item.type === '200') {
+                    msg.push('您有问题被认领啦');
+                } else if (item.type === '201' || item.type === '301') {
+                    msg.push('您有问题被回答啦');
+                }
+            });
+
+            if (msg.length !==0) {
+                notifyMe(msg.join('\n'));
+            }
+        });
+    }, 30000);
+}
+function notifyMe(msg) {
+    if (!("Notification" in window)) return;
+
+    var options = {
+        icon: 'favicon.ico'
+    };
+    if (Notification.permission === "granted") {
+        new Notification(msg, options);
+    } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+            if (permission === "granted") {
+                new Notification(msg, options);
+            }
+        });
+    }
+}
+
 $(".ajax_up").on("click" , function(){
     var _this= $(this);
     var problem_id = $(this).parents().data('id');
@@ -74,13 +111,13 @@ $(".js-search-submit").hover(function() {
 });
 
 $('.js-search-input').bind('focus', function () {
-    $(this).animate({
+    $(this).stop(true, true).animate({
         width: '+=300px'
     }, 400);
     $('.js-nav').hide();
 }).bind('blur', function () {
     if(searchHoverType){
-        $(this).animate({
+        $(this).stop(true, true).animate({
             width: '-=300px'
         }, 400, function () {
             $('.js-nav').show();
@@ -146,8 +183,12 @@ function close(){
 
 
 /*关注用户*/
-$("#ajax_eye,#ajax_uneye").click(function(event) {
+var ajaxEyeLock = true;
+$("#ajax_eye, #ajax_uneye").click(function(event) {
+    if (!ajaxEyeLock) return;
+
     var type = event.target.id == "ajax_uneye" ? false : true;
+    ajaxEyeLock = false;
     _td.api.eye({
         "user_id" : $(this).data('id'),
         "type" : type
@@ -155,7 +196,7 @@ $("#ajax_eye,#ajax_uneye").click(function(event) {
         showAlert(true,type ? "恭喜您！关注成功" : "取消关注成功！");
         setTimeout(function(){
             location.reload();
-        },600)
+        }, 600);
     },function(msg){
         showAlert(false,msg.error);
     })
@@ -308,7 +349,12 @@ $(document).ready(function() {
     });
 
     function initTag($tag) {
-        var  value ="",timeOut = true,index = 0 , temp_index = 0 , tagIndex = 0;
+        var value = "",
+            timeOut = true,
+            index = 0,
+            temp_index = 0,
+            tagIndex = 0,
+            tagList = {};
 
         /*处理用户鼠标移入IDE*/
         $tag.on('mouseover', 'li', function(event) {
@@ -336,7 +382,7 @@ $(document).ready(function() {
             value = $(this).val();
             $ideList = $(".tag-ide ul li");
             if(e.keyCode == 13){
-                if(addTag($tag , value)!=false){
+                if(addTag($tag , value) != false) {
                     $tag.find('input[type="text"]').val("");
                }
                return false;
@@ -392,14 +438,27 @@ $(document).ready(function() {
         });
 
         $tag.on('click', '.close', function(event) {
+            delete tagList[$(this).prev().text().toLowerCase()];
             tagIndex = tagIndex - 1;
-            if(tagIndex < 0){tagIndex = 0;}
+            if(tagIndex < 0) {
+                tagIndex = 0;
+            }
             $(this).parent().remove();
         });
 
         function addTag($tag , tagName) {
-            if(tagIndex >=  5){tagIndex = 5;showAlert(false,"您最多只能添加五个标签");return false;}
-            tagIndex ++;
+            if (tagIndex >=  5) {
+                tagIndex = 5;
+                showAlert(false, "您最多只能添加五个标签");
+                return false;
+            }
+            if (tagList[tagName.toLowerCase()]) {
+                showAlert(false, "不能添加相同的标签");
+                return false;
+            }
+
+            tagList[tagName.toLowerCase()] = true;
+            tagIndex++;
             $(".tag-ide").hide();
             if(tagName.length < 2){showAlert(false,"您输入的标签太短了");return false;}
             if(tagName.length >12){showAlert(false,"您输入的标签太长了");return false;}

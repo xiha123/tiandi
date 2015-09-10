@@ -46,7 +46,7 @@ class base_model extends CI_Model {
 	public function get_list($params, $page, $count) {
 		if(isset($params['s'])){
 			unset($params['s']);
-			$type = "aec";
+			$type = "asc";
 		}else{
 			$type="desc";
 		}

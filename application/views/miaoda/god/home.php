@@ -9,8 +9,7 @@
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
 			<img class="god" src="./static/image/god_right.png">
 			<h3 class="name"><?=$user["nickname"] ?></h3>
-			<p class="look"><img src="static/image/look.png" alt="" width="18px"><?=$user['collect_problem_count']?></p>
-			<p class="look"><img src="static/image/good.png" width="16px" alt=""><?=$user['follow_user_count']?></p>
+			<p class="look"><img src="static/image/look.png" alt="" width="18px"><?=$user['follower_count']?></p>
 			<p class="money">银币： <?=$user['silver_coin']?></p>
 			<p class="money">金币： <?=$user['gold_coin']?></p>
 			<p class="desc"><?php echo $user["god_description"] == "" ? "这货居然没写描述" : $user['god_description']; ?></p>
@@ -70,7 +69,9 @@
 								<?php
 									if(!empty($value['tags'])){
 										foreach ($value['tags'] as $key => $values) {
-											echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+	                                        if (isset($values['name'])) {
+												echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+											}
 										}
 									}
 								?>

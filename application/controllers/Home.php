@@ -24,8 +24,10 @@ class Home extends CI_Controller {
 		if($user_type > 2 || $user_type < 0) show_404();
 		if(!isset($_GET["home"])){
 			$user_type = $user_type == 1 && @$this->me['id'] != $id ? 2 : $user_type;
+			$push_data['active_nav'] = 1;
 		}else{
 			$user_type = 0;
+			$push_data['active_nav'] = 0;
 		}
 
 
@@ -82,11 +84,11 @@ class Home extends CI_Controller {
 			$push_data["course"] = $temp_data;
 			$push_data["recommend_list"] = $this->problem_model->get_recommend_list(0);
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
-			if(!$push_data["hot_type"]){
+			if(!$push_data["hot_type"]) {
 				$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"]-1, 5,0);
 				$push_data["problem_list_count"] = $this->problem_model->get_count(array("type" => 0));
-			}else{
-				$push_data["news_problem"] = $this->problem_model->get_answer($id , $push_data["page"]);
+			} else {
+				$push_data["news_problem"] = $this->problem_model->get_answer($id , $push_data["page"], 5);
 				$push_data["problem_list_count"] = $this->problem_model->answer_count($id);
 			}
 		}

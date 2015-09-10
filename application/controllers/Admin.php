@@ -42,7 +42,7 @@ class Admin extends CI_Controller {
 		$data['me'] = $this->user_info;
 		$data['user'] = $this->user_model->get_list(array("type" => 2) , ($data['page'] - 1) , 10);
 		foreach ($data['user'] as $key => $value) {
-			$data['user'][$key]['type'] = $data['user'][$key]['type'] == "2" ? "<font style='color:#cc0000;font-weight:700'>待审核</font>" : "";
+			$data['user'][$key]['type'] = $data['user'][$key]['type'] == "2" ? "<font style='color:#c00;'>待审核</font>" : "";
 		}
 		$data['user_max'] = $this->user_model->get_count(array("type" => 2));
 		$this->load->library('parser');

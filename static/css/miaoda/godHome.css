@@ -3,9 +3,10 @@
 .leftBox{ position: relative; padding-top:15px;width: 230px;padding-right: 10px;}
 .leftBox .pic{margin-right:10px;width:125px;height: 125px;float: left;}
 .leftBox p{font-size:12px;float: left;margin-top:4px;}
-.leftBox .look,.leftBox .money{width: 75px;}
+.leftBox .look,
+.leftBox .money{width: 75px;}
 .leftBox .money{position: relative;top:5px;}
-.leftBox .look img{margin-right: 23px;}
+.leftBox .look img{margin-right: 20px;vertical-align: middle;}
 .leftBox .box-title{border:none;float:left;margin-top:30px;}
 .leftBox .name{ width:92px;overflow: hidden; float: left;margin: 4px 0px;margin-bottom:8px;font-size:16px;font-weight: 700}
 .leftBox .desc{    word-break: break-all;margin-top:14px;font-size:16px;color:#aaa;width:100%;}

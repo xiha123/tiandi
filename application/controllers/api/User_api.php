@@ -242,9 +242,13 @@ class user_api extends base_api {
 
 
     public function edit_god(){
-        $params = parent::get_params('POST', array('alipay', 'goddesc','tags'));if (empty($params)) return; extract($params);
-        $temp_tags = json_decode($tags,true);
-        if(count($temp_tags) < 0 || count($temp_tags)>5) parent::finish(false,"输入的标签太多或者太少");
+        $params = parent::get_params('POST', array('alipay', 'goddesc','tags'));
+        extract($params);
+
+        $temp_tags = json_decode($tags, true);
+        if(count($temp_tags) < 0 || count($temp_tags)>5) {
+            parent::finish(false,"输入的标签太多或者太少");
+        }
 
         // 处理标签请求
         foreach ($temp_tags as $key => $value) {
@@ -263,7 +267,7 @@ class user_api extends base_api {
         ))){
             $this->finish(true);
         }else{
-            $this->finish(false,"服务器异常！");
+            $this->finish(false, "服务器异常！");
         }
     }
     public function upload_pic() {

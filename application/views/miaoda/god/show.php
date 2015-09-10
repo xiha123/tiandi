@@ -1,7 +1,7 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/miaoda/tacher.css">
 <body>
-<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 1)); ?>
 <?php
 	$this->load->view('widgets/windows.php' );
 	function check_follow($follow_users , $user_id){

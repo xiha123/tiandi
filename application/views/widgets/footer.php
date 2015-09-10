@@ -19,6 +19,9 @@ switch($this->agent->browser()) {
 <script>
     window._td = {};
     _td.api = require('api');
+    _td.info = {
+        id: <?= isset($id) ? $id : -1 ?>
+    };
 </script>
 <script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://test.tiandipeixun.com/qq_cb" charset="utf-8"></script>
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2108328168" type="text/javascript" charset="utf-8"></script>

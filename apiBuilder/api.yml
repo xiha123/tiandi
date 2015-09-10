@@ -318,7 +318,10 @@ api:
     needs:
         - name
         - content
-
+-
+    url: api/news_api/get_news
+    type: get
+    name: getNews
 
 
 config:
