@@ -6,7 +6,6 @@
 
 - collation 设置为 utf8_general_ci
 - 所有表主键为 id
-- 所有 status 都 0 为非激活，1 为激活
 
 ### ad 表
 
@@ -51,19 +50,17 @@
 - cellphone 手机号
 - description 个人描述
 - god_description 大神描述
-- collect_problem_count 收藏的数量
-- follow_problem_count 关注的数量
+- collect_problem_count 收藏的问题数量
+- collect_problems 收藏列表，id数组
 - ask_count 提问的数量
-- agree_count 被满意的人数
 - answer_count 回答的数量
+- agree_count 被满意的次数
 - follow_user_count 关注的人的数量
+- follow_users 关注的用户，id数组
 - follower_count 被多少人关注
-- collect_problems 收藏列表，JSON数组
-- follow_problems 关注列表，JSON数组
+- followers 被哪些用户关注，id数组
 - skilled_tags 擅长的标签，JSON数组
 - god_skilled_tags 大神擅长的标签，JSON数组
-- follow_users 关注的用户，JSON数组
-- followers 被哪些用户关注，JSON数组
 - alipay 支付宝账号
 - gold_coin 金币数量
 - silver_coin 银币数量
@@ -116,15 +113,6 @@
 - content 章节内容
 - course_id
 
-### course_class 表
-
-用于存在线课堂右侧框的东西，我也不知道叫他什么。
-
-- title 上面框的的内容
-- content 下面框的内容
-- time 设置开始的时间
-- form 父
-
 ### course_step 表
 
 存放课程步骤内容。
@@ -147,10 +135,6 @@
 - site 课程的一些设置
 - steps 课程对应的步骤，JSON数组，按照 id 排序，顺序为步骤顺序
 - god 该课程由那些大神上课，JSON数组
-
-
-
-
 
 ### problem 表
 
@@ -230,15 +214,6 @@
 - from_id
 - status 0 未读 1 已读
 - ctime
-
-### activity 表
-
-存放个人动态。
-
-- owner_id
-- ctime
-- type
-- target
 
 ### note 表
 

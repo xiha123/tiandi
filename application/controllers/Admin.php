@@ -8,7 +8,6 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model' );
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
-		$this->load->model('course_class_model');
     	$this->load->model('course_chapter_model');
     	$this->load->model('user_model');
 		$this->user_info = $this->admin_model->check_login();
@@ -308,11 +307,6 @@ class Admin extends CI_Controller {
 			case 'chapter':
 				$data["chapter_count"] = $this->course_chapter_model->get_count(array('course_id' => $id));
 				$data['chapter'] = array_reverse($this->course_chapter_model->get_list(array("course_id" => $id) ,$data['page'] - 1, 10));
-				break;
-
-			case 'class':
-				$data["class_count"] = $this->course_class_model->get_count(array());
-				$data['class'] = $this->course_class_model->get_list(array("form" => $id) ,$data['page']-1 * 10 , 10);
 				break;
 
 			default:

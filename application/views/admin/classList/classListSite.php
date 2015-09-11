@@ -16,7 +16,6 @@
 						switch ($class_type) {
 							case 'tag':$activeNav = 1;break;
 							case 'description':$activeNav = 2;break;
-							case 'class':$activeNav = 3;break;
 							case 'chapter':$activeNav = 4;break;
 							case 'pic':$activeNav = 5;break;
 							case 'step':$activeNav = 6;break;
@@ -26,12 +25,12 @@
 					<li style="float:right;font-weight:700"><p>当前操作的课程详情页：{title}</p></li>
 				</ul>
 			</div>
-			
+
 			<div class="main-data">
 				<?php $this->load->view('widgets/admin/footer.php'); ?>
 				<?php $this->load->view('admin/classList/site/'.$class_type.'.php' , array("activeNav" =>$activeNav)); ?>
 			</div>
-			
+
 
 		</div>
 	</div>

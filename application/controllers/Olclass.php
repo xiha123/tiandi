@@ -9,7 +9,6 @@ class Olclass extends CI_Controller {
 		$this->load->model('slide_model');
 		$this->load->model('guide_model');
 		$this->load->model('course_model');
-		$this->load->model('course_class_model');
 	}
 
 	public function index() {

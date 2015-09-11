@@ -10,7 +10,6 @@ class admin_api extends base_api {
         $this->load->model('admin_model');
         $this->load->model('course_model');
         $this->load->model('course_chapter_model');
-        $this->load->model('course_class_model');
         $this->load->model('course_step_model');
         $this->load->model('news_model');
         $this->load->model('slide_model');
@@ -41,7 +40,7 @@ class admin_api extends base_api {
         parent::require_login();
         $params = parent::get_params('POST', array("id" , "godName"));if(empty($params))return; extract($params);
 
-        //is exist 
+        //is exist
         if(!$this->user_model->is_exist(array("nickname" => $godName , "type" => 1))) parent::finish(false , "您输入的用户不存在，或者该用户不是大神，请检查后再输入！");
         if(!$this->course_model->is_exist(array("id" => $id))) parent::finish(false , "您要添加的课程不存在");
 
@@ -63,7 +62,7 @@ class admin_api extends base_api {
 
     /**
      * 获得课程对应的上课大神
-     * @param [id] 
+     * @param [id]
      */
     public function get_god_from_course(){
         parent::require_login();
@@ -123,7 +122,6 @@ class admin_api extends base_api {
         foreach ($course_tags as $value) {
             $this->tag_model->remove($value['t']);
         }
-        $this->course_class_model->remove_where(array("form" => $id));
         $this->course_chapter_model->remove_where(array("course_id" => $id));
         $this->course_step_model->remove_where(array("course_id" => $id));
         $this->course_model->remove($id);
@@ -305,49 +303,6 @@ class admin_api extends base_api {
         $this->finish(true);
     }
 
-
-
-
-    public function editClassPublic() {
-        $params = parent::get_params('POST', array('id' , "title" , "content" , "time" ));if(empty($params)) return;extract($params);
-        if(time() >  strtotime($time) + 86400) {parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
-        if(!$this->course_class_model->edit($id,array(
-            "title" => $title,
-            "content" => $content,
-            "time" => strtotime($time),
-        ))){
-            parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
-        }else{
-            parent::finish(true);
-        }
-    }
-
-
-    public function deleteClassPublic(){
-        $params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
-        if(!$this->course_class_model->remove($id)){
-            parent::finish(false,"未知的原因导致删除失败 error:deleteClassPublic");
-        }else{
-            parent::finish(true);
-        }
-    }
-
-    public function addClassPublic(){
-        $params = parent::get_params('POST', array('id' , 'title' , 'content' , 'time' ));if(empty($params)) return;extract($params);
-        $time = strtotime($time);
-        if($time + 86400 < time()){parent::finish(false, '不能填写小于今日的时间请检查后再保存');return;}
-
-        if(!$data = $this->course_class_model->create(array(
-            "title" =>$title,
-            "time" =>$time,
-            "content" => $content,
-            "form" => $id
-        ))){
-            parent::finish(false, '无法插入该课程，请稍候再试');
-        }else{
-            parent::finish(true , $data);
-        }
-    }
 
     /**
      * 添加课程的标签

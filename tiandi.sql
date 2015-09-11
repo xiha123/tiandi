@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2015 at 06:20 PM
+-- Generation Time: Sep 11, 2015 at 07:10 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -19,20 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `tiandi`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activity`
---
-
-CREATE TABLE IF NOT EXISTS `activity` (
-  `id` int(11) NOT NULL,
-  `owner_id` int(11) NOT NULL,
-  `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `type` int(11) NOT NULL,
-  `target` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -134,20 +120,6 @@ CREATE TABLE IF NOT EXISTS `course_chapter` (
   `content` text NOT NULL,
   `course_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `course_class`
---
-
-CREATE TABLE IF NOT EXISTS `course_class` (
-  `id` int(11) NOT NULL,
-  `title` varchar(125) NOT NULL,
-  `content` varchar(256) NOT NULL,
-  `time` int(11) NOT NULL,
-  `form` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -447,11 +419,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `description` text NOT NULL,
   `god_description` varchar(256) NOT NULL,
   `collect_problem_count` int(11) NOT NULL DEFAULT '0',
-  `follow_problem_count` int(11) NOT NULL DEFAULT '0',
   `ask_count` int(11) NOT NULL DEFAULT '0',
   `answer_count` int(11) NOT NULL DEFAULT '0',
   `collect_problems` varchar(1024) NOT NULL DEFAULT '[]',
-  `follow_problems` varchar(1024) NOT NULL DEFAULT '[]',
   `skilled_tags` varchar(256) NOT NULL DEFAULT '[]',
   `god_skilled_tags` varchar(126) NOT NULL DEFAULT '[]',
   `alipay` varchar(64) NOT NULL,
@@ -478,21 +448,15 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `follow_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `follow_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `agree_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_activa`, `course`) VALUES
-(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, 0, '[]', '[]', '[]', '[]', '', 0, 9999700, 0, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]'),
-(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', '', 0, 0, 0, 0, '[]', '[]', '[]', '[]', '', 0, 620, 0, 0, 0, '[]', '[]', 0, 150, '', 0, 1, '[]', 0, '', 0, '[]'),
-(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, 0, '[]', '[]', '[]', '[]', '', 0, 400, 0, 0, 0, '[]', '[]', 0, 100, '', 0, 0, '[]', 0, '', 0, '[]'),
-(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, 0, '[]', '[]', '[]', '[]', '', 0, 999800, 0, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]');
+INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `agree_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_activa`, `course`) VALUES
+(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 9999700, 0, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]'),
+(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 620, 0, 0, 0, '[]', '[]', 0, 150, '', 0, 1, '[]', 0, '', 0, '[]'),
+(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 400, 0, 0, 0, '[]', '[]', 0, 100, '', 0, 0, '[]', 0, '', 0, '[]'),
+(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 999800, 0, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `activity`
---
-ALTER TABLE `activity`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ad`
@@ -522,12 +486,6 @@ ALTER TABLE `course`
 -- Indexes for table `course_chapter`
 --
 ALTER TABLE `course_chapter`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `course_class`
---
-ALTER TABLE `course_class`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -595,11 +553,6 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `activity`
---
-ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
@@ -618,11 +571,6 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `course_chapter`
 --
 ALTER TABLE `course_chapter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `course_class`
---
-ALTER TABLE `course_class`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `course_step`

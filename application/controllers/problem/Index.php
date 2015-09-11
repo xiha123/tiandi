@@ -39,7 +39,7 @@ class Index extends CI_Controller {
 		foreach ($problem_detail as &$value) {
 			$temp_array = array();
 			preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $matches);
-			for ($index=0; $index < count($matches[0]); $index++) { 
+			for ($index=0; $index < count($matches[0]); $index++) {
 				$key = "[t:" . substr(md5(rand(1000000 , 9999999)),4) . "]";
 				array_push($temp_array, $key);
 			}
@@ -48,7 +48,7 @@ class Index extends CI_Controller {
 			foreach ($tag_list_temp as $key => $values) {
 				$temp_array_two = array();
 				preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $ches);
-				for ($index=0; $index < count($matches[0]); $index++) { 
+				for ($index=0; $index < count($matches[0]); $index++) {
 					$key_value = "[t:" . substr(md5(rand(1000000 , 9999999)),4) . "]";
 					array_push($temp_array_two, $key_value);
 				}
