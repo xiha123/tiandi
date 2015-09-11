@@ -20,12 +20,6 @@ $navList = array(
 		"active" => false
 	),
 	array(
-		"title" => "课程设置",
-		"link" => "./admin/classListSite/{$type}?type=class",
-		"icon" => "fa fa-film",
-		"active" => false
-	),
-	array(
 		"title" => "章节设置",
 		"link" => "./admin/classListSite/{$type}?type=chapter",
 		"icon" => "fa fa-tasks",

@@ -149,15 +149,12 @@
 - comments 问题下面的评论，JSON数组
 - tags 标签列表，JSON对象，key 为 tag 表的 id
 - up_count 被赞的次数
-- down_count 被踩的次数
+- up_users 被哪些人赞，JSON
 - collect_count 被收藏的次数
-- follow_count 被关注的次数
+- collect_users 被那些人收藏，JSON
 - view_count 被浏览的次数
 - ctime 创建时间
-- hot 火热值，计算方式为：(up - down) * 5 + comment_count * 1 + (follow_count + collect_cout) * 3 + view_count * 0.01
-- follow_users 被哪些人关注，JSON数组
-- collect_users 被那些人收藏，JSON
-- up_users 被哪些人赞，JSON
+- hot 火热值，计算方式为：up * 5 + comment_count * 1 + collect_cout * 3 + view_count * 0.01
 - down_users 被哪些人踩，JSON
 - gold_coin 问题价值，金币
 - silver_coin 问题价值，银币

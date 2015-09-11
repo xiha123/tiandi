@@ -16,9 +16,9 @@
 						switch ($class_type) {
 							case 'tag':$activeNav = 1;break;
 							case 'description':$activeNav = 2;break;
-							case 'chapter':$activeNav = 4;break;
-							case 'pic':$activeNav = 5;break;
-							case 'step':$activeNav = 6;break;
+							case 'chapter':$activeNav = 3;break;
+							case 'pic':$activeNav = 4;break;
+							case 'step':$activeNav = 5;break;
 							default:$activeNav = 1;$class_type = "tag";break;
 						}
 					 $this->load->view('widgets/classList/min.nav.php' , array("activeNav" =>$activeNav)); ?>
