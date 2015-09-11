@@ -81,9 +81,9 @@
 
 			<div class="tab">
 				<ul class="title cf" >
-					<li <?php if($hot_type == "1"){ echo 'class="active"'; } ?>><a href="./miaoda">最新</a></li>
+					<li <?php if($hot_type == "1"){ echo 'class="active"'; } ?>><a href="./miaoda">已答</a></li>
 					<li <?php if($hot_type == "0"){ echo 'class="active"'; } ?>><a href="./miaoda?hot=hot">热门</a></li>
-					<li <?php if($hot_type == "2"){ echo 'class="active"'; } ?>> <a href="./miaoda?hot=chou">众筹</a></li>
+					<li <?php if($hot_type == "2"){ echo 'class="active"'; } ?>> <a href="./miaoda?hot=chou">未答</a></li>
 				</ul>
 				<ul class="outer-list">
 					<li>

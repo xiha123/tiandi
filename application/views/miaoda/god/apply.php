@@ -8,7 +8,6 @@
 <form action="javascript:" class="submitbutton">
         <h3 class="information">个人信息</h3>
         <input type="text" placeholder="真实姓名" id="name"/>
-        <input type="text" placeholder="身份证号" id="idcard"/>
         <input type="text" placeholder="支付宝账号" id="alipay"/>
         <input type="text" placeholder="手机号码" id="phone"/>
         <h3 class="information">擅长的标签</h3>

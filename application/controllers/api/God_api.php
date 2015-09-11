@@ -11,7 +11,7 @@ class god_api extends base_api {
 	}
 	public function addGodApply(){
 		parent::require_login();
-		$params = $this->get_params('POST', array( 'name','tag' , 'cellphone','description' ,'alipay','idcar'));
+		$params = $this->get_params('POST', array( 'name','tag' , 'cellphone','description' ,'alipay'));
 		extract($params);
 
 		if(!$this->user_model->is_exist(array(
@@ -27,7 +27,6 @@ class god_api extends base_api {
 			"cellphone" => $cellphone,
 			"god_description" => $description,
 			"alipay" => $alipay,
-			"idcar" => $idcar,
 			"type" => 2,
 			"father_tag" => $tag,
 			"god_skilled_tags" => json_encode(array($tag))

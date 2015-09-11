@@ -145,7 +145,7 @@
 				</div>
 
 			<?php }} ?>
-			<?php if($problem_data['type'] == 2 || $problem_data['type'] == 3) { // 已回答的问题，显示收藏、点赞和评论
+			<?php if($problem_data['type'] == 2 || $problem_data['type'] == 3) { // 已回答的问题，显示收藏、点赞
 				$cls = $problem_collect == true ? 'uncollect' : 'collect';
 				$cls2 = $problem_collect == true ? 'fa-star' : 'fa-star-o';
 				$name = $problem_collect == true ? '取消收藏' : '收藏';
@@ -156,19 +156,6 @@
 					<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞 ( <span class="upCount"><?= $problem_data['up_count'] ?></span> ) </a>
 					<a href="#"><i class="fa fa-circle"></i>分享</a>
 					<?= $btn ?>
-				</div>
-				<h2 class="tishi fl">发表评论</h2>
-				<div class="doubt" style="margin-top:0px;">
-					<table class="table">
-						<tr><td>
-							<div class="desc">
-								<script id="editor" type="text/plain" style="width:743px;height:140px;"></script>
-							</div>
-						</td></tr>
-					</table>
-				</div>
-				<div class="button">
-					<button id="ajax_comment">评论</BUTTON>
 				</div>
 			<?php } else { ?>
 				<div class="button">
@@ -190,23 +177,33 @@
 				</div>
 			<?php } ?>
 
+				<h2 class="tishi fl">发表评论</h2>
+				<div class="doubt" style="margin-top:0px;">
+					<table class="table">
+						<tr><td>
+							<div class="desc">
+								<script id="editor" type="text/plain" style="width:743px;height:140px;"></script>
+							</div>
+						</td></tr>
+					</table>
+				</div>
+				<div class="button">
+					<button id="ajax_comment">评论</BUTTON>
+				</div>
+
 			<ul class="comment-list">
+			<?php foreach ($problem_commenct as $key => $value) {
+				echo '<li><img src="'.$value['user']['avatar'].'" alt=""><p class="name">'.$value['user']['nickname'].' <span style="color:#aaa;margin-left:10px;font-size:12px;">'.$value['ctime'].'</span><!--<a href="javascript:;" class="data fr">有用 / (1)</a>--></p><p class="content">'.str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $value['content']).'</p></li>';
+			} ?>
+			</ul>
 			<?php
-				if($problem_data['type'] == 3){
-					foreach ($problem_commenct as $key => $value) {
-						echo '<li><img src="'.$value['user']['avatar'].'" alt=""><p class="name">'.$value['user']['nickname'].' <span style="color:#aaa;margin-left:10px;font-size:12px;">'.$value['ctime'].'</span><!--<a href="javascript:;" class="data fr">有用 / (1)</a>--></p><p class="content">'.str_replace(array("&lt;/p&gt;","&lt;p&gt;","&lt;/br&gt;","&lt;br/&gt;" , "&amp;#40;" , "&amp;#41;" ,"&lt;/li&gt;" , "&lt;/ul&gt;") , array("</p>" ,"<p>","<br/>","<br>","(",")","</li>","</ul>") , $value['content']).'</p></li>';
-					}
-				}
-				echo '</ul>';
-				if($problem_data['type'] == 3){
-					$this->load->view("miaoda/page",array(
-						"page" => $page,
-						"page_max" => $page_max,
-						"page_count" => 5,
-						"page_url" => "./problem",
-						"hot" => "&p=" . $problem_data['id']
-					));
-				}
+				$this->load->view("miaoda/page",array(
+					"page" => $page,
+					"page_max" => $page_max,
+					"page_count" => 5,
+					"page_url" => "./problem",
+					"hot" => "&p=" . $problem_data['id']
+				));
 			?>
 		</div>
 
