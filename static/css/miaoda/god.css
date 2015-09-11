@@ -7,7 +7,7 @@
 .data .right_box .name{font-size:18px;font-weight: 700;}
 .data .name font{margin-right:20px;float: right;font-size:13px;font-weight: 400;color:#aaa;}
 .data .name font img{float: left;margin-right: 4px;}
-.data .right_box .desk{color:#aaa;margin:11px 0px;}
+.data .right_box .desk{max-height: 153px;overflow: hidden;color:#aaa;margin:11px 0px;}
 .data a{color:#333;margin-top:10px;}
 .data a:hover{color:#219ba1;}
 
