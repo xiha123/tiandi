@@ -86,7 +86,6 @@
 						<div class="desc"><?=$problem_detail[$index]['content']?></div>
 					</div>
 			<?php
-				print_r($problem_detail);
 					if ($problem_detail[$index]["code"] != NULL) {
 						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[$index]["code"]).'</pre></div>';
 					}

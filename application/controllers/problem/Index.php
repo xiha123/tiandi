@@ -34,22 +34,31 @@ class Index extends CI_Controller {
 			array_push($tag_replace_temp , "<a href='./tag?name=" . urldecode($value['name']) ."'>" . $value['name'] . "</a>");
 		}
 
+
+		// problem detail tag replace 感觉这样做性能会很差产自2015年9月11日 12:00:24
 		foreach ($problem_detail as &$value) {
 			$temp_array = array();
 			preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $matches);
 			for ($index=0; $index < count($matches[0]); $index++) { 
-				$key = "{t:" . rand(1000000 , 9999999) . "}";
+				$key = "[t:" . substr(md5(rand(1000000 , 9999999)),4) . "]";
 				array_push($temp_array, $key);
 			}
 			$value['content'] = str_replace("white-space", "tocurd", $value['content']);
 			$value['content'] = str_replace($matches[0] , $temp_array , $value['content']);
 			foreach ($tag_list_temp as $key => $values) {
+				$temp_array_two = array();
+				preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $ches);
+				for ($index=0; $index < count($matches[0]); $index++) { 
+					$key_value = "[t:" . substr(md5(rand(1000000 , 9999999)),4) . "]";
+					array_push($temp_array_two, $key_value);
+				}
+				$value['content'] = str_replace($ches[0] , $temp_array_two , $value['content']);
 				$value['content'] = str_replace_once($tag_list_temp[$key] , $tag_replace_temp[$key] , $value['content']);
+				$value['content'] = str_replace($temp_array_two , $ches[0] , $value['content']);
 			}
 			$value['content'] = str_replace($temp_array , $matches[0] , $value['content']);
 		}
 		$userdata["problem_detail"]  = $problem_detail;
-
 
 
 		// problem from user
@@ -74,13 +83,9 @@ class Index extends CI_Controller {
 
 		// 推送相关问题推荐 列出关键词
 		$problem_temp = array();
-		// $problem_key = get_tags_arr($userdata["problem_data"]['title'] ." ". strip_tags($userdata['problem_detail'][0]['content']));
-		// $problem_key = array_unique($problem_key);
-		// $problem_key = $userdata['problem_data'][''];
 		foreach ($userdata['problem_data']['tags'] as $keys => $values) {
 			$problem_key[] = $values['name'];
 		}
-
 		if($userdata['problem_data']['type'] == 0){
 			$problem_data = $this->problem_model->search_key($problem_key , 4 , array("type" => 3));
 			$userdata['useful_list'] = $problem_data;
@@ -88,14 +93,6 @@ class Index extends CI_Controller {
 		$problem_data = $this->problem_model->search_key($problem_key , 4);
 		$userdata['recommend_list'] = $problem_data;
 
-
-		// $detail_content = $this->problem_detail_model->search_key($problem_key , 2);
-		// foreach ($detail_content as $key => $value) {
-		// 	$problem_temp[$value['problem_id']] = $this->problem_model->get(array('id'=>$value['problem_id']) , array("title","id"));
-		// }
-		// foreach ($problem_data as $key => $value) {
-		// 	$problem_temp[$value['id']] = array("title" => $value['title'] , "id" => $value['id']);
-		// }
 
 		//Get god max count
 		$userdata['god_count'] = $this->user_model->get_count(array("type" => 1));
