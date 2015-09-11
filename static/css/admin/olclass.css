@@ -1,4 +1,9 @@
-.operation {
-    text-align:right;
-    padding:10px;
-}
+.tag{line-height: 22px;top: 0px;background: #d6edeb;color: #43a8ad;padding: 5px 9px;margin-right: 4px;}
+.tag:hover,.tag:link{text-decoration: none;color:#43a8ad;}
+.tag .closeTag{background: #d6edeb;margin-left:3px;padding:5px 0px 5px 6px;border-left:1px solid #ddd;}
+.js-godList{position:relative;top:13px;}
+
+.js-editCourseGod{padding:0 12px;background:#219ba1;color:#fff;outline:none;border:none;line-height:32px;}
+.js-editCourseGod i{font-size:22px;color:#fff;line-height:28px;margin:0;margin-right:9px;float: left;}
+
+.operation {text-align:right;padding:10px;}

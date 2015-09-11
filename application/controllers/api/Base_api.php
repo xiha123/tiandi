@@ -25,6 +25,7 @@ class base_api extends CI_Controller {
     public function add_json($json,$data,$type = true){
         $json = $type ? json_decode($json) : $json;
         $json = count($json) <= 0 ? array() : $json;
+        if(in_array( $data , $json)) return json_encode($json);
         array_push($json, $data);
         return json_encode($json);
     }

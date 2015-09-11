@@ -35,7 +35,12 @@
 			<ul>
 				<?php
 					foreach ($course as $key => $value) {
-						echo '<a href="olclass?type='.$value['type'].'"><li><img src="./static/uploads/'.@$value['site']['img'].'" width="100%" height="100%"/></li></a>';
+						$temp_site = array();
+						$value['site'] = json_decode($value['site'],true);
+						foreach ($value['site'] as $key => $value_data) {
+							$temp_site[$value_data['t']] = $value_data['value'];
+						}
+						echo '<a href="./course?id='.$value['id'].'" target="_blank"><li><img src="./static/uploads/'.@$temp_site['img'].'" width="100%" height="100%"/></li></a>';
 					}
 				?>
 			</ul>

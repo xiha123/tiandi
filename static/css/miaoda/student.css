@@ -82,7 +82,7 @@
 .whyUser > .data .name a:hover { color:#219ba1; }
 .whyUser > .data .date{float: right}
 .whyUser .desc{padding-right:20px;margin:15px 0;padding-top:5px;float:left;color:#333;}
-.whyUser .desc *{word-break:break-all; line-height:20px;max-width: 760px;}
+.whyUser .desc *{font-family: '微软雅黑';word-break:break-all; line-height:20px;max-width: 760px;}
 .whyUser .desc br{margin:14px 0px;}
 .whyUser .desc img{margin:10px 0px;}
 .whyUser .desc a{color:#43a8ad;}

@@ -36,12 +36,15 @@ function commit(formData , formConfig){
 		if(formData[i].type == "select"){
 			for (var index = 0;index < value.length;index ++) {
 				selected = value[index].selected == undefined ? "" : "selected='"+value[index].selected+"'";
-
 				value_data += "<option value='" + value[index].value + "' "+selected+">" + value[index].name + "</option>";
 			};
 			formInput += formConfig.header +formData[i].chinaName+ "：<select " + name + ' ' + id + ">" + value_data + "</select>"+ formConfig.footer;
 		}else{
-			formInput += formConfig.header + formData[i].chinaName+'：<input type="' + type + '" ' + name + ' ' + id +' ' +inputValue+ ' ' + (value != undefined ? value : "") + ' placeholder="' + placeholder+ '" />' + formConfig.footer ;
+			if(formData[i].type == "custom"){
+				formInput += formConfig.header + (formData[i].chinaName == undefined ? "" : formData[i].chinaName+'：')+ formData[i].value + formConfig.footer ;
+			}else{
+				formInput += formConfig.header + formData[i].chinaName+'：<input type="' + type + '" ' + name + ' ' + id +' ' +inputValue+ ' ' + (value != undefined ? value : "") + ' placeholder="' + placeholder+ '" />' + formConfig.footer ;
+			}
 		}
 	};
 	formInput =  formInput + "</table>" + "</form>";

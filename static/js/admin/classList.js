@@ -106,9 +106,67 @@ var editCourse = function(){
 			showAlert(res.error, 'danger');
 		}
 	});
+} , addCourseGod = function(){
+	var _this = this;
+	$.ajax({
+		url : "api/admin_api/add_god_from_course",
+		data : {"id":_this.id, "godName" : $("#js-godName").val()},
+		method: 'POST',
+		dataType : "JSON",
+	}).then(function(msg){
+		console.log(msg);
+		if (msg.status) {
+			showAlert("添加上课大神成功！","success");
+			setTimeout(function(){
+				location.reload();
+			},1000);
+		} else {
+			showAlert(msg.error, 'danger');
+		}
+	});
 }
+
+
+$(".confirm").on('click', '.closeTag', function(event) {
+	var _this = this;
+	$.ajax({
+		url : "api/admin_api/remove_godList",
+		dataType:"json",
+		method:"post",
+		data:{"course_id":window.id , "id":$(_this).parents().data('id')}
+	}).then(function(msg){
+		if(msg.status){ 
+			$(_this).parent().remove();
+			if($(".js-godList .tag").length <= 0){
+				$(".js-godList").html("<p style='color:#aaa'>这个课程还没有来上课的大神</p>")
+			}
+			showAlert("删除大神成功，点击添加上课大神按钮可以继续添加大神！", "success");
+		}else{
+			showAlert(msg.error , "danger");
+		}
+	});
+});
+
+$(".confirm").on('click', '.js-editCourseGod', function(event) {
+	var formData = new Array();
+	formData.push({
+		"chinaName" : "大神名称",
+		"id" : "js-godName",
+		"placeholder" : "请输入大神的用户名"
+	});
+	input({
+		"title" : "为课程添加大神",
+		"id" : $parents.data('id'),
+		"content" : commit(formData , {"submitFunctionName" : "addCourseGod()" , "header" : "<tr><td>" , "footer" : "</tr></td>"}),
+		"success" : addCourseGod
+	});
+});
+
+
 $(".edit-slider").click(function(){
 	$parents = $(this).parents().parents().eq(0);
+	window.id = $parents.data("id");
+
 	var formData = new Array();
 	formData.push({
 		"chinaName" : "课程名称" , 
@@ -137,14 +195,47 @@ $(".edit-slider").click(function(){
 			{"value":"4" , "name" : "android"}
 		]
 	});
-	formData[2].data[$parents.data('listtype')].selected = "selected";
-	input({
-		"title" : "编辑该课程",
-		"id" : $parents.data('id'),
-		"content" : commit(formData , {"submitFunctionName" : "addClass()" , "header" : "<tr><td>" , "footer" : "</tr></td>"}),
-		"success" : editCourse
+	formData.push({
+		"chinaName" : "上课大神" , 
+		"type" : "custom", 
+		"value" : "<button type='button' class='js-editCourseGod'><i class='fa fa-plus-circle'></i>添加上课大神</button>"
 	});
-	return false;
+	var tagList = "";
+	var getCourse = $.ajax({
+		url : "api/admin_api/get_god_from_course",
+		method: 'POST',
+		data : {id : $parents.data('id')},
+		dataType : "JSON",
+	}).then(function(msg){
+		var jsonCourseGodList = JSON.parse(msg.data);
+		for (var index = 0; index < jsonCourseGodList.length; index ++) {
+			tagList += "<a href='javascript:;' class='tag' data-id='"+jsonCourseGodList[index].id+"'>"+jsonCourseGodList[index].nickname+"<span class='closeTag'>X</span></a>";
+		};
+		if(tagList.length<=0){
+			tagList = "<p style='color:#aaa'>这个课程还没有来上课的大神！</p>";
+		}
+		formData.push({
+			"type" : "custom", 
+			"value" : "<div class='js-godList'>"+tagList+"</div>"
+		})
+		var dataIndex = 0;
+		switch($parents.data('listtype')){
+			case "Android" : dataIndex = 0;break;
+			case "Cocos2d-x" : dataIndex = 1;break;
+			case "Web" : dataIndex = 2;break;
+			case "Swift" : dataIndex = 3;break;
+			case "u3d" : dataIndex = 4;break;
+		}
+		formData[2].data[dataIndex] .selected = "selected";
+		input({
+			"title" : "编辑该课程",
+			"id" : $parents.data('id'),
+			"content" : commit(formData , {"submitFunctionName" : "addClass()" , "header" : "<tr><td>" , "footer" : "</tr></td>"}),
+			"success" : editCourse
+		});
+	});
+		return false;
+
 });
 
 

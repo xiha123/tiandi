@@ -77,6 +77,7 @@
 - teacher 是否为讲师
 - key 一个随机的字符串（长度随机）用来激活邮箱或找回密码等操作，该字符串不是永久固定的
 - email_activa 邮箱是否激活了
+- course 用来存放大神用户所开课程，JSON数组
 
 ### class_guide
 
@@ -146,6 +147,7 @@
 - description 课程描述
 - site 课程的一些设置
 - steps 课程对应的步骤，JSON数组，按照 id 排序，顺序为步骤顺序
+- god 该课程由那些大神上课，JSON数组
 
 
 

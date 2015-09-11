@@ -18,6 +18,66 @@ class admin_api extends base_api {
         $this->me = $this->admin_model->check_login();
     }
 
+
+    public function remove_godList(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("course_id" , "id"));if(empty($params))return; extract($params);
+        if(!$this->course_model->is_exist(array("id" => $course_id))) parent::finish(false , "您欲删除的课程不存在请检查");
+        $course = $this->course_model->get(array("id" => $course_id));
+
+        $course_god = $this->remove_json_v($course['god'] , $id);
+        if($this->course_model->edit($course_id , array("god" => $course_god))){
+            parent::finish(true);
+        }else{
+            parent:finish(false , "服务器异常，请稍候再试");
+        }
+    }
+    /**
+     * 给大神用户添加课程
+     * @param  $[id] [<description>]
+     * @param  $[godName] [<description>]
+     */
+    public function add_god_from_course(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("id" , "godName"));if(empty($params))return; extract($params);
+
+        //is exist 
+        if(!$this->user_model->is_exist(array("nickname" => $godName , "type" => 1))) parent::finish(false , "您输入的用户不存在，或者该用户不是大神，请检查后再输入！");
+        if(!$this->course_model->is_exist(array("id" => $id))) parent::finish(false , "您要添加的课程不存在");
+
+        //get data
+        $me = $this->user_model->get(array("nickname" => $godName));
+        $course = $this->course_model->get(array("id" => $id));
+        $course = $this->add_json($course['god'] , $me['id']);
+
+        if($this->course_model->edit($id , array("god" => $course)) === false) parent::finish(false , "服务器异常，请稍候再试");
+
+        $course_user = json_decode($me['course'] , true);
+        if(count($course_user) > 3) parent::finish(false , "该用户所开的课程已经超过了三个，请去除其往期所开课程后再进行添加");
+        if($this->user_model->edit($me['id'] , array("course" => $this->add_json($me['course'] , $id)))){
+            parent::finish(true);
+        }else{
+            parent::finish(false , "服务器异常，请稍候再试");
+        }
+    }
+
+    /**
+     * 获得课程对应的上课大神
+     * @param [id] 
+     */
+    public function get_god_from_course(){
+        parent::require_login();
+        $params = parent::get_params('POST', array("id"));if(empty($params))return; extract($params);
+        if(!$this->course_model->is_exist(array("id" => $id))) parent::finish(false , "您欲查询的课程不存在");
+        $god_user_list = json_decode($this->course_model->get(array('id' => $id))['god']);
+        $god_user = array();
+        foreach ($god_user_list as $key => $value) {
+            array_push($god_user , $this->user_model->get(array("id" => $value) , array("nickname" , "id")));
+        }
+        echo parent::finish(true , "" , json_encode($god_user));
+    }
+
+
     /**
      * 检查管理的限制权限
      * @param nickname

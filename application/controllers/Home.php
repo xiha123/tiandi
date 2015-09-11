@@ -75,13 +75,9 @@ class Home extends CI_Controller {
 			$push_data['owner_list_count'] = $owner_list_count;
 		}
 		if($user_type == 1){
-			$temp_data = array();
-			$course_data = $this->course_model->get_list("all" , 0 , 2 , true , true);
-			foreach ($course_data as $key => $value) {
-				$value['type'] = $push_data['data'][$value['type']];
-				$temp_data[] = $value;
-			}
-			$push_data["course"] = $temp_data;
+
+			$push_data["course"] = $this->course_model->get_limit(json_decode($this->me['course']) , "id");
+
 			$push_data["recommend_list"] = $this->problem_model->get_recommend_list(0);
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
 			if(!$push_data["hot_type"]) {
@@ -93,13 +89,8 @@ class Home extends CI_Controller {
 			}
 		}
 		if($user_type == 2){
-			$temp_data = array();
-			$course_data = $this->course_model->get_list("all" , 0 , 3 , true , true);
-			foreach ($course_data as $key => $value) {
-				$value['type'] = $push_data['data'][$value['type']];
-				$temp_data[] = $value;
-			}
-			$push_data["course"] = $temp_data;
+			$push_data["course"] = $this->course_model->get_limit(json_decode($user_data["course"]) , "id");
+
 			$push_data["answer"] = $this->problem_model->get_answer($id , $push_data["page"]  , 10);
 			$push_data["answer_count"] = $this->problem_model->answer_count($id);
 		}

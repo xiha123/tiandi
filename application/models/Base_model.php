@@ -5,6 +5,12 @@ class base_model extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
+    	public function get_limit($params , $where_id){
+    		foreach ($params as $key => $value) {
+    			$this->db->where($where_id , $value);
+    		}
+		return $this->db->order_by('id', "desc")->get($this->table_name)->result_array();
+    	}
 
 	public function create($params) {
 		$this->db->insert($this->table_name, $params);
