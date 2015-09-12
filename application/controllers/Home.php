@@ -76,7 +76,7 @@ class Home extends CI_Controller {
 		}
 		if($user_type == 1){
 
-			$push_data["course"] = $this->course_model->get_limit(json_decode($this->me['course']) , "id");
+			$push_data["course"] = $this->me['course'] != "[]" ? $this->course_model->get_limit(json_decode($this->me['course']) , "id") : array();
 
 			$push_data["recommend_list"] = $this->problem_model->get_recommend_list(0);
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
@@ -89,7 +89,7 @@ class Home extends CI_Controller {
 			}
 		}
 		if($user_type == 2){
-			$push_data["course"] = $this->course_model->get_limit(json_decode($user_data["course"]) , "id");
+			$push_data["course"] = $user_data["course"] != "[]" ? $this->course_model->get_limit(json_decode($user_data["course"]) , "id") : array();
 
 			$push_data["answer"] = $this->problem_model->get_answer($id , $push_data["page"]  , 10);
 			$push_data["answer_count"] = $this->problem_model->answer_count($id);

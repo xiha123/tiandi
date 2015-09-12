@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 3)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
     <ul class="help">
