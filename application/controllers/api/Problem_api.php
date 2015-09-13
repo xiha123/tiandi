@@ -33,7 +33,6 @@ class problem_api extends base_api {
         $this->load->model('admin_model');
         $this->me = $this->admin_model->check_login();
         parent::require_login();
-
         $params = $this->get_params('POST', array('id'));
         extract($params);
 
@@ -42,7 +41,18 @@ class problem_api extends base_api {
         ))) {
             $this->finish(false, '不存在的 id');
         }
+
+        $problem_data = $this->problem_model->get(array("id" => $id));
+        if(isset($problem_data['tags']) && $problem_data['tags'] != "[]") {
+            $tags = json_decode($problem_data['tags'] , true);
+            foreach (empty($tags) ? array() : $tags as $value) {
+                $this->tag_model->edit_tag_problem_count($value['t'] , 1 , "-");
+            }
+        }
+
         $this->problem_model->remove($id);
+        $this->problem_detail_model->remove_where(array("problem_id" => $id));
+        $this->problem_comment_model->remove_where(array("problem_id" => $id));
         $this->finish(true);
     }
 
@@ -125,7 +135,7 @@ class problem_api extends base_api {
             'coinType',
             'code',
             'tags',
-            "language"
+            "language" 
         ));
         extract($params);
         $content = $_POST['content'];
@@ -179,10 +189,14 @@ class problem_api extends base_api {
         $tagTemp = array();
         if (!empty($tagArray)) {
             foreach ($tagArray as $key => $value) {
+                if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$value)){
+                    parent::finish(false , "标签中不能存在特殊字符，请检查后再提交！");
+                }
                 if(strlen($value) < 2 && strlen($value) > 12){
                     parent::finish(false , "您输入的标签太长或者太短了！");
                 }else if($this->tag_model->add_tag($this->HTML($value))){
                     $tagTemp[] = array("t" => $value);
+                    $this->tag_model->edit_tag_problem_count($value);
                 }
             }
         }

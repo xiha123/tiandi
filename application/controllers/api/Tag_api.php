@@ -23,7 +23,11 @@ class tag_api extends base_api {
         // 处理标签所对应问题的标签显示
         $tag_data = $this->tag_model->get(array("id" => $id));
         $problem_data = $this->problem_model->get_list_by_tag($tag_data['name'] , "ctime" , 0 , 0 , true , false);
-        foreach ($problem_data as &$value) {
+        foreach (count($problem_data) > 1 ? $problem_data : array() as &$value) {
+            // 处理标签下的问题数量显示问题
+            foreach (json_decode($value['tags'],true) as $tag) {
+                edit_tag_problem_count($tag['t'] , 1 , "-");
+            }
             $problem_tags_json = parent::remove_json($value['tags'] , $tag_data['name']);
             $this->problem_model->edit($value['id'] , array("tags" => $problem_tags_json));
         }

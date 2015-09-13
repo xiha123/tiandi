@@ -29,7 +29,6 @@ class god_api extends base_api {
 			"alipay" => $alipay,
 			"type" => 2,
 			"father_tag" => $tag,
-			"god_skilled_tags" => json_encode(array($tag))
 		))) {
 			$this->news_model->create(array(
 				'target' => $this->me['id'],

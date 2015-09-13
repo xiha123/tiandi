@@ -1,16 +1,5 @@
-
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
 <title>不好意思，页面找不到啦，先去首页看看吧~</title>
-<base href="http://127.168.0.1/tiandi/">
-<link rel="Shortcut Icon" href="favicon.ico">
-<link rel="stylesheet" href="static/css/global.css">
-<link rel="stylesheet" href="static/lib/fa/css/font-awesome.min.css">
-<meta name="keywords" content="游戏开发培训,手机游戏开发培训,游戏编程培训,游戏策划培训,天地培训">
-<meta name="description" content="天地培训是国内从事手机、网页游戏开发唯一专业的培训机构，Adobe认证培训中心， 天地培训起源于全球最大的网页游戏开发者学习交流社区9RIA.com天地会，携手众多知名讲师为您带来精彩社交游戏开发课程">
-<meta property="qc:admins" content="27712706474641164105105663757" />
+<?php $this->load->view('widgets/header.php'); ?>
     <style>
         html,body{
             height: 100%;
@@ -56,27 +45,9 @@
     </style>
 </head>
 <body>
-<div class="header">
-    <div class="wrapper cf">
-        <a href="./"><img class="logo" src="static/image/tiandijundaoLogo.png" height="81" width="110" alt="天地培训logo"></a>
-        <ul class="nav cf">
-            <li><a href="miaoda">秒答</a></li><li><a href="god">大神</a></li><li><a href="javascript:;">学习印记</a></li><li><a href="olclass">在线课堂</a></li><li><a href="javascript:;">精英汇</a></li>        </ul>
-    </div>
+<?php $this->load->view('widgets/nav.php'); ?>
 
-</div>
-
-<div class="showAlert">
-	<p class="aletrContent">
-
-	</p>
-</div>
-
-
-<div class="showAlert">
-	<p class="aletrContent">
-
-	</p>
-</div>
+<?php $this->load->view('widgets/windows.php' ); ?>
     <div class="box">
         <div class="content">
             <p>不好意思，页面找不到啦，先去首页看看吧~</p>

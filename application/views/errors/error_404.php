@@ -1,21 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>404</title>
+<title>不好意思，页面找不到啦，先去首页看看吧~</title>
+<?php $this->load->view('widgets/header.php'); ?>
     <style>
         html,body{
             height: 100%;
+            min-width: 1000px;
         }
         .box{
+            background: #ddf3f1;
             position: relative;
             height: 100%;
         }
-        .content{
+        .box .content{
             text-align: center;
+            background: #fff;
+            overflow: hidden;
+            height: 182px;
         }
-       .content p,
-       a{
+       .box .content p,
+       .box .content a{
            position: absolute;
            color: #209ba2;
            font-size: large;
@@ -24,36 +26,32 @@
            top: 10%;
            z-index: 99;
         }
-        .content a{
-            text-decoration: none;
-            position: absolute;
+        .box .content a{
             border: 1px solid #209ba2;
             border-radius: 21px;
             width: 133px;
             height: 26px;
-            display: inline-block;
-            color: white;
+            color: #fff;
             background-color: #209ba2;
             text-align: center;
             line-height: 26px;
-            margin-top: 16px;
+            margin-top: 0px;
             margin-left: 500px;
         }
-        img{
-            position: fixed;
-            top: 215px;
+        .box img{
+            min-width: 1000px;
         }
 
     </style>
 </head>
 <body>
+
     <div class="box">
         <div class="content">
             <p>不好意思，页面找不到啦，先去首页看看吧~</p>
-            <a href="#">返回首页</a>
+            <a href="./index.php">返回首页</a>
         </div>
-
-        <img src="../../../../static/image/404.jpg" alt="404" width="100%" height="910px"/>
+        <img src="./static/image/404.jpg" alt="404" width="100%"/>
     </div>
 </body>
 </html>

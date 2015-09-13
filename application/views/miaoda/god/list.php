@@ -51,7 +51,7 @@
 					<?php
 					$skilled_tags = json_decode($value['god_skilled_tags']);
 					foreach (count($skilled_tags) > 0 ? $skilled_tags : array() as $key => $value) {
-						echo '<a href="javascript:" class="tagBox">'.$value.'</a>';
+						echo '<a href="./tag?name='.$value.'" class="tagBox">'.$value.'</a>';
 					}
 					echo '</div></div>';
 				} ?>

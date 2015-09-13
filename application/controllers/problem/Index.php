@@ -43,6 +43,9 @@ class Index extends CI_Controller {
 				$key = "[t:" . substr(md5(rand(1000000 , 9999999)),4) . "]";
 				array_push($temp_array, $key);
 			}
+
+			$value['content'] = str_replace('&lt;p [removed] normal;&quot;&gt;', "", $value['content']);
+			$value['content'] = str_replace('&lt;span [removed] normal;&quot;&gt;', "", $value['content']);
 			$value['content'] = str_replace("white-space", "tocurd", $value['content']);
 			$value['content'] = str_replace($matches[0] , $temp_array , $value['content']);
 			foreach ($tag_list_temp as $key => $values) {
