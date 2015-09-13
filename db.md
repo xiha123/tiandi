@@ -45,7 +45,7 @@
 - nickname 昵称
 - name 真实姓名
 - email 邮箱，用作登录
-- type -1 邮箱未认证 ， 0 为学生，1 为老师，2 为申请老师审核中
+- type -1 邮箱未认证， 0 为学生，1 为老师，2 为申请老师审核中
 - avatar 头像
 - cellphone 手机号
 - description 个人描述
@@ -59,7 +59,7 @@
 - follow_users 关注的用户，id数组
 - follower_count 被多少人关注
 - followers 被哪些用户关注，id数组
-- skilled_tags 擅长的标签，JSON数组
+- skilled_tags 收藏的标签，JSON数组
 - god_skilled_tags 大神擅长的标签，JSON数组
 - alipay 支付宝账号
 - gold_coin 金币数量
@@ -72,7 +72,7 @@
 - chou 我众筹了那些问题
 - teacher 是否为讲师
 - key 一个随机的字符串（长度随机）用来激活邮箱或找回密码等操作，该字符串不是永久固定的
-- email_activa 邮箱是否激活了
+- email_active 邮箱是否激活了
 - course 用来存放大神用户所开课程，JSON数组
 
 ### class_guide

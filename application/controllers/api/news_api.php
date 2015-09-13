@@ -26,6 +26,6 @@ class News_api extends base_api {
 
     public function get_news() {
     	 parent::require_login();
-         parent::finish(true, "", $this->db->query('select * from news where ctime >= DATE_SUB(NOW(), INTERVAL 30 SECOND)')->result_array());
+         parent::finish(true, "", $this->db->query('select type from news where target = ' . $this->me['id'] . ' AND ctime >= DATE_SUB(NOW(), INTERVAL 30 SECOND)')->result_array());
     }
 }

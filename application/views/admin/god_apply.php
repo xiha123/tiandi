@@ -27,7 +27,6 @@
 						<th>金币</th>
 						<th>银币</th>
 						<th>积分</th>
-						<th>身份证</th>
 						<th>类型</th>
 						<th>操作</th>
 					</tr>
@@ -43,7 +42,6 @@
 						<td>{gold_coin}</td>
 						<td>{silver_coin}</td>
 						<td>{Integral}</td>
-						<td>{idcar}</td>
 						<td>{type}</td>
 						<td><i class="fa fa-check apply-ok"></i><i class="fa fa-remove apply-no"></i></td>
 					</tr>

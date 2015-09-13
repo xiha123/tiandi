@@ -13,9 +13,11 @@ class Admin extends CI_Controller {
 		$this->user_info = $this->admin_model->check_login();
 	}
 
-	public function fake_users() {
-		if($this->admin_model->require_login() === false) redirect('admin/login');
-		for ($i = 0; $i < 100; $i++) {
+	// 创建内部用户
+	public function fake_users($start, $end) {
+		if ($this->admin_model->require_login() === false) redirect('admin/login');
+		if (!isset($start) || !isset($end)) return;
+		for ($i = $start; $i < $end; $i++) {
 			$this->user_model->create(array(
 				"nickname" => $i,
 				"email" => $i . '@kingcraft.cc',
@@ -24,15 +26,61 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function fake_users2() {
+	public function clean_db_data() {
 		if($this->admin_model->require_login() === false) redirect('admin/login');
-		for ($i = 100; $i < 150; $i++) {
-			$this->user_model->create(array(
-				"nickname" => $i,
-				"email" => $i . '@kingcraft.cc',
-				"pwd" => 'miaoda'
-			));
+
+		// 处理 user
+		$users = $this->db->query('select * from user')->result_array();
+		foreach ($users as &$user) {
+			$is_update = false;
+
+			// 处理收藏的问题
+			$problems = json_decode($user['collect_problems']);
+			foreach ($problems as $index => $problem) {
+				if ($this->db->query('select id from problem where id=?', array( $problem->t ))->num_rows() === 0) {
+					unset($problems[$index]);
+					$user['collect_problem_count']--;
+					$is_update = true;
+				}
+			}
+			$user['collect_problems'] = json_encode($problems);
+
+			// 处理众筹的问题
+			$problems = json_decode($user['chou']);
+			foreach ($problems as $problem_id) {
+				if ($this->db->query('select id from problem where id=?', array( $problem_id ))->num_rows() === 0) {
+					unset($problems[$problem_id]);
+					$is_update = true;
+				}
+			}
+			$user['chou'] = json_encode($problems);
+
+			// 处理收藏的标签
+			$tags = json_decode($user['skilled_tags']);
+			foreach ($tags as $tag_id) {
+				if ($this->db->query('select id from tag where id=?', array( $tag_id ))->num_rows() === 0) {
+					unset($tags[$tag_id]);
+					$is_update = true;
+				}
+			}
+			$user['skilled_tags'] = json_encode($tags);
+
+			// 处理大神擅长的标签
+			$tags = json_decode($user['god_skilled_tags']);
+			foreach ($tags as $tag_id) {
+				if ($this->db->query('select id from tag where id=?', array( $tag_id ))->num_rows() === 0) {
+					unset($tags[$tag_id]);
+					$is_update = true;
+				}
+			}
+			$user['god_skilled_tags'] = json_encode($tags);
+
+			if ($is_update) {
+				$this->db->where('id', $user['id'])->update('user', $user);
+			}
 		}
+
+		echo '清理数据库成功';
 	}
 
 	public function god_apply(){
