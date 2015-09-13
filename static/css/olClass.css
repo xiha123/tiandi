@@ -1,5 +1,5 @@
-a{color:#219ba1;}
-a:link{color:#219ba1;}
+.slider-summary a{color:#219ba1;}
+.slider-summary a:link{color:#219ba1;}
 /* slider */
 .js-slider-trigger{float:left;position:absolute;bottom:10px;right:185px;}
 .js-slider-trigger li{float:left;margin-right:6px;}
