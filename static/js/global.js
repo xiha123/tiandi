@@ -151,25 +151,6 @@ $(".button").on("click" , ".uncollect" , function(){
     });
 })
 
-$(".button").on("click" , ".follow" , function(){
-    _td.api.followProblem({
-        problem_id : problem_id,
-    }).then(function() {
-            location.reload();
-    },function(res) {
-        showAlert(false, res.error);
-    });
-})
-$(".button").on("click" , ".unfollow" , function(){
-    _td.api.unfollowProblem({
-        problem_id : problem_id,
-    }).then(function() {
-            location.reload();
-    },function(res) {
-        showAlert(false, res.error);
-    });
-})
-
 $(document).on("click" , "#close_window" ,function(event) {
 	close();
 });

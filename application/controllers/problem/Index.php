@@ -86,6 +86,7 @@ class Index extends CI_Controller {
 
 		// 推送相关问题推荐 列出关键词
 		$problem_temp = array();
+		$problem_key = array();
 		foreach ($userdata['problem_data']['tags'] as $keys => $values) {
 			$problem_key[] = $values['name'];
 		}

@@ -13,7 +13,8 @@
 		problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
 		problem_type = <?=$problem_data["type"]?>,
 		max_god = <?=$god_count?>,
-		online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>;
+		online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>,
+		problem_owner = <?= $problem_data['owner_id'] ?>;
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
@@ -169,7 +170,7 @@
 						if (!empty($type) && $type == 1) { // 是大神
 							if ($problem_data['answer_id'] === $id) { // 已认领
 								echo $problem_data['type'] == 1 ? '<button id="reply">提交</button>' :"";
-							} else if (!$is_fund) { // 未认领且自己没众凑
+							} else if (!$is_fund) { // 未认领且自己没众筹
 								echo $problem_data['type'] == 0 && $problem_data['owner_id'] != @$id ? '<button id="answer">认领问题</button>' : "";
 							}
 						}
@@ -177,6 +178,7 @@
 				</div>
 			<?php } ?>
 
+			<?php if ($problem_data['type'] != 1 || ($problem_data['answer_id'] != $id && $problem_data['owner_id'] != $id)) { ?>
 				<h2 class="tishi fl">发表评论</h2>
 				<div class="doubt" style="margin-top:0px;">
 					<table class="table">
@@ -190,6 +192,7 @@
 				<div class="button">
 					<button id="ajax_comment">评论</BUTTON>
 				</div>
+			<?php } ?>
 
 			<ul class="comment-list">
 			<?php foreach ($problem_commenct as $key => $value) {

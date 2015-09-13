@@ -175,20 +175,6 @@ api:
     needs:
         - problem_id
 -
-    # 关注问题 已实现
-    url: api/problem_api/follow_problem
-    type: post
-    name: followProblem
-    needs:
-        - problem_id
--
-    # 取消关注问题 已实现
-    url: api/problem_api/unfollow_problem
-    type: post
-    name: unfollowProblem
-    needs:
-        - problem_id
--
     # 收藏问题 已实现
     url: api/problem_api/collect_problem
     type: post
@@ -210,10 +196,9 @@ api:
     needs:
         - problem_id
 -
-    # 点踩 已实现
-    url: api/problem_api/down_problem
-    type: post
-    name: downProblem
+    url: api/problem_api/get_info
+    type: get
+    name: getProblemInfo
     needs:
         - problem_id
 

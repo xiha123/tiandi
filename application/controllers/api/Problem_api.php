@@ -16,17 +16,16 @@ class problem_api extends base_api {
         $this->me = $this->user_model->check_login();
     }
 
-    public function get_online_problem(){
+    public function get_info() {
         parent::require_login();
-        $params = $this->get_params('POST' , array("problem_id"));
-        $problem = $this->problem_model->get(array("id" => $problem_id) , array("type"));
-
+        $params = $this->get_params('GET' , array("problem_id"));
+        extract($params);
+        
+        $problem = $this->problem_model->get(array("id" => $problem_id) , ("type"));
         if (!isset($problem['type'])) {
             parent::finish(false , "您尝试着获取不存在的问题");
         }
-        if ($problem['type'] != 1) {
-            parent::finish(false , "未被认领的问题");
-        }
+        parent::finish(true, '', $problem);
     }
 
     public function remove() {
@@ -135,7 +134,7 @@ class problem_api extends base_api {
             'coinType',
             'code',
             'tags',
-            "language" 
+            "language"
         ));
         extract($params);
         $content = $_POST['content'];

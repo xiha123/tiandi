@@ -34,6 +34,20 @@ if(window.problem_type == 1){
 
 var ue = UM.getEditor('editor');
 
+$(function () {
+	if (problem_type === 0 && problem_owner === _td.info.id) {
+		setInterval(function () {
+			_td.api.getProblemInfo({
+				problem_id: problem_id
+			}).then(function (res) {
+				if (res.data.type === '1') {
+					location.reload();
+				}
+			});
+		}, 3000);
+	}
+});
+
 SyntaxHighlighter.all();
 
 $("#answer").on('click' , function(event) {
