@@ -23,12 +23,15 @@ class admin_api extends base_api {
         $params = parent::get_params('POST', array("course_id" , "id"));if(empty($params))return; extract($params);
         if(!$this->course_model->is_exist(array("id" => $course_id))) parent::finish(false , "您欲删除的课程不存在请检查");
         $course = $this->course_model->get(array("id" => $course_id));
+        $user = $this->user_model->get(array("id" => $id));
+        $this->user_model->edit($user['id'] , array("course" => $this->remove_json_array($user['course'] , $course_id)));
+
 
         $course_god = $this->remove_json_v($course['god'] , $id);
         if($this->course_model->edit($course_id , array("god" => $course_god))){
             parent::finish(true);
         }else{
-            parent:finish(false , "服务器异常，请稍候再试");
+            parent::finish(false , "服务器异常，请稍候再试");
         }
     }
     /**

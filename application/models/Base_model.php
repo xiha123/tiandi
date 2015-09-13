@@ -7,7 +7,7 @@ class base_model extends CI_Model {
     }
     	public function get_limit($params , $where_id){
     		foreach ($params as $key => $value) {
-    			$this->db->where($where_id , $value);
+    			$this->db->or_where($where_id , $value);
     		}
 		return $this->db->order_by('id', "desc")->get($this->table_name)->result_array();
     	}

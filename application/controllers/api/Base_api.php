@@ -21,7 +21,40 @@ class base_api extends CI_Controller {
     }
 
 
-    // 统一json处理
+    /**
+     * 添加存数组的JSON数据
+     * @param [type]  $json [description]
+     * @param [type]  $data [description]
+     * @param boolean $type [传递过来的是否为数组]
+     * @return [JSON string]           [description]
+     */
+    public function add_json_array($json,$data,$type = true){
+        $json = $type ? json_decode($json) : $json;
+        $json = count($json) <= 0 ? array() : $json;
+        if(in_array( $data , $json)) return json_encode($json);
+        array_push($json, $data);
+        return json_encode($json);
+    }
+
+    /**
+     * 删除存数组形的JSON数据中的字段
+     * @param  [type]  $json        [description]
+     * @param  [type]  $content [description]
+     * @param  boolean $type    [传递过来的是否为数组]
+     * @return [JSON string]           [description]
+     */
+    public function remove_json_array($json,$content,$type = true){
+        $temp=array();
+        $json = $type ? json_decode($json) : $json;
+        foreach ($json as $key => $value) {
+            if($value != $content){
+                array_push($temp, $value);
+            }
+        }
+        return json_encode($temp);
+    }
+
+
     public function add_json($json,$data,$type = true){
         $json = $type ? json_decode($json) : $json;
         $json = count($json) <= 0 ? array() : $json;
