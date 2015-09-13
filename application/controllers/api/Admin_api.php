@@ -216,7 +216,6 @@ class admin_api extends base_api {
             "alipay",
             "gold_coin",
             "silver_coin",
-            "idcar",
             "type",
         ));if(empty($params)) return; extract($params);
         $id = $this->input->post("id");

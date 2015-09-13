@@ -29,6 +29,8 @@ class Tag extends CI_Controller {
 		$userdata = $this->user_model->check_login();
 
 		$userdata['tag_data'] = $this->tag_model->get_tag(0 , 1 , $name);
+		if(!isset($userdata['tag_data'])) show_404();
+
 		$page = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$userdata["page"] = $page < 1 ? '1' : $page;
 		if(count($userdata['tag_data']) <= 0) show_404();
@@ -62,7 +64,9 @@ class Tag extends CI_Controller {
 		// 大神与标签学员榜
 		$god_array = array();
 		$student_array = array();
-		$data = json_decode($this->tag_model->get(array("name" => $name))['json_who']);
+		$data = $this->tag_model->get(array("name" => $name));
+		if(!isset($data)) show_404();
+		$data = json_decode($data['json_who']);
 		foreach ($data as $key => $value) {
 			$user = $this->user_model->get_user_list(array("id"=>$value->t , "type" => 0 , "type" => 2),0,13);
 			$god = $this->user_model->get_list(array("id"=>$value->t , "type" => 1),0,5);

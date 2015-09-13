@@ -6,10 +6,11 @@ class Note extends CI_Controller {
 		$this->load->model("note_model");
 	}
 
+	
 	public function index() {
 		$this->load->library('parser');
 
 		$this->parser->parse('note/index.php', array());
 	}
 
-}
+}

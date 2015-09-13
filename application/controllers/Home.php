@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 		$this->me = $this->user_model->check_login();
 	}
 
+	/***/
 	public function index() {
 		$id = !isset($_GET['uid']) ? false : $this->input->get("uid");
 		if($id == false) show_404();
