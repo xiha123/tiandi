@@ -1,3 +1,9 @@
 .nav-pills a .fa-plus {
     margin-right:0;
 }
+.table i.fa-edit {
+    color:#219ba1;
+}
+.table i.fa-trash {
+    color:#c00;
+}

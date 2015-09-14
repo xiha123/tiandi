@@ -427,6 +427,13 @@ class Admin extends CI_Controller {
 		$course = $this->god_course_model->get_list('all');
 		$course_count = count($course);
 		$course = array_slice($course, ($page - 1) * $page_count, $page_count);
+		foreach ($course as &$item) {
+			$god = $this->user_model->get(array(
+				'id' => $item['god']
+			));
+			$item['god_nickname'] = $god['nickname'];
+			$item['god_id'] = $god['id'];
+		}
 
 		$data = array (
 			'me' => $this->user_info,

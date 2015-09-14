@@ -74,7 +74,7 @@
 - key 一个随机的字符串（长度随机）用来激活邮箱或找回密码等操作，该字符串不是永久固定的
 - email_active 邮箱是否激活了
 - course 用来存放大神用户所开课程，JSON数组
-- god_course 用来存放 god_course 表的 id，JSON 数组
+- god_course_count 用来存放 god_course 的数量，和 god_course 表中的数据一致
 
 ### class_guide
 

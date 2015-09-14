@@ -15,3 +15,14 @@ function addCourse(e) {
         showAlert(false, res.error);
     });
 }
+
+$('.js-remove-course').click(function () {
+    var course_id = $(this).parent().parent().attr('data-id');
+    _td.api.removeGodCourse({
+        id: course_id
+    }).then(function () {
+        location.reload();
+    }, function (res) {
+        showAlert(false, res.error);
+    });
+});

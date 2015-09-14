@@ -17,7 +17,7 @@
 			<?php foreach (count(json_decode($user['god_skilled_tags'])) > 0 ? json_decode($user['god_skilled_tags']) : array() as $key => $value) {
                             echo '<a href="./tag/?name='. urldecode($value).'" class="tagBox">'.$value.'</a>';
                         }?>
-			<h2 class="box-title">正在开的课程</h2>
+			<h2 class="box-title">正在开的课</h2>
 			<ul class="classList">
 				{course}
 					<li><a href="{link}" target="_blank">

@@ -46,7 +46,7 @@
 								<font><img src="static/image/look.png" class="eyes";width="24px" alt=""><?= $value['follower_count'] ?></font>
 							</p>
 							<p class="desk"><?= $value['god_description'] ?></p>
-							<p class="class">正在开的课：2门</p>
+							<p class="class">正在开的课：<?= $value['god_course_count'] ?>门</p>
 
 					<?php
 					$skilled_tags = json_decode($value['god_skilled_tags']);

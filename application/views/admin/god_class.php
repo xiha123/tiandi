@@ -38,12 +38,15 @@
         </thead>
         <tbody>
             {course}
-            <tr data-id="{id}" data-img="{img}" data-color="{color}" data-link="{link}">
+            <tr data-id="{id}" data-img="{img}" data-title="{title}" data-link="{link}">
                 <td>{title}</td>
-                <td>{img}</td>
-                <td>{link}</td>
-                <td>{god}</td>
-                <td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
+                <td><a href="{img}" target="_blank">点击预览</a></td>
+                <td><a href="{link}" target="_blank">点击预览</a></td>
+                <td><a href="home?uid={god_id}" target="_blank">{god_nickname}</a></td>
+                <td>
+					<i data-target="#edit" data-toggle="modal" class="fa fa-edit edit-user"></i>
+					<i class="fa fa-trash js-remove-course"></i>
+				</td>
             </tr>
             {/course}
         </tbody>
@@ -79,6 +82,41 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 					<button type="button" data-dismiss="modal" class="btn btn-success submit-course-add">添加</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="editLabel">编辑课程</h4>
+				</div>
+				<div class="modal-body">
+					<form id="edit-form">
+						<div class="form-group">
+							<label for="edit-form-title">标题</label>
+							<input type="text" class="form-control" name="title" id="edit-form-title" placeholder="标题">
+						</div>
+						<div class="form-group">
+							<label for="edit-form-img">图片URL</label>
+							<input type="text" class="form-control" name="img" id="edit-form-img" placeholder="图片URL">
+						</div>
+						<div class="form-group">
+							<label for="edit-form-link">链接</label>
+							<input type="text" class="form-control" name="link" id="edit-form-link" placeholder="链接">
+						</div>
+						<div class="form-group">
+							<label for="edit-form-god">所属大神</label>
+							<input type="text" class="form-control" name="god" id="edit-form-god" placeholder="所属大神昵称">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" data-dismiss="modal" class="btn btn-success submit-course-edit">修改</button>
 				</div>
 			</div>
 		</div>

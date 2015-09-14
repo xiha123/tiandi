@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2015 at 12:45 PM
+-- Generation Time: Sep 14, 2015 at 05:30 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -161,7 +161,14 @@ CREATE TABLE IF NOT EXISTS `god_course` (
   `link` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
   `title` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `god_course`
+--
+
+INSERT INTO `god_course` (`id`, `god`, `link`, `img`, `title`) VALUES
+(1, 3, 'serializeserialize', 'serializeserialize', 'serializeserialize');
 
 -- --------------------------------------------------------
 
@@ -459,18 +466,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email_active` int(11) NOT NULL,
   `course` varchar(512) NOT NULL DEFAULT '[]',
   `oauth_key` varchar(128) NOT NULL,
-  `god_course` varchar(512) NOT NULL DEFAULT '[]'
+  `god_course_count` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `agree_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_active`, `course`, `oauth_key`, `god_course`) VALUES
-(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 9999700, 0, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]', '', '[]'),
-(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', 'Cocos2D-XCocos2D-XCocos2D-XCocos2D-X', 0, 0, 0, '[]', '[]', '["web"]', 'Cocos2D-XCocos2D-X', 0, 520, 0, 0, 0, '[]', '[]', 0, 250, '', 0, 1, '[]', 0, '', 0, '[]', '', '[]'),
-(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 270, 0, 0, 0, '[]', '[]', 0, 280, '', 0, 0, '["21"]', 0, '', 0, '[]', '', '[]'),
-(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 999800, 0, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]', '', '[]');
+INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `agree_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_active`, `course`, `oauth_key`, `god_course_count`) VALUES
+(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 9999700, 0, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]', '', 0),
+(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', 'Cocos2D-XCocos2D-XCocos2D-XCocos2D-X', 0, 0, 0, '[]', '[]', '["web"]', 'Cocos2D-XCocos2D-X', 0, 520, 0, 0, 0, '[]', '[]', 0, 250, '', 0, 1, '[]', 0, '', 0, '[]', '', 0),
+(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 270, 0, 0, 0, '[]', '[]', 0, 280, '', 0, 0, '["21"]', 0, '', 0, '[]', '', 0),
+(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 999800, 0, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -605,7 +612,7 @@ ALTER TABLE `course_step`
 -- AUTO_INCREMENT for table `god_course`
 --
 ALTER TABLE `god_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `news`
 --
