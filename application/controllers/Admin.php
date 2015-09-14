@@ -418,4 +418,24 @@ class Admin extends CI_Controller {
 		));
 	}
 
+	public function god_class() {
+		if (empty($this->user_info)) redirect('admin/login');
+		$this->load->model('god_course_model');
+
+		$page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$page_count = 20;
+		$course = $this->god_course_model->get_list('all');
+		$course_count = count($course);
+		$course = array_slice($course, ($page - 1) * $page_count, $page_count);
+
+		$data = array (
+			'me' => $this->user_info,
+			'page' => $page,
+			'page_count' => $page_count,
+			'course_count' => $course_count,
+			'course' => $course,
+		);
+		$this->parser->parse('admin/god_class.php', $data);
+	}
+
 }

@@ -308,6 +308,16 @@ api:
     type: get
     name: getNews
 
+-
+    url: api/god_course_api/add
+    type: post
+    name: addGodCourse
+    needs:
+        - title
+        - img
+        - link
+        - god
+
 
 config:
     isSuccess:

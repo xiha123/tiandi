@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2015 at 05:33 AM
+-- Generation Time: Sep 14, 2015 at 12:45 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -152,6 +152,20 @@ INSERT INTO `course_step` (`id`, `title`, `img`, `description`, `level`, `course
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `god_course`
+--
+
+CREATE TABLE IF NOT EXISTS `god_course` (
+  `id` int(11) NOT NULL,
+  `god` int(11) NOT NULL,
+  `link` varchar(128) NOT NULL,
+  `img` varchar(128) NOT NULL,
+  `title` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news`
 --
 
@@ -163,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `from_id` int(11) NOT NULL DEFAULT '-1',
   `status` tinyint(2) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news`
@@ -177,7 +191,9 @@ INSERT INTO `news` (`id`, `type`, `problem_id`, `target`, `ctime`, `from_id`, `s
 (16, '402', 10, 3, '2015-08-30 17:45:11', 100, 1),
 (17, '001', -1, 2, '2015-09-08 13:13:55', -1, 1),
 (18, '001', -1, 2, '2015-09-08 13:15:03', -1, 1),
-(19, '000', -1, 5, '2015-09-11 02:54:32', -1, 1);
+(19, '000', -1, 5, '2015-09-11 02:54:32', -1, 1),
+(20, '300', 21, 4, '2015-09-13 04:31:02', -1, 0),
+(21, '200', 23, 4, '2015-09-13 15:00:20', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -234,30 +250,31 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `who` varchar(512) DEFAULT '[]',
   `online` varchar(1024) NOT NULL,
   `agree` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `problem`
 --
 
 INSERT INTO `problem` (`id`, `title`, `owner_id`, `answer_id`, `answer_time`, `details`, `comments`, `tags`, `up_count`, `collect_count`, `view_count`, `ctime`, `type`, `hot`, `collect_users`, `up_users`, `gold_coin`, `silver_coin`, `who`, `online`, `agree`) VALUES
-(6, 'asdasdasd', 2, 3, 1440947167, '[]', '[1]', '[{"t":"asd"}]', 0, 0, 0, '2015-08-30 13:55:42', 3, 3.23, '[]', '[]', 0, 100, '[]', '[{"key":865115,"time":1440947160}]', 0),
-(7, 'ttttttttttttttttttttttttt', 2, 3, 1440947376, '[]', '[]', '[{"t":"html"}]', 0, 0, 0, '2015-08-30 13:56:49', 0, 0.15, '[]', '[]', 0, 100, '[]', '[{"key":865115,"time":1440956700}]', 0),
-(8, 'ccccccccccccccccccccccccccc', 3, 0, 0, '[]', '[]', '[{"t":"html"}]', 0, 0, 0, '2015-08-30 14:42:22', 0, 0.09, '[]', '[]', 0, 100, '[]', '', 0),
-(9, 'nnnnnnnnnnnnnnnn', 2, 0, 0, '[]', '[]', '[{"t":"html"}]', 0, 0, 0, '2015-08-30 15:08:58', 0, 0.02, '[]', '[]', 0, 100, '[]', '', 0),
-(10, 'bbbbbbbbbbbbbbbbbb', 4, 3, 1440956711, '[]', '[]', '[{"t":"html"}]', 0, 0, 0, '2015-08-30 17:44:51', 3, 1.08, '[]', '[]', 0, 100, '[]', '[{"key":865115,"time":1440956705}]', 0),
-(11, 'position:absolute', 2, 0, 0, '[]', '[]', '[{"t":"position"},{"t":":absolute"}]', 0, 0, 0, '2015-09-09 08:51:07', 0, 0.11, '[]', '[]', 0, 100, '[]', '', 0),
-(12, '12321', 2, 0, 0, '[]', '[]', '[{"t":"127"}]', 0, 0, 0, '2015-09-09 09:49:20', 0, 0.36, '[]', '[]', 0, 100, '[]', '', 0),
-(13, 'cescescescescescescescescesces', 2, 0, 0, '[]', '[]', '[{"t":"\\u9996\\u9875"},{"t":"\\u6d4b\\u8bd5"},{"t":"\\u6e38\\u620f"},{"t":"\\u5168\\u90e8"}]', 0, 0, 0, '2015-09-09 15:41:30', 0, 0.53, '[]', '[]', 0, 100, '[]', '', 0),
-(14, '127127127127127127127127127127127127127127127127', 2, 0, 0, '[]', '[]', '[{"t":"127"},{"t":"168"}]', 0, 0, 0, '2015-09-09 16:02:19', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
-(15, '12712312321', 2, 0, 0, '[]', '[]', '[{"t":"123"}]', 0, 0, 0, '2015-09-09 16:02:40', 0, 0.29, '[]', '[]', 0, 100, '[]', '', 0),
-(16, '调试调试调试调试调试调试调试调试调试调试', 5, 0, 0, '[]', '[]', '[{"t":"web"},{"t":"wb"},{"t":"ds"}]', 0, 0, 0, '2015-09-11 02:54:41', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
-(17, '调试调试调试调试调试调试调试调试调试', 5, 0, 0, '[]', '[]', '[{"t":"\\u6d4b\\u8bd5"}]', 0, 0, 0, '2015-09-11 02:55:13', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
-(18, 'asdasdasdsadasdsadasdasdasdas', 5, 0, 0, '[]', '[]', '[{"t":"Web"},{"t":"webs"}]', 0, 0, 0, '2015-09-11 02:55:34', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
-(19, 'WebWebWebWebWebWeb', 5, 0, 0, '[]', '[]', '[{"t":"web"}]', 0, 0, 0, '2015-09-11 02:57:40', 0, 0.02, '[]', '[]', 0, 100, '[]', '', 0),
-(20, 'webwebwebwebwebwebwebwebwebwebwebwebweb', 5, 0, 0, '[]', '[]', '[{"t":"web"}]', 0, 0, 0, '2015-09-11 02:57:54', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
-(21, '匹配机制测试匹配匹配机制制测试匹配', 5, 0, 0, '[]', '[]', '[{"t":"\\u6d4b\\u8bd5\\u5339\\u914d"}]', 0, 0, 0, '2015-09-11 03:37:23', 0, 0.02, '[]', '[]', 0, 100, '[]', '', 0),
-(22, 'webwebwebwebwebweb2', 5, 0, 0, '[]', '[]', '[{"t":"web"}]', 0, 0, 0, '2015-09-11 03:38:28', 0, 1.17, '[]', '[]', 0, 100, '[]', '', 0);
+(6, 'asdasdasd', 2, 3, 1440947167, '[]', '[1]', '["asd"]', 0, 0, 0, '2015-08-30 13:55:42', 3, 3.25, '[]', '[]', 0, 100, '[]', '[{"key":865115,"time":1440947160}]', 0),
+(7, 'ttttttttttttttttttttttttt', 2, 3, 1440947376, '[]', '[]', '["html"]', 0, 0, 0, '2015-08-30 13:56:49', 0, 0.15, '[]', '[]', 0, 100, '[]', '[{"key":865115,"time":1440956700}]', 0),
+(8, 'ccccccccccccccccccccccccccc', 3, 0, 0, '[]', '[]', '["html"]', 0, 0, 0, '2015-08-30 14:42:22', 0, 0.09, '[]', '[]', 0, 100, '[]', '', 0),
+(9, 'nnnnnnnnnnnnnnnn', 2, 0, 0, '[]', '[]', '["html"]', 0, 0, 0, '2015-08-30 15:08:58', 0, 0.02, '[]', '[]', 0, 100, '[]', '', 0),
+(11, 'position:absolute', 2, 0, 0, '[]', '[]', '["position",":absolute"]', 0, 0, 0, '2015-09-09 08:51:07', 0, 0.11, '[]', '[]', 0, 100, '[]', '', 0),
+(12, '12321', 2, 0, 0, '[]', '[]', '["127"]', 0, 0, 0, '2015-09-09 09:49:20', 0, 0.36, '[]', '[]', 0, 100, '[]', '', 0),
+(13, 'cescescescescescescescescesces', 2, 0, 0, '[]', '[]', '["\\u9996\\u9875","\\u6d4b\\u8bd5","\\u6e38\\u620f","\\u5168\\u90e8"]', 0, 0, 0, '2015-09-09 15:41:30', 0, 0.53, '[]', '[]', 0, 100, '[]', '', 0),
+(14, '127127127127127127127127127127127127127127127127', 2, 0, 0, '[]', '[]', '["127","168"]', 0, 0, 0, '2015-09-09 16:02:19', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
+(15, '12712312321', 2, 0, 0, '[]', '[]', '["123"]', 0, 0, 0, '2015-09-09 16:02:40', 0, 0.29, '[]', '[]', 0, 100, '[]', '', 0),
+(16, '调试调试调试调试调试调试调试调试调试调试', 5, 0, 0, '[]', '[]', '["web","wb","ds"]', 0, 0, 0, '2015-09-11 02:54:41', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
+(17, '调试调试调试调试调试调试调试调试调试', 5, 0, 0, '[]', '[]', '["\\u6d4b\\u8bd5"]', 0, 0, 0, '2015-09-11 02:55:13', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
+(18, 'asdasdasdsadasdsadasdasdasdas', 5, 0, 0, '[]', '[]', '["Web","webs"]', 0, 0, 0, '2015-09-11 02:55:34', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
+(19, 'WebWebWebWebWebWeb', 5, 0, 0, '[]', '[]', '["web"]', 0, 0, 0, '2015-09-11 02:57:40', 0, 0.02, '[]', '[]', 0, 100, '[]', '', 0),
+(20, 'webwebwebwebwebwebwebwebwebwebwebwebweb', 5, 0, 0, '[]', '[]', '["web"]', 0, 0, 0, '2015-09-11 02:57:54', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
+(21, '匹配机制测试匹配匹配机制制测试匹配', 5, 0, 0, '[]', '[]', '["\\u6d4b\\u8bd5\\u5339\\u914d"]', 0, 0, 0, '2015-09-11 03:37:23', 0, 0.05, '[]', '[]', 0, 150, '["4"]', '', 0),
+(22, 'webwebwebwebwebweb2', 5, 0, 0, '[]', '[]', '["web"]', 0, 0, 0, '2015-09-11 03:38:28', 0, 1.21, '[]', '[]', 0, 100, '[]', '', 0),
+(23, '月山习月山习月山习', 4, 3, 1442156420, '[]', '[2]', '[{"t":"html"}]', 0, 0, 0, '2015-09-13 14:47:43', 1, 1.2, '[]', '[]', 0, 100, '[]', '[{"key":550906,"time":1442156434},{"key":865115,"time":1442156462}]', 0),
+(24, 'qweqweqwe', 3, 0, 0, '[]', '[]', '[{"t":"web"}]', 0, 0, 0, '2015-09-14 09:40:47', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0);
 
 -- --------------------------------------------------------
 
@@ -271,14 +288,15 @@ CREATE TABLE IF NOT EXISTS `problem_comment` (
   `owner_id` int(11) NOT NULL,
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `problem_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `problem_comment`
 --
 
 INSERT INTO `problem_comment` (`id`, `content`, `owner_id`, `ctime`, `problem_id`) VALUES
-(1, '在此处输入评论asasdadadad', 3, '2015-08-30 17:42:27', 6);
+(1, '在此处输入评论asasdadadad', 3, '2015-08-30 17:42:27', 6),
+(2, '<p><span style="display: none; line-height: 0px;">‍</span><br></p>', 4, '2015-09-13 15:01:01', 23);
 
 -- --------------------------------------------------------
 
@@ -295,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL,
   `language` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `problem_detail`
@@ -320,7 +338,9 @@ INSERT INTO `problem_detail` (`id`, `content`, `type`, `owner_id`, `ctime`, `pro
 (20, '<p><br><span></span><span style="color: rgb(0, 0, 0); font-family: monospace; font-size: medium; white-space: pre-wrap;">Web</span><span style="color: rgb(0, 0, 0); font-family: monospace; font-size: medium; white-space: pre-wrap;">WebWebWebWebWebWebWeb</span></p>', 0, 5, '2015-09-11 02:57:40', 19, 'WebWebWebWebWebWeb', 'html'),
 (21, '<p><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span><span style="white-space: normal;">web</span></p>', 0, 5, '2015-09-11 02:57:54', 20, 'webwebwebwebwebwebweb', 'html'),
 (22, '<p><span></span></p><p><span><span>Web</span></span></p><p>匹配机制测试匹配匹配机制制测试匹配匹配机制测试匹配匹配机制制测试匹配<span></span></p>', 0, 5, '2015-09-11 03:37:23', 21, 'WebWebWebWebWebWebWebWebWeb', 'html'),
-(23, '<p><span style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium;">测试匹配机制测试匹配机制测试匹配机制测试匹配机制</span><br></p><p style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium; white-space: normal;"><br></p><p style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium; white-space: normal;">只有一个web标签</p><p><br></p>', 0, 5, '2015-09-11 03:38:28', 22, 'webwebwebwebwebwebweb', 'html');
+(23, '<p><span style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium;">测试匹配机制测试匹配机制测试匹配机制测试匹配机制</span><br></p><p style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium; white-space: normal;"><br></p><p style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium; white-space: normal;">只有一个web标签</p><p><br></p>', 0, 5, '2015-09-11 03:38:28', 22, 'webwebwebwebwebwebweb', 'html'),
+(24, '<p><br><span></span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span></p>', 0, 4, '2015-09-13 14:47:43', 23, '', 'html'),
+(25, '<p><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span></p>', 0, 3, '2015-09-14 09:40:47', 24, '', 'html');
 
 -- --------------------------------------------------------
 
@@ -382,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
 
 INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`, `link`) VALUES
 (4, 0, 0, 'asd', '', '[]', ''),
-(5, 0, 0, 'html', '', '[]', ''),
+(5, 0, 1, 'html', '', '[]', ''),
 (7, 0, 0, 'position', '', '[]', ''),
 (8, 0, 0, ':absolute', '', '[]', ''),
 (9, 0, 0, '127', '', '[]', ''),
@@ -390,7 +410,7 @@ INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`, `link`)
 (11, 0, 0, '测试', '', '[]', ''),
 (12, 0, 0, '游戏', '', '[]', ''),
 (13, 0, 0, '全部', '', '[]', ''),
-(16, 0, 0, 'web', '', '[]', ''),
+(16, 0, 1, 'web', '', '[]', ''),
 (17, 0, 0, 'wb', '', '[]', ''),
 (18, 0, 0, 'ds', '', '[]', ''),
 (19, 0, 0, 'webs', '', '[]', ''),
@@ -437,18 +457,20 @@ CREATE TABLE IF NOT EXISTS `user` (
   `teacher` int(11) NOT NULL,
   `key` varchar(256) NOT NULL,
   `email_active` int(11) NOT NULL,
-  `course` varchar(512) NOT NULL DEFAULT '[]'
+  `course` varchar(512) NOT NULL DEFAULT '[]',
+  `oauth_key` varchar(128) NOT NULL,
+  `god_course` varchar(512) NOT NULL DEFAULT '[]'
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `agree_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_active`, `course`) VALUES
-(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 9999700, 0, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]'),
-(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 620, 0, 0, 0, '[]', '[]', 0, 150, '', 0, 1, '[]', 0, '', 0, '[]'),
-(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 400, 0, 0, 0, '[]', '[]', 0, 100, '', 0, 0, '[]', 0, '', 0, '[]'),
-(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 999800, 0, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]');
+INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `agree_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_active`, `course`, `oauth_key`, `god_course`) VALUES
+(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 9999700, 0, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]', '', '[]'),
+(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', 'Cocos2D-XCocos2D-XCocos2D-XCocos2D-X', 0, 0, 0, '[]', '[]', '["web"]', 'Cocos2D-XCocos2D-X', 0, 520, 0, 0, 0, '[]', '[]', 0, 250, '', 0, 1, '[]', 0, '', 0, '[]', '', '[]'),
+(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 270, 0, 0, 0, '[]', '[]', 0, 280, '', 0, 0, '["21"]', 0, '', 0, '[]', '', '[]'),
+(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 999800, 0, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]', '', '[]');
 
 --
 -- Indexes for dumped tables
@@ -488,6 +510,12 @@ ALTER TABLE `course_chapter`
 -- Indexes for table `course_step`
 --
 ALTER TABLE `course_step`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `god_course`
+--
+ALTER TABLE `god_course`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -574,10 +602,15 @@ ALTER TABLE `course_chapter`
 ALTER TABLE `course_step`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
+-- AUTO_INCREMENT for table `god_course`
+--
+ALTER TABLE `god_course`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `note`
 --
@@ -587,17 +620,17 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `problem`
 --
 ALTER TABLE `problem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `problem_comment`
 --
 ALTER TABLE `problem_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `problem_detail`
 --
 ALTER TABLE `problem_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `slide`
 --

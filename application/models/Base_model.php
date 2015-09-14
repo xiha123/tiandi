@@ -49,7 +49,7 @@ class base_model extends CI_Model {
 		return $this->db->where($params)->count_all_results($this->table_name);
 	}
 
-	public function get_list($params, $page, $count) {
+	public function get_list($params, $page = 0, $count = 20) {
 		if(isset($params['s'])){
 			unset($params['s']);
 			$type = "asc";

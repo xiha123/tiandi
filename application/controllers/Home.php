@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->model("user_model");
 		$this->load->model("problem_model");
+		$this->load->model("god_course_model");
 		$this->load->model('course_model');
 		$this->load->model("tag_model");
 		$this->me = $this->user_model->check_login();
@@ -75,9 +76,10 @@ class Home extends CI_Controller {
 			$push_data['problem_list'] = $problem_list;
 			$push_data['owner_list_count'] = $owner_list_count;
 		}
-		if($user_type == 1){
-
-			$push_data["course"] = $this->me['course'] != "[]" ? $this->course_model->get_limit(json_decode($this->me['course']) , "id") : array();
+		if($user_type == 1) {
+			$push_data['course'] = $this->god_course_model->get_list(array(
+				'god' => $user_data['id']
+			), 0, 4);
 
 			$push_data["recommend_list"] = $this->problem_model->get_recommend_list(0);
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
@@ -90,7 +92,9 @@ class Home extends CI_Controller {
 			}
 		}
 		if($user_type == 2){
-			$push_data["course"] = $user_data["course"] != "[]" ? $this->course_model->get_limit(json_decode($user_data["course"]) , "id") : array();
+			$push_data['course'] = $this->god_course_model->get_list(array(
+				'god' => $user_data['id']
+			), 0, 4);
 
 			$push_data["answer"] = $this->problem_model->get_answer($id , $push_data["page"]  , 10);
 			$push_data["answer_count"] = $this->problem_model->answer_count($id);

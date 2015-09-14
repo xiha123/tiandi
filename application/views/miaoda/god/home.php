@@ -19,16 +19,11 @@
                         }?>
 			<h2 class="box-title">正在开的课程</h2>
 			<ul class="classList">
-				<?php
-					foreach ($course as $key => $value) {
-						$temp_site = array();
-						$value['site'] = json_decode($value['site'],true);
-						foreach ($value['site'] as $key => $value_data) {
-							$temp_site[$value_data['t']] = $value_data['value'];
-						}
-						echo '<a href="./course?id='.$value['id'].'" target="_blank"><li><img src="./static/uploads/'.@$temp_site['img'].'" width="100%" height="100%"/></li></a>';
-					}
-				?>
+				{course}
+					<li><a href="{link}" target="_blank">
+						<img src="{img}" height="100%" width="100%" alt="{title}">
+					</a></li>
+				{/course}
 			</ul>
 			<a href="./godHelp" class="help">帮助说明</a>
 		</div>
