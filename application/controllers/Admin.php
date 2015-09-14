@@ -57,9 +57,9 @@ class Admin extends CI_Controller {
 
 			// 处理收藏的标签
 			$tags = json_decode($user['skilled_tags']);
-			foreach ($tags as $tag_id) {
-				if ($this->db->query('select id from tag where id=?', array( $tag_id ))->num_rows() === 0) {
-					unset($tags[$tag_id]);
+			foreach ($tags as $index => $tag) {
+				if ($this->db->query('select id from tag where id=?', array( $tag->t ))->num_rows() === 0) {
+					unset($tags[$index]);
 					$is_update = true;
 				}
 			}
@@ -80,6 +80,25 @@ class Admin extends CI_Controller {
 			}
 		}
 
+		// 处理 course
+		$courses = $this->db->query('select * from course')->result_array();
+		foreach ($courses as &$course) {
+			$is_update = false;
+
+			// 处理 tags
+			$tags = json_decode($course['tags']);
+			foreach ($tags as $index => $tag) {
+				if ($this->db->query('select id from tag where id=?', array( $tag->t ))->num_rows() === 0) {
+					unset($tags[$index]);
+					$is_update = true;
+				}
+			}
+			$course['tags'] = json_encode($tags);
+
+			if ($is_update) {
+				$this->db->where('id', $course['id'])->update('course', $course);
+			}
+		}
 		echo '清理数据库成功';
 	}
 

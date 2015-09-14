@@ -18,14 +18,15 @@ class admin_api extends base_api {
     }
 
 
-    public function remove_godList(){
+    public function remove_godList() {
         parent::require_login();
-        $params = parent::get_params('POST', array("course_id" , "id"));if(empty($params))return; extract($params);
+        $params = parent::get_params('POST', array("course_id" , "id"));
+        extract($params);
+
         if(!$this->course_model->is_exist(array("id" => $course_id))) parent::finish(false , "您欲删除的课程不存在请检查");
         $course = $this->course_model->get(array("id" => $course_id));
         $user = $this->user_model->get(array("id" => $id));
         $this->user_model->edit($user['id'] , array("course" => $this->remove_json_array($user['course'] , $course_id)));
-
 
         $course_god = $this->remove_json_v($course['god'] , $id);
         if($this->course_model->edit($course_id , array("god" => $course_god))){
@@ -34,6 +35,7 @@ class admin_api extends base_api {
             parent::finish(false , "服务器异常，请稍候再试");
         }
     }
+
     /**
      * 给大神用户添加课程
      * @param  $[id] [<description>]
@@ -428,22 +430,22 @@ class admin_api extends base_api {
 
 
 
-
-
-
 	//删除课程列表
 	public function deleteClassListTag(){
-        	   $params = parent::get_params('POST', array("fid",'id'));if(empty($params)) return;extract($params);
-               $course_data = $this->course_model->get(array("id"=>$fid));
-               $this->course_model->edit($fid,array("tags"=>$this->remove_json($course_data['tags'],$id)));
-               $this->tag_model->remove($id);
-	   parent::finish(true);
+        $params = parent::get_params('POST', array("fid",'id'));
+        extract($params);
+        $course_data = $this->course_model->get(array("id"=>$fid));
+        $this->course_model->edit($fid,array("tags"=>$this->remove_json($course_data['tags'],$id)));
+        $this->tag_model->remove($id);
+        parent::finish(true);
 	}
+
 	public function deleteClassContent(){
                 $params = parent::get_params('POST', array('id'));if(empty($params)) return;extract($params);
                 $this ->course_chapter_model -> remove($id);
                 parent::finish(true);
 	}
+
 	public function deleteSlider(){
                 $params = parent::get_params('POST', array('id'));
                 if(empty($params))return;

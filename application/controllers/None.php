@@ -7,7 +7,7 @@ class None extends CI_Controller {
 		$this->me = $this->user_model->check_login();
 	}
 
-	public function index($type = "home") {
-		$this->parser->parse('pages/QA/404' , $this->me);
+	public function index() {
+		$this->load->view('pages/QA/404');
 	}
 }

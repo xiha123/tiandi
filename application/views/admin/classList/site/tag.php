@@ -1,10 +1,10 @@
 <div class="site-box">
-	<h2><i class="fa fa-tag"></i>课程特色介绍</h2><br>
+	<h2><i class="fa fa-tag"></i>课程标签</h2><br>
 	<table class="table table-bordered">
 		<tr>
-			<th width="40%">名称</th>
-			<th width="8%">地址</th>
-			<th width="8%">操作</th>
+			<th width="80%">名称</th>
+			<th width="10%">地址</th>
+			<th width="10%">操作</th>
 		</tr>
 		{tags}
 		<tr data-id="{id}">
@@ -25,4 +25,3 @@
 	?>
 	<button class="btn btn-primary" style="float:right" id="add-classList"><i class="fa fa-tag"></i> &nbsp;&nbsp;&nbsp;添加课程特色标签</button>
 </div>
-

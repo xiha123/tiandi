@@ -9,6 +9,7 @@ class god_api extends base_api {
 		$this->load->model("news_model");
 		$this->me = $this->user_model->check_login();
 	}
+
 	public function addGodApply(){
 		parent::require_login();
 		$params = $this->get_params('POST', array( 'name','tag' , 'cellphone','description' ,'alipay'));
@@ -21,6 +22,13 @@ class god_api extends base_api {
 			$this->finish(false , "无法添加大神审核，您可能已经提交了申请大神请求！");
 		}
 
+		$skilled_tags = array(
+			'["Unity3D"]',
+			'["Swift"]',
+			'["Web"]',
+			'["Cocos2D-X"]',
+			'["Android"]',
+		);
 		$tag = $tag > 4 || $tag < 0 ? 0 : $tag;
 		if($this->user_model->edit($this->me["id"],array(
 			"name" => $name,
@@ -28,6 +36,7 @@ class god_api extends base_api {
 			"god_description" => $description,
 			"alipay" => $alipay,
 			"type" => 2,
+			"god_skilled_tags" => $skilled_tags[$tag],
 			"father_tag" => $tag,
 		))) {
 			$this->news_model->create(array(
