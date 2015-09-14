@@ -49,6 +49,7 @@
 		<div class="login-content cf">
 			<form action="" id="register">
 				<ul>
+					<li class="hidden"><input type="text" id="reg_avatar"></li>
 					<li><input type="text" placeholder="昵称" id="reg_nick"></li>
 					<li><input type="text" placeholder="邮箱" id="reg_email"></li>
 					<li><input type="password" placeholder="密码" id="reg_password_r"></li>

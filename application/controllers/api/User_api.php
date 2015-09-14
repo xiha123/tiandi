@@ -14,6 +14,19 @@ class user_api extends base_api {
         $this->server_error = "服务器繁忙，无法处理您的请求，请尝试重新操作！";
     }
 
+    public function check_oauth() {
+        $params = parent::get_params('POST', array('key'));
+        extract($params);
+
+        $user = $this->user_model->get_by_oauth($key);
+        if ($user === false) {
+            parent::finish(false);
+        } else {
+            $this->user_model->login_by_oauth($user['id']);
+            parent::finish(true);
+        }
+    }
+
     /**
     * 关注用户与取消用户关注
      * @param [user_id] [要搜索的标签索引值]
@@ -207,7 +220,8 @@ class user_api extends base_api {
     // 创建、注册用户
     public function create() {
         $this->load->helper('email');
-        $params = parent::get_params('POST', array('email', 'nickname', 'pwd'));if (empty($params)) return; extract($params);
+        $params = parent::get_params('POST', array('email', 'nickname', 'pwd', 'avatar'));
+        extract($params);
 
         if(!valid_email($email)){
             parent::finish(false, '您输入的邮箱格式不太正确，请检查后再输入！');
@@ -219,24 +233,18 @@ class user_api extends base_api {
             array("name" => "密码" , "value" => $pwd , "min" => 6 , "max" => 16),
             array("name" => "昵称" , "value" => $nickname , "min" => 4 , "max" => 16)
         ));
-
+        if ($avatar === 'none') $avatar = '';
 
         $result = $this->user_model->create(array(
             'email' => $email,
             'nickname' => $nickname,
-            'pwd' => $pwd
+            'pwd' => $pwd,
+            'avatar' => $avatar,
         ));
         if(!is_bool($result)) {
             parent::finish(false, $result);
         }
 
-        if (false === $this->user_model->create(array(
-            'email' => $email,
-            'nickname' => $nickname,
-            'pwd' => $pwd
-        ))) {
-            parent::finish(false, '用户名已存在');
-        }
         parent::finish(true);
     }
 

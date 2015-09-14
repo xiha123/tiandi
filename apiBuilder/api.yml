@@ -70,6 +70,12 @@ api:
 
 # user
 -
+    url: api/user_api/check_oauth
+    type: post
+    name: checkOauth
+    needs:
+        - key
+-
     url: api/user_api/login
     type: post
     name: loginUser
@@ -88,6 +94,7 @@ api:
         - email
         - nickname
         - pwd
+        - avatar
 -
     url: api/user_api/edits
     type: post

@@ -230,8 +230,9 @@ $("#ajax_outlogin").on('click', function(event) {
 $("#register").on('submit' , function(event) {
     event.preventDefault();
     var password = $("#reg_password").val(),
-    email = $("#reg_email").val(),
-    nick = $("#reg_nick").val();
+        email = $("#reg_email").val(),
+        nick = $("#reg_nick").val(),
+        avatar = $('#reg_avatar').val() || 'none';
 
     if(password == "" || email == "" || nick == "" ){
         showAlert(false , "您输入的账号或密码不能为空");
@@ -248,9 +249,10 @@ $("#register").on('submit' , function(event) {
 
 
     _td.api.createUser({
-        "email" : email,
-        "nickname" : nick,
-        "pwd" : password
+        email : email,
+        nickname : nick,
+        pwd : password,
+        avatar: avatar
     }).then(function() {
         if(document.getElementById("reg_god").checked){
                 showAlert(true , "注册账号成功！请继续填写详细信息，首次注册赠送500银币已到帐请注意查收！");
@@ -557,10 +559,11 @@ function gotoTop() {
     $('html, body').animate({ scrollTop: 0 }, 'fast');
 }
 
+
+// ga
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
 ga('create', 'UA-45771923-3', 'auto');
 ga('send', 'pageview');

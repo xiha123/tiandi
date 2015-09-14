@@ -9,5 +9,4 @@ class qq_cb extends CI_Controller {
     public function index() {
         $this->load->view('qq_cb');
     }
-
 }
