@@ -4,7 +4,6 @@
 <head>
 <meta charset="utf-8">
 <title>不好意思，页面找不到啦，先去首页看看吧~</title>
-<base href="http://127.168.0.1/tiandi/">
 <link rel="Shortcut Icon" href="favicon.ico">
 <link rel="stylesheet" href="static/css/global.css">
 <link rel="stylesheet" href="static/lib/fa/css/font-awesome.min.css">
