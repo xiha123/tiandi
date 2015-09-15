@@ -2,7 +2,17 @@ body{
     width:100%;
     height:100%;
 }
-
+.head-slides{
+    width: 100%;
+    height: 350px;
+    position: relative;
+}
+.head-slides img{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
 
 
 

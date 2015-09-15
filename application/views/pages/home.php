@@ -1,12 +1,12 @@
 <?php $this->load->view('widgets/header.php'); ?>
-	 head>
+	 </head>
 <body>
 
 <?php $this->load->view('widgets/nav.php'); ?>
 <body class="index">
 <div class="box">
-	<div class="header">
-		<img src="./static/image/hope.JPG" width="1980" height="" alt="编程实现梦想"class="head1" />
+	<div class="head-slides">
+		<img src="./static/image/hope.JPG" alt="编程实现梦想"class="head1" />
 	</div>
 	<div class="characters-wrap">
 		<span class="icon1"></span>
