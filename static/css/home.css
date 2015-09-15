@@ -6,11 +6,93 @@ body{
     width: 100%;
     height: 350px;
     position: relative;
+    overflow: hidden;
 }
 .head-slides img{
     position: absolute;
     left: 0;
     right: 0;
+    margin: 0 auto;
+}
+.icon1{
+    background: url("../image/icon1.png") no-repeat;
+}
+.icon2{
+    background: url("../image/icon2.png") no-repeat;
+    position: relative;
+    top: 11px;
+}
+.icon3{
+    background: url("../image/icon3.png") no-repeat;
+}
+.content1{
+    background: url("../image/appleComputer.png") no-repeat;
+    width: 378px;
+    height: 312px;
+}
+.content1-text{
+    background: url("../image/appleComputerwenzi.png") no-repeat;
+    width: 611px;
+    height: 100px;
+}
+.content2{
+    background: url("../image/aq.png") no-repeat;
+    width:447px;
+    height:384px;
+}
+.content2-text{
+    background: url("../image/aqwenzi.png") no-repeat;
+    width:429px;
+    height:114px;
+}
+
+.content3{
+    background: url("../image/Studys.png") no-repeat;
+    width:335px;
+    height:335px;
+}
+
+.content3-text{
+    background: url("../image/Studywenzi.png") no-repeat;
+    width:595px;
+    height:142px;
+}
+
+.content4{
+    background: url("../image/computer.png") no-repeat;
+    width:453px;
+    height:260px;
+}
+
+.content4-text{
+    background: url("../image/Computer2wenzi%20(2).png") no-repeat;
+    width:529px;
+    height:114px;
+}
+
+.content5{
+    background: url("../image/godlinght.png") no-repeat;
+    width:453px;
+    height:260px;
+}
+
+.content5-text{
+    background: url("../image/godlinghtwenzi.png") no-repeat;
+    width:436px;
+    height:316px;
+}
+.icon1,.icon2,.icon3{
+    display: inline-block;
+    width: 520px;
+    height: 116px;
+}
+.content{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+.wrap{
+    width:1000px;
     margin: 0 auto;
 }
 
