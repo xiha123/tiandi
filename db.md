@@ -54,7 +54,6 @@
 - collect_problems 收藏列表，id数组
 - ask_count 提问的数量
 - answer_count 回答的数量
-- agree_count 被满意的次数
 - follow_user_count 关注的人的数量
 - follow_users 关注的用户，id数组
 - follower_count 被多少人关注

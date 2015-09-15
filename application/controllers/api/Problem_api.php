@@ -20,7 +20,7 @@ class problem_api extends base_api {
         parent::require_login();
         $params = $this->get_params('GET' , array("problem_id"));
         extract($params);
-        
+
         $problem = $this->problem_model->get(array("id" => $problem_id) , ("type"));
         if (!isset($problem['type'])) {
             parent::finish(false , "您尝试着获取不存在的问题");
@@ -188,7 +188,7 @@ class problem_api extends base_api {
         $tagTemp = array();
         if (!empty($tagArray)) {
             foreach ($tagArray as $key => $value) {
-                if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$value)){
+                if(preg_match("/[\'.,:;*?~`!@$%^&=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$value)){
                     parent::finish(false , "标签中不能存在特殊字符，请检查后再提交！");
                 }
                 if(strlen($value) < 2 && strlen($value) > 12){
@@ -405,28 +405,24 @@ class problem_api extends base_api {
         if(!isset($problem['owner_id']) || $problem['agree'] == 1) $this->finish(false, '该问题已经不存在，请刷新页面后重试！');
         if($problem['owner_id'] !== $this->me['id']) $this->finish(false, '没有权限！');
         if($this->problem_model->edit($problem_id , array("agree" => 1))){
-            if($this->user_model->add_agree_count($this->me['id'])){
-                $this->news_model->create(array(
-                    'target' => $problem['answer_id'],
-                    'type' => '400',
-                    'problem_id' => $problem_id,
-                    'from_id' => $this->me['id']
-                ));
+            $this->news_model->create(array(
+                'target' => $problem['answer_id'],
+                'type' => '400',
+                'problem_id' => $problem_id,
+                'from_id' => $this->me['id']
+            ));
 
-                // Up agree problem
-                $up_users = json_decode($problem['up_users']);
-                array_push($up_users , array("id" => $this->me['id']));
-                $up_users = json_encode($up_users);
-                $this->problem_model->edit($problem_id , array(
-                    "up_users" => $up_users,
-                    "hot" => $problem['hot'] + 5,
-                    "up_count" => $problem['up_count'] + 1
-                ));
+            // Up agree problem
+            $up_users = json_decode($problem['up_users']);
+            array_push($up_users , array("id" => $this->me['id']));
+            $up_users = json_encode($up_users);
+            $this->problem_model->edit($problem_id , array(
+                "up_users" => $up_users,
+                "hot" => $problem['hot'] + 5,
+                "up_count" => $problem['up_count'] + 1
+            ));
 
-                parent::finish(true);
-            }else{
-             parent::finish(false , "服务器异常，请尝试重新提交请求！");
-            }
+            parent::finish(true);
         }else{
             parent::finish(false , "服务器异常，请尝试重新提交请求！");
         }

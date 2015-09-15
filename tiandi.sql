@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2015 at 05:30 PM
+-- Generation Time: Sep 15, 2015 at 04:46 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -161,14 +161,7 @@ CREATE TABLE IF NOT EXISTS `god_course` (
   `link` varchar(128) NOT NULL,
   `img` varchar(128) NOT NULL,
   `title` varchar(64) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `god_course`
---
-
-INSERT INTO `god_course` (`id`, `god`, `link`, `img`, `title`) VALUES
-(1, 3, 'serializeserialize', 'serializeserialize', 'serializeserialize');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -257,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `problem` (
   `who` varchar(512) DEFAULT '[]',
   `online` varchar(1024) NOT NULL,
   `agree` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `problem`
@@ -281,7 +274,9 @@ INSERT INTO `problem` (`id`, `title`, `owner_id`, `answer_id`, `answer_time`, `d
 (21, '匹配机制测试匹配匹配机制制测试匹配', 5, 0, 0, '[]', '[]', '["\\u6d4b\\u8bd5\\u5339\\u914d"]', 0, 0, 0, '2015-09-11 03:37:23', 0, 0.05, '[]', '[]', 0, 150, '["4"]', '', 0),
 (22, 'webwebwebwebwebweb2', 5, 0, 0, '[]', '[]', '["web"]', 0, 0, 0, '2015-09-11 03:38:28', 0, 1.21, '[]', '[]', 0, 100, '[]', '', 0),
 (23, '月山习月山习月山习', 4, 3, 1442156420, '[]', '[2]', '[{"t":"html"}]', 0, 0, 0, '2015-09-13 14:47:43', 1, 1.2, '[]', '[]', 0, 100, '[]', '[{"key":550906,"time":1442156434},{"key":865115,"time":1442156462}]', 0),
-(24, 'qweqweqwe', 3, 0, 0, '[]', '[]', '[{"t":"web"}]', 0, 0, 0, '2015-09-14 09:40:47', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0);
+(24, 'qweqweqwe', 3, 0, 0, '[]', '[]', '[{"t":"web"}]', 0, 0, 0, '2015-09-14 09:40:47', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
+(25, 'test123test123', 4, 0, 0, '[]', '[]', '[{"t":"C++"}]', 0, 0, 0, '2015-09-15 14:39:43', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0),
+(26, '标签中不能存在特殊字符，请检查后再提交', 4, 0, 0, '[]', '[]', '[{"t":"cocos2d-x"}]', 0, 0, 0, '2015-09-15 14:41:38', 0, 0.01, '[]', '[]', 0, 100, '[]', '', 0);
 
 -- --------------------------------------------------------
 
@@ -320,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `problem_detail` (
   `problem_id` int(11) NOT NULL,
   `code` text NOT NULL,
   `language` varchar(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `problem_detail`
@@ -347,7 +342,9 @@ INSERT INTO `problem_detail` (`id`, `content`, `type`, `owner_id`, `ctime`, `pro
 (22, '<p><span></span></p><p><span><span>Web</span></span></p><p>匹配机制测试匹配匹配机制制测试匹配匹配机制测试匹配匹配机制制测试匹配<span></span></p>', 0, 5, '2015-09-11 03:37:23', 21, 'WebWebWebWebWebWebWebWebWeb', 'html'),
 (23, '<p><span style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium;">测试匹配机制测试匹配机制测试匹配机制测试匹配机制</span><br></p><p style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium; white-space: normal;"><br></p><p style="color: rgb(0, 0, 0); font-family: 微软雅黑; font-size: medium; white-space: normal;">只有一个web标签</p><p><br></p>', 0, 5, '2015-09-11 03:38:28', 22, 'webwebwebwebwebwebweb', 'html'),
 (24, '<p><br><span></span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span><span style="color: rgb(102, 102, 102); font-family: STHeiti, &#39;Microsoft YaHei&#39;, arial, 宋体; font-size: 12px; line-height: 15px; white-space: normal;">月山习</span></p>', 0, 4, '2015-09-13 14:47:43', 23, '', 'html'),
-(25, '<p><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span></p>', 0, 3, '2015-09-14 09:40:47', 24, '', 'html');
+(25, '<p><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span><span style="white-space: normal;">qweqweqwe</span></p>', 0, 3, '2015-09-14 09:40:47', 24, '', 'html'),
+(26, '<p><br><span></span>test123test123test123test123</p>', 0, 4, '2015-09-15 14:39:43', 25, '', 'c'),
+(27, '<p><br><span></span><span style="color: rgb(196, 26, 22); font-family: Consolas, &#39;Lucida Console&#39;, monospace; font-size: 12px; line-height: 12px;">标签中不能存在特殊字符，请检查后再提交</span><span style="color: rgb(196, 26, 22); font-family: Consolas, &#39;Lucida Console&#39;, monospace; font-size: 12px; line-height: 12px;">标签中不能存在特殊字符，请检查后再提交</span></p>', 0, 4, '2015-09-15 14:41:38', 26, '', 'html');
 
 -- --------------------------------------------------------
 
@@ -401,7 +398,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `content` varchar(256) DEFAULT NULL,
   `json_who` varchar(256) DEFAULT '[]',
   `link` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tag`
@@ -421,7 +418,9 @@ INSERT INTO `tag` (`id`, `type`, `count`, `name`, `content`, `json_who`, `link`)
 (17, 0, 0, 'wb', '', '[]', ''),
 (18, 0, 0, 'ds', '', '[]', ''),
 (19, 0, 0, 'webs', '', '[]', ''),
-(20, 0, 0, '测试匹配', '', '[]', '');
+(20, 0, 0, '测试匹配', '', '[]', ''),
+(21, 0, 1, 'C++', '', '[]', ''),
+(22, 0, 1, 'cocos2d-x', '', '[]', '');
 
 -- --------------------------------------------------------
 
@@ -452,7 +451,6 @@ CREATE TABLE IF NOT EXISTS `user` (
   `silver_coin` int(11) NOT NULL DEFAULT '0',
   `follow_user_count` int(11) NOT NULL DEFAULT '0',
   `follower_count` int(11) NOT NULL DEFAULT '0',
-  `agree_count` int(11) NOT NULL,
   `follow_users` varchar(1024) NOT NULL DEFAULT '[]',
   `followers` varchar(1024) NOT NULL DEFAULT '[]',
   `father_tag` int(11) NOT NULL,
@@ -473,11 +471,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `agree_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_active`, `course`, `oauth_key`, `god_course_count`) VALUES
-(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 9999700, 0, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]', '', 0),
-(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', 'Cocos2D-XCocos2D-XCocos2D-XCocos2D-X', 0, 0, 0, '[]', '[]', '["web"]', 'Cocos2D-XCocos2D-X', 0, 520, 0, 0, 0, '[]', '[]', 0, 250, '', 0, 1, '[]', 0, '', 0, '[]', '', 0),
-(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 270, 0, 0, 0, '[]', '[]', 0, 280, '', 0, 0, '["21"]', 0, '', 0, '[]', '', 0),
-(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 999800, 0, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]', '', 0);
+INSERT INTO `user` (`id`, `nickname`, `name`, `pwd`, `salt`, `type`, `avatar`, `email`, `cellphone`, `description`, `god_description`, `collect_problem_count`, `ask_count`, `answer_count`, `collect_problems`, `skilled_tags`, `god_skilled_tags`, `alipay`, `gold_coin`, `silver_coin`, `follow_user_count`, `follower_count`, `follow_users`, `followers`, `father_tag`, `Integral`, `notes`, `lost_time`, `prestige`, `chou`, `teacher`, `key`, `email_active`, `course`, `oauth_key`, `god_course_count`) VALUES
+(2, '123123', '', '5e5b75a978d06450f26777ce84abd604', '30af7dba56', 0, '', 'tocurd@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 9999700, 0, 0, '[]', '[]', 0, 800, '', 0, 0, '[]', 0, 'ea619a14317d63c96988f80cb366471850799c220b1aec07d26f83f2daa28a58', 0, '[]', '', 0),
+(3, 'qweqwe', '', 'b65aab0f546c6ac1caeb8f9ac8e4e106', '30df9a354a', 1, '', 'qwe@qwe.com', '', '', 'Cocos2D-XCocos2D-XCocos2D-XCocos2D-X', 0, 0, 0, '[]', '[]', '["web"]', 'Cocos2D-XCocos2D-X', 0, 520, 0, 0, '[]', '[]', 0, 250, '', 0, 1, '[]', 0, '', 0, '[]', '', 0),
+(4, 'asdasd', '', '7ebb96173107f626ce182470170cc6f8', '340e3a500b', 0, '', 'asd@asd.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 1111070, 0, 0, '[]', '[]', 0, 580, '', 0, 0, '["21"]', 0, '', 0, '[]', '', 0),
+(5, 'tocurd', '', '7629d7f26c7cb9bcec7bd65de8ba7a1c', '24268040d9', 1, '', 'tocurd2@qq.com', '', '', '', 0, 0, 0, '[]', '[]', '[]', '', 0, 999800, 0, 0, '[]', '[]', 0, 700, '', 0, 0, '[]', 0, '', 0, '["14"]', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -612,7 +610,7 @@ ALTER TABLE `course_step`
 -- AUTO_INCREMENT for table `god_course`
 --
 ALTER TABLE `god_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `news`
 --
@@ -627,7 +625,7 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `problem`
 --
 ALTER TABLE `problem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `problem_comment`
 --
@@ -637,7 +635,7 @@ ALTER TABLE `problem_comment`
 -- AUTO_INCREMENT for table `problem_detail`
 --
 ALTER TABLE `problem_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `slide`
 --
@@ -647,7 +645,7 @@ ALTER TABLE `slide`
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `user`
 --

@@ -26,6 +26,16 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function make_tag_lowercase() {
+		if($this->admin_model->require_login() === false) redirect('admin/login');
+
+		$tags = $this->db->query('select * from tag')->result_array();
+		foreach ($tags as &$tag) {
+			$tag['name'] = strtolower($tag['name']);
+			$this->db->where('id', $tag['id'])->update('tag', $tag);
+		}
+	}
+
 	public function clean_db_data() {
 		if($this->admin_model->require_login() === false) redirect('admin/login');
 
