@@ -110,7 +110,8 @@ html{background: none}
 .content.footer ul{width:auto;margin:0 auto;display: block;overflow: hidden; text-align: center;}
 .content.footer li{float: left;}
 
-.content.footer .footer-nav a{color:#666;margin-right:10px;font-size:14px;position:relative;top:5px;}
+.content.footer .footer-nav{margin-top:8px;}
+.content.footer .footer-nav a{color:#666;margin-right:10px;font-size:14px;}
 
 .content.footer .friend {border:1px solid #ddd;border-right:none;border-left:none;padding:10px 0px;margin-top:20px;}
 .content.footer .friend span , .friend a{color:#aaa;margin-right: 10px;}

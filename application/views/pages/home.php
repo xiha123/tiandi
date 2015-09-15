@@ -59,9 +59,9 @@
 		<div class="wrap">
 			<div class="footer-logo">
 				<a  href="javascript:;">淘宝</a>
-				<a href="javascript:;">微博</a>
+				<a href="javascript:;">新浪微博</a>
 				<a href="javascript:;">微信</a>
-				<a href="javascript:;">腾讯</a>
+				<a href="javascript:;">腾讯QQ</a>
 			</div>
 			<div class="footer-nav">
 				<a href="javascript:;">关于我们</a>
@@ -112,8 +112,7 @@
 	function scroll(){
 		scrollTop = $initLogo.offset().top - $(window).scrollTop();
 		if(scrollTop < windowHeight - 100 && scrollType){
-			$initLogo.eq(0).css({"opacity" : "1"});
-			$initLogo.eq(0).find(".text").animate({"margin-top" : "70px"});
+			$initLogo.eq(0).css({"opacity" : "1"}).find(".text").animate({"margin-top" : "70px"});
 			$initLogo.eq(0).find(".contentLogo").animate({"margin-top" : "0px"} , 700);
 			infoIndex++;
 			scrollType = infoIndex >= 5 ? false : true;
