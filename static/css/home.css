@@ -4,7 +4,7 @@ body{
 }
 .head-slides{
     width: 100%;
-    height: 350px;
+    height: 400px;
     position: relative;
     overflow: hidden;
 }
@@ -14,19 +14,10 @@ body{
     right: 0;
     margin: 0 auto;
 }
-.icon1{
-    background: url("../image/icon1.png") no-repeat;
-}
-.icon2{
-    background: url("../image/icon2.png") no-repeat;
-    position: relative;
-    top: 11px;
-}
-.icon3{
-    background: url("../image/icon3.png") no-repeat;
-}
+
 .content1{
     background: url("../image/appleComputer.png") no-repeat;
+    background-size: 90%;
     width: 378px;
     height: 312px;
 }
@@ -38,6 +29,7 @@ body{
 .content2{
     background: url("../image/aq.png") no-repeat;
     width:447px;
+    background-size: 77%;
     height:384px;
 }
 .content2-text{
@@ -48,6 +40,7 @@ body{
 
 .content3{
     background: url("../image/Studys.png") no-repeat;
+    background-size: 83%;
     width:335px;
     height:335px;
 }
@@ -59,7 +52,10 @@ body{
 }
 
 .content4{
+    margin-top:30px;
+    margin-right:-50px;
     background: url("../image/computer.png") no-repeat;
+    background-size: 87%;
     width:453px;
     height:260px;
 }
@@ -86,15 +82,39 @@ body{
     width: 520px;
     height: 116px;
 }
+
+.content .wrap.icon li{position:relative;top:15px;float: left;width: 333.3px;}
+.content .wrap.icon .center{position:relative;top:26px;}
+.content .text{margin-top:140px;}
+.content .contentLogo{margin-top:40px;}
+html{background: none}
+
+.content.hr{background:#ebf2f2;}
 .content{
     width: 100%;
+    overflow: hidden;
+    padding:30px 0;
+    height: 275px;
     margin: 0 auto;
-    margin-top: 30px;
 }
 .wrap{
+    transition:opacity 0.8s;
     width:1000px;
     margin: 0 auto;
 }
+
+
+/* footer */
+.content.footer {text-align: center;height:auto;}
+.content.footer .bottom{margin-top:20px;color:#aaa;}
+.content.footer ul{width:auto;margin:0 auto;display: block;overflow: hidden; text-align: center;}
+.content.footer li{float: left;}
+
+.content.footer .footer-nav a{color:#666;margin-right:10px;font-size:14px;position:relative;top:5px;}
+
+.content.footer .friend {border:1px solid #ddd;border-right:none;border-left:none;padding:10px 0px;margin-top:20px;}
+.content.footer .friend span , .friend a{color:#aaa;margin-right: 10px;}
+.content.footer a:hover{color:#219ba1;}
 
 
 
