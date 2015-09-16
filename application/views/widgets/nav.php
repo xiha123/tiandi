@@ -49,8 +49,8 @@
             <?php
                 if(isset($nickname)){
             ?>
-                    <img src="<?=$avatar?>" height="25" width="25" alt="avatar"><?=$nickname?>
-                    <font class="news-number"><?=$news_nuw <= 0 ? "" : "($news_nuw)"?></font>
+                    <img src="<?=$avatar?>" height="25" width="25" alt="avatar">
+                    <span><?=$nickname?><font class="news-number"><?=$news_nuw <= 0 ? "" : "($news_nuw)"?></font></span>
                     <ul class="user-menu seconds">
                         <li><a href="./home?uid=<?=$id?>&home=index">个人中心</a></li>
                         <?php

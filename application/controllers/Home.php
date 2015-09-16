@@ -81,14 +81,31 @@ class Home extends CI_Controller {
 				'god' => $user_data['id']
 			), 0, 4);
 
-			$push_data["recommend_list"] = $this->problem_model->get_recommend_list(0);
+			$recommend_list = $this->problem_model->get_recommend_list(0);
+			$push_data["recommend_list"]  = $recommend_list;
+
 			$push_data["hot_type"] = isset($_GET['ok']) ? true : false;
-			if(!$push_data["hot_type"]) {
-				$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"]-1, 5,0);
-				$push_data["problem_list_count"] = $this->problem_model->get_count(array("type" => 0));
-			} else {
+			if($push_data["hot_type"]) {
 				$push_data["news_problem"] = $this->problem_model->get_answer($id , $push_data["page"], 5);
 				$push_data["problem_list_count"] = $this->problem_model->answer_count($id);
+			} else {
+				$news_problems = $this->db->query('select * from problem where type = 0 order by id desc')->result_array();
+				foreach ($recommend_list as $p) {
+					foreach ($news_problems as $index => $new_p) {
+						if ($p['id'] == $new_p['id']) {
+							unset($news_problems[$index]);
+						}
+					}
+				}
+				$push_data["problem_list_count"] = count($news_problems);
+				$news_problems = array_slice($news_problems, ($push_data['page'] - 1) * 5, 5);
+				foreach($news_problems as &$item) {
+					$item['ctime'] = date("H:i:s",strtotime($item['ctime']));
+					$item['tags'] = $this->tag_model->get_list_by_json($item['tags']);
+				}
+				$push_data["news_problem"] = $news_problems;
+				//$push_data["news_problem"] = $this->problem_model->get_list_by_time($push_data["page"] - 1, 5, 0);
+				//$push_data["problem_list_count"] = $this->problem_model->get_count(array("type" => 0));
 			}
 		}
 		if($user_type == 2){

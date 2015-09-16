@@ -7,7 +7,7 @@
 <body class="index">
 <div class="box">
 	<div class="head-slides">
-		<img src="./static/image/hope.JPG" alt="编程实现梦想"class="head1" />
+		<img src="./static/image/hope.jpg" alt="编程实现梦想"class="head1" />
 	</div>
 	<div class="content">
 		<div class="wrap icon">
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 
-	
+
 	<!-- footer -->
 	<div class="content footer">
 		<div class="wrap">
@@ -88,8 +88,8 @@
 <script>
 	$wrap = $(".a , .b , .c , .d , .e");
 	$wrap.css({"opacity" : "0"});
-	var infoIndex = 0 , 
-		$initLogo = $(".contentLogo").eq(infoIndex).parents() , 
+	var infoIndex = 0 ,
+		$initLogo = $(".contentLogo").eq(infoIndex).parents() ,
 		windowHeight = $(window).height()
 		tempArray = [],
 		contentCount = $(".contentLogo").length,
@@ -105,7 +105,7 @@
 		})
 	})($);
 
-	$(document).scroll(function(){ 
+	$(document).scroll(function(){
 		scroll();
 	});
 
