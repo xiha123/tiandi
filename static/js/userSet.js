@@ -1,12 +1,12 @@
-$("#activa").click(function(event) {
+$("#active-email").click(function(event) {
 	$.ajax({
-		"url" : "api/user_api/activa_email",
+		"url": "api/user_api/active_email",
 	}).then(function(msg){
 		data = JSON.parse(msg);
-		if(data.status ==true) {
-			showAlert(true , "激活邮件已经发送到了您的邮箱中了，请注意查收！");
+		if(data.status == true) {
+			showAlert(true, "激活邮件已经发送到了您的邮箱中了，请注意查收！");
 		} else {
-			showAlert(false,data.error);
+			showAlert(false, data.error);
 		}
 	});
 });

@@ -25,6 +25,6 @@ class Index extends CI_Controller {
 		$this->email->subject('test title');
 		$this->email->message('test content');
 		$this->email->send();
-		var_dump($this->email->print_debugger(array('headers', 'subject', 'body')));
+		var_dump($this->email->print_debugger(array('headers')));
 	}
 }
