@@ -92,7 +92,6 @@ html{background: none}
 .content.hr{background:#ebf2f2;}
 .content{
     width: 100%;
-    overflow: hidden;
     padding:30px 0;
     height: 275px;
     margin: 0 auto;
@@ -110,9 +109,14 @@ html{background: none}
 .content.footer ul{width:auto;margin:0 auto;display: block;overflow: hidden; text-align: center;}
 .content.footer li{float: left;}
 
-.content.footer .footer-nav{margin-top:8px;}
+.content.footer .footer-nav{margin-top:18px;}
 .content.footer .footer-nav a{color:#666;margin-right:10px;font-size:14px;}
-.content.footer .footer-logo img{margin-right:10px;}
+
+
+.content.footer .footer-logo {width:288px;position:relative;left:40px; height:40px;margin: 0 auto;}
+.content.footer .footer-logo a{display:block;width:42px;float:left;margin-right:10px;position:relative;}
+.content.footer .footer-logo .weChatCode{display:none;border:1px solid #eee;position:absolute;width:150px;height:150px;z-index:1024;left:-65px;box-shadow: 0px 4px 21px -6px #999;top:-150px;}
+
 
 .content.footer .friend {border:1px solid #ddd;border-right:none;border-left:none;padding:10px 0px;margin-top:20px;}
 .content.footer .friend span , .friend a{color:#aaa;margin-right: 10px;}

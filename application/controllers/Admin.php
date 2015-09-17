@@ -8,9 +8,15 @@ class Admin extends CI_Controller {
 		$this->load->model('admin_model' );
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
-    	$this->load->model('course_chapter_model');
-    	$this->load->model('user_model');
+    		$this->load->model('course_chapter_model');
+    		$this->load->model('user_model');
 		$this->user_info = $this->admin_model->check_login();
+	}
+
+	public function videoAdministrator(){
+		$data['me'] = $this->user_info;
+		
+		$this->load->view("admin/videoAdministrator/index" , $data);
 	}
 
 	// 创建内部用户

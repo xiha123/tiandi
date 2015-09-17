@@ -62,6 +62,13 @@
 					"active" => false,
 					"name" => "admin_user"
 				),
+				array(
+					"title" => "视频管理",
+					"link" => "admin/videoAdministrator",
+					"icon" => "fa fa-film",
+					"active" => false,
+					"name" => "admin_user"
+				),
 			);
 			if($me['type'] == 1){
 				$json_limit =  json_decode($me['limit']);
