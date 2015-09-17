@@ -66,7 +66,7 @@
 			<div class="footer-nav">
 				<a href="javascript:;">关于我们</a>
 				<a href="javascript:;">人才招聘</a>
-				<a href="javascript:;">讲师招募</a>
+				<a href="javascript:;">讲师招聘</a>
 				<a href="javascript:;">联系我们</a>
 			</div>
 		</div>
