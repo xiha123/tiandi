@@ -1,15 +1,10 @@
 <?php
 	$this->load->view('widgets/header.php');
 	$active = 'class="active"';
-	@$follow_users = json_decode($follow_users);
-	function check_follow($follow_users , $user_id){
-		if($follow_users == ""){return false;}
-		foreach ($follow_users as $key => $value) {
-			if($value[0] == $user_id){
-				return true;
-			}
-		}
-		return false;
+	$follow_users = json_decode($follow_users);
+
+	function check_follow($follow_users, $user_id) {
+		return in_array($user_id, $follow_users);
 	}
 ?>
 <link rel="stylesheet" href="./static/css/miaoda/god.css">
@@ -32,7 +27,7 @@
 					if ($value['id'] == @$id) {
 						$button = '<button disabled="disabled" style="background:#ccc">自己</button>';
 					} else {
-						$button =  check_follow($follow_users,$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
+						$button = check_follow($follow_users, $value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
 					} ?>
 
 					<div class="data fl">

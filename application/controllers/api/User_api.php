@@ -33,33 +33,42 @@ class user_api extends base_api {
      * @param [key] [要搜索的标签索引值]
     */
     public function eye(){
-        parent::require_login();$params = parent::get_params('POST', array('user_id' , 'type'));if(empty($params)) return; extract($params);
+        parent::require_login();
+        $params = parent::get_params('POST', array('user_id' , 'type'));
+        extract($params);
+
         if($this->me['id'] == $user_id) parent::finish(false,"您无法关注自己！");
         if(!$this->user_model->is_exist(array("id" => $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
+
+/* 这个不是传入的 type 参数的意思么
         $follow_type = false;
-        foreach (json_decode($this->me['follow_users']) as $key => $value) {
-            if($value[0] == $user_id){
+        foreach (json_decode($this->me['follow_users']) as $value) {
+            if($value == $user_id){
                 $follow_type = true;
                 break;
             }
         }
-        $from_user = $this->user_model->get(array("id" => $user_id));
-        $follow_users = !$follow_type ? $this->add_json($this->me['follow_users'] , array($user_id)) : $this->remove_json_v($this->me['follow_users'] , $user_id);
-        if($this->user_model->edit($this->me['id'],array("follow_users" => $follow_users))){
-             if($follow_type){
-                $this->user_model->edit($user_id,array("follower_count" => $from_user['follower_count'] - 1));
-            }else{
-                $this->user_model->edit($user_id,array("follower_count" => $from_user['follower_count'] + 1));
-                $this->news_model->create(array(
-                    'target' => $user_id,
-                    'from_id' => $this->me['id'],
-                    'type' => '500'
-                ));
-            }
-            parent::finish(true);
-        }else{
+*/
+
+        $target_user = $this->user_model->get(array(
+            "id" => $user_id
+        ));
+        //$follow_users = !$follow_type ? $this->add_json($this->me['follow_users'] , array($user_id)) : $this->remove_json_v($this->me['follow_users'] , $user_id);
+        $follow_users = $type === 'true' ? $this->add_json($this->me['follow_users'], $user_id) : $this->remove_json_v($this->me['follow_users'], $user_id);
+        if (!$this->user_model->edit($this->me['id'], array("follow_users" => $follow_users))) {
             parent::finish(false, "服务器异常！");
         }
+        if (!$type) {
+            $this->user_model->edit($user_id, array("follower_count" => $target_user['follower_count'] - 1));
+        } else {
+            $this->user_model->edit($user_id, array("follower_count" => $target_user['follower_count'] + 1));
+            $this->news_model->create(array(
+                'target' => $user_id,
+                'from_id' => $this->me['id'],
+                'type' => '500'
+            ));
+        }
+        parent::finish(true);
     }
 
 

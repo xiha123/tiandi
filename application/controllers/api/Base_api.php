@@ -55,23 +55,22 @@ class base_api extends CI_Controller {
     }
 
 
-    public function add_json($json,$data,$type = true){
+    public function add_json($json, $data, $type = true){
         $json = $type ? json_decode($json) : $json;
         $json = count($json) <= 0 ? array() : $json;
-        if(in_array( $data , $json)) return json_encode($json);
+        if(in_array($data , $json)) return json_encode($json);
         array_push($json, $data);
         return json_encode($json);
     }
 
-    public function remove_json_v($json,$content,$type = true){
-        $temp=array();
+    public function remove_json_v($json, $data, $type = true){
         $json = $type ? json_decode($json) : $json;
-        foreach ($json as $key => $value) {
-            if($value != $content){
-                array_push($temp, $value);
+        foreach ($json as $index => $value) {
+            if ($value == $data) {
+                unset($json[$index]);
             }
         }
-        return json_encode($temp);
+        return json_encode($json);
     }
 
     public function remove_json($json,$input,$type = true){

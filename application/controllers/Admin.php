@@ -15,7 +15,7 @@ class Admin extends CI_Controller {
 
 	public function videoAdministrator(){
 		$data['me'] = $this->user_info;
-		
+
 		$this->load->view("admin/videoAdministrator/index" , $data);
 	}
 
@@ -116,6 +116,23 @@ class Admin extends CI_Controller {
 			}
 		}
 		echo '清理数据库成功';
+	}
+
+	public function clean_follow_user() {
+		$users = $this->db->query('select * from user')->result_array();
+		foreach ($users as $user) {
+			$json = json_decode($user['follow_users']);
+			$result = array();
+			foreach ($json as $data) {
+				$result[] = is_array($data) ? $data[0] : $data;
+			}
+			$this->db->where('id', $users['id'])->update('user', array(
+				'follow_users' => json_encode($result),
+				'follow_user_count' => count($result),
+			));
+		}
+
+		echo '更新完成用户 follow 数据';
 	}
 
 	public function god_apply(){
