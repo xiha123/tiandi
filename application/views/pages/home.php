@@ -66,7 +66,7 @@
 			<div class="footer-nav">
 				<a href="javascript:;">关于我们</a>
 				<a href="javascript:;">人才招聘</a>
-				<a href="javascript:;">人才招聘</a>
+				<a href="javascript:;">讲师招募</a>
 				<a href="javascript:;">联系我们</a>
 			</div>
 		</div>
@@ -117,7 +117,7 @@
 	function scroll(){
 		scrollTop = $initLogo.offset().top - $(window).scrollTop();
 		if(scrollTop < windowHeight - 100 && scrollType){
-			$initLogo.eq(0).css({"opacity" : "1"}).find(".text").animate({"margin-top" : "70px"});
+			$initLogo.eq(0).css({"opacity" : "1"}).find(".text").animate({"margin-top" : infoIndex === 2 ? "30px" : "70px"});
 			$initLogo.eq(0).find(".contentLogo").animate({"margin-top" : "0px"} , 700);
 			infoIndex++;
 			scrollType = infoIndex >= 5 ? false : true;

@@ -1,0 +1,23 @@
+.navbar {
+    margin-bottom:0;
+    min-height:auto;
+    padding:5px;
+}
+.table {
+    margin:0;
+}
+.table .fa {
+    margin:0 0 0 5px;
+}
+.table i.fa-edit {
+    color:#219ba1;
+}
+.table i.fa-trash {
+    color:#c00;
+}
+
+.upload{position:relative;width:103px;}
+.upload button{outline:none;}
+.upload i{margin-right: 4px;}
+.upload .uploadFile{position:absolute;top:0px;left:0px;outline:none;opacity:0;cursor:pointer; display:block;width:100%;height:100%;}
+
