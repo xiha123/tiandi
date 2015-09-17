@@ -58,10 +58,10 @@
 	<div class="content footer">
 		<div class="wrap">
 			<div class="footer-logo">
-				<a  href="javascript:;">淘宝</a>
-				<a href="javascript:;">新浪微博</a>
-				<a href="javascript:;">微信</a>
-				<a href="javascript:;">腾讯QQ</a>
+				<a  href="https://tdpx.taobao.com/index.htm" target="_blank"><img src="./static/image/tao.png" alt=""></a>
+				<a  href="http://weibo.com/tiandipeixun/" target="_blank"><img src="./static/image/sina.png" alt=""></a>
+				<a  href="javascript:;"><img src="./static/image/wechat.png" alt=""></a>
+				<a  href="http://sighttp.qq.com/authd?IDKEY=eb5646f63901b8a68ccaea689999acaa5bceaab20544f22b" target="_blank"><img src="./static/image/bottom_qq.png" alt=""></a>
 			</div>
 			<div class="footer-nav">
 				<a href="javascript:;">关于我们</a>
@@ -72,11 +72,10 @@
 		</div>
 		<div class="friend">
 			<span>友情链接：</span>
-			<a href="javascript:;">9RIA天地会</a>
-			<a href="javascript:;">腾讯课堂</a>
-			<a href="javascript:;">EasyAS3</a>
-			<a href="javascript:;">TDLabs</a>
-			<a href="javascript:;">Sirius2D</a>
+			<a href="http://www.9ria.com/" target="_blank">9RIA天地会</a>
+			<a href="http://ke.qq.com/" target="_blank">腾讯课堂</a>
+			<a href="http://tdlabs.ca/" target="_blank">TDLabs</a>
+			<a href="http://tdlabs.ca/" target="_blank">Sirius2D</a>
 		</div>
 		<p class="bottom">Copyright © 2015 天地培训. All Rights Reserved 浙ICP备09080888号</p>
 
