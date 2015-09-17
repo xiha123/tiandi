@@ -7,7 +7,7 @@
 <body class="index">
 <div class="box">
 	<div class="head-slides">
-		<img src="./static/image/hope.jpg" alt="编程实现梦想"class="head1" />
+		<img src="./static/image/hopepage.jpg" alt="编程实现梦想"class="head1" />
 	</div>
 	<div class="content">
 		<div class="wrap icon">
