@@ -1,11 +1,6 @@
 <?php $this->load->view('widgets/header.php');
-	function check_follow($follow_users , $user_id){
-		foreach ($follow_users as $key => $value) {
-			if($value[0] == $user_id){
-				return true;
-			}
-		}
-		return false;
+	function check_follow($follow_users, $user_id) {
+		return in_array($user_id, $follow_users);
 	}
 ?>
 <link rel="stylesheet" href="./static/css/miaoda/tacher.css">
@@ -15,7 +10,6 @@
 	$this->load->view('widgets/windows.php' );
 ?>
 	<div class="wrapper">
-
 
 		<div class="tacher-data home">
 			<img src="<?=$user['avatar']?>" alt="" class="pic">
@@ -27,18 +21,14 @@
 
 		<div class="tacher-tag ">
 			<h2>收藏标签：</h2>
-			<?php
-				if($user['skilled_tags']== array()){
+			<?php if(count($user['skilled_tags']) == 0){
 					echo '<p class="not">还没有收藏标签</p>';
-				}else{
-					foreach ($user['skilled_tags'] as $key => $value) {
-						echo '<a href="./tag/?name='.urlencode($value['name']).'"  target="_blank" class="tag-box">'.$value['name'].'</a>';
-					}
+			} else {
+				foreach ($user['skilled_tags'] as $key => $value) {
+					echo '<a href="./tag/?name='.urlencode($value['name']).'"  target="_blank" class="tag-box">'.$value['name'].'</a>';
 				}
-			?>
+			} ?>
 		</div>
-
-
 
 		<div class="tacher-why">
 			<div class="tab"  >
@@ -70,15 +60,15 @@
 						<?php }	}else{
 							foreach ($problem_list as $key => $value) {
 								$value['avatar'] = $value['avatar'] == "" ? "static/image/default.jpg" : $value['avatar'];
-								$button =  check_follow(json_decode($user['follow_users']),$value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
+								$button =  check_follow(json_decode($user['follow_users']), $value['id']) ? '<button id="ajax_uneye" data-id="' . $value['id'] . '"> 取消关注 </button>' : '<button id="ajax_eye" data-id="' . $value['id'] . '"> <font>+</font> 关注</button>';
 								echo '<div class="data fl">
 									<div class="left_box">
 										<a href="./home?uid=' . $value['id'] . '" target="_blank"><img src="' . $value['avatar'] . '" alt="" class="pic"></a>
 										'.$button.'
 									</div>
 									<div class="right_box">
-											<p class="name"><a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['nickname'] . '</a><font><img src="static/image/good.png" alt="" width="13px">0</font><font><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font> </p>
-											<p class="desk">' . $value['god_description'] . '</p>';
+										<p class="name"><a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['nickname'] . '</a><font class="fr"><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font></p>
+										<p class="desk">' . $value['god_description'] . '</p>';
 								$skilled_tags = json_decode($value['god_skilled_tags']);
 								foreach (count($skilled_tags) > 0 ? $skilled_tags : array() as $key => $value) {
 									echo '<a href="javascript:" class="tagBox">'.$value.'</a>';

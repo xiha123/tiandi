@@ -136,7 +136,16 @@
 										<option value="2" <?=$temp_data['language'] == 2 ? 'selected=""' : ""?>>C++</option>
 										<option value="3" <?=$temp_data['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
 										<option value="4" <?=$temp_data['language'] == 4 ? 'selected=""' : ""?>>java</option>
-										<option value="5" <?=$temp_data['language'] == 5 ? 'selected=""' : ""?>>其他</option>
+										<option value="5" <?=$_SESSION['problem_temp']['language'] == 5 ? 'selected=""' : ""?>>C#</option>
+										<option value="6" <?=$_SESSION['problem_temp']['language'] == 6 ? 'selected=""' : ""?>>unity-3d</option>
+										<option value="7" <?=$_SESSION['problem_temp']['language'] == 7 ? 'selected=""' : ""?>>swift</option>
+										<option value="8" <?=$_SESSION['problem_temp']['language'] == 8 ? 'selected=""' : ""?>>web</option>
+										<option value="9" <?=$_SESSION['problem_temp']['language'] == 9 ? 'selected=""' : ""?>>cocos2d-x</option>
+										<option value="10" <?=$_SESSION['problem_temp']['language'] == 10 ? 'selected=""' : ""?>>android</option>
+										<option value="11" <?=$_SESSION['problem_temp']['language'] == 11 ? 'selected=""' : ""?>>lua</option>
+										<option value="12" <?=$_SESSION['problem_temp']['language'] == 12 ? 'selected=""' : ""?>>css</option>
+										<option value="13" <?=$_SESSION['problem_temp']['language'] == 13 ? 'selected=""' : ""?>>objective-c</option>
+										<option value="14" <?=$_SESSION['problem_temp']['language'] == 14 ? 'selected=""' : ""?>>其他</option>
 									</select>
 									<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"><?=$temp_data['code']?></textarea>
 								</div>

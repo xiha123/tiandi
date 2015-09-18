@@ -1,12 +1,6 @@
 $(function () {
 	var ue = UM.getEditor('editor');
 
-	$('.Language').bind('change', function () {
-		var tag = $('.Language').children('option[value="' + this.value + '"]').text();
-        if (tag === '请选择问题方向') return;
-		$('.js-tag-box').trigger('add', tag);
-	});
-
 	$("#ajax_problemSubmit").on("click", function() {
 		var title = $("#problem-title").val(),
 			content = ue.getContent(),
@@ -30,6 +24,7 @@ $(function () {
 		$.each($(".tag .tag-box"), function(index, val) {
 			jsonArr.push($(val).find("font").text());
 		});
+		jsonArr.push($('.Language').children('option[value="' + $('.Language').val() + '"]').text());
 		jsonText = JSON.stringify(jsonArr);
 
 		_td.api.createProblem({
