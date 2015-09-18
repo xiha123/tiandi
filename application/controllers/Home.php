@@ -154,6 +154,12 @@ class Home extends CI_Controller {
 			'email_active' => 1,
 			'silver_coin' => 'silver_coin + 300'
 		));
+
+		$this->load->model('news_model');
+		$this->news_model->create(array(
+			'target' => $this->me['id'],
+			'type' => '002'
+		));
 		redirect('userset');
 	}
 

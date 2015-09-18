@@ -27,7 +27,14 @@
         <input type="text" placeholder="昵 称" id="ajax_nickname"  value="<?=$nickname?>"/>
         <textarea name="" id="signature" cols="30" rows="10" id="ajax_description" placeholder="签名档"><?=$description?></textarea>
         <h3 class="information">账户设置</h3>
-        <p class="email">邮箱: <?= $email ?><a href="javascript:;" class="fr red" id="active-email">未激活（点击激活）</a></p>
+        <p class="email">
+            <span>邮箱: <?= $email ?></span>
+            <?php if ($email_active == 1) { ?>
+            <a href="javascript:;" class="fr">已激活</a>
+            <?php } else { ?>
+            <a href="javascript:;" class="fr red" id="active-email">未激活（点击激活）</a>
+            <?php } ?>
+        </p>
         <input type="text" placeholder="手机号码" value="<?=$cellphone?>" id="ajax_phone"/>
         <h3 class="information">账户设置</h3>
 
