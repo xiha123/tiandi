@@ -51,8 +51,8 @@ class Home extends CI_Controller {
 				$problem_list = array();
 				//$love_user = array_slice($love_user, ($push_data["page"] - 1) * 6 , 6);
 				foreach ($love_user as $value) {
-					//array_push($problem_list, $this->user_model->get(array("id" => $value)));
-                    $problem_list[] = $this->user_model->get(array('id' => $value));
+					//$this->user_model->get(array("id" => $item['answer_id']) , array("nickname"))
+                    		$problem_list[] = $this->user_model->get(array('id' => $value));
 				}
 				$push_data['hot'] = "&love=love";
 
