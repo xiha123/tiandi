@@ -7,7 +7,7 @@
 <?php
 	$this->load->view('widgets/windows.php');
 	if (!isset($_SESSION['problem_temp'])) {
-		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => 0 , "problem_id");
+		$_SESSION['problem_temp'] = array('type'=>"", "title"=>"","content"=>"","tags"=>"[]","code"=>"" , "language" => -1 , "problem_id");
 	}
 ?>
 <div class="windows">
@@ -38,6 +38,7 @@
 					<script id="editor" type="text/plain" style="color:#333;width:980px;height:200px;"><?=$_SESSION['problem_temp']['content']?></script>
 					<div class="code-box">
 						<select class="Language">
+							<option value="-1" <?=$_SESSION['problem_temp']['language'] == -1 ? 'selected=""' : ""?>>请选择问题方向</option>
 							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>
 							<option value="1" <?=$_SESSION['problem_temp']['language'] == 1 ? 'selected=""' : ""?>>php</option>
 							<option value="2" <?=$_SESSION['problem_temp']['language'] == 2 ? 'selected=""' : ""?>>C++</option>

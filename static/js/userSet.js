@@ -1,13 +1,8 @@
 $("#active-email").click(function(event) {
-	$.ajax({
-		"url": "api/user_api/active_email",
-	}).then(function(msg){
-		data = JSON.parse(msg);
-		if(data.status == true) {
-			showAlert(true, "激活邮件已经发送到了您的邮箱中了，请注意查收！");
-		} else {
-			showAlert(false, data.error);
-		}
+	_td.api.activeEmail().then(function () {
+		showAlert(true, "激活邮件已经发送到了您的邮箱中了，请注意查收！");
+	}, function (res) {
+		showAlert(false, res.error);
 	});
 });
 $("#ajax_userSet").click(function(){

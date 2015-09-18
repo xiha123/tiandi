@@ -70,6 +70,10 @@ api:
 
 # user
 -
+    url: api/user_api/active_email
+    type: get
+    name: activeEmail
+-
     url: api/user_api/check_oauth
     type: post
     name: checkOauth

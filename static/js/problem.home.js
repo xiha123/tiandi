@@ -3,6 +3,7 @@ $(function () {
 
 	$('.Language').bind('change', function () {
 		var tag = $('.Language').children('option[value="' + this.value + '"]').text();
+        if (tag === '请选择问题方向') return;
 		$('.js-tag-box').trigger('add', tag);
 	});
 
@@ -19,6 +20,10 @@ $(function () {
 		}
 		if(ue.getContentTxt().length < 10 ){
 			showAlert(false, "再多打几个字吧，您的描述实在是太短了！");
+			return false;
+		}
+		if ($('.Language').val() === '-1') {
+			showAlert(false, "请选择问题方向");
 			return false;
 		}
 

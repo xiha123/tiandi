@@ -71,7 +71,7 @@
 - chou 我众筹了那些问题
 - teacher 是否为讲师
 - key 一个随机的字符串（长度随机）用来激活邮箱或找回密码等操作，该字符串不是永久固定的
-- email_active 邮箱是否激活了
+- email_active 邮箱是否激活了 0 未激活，1激活
 - course 用来存放大神用户所开课程，JSON数组
 - oauth_key 第三方登录后账号关联的凭证，头像地址for qq
 - god_course_count 用来存放 god_course 的数量，和 god_course 表中的数据一致

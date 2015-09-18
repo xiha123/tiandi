@@ -137,4 +137,24 @@ class Home extends CI_Controller {
 		$this->parser->parse("miaoda/" . $file_name , $push_data);
 	}
 
+	public function active($key = '') {
+		if ($key === '') show_404();
+		if ($this->me === false) show_404();
+
+		if ($this->me['key'] !== $key) {
+			echo '无效激活码';
+			return;
+		}
+		if ($this->me['email_active'] == 1) {
+			echo '该账户已激活';
+			return;
+		}
+
+		$this->user_model->edit($this->me['id'], array(
+			'email_active' => 1,
+			'silver_coin' => 'silver_coin + 300'
+		));
+		redirect('userset');
+	}
+
 }
