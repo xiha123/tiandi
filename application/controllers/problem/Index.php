@@ -11,7 +11,13 @@ class Index extends CI_Controller {
 		$this->load->model("user_model");
 		$this->load->model("tag_model");
 	}
-
+	private function rand_key($max){
+		$select_key = "!@#$%^&*()~";$return_data="";
+		for($index = 0; $index < $max;$index++){
+			$return_data .= $select_key[rand(0 , 10)];
+		}
+		return $return_data;
+	}
 	public function index(){
 		if(!isset($_GET['p']) || $_GET['p'] == ""){show_404();}
 		$id = $this->input->get("p");
@@ -40,7 +46,7 @@ class Index extends CI_Controller {
 			$temp_array = array();
 			preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $matches);
 			for ($index=0; $index < count($matches[0]); $index++) {
-				$key = "[t:" . substr(md5(rand(1000000 , 9999999)),4) . "]";
+				$key = "[t:" . $this->rand_key(6) . "]";
 				array_push($temp_array, $key);
 			}
 
@@ -52,7 +58,7 @@ class Index extends CI_Controller {
 				$temp_array_two = array();
 				preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $ches);
 				for ($index=0; $index < count($matches[0]); $index++) {
-					$key_value = "[t:" . substr(md5(rand(1000000 , 9999999)),4) . "]";
+					$key_value = "[t:" . $this->rand_key(6) . "]";
 					array_push($temp_array_two, $key_value);
 				}
 				$value['content'] = str_replace($ches[0] , $temp_array_two , $value['content']);

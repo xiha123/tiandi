@@ -14,9 +14,24 @@ class Admin extends CI_Controller {
 	}
 
 	public function videoAdministrator(){
+		if($this->admin_model->require_login() === false) redirect('admin/login');
 		$data['me'] = $this->user_info;
 
-		$this->load->view("admin/videoAdministrator/index" , $data);
+		$this->load->helper('file');
+		$data['page'] = isset($_GET['page']) ? $this->input->get('page') : 1;
+
+		// Get video max count
+		$video_file = get_filenames(dirname(APPPATH)."/video/");
+		$data['video_count'] = count($video_file);
+
+		$video_list = array_slice($video_file , ($data['page'] - 1) * 10 , 10);
+		$temp_video_list = array();
+		foreach ($video_list as &$value) {
+			array_push($temp_video_list , array("name" => $value));
+		}
+		arsort($temp_video_list);
+		$data['video_list'] = $temp_video_list;
+		$this->parser->parse("admin/videoAdministrator/index" , $data);
 	}
 
 	// 创建内部用户

@@ -1,7 +1,7 @@
 <?php
 include_once(APPPATH . 'controllers/api/Base_api.php');
 
-class Upload extends base_api {
+class Upload extends Base_api {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');

@@ -4,7 +4,7 @@
  * 提供基本的检测和数据获取，返回的数据为JSON格式
  * 再加需求就活剥了你们 - 来自程序员们的怨念
  */
-class base_api extends CI_Controller {
+class Base_api extends CI_Controller {
     public function __construct() {
         parent::__construct();
         // 非ajax请求拒绝

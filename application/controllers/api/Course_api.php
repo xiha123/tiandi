@@ -2,7 +2,7 @@
 
 include_once(APPPATH . 'controllers/api/Base_api.php');
 
-class course_api extends base_api {
+class Course_api extends Base_api {
     public function __construct() {
         parent::__construct();
         $this->load->model('course_model');

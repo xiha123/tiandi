@@ -2,7 +2,7 @@
 
 include_once(APPPATH . 'controllers/api/Base_api.php');
 
-class user_api extends base_api {
+class User_api extends Base_api {
     public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
@@ -129,6 +129,7 @@ class user_api extends base_api {
 
     // 抹杀掉一个用户
     public function remove_user(){
+        parent::require_login();
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
         $this->user_model->remove($id);
         $this->problem_model->delete_user($id);
@@ -142,17 +143,18 @@ class user_api extends base_api {
 
 
     public function collect_tag(){
+        parent::require_login();
         $params = parent::get_params('POST', array('id'));if(empty($params)) return; extract($params);
         if($this->tag_model->collect_tag($id)){
             $this->tag_model->plus($id);
             $this->tag_model->add_user_tag($id);
-
             $this->finish(true);
         }else{
             $this->finish(false,"操作失败！");
         }
     }
     public function uncollect_tag(){
+        parent::require_login();
         $params = parent::get_params('POST', array('id'));
         extract($params);
         if($this->tag_model->uncollect_tag($id)){
