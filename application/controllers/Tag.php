@@ -79,6 +79,7 @@ class Tag extends CI_Controller {
 		}
 		$userdata['student'] = $student_array;
 		$userdata['god'] = $god_array;
+		print_r($userdata);
 
 		$this->parser->parse("miaoda/tag/home.php" , $userdata);
 	}
