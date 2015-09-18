@@ -44,14 +44,15 @@ class Home extends CI_Controller {
 		$push_data["page"] = $page < 1 ? '1' : $page;
 
 		if($user_type == 0){
-			if($push_data['love']){
+			if($push_data['love']) {
 				$push_data['follow_type'] = true;
-				$love_user = json_decode($push_data['user']['follow_users']);
+				$love_user = json_decode($user_data['follow_users']);
 				$owner_list_count = count($love_user);
 				$problem_list = array();
-				$love_user = array_slice($love_user, ($push_data["page"] - 1) * 6 , 6);
-				foreach ($love_user as $key => $value) {
-					array_push($problem_list, $this->user_model->get(array("id" => $value[0])));
+				//$love_user = array_slice($love_user, ($push_data["page"] - 1) * 6 , 6);
+				foreach ($love_user as $value) {
+					//array_push($problem_list, $this->user_model->get(array("id" => $value)));
+                    $problem_list[] = $this->user_model->get(array('id' => $value));
 				}
 				$push_data['hot'] = "&love=love";
 
