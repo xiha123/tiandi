@@ -68,7 +68,11 @@
 					</div>
 					<ul class="list">
 						{class}
-							<li class="{li_class} {float}" data-title="{title}" data-index='{class}' data-img='{img}' data-level='{level}'><h3>Step {step}</h3><p>{description}</p>{type}</li>
+							<li class="{li_class} {float}" data-description="{description}" data-title="{title}" data-index='{class}' data-img='{img}' data-level='{level}'>
+								<h3>Step {step}</h3>
+								<p>{title}</p>
+								{type}
+							</li>
 						{/class}
 					</ul>
 				</div>

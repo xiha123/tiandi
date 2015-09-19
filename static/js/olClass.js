@@ -8,7 +8,7 @@ $(document).on('click', '.list li', function(event) {
 	$(".windows").show();
 	$box.show();
 	$box.find("img").attr("src" , "static/uploads/" + $(this).data("img"));
-	$box.find(".content").text($(this).find("p").text());
+	$box.find(".content").text($(this).attr("data-description"));
 	$box.find(".level i").remove();
 	$box.find("#titleName").text($(this).data('title'));
 	for (var index = 0;index < $(this).data('level');index ++) {
