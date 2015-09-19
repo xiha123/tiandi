@@ -69,9 +69,9 @@
 									<?php
 										if(isset($value['tags'])){
 											foreach ($value['tags'] as $key => $values) {
-                                                if (isset($values['name'])) {
-                                                    echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
-                                                }
+					                                                if (isset($values['name'])) {
+					                                                    echo '<li><a href="./tag/?name='.urlencode($values['name']).'"  target="_blank" class="tag-box">'.$values['name'].'</a></li>';
+					                                                }
 											}
 										}
 									?>
@@ -79,9 +79,9 @@
 								<?php if ($hot_type == 'love') {
 									$man = $this->db->where('id', $value['owner_id'])->get('user')->row_array();
 								?>
-								<div class="list-date"><?= $man['nickname'] ?>提问于：<?=$value['ctime']?></div>
+								<div class="list-date"><?php echo $man['nickname'] ?>提问于：<?=$value['ctime']?></div>
 								<?php } else {
-									$man = $this->db->where('id', $value['answer_id'])->get('user')->row_array();
+									$man = $value['answer_id'];
 								?>
 								<div class="list-date"><?= $man['nickname'] ?>回答于：<?=$value['ctime']?></div>
 								<?php } ?>

@@ -37,15 +37,15 @@ class Tag extends CI_Controller {
 
 		switch ($problem_type) {
 			case 'hot':
-				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "hot", $userdata['page'] - 1);
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "hot", $userdata['page'] - 1 , 10);
 				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name , array("who !=" => "[]"));
 				break;
 			case 'love':
-				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "chou", $userdata['page'] - 1);
-				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name , array("up_count >=" => 1));
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , "not", $userdata['page'] - 1 , 10);
+				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name , array("type" => 0));
 				break;
 			default:
-				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type, $userdata['page'] - 1);
+				$userdata['tag_list'] = $this->problem_model->get_list_by_tag($name , $type, $userdata['page'] - 1 , 10);
 				$userdata['problem_list_count'] = $this->problem_model->get_list_by_tag_count($name);
 				break;
 		}
