@@ -128,7 +128,7 @@ class Home extends CI_Controller {
 		function custom_sort($a, $b) {
 			return $b['id']  - $a['id'];
 		}
-		if (!empty($push_data['problem_list'])) {
+		if ($push_data['owner']) {
 			$fund_list = $this->problem_model->get_json($user_data['chou']);
 			$push_data['problem_list'] = array_merge($push_data['problem_list'], $fund_list);
 			usort($push_data['problem_list'], "custom_sort");

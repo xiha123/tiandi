@@ -122,7 +122,7 @@
 								</ul>
 
 								<?php if ($value['type'] >= 2) { ?>
-								<div class="list-date">大神<?=$value['answer_id']['nickname']?>回答于：<?=date("H:i:s",$value['answer_time'])?></div>
+								<div class="list-date"><?=$value['answer_id']['nickname']?>回答于：<?=date("H:i:s",$value['answer_time'])?></div>
 								<?php } else {
 									$owner = $this->user_model->get(array(
 										'id' => $value['owner_id']

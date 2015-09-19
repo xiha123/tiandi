@@ -8,6 +8,25 @@
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 
+<div class="windows">
+	<div class="confirm" id="confirm">
+		<div class="confirm-title">
+			<h2>您确定参与众筹吗？</h2>
+			<a href="javascript:void(0)" class="close" id="close_window"><i class="fa fa-close"></i></a>
+		</div>
+		<div class="confirm-content">
+			<div class="con">
+				<p>您确定参与众筹吗？</p>
+				<p>参与众筹后将会扣除您50银币，该操作无法反悔！您确定那么做吗</p>
+			</div>
+		</div>
+		<div class="confirm-bottom">
+			<button class="btn btn-danger button_ok">确定</button>
+			<button class="btn btn-default" id="close_window">取消</button>
+		</div>
+	</div>
+</div>
+
 	<div class="wrapper">
 		<div class="left-content">
 
@@ -30,11 +49,19 @@
 					<li <?php if($hot_type == "hot"){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>&hot=hot">热门</a></li>
 					<li <?php if($hot_type == "love"){echo 'class="active"';} ?>><a href="./tag/?name=<?=$tag_data['name']?>&love=love">未答</a></li>
 				</ul>
-				<ul class="list-data tab-sheet  js-tab-sheet">
+				<ul class="list-data tab-sheet js-tab-sheet">
 					<ul class="list-data">
-						<?php if(isset($tag_list[0]['id'])){ foreach ($tag_list as $key => $value) { ?>
+						<?php if(isset($tag_list[0]['id'])) {
+						foreach ($tag_list as $key => $value) {
+							if ($hot_type != 'love' && empty($value['answer_id'])) continue; ?>
 							<li data-id="<?=$value['id']?>">
+								<?php if ($hot_type != 'love') { ?>
 								<div class="link-num ajax_up"><p class="upCount"><?=$value['up_count']?></p><p>点赞</p></div>
+								<?php } else {
+									$fund_count = count(json_decode($value['who']));
+								?>
+								<div class="link-num js_chou" data-id="<?= $value['id'] ?>"><p class="upCount"><?= $fund_count ?></p><p>众筹</p></div>
+								<?php } ?>
 								<div class="list-title">
 									<a href="./problem/?p=<?=$value['id']?>" target="_blank"><?=$value['title']?></a>
 								</div>
@@ -49,7 +76,15 @@
 										}
 									?>
 								</ul>
-								<div class="list-date"> 提问于：<?=$value['ctime']?></div>
+								<?php if ($hot_type == 'love') {
+									$man = $this->db->where('id', $value['owner_id'])->get('user')->row_array();
+								?>
+								<div class="list-date"><?= $man['nickname'] ?>提问于：<?=$value['ctime']?></div>
+								<?php } else {
+									$man = $this->db->where('id', $value['answer_id'])->get('user')->row_array();
+								?>
+								<div class="list-date"><?= $man['nickname'] ?>回答于：<?=$value['ctime']?></div>
+								<?php } ?>
 							</li>
 						<?php }} ?>
 					</ul>

@@ -138,10 +138,10 @@ class Admin extends CI_Controller {
 		foreach ($users as $user) {
 			$json = json_decode($user['follow_users']);
 			$result = array();
-			foreach ($json as $data) {
+			foreach ($json as $index => $data) {
 				$result[] = is_array($data) ? $data[0] : $data;
 			}
-			$this->db->where('id', $users['id'])->update('user', array(
+			$this->db->where('id', $user['id'])->update('user', array(
 				'follow_users' => json_encode($result),
 				'follow_user_count' => count($result),
 			));

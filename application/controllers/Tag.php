@@ -68,7 +68,7 @@ class Tag extends CI_Controller {
 		if(!isset($data)) show_404();
 		$data = json_decode($data['json_who']);
 		foreach ($data as $key => $value) {
-			$user = $this->user_model->get_user_list(array("id"=>$value->t , "type" => 0 , "type" => 2),0,13);
+			$user = $this->user_model->get_user_list(array("id"=>$value->t , "type" => 0 , "type" => 2), 0, 10);
 			$god = $this->user_model->get_list(array("id"=>$value->t , "type" => 1),0,5);
 			if($god != array()){
 				array_push($god_array , $god);
@@ -77,9 +77,8 @@ class Tag extends CI_Controller {
 				array_push($student_array ,$user );
 			}
 		}
-		$userdata['student'] = $student_array;
-		$userdata['god'] = $god_array;
-		print_r($userdata);
+		$userdata['student'] = array_unique($student_array);
+		$userdata['god'] = array_unique($god_array);
 
 		$this->parser->parse("miaoda/tag/home.php" , $userdata);
 	}
