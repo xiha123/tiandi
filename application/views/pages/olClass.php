@@ -14,7 +14,7 @@
 		<img src="" width="480" height="275">
 		<div class="title">
 			<div class="close fr"></div>
-			<h2>重点一</h2>
+			<h2 id="titleName">重点一</h2>
 			<div class="level">
 				<h3>难度</h3>
 				 <!--<i class="fa fa-star"></i> -->
@@ -68,7 +68,7 @@
 					</div>
 					<ul class="list">
 						{class}
-							<li class="{li_class} {float}" data-index='{class}' data-img='{img}' data-level='{level}'><h3>Step {step}</h3><p>{description}</p>{type}</li>
+							<li class="{li_class} {float}" data-title="{title}" data-index='{class}' data-img='{img}' data-level='{level}'><h3>Step {step}</h3><p>{description}</p>{type}</li>
 						{/class}
 					</ul>
 				</div>

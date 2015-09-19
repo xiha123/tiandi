@@ -10,6 +10,7 @@ $(document).on('click', '.list li', function(event) {
 	$box.find("img").attr("src" , "static/uploads/" + $(this).data("img"));
 	$box.find(".content").text($(this).find("p").text());
 	$box.find(".level i").remove();
+	$box.find("#titleName").text($(this).data('title'));
 	for (var index = 0;index < $(this).data('level');index ++) {
 		$box.find(".level").append('<i class="fa fa-star"></i>');
 	}
