@@ -58,7 +58,7 @@ class User_api extends Base_api {
         if (!$this->user_model->edit($this->me['id'], array("follow_users" => $follow_users))) {
             parent::finish(false, "服务器异常！");
         }
-        if (!$type) {
+        if ($type == 'false') {
             $this->user_model->edit($user_id, array("follower_count" => $target_user['follower_count'] - 1));
         } else {
             $this->user_model->edit($user_id, array("follower_count" => $target_user['follower_count'] + 1));
@@ -136,7 +136,6 @@ class User_api extends Base_api {
         $this->problem_model->delete_user($id);
         $this->problem_detail_model->delete_all($id);
         $this->problem_comment_model->delete_all($id);
-
 
         $this->finish(true);
     }
