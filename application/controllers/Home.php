@@ -152,7 +152,7 @@ class Home extends CI_Controller {
 
 		$this->user_model->edit($this->me['id'], array(
 			'email_active' => 1,
-			'silver_coin' => 'silver_coin + 300'
+			'silver_coin' => $this->me['silver_coin'] + 300
 		));
 
 		$this->load->model('news_model');

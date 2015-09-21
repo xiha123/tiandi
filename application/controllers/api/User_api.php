@@ -32,7 +32,7 @@ class User_api extends Base_api {
      * @param [user_id] [要搜索的标签索引值]
      * @param [key] [要搜索的标签索引值]
     */
-    public function eye(){
+    public function eye() {
         parent::require_login();
         $params = parent::get_params('POST', array('user_id' , 'type'));
         extract($params);
@@ -40,21 +40,14 @@ class User_api extends Base_api {
         if($this->me['id'] == $user_id) parent::finish(false,"您无法关注自己！");
         if(!$this->user_model->is_exist(array("id" => $user_id))) parent::finish(false , "您尝试着关注不存的用户，所以您无法关注他");
 
-/* 这个不是传入的 type 参数的意思么
-        $follow_type = false;
-        foreach (json_decode($this->me['follow_users']) as $value) {
-            if($value == $user_id){
-                $follow_type = true;
-                break;
-            }
-        }
-*/
-
         $target_user = $this->user_model->get(array(
             "id" => $user_id
         ));
-        //$follow_users = !$follow_type ? $this->add_json($this->me['follow_users'] , array($user_id)) : $this->remove_json_v($this->me['follow_users'] , $user_id);
-        $follow_users = $type === 'true' ? $this->add_json($this->me['follow_users'], $user_id) : $this->remove_json_v($this->me['follow_users'], $user_id);
+        if ($type == 'true') {
+            $follow_users = parent::add_json($this->me['follow_users'], $user_id);
+        } else {
+            $follow_users = parent::remove_json_v($this->me['follow_users'], $user_id);
+        }
         if (!$this->user_model->edit($this->me['id'], array("follow_users" => $follow_users))) {
             parent::finish(false, "服务器异常！");
         }

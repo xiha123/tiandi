@@ -22,7 +22,7 @@
         <h3 class="information">写下您的项目经历</h3>
         <textarea name="" id="desk" cols="30" rows="10"></textarea>
         <label>
-            <input type="checkbox" name="agree" class="agree"/>同意并接受《服务条款》
+            <input type="checkbox" name="agree" class="agree"/><a target="_blank" href="agreement/user">同意并接受《服务条款》</a>
         </label>
         <button type="button" id="ajax_apply">
             提 交<i class="fa fa-arrow-circle-right"></i>

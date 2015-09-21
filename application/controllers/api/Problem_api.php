@@ -56,8 +56,10 @@ class Problem_api extends Base_api {
     }
 
     public function online_save(){
-        $params = $this->get_params('POST', array('type' , 'content', "title" , "tags" , "code" , "language" , "problem_id"));
+        $params = $this->get_params('POST', array('type' , "title" , "tags" , "language" , "problem_id"));
         extract($params);
+        $code = $_POST['code'];
+        $content = $_POST['content'];
 
         if($type == "true"){
             // 提问在线保存处理
@@ -73,7 +75,7 @@ class Problem_api extends Base_api {
                     "owner_id" => "-1",
                     "ctime" => time(),
                     "problem_id" => $problem_id,
-                    "code" => ($code),
+                    "code" => $code,
                     "language" => $language,
                 );
                 if($this->problem_detail_model->is_exist(array("problem_id" => $problem_id , "type" => 3))){

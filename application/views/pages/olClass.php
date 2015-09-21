@@ -23,7 +23,8 @@
 		<p class="content"></p>
 	</div>
 	<div class="button">
-		<a href="<?=!isset($site['link']) ? "javascript:;" : $site['link'];?>"><button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
+		<a class="js-course-link" href=""><button>报 名 <i class="fa fa-arrow-circle-right"></i></button></a>
+		<a class="js-detail-link" href=""><button>详 情 <i class="fa fa-arrow-circle-right"></i></button></a>
 	</div>
 </div>
 </div>
@@ -68,7 +69,7 @@
 					</div>
 					<ul class="list">
 						{class}
-							<li class="{li_class} {float}" data-description="{description}" data-title="{title}" data-index='{class}' data-img='{img}' data-level='{level}'>
+							<li class="{li_class} {float}" data-link="{course_link}" data-id="{course_id}" data-description="{description}" data-title="{title}" data-index='{class}' data-img='{img}' data-level='{level}'>
 								<h3>Step {step}</h3>
 								<p>{title}</p>
 								{type}

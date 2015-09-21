@@ -39,6 +39,7 @@ class Olclass extends CI_Controller {
 				}else{
 					$value['type'] = "";
 				}
+				$value['course_link'] = $this_temp['site']['link'];
 			}
 		}
 

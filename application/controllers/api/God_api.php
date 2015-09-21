@@ -23,11 +23,11 @@ class God_api extends Base_api {
 		}
 
 		$skilled_tags = array(
-			'["Unity3D"]',
-			'["Swift"]',
-			'["Web"]',
-			'["Cocos2D-X"]',
-			'["Android"]',
+			'["unity-3d"]',
+			'["swift"]',
+			'["web"]',
+			'["cocos2d-x"]',
+			'["android"]',
 		);
 		$tag = $tag > 4 || $tag < 0 ? 0 : $tag;
 		if($this->user_model->edit($this->me["id"],array(

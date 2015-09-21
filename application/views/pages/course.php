@@ -11,11 +11,11 @@
 		<div class="fr sidebar">
 			<h2>推荐课程</h2>
 			<ul>
-				<li><a href="./course?id=0">Unity-3D</a></li>
-				<li><a href="./course?id=1">Swift</a></li>
-				<li><a href="./course?id=2">Web</a></li>
-				<li><a href="./course?id=3">Cocos2d-x</a></li>
-				<li><a href="./course?id=4">Android</a></li>
+				<li><a href="./course?id=10">Unity-3D</a></li>
+				<li><a href="./course?id=11">Swift</a></li>
+				<li><a href="./course?id=12">Web</a></li>
+				<li><a href="./course?id=13">Cocos2d-x</a></li>
+				<li><a href="./course?id=14">Android</a></li>
 			</ul>
 		</div>
 		<div class="intro fl">

@@ -18,7 +18,7 @@
 
                     array(
                         'name' => '学习印记',
-                        'link' => 'javascript:;',
+                        'link' => 'javascript:showAlert(false, \'页面暂未开放，敬请期待\');',
                         'active' => false
                     ),
 
@@ -30,7 +30,7 @@
 
                     array(
                         'name' => '精英汇',
-                        'link' => 'javascript:;',
+                        'link' => 'javascript:showAlert(false, \'页面暂未开放，敬请期待\');',
                         'active' => false
                     )
                 );

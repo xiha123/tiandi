@@ -1,3 +1,35 @@
+function setCookie(key, value, expire) {
+    var DAY = 24 * 60 * 60 * 1000,
+        now = new Date(),
+        exp = expire ? expire : 30;
+
+    now.setTime(now.getTime() + exp * DAY);
+    document.cookie = key + "=" + encodeURIComponent(value) + "; path=/" + "; expires=" + now.toGMTString();
+}
+
+function getCookie (key) {
+    var keys = document.cookie.split("; "),
+        len = keys.length, tmp;
+
+    while (len--) {
+        tmp = keys[len].split('=');
+        if (tmp[0] === key) {
+            return decodeURIComponent(tmp[1]);
+        }
+    }
+}
+
+$(function () {
+    if (_td.info.id === -1 && !getCookie('popup_once')) {
+        $('.js-popup').removeClass('hidden');
+    }
+    $('.js-close-popup').click(function () {
+        $('.js-popup').addClass('hidden')
+        setCookie('popup_once', true, 1);
+    });
+});
+
+
 // 定时获取新消息
 if (_td.info.id !== -1) {
     setInterval(function () {
@@ -255,9 +287,9 @@ $("#register").on('submit' , function(event) {
         avatar: avatar
     }).then(function() {
         if(document.getElementById("reg_god").checked){
-                showAlert(true , "注册账号成功！请继续填写详细信息，首次注册赠送500银币已到帐请注意查收！");
+                showAlert(true , "注册账号成功！请继续填写详细信息，首次注册赠送200银币已到帐！激活邮箱再送300银币！");
         }else{
-                showAlert(true , "注册账号成功！首次注册赠送500银币已到帐请注意查收！");
+                showAlert(true , "注册账号成功！首次注册赠送200银币已到帐！激活邮箱再送300银币！");
         }
         setTimeout(function(){
             if(document.getElementById("reg_god").checked){

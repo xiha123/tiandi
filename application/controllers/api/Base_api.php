@@ -65,12 +65,13 @@ class Base_api extends CI_Controller {
 
     public function remove_json_v($json, $data, $type = true){
         $json = $type ? json_decode($json) : $json;
-        foreach ($json as $index => $value) {
-            if ($value == $data) {
-                unset($json[$index]);
+        $res = array();
+        foreach ($json as $value) {
+            if ($value != $data) {
+                $res[] = $value;
             }
         }
-        return json_encode($json);
+        return json_encode($res);
     }
 
     public function remove_json($json,$input,$type = true){

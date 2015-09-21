@@ -165,7 +165,8 @@ if(window.problem_type == 1){
 			_td.api.syncGodAnswer({
 				problem_id: problem_id
 			}).then(function (res) {
-				ue.setContent(res.data.content);
+				res.data && ue.setContent(res.data.content);
+				res.data && $('#problem-code').text(res.data.code);
 			});
 		}, 10000);
 	}

@@ -2,6 +2,14 @@
     <i class="fa fa-chevron-up"></i>
 </div>
 
+<div class="js-popup popup-wrapper hidden">
+    <div class="popup">
+        <a href="javascript:$('.bomb-login').trigger('click');" class="js-close-popup"><img src="static/image/popup1.jpg"></a>
+        <a class="js-close-popup" href="god"><img src="static/image/popup2.jpg"></a>
+        <a href="javascript:;" class="popup-close js-close-popup"><i class="fa fa-close"></i></a>
+    </div>
+</div>
+
 <?php
 switch($this->agent->browser()) {
     case 'Opera':
