@@ -46,6 +46,17 @@ $(function () {
 			});
 		}, 3000);
 	}
+	if (problem_type === 1 && problem_owner === _td.info.id) {
+		setInterval(function () {
+			_td.api.getProblemInfo({
+				problem_id: problem_id
+			}).then(function (res) {
+				if (res.data.type === '3' || res.data.type === '2') {
+					location.reload();
+				}
+			});
+		}, 3000);
+	}
 });
 
 SyntaxHighlighter.all();
