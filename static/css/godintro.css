@@ -1,0 +1,48 @@
+html {
+    background: none;
+}
+
+.top {
+    background-color: #ecf2f2;
+    padding-top:80px;
+}
+.top img {
+    display:block;
+    margin:0 auto;
+}
+
+.main {
+    padding:40px 0 140px;
+}
+.main h2 {
+    font-size:26px;
+    color:#22a6a8;
+    padding:10px 0;
+}
+.main h2 + p {
+    font-size:16px;
+    color:#22a6a8;
+    border-bottom:1px dashed #999;
+}
+.main h3 {
+    font-size:20px;
+    padding:40px 0 10px;
+}
+.main p {
+    line-height:24px;
+    color:#999;
+}
+.main .btn {
+    display:block;
+    background:#0092a3;
+    height:50px;
+    line-height:50px;
+    width:230px;
+    text-align:center;
+    margin:80px auto 0;
+    color:#fff;
+    font-size:20px;
+}
+.main .btn:hover {
+    background: #22a6a8;
+}

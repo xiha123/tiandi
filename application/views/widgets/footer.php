@@ -5,7 +5,7 @@
 <div class="js-popup popup-wrapper hidden">
     <div class="popup">
         <a href="javascript:$('.bomb-login').trigger('click');" class="js-close-popup"><img src="static/image/popup1.jpg"></a>
-        <a class="js-close-popup" href="god"><img src="static/image/popup2.jpg"></a>
+        <a class="js-close-popup" href="godintro"><img src="static/image/popup2.jpg"></a>
         <a href="javascript:;" class="popup-close js-close-popup"><i class="fa fa-close"></i></a>
     </div>
 </div>
@@ -34,7 +34,7 @@ switch($this->agent->browser()) {
 <script src="static/js/global.js"></script>
 
 <?php if (!isset($id)) { ?>
-<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://tiandipeixun.com/qq_cb" charset="utf-8"></script>
+<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://www.tiandipeixun.com/qq_cb" charset="utf-8"></script>
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2108328168" type="text/javascript" charset="utf-8"></script>
 <script>
 // 微博登录

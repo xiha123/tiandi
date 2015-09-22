@@ -30,6 +30,11 @@ $(function () {
 });
 
 
+$(function () {
+    $()
+});
+
+
 // 定时获取新消息
 if (_td.info.id !== -1) {
     setInterval(function () {

@@ -163,8 +163,52 @@
 
 				<div class="button close" data-id="<?= $problem_data["id"] ?>">
 					<a href="javascript:;" class="<?= $cls ?>"><i class="fa <?= $cls2 ?>"></i> <?= $name ?></a>
-					<a href="javascript:" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞 ( <span class="upCount"><?= $problem_data['up_count'] ?></span> ) </a>
-					<a href="#"><i class="fa fa-circle"></i>分享</a>
+					<a href="javascript:;" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞 ( <span class="upCount"><?= $problem_data['up_count'] ?></span> ) </a>
+					<script type="text/javascript">
+					(function(){
+						var p = {
+							url:location.href, /*获取URL，可加上来自分享到QQ标识，方便统计*/
+							desc:'这是个有意思的问题 | 新技能Get | 涨姿势了', /*分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔）*/
+							title:'', /*分享标题(可选)*/
+							summary:'', /*分享摘要(可选)*/
+							pics:'', /*分享图片(可选)*/
+							flash: '', /*视频地址(可选)*/
+							site:'', /*分享来源(可选) 如：QQ分享*/
+							style:'102',
+							width:63,
+							height:24
+						};
+						var s = [];
+						for(var i in p){
+							s.push(i + '=' + encodeURIComponent(p[i]||''));
+						}
+						document.write(['<a class="qcShareQQDiv" href="http://connect.qq.com/widget/shareqq/index.html?',s.join('&'),'" target="_blank">分享到QQ</a>'].join(''));
+					})();
+					</script>
+					<script src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>
+					<script type="text/javascript">
+					(function(){
+						var p = {
+							url:location.href,
+							showcount:'0',/*是否显示分享总数,显示：'1'，不显示：'0' */
+							desc:'有意思的问题',/*默认分享理由(可选)*/
+							summary:'涨姿势啦',/*分享摘要(可选)*/
+							title:'新技能 GET',/*分享标题(可选)*/
+							site:'',/*分享来源 如：腾讯网(可选)*/
+							pics:'', /*分享图片的路径(可选)*/
+							style:'102',
+							width:63,
+							height:24
+						};
+						var s = [];
+						for(var i in p){
+							s.push(i + '=' + encodeURIComponent(p[i]||''));
+						}
+						document.write(['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">分享</a>'].join(''));
+					})();
+					</script>
+					<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+					<wb:share-button addition="simple" type="button" picture_search="false" language="zh_cn"></wb:share-button>
 					<?= $btn ?>
 				</div>
 			<?php } else { ?>
@@ -235,6 +279,7 @@
 <script src="ueditor/umeditor.config.js"></script>
 <script src="ueditor/umeditor.min.js"></script>
 <script src="static/js/problem.js"></script>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 
 <?php if ($online) { ?>
 <script>
