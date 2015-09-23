@@ -24,8 +24,10 @@
 			<?php if(count($user['skilled_tags']) == 0){
 					echo '<p class="not">还没有收藏标签</p>';
 			} else {
-				foreach ($user['skilled_tags'] as $key => $value) {
-					echo '<a href="./tag/?name='.urlencode($value['name']).'"  target="_blank" class="tag-box">'.$value['name'].'</a>';
+				if (!empty($user['skilled_tags'])) {
+					foreach ($user['skilled_tags'] as $key => $value) {
+						echo '<a href="./tag/?name='.urlencode($value['name']).'"  target="_blank" class="tag-box">'.$value['name'].'</a>';
+					}
 				}
 			} ?>
 		</div>

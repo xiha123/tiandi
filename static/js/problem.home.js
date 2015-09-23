@@ -57,7 +57,7 @@ $(function () {
 		});
 		if(title !== "" && content != "") {
 			_td.api.onlineSave({
-				"type" : true,
+				"type" : 'ask',
 				"title" : title,
 				"content" : content,
 				"tags" : JSON.stringify(jsonArr),

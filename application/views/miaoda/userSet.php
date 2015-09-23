@@ -42,6 +42,7 @@
         <input type="password" placeholder="新密码" id="ajax_new"/>
         <input type="password" placeholder="确认新密码" id="ajax_re"/>
 
+<!--
         <h3 class="information">绑定第三方账户</h3>
         <ul class="sociality">
             <li>
@@ -49,6 +50,7 @@
                 <i class="fa fa-weibo"></i>
             </li>
         </ul>
+    -->
         <button type="submit" id="ajax_userSet"> <!---->
             提 交<i class="fa fa-arrow-circle-right"></i>
         </button>

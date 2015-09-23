@@ -147,7 +147,7 @@
 										<option value="13" <?=$_SESSION['problem_temp']['language'] == 13 ? 'selected=""' : ""?>>objective-c</option>
 										<option value="14" <?=$_SESSION['problem_temp']['language'] == 14 ? 'selected=""' : ""?>>其他</option>
 									</select>
-									<textarea  id="problem-code" class="code" placeholder="选择编程语言以后，写下你的问题涉及到的代码"><?=$temp_data['code']?></textarea>
+									<textarea  id="problem-code" class="code" placeholder="写下你的答案涉及到的代码。"><?=$temp_data['code']?></textarea>
 								</div>
 							</div>
 						</td></tr>

@@ -61,8 +61,10 @@ class Problem_api extends Base_api {
         $code = $_POST['code'];
         $content = $_POST['content'];
 
-        if($type == "true"){
+        if($type == "ask"){
             // 提问在线保存处理
+            $params['content'] = $content;
+            $params['code'] = $code;
             $this->session->problem_temp = $params;
         } else {
             // 回答在线保存处理

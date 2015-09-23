@@ -4,7 +4,6 @@ class Home extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model("user_model");
 		$this->load->model("problem_model");
 		$this->load->model("god_course_model");
 		$this->load->model('course_model');
@@ -57,12 +56,17 @@ class Home extends CI_Controller {
 				$push_data['hot'] = "&love=love";
 
 			}
-			if($push_data['owner']){
-				$problem_list = $this->problem_model->handle_tag($this->problem_model->get_list(array("owner_id" => $id) , $push_data['page'] - 1 , 20));
+			if($push_data['owner']) {
+				$problem_list = $this->problem_model->get_list(array("owner_id" => $id) , $push_data['page'] - 1 , 20);
 				$owner_list_count = $this->problem_model->get_count(array("owner_id" => $id));
 				$push_data['hot'] = "&owner=owner";
-				foreach ($problem_list as $key => $value) {
-					$problem_list[$key]['answer_id'] = $this->user_model->get(array("id" => $value['answer_id']) , array("nickname"));
+				foreach ($problem_list as &$value) {
+					$value['answer_id'] = $this->user_model->get(array("id" => $value['answer_id']) , array("nickname"));
+					$value['tags'] = array();
+					$tags = json_decode($value['tags']);
+					foreach($tags as $tag) {
+						$value['tags'][] = array('name' => $tag->t);
+					}
 				}
 			}
 			if(!$push_data['love'] && !$push_data['owner'] ){

@@ -139,6 +139,24 @@ class Admin extends CI_Controller {
 			$json = json_decode($user['follow_users']);
 			$result = array();
 			foreach ($json as $index => $data) {
+				$data = is_array($data) ? $data[0] : $data;
+				if (!in_array($data, $result)) $result[] = $data;
+			}
+			$this->db->where('id', $user['id'])->update('user', array(
+				'follow_users' => json_encode($result),
+				'follow_user_count' => count($result),
+			));
+		}
+
+		echo '更新完成用户 follow 数据';
+	}
+
+	public function clean_followers() {
+		$users = $this->db->query('select * from user where follower_count < 0')->result_array();
+		foreach ($users as $user) {
+			$json = json_decode($user['follow_users']);
+			$result = array();
+			foreach ($json as $index => $data) {
 				$result[] = is_array($data) ? $data[0] : $data;
 			}
 			$this->db->where('id', $user['id'])->update('user', array(
