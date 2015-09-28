@@ -122,11 +122,11 @@
 			<ul class="tag-list">
 				<?php
 					foreach ($student as $key => $value) {
-						if(@$value[0]["avatar"] == ""){
+						if($value[0]["avatar"] == ""){
 							$value[0]["avatar"] = "static/image/default.jpg";
 						}
 						if(isset($value[0]['nickname'])){
-							echo '<li><img src="'.@$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.@$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
+							echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
 						}
 					}
 				?>

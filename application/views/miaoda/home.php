@@ -41,10 +41,10 @@
 							<option value="-1" <?=$_SESSION['problem_temp']['language'] == -1 ? 'selected=""' : ""?>>请选择问题方向</option>
 							<option value="0" <?=$_SESSION['problem_temp']['language'] == 0 ? 'selected=""' : ""?>>html</option>
 							<option value="1" <?=$_SESSION['problem_temp']['language'] == 1 ? 'selected=""' : ""?>>php</option>
-							<option value="2" <?=$_SESSION['problem_temp']['language'] == 2 ? 'selected=""' : ""?>>C++</option>
+							<option value="2" <?=$_SESSION['problem_temp']['language'] == 2 ? 'selected=""' : ""?>>c++</option>
 							<option value="3" <?=$_SESSION['problem_temp']['language'] == 3 ? 'selected=""' : ""?>>javascript</option>
 							<option value="4" <?=$_SESSION['problem_temp']['language'] == 4 ? 'selected=""' : ""?>>java</option>
-							<option value="5" <?=$_SESSION['problem_temp']['language'] == 5 ? 'selected=""' : ""?>>C#</option>
+							<option value="5" <?=$_SESSION['problem_temp']['language'] == 5 ? 'selected=""' : ""?>>c#</option>
 							<option value="6" <?=$_SESSION['problem_temp']['language'] == 6 ? 'selected=""' : ""?>>unity-3d</option>
 							<option value="7" <?=$_SESSION['problem_temp']['language'] == 7 ? 'selected=""' : ""?>>swift</option>
 							<option value="8" <?=$_SESSION['problem_temp']['language'] == 8 ? 'selected=""' : ""?>>web</option>
@@ -61,11 +61,38 @@
 			</td></tr>
 			<tr><td><div class="tag js-tag-box" data-widget="tag">
 				<input type="hidden" class="form-tag" value="">
+					<?php
+						$langArr = array(
+							'0' => 'html',
+							'1' => 'php',
+							'2' => 'c++',
+							'3' => 'javascript',
+							'4' => 'java',
+							'5' => 'c#',
+							'6' => 'unity-3d',
+							'7' => 'swift',
+							'8' => 'web',
+							'9' => 'cocos2d-x',
+							'10' => 'android',
+							'11' => 'lua',
+							'12' => 'css',
+							'13' => 'objective-c',
+							'14' => '其他',
+						);
+						$lang = $_SESSION['problem_temp']['language'];
+						if (isset($lang) && isset($langArr[$lang])) {
+							echo '<span class="tag-box js-lang-tag">';
+							echo $langArr[$_SESSION['problem_temp']['language']];
+						} else {
+							echo '<span class="tag-box js-lang-tag hidden">';
+						}
+					?>
+				</span>
 				<div class="tag-list">
 					<?php
 						$problemTagList = json_decode($_SESSION['problem_temp']['tags']);
 						foreach ($problemTagList as $key => $value) {
-							echo '<span class="tag-box"><font>'.$value.'</font> <button class="close">X</button></span>';
+							echo '<span class="tag-box"><font>'.$value.'</font> <button class="close"><i class="fa fa-close"></i></button></span>';
 						}
 					?>
 				</div>

@@ -1,37 +1,3 @@
-/*
-if(window.problem_type == 1){
-	// UM.registerUI('引用提问者问题', function(editor, uiName) {
-	//     editor.registerCommand(uiName, {
-	//         execCommand: function() {
-	//             alert('execCommand:' + uiName)
-	//         }
-	//     });
-	//     var btn = new UM.ui.Button({
-	//         name: uiName,
-	//         title: uiName,
-	//         cssRules: 'background-position: -220px 0;',
-	//         onclick: function() {
-	//             //这里可以不用执行命令,做你自己的操作也可
-	//             ue.setContent(problem_content);
-	//             $("#problem-code").val(problem_code);
-	//             showAlert(true , "引用成功，提问者的问题已被引入到编辑框中！");
-	//         }
-	//     });
-	//     editor.addListener('selectionchange', function() {
-	//         var state = editor.queryCommandState(uiName);
-	//         if (state == -1) {
-	//             btn.setDisabled(true);
-	//             btn.setChecked(false);
-	//         } else {
-	//             btn.setDisabled(false);
-	//             btn.setChecked(state);
-	//         }
-	//     });
-	//     return btn;
-	// });
-}
-*/
-
 var ue = UM.getEditor('editor');
 
 $(function () {
@@ -76,8 +42,8 @@ $("#answer").on('click' , function(event) {
 
 $("#ajax_comment").click(function(){
 	var content = ue.getContent();
-	if(content.length < 15) {
-		showAlert(false,"再多写几个字吧，这样才能帮助他解决问题哟！（不能少于15个字）");
+	if(content.length < 12) {
+		showAlert(false,"您的评论太短啦，请大于12字符");
 		return false;
 	}
 	_td.api.createComment({
@@ -96,8 +62,8 @@ $("#ajax_comment").click(function(){
 
 $("#reply").click(function(){
 	var content = ue.getContent();
-	if(content.length<15){
-		showAlert(false,"再多写几个字吧，这样才能帮助他解决问题哟！（不能少于15个字）");
+	if(content.length < 12){
+		showAlert(false,"请详细描述你的解答，大于12字符");
 		return false;
 	}
 	_td.api.createDetail({
@@ -108,9 +74,9 @@ $("#reply").click(function(){
 		"language" : $(".Language").val(),
 	}).then(function(){
 		showAlert(true,"回答成功！");
-		 setTimeout(function(){
-	            location.reload();
-	        },1000)
+		setTimeout(function() {
+			location.reload();
+		}, 1000)
 	},function(msg){
 		showAlert(false,msg.error);
 	})
@@ -131,19 +97,17 @@ $(".ajax_close").click(function(event) {
 	});
 });
 
-if(window.first){
+if(window.first) {
 	var max = 1;
-	var god = setInterval(function(){
-		 rand = Math.ceil(Math.random() * 2);
-		 max += rand;
-		 if(max >= max_god){
-		 	max = max_god;
-		 	clearInterval(god);
-		 	$(".user_list_data h3 span").text(max);
-		 }else{
-		 	$(".user_list_data h3 span").text(max + "位");
-		 }
-	},800);
+	var god = setInterval(function() {
+		rand = Math.ceil(Math.random() * 2);
+		max += rand;
+		if(max >= max_god) {
+			max = max_god;
+			clearInterval(god);
+		}
+		$(".user_list_data h3 span").text(max);
+	}, 800);
 }
 
 if(window.problem_type == 1){
@@ -203,38 +167,3 @@ function timeOut_fun(){
 	        },1000)
 	}
 }
-
-/*
-if(window.problem_type == 3){
-	value = '在此处输入评论';
-}else{
-	value = '详细描述你的解答';
-}
-
-var is_one = true , is_ok = false , is = false;
-ue.ready(function(){
-	ue.execCommand('inserthtml', '<span></span>');
-	if(ue.getContentTxt() == "" && is == false){
-		ueSetColor("#aaa",value);
-		is = true;
-	}
-	ue.blur();
-	setTimeout(function(){
-		ue.addListener('selectionchange', function( editor ) {
-			if(is_one == false){
-				is_one = true;
-				if(ue.getContentTxt() == value && is == true){
-					ueSetColor("#333" , "");
-					setTimeout(function(){
-						ue.focus();
-					},100)
-				}
-			}
-			if(!is_ok){
-				is_one = false;
-			}
-			is_ok = true;
-		});
-	},500)
-});
-	*/

@@ -1,5 +1,16 @@
 $(function () {
-	var ue = UM.getEditor('editor');
+	var ue = UM.getEditor('editor'),
+		$lang = $('.Language');
+
+	$lang.change(function () {
+		var type = $lang.children('[value=' + $lang.val() + ']').text();
+
+		if (type === '请选择问题方向') {
+			$('.js-lang-tag').addClass('hidden');
+		} else {
+			$('.js-lang-tag').text(type).removeClass('hidden');
+		}
+	});
 
 	$("#ajax_problemSubmit").on("click", function() {
 		var title = $("#problem-title").val(),
@@ -8,23 +19,23 @@ $(function () {
 			coinType = document.getElementById("js_coinType").checked,
 			jsonArr = [];
 
-		if(title.length < 5 || title.length > 60){
-			showAlert(false, "您输入的标题太长或者太短！");
+		if(title.length < 6 || title.length > 64){
+			showAlert(false, "标题填写请大于6字符、小于64字符");
 			return false;
 		}
-		if(ue.getContentTxt().length < 10 ){
-			showAlert(false, "再多打几个字吧，您的描述实在是太短了！");
+		if(ue.getContentTxt().length < 12 ){
+			showAlert(false, "请详细描述你的问题，大于12字符");
 			return false;
 		}
-		if ($('.Language').val() === '-1') {
+		if ($lang.val() === '-1') {
 			showAlert(false, "请选择问题方向");
 			return false;
 		}
 
-		$.each($(".tag .tag-box"), function(index, val) {
-			jsonArr.push($(val).find("font").text());
+		$.each($(".tag .tag-box font"), function(index, val) {
+			jsonArr.push($(val).text());
 		});
-		jsonArr.push($('.Language').children('option[value="' + $('.Language').val() + '"]').text());
+		jsonArr.push($('.js-lang-tag').text());
 		jsonText = JSON.stringify(jsonArr);
 
 		_td.api.createProblem({
@@ -33,7 +44,7 @@ $(function () {
 			"code" : code,
 			"tags" : jsonText,
 			"coinType" : coinType,
-			"language" : $(".Language").val(),
+			"language" : $lang.val(),
 		}).then(function(res) {
 			showAlert(true, "恭喜您，提问成功！ 银币 -100 个");
 			$("#problem-title").val("");
@@ -51,10 +62,12 @@ $(function () {
 		var title = $("#problem-title").val(),
 			content = ue.getContent();
 			code = $("#problem-code").val(),
-			jsonArr = new Array();
-		$.each($(".tag .tag-box"), function(index, val) {
-			jsonArr.push($(val).find("font").text());
+			jsonArr = [];
+
+		$.each($(".tag .tag-box font"), function(index, val) {
+			jsonArr.push($(val).text());
 		});
+
 		if(title !== "" && content != "") {
 			_td.api.onlineSave({
 				"type" : 'ask',
@@ -62,7 +75,7 @@ $(function () {
 				"content" : content,
 				"tags" : JSON.stringify(jsonArr),
 				"code" : code,
-				"language" : $(".Language").val(),
+				"language" : $lang.val(),
 				"problem_id" : -1
 			});
 		}

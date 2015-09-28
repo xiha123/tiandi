@@ -265,8 +265,8 @@ class User_api extends Base_api {
 
         // 处理标签请求
         foreach ($temp_tags as $key => $value) {
-            if(strlen($value) < 2 && strlen($value) > 12){
-                parent::finish(false , "您输入的标签太长或者太短了！");
+            if(strlen($value) < 1 && strlen($value) > 20){
+                parent::finish(false , "每个擅长标签请小于20字符");
             }
             if(!$this->tag_model->is_exist(array("name" => $value ,"type" => "0"))){
                 parent::finish(false,"您输入的标签：" . $value . "不存在！");

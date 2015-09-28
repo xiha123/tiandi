@@ -21,11 +21,11 @@ $("#ajax_userSet").click(function(){
 	if(phone.length !== 11){
 		showAlert(false , "电话号码好像不正确哟");return false;
 	}
-	if(signature.length > 200){
-		showAlert(false , "签名档太长");return false;
+	if(signature.length > 100){
+		showAlert(false , "您的签名档请小于100字符");return false;
 	}
-	if(namenick.length< 2 || namenick.length > 16){
-		showAlert(false , "您的昵称太长或者太短了！");return false;
+	if(namenick.length< 2 || namenick.length > 14){
+		showAlert(false , "您的昵称请大于2字符，小于14字符");return false;
 	}
 	_td.api.editUser({
 		"nickname" : namenick,
@@ -78,8 +78,8 @@ $("#ajax_godset").click(function(){
 	var alipay = $("#alipay").val(),
 		goddesc = $("#experience").val();
 
-	if(goddesc.length < 15 || goddesc.length > 400){
-		showAlert(false , "项目描述太短或太长");
+	if(goddesc.length < 20 || goddesc.length > 300){
+		showAlert(false , "您的项目经历请大于20字符，小于300字符");
 		return false;
 	}
 	if(alipay.length < 4){

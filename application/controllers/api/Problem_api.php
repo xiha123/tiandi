@@ -159,8 +159,8 @@ class Problem_api extends Base_api {
         }
 
         $is_length = parent::is_length(array(
-            array("name" => "标题" , "value" => $title, "min" => 5,"max" => 60),
-            array("name" => "描述" , "value" => $content, "min" => 10),
+            array("name" => "标题" , "value" => $title, "min" => 6,"max" => 64),
+            array("name" => "描述" , "value" => $content, "min" => 12),
         ));
 
         $_SESSION['first'] = true;
@@ -195,8 +195,8 @@ class Problem_api extends Base_api {
                 if(preg_match("/[\'.,:;*?~`!@$%^&=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$value)){
                     parent::finish(false , "标签中不能存在特殊字符，请检查后再提交！");
                 }
-                if(strlen($value) < 2 && strlen($value) > 12){
-                    parent::finish(false , "您输入的标签太长或者太短了！");
+                if(strlen($value) < 2 && strlen($value) > 20) {
+                    parent::finish(false , "每个标签请小于20字符");
                 }else if($this->tag_model->add_tag($this->HTML($value))){
                     $tagTemp[] = array("t" => $value);
                     $this->tag_model->edit_tag_problem_count($value);

@@ -66,8 +66,8 @@ class Tag extends CI_Controller {
 		$student_array = array();
 		$data = $this->tag_model->get(array("name" => $name));
 		if(!isset($data)) show_404();
-		$data = json_decode($data['json_who']);
-		foreach ($data as $key => $value) {
+		$followers = json_decode($data['json_who']);
+		foreach ($followers as $key => $value) {
 			$user = $this->user_model->get_user_list(array("id"=>$value->t , "type" => 0 , "type" => 2), 0, 10);
 			$god = $this->user_model->get_list(array("id"=>$value->t , "type" => 1),0,5);
 			if($god != array()){

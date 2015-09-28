@@ -29,12 +29,6 @@ $(function () {
     });
 });
 
-
-$(function () {
-    $()
-});
-
-
 // 定时获取新消息
 if (_td.info.id !== -1) {
     setInterval(function () {
@@ -219,9 +213,6 @@ $("#ajax_eye, #ajax_uneye").click(function(event) {
         showAlert(false,msg.error);
     })
 });
-
-
-
 
 
 $("#login-form").on('submit' , function(event) {
@@ -480,9 +471,9 @@ $(document).ready(function() {
             tagList[tagName.toLowerCase()] = true;
             tagIndex++;
             $(".tag-ide").hide();
-            if(tagName.length < 2){showAlert(false,"您输入的标签太短了");return false;}
-            if(tagName.length >12){showAlert(false,"您输入的标签太长了");return false;}
-            $tag.find(".tag-list").append('<span class="tag-box"><font>'+tagName+'</font> <button class="close">X</button></span>');
+            if(tagName.length < 1){showAlert(false,"您输入的标签太短了");return false;}
+            if(tagName.length > 20){showAlert(false,"您输入的标签太长了");return false;}
+            $tag.find(".tag-list").append('<span class="tag-box"><font>'+tagName+'</font> <button class="close"><i class="fa fa-close"></i></button></span>');
             return true;
         }
 
@@ -572,6 +563,7 @@ $(document).ready(function() {
 		}
     }
 });
+
 function ueSetColor(color,content) {
     var dom ="<!DOCTYPE html><html xmlns=\'http://www.w3.org/1999/xhtml\' class=\'view\' ><head><style type=\'text/css\'>.view{padding:0;word-wrap:break-word;cursor:text;height:90%;}body{background:url(./static/image/index.jpg);color:" + color + ";margin:8px;font-family:sans-serif;font-size:16px;}p{margin:5px 0;}body{font-family: '微软雅黑';font-size:14px;}*{max-width: 900px;}</style></head><body class=\'view\' >" + content + "</body><script type=\'text/javascript\'  id=\'_initialScript\'>setTimeout(function(){editor = window.parent.UE.instants[\'ueditorInstant0\'];editor._setup(document);},0);var _tmpScript = document.getElementById(\'_initialScript\');_tmpScript.parentNode.removeChild(_tmpScript);<\/script></html>";
     dom = 'javascript:void(function(){document.open();document.write("' + dom + '");document.close();}())'

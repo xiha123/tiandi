@@ -5,14 +5,21 @@
 	<link href="ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
 <body>
 
+<?php
+	$first = 'false';
+	if (isset($_SESSION['first']) && $_SESSION['first'] == true) {
+		$first = 'true';
+	}
+?>
+
 <script>
 	window.problem_type = <?=$problem_data["type"]?>;
-	window.first = <?php $frist = !isset($_SESSION['first']) ? "false" : $_SESSION['first'] ? "true" : "false"; echo $frist;?>;
+	window.first = <?= $first ?>;
 
 	var problem_id = <?=$problem_data["id"]?>,
 		problem_lost_time = <?=$problem_data["answer_time"] + 1200?>,
 		problem_type = <?=$problem_data["type"]?>,
-		max_god = <?=$god_count?>,
+		max_god = <?= $god_count ?>,
 		online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>,
 		problem_owner = <?= $problem_data['owner_id'] ?>;
 	<?php
@@ -104,7 +111,7 @@
 				}
 				if($problem_data['type'] == "0" && @$id == $problem_data['owner_id'] || $is_fund) {
 					echo '<div class="user_list_data"><!--<div class="doubt-time disable">20:00</div>-->
-					<h3 class="center tishi">您的问题已经推送给了<span>'.($frist ? $god_count . "位" : "1").'</span>大神，请耐心等待······</h3>
+					<h3 class="center tishi">您的问题已经推送给了<span>'.($first == 'true' ? '0' : $god_count).'</span>位大神，请耐心等待······</h3>
 					<h2 class="title">这些问题可能对您有用</h2>
 					<ul>
 						{useful_list}
@@ -124,7 +131,7 @@
 									$online = true;
 								}
 							?>
-							<span class="online fr"><font><?=$problem_data['owner_id'] == @$id ? "问题正在被大神" .  "解答中" : ($problem_online_count < 0 ? 0 : $problem_online_count) .'<i class="fa fa-user "></i>';?></font></span>
+							<span class="online fr"><font><?=$problem_data['owner_id'] == @$id ? "问题正在被大神" .  "解答中" : ($problem_online_count <= 0 ? 1 : $problem_online_count) .'<i class="fa fa-user "></i>';?></font></span>
 						</td></tr>
 						<tr><td>
 							<div class="desc">
