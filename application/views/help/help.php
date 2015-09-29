@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 3)); ?>
+<?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 <div class="wrapper">
     <ul class="help">
@@ -30,7 +30,7 @@
 
         <li>
             <h1>五、什么时候可以进行评论？</h1>
-            <p>在问题被解答之后，评论区开放，所有用户即可进行评论。</p>
+            <p>在问题被提出之后，评论区开放，所有用户即可进行评论。</p>
         </li>
 
 
@@ -63,8 +63,53 @@
             <p>“已答”是指刚刚被解答的问题，“热门”是指已回答的认可度高的问题，“未答”是指所有未被解答的问题。</p>
         </li>
 
+        <li>
+            <h1>十、已答、热门、未答里面都是什么样的问题？</h1>
+            <p>“已答”是指刚刚被解答的问题，“热门”是指已回答的认可度高的问题，“未答”是指所有未被解答的问题。</p>
+        </li>
 
+        <li>
+            <h1>十一、用户积分与等级具体数值是怎样的？积分和等级是怎样对应的？	</h1>
+            <p>积分明细表：</p>
+            <table>
+                <thead>
+                    <tr><th>操作</th><th>积分</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>注册首次登录</td><td>0</td></tr>
+                    <tr><td>签到</td><td>20</td></tr>
+                    <tr><td>分享</td><td>100</td></tr>
+                    <tr><td>提问</td><td>100</td></tr>
+                    <tr><td>众筹</td><td>50</td></tr>
+                    <tr><td>点赞</td><td>10</td></tr>
+                    <tr><td>收藏标签</td><td>10</td></tr>
+                    <tr><td>收藏问题</td><td>10</td></tr>
+                    <tr><td>关注</td><td>10</td></tr>
+                    <tr><td>评论</td><td>30</td></tr>
+                </tbody>
+            </table>
+            <p>用户等级与积分值对应表：</p>
+            <table>
+                <thead>
+                    <tr><th>积分区间</th><th>头衔</th><th>等级</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>0-199</td><td>编程入门</td><td>L1</td></tr>
+                    <tr><td>200-499</td><td>初尝甜头</td><td>L2</td></tr>
+                    <tr><td>500-999</td><td>渐入佳境</td><td>L3</td></tr>
+                    <tr><td>1000-1999</td><td>茅塞顿开</td><td>L4</td></tr>
+                    <tr><td>2000-3199</td><td>醍醐灌顶</td><td>L5</td></tr>
+                    <tr><td>3200-4999</td><td>得心应手</td><td>L6</td></tr>
+                    <tr><td>5000-7499</td><td>炉火纯青</td><td>L7</td></tr>
+                    <tr><td>7500-9999</td><td>所向披靡</td><td>L8</td></tr>
+                    <tr><td>10000-12999</td><td>攻城大湿</td><td>L9</td></tr>
+                    <tr><td>13000-?</td><td>独孤求败</td><td>L10</td></tr>
+                </tbody>
+            </table>
+        </li>
 
     </ul>
+
+<?php $this->load->view('widgets/footer.php'); ?>
 </body>
 </html>

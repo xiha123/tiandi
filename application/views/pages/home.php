@@ -1,6 +1,6 @@
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/home.css"/>
-	 </head>
+</head>
 <body>
 
 <?php $this->load->view('widgets/nav.php'); ?>
@@ -105,7 +105,7 @@
 	})($);
 
 	$(".wechat").hover(function(){
-		$(".weChatCode").show();	
+		$(".weChatCode").show();
 	},function(){
 		$(".weChatCode").hide();
 	})

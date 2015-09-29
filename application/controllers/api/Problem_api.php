@@ -408,28 +408,28 @@ class Problem_api extends Base_api {
         $problem = $this->problem_model->get(array('id' => $problem_id));
         if(!isset($problem['owner_id']) || $problem['agree'] == 1) $this->finish(false, '该问题已经不存在，请刷新页面后重试！');
         if($problem['owner_id'] !== $this->me['id']) $this->finish(false, '没有权限！');
-        if($this->problem_model->edit($problem_id , array("agree" => 1))){
-            $this->news_model->create(array(
-                'target' => $problem['answer_id'],
-                'type' => '400',
-                'problem_id' => $problem_id,
-                'from_id' => $this->me['id']
-            ));
-
-            // Up agree problem
-            $up_users = json_decode($problem['up_users']);
-            array_push($up_users , array("id" => $this->me['id']));
-            $up_users = json_encode($up_users);
-            $this->problem_model->edit($problem_id , array(
-                "up_users" => $up_users,
-                "hot" => $problem['hot'] + 5,
-                "up_count" => $problem['up_count'] + 1
-            ));
-
-            parent::finish(true);
-        }else{
-            parent::finish(false , "服务器异常，请尝试重新提交请求！");
+        if(!$this->problem_model->edit($problem_id , array("agree" => 1))) {
+            parent::finish(false, "服务器异常，请尝试重新提交请求！");
         }
+
+        $this->news_model->create(array(
+            'target' => $problem['answer_id'],
+            'type' => '400',
+            'problem_id' => $problem_id,
+            'from_id' => $this->me['id']
+        ));
+
+        // Up agree problem
+        // $up_users = json_decode($problem['up_users']);
+        // array_push($up_users , array("id" => $this->me['id']));
+        // $up_users = json_encode($up_users);
+        $this->problem_model->edit($problem_id , array(
+            //"up_users" => $up_users,
+            "hot" => $problem['hot'] + 5,
+            //"up_count" => $problem['up_count'] + 1
+        ));
+
+        parent::finish(true);
     }
 
     public function collect_problem() {

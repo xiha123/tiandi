@@ -1,7 +1,7 @@
 $(".apply-ok").click(function(event) {
-	/* Act on the event */
 	var parent = $(this).parent().parent(),
-	userId = parent.data('id');
+		userId = parent.data('id');
+
 	$.ajax({
 		"url":"api/admin_api/apply_ok",
 		"type":"post",
@@ -18,7 +18,8 @@ $(".apply-ok").click(function(event) {
 
 $(".apply-no").click(function(event) {
 	var parent = $(this).parent().parent(),
-	userId = parent.data('id');
+		userId = parent.data('id');
+		
 	$.ajax({
 		"url":"api/admin_api/apply_no",
 		"type":"post",
