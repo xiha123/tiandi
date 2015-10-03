@@ -28,8 +28,14 @@ class index extends CI_Controller {
 		// 分页通用
 		$userdata["page"] = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$userdata['page_max'] = $this->user_model->get_count(array("type" => 1 , "father_tag" => $userdata['types']));
-		$userdata['data'] = $this->user_model->get_god_list(array("type" => 1 , "father_tag" => $userdata['types']) , $userdata["page"] - 1 , 10);
-		$this->load->view('miaoda/god/list.php' , $userdata);
+		$userdata['data'] =(array) $this->user_model->get_god_list(array("type" => 1 , "father_tag" => $userdata['types']) , $userdata["page"] - 1 , 10);
+        foreach ($userdata['data'] as $key => $god) {
+            $level_id = ModelFactory::User()->get_god_level(0,$god);
+            $level_name = ModelFactory::User()->get_god_level_name($level_id);
+            $god['level_name'] = $level_name;
+            $userdata['data'][$key] = $god;
+        }
+        $this->load->view('miaoda/god/list.php' , $userdata);
 	}
 
 }

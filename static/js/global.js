@@ -348,7 +348,24 @@ function bomb(eName){
 
 
 $(document).ready(function() {
-
+    $('#sign_btn').click(function(){
+        $.ajax({
+            url: './api/sign_api/sign',
+            type: 'GET',
+            dataType:'json',
+            success:function(data){
+                showAlert(data.status,data.error);
+                if(data.status){
+                    setTimeout(function(){
+                        location.reload();
+                    },1000)
+                }
+            },
+            error:function(){
+                showAlert(false, "!");
+            }
+        });
+    });
     $.each($('[data-widget]'), function(index, value) {
         var $widget = $(value);
 

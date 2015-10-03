@@ -654,3 +654,23 @@ ALTER TABLE `user`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+ALTER TABLE `tiandi`.`user`
+ADD COLUMN `sign_info` VARCHAR(255) NULL DEFAULT '{}' COMMENT '' AFTER `god_course_count`;
+CREATE TABLE `tiandi`.`user_task` (
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `user_id` INT NOT NULL COMMENT '',
+  `task_id` INT NOT NULL COMMENT '',
+  `created_at` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '');
+
+ALTER TABLE `tiandi`.`user`
+ADD COLUMN `parent_id` INT NULL DEFAULT 0 COMMENT '' AFTER `sign_info`;
+
+ALTER TABLE `tiandi`.`change_log`
+ADD COLUMN `count_type` SMALLINT NULL DEFAULT 0 COMMENT '' AFTER `updated_at`;
+
+ALTER TABLE `tiandi`.`user_task`
+ADD COLUMN `task_val` VARCHAR(45) NULL DEFAULT '' COMMENT '' AFTER `created_at`;
+ALTER TABLE `tiandi`.`problem`
+ADD COLUMN `is_prestige` INT NULL DEFAULT 0 COMMENT '是否 赞数超过20是奖励过大神经验' AFTER `agree`;

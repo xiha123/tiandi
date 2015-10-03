@@ -1,5 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Class base_model
+ * @property $db CI_DB
+ */
 class base_model extends CI_Model {
 
     public function __construct() {
@@ -20,7 +24,13 @@ class base_model extends CI_Model {
 		$this->db->delete($this->table_name,$where);
 		return true;
 	}
-
+    public function replace($id,$params){
+        if ($id) {
+            return $this->edit($id,$params);
+        }else{
+            return $this->create($params);
+        }
+    }
 	public function remove($id) {
 		$this->db->delete($this->table_name, array(
 			'id' => $id
@@ -70,6 +80,15 @@ class base_model extends CI_Model {
 
     public function require_login() {
         return $this->me !== false;
+    }
+    public function begin(){
+        $this->db->trans_begin();
+    }
+    public function commit(){
+        $this->db->trans_commit();
+    }
+    public function rollback(){
+        $this->db->trans_rollback();
     }
 
 }

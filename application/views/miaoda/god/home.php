@@ -9,7 +9,10 @@
 			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
 			<img class="god" src="./static/image/god_right.png">
 			<h3 class="name"><?=$user["nickname"] ?></h3>
-			<p class="look"><img src="static/image/look.png" alt="" width="18px"><?=$user['follower_count']?></p>
+            <h4 class="name" style="font-size: 12px;font-weight:600;"><?=$user['level_name']?></h4>
+
+            <p class="look"><img src="static/image/look.png" alt="" width="18px"><?=$user['follower_count']?></p>
+			<p class="money">威望： <?=$user['prestige']?></p>
 			<p class="money">银币： <?=$user['silver_coin']?></p>
 			<p class="money">金币： <?=$user['gold_coin']?></p>
 			<p class="desc"><?php echo $user["god_description"] == "" ? "这货居然没写描述" : $user['god_description']; ?></p>

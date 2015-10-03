@@ -11,11 +11,13 @@
 ?>
 	<div class="wrapper">
 
-		<div class="tacher-data home">
+		<div class="tacher-data ">
 			<img src="<?=$user['avatar']?>" alt="" class="pic">
 			<h3 class="name"><?=$user['nickname']?> <a href="./god/apply" target="_blank">想成为大神？</a></h3>
-			<p class="money">银币：<?=$user['silver_coin']?>  金币：<?=$user['gold_coin']?></p>
+            <h4 class="name" style="font-size: 14px;    font-weight:600;"><?=$user['level_name']?></h4>
+			<p class="money">银币：<?=$user['silver_coin']?>  金币：<?=$user['gold_coin']?> 积分：<?=$user['Integral']?></p>
 			<p class="desk"><?= $user['description'] == "" ? '这家伙还没有描述.....' : $user['description'];?></p>
+            <button id="sign_btn" data-id="5"> 签到 </button>
 		</div>
 
 
@@ -69,7 +71,9 @@
 										'.$button.'
 									</div>
 									<div class="right_box">
-										<p class="name"><a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['nickname'] . '</a><font class="fr"><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font></p>
+										<p class="name"><a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['nickname'] . '</a>
+										<font class="fr"><img src="static/image/look.png" width="26px" alt="">'.$value['follower_count'].'</font></p>
+										<a href="./home?uid=' . $value['id'] . '" target="_blank">' . $value['level_name'] . '</a>
 										<p class="desk">' . $value['god_description'] . '</p>';
 								$skilled_tags = json_decode($value['god_skilled_tags']);
 								foreach (count($skilled_tags) > 0 ? $skilled_tags : array() as $key => $value) {

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -358,7 +358,7 @@ $config['encryption_key'] = 'tiandi';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'session';
 $config['sess_expiration'] = 604800;
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = sys_get_temp_dir();
 $config['sess_match_ip'] = TRUE;
 $config['sess_time_to_update'] = 604800;
 $config['sess_regenerate_destroy'] = FALSE;
