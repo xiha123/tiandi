@@ -94,8 +94,29 @@ class Share extends CI_Controller {
         return  'http://service.weibo.com/share/share.php?'.http_build_query($share_param);
 
     }
+    public function people(){
+        $id = $this->input->get('trace');
+        $this->load->helper("cookie");
+        set_cookie('parent_id',base64_decode($id),86400*30);
+//        exit;
+        redirect('/miaoda?'.http_build_query([
+                'from_invite'=>1
+            ]));
+    }
+
 
     public function invite(){
+        $userdata = ModelFactory::User()->check_login();
+
+        $id = $userdata['id'];
+        if (!$id) {
+            show_error("请先登录!",null,'提示');
+        }
+        $this->parser->parse("share/invite.php"  , [
+            'invate_url' => base_url('/share/people?'.http_build_query([
+                    'trace'=>base64_encode($id)
+                ]))
+        ]);
 
     }
 }

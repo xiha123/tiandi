@@ -219,8 +219,6 @@ class Admin_api extends Base_api {
             "email",
             "cellphone",
             "alipay",
-            "gold_coin",
-            "silver_coin",
             "type",
         ));if(empty($params)) return; extract($params);
         $id = $this->input->post("id");
@@ -232,6 +230,37 @@ class Admin_api extends Base_api {
             $params['teacher'] = 0;
         }
         */
+        $edit_gold_coin = $this->input->post('edit_gold_coin');
+        $edit_silver_coin = $this->input->post('edit_silver_coin');
+        $edit_Integral = $this->input->post('edit_Integral');
+       if ($edit_gold_coin) {
+           ModelFactory::User()->coin($id,$edit_gold_coin,$edit_gold_coin>0,'gold_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ADMIN);
+       }
+       if ($edit_silver_coin) {
+           ModelFactory::User()->coin($id,$edit_silver_coin,$edit_silver_coin>0,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ADMIN);
+
+       }
+       if ($edit_Integral) {
+           ModelFactory::User()->coin($id,$edit_Integral,$edit_Integral>0,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ADMIN);
+       }
+       $type = $this->input->post('type');
+       $do_task = ModelFactory::Usertask()->get_count(['user_id'=>$id,'task_id'=>CONSTFILE::USER_TASK_AUDIT_GOD_OK]);
+       if ($type == 1 && !$do_task) {
+           $user_data = ModelFactory::User()->get_user($id);
+
+           if ( $user_data['parent_id']   ) {
+               $parent_user_data = ModelFactory::User()->get_user($user_data['parent_id']);
+
+               if ($parent_user_data['parent_id'] != $id && !$do_task ) {
+                       ModelFactory::Usertask()->create([
+                           'user_id'=>$id,
+                           'created_at'=>time(),
+                           'task_id'=>CONSTFILE::USER_TASK_AUDIT_GOD_OK
+                       ]);
+                       ModelFactory::User()->coin($user_data['parent_id'],20,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_AUDIT_GOD_OK);
+               }
+           }
+       }
         $password = $this->input->post("password");
         if($password != ""){
             $userdata = $this->user_model->get(array("id" => $id));
