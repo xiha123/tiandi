@@ -2,7 +2,7 @@
 	if(!isset($nickname)){
 ?>
 <!-- 登录窗口通用弹窗  -->
-<div class="window">
+<div class="window" style="<?php if(isset($_GET['from_invite'])){echo 'display:block;';}?>">
 	<div class="login" id="login">
 		<div class="login-title">
 			<h2>登录</h2>
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 
-	<div class="login" id="reg">
+	<div class="login" style="<?php if(isset($_GET['from_invite'])){echo 'display:block;';}?>" id="reg">
 		<div class="login-title">
 			<h2>注册</h2>
 			<a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>

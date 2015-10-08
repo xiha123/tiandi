@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+img{ border:none;}
+ul,li{ list-style:none;}
+body{ font-family:Microsoft Yahei; font-size:12px; background:#0091a2;}
+.c{zoom:1;}
+.c:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.main{width:950px; margin:0 auto;}
+.top{ padding:30px 50px;}
+.top h2{ font-size:60px; text-align:center; border-top:1px solid #fff; border-bottom:1px solid #fff; font-weight:normal; padding:10px 0;}
+.p1{padding-top:55px; padding-bottom:10px;}
+.p2{margin-top:70px; margin-bottom:20px;}
+.list1{ padding-left:100px; margin-bottom:80px;}
+.list1 li{ float:left; font-size:18px; color:#fff; margin-right:30px;}
+.list1 li.last{ margin-right:0;padding-left:30px;}
+.list2{ padding-left:200px;}
+.list2 li{ float:left; font-size:18px; color:#fff; margin-right:30px;}
+.list2 li.last{ margin-right:0;padding-left:90px;}
+.linkbox{ background:#ffffff; padding:50px 30px;}
+.yq-box{ padding-left:60px;}
+.yq-box li{ float:left; margin-right:15px; font-size:18px; line-height:33px;}
+.yq-box li input{ border:1px solid #ddd;width:510px; padding:0 12px; font-size:18px; height:33px;}
+.yq-box li a.copybotton{ background:#52b0d2; padding:0 20px; display:block; color:#fff; cursor:pointer;}
+.an-box{ background:url(/static/image/share/button-bg.png) no-repeat;width:890px; height:60px; padding-top:34px; padding-left:15px; margin:20px auto 0;}
+.an-box li{ float:left;line-height:44px;}
+.an-box li a{ text-decoration:none;font-size:18px; color:#fff; }
+.an-box li .button{height:44px;width:209px; padding-left:70px; display:block; margin-right:10px;}
+.an-box li .button1{ background:url(/static/image/share/b1.png) no-repeat;  }
+.an-box li .button2{background:url(/static/image/share/b2.png) no-repeat;}
+.an-box li .button3{ background:url(/static/image/share/b3.png) no-repeat;}
+.tjzt{ text-align:center; font-size:30px; margin-top:140px; margin-bottom:80px;}
+.tjfs{padding-left:12px;}
+.tjfs li{width:280px; float:left; text-align:center; font-size:18px; margin-right:45px; color:#fff;}
+.tjfs li p{ margin-bottom:12px;}
+.tjfs li.last{ margin-right:0px;}
+.pub{ text-align:right; margin-top:70px; margin-bottom:100px; color:#fff; font-size:18px; padding-right:100px;}
+
+
+
+
+
+
+

@@ -83,7 +83,19 @@ class Index extends CI_Controller {
 		foreach ($userdata["problem_commenct"] as &$value) {
 			$value['user']=$this->user_model->get_user_data($value['owner_id']);
 		}
-
+        $pid = $this->input->get("p");
+        $userdata['qqshare'] = site_url('share?'.http_build_query([
+                'type'=>'qq',
+                'pid'=> $pid,
+            ]));
+        $userdata['qqzshare'] = site_url('share?'.http_build_query([
+                'type'=>'qqz',
+                'pid'=> $pid,
+            ]));
+        $userdata['sinashare'] = site_url('share?'.http_build_query([
+                'type'=>'sina',
+                'pid'=> $pid,
+            ]));
 		$userdata["page_max"] = $this->problem_comment_model->get_count(array(
 			"problem_id" => $userdata["problem_data"]['id']
 		));

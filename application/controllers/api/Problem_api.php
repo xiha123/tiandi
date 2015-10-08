@@ -258,9 +258,8 @@ class Problem_api extends Base_api {
             'comments' => json_encode($comments)
         ));
         // 评论给用户积分
-        $this->user_model->Integral($this->me['id'] , 50);
-        $this->user_model->coin($this->me['id'] , 20);
-
+        ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COMMENT_PROBLEM_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COMMENT);
+        ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_COMMENT_PROBLEM_SILVER_COIN_VALUE ,true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COMMENT);
         // 每次评论可获得一个火力值
         $this->problem_model->hot($problem_id , 1 , true);
         $this->finish(true);
@@ -327,6 +326,37 @@ class Problem_api extends Base_api {
 
         //Close problem
         $this->problem_model->done($problem_id);
+
+
+
+        $is_keep = ModelFactory::Usertask()->is_keep_answer($this->me['id']);
+        ModelFactory::Usertask()->answer_sign($this->me['id'],date('Y-m-d'),$is_keep+1);
+        $cg_value = 0;
+        if ($is_keep+1 >= CONSTFILE::USER_TASK_GOD_ANSWER_QUESTION_VALUE) {
+            $god_level = ModelFactory::User()->get_god_level($this->me['id']);
+            $cg_value = 0;
+            if ($god_level >= 2 && $god_level <= 3) {
+                $cg_value = 5;
+            }
+            if ($god_level <= 7 && $god_level >= 4) {
+                $cg_value = 8;
+            }
+            if ($god_level <= 10 && $god_level >= 8) {
+                $cg_value = 15;
+            }
+            if ($cg_value) {
+                try {
+                    ModelFactory::Usertask()->begin();
+                    $result = ModelFactory::Usertask()->answer_sign($this->me['id'],date('Y-m-d'),1);
+                    if ($result) {
+                        ModelFactory::User()->coin($this->me['id'],$cg_value,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ANSWER_30);
+                    }
+
+                } catch (Exception $e) {
+                    ModelFactory::Usertask()->rollback();
+                }
+            }
+        }
         $this->news_model->create(array(
             'target' => $problem['owner_id'],
             'type' => '201',
@@ -353,9 +383,8 @@ class Problem_api extends Base_api {
         ));
 
         // 给大神威望
-        $prestige = $max_coin / 100;
-        $this->user_model->edit($problem['answer_id'] , array("prestige" => $prestige));
-
+        $prestige = $problem['gold_coin'] +   $problem['silver_coin'] / 100;
+        ModelFactory::User()->coin($problem['answer_id'],$prestige,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ANSWER_PROBLEM);
         if($this->problem_model->close(array(
             'pid' => $problem_id
         )) === false) {
@@ -437,7 +466,7 @@ class Problem_api extends Base_api {
         if($this->problem_model->collect($problem_id)){
             // 取消关注则减少火力值
             $this->problem_model->hot($problem_id , 3 , true);
-           $this->user_model->Integral($this->me['id'] , 20 ,false);
+            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE ,false);
             parent::finish(true);
         }else{
             parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
@@ -449,7 +478,7 @@ class Problem_api extends Base_api {
         if($this->problem_model->uncollect($problem_id)){
              // 取消关注则减少火力值
             $this->problem_model->hot($problem_id , 3 , false);
-           $this->user_model->Integral($this->me['id'] , 20 );
+           ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE,false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION );
             parent::finish(true , "");
         }else{
             parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
@@ -464,9 +493,36 @@ class Problem_api extends Base_api {
         $up_down_type = false;
         $temp = array();
         parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
-        $return_data = $this->problem_model->get_problem($problem_id);
+        $return_data =    ModelFactory::Problem()->get_problem($problem_id);
         $up_users = json_decode($return_data[0]['up_users']);
 
+        if ($return_data['up_count'] >= 20 && $return_data['is_prestige'] != 1) {
+            $god_level = ModelFactory::User()->get_god_level($return_data['answer_id']);
+            $cg_value = 0;
+            if ($god_level >= 1 && $god_level <= 2) {
+                $cg_value = 5;
+            }
+            if ($god_level <= 7 && $god_level >= 3) {
+                $cg_value = 8;
+            }
+            if ($god_level <= 10 && $god_level >= 8) {
+                $cg_value = 15;
+            }
+            if ($cg_value) {
+                try {
+                    ModelFactory::Usertask()->begin();
+                    $r2 = ModelFactory::Problem()->edit($problem_id,['is_prestige'=>1]);
+                    if ($r2) {
+                        ModelFactory::User()->coin($return_data['answer_id'],$cg_value,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ZAN);
+                        ModelFactory::Usertask()->begin();
+                    }else{
+                        ModelFactory::Usertask()->rollback();
+                    }
+                } catch (Exception $e) {
+                    ModelFactory::Usertask()->rollback();
+                }
+            }
+        }
 
         foreach ($up_users as $key => $value) {
             if($value->id != $this->me['id']){
@@ -484,7 +540,7 @@ class Problem_api extends Base_api {
                 "up_users" => json_encode($up_users)
             ))){
                 // 积分需求
-                $this->user_model->Integral($this->me['id'] , 20 , false);
+                ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_ZAN_INTEGRAL_VALUE , false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_ZAN);
                 $this->finish(true , "","1");
             }else{
                 $this->finish(false , "未知的网络原因导致操作失败");
@@ -497,7 +553,7 @@ class Problem_api extends Base_api {
                     "hot" =>$return_data[0]["hot"] + 5,
                     "up_users" => json_encode($up_users)
                 ))){
-                    $this->user_model->Integral($this->me['id'] , 20 );
+                    ModelFactory::User()->Integral($this->me['id'] ,  CONSTFILE::USER_ACTION_ZAN_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_ZAN);
                     $this->finish(true , "","0");
                 }else{
                     $this->finish(false , "未知的网络原因导致操作失败");

@@ -42,7 +42,7 @@ class Home extends CI_Controller {
 		$page = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$push_data["page"] = $page < 1 ? '1' : $page;
 
-		if($user_type == 0){
+		if($user_type == 0){ //普通用户
 			if($push_data['love']) {
 				$push_data['follow_type'] = true;
 				$love_user = json_decode($user_data['follow_users']);
@@ -51,7 +51,11 @@ class Home extends CI_Controller {
 				//$love_user = array_slice($love_user, ($push_data["page"] - 1) * 6 , 6);
 				foreach ($love_user as $value) {
 					//$this->user_model->get(array("id" => $item['answer_id']) , array("nickname"))
-                    		$problem_list[] = $this->user_model->get(array('id' => $value));
+                    $user = $this->user_model->get(array('id' => $value));
+                    $level_id = ModelFactory::User()->get_god_level(0,$user);
+                    $level_name = ModelFactory::User()->get_god_level_name($level_id);
+                    $user['level_name'] = $level_name;
+                    $problem_list[]  = $user;
 				}
 				$push_data['hot'] = "&love=love";
 
@@ -81,7 +85,7 @@ class Home extends CI_Controller {
 			$push_data['problem_list'] = $problem_list;
 			$push_data['owner_list_count'] = $owner_list_count;
 		}
-		if($user_type == 1) {
+		if($user_type == 1) {//大神
 			$push_data['course'] = $this->god_course_model->get_list(array(
 				'god' => $user_data['id']
 			), 0, 4);
@@ -123,12 +127,20 @@ class Home extends CI_Controller {
 		}
 
 		switch ($user_type) {
-			case 0:$file_name = "studentHome.php";break;
-			case 1:$file_name = "god/home.php";break;
-			case 2:$file_name = "god/show.php";break;
-		}
+			case 0:
+                $file_name = "studentHome.php";
+                $level_id = ModelFactory::User()->get_user_level($this->me['id'],$user_data);
+                $push_data['user']['level_name']  = ModelFactory::User()->get_user_level_name($level_id);
+                break;
+            case 1:
+                $file_name = "god/home.php";
+                $level_id = ModelFactory::User()->get_god_level($this->me['id'],$user_data);
+                $push_data['user']['level_name']  = ModelFactory::User()->get_god_level_name($level_id);
+                break;
+            case 2:$file_name = "god/show.php";break;
+        }
 
-		// 在问过列表中添加众筹的问题
+        // 在问过列表中添加众筹的问题
 		function custom_sort($a, $b) {
 			return $b['id']  - $a['id'];
 		}
@@ -137,7 +149,6 @@ class Home extends CI_Controller {
 			$push_data['problem_list'] = array_merge($push_data['problem_list'], $fund_list);
 			usort($push_data['problem_list'], "custom_sort");
 		}
-
 		$this->parser->parse("miaoda/" . $file_name , $push_data);
 	}
 
@@ -154,10 +165,12 @@ class Home extends CI_Controller {
 			return;
 		}
 
-		$this->user_model->edit($this->me['id'], array(
+		$resutl  = $this->user_model->edit($this->me['id'], array(
 			'email_active' => 1,
-			'silver_coin' => $this->me['silver_coin'] + 300
 		));
+        if ($resutl) {
+            ModelFactory::User()->coin($this->me['id'],300,true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_EMAIL_ACTIVE);
+        }
 
 		$this->load->model('news_model');
 		$this->news_model->create(array(

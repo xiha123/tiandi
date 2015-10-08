@@ -2,7 +2,13 @@ $(".edit-user").click(function(event) {
 	$parents = $(this).parents().parents().eq(0);
 	$parents_baby = $parents.find("td");
 
-
+    if($parents_baby.eq(9).text() == '学员'){
+        selectXy = 'selected';
+        selectDs = '';
+    }else{
+        selectXy = '';
+        selectDs = 'selected';
+    }
 	input({
 		"title" : "编辑用户资料信息",
 		"icon" : "icon-trash",
@@ -17,10 +23,10 @@ $(".edit-user").click(function(event) {
 		'<tr><td>用户邮箱：<input type="text" value="' + $parents_baby.eq(2).text()+ '" name="email">'+
 		'<tr><td>手 机 号&nbsp;：<input type="text" value="' + $parents_baby.eq(3).text()+ '" name="cellphone">'+
 		'<tr><td>支 付 宝&nbsp;：<input type="text" value="' + $parents_baby.eq(4).text()+ '" name="alipay">'+
-		'<tr><td>金币数量：<input type="text" value="' + $parents_baby.eq(5).text()+ '" name="gold_coin">'+
-		'<tr><td>银币数量：<input type="text" value="' + $parents_baby.eq(6).text()+ '" name="silver_coin">'+
-		'<tr><td>用户积分：<input type="text" value="' + $parents_baby.eq(7).text()+ '" name="Integral">'+
-		'<tr><td>用户类型：<select name="type"><option value="0">学员</option><option value="1">大神</option></select>'+
+		'<tr><td>金币数量：<input type="text" placeholder="(增加修改))的金币值(当前:' + $parents_baby.eq(5).text()+ ')"  name="edit_gold_coin">'+
+		'<tr><td>银币数量：<input type="text" placeholder="(增加修改))的银币值(当前:' + $parents_baby.eq(6).text()+ ')"  name="edit_silver_coin">'+
+		'<tr><td>积分数量：<input type="text" placeholder="(增加修改))的积分值(当前:' + $parents_baby.eq(7).text()+ ')"  name="edit_Integral">'+
+		'<tr><td>用户类型：<select name="type"><option value="0" '+ selectXy +'>学员</option><option value="1" '+ selectDs +'>大神</option></select>'+
 		'<tr><td>置顶讲师：<input type="checkbox" style="position:relative;top:2px;" name="teacher">'+
 		'</table></form>',
 		"success" : function(){
