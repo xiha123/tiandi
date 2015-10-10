@@ -32,13 +32,13 @@
         </ul>
         <ul class="an-box c">
             <li>
-                <a class="button button1" href="#">QQ群/好友(强烈推荐)</a>
+                <a class="button button1" href="<?= $qqshare;?>">QQ群/好友(强烈推荐)</a>
             </li>
             <li>
-                <a class="button button2" href="#">QQ空间(推荐)</a>
+                <a class="button button2" href="<?= $qqzshare;?>">QQ空间(推荐)</a>
             </li>
             <li>
-                <a class="button button3" href="#">发布微博</a>
+                <a class="button button3" href="<?= $sinashare;?>">发布微博</a>
             </li>
         </ul>
     </div>
