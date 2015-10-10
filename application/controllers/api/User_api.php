@@ -44,8 +44,10 @@ class User_api extends Base_api {
             "id" => $user_id
         ));
         if ($type == 'true') {
+            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_USER_WATCH_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_USER_WATCH);
             $follow_users = parent::add_json($this->me['follow_users'], $user_id);
         } else {
+            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_USER_WATCH_INTEGRAL_VALUE ,false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_USER_WATCH);
             $follow_users = parent::remove_json_v($this->me['follow_users'], $user_id);
         }
         if (!$this->user_model->edit($this->me['id'], array("follow_users" => $follow_users))) {
@@ -63,6 +65,7 @@ class User_api extends Base_api {
         }
         parent::finish(true);
     }
+
 
 
 
@@ -141,6 +144,8 @@ class User_api extends Base_api {
         if($this->tag_model->collect_tag($id)){
             $this->tag_model->plus($id);
             $this->tag_model->add_user_tag($id);
+            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
+
             $this->finish(true);
         }else{
             $this->finish(false,"操作失败！");
@@ -153,6 +158,8 @@ class User_api extends Base_api {
         if($this->tag_model->uncollect_tag($id)){
             $this->tag_model->minus($id);
             $this->tag_model->un_user_tag($id);
+            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE ,false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
+
             $this->finish(true);
         }else{
             $this->finish(false,"操作失败！");
@@ -224,6 +231,8 @@ class User_api extends Base_api {
 
     // 创建、注册用户
     public function create() {
+        $this->load->helper('cookie');
+        $parent_id = get_cookie('parent_id');
         $this->load->helper('email');
         $params = parent::get_params('POST', array('email', 'nickname', 'pwd', 'avatar'));
         extract($params);
@@ -245,6 +254,7 @@ class User_api extends Base_api {
             'nickname' => $nickname,
             'pwd' => $pwd,
             'avatar' => $avatar,
+            'parent_id' => $parent_id,
         ));
         if(!is_bool($result)) {
             parent::finish(false, $result);
