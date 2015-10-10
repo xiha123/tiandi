@@ -655,6 +655,17 @@ ALTER TABLE `user`
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+CREATE TABLE `change_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `count` decimal(8,2) NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `count_type` smallint(6) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
+
 ALTER TABLE `tiandi`.`user`
 ADD COLUMN `sign_info` VARCHAR(255) NULL DEFAULT '{}' COMMENT '' AFTER `god_course_count`;
 CREATE TABLE `tiandi`.`user_task` (
@@ -663,6 +674,7 @@ CREATE TABLE `tiandi`.`user_task` (
   `task_id` INT NOT NULL COMMENT '',
   `created_at` INT NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '');
+
 
 ALTER TABLE `tiandi`.`user`
 ADD COLUMN `parent_id` INT NULL DEFAULT 0 COMMENT '' AFTER `sign_info`;
