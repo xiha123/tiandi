@@ -29,6 +29,7 @@
 				{/course}
 			</ul>
 			<a href="./godHelp" class="help">帮助说明</a>
+			<a href="./share/invite" class="help">邀请</a>
 		</div>
 		<div class="rightBox">
 			<h2 class="box-title">推荐您来回答</h2>
