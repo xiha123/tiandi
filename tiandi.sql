@@ -675,6 +675,7 @@ CREATE TABLE `tiandi`.`user_task` (
   `created_at` INT NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '');
 
+
 ALTER TABLE `tiandi`.`user`
 ADD COLUMN `parent_id` INT NULL DEFAULT 0 COMMENT '' AFTER `sign_info`;
 
