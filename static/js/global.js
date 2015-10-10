@@ -366,6 +366,7 @@ $(document).ready(function() {
             }
         });
     });
+
     $.each($('[data-widget]'), function(index, value) {
         var $widget = $(value);
 
