@@ -4,12 +4,12 @@ class Admin extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load-> model ("guide_model" );
+		$this->load->model("guide_model");
 		$this->load->model('admin_model' );
 		$this->load->model('slide_model');
 		$this->load->model('course_model');
-    		$this->load->model('course_chapter_model');
-    		$this->load->model('user_model');
+		$this->load->model('course_chapter_model');
+		$this->load->model('user_model');
 		$this->user_info = $this->admin_model->check_login();
 	}
 
@@ -511,4 +511,25 @@ class Admin extends CI_Controller {
 		$this->parser->parse('admin/god_class.php', $data);
 	}
 
+	public function comment() {
+		if($this->admin_model->require_login() === false) redirect('admin/login');
+
+		$this->load->model('problem_comment_model');
+		$page = $this->input->get("page");
+		$page = empty($page) || $page < 1 ? '1' : $page;
+		$search = $this->input->get("search");
+		if(empty($search)) {
+			$comments = $this->problem_comment_model->get_list(array(), $page - 1, 20);
+			$count = $this->problem_comment_model->get_count(array());
+		} else {
+			// TODO
+		}
+
+		$this->parser->parse('admin/comment.php', array(
+			'me' => $this->user_info,
+			'comments_count' => $count,
+			'page' => $page,
+			'comments' => $comments
+		));
+	}
 }

@@ -21,7 +21,8 @@
 		problem_type = <?=$problem_data["type"]?>,
 		max_god = <?= $god_count ?>,
 		online_save_type = <?=$problem_data["answer_id"] == @$id ? "true" : "false";?>,
-		problem_owner = <?= $problem_data['owner_id'] ?>;
+		problem_owner = <?= $problem_data['owner_id'] ?>,
+		problem_collect = <?= $problem_collect ? 'true' : 'false'?>;
 	<?php
 		// 改变第首次提问状态
 		$_SESSION['first'] = false;
@@ -111,13 +112,16 @@
 				}
 				if($problem_data['type'] == "0" && @$id == $problem_data['owner_id'] || $is_fund) {
 					echo '<div class="user_list_data"><!--<div class="doubt-time disable">20:00</div>-->
-					<h3 class="center tishi">您的问题已经推送给了<span>'.($first == 'true' ? '0' : $god_count).'</span>位大神，请耐心等待······</h3>
-					<h2 class="title">这些问题可能对您有用</h2>
-					<ul>
-						{useful_list}
-							<li><a href="./problem/?p={id}" target="_blank">{title}</a></li>
-						{/useful_list}
-					</ul></div>';
+					<h3 class="center tishi">您的问题已经推送给了<span>'.($first == 'true' ? '0' : $god_count).'</span>位大神，请耐心等待······</h3>';
+					if (!empty($useful_list)) {
+						echo '<h2 class="title">这些问题可能对您有用</h2>
+							<ul>
+								{useful_list}
+									<li><a href="./problem/?p={id}" target="_blank">{title}</a></li>
+								{/useful_list}
+							</ul>';
+					}
+					echo '</div>';
 				}
 				if($problem_data['type'] == "1" ){ if($problem_data['answer_id'] == @$id || $problem_data['owner_id'] == @$id ){
 				$problem_online_count = count(json_decode($problem_data['online']));

@@ -28,11 +28,11 @@
         <textarea name="" id="signature" cols="30" rows="10" id="ajax_description" placeholder="签名档"><?=$description?></textarea>
         <h3 class="information">账户设置</h3>
         <p class="email">
-            <span>邮箱: <?= $email ?></span>
+            <span style="display:block;">邮箱: <?= $email ?></span>
             <?php if ($email_active == 1) { ?>
             <a href="javascript:;" class="fr">已激活</a>
             <?php } else { ?>
-            <a href="javascript:;" class="fr red" id="active-email">未激活（点击激活）</a>
+            <a href="javascript:;" class="red" id="active-email">未激活（点击激活获取300银币）</a>
             <?php } ?>
         </p>
         <input type="text" placeholder="手机号码" value="<?=$cellphone?>" id="ajax_phone"/>

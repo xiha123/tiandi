@@ -67,7 +67,14 @@
 					"link" => "admin/videoAdministrator",
 					"icon" => "fa fa-film",
 					"active" => false,
-					"name" => "admin_user"
+					"name" => "video"
+				),
+				array(
+					"title" => "评论管理",
+					"link" => "admin/comment",
+					"icon" => "fa fa-comment",
+					"active" => false,
+					"name" => "comment"
 				),
 			);
 			if($me['type'] == 1){

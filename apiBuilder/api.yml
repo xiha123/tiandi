@@ -172,6 +172,12 @@ api:
         - problem_id
         - content
 -
+    url: api/problem_api/remove_comment
+    type: post
+    name: removeComment
+    needs:
+        - comment_id
+-
     # 老师认领问题 #已实现
     url: api/problem_api/request_problem
     type: post

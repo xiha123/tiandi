@@ -135,7 +135,7 @@ if(window.problem_type == 1){
 				});
 			}
 		}, 10000);
-	} else {
+	} else if (problem_owner === _td.info.id || problem_collect) {
 		setInterval(function () {
 			_td.api.syncGodAnswer({
 				problem_id: problem_id

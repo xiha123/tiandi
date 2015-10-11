@@ -14,3 +14,22 @@ p{
 .wrapper .agreement p{
 
 }
+
+table {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom:20px;
+    text-align: center;
+}
+table td,
+table th {
+    padding: 6px 13px;
+    border: 1px solid #ddd;
+}
+table th {
+    font-weight:bold;
+    text-align: center;
+}
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}

@@ -610,4 +610,20 @@ class Problem_api extends Base_api {
 		parent::finish(true, '', $res);
     }
 
+    public function remove_comment() {
+        $this->load->model('admin_model');
+        $this->me = $this->admin_model->check_login();
+        parent::require_login();
+        $params = $this->get_params('POST', array('comment_id'));
+        extract($params);
+
+        if (!$this->problem_comment_model->is_exist(array(
+            'id' => $comment_id
+        ))) {
+            parent::finish(false, '评论不存在');
+        }
+
+        $res = $this->problem_comment_model->remove($comment_id);
+		parent::finish(true, '', $res);
+    }
 }
