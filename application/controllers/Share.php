@@ -1,10 +1,12 @@
 <?php
 
 class Share extends CI_Controller {
-
+    public $userdata ;
 	public function __construct() {
 		parent::__construct();
-	}
+        $this->userdata = ModelFactory::User()->check_login();
+
+    }
     public function index(){
         $userdata = ModelFactory::User()->check_login();
 
@@ -152,4 +154,5 @@ class Share extends CI_Controller {
         $this->parser->parse("share/invite.php"  ,$userdata);
 
     }
+
 }

@@ -11,4 +11,8 @@ class godHelp extends CI_Controller {
 	{
 		$this->load->view("help/godHelp.php", $this->me);
 	}
+	public function gift()
+	{
+		$this->load->view("help/gift.php", $this->me);
+	}
 }

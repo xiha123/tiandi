@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
+date_default_timezone_set('PRC');
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

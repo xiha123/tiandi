@@ -20,7 +20,7 @@
 			<?php foreach (count(json_decode($user['god_skilled_tags'])) > 0 ? json_decode($user['god_skilled_tags']) : array() as $key => $value) {
                             echo '<a href="./tag/?name='. urldecode($value).'" class="tagBox">'.$value.'</a>';
                         }?>
-			<h2 class="box-title">正在开的课</h2>
+            <h2 class="box-title">正在开的课</h2>
 			<ul class="classList">
 				{course}
 					<li><a href="{link}" target="_blank">
@@ -28,8 +28,20 @@
 					</a></li>
 				{/course}
 			</ul>
-			<a href="./godHelp" class="help">帮助说明</a>
-			<a href="./share/invite" class="help">邀请</a>
+
+            <div class="help" style=" clear: both; margin-top: 30px; color: #219ba1">
+
+                <a href="./godHelp" style="color: #219ba1;" target="_blank">帮助说明</a>
+            </div >
+            <div class="help" style=" clear: both; margin-top: 30px; color: #219ba1">
+                <a href="./share/invite" style="color: #219ba1;" target="_blank" >邀请</a>
+            </div >
+            <div class="help" style=" clear: both; margin-top: 30px; color: #219ba1">
+
+                <a href="/godHelp/gift" style="color: #219ba1;" target="_blank">奖励政策</a>
+            </div >
+
+
 		</div>
 		<div class="rightBox">
 			<h2 class="box-title">推荐您来回答</h2>

@@ -2,7 +2,9 @@
 	if(!isset($nickname)){
 ?>
 <!-- 登录窗口通用弹窗  -->
-<div class="window" style="<?php if(isset($_GET['from_invite'])){echo 'display:block;';}?>">
+<div class="window" style="<?php if(isset($_GET['from_invite']) || $show_notice){echo 'display:block;';}?>">
+
+
 	<div class="login" id="login">
 		<div class="login-title">
 			<h2>登录</h2>
@@ -66,10 +68,29 @@
 	</div>
 </div>
 
-<?php
-	}
-?>
+<?php }else { ?>
+        <div class="window" style="<?php if($show_notice){echo 'display:block;';}?>" >
+            <div class="login" id="notice" style="<?php if($show_notice){echo 'display:block;';}?>;height: 300px;">
+                <div class="login-title">
+                    <h2>提醒</h2>
+                    <a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>
+                </div>
+                <div class="login-content cf">
+                    <div style="text-align: center; position: relative; margin-top: 50px;">
+                        <p style="font-size: 30px; color: #0092a4; ">全新妙答 任性豪礼</p>
+                    </div>
+                    <div style="margin:0 auto;width:200px; relative; margin-top: 20px;">
+                        <form action="footer.php">
 
+                            <input type="submit" value="去看看" id="ajax_login" >
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+<?php } ?>
 <div class="showAlert">
 	<p class="aletrContent">
 
