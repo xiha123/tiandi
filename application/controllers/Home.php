@@ -9,6 +9,7 @@ class Home extends CI_Controller {
 		$this->load->model('course_model');
 		$this->load->model("tag_model");
 		$this->me = $this->user_model->check_login();
+        $this->load->helper('cookie');
 	}
 
 	/***/
@@ -89,7 +90,15 @@ class Home extends CI_Controller {
 			$push_data['course'] = $this->god_course_model->get_list(array(
 				'god' => $user_data['id']
 			), 0, 4);
+            $is_first_in_god = get_cookie('is_first_in_god');
+            if (!$is_first_in_god) {
+                $push_data['show_notice'] = 1;
 
+                $date = date('Y-m-d 00:00:00', strtotime('+1 day'));
+                $time = strtotime($date) - time();
+//                echo $time/60/60;exit;
+                set_cookie('is_first_in_god',1, $time);
+            }
 			$recommend_list = $this->problem_model->get_recommend_list(0);
 			$push_data["recommend_list"]  = $recommend_list;
 
