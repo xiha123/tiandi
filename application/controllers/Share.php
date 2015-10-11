@@ -17,10 +17,10 @@ class Share extends CI_Controller {
             $problem['url'] = site_url('/problem/?p='.$problem['id']);
 
         }else{
-            $problem['title'] = '你还没来秒答答题赢大奖？全新秒答，任性壕礼！回答问题获得威望点，集齐一定威望点就可以召唤神龙！哦，不对，就可以兑换机械键盘、kindle、魔声耳机、ipad mini 4！';
+            $problem['title'] = '来秒答答题，赢任性壕礼！';
+            $problem['summary'] = '在秒答快乐分享，授人以渔，还能获得缤纷大礼！';
             $problem['desc'] = '你还没来秒答答题赢大奖？全新秒答，任性壕礼！回答问题获得威望点，集齐一定威望点就可以召唤神龙！哦，不对，就可以兑换机械键盘、kindle、魔声耳机、ipad mini 4！';
-            $problem['summary'] = '你还没来秒答答题赢大奖？全新秒答，任性壕礼！回答问题获得威望点，集齐一定威望点就可以召唤神龙！哦，不对，就可以兑换机械键盘、kindle、魔声耳机、ipad mini 4！';
-            $problem['pics'] = 'http://tiandipeixun.com/static/image/appleComputer.png';
+            $problem['pics'] = base_url('/share/people/static/image/share/share_image.jpg');
             $problem['url'] = base_url('/share/people?'.http_build_query([
                     'trace'=>base64_encode($userdata['id']),
                     'from_invite'=>1
@@ -70,9 +70,7 @@ class Share extends CI_Controller {
                     'showcount' => '',
                     'url'=>'',
                 );
-        $share_param['title'] = $problem['title'];
         $problem = array_intersect_key($problem,$share_param);
-        //var_dump($problem);exit;
 
         $share_param = array_merge($share_param,$problem);
 
