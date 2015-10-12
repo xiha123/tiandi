@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 
 	/***/
 	public function index() {
-		$id = !isset($_GET['uid']) ? false : $this->input->get("uid");
+		$uid = $id = !isset($_GET['uid']) ? false : $this->input->get("uid");
 		if($id == false) show_404();
 
 		$user_data = $this->user_model->get_user($id);
@@ -42,7 +42,8 @@ class Home extends CI_Controller {
 		$push_data['follow_type'] = false;
 		$page = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$push_data["page"] = $page < 1 ? '1' : $page;
-
+        $push_data['uid'] = $uid;
+        $push_data['mid'] = $this->me['id'] ;
 		if($user_type == 0){ //普通用户
 			if($push_data['love']) {
 				$push_data['follow_type'] = true;
