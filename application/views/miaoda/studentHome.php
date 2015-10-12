@@ -17,7 +17,9 @@
             <h4 class="name" style="font-size: 14px;    font-weight:600;"><?=$user['level_name']?></h4>
 			<p class="money">银币：<?=$user['silver_coin']?>  金币：<?=$user['gold_coin']?> 积分：<?=$user['Integral']?></p>
 			<p class="desk"><?= $user['description'] == "" ? '这家伙还没有描述.....' : $user['description'];?></p>
+            <?php if($isme){?>
             <button id="sign_btn" data-id="5"> 签到 </button>
+            <?php};?>
 		</div>
 
 
