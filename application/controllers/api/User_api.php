@@ -45,8 +45,10 @@ class User_api extends Base_api {
         ));
         if ($type == 'true') {
             ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_USER_WATCH_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_USER_WATCH);
+            ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_USER_WATCH_SILVER_VALUE ,true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_USER_WATCH);
             $follow_users = parent::add_json($this->me['follow_users'], $user_id);
         } else {
+            ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_USER_WATCH_SILVER_VALUE ,false,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_USER_WATCH);
             ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_USER_WATCH_INTEGRAL_VALUE ,false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_USER_WATCH);
             $follow_users = parent::remove_json_v($this->me['follow_users'], $user_id);
         }
@@ -145,6 +147,7 @@ class User_api extends Base_api {
             $this->tag_model->plus($id);
             $this->tag_model->add_user_tag($id);
             ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
+            ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_TAG_SILVER_VALUE ,true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
 
             $this->finish(true);
         }else{
@@ -159,6 +162,7 @@ class User_api extends Base_api {
             $this->tag_model->minus($id);
             $this->tag_model->un_user_tag($id);
             ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE ,false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
+            ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_TAG_SILVER_VALUE ,false,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
 
             $this->finish(true);
         }else{

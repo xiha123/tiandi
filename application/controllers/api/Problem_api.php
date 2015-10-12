@@ -466,7 +466,8 @@ class Problem_api extends Base_api {
         if($this->problem_model->collect($problem_id)){
             // 取消关注则减少火力值
             $this->problem_model->hot($problem_id , 3 , true);
-            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE ,false);
+            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE ,true,CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
+            ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_SILVER_VALUE ,true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
             parent::finish(true);
         }else{
             parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
@@ -479,6 +480,8 @@ class Problem_api extends Base_api {
              // 取消关注则减少火力值
             $this->problem_model->hot($problem_id , 3 , false);
            ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_INTEGRAL_VALUE,false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION );
+            ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_COLLECTION_PROBLEM_SILVER_VALUE ,false,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COLLECTION);
+
             parent::finish(true , "");
         }else{
             parent::finish(false , "无法预料到的意外错误，请您稍后再试！");
@@ -532,7 +535,7 @@ class Problem_api extends Base_api {
             }
         }
         $up_users = $temp;
-        if($up_down_type == true){
+        if($up_down_type == true){//取消点赞
             if($this->problem_model->up(array(
                 "id" => $problem_id ,
                 "up_count" => $return_data[0]["up_count"] - 1 ,
@@ -541,6 +544,7 @@ class Problem_api extends Base_api {
             ))){
                 // 积分需求
                 ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_ZAN_INTEGRAL_VALUE , false,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_ZAN);
+                ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_ZAN_SILVER_VALUE , false,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_ZAN);
                 $this->finish(true , "","1");
             }else{
                 $this->finish(false , "未知的网络原因导致操作失败");
@@ -553,7 +557,9 @@ class Problem_api extends Base_api {
                     "hot" =>$return_data[0]["hot"] + 5,
                     "up_users" => json_encode($up_users)
                 ))){
-                    ModelFactory::User()->Integral($this->me['id'] ,  CONSTFILE::USER_ACTION_ZAN_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_ZAN);
+                ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_ZAN_SILVER_VALUE , true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_ZAN);
+
+                ModelFactory::User()->Integral($this->me['id'] ,  CONSTFILE::USER_ACTION_ZAN_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_ZAN);
                     $this->finish(true , "","0");
                 }else{
                     $this->finish(false , "未知的网络原因导致操作失败");
@@ -610,4 +616,20 @@ class Problem_api extends Base_api {
 		parent::finish(true, '', $res);
     }
 
+    public function remove_comment() {
+        $this->load->model('admin_model');
+        $this->me = $this->admin_model->check_login();
+        parent::require_login();
+        $params = $this->get_params('POST', array('comment_id'));
+        extract($params);
+
+        if (!$this->problem_comment_model->is_exist(array(
+            'id' => $comment_id
+        ))) {
+            parent::finish(false, '评论不存在');
+        }
+
+        $res = $this->problem_comment_model->remove($comment_id);
+		parent::finish(true, '', $res);
+    }
 }
