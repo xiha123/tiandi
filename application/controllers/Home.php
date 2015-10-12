@@ -147,7 +147,10 @@ class Home extends CI_Controller {
                 $level_id = ModelFactory::User()->get_god_level($this->me['id'],$user_data);
                 $push_data['user']['level_name']  = ModelFactory::User()->get_god_level_name($level_id);
                 break;
-            case 2:$file_name = "god/show.php";break;
+            case 2:$file_name = "god/show.php";
+                $level_id = ModelFactory::User()->get_god_level($uid,$user_data);
+                $push_data['user']['level_name']  = ModelFactory::User()->get_god_level_name($level_id);
+                break;
         }
 
         // 在问过列表中添加众筹的问题
