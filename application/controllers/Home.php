@@ -42,7 +42,8 @@ class Home extends CI_Controller {
 		$push_data['follow_type'] = false;
 		$page = !isset($_GET['page']) ? "1" : $this->input->get("page");
 		$push_data["page"] = $page < 1 ? '1' : $page;
-        $push_data['isme'] = $this->me['id'] == $uid;
+        $push_data['uid'] = $uid;
+        $push_data['mid'] = $this->me['id'] ;
 		if($user_type == 0){ //普通用户
 			if($push_data['love']) {
 				$push_data['follow_type'] = true;
