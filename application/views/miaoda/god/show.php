@@ -10,8 +10,11 @@
 ?>
 	<div class="wrapper">
 		<div class="tacher-data">
-			<img src="<?=$user["avatar"] ?>" alt="" class="pic"><h3 class="name"><?=$user["nickname"] ?></h3>
-			<p class="desk"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
+			<img src="<?=$user["avatar"] ?>" alt="" class="pic">
+            <h3 class="name"><?=$user["nickname"] ?></h3>
+            <h4 class="name" style="font-size: 12px;font-weight:600;"><?=$user['level_name']?></h4>
+
+            <p class="desk"><?php echo $user["description"] == "" ? "这货居然没写描述" : $user['description']; ?></p>
 			<?= !check_follow(json_decode((isset($follow_users) ? $follow_users : "[]")), $user['id']) ? '<button id="ajax_eye" data-id="'.$user["id"].'">+ 关注</button>' : '<button id="ajax_uneye" data-id="'.$user["id"].'">取消关注</button>';?>
 		</div>
 		<div class="tacher-tag">
