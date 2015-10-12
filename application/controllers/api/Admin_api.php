@@ -176,12 +176,34 @@ class Admin_api extends Base_api {
      */
     public function apply_ok(){
         parent::require_login();
-        $params = parent::get_params('POST', array("userid"));if(empty($params)) return; extract($params);
+        $params = parent::get_params('POST', array("userid"));
+        if(empty($params)) return;
+        extract($params);
         if($this->user_model->edit($userid, array("type" => 1))){
             $this->news_model->create(array(
                 'target' => $userid,
                 'type' => '101'
             ));
+            $type = 1;
+            $id = $userid;
+            $do_task = ModelFactory::Usertask()->get_count(['user_id'=>$id,'task_id'=>CONSTFILE::USER_TASK_AUDIT_GOD_OK]);
+            if ($type == 1 && !$do_task) {
+                $user_data = ModelFactory::User()->get_user($id);
+
+                if ( $user_data['parent_id']   ) {
+                    $parent_user_data = ModelFactory::User()->get_user($user_data['parent_id']);
+
+                    if ($parent_user_data['parent_id'] != $id && !$do_task ) {
+                        ModelFactory::Usertask()->create([
+                            'user_id'=>$id,
+                            'created_at'=>time(),
+                            'task_id'=>CONSTFILE::USER_TASK_AUDIT_GOD_OK
+                        ]);
+                        ModelFactory::User()->coin($user_data['parent_id'],20,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_AUDIT_GOD_OK);
+                    }
+                }
+            }
+
             $this->finish(true, "Good!!");
         }else{
             $this->finish(false, "服务器异常!!");
