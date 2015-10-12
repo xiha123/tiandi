@@ -110,7 +110,7 @@
 				if($problem_data['type'] == "1" && (@$id == $problem_data['answer_id'] || @$id == $problem_data['owner_id'])){
 					echo $problem_data['type'] == 1 ? '<div class="doubt-time">20:00</div>' :'';
 				}
-				if($problem_data['type'] == "0" && @$id == $problem_data['owner_id'] || $is_fund) {
+				if($problem_data['type'] == "0" && (@$id == $problem_data['owner_id'] || $is_fund)) {
 					echo '<div class="user_list_data"><!--<div class="doubt-time disable">20:00</div>-->
 					<h3 class="center tishi">您的问题已经推送给了<span>'.($first == 'true' ? '0' : $god_count).'</span>位大神，请耐心等待······</h3>';
 					if (!empty($useful_list)) {
@@ -175,9 +175,9 @@
 				<div class="button close" data-id="<?= $problem_data["id"] ?>">
 					<a href="javascript:;" class="<?= $cls ?>"><i class="fa <?= $cls2 ?>"></i> <?= $name ?></a>
 					<a href="javascript:;" class="ajax_up"><i class="fa fa-thumbs-o-up"></i>点赞 ( <span class="upCount"><?= $problem_data['up_count'] ?></span> ) </a>
-					<a href="<?= $qqshare;?>" target="_blank"><img src="/static/image/share/qq.png" width="60px" /></a>
-					<a href="<?= $qqzshare;?>" target="_blank"><img src="/static/image/share/qqzone.png" width="60px" /></a>
-					<a href="<?= $sinashare;?>" target="_blank"><img src="/static/image/share/sina.png" width="60px" /></a>
+					<a href="<?= $qqshare;?>" target="_blank"><img src="static/image/share/qq.png" width="60px" /></a>
+					<a href="<?= $qqzshare;?>" target="_blank"><img src="static/image/share/qqzone.png" width="60px" /></a>
+					<a href="<?= $sinashare;?>" target="_blank"><img src="static/image/share/sina.png" width="60px" /></a>
                     <?= $btn ?>
 				</div>
 			<?php } else { ?>

@@ -61,7 +61,7 @@
 										}
 									?>
 								</ul>
-								<div class="list-date"> <?=$value['type'] == 3 ? "大神".$value['answer_id']['nickname']."回答于：".date("Y-m-d H:i:s",$value['answer_time']) : "提问于：".$value['ctime'] ?></div>
+								<div class="list-date"> <?=$value['type'] == 3 ? $value['answer_id']['nickname']."回答于：".date("Y-m-d H:i:s",$value['answer_time']) : "创建于：".$value['ctime'] ?></div>
 							</li>
 						<?php }	}else{
 							foreach ($problem_list as $key => $value) {

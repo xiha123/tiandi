@@ -68,8 +68,8 @@ class Home extends CI_Controller {
 				$push_data['hot'] = "&owner=owner";
 				foreach ($problem_list as &$value) {
 					$value['answer_id'] = $this->user_model->get(array("id" => $value['answer_id']) , array("nickname"));
-					$value['tags'] = array();
 					$tags = json_decode($value['tags']);
+					$value['tags'] = array();
 					foreach($tags as $tag) {
 						$value['tags'][] = array('name' => $tag->t);
 					}
@@ -81,6 +81,11 @@ class Home extends CI_Controller {
 				$push_data['hot'] = "";
 				foreach ($problem_list as $key => $value) {
 					$problem_list[$key]['answer_id'] = $this->user_model->get(array("id" => $value['answer_id']) , array("nickname"));
+					$tags = json_decode($value['tags']);
+					$value['tags'] = array();
+					foreach($tags as $tag) {
+						$value['tags'][] = array('name' => $tag->t);
+					}
 				}
 			}
 
@@ -155,7 +160,20 @@ class Home extends CI_Controller {
 			return $b['id']  - $a['id'];
 		}
 		if ($push_data['owner']) {
-			$fund_list = $this->problem_model->get_json($user_data['chou']);
+			$fund_list = array();
+			$json = json_decode($user_data['chou']);
+			foreach ($json as $id) {
+				$problem = $this->problem_model->get(array(
+					'id' => $id
+				));
+				$problem['answer_id'] = $this->user_model->get(array("id" => $problem['answer_id']));
+				$tags = json_decode($problem['tags']);
+				$problem['tags'] = array();
+				foreach($tags as $tag) {
+					$problem['tags'][] = array('name' => $tag->t);
+				}
+				$fund_list[] = $problem;
+			}
 			$push_data['problem_list'] = array_merge($push_data['problem_list'], $fund_list);
 			usort($push_data['problem_list'], "custom_sort");
 		}
