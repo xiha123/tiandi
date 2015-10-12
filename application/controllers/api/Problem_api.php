@@ -373,18 +373,24 @@ class Problem_api extends Base_api {
         }
 
         // 给大神结算问题报酬
-        $max_coin = (100 + count(json_decode($problem['who'])) * 50);
-        $this->user_model->coin($problem['answer_id'] , $max_coin);
+//        $max_coin = (100 + count(json_decode($problem['who'])) * 50);
+//        ModelFactory::User()->coin($problem['answer_id'] , $max_coin);
         $this->news_model->create(array(
             'target' => $this->me['id'],
             'type' => '402',
             'problem_id' => $problem_id,
-            'from_id' => $max_coin
+            'from_id' => $problem['silver_coin']
         ));
 
         // 给大神威望
         $prestige = $problem['gold_coin'] +   $problem['silver_coin'] / 100;
         ModelFactory::User()->coin($problem['answer_id'],$prestige,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ANSWER_PROBLEM);
+        if ($problem['gold_coin'] ) {
+            ModelFactory::User()->coin($problem['answer_id'],$problem['gold_coin'] ,true,'gold_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ANSWER_PROBLEM);
+        }
+        if ($problem['silver_coin'] ) {
+            ModelFactory::User()->coin($problem['answer_id'],$problem['silver_coin'] ,true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ANSWER_PROBLEM);
+        }
         if($this->problem_model->close(array(
             'pid' => $problem_id
         )) === false) {
