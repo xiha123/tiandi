@@ -9,10 +9,9 @@ class Tag extends CI_Controller {
 	}
 
 	public function index() {
-
 		if (empty($_GET['name'])) show_404();
 
-		if(isset($_GET['hot'])) {
+		if (isset($_GET['hot'])) {
 			$type = "hot";
 			$problem_type = "hot";
 		} else {
@@ -62,23 +61,8 @@ class Tag extends CI_Controller {
 
 
 		// 大神与标签学员榜
-		$god_array = array();
-		$student_array = array();
-		$data = $this->tag_model->get(array("name" => $name));
-		if(!isset($data)) show_404();
-		$followers = json_decode($data['json_who']);
-		foreach ($followers as $key => $value) {
-			$user = $this->user_model->get_user_list(array("id"=>$value->t , "type" => 0 , "type" => 2), 0, 10);
-			$god = $this->user_model->get_list(array("id"=>$value->t , "type" => 1),0,5);
-			if($god != array()){
-				array_push($god_array , $god);
-			}
-			if($user != array()){
-				array_push($student_array ,$user );
-			}
-		}
-		$userdata['student'] = array_unique($student_array);
-		$userdata['god'] = array_unique($god_array);
+		$userdata['active_god'] = $this->tag_model->get_active_user($userdata['tag_data']['id'], 5, true);
+		$userdata['active_stu'] = $this->tag_model->get_active_user($userdata['tag_data']['id'], 5);
 
 		$this->parser->parse("miaoda/tag/home.php" , $userdata);
 	}

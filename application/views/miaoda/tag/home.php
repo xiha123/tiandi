@@ -105,33 +105,30 @@
 		<div class="right-content">
 			<h2 class="box-title">标签活跃大神</h2>
 			<ul class="tag-list">
-				<?php
-					foreach ($god as $key => $value) {
-						if($value[0]["avatar"] == ""){
-							$value[0]["avatar"] = "static/image/default.jpg";
-						}
-						echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><img class="god" src="./static/image/god_right.png"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
-					}
-				?>
+				{active_god}
 				<li>
-					<a href="./god">更多 ></a>
+					<a href="home?uid={id}">
+						<img src="{avatar}" class="pic">
+						<img class="god" src="./static/image/god_right.png">
+						<h4 class="name">{nickname}</h4>
+						<div class="look"><img src="static/image/look.png" width="20px" alt="">{follower_count}</div>
+					</a>
 				</li>
+				{/active_god}
+				<li><a href="./god">更多 ></a></li>
 			</ul>
 
 			<h2 class="box-title">标签活跃学员</h2>
 			<ul class="tag-list">
-				<?php
-					foreach ($student as $key => $value) {
-						if($value[0]["avatar"] == ""){
-							$value[0]["avatar"] = "static/image/default.jpg";
-						}
-						if(isset($value[0]['nickname'])){
-							echo '<li><img src="'.$value[0]['avatar'].'" alt="" class="pic"><h4 class="name">'.$value[0]['nickname'].'</h4><div class="look"><img src="static/image/look.png" width="20px" alt="">'.$value[0]['follower_count'].'</div></li>';
-						}
-					}
-				?>
+				{active_stu}
 				<li>
+					<a href="home?uid={id}">
+						<img src="{avatar}" class="pic">
+						<h4 class="name">{nickname}</h4>
+						<div class="look"><img src="static/image/look.png" width="20px" alt="">{follower_count}</div>
+					</a>
 				</li>
+				{/active_stu}
 			</ul>
 
 		</div>

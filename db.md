@@ -92,8 +92,10 @@
 - name 有索引
 - count 属于这个 tag 的数量
 - content tag描述
-- json_who 谁关注了这个标签
-- link tag对应的链接，仅
+- json_who 谁收藏了这个标签
+- link tag对应的链接
+- active_god 标签活跃大神 {user_id:count}
+- active_stu 标签活跃学员，同上
 
 ### slide 表
 

@@ -145,18 +145,27 @@ class Problem_api extends Base_api {
         $title = $_POST['title'];
 
         if($this->problem_model->is_exist(array('title' => $title))) {
-           $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
+            $this->finish(false, '您的问题已经有人问过了，请不要再次提问咯！');
         }
 
-        switch ($language) {
-            case '0':$language = "html";break;
-            case '1':$language = "php";break;
-            case '2':$language = "c";break;
-            case '3':$language = "javascript";break;
-            case '4':$language = "java";break;
-            case '5':$language = "c#";break;
-            default: $language = "html";break;
-        }
+        $language_list = array(
+            '0' => 'html',
+            '1' => 'php',
+            '2' => 'c++',
+            '3' => 'javascript',
+            '4' => 'java',
+            '5' => 'c#',
+            '6' => 'unity-3d',
+            '7' => 'swift',
+            '8' => 'web',
+            '9' => 'cocos2d-x',
+            '10' => 'android',
+            '11' => 'lua',
+            '12' => 'css',
+            '13' => 'objective-c',
+            '14' => '其他',
+        );
+        $language = $language_list[$language];
 
         $is_length = parent::is_length(array(
             array("name" => "标题" , "value" => $title, "min" => 6,"max" => 64),
@@ -192,14 +201,18 @@ class Problem_api extends Base_api {
         $tagTemp = array();
         if (!empty($tagArray)) {
             foreach ($tagArray as $key => $value) {
-                if(preg_match("/[\'.,:;*?~`!@$%^&=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$value)){
+                if (preg_match("/[\'.,:;*?~`!@$%^&=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$value)){
                     parent::finish(false , "标签中不能存在特殊字符，请检查后再提交！");
                 }
-                if(strlen($value) < 2 && strlen($value) > 20) {
+                if (strlen($value) < 2 && strlen($value) > 20) {
                     parent::finish(false , "每个标签请小于20字符");
-                }else if($this->tag_model->add_tag($this->HTML($value))){
+                } else if ($this->tag_model->add_tag($this->HTML($value))) {
                     $tagTemp[] = array("t" => $value);
                     $this->tag_model->edit_tag_problem_count($value);
+                    $tag_id = $this->tag_model->get(array(
+                        'name' => $value
+                    ))['id'];
+                    $this->tag_model->add_active_user($tag_id, $this->me['id']);
                 }
             }
         }
@@ -320,6 +333,15 @@ class Problem_api extends Base_api {
             'type' => $type,
             'language' => $language
         ));
+
+        // add tag active user
+        $tags = json_decode($problem['tags']);
+        foreach ($tags as $tag) {
+            $tag_id = $this->tag_model->get(array(
+                'name' => $tag->t
+            ))['id'];
+            $this->tag_model->add_active_user($tag_id, $this->me['id'], true);
+        }
 
         //Empty problem temp data
         $this->problem_detail_model->remove_where(array("problem_id" => $problem_id , "type" => 3));

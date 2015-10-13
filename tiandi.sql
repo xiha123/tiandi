@@ -684,3 +684,8 @@ ALTER TABLE `user_task`
 ADD COLUMN `task_val` VARCHAR(45) NULL DEFAULT '' COMMENT '' AFTER `created_at`;
 ALTER TABLE `problem`
 ADD COLUMN `is_prestige` INT NULL DEFAULT 0 COMMENT '是否 赞数超过20是奖励过大神经验' AFTER `agree`;
+
+ALTER TABLE `tag`
+ADD COLUMN `active_god` VARCHAR(2048) DEFAULT '{}' AFTER `link`;
+ALTER TABLE `tag`
+ADD COLUMN `active_stu` VARCHAR(2048) DEFAULT '{}' AFTER `link`;
