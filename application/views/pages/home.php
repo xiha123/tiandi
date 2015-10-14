@@ -58,10 +58,10 @@
 	<div class="content footer">
 		<div class="wrap">
 			<div class="footer-logo">
-				<a  href="https://tdpx.taobao.com/index.htm" target="_blank"><img src="./static/image/tao.png" alt=""></a>
-				<a  href="http://weibo.com/tiandipeixun/" target="_blank"><img src="./static/image/sina.png" alt=""></a>
-				<a  href="javascript:;" class="wechat"><img src="./static/image/TD.jpg" alt="" class="weChatCode"><img src="./static/image/wechat.png" alt=""></a>
-				<a  href="http://sighttp.qq.com/authd?IDKEY=eb5646f63901b8a68ccaea689999acaa5bceaab20544f22b" target="_blank"><img src="./static/image/bottom_qq.png" alt=""></a>
+				<a href="https://tdpx.taobao.com/index.htm" target="_blank"><img src="./static/image/taobao.png" alt=""></a>
+				<a href="http://weibo.com/tiandipeixun/" target="_blank"><img src="./static/image/weibo.png" alt=""></a>
+				<a href="javascript:;" class="wechat"><img src="./static/image/TD.jpg" alt="" class="weChatCode"><img src="./static/image/weixin.png" alt=""></a>
+				<a href="http://sighttp.qq.com/authd?IDKEY=eb5646f63901b8a68ccaea689999acaa5bceaab20544f22b" target="_blank"><img src="./static/image/qq.png" alt=""></a>
 			</div>
 			<div class="footer-nav">
 				<a href="javascript:;">关于我们</a>

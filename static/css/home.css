@@ -115,7 +115,7 @@ html{background: none}
 
 .content.footer .footer-logo {width:288px;position:relative;left:40px; height:40px;margin: 0 auto;}
 .content.footer .footer-logo a{display:block;width:42px;float:left;margin-right:10px;position:relative;}
-.content.footer .footer-logo .weChatCode{display:none;border:1px solid #eee;position:absolute;width:150px;height:150px;z-index:1024;left:-65px;box-shadow: 0px 4px 21px -6px #999;top:-150px;}
+.content.footer .footer-logo .weChatCode{display:none;border:1px solid #eee;position:absolute;width:150px;height:150px;z-index:1024;left:-55px;box-shadow: 0px 4px 21px -6px #999;top:-160px;}
 
 
 .content.footer .friend {border:1px solid #ddd;border-right:none;border-left:none;padding:10px 0px;margin-top:20px;}
