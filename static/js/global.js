@@ -36,10 +36,17 @@ if (_td.info.id !== -1) {
             var msg = [];
 
             $.each(res.data, function (index, item) {
-                if (item.type === '200') {
+                switch (item.type) {
+                case '200':
                     msg.push('您有问题被认领啦');
-                } else if (item.type === '201' || item.type === '301') {
+                    break;
+                case '201':
+                case '301':
                     msg.push('您有问题被回答啦');
+                    break;
+                case '202':
+                    msg.push('您有问题被评论啦');
+                    break
                 }
             });
 

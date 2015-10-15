@@ -270,11 +270,31 @@ class Problem_api extends Base_api {
         $this->problem_model->edit($problem_id, array(
             'comments' => json_encode($comments)
         ));
+
         // 评论给用户积分
         ModelFactory::User()->Integral($this->me['id'] , CONSTFILE::USER_ACTION_COMMENT_PROBLEM_INTEGRAL_VALUE ,true,'Integral',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COMMENT);
         ModelFactory::User()->coin($this->me['id'] , CONSTFILE::USER_ACTION_COMMENT_PROBLEM_SILVER_COIN_VALUE ,true,'silver_coin',CONSTFILE::CHANGE_LOG_COUNT_TYPE_CLICK_COMMENT);
-        // 每次评论可获得一个火力值
+
+        // 每次评论可获得一点热度
         $this->problem_model->hot($problem_id , 1 , true);
+
+        // 添加新消息
+        if ($problem['owner_id'] != $this->me['id']) {
+            $this->news_model->create(array(
+                'target' => $problem['owner_id'],
+                'type' => '202',
+                'problem_id' => $problem_id,
+                'from_id' => $this->me['id']
+            ));
+        }
+        if (!empty($problem['answer_id']) && $problem['answer_id'] != $this->me['id']) {
+            $this->news_model->create(array(
+                'target' => $problem['answer_id'],
+                'type' => '202',
+                'problem_id' => $problem_id,
+                'from_id' => $this->me['id']
+            ));
+        }
         $this->finish(true);
     }
 
