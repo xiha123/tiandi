@@ -77,7 +77,7 @@
                 </div>
                 <div class="login-content cf">
                     <div style="text-align: center; position: relative; margin-top: 50px;">
-                        <p style="font-size: 30px; color: #0092a4; ">全新妙答 任性豪礼</p>
+                        <p style="font-size: 30px; color: #0092a4; ">全新秒答，任性壕礼</p>
                     </div>
                     <div style="margin:0 auto;width:200px; relative; margin-top: 20px;">
                         <form action="/godHelp/gift">

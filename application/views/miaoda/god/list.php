@@ -39,7 +39,7 @@
 							<p class="name">
 								<a href="./home?uid=<?= $value['id'] ?>" target="_blank"><?= $value['nickname'] ?></a>
 
-								<em style="font-weight: 400;font-size: 16px;" href="javascript:;" target="_blank"><?= $value['level_name'] ?></em>
+								<em style="font-size: 12px;font-weight:600;margin-left: 36px;" href="javascript:;" target="_blank"><?= $value['level_name'] ?></em>
 
 								<font><img src="static/image/look.png" class="eyes";width="24px" alt=""><?= $value['follower_count'] ?></font>
 							</p>
