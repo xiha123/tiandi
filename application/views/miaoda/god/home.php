@@ -1,6 +1,15 @@
-<?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="./static/css/miaoda/godHome.css">
+	<?php $this->load->view('widgets/header.php'); ?>
+	<link rel="stylesheet" href="./static/css/miaoda/godHome.css">
 <body>
+
+<div
+	id="page-info"
+	class="hidden"
+	data-title="秒答_<?= $user['nickname'] ?>的主页"
+	data-keywords="秒答,问答社区,<?= $user['nickname'] ?>"
+	data-description="<?= $user['description'] ?>"
+></div>
+
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 	<div class="wrapper">
