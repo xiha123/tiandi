@@ -12,7 +12,7 @@ class God_api extends Base_api {
 
 	public function addGodApply(){
 		parent::require_login();
-		$params = $this->get_params('POST', array( 'name','tag' , 'cellphone','description' ,'alipay'));
+		$params = $this->get_params('POST', array( 'name','tag' , 'cellphone','description'));
 		extract($params);
 
 		if(!$this->user_model->is_exist(array(
@@ -24,7 +24,7 @@ class God_api extends Base_api {
 
 		$skilled_tags = array(
 			'["unity-3d"]',
-			'["swift"]',
+			'["Flash"]',
 			'["web"]',
 			'["cocos2d-x"]',
 			'["android"]',
@@ -34,7 +34,6 @@ class God_api extends Base_api {
 			"name" => $name,
 			"cellphone" => $cellphone,
 			"god_description" => $description,
-			"alipay" => $alipay,
 			"type" => 2,
 			"god_skilled_tags" => $skilled_tags[$tag],
 			"father_tag" => $tag,

@@ -1,13 +1,11 @@
 $("#ajax_apply").click(function(event) {
 	var name = $("#name").val();
-	var alipay = $("#alipay").val();
 	var phone = $("#phone").val();
 	var tag = $("#tag").val();
 	var desk = $("#desk").val();
 	var agree = $('.agree').prop('checked');
 
 	if(name.length > 4 || name.length < 2){showAlert(false,"姓名格式输入错误！");return;}
-	if(alipay.length < 5){showAlert(false,"请输入正确的支付宝账号");return;}
 	if(!isphone(phone)){showAlert(false,"请输入正确的手机号");return;}
 	if(desk < 5){showAlert(false,"请输入正确的描述");return;}
 	if (agree === false) {
@@ -22,7 +20,6 @@ $("#ajax_apply").click(function(event) {
 			"name" : name,
 			"cellphone" : phone,
 			"description" : desk,
-			"alipay" : alipay,
 			"tag" : tag
 		},
 		success : function(data){

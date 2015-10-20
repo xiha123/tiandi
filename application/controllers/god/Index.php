@@ -13,7 +13,7 @@ class index extends CI_Controller {
 		if(isset($_GET['type'])){
 			switch ($userdata['type_name']) {
 				case 'u3d':$type = 0;break;
-				case 'Swift':$type = 1;break;
+				case 'Flash':$type = 1;break;
 				case 'Web':$type = 2;break;
 				case 'Cocos2d-x':$type = 3;break;
 				case 'Android':$type = 4;break;

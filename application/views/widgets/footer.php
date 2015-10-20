@@ -2,6 +2,11 @@
     <i class="fa fa-chevron-up"></i>
 </div>
 
+<div class="left-ad">
+    <a href="javascript:$('.left-ad').hide();"><i class="fa fa-close"></i></a>
+    <a href="godintro"><img src="static/image/left-float-ad.png" alt="apply god" width="170" height="320"></a>
+</div>
+
 <div class="js-popup popup-wrapper hidden">
     <div class="popup">
         <a href="javascript:;" onclick="javascript:$('.bomb-login').trigger('click');return false;" class="js-close-popup"><img src="static/image/popup1.jpg"></a>
