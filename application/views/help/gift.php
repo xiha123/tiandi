@@ -55,6 +55,11 @@
                 <P class="txt1"><a>攒够5500威望点就可以换<strong>iPad mini 3</strong>，每月限额1个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/8-ipad.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需1280威望点，限额3个）</P>
             </li>
+            <li>
+                <P class="txt1"><a>攒够100威望点就可以换<strong>程序员马克杯</strong><span class="tips"><span class="qp-icon"></span><img src="static/image/good/8-ipad.png" width="98" height="98" /></span></a></P>
+                <P class="txt2">（10月份仅需50威望点）</P>
+            </li>
+
         </div>
     </div>
 </div>
