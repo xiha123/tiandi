@@ -2,6 +2,19 @@
 <link rel="stylesheet" href="./static/css/miaoda/home.css">
 <link rel="stylesheet" href="./static/css/miaoda/tag.css">
 <body>
+
+<?php
+	$tag_name = $tag_data['name'];
+	$description = substr($tag_data['content'], 0, 160);
+?>
+<div
+	id="page-info"
+	class="hidden"
+	data-title="秒答_<?= $tag_name ?>问题集合"
+	data-keywords="<?= $tag_name ?>,自学<?= $tag_name ?>,<?= $tag_name ?>学习,<?= $tag_name ?>学习资料"
+	data-description="<?= strip_tags($description) ?>"
+></div>
+
 <script>
 	var tag = <?=$tag_data['id']?>;
 </script>
@@ -31,7 +44,7 @@
 		<div class="left-content">
 
 			<div class="tag-desk">
-				<h1><?=$tag_data['name']?></h1>
+				<h1><?= $tag_name ?></h1>
 				<?=!$collect_type ?
 					'<button id="collect_tag"><i class="fa fa-star-o"></i> 收藏</button>' :
 					'<button class="none-background" id="uncollect_tag"><i class="fa fa-star"></i> 取消收藏</button>'

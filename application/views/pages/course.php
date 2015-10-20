@@ -3,6 +3,22 @@
 </head>
 <body>
 
+<?php
+	$keywords = '';
+	foreach ($courseData['tags'] as $value) {
+		$keywords .= ',' . $value['name'];
+		$keywords .= ',' . $value['name'] . '培训';
+	}
+	$description = substr($courseData['description'], 0, 160);
+?>
+<div
+	id="page-info"
+	class="hidden"
+	data-title="天地君道培训_<?= $courseData['title'] ?>"
+	data-keywords="天地君道培训,<?= keywords ?>"
+	data-description="<?= $description ?>"
+></div>
+
 <?php $this->load->view('widgets/nav.php'); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
 

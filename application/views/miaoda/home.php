@@ -2,6 +2,15 @@
 	<link rel="stylesheet" href="static/css/miaoda/home.css">
     <link href="ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
 <body>
+
+<div
+	id="page-info"
+	class="hidden"
+	data-title="秒答_国内首个针对零基础初学者学习编程的编程社区_编程问题，就上秒答"
+	data-keywords="秒答,编程社区,零基础,编程问题,VR游戏,AR游戏,unity5,cocos2dx,android,ios,flash,java,html5"
+	data-description="秒答是国内首个针对零基础初学者学习编程的编程社区。在这里你能提问Unity3D、Web、Cocos2D-X等热门编程领域的问题。每个问题都能被快速准确地解答，绝不留着难题过夜。让编程初学者不再走弯路，想提升编程学习效率，上秒答，就对了。"
+></div>
+
 <?php $this->load->view('widgets/miaoda/nav.php' , array("activeNav" => 0)); ?>
 
 <?php

@@ -32,6 +32,7 @@ class index extends CI_Controller {
 			'102' => '您的大神请求表未通过审核，您可以尝试多回答问题并提交更详细的审核表。',
 			'200' => '您的问题: <a href="problem/?p={problem_id}">{problem_title}</a> 已被大神: <a href="home?uid={from_id}">{from_name}</a> 认领，欢迎前去围观。',
 			'201' => '您的问题: <a href="problem/?p={problem_id}">{problem_title}</a> 已被大神: <a href="home?uid={from_id}">{from_name}</a> 回答，请注意查看。',
+			'202' => '您的问题: <a href="problem/?p={problem_id}">{problem_title}</a> 收到来自: <a href="home?uid={from_id}">{from_name}</a> 评论，请注意查看。',
 			'300' => '您成功参与了问题: <a href="problem/?p={problem_id}">{problem_title}</a> 的众筹，并将收到相关新消息，已推送给各路大神，等待回答。',
 			'301' => '您参与众筹的问题: <a href="problem/?p={problem_id}">{problem_title}</a> 已被大神: <a href="home?uid={from_id}">{from_name}</a> 回答，请注意查看。',
 			'400' => '恭喜您在问题: <a href="problem/?p={problem_id}">{problem_title}</a> 中的回答被提问者评为满意。',

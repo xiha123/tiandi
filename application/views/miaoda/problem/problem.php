@@ -6,6 +6,23 @@
 <body>
 
 <?php
+	$keywords = '';
+	foreach ($problem_data['tags'] as $tag) {
+		if (!empty($tag['name'])) {
+			$keywords .= ',' . $tag['name'];
+		}
+	}
+	$description = substr($problem_detail[0]['content'], 0, 160);
+?>
+<div
+	id="page-info"
+	class="hidden"
+	data-title="秒答_<?= htmlspecialchars($problem_data["title"]) ?>"
+	data-keywords="秒答,问答社区<?= $keywords ?>"
+	data-description="<?= strip_tags($description) ?>"
+></div>
+
+<?php
 	$first = 'false';
 	if (isset($_SESSION['first']) && $_SESSION['first'] == true) {
 		$first = 'true';
