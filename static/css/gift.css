@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+img{ border:none;}
+ul li{ list-style:none;}
+a{ text-decoration:none;}
+body{ font-size:12px; font-family:Microsoft Yahei;font-family:Microsoft Yahei;}
+.c{zoom:1;}
+.c:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.to{text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
+.ad-layout{width:1100px; margin:0 auto;}
+.ad-left{ padding:150px 100px 0 40px;width:220px; float:left;}
+.ad-right{width:740px; padding:80px 0 0; float:right;}
+.ad-txt1{ color:#ff7b11; font-size:24px; text-align:center;}
+.ad-txt2{ color:#ff7b11; font-size:20px; text-align:center; margin-bottom:20px; margin-top:5px;}
+.ad-left .p-line{  margin:40px 0;}
+.ad-list li{ list-style:none; margin-bottom:20px; cursor:pointer; }
+.ad-list li .txt1{ font-size:20px; color:#333333; margin-bottom:8px;}
+.ad-list li .txt1 a{position:relative;}
+.ad-list li .txt2{ font-size:18px; color:#39a0ae;}
+.ad-list li .txt1 a span.tips{ width:110px; height:100px; display:none; right:-110px; top:-40px; position:absolute;}
+.ad-list li:hover .txt1 a span.tips{ display:block;}
