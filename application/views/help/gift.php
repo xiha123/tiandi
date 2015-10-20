@@ -21,35 +21,38 @@
     <div class="ad-right">
         <div class="ad-list">
             <li>
-                <P class="txt1"><a>攒够100威望点就可以换<strong>程序员马克杯</strong><span class="tips"><img src="static/image/good/1-cup.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够100威望点就可以换<strong>程序员马克杯</strong>
+                        <span class="tips"><span class="qp-icon"></span>
+                            <img   src="static/image/good/1-cup.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需50威望点）</P>
             </li>
             <li>
-                <P class="txt1"><a>攒够150威望点就可以换<strong>《算法帝国》/《编程之美》</strong><span class="tips"><img src="static/image/good/2-book.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够150威望点就可以换<strong>《算法帝国》/《编程之美》</strong><span class="tips">
+                            <span class="qp-icon"></span><img src="static/image/good/2-book.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需100威望点）</P>
             </li>
             <li>
-                <P class="txt1"><a>攒够300威望点就可以换<strong>小米手环</strong><span class="tips"><img src="static/image/good/3-band.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够300威望点就可以换<strong>小米手环</strong><span class="tips"><span class="qp-icon"></span><img src="static/image/good/3-band.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需200威望点）</P>
             </li>
             <li>
-                <P class="txt1"><a>攒够500威望点就可以换<strong>无线鼠标</strong>，每月限额15个<span class="tips"><img src="static/image/good/4-mouse.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够500威望点就可以换<strong>无线鼠标</strong>，每月限额15个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/4-mouse.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需300威望点，且不限数量）</P>
             </li>
             <li>
-                <P class="txt1"><a>攒够900威望点就可以换<strong>机械键盘</strong>，每月限额8个<span class="tips"><img src="static/image/good/5-keyboard.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够900威望点就可以换<strong>机械键盘</strong>，每月限额8个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/5-keyboard.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需500威望点，限额16个）</P>
             </li>
             <li>
-                <P class="txt1"><a>攒够1700威望点就可以换<strong>kindle</strong>，每月限额5个<span class="tips"><img src="static/image/good/6-kindle.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够1700威望点就可以换<strong>kindle</strong>，每月限额5个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/6-kindle.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需800威望点，限额10个）</P>
             </li>
             <li>
-                <P class="txt1"><a>攒够3300威望点就可以换<strong>魔声耳机</strong>，每月限额2个<span class="tips"><img src="static/image/good/7-beats.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够3300威望点就可以换<strong>魔声耳机</strong>，每月限额2个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/7-beats.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需1000威望点，限额5个）</P>
             </li>
             <li>
-                <P class="txt1"><a>攒够5500威望点就可以换<strong>iPad mini 3</strong>，每月限额1个<span class="tips"><img src="static/image/good/8-ipad¡.png" width="110" height="100" /></span></a></P>
+                <P class="txt1"><a>攒够5500威望点就可以换<strong>iPad mini 3</strong>，每月限额1个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/8-ipad.png" width="98" height="98" /></span></a></P>
                 <P class="txt2">（10月份仅需1280威望点，限额3个）</P>
             </li>
         </div>

@@ -20,4 +20,5 @@ body{ font-size:12px; font-family:Microsoft Yahei;font-family:Microsoft Yahei;}
 .ad-list li .txt1 a{position:relative;}
 .ad-list li .txt2{ font-size:18px; color:#39a0ae;}
 .ad-list li .txt1 a span.tips{ width:110px; height:100px; display:none; right:-110px; top:-40px; position:absolute;}
-.ad-list li:hover .txt1 a span.tips{ display:block;}
+.ad-list li:hover .txt1 a span.tips{ display:block;width:98px; height:98px; border:1px solid #cccccc; -webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;}
+.ad-list li:hover .txt1 a span.tips span.qp-icon{ background:url(/static/image/p1.png) no-repeat;width:13px; height:13px; display:block; position:absolute; left:-13px; top:40%;}
