@@ -44,7 +44,7 @@
 			<tr><td><input type="text" class="title" id="problem-title" value="<?=$_SESSION['problem_temp']['title']?>" placeholder="一句话写下你遇到的问题"></td></tr>
 			<tr><td>
 				<div class="desc">
-					<script id="editor" type="text/plain" style="color:#333;width:980px;height:200px;"><?= $_SESSION['problem_temp']['content']?></script>
+					<script id="editor" type="text/plain" style="width:980px;height:200px;"><?= $_SESSION['problem_temp']['content']?></script>
 					<div class="code-box">
 						<select class="Language">
 							<option value="-1" <?=$_SESSION['problem_temp']['language'] == -1 ? 'selected=""' : ""?>>请选择问题方向</option>

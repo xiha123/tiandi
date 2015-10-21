@@ -363,3 +363,19 @@ textarea ,button{
     line-height: 25px;
     color:#999;
 }
+
+
+.left-ad {
+    position:fixed;
+    top:50%;
+    margin-top:-130px;
+    left:0;
+    z-index:9999;
+}
+.left-ad i {
+    position:absolute;
+    top:4px;
+    right:4px;
+    color:#fff;
+    font-size:16px;
+}

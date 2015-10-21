@@ -81,31 +81,20 @@ $(function () {
 		}
 	}, 10000);
 
-	var is_one = true , is_ok = false , is = false;
 	ue.ready(function() {
-		ue.execCommand('inserthtml', '<span></span>');
-		if(ue.getContentTxt() == "" && is == false){
-			ueSetColor("#aaa","在此处输入您对问题的描述");
-			is = true;
-		}
+		ue.addListener('focus', function(editor) {
+			if (ue.getContentTxt() === '请详细描述你的问题') {
+				ue.setContent('');
+				$('#editor').css('color', '#333');
+			}
+		});
+		ue.addListener('blur', function(editor) {
+			if (ue.getContentTxt() === '') {
+				ue.setContent("请详细描述你的问题");
+				$('#editor').css('color', '#aaa');
+			}
+		});
 		ue.blur();
-		setTimeout(function(){
-			ue.addListener('selectionchange', function( editor ) {
-				if(is_one == false){
-					is_one = true;
-					if(ue.getContentTxt() == "在此处输入您对问题的描述" && is == true){
-						ueSetColor("#333" , "");
-						setTimeout(function(){
-							ue.focus();
-						},100)
-					}
-				}
-				if(!is_ok){
-					is_one = false;
-				}
-				is_ok = true;
-			});
-		},500)
 	});
 
 });

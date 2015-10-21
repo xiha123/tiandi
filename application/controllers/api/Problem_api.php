@@ -200,12 +200,13 @@ class Problem_api extends Base_api {
         // 处理标签请求
         $tagTemp = array();
         if (!empty($tagArray)) {
-            foreach ($tagArray as $key => $value) {
+            foreach ($tagArray as &$value) {
+                $value = trim($value);
                 if (preg_match("/[\'.,:;*?~`!@$%^&=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$value)){
                     parent::finish(false , "标签中不能存在特殊字符，请检查后再提交！");
                 }
-                if (strlen($value) < 2 && strlen($value) > 20) {
-                    parent::finish(false , "每个标签请小于20字符");
+                if (strlen($value) < 2 || strlen($value) > 20) {
+                    parent::finish(false , "标签不能为空且需小于20字符");
                 } else if ($this->tag_model->add_tag($this->HTML($value))) {
                     $tagTemp[] = array("t" => $value);
                     $this->tag_model->edit_tag_problem_count($value);
