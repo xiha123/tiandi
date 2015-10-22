@@ -547,9 +547,9 @@ class Problem_api extends Base_api {
         parent::require_login();$params = $this->get_params('POST', array('problem_id'));extract($params);
         $return_data =    ModelFactory::Problem()->get_problem($problem_id);
         $up_users = json_decode($return_data[0]['up_users']);
+        if ($return_data && $return_data[0]['up_count'] >= 20 &&  $return_data[0]['is_prestige'] != 1) {
+            $god_level = ModelFactory::User()->get_god_level( $return_data[0]['answer_id']);
 
-        if ($return_data['up_count'] >= 20 && $return_data['is_prestige'] != 1) {
-            $god_level = ModelFactory::User()->get_god_level($return_data['answer_id']);
             $cg_value = 0;
             if ($god_level >= 1 && $god_level <= 2) {
                 $cg_value = 5;
@@ -561,12 +561,13 @@ class Problem_api extends Base_api {
                 $cg_value = 15;
             }
             if ($cg_value) {
+
                 try {
                     ModelFactory::Usertask()->begin();
                     $r2 = ModelFactory::Problem()->edit($problem_id,['is_prestige'=>1]);
                     if ($r2) {
-                        ModelFactory::User()->coin($return_data['answer_id'],$cg_value,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ZAN);
-                        ModelFactory::Usertask()->begin();
+                        ModelFactory::User()->coin( $return_data[0]['answer_id'],$cg_value,true,'prestige',CONSTFILE::CHANGE_LOG_COUNT_TYPE_ZAN);
+                        ModelFactory::Usertask()->commit();
                     }else{
                         ModelFactory::Usertask()->rollback();
                     }
