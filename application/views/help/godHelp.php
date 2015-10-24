@@ -102,5 +102,7 @@
 
 
     </ul>
+
+<?php $this->load->view('widgets/footer.php'); ?>
 </body>
 </html>
