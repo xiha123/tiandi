@@ -8,6 +8,8 @@ class base_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->driver('cache', array('adapter' => 'file'));
+
     }
     	public function get_limit($params , $where_id){
     		foreach ($params as $key => $value) {
@@ -91,4 +93,10 @@ class base_model extends CI_Model {
         $this->db->trans_rollback();
     }
 
+    /**
+     * @return CI_Cache_file;
+     */
+    public function cache(){
+        return $this->cache;
+    }
 }
