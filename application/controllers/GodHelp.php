@@ -54,16 +54,24 @@ class godHelp extends CI_Controller {
         echo json_encode(['result'=>false]);
 
     }
+
     public function get_video(){
         $userdata = ModelFactory::User()->check_login();
         $date  = 'get_video'.$userdata['id'];
         $conter =  $this->cache()->increment($date);
         $videos = [
-          ['url'=>'http://www.baidu.com','name'=>'java入门'],
-          ['url'=>'http://www.baidu.com','name'=>'java入门'],
-          ['url'=>'http://www.baidu.com','name'=>'java入门'],
-          ['url'=>'http://www.baidu.com','name'=>'java入门'],
-          ['url'=>'http://www.baidu.com','name'=>'java入门'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545188.mp4','name'=>'U3D公开课—喷气小飞鼠'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545187.mp4','name'=>'AS3游戏开发'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545186.mp4','name'=>'AS3—Starling教程'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545185.mp4','name'=>'WEB公开课—侧边栏效果'],
+            ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545184.mp4','name'=>'U3D公开课—人物技能释放'],
+            ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545183.mp4','name'=>'Swift公开课'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545182.mp4','name'=>'Cocos公开课—三消游戏'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545181.mp4','name'=>'Cocos公开课—跑酷游戏'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545179.mp4','name'=>'Android公开课—计算器项目'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545178.mp4','name'=>'Android公开课—分享组件'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545177.mp4','name'=>'WEB公开课—Html5前景介绍'],
+          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545176.mp4','name'=>'游戏策划公开课'],
         ];
         $ckey = $this->get_today_video_status_key($userdata);
         $is_get = $this->cache()->get($ckey);
@@ -125,6 +133,10 @@ class godHelp extends CI_Controller {
 	{
 
         $userdata = ModelFactory::User()->check_login();
+        $id = $userdata['id'];
+        if (!$id) {
+            show_error("请先登录!",null,'提示');
+        }
 
         $silver_get = $this->getUserTask($userdata,CONSTFILE::USER_TASK_HUODONG_SILVER_CION);
 
@@ -140,10 +152,7 @@ class godHelp extends CI_Controller {
         $ckey = $this->get_today_video_status_key($userdata);
         $is_get_today_video = $this->cache()->get($ckey);
         $userdata['is_get_today_video'] = $is_get_today_video;
-        $id = $userdata['id'];
-        if (!$id) {
-            show_error("请先登录!",null,'提示');
-        }
+
         $userdata['qqshare'] = site_url('share?'.http_build_query([
                 'type'=>'qq',
                 'from'=> 'invite',

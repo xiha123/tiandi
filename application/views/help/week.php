@@ -18,12 +18,12 @@
 </div>
 <div class="w1200 content">
     <p class="tit1"><img src="/static/image/week/t1.png" width="360" height="74" /></p>
-    <P class="des1">错过这一回 自学洁净不再有</P>
+    <P class="des1">错过这一回 自学捷径不再有</P>
     <div class="c" style="margin-bottom:100px;">
         <div class="l1">
             <div class="detail-box" style="border-bottom:2px dashed #445e5d; padding-bottom:30px;">
-                <P class="des m-b40">每100银币可以提供一次提问机会。<br/>
-                    据统计，学完一套Unity3D课程，每个同学会提出36.2个问题。</P>
+                <P class="des m-b40">免费领取编程大神一对一指导机会。<br/>
+                    就在这一周，有什么编程疑问都放马过来吧！</P>
                 <P class=" m-b40"><a href="javascript:;" id="silver_btn" class="btn1 <?php if($silver_get != 1) print 'on'; ?>">限时领取银币</a></P>
             </div>
             <div class="detail-box" style="padding-top:50px;">
