@@ -82,16 +82,10 @@ $("#ajax_godset").click(function(){
 		showAlert(false , "您的项目经历请大于20字符，小于300字符");
 		return false;
 	}
-	if(alipay.length < 4){
-		showAlert(false , "您的支付宝输入的不太正常");
-		return false;
-	}
 	jsonArray = new Array();
 	$.each($(".tag .tag-box"), function(index, val) {
 		jsonArray.push($(val).find("font").text());
 	});
-
-
 
 	$.ajax({
 		url : "api/user_api/edit_god",
