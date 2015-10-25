@@ -29,7 +29,7 @@
             <div class="detail-box" style="padding-top:50px;">
                 <P class="des m-b40">一键领取我们海量公开课视频，这里有你想不到的有趣课程。<br/>
                     课程视频虽好，可不要贪杯喔。</P>
-                <P><a href="javascript:;" class="btn1">领取公开课视频</a></P>
+                <P><a href="javascript:;" id="video_btn" class="btn1 <?php if(!$is_get_today_video) echo 'on';?>">领取公开课视频</a></P>
                 <P class="other">每位用户每天限领一次</P>
             </div>
         </div>
@@ -154,11 +154,38 @@
                 $(document.body).css("overflow-y","hidden");
 
             }
+        });
+        $('#video_btn').on('click',function(){
+            var vbtn = this;
+            if ($(this).hasClass('on')) {
+                $.getJSON('/godHelp/get_video',function(data){
+                    if (data.result) {
+                        $(".open_detail").html(
+                            '<p>厉害</p>'+
+                            '<p>你抽到了<span style="color:red">'+data.video.name+'</span>视频</p>'+
+                            '<p>你可以点击直接下载!</p>'
+
+                        );
+                        $(vbtn).removeClass('on');
+                        $(".open-box").show();
+                        $('.confirm-btn').text('下载');
+                        $('.confirm-btn').attr('href', data.video.url);
+                        $('.confirm-btn').attr('target', '_blank');
+                        $(document.body).css("overflow-y","hidden");
+                    }else{
+                        $(".open_detail").html(
+                            '<p>抱歉!</p>'+
+                            '<p>您没有抢到!</p>'
+                        );
+                        $(".open-box").show();
+                        $(document.body).css("overflow-y","hidden");
+                    }
+                });
+
+
+            }
         })
-//        $("#open-btn").click(function(){
-//            $(".open-box").show();
-//            $(document.body).css("overflow-y","hidden");
-//        })
+
         $(".close-icon,.confirm-btn").click(function(){
             $(".open-box").hide();
             $(document.body).css("overflow-y","");
@@ -178,7 +205,7 @@
                 }else{
                     $(".open_detail").html(
                         '<p>抱歉!</p>'+
-                        '<p>您没有抢到!</p>'+
+                        '<p>您没有抢到!</p>'
 
                     );
                     $(".open-box").show();

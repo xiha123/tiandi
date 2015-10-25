@@ -54,9 +54,29 @@ class godHelp extends CI_Controller {
         echo json_encode(['result'=>false]);
 
     }
-    public function finish_invite(){
+    public function get_video(){
+        $userdata = ModelFactory::User()->check_login();
+        $date  = 'get_video'.$userdata['id'];
+        $conter =  $this->cache()->increment($date);
+        $videos = [
+          ['url'=>'http://www.baidu.com','name'=>'java入门'],
+          ['url'=>'http://www.baidu.com','name'=>'java入门'],
+          ['url'=>'http://www.baidu.com','name'=>'java入门'],
+          ['url'=>'http://www.baidu.com','name'=>'java入门'],
+          ['url'=>'http://www.baidu.com','name'=>'java入门'],
+        ];
+        $ckey = $this->get_today_video_status_key($userdata);
+        $is_get = $this->cache()->get($ckey);
+        if (isset($videos[$conter]) && !$is_get) {
+            $tommoday = strtotime(date('Y-m-d 00:00:00',time()+86400));
+            $this->cache()->save($ckey,$tommoday-time());
 
+            echo json_encode(['result'=>true,'video'=>$videos[$conter]]);
+        }else{
+            echo json_encode(['result'=>false]);
+        }
     }
+
     public function getUserTask($userdata,$task_id){
         $cache_key = 'huodong_'.$userdata['id'].'_'.$task_id;
         $silver_get = $this->cache()->get($cache_key);
@@ -98,6 +118,9 @@ class godHelp extends CI_Controller {
         echo json_encode(['list'=>$list]);
 
     }
+    protected function get_today_video_status_key($user){
+        return 'video_'.date('Y-m-d').$user['id'];
+    }
 	public function week()
 	{
 
@@ -114,9 +137,9 @@ class godHelp extends CI_Controller {
                 $this->cache()->save('price_list',[],5);
             }
         }
-
-
-
+        $ckey = $this->get_today_video_status_key($userdata);
+        $is_get_today_video = $this->cache()->get($ckey);
+        $userdata['is_get_today_video'] = $is_get_today_video;
         $id = $userdata['id'];
         if (!$id) {
             show_error("请先登录!",null,'提示');
