@@ -27,6 +27,19 @@ class ModelFactory {
             return  self::load('Usertask_model');
         }
     /**
+     * @return Pricelist_model
+     */
+        static  function Pricelist(){
+            return  self::load('Pricelist_model');
+        }
+    /**
+     * @return Invitehistory_model
+     */
+        static  function Invitehistory(){
+            return  self::load('Invitehistory_model');
+        }
+
+    /**
      * @return problem_model
      */
         static  function Problem(){
