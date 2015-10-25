@@ -30,7 +30,10 @@ class godHelp extends CI_Controller {
     public function get_silver(){
 
         $userdata = ModelFactory::User()->check_login();
-
+        if (!$userdata) {
+            echo json_encode(['result'=>false]);
+            return ;
+        }
         $silver_get = $this->getUserTask($userdata,CONSTFILE::USER_TASK_HUODONG_SILVER_CION);
         if (!$silver_get) {
             $number = mt_rand(100, 1000);
@@ -56,7 +59,12 @@ class godHelp extends CI_Controller {
     }
 
     public function get_video(){
+
         $userdata = ModelFactory::User()->check_login();
+        if (!$userdata) {
+            echo json_encode(['result'=>false]);
+            return ;
+        }
         $date  = 'get_video'.$userdata['id'];
         $conter =  $this->cache()->increment($date);
         $videos = [
@@ -78,7 +86,13 @@ class godHelp extends CI_Controller {
         if (isset($videos[$conter]) && !$is_get) {
             $tommoday = strtotime(date('Y-m-d 00:00:00',time()+86400));
             $this->cache()->save($ckey,$tommoday-time());
-
+            ModelFactory::Pricelist()->create([
+                'user_id'=>$userdata['id'],
+                'type'=>2,
+                'created_at'=>time(),
+                'name'=>$userdata['nickname'],
+                'price'=>$videos[$conter]['name'],
+            ]);
             echo json_encode(['result'=>true,'video'=>$videos[$conter]]);
         }else{
             echo json_encode(['result'=>false]);
@@ -102,7 +116,10 @@ class godHelp extends CI_Controller {
 
 
         $userdata = ModelFactory::User()->check_login();
-
+        if (!$userdata) {
+            echo json_encode(['result'=>false]);
+            return ;
+        }
         $where = [
             'parent_id'=>$userdata['id'],
         ];
@@ -134,12 +151,6 @@ class godHelp extends CI_Controller {
 
         $userdata = ModelFactory::User()->check_login();
         $id = $userdata['id'];
-        if (!$id) {
-            show_error("请先登录!",null,'提示');
-        }
-
-        $silver_get = $this->getUserTask($userdata,CONSTFILE::USER_TASK_HUODONG_SILVER_CION);
-
         $price_list = $this->cache()->get('price_list');
         if (!$price_list) {
             $price_list = ModelFactory::Pricelist()->get_list([]);
@@ -149,9 +160,14 @@ class godHelp extends CI_Controller {
                 $this->cache()->save('price_list',[],5);
             }
         }
-        $ckey = $this->get_today_video_status_key($userdata);
-        $is_get_today_video = $this->cache()->get($ckey);
-        $userdata['is_get_today_video'] = $is_get_today_video;
+        $silver_get = 0;
+        if ($id) {
+            $silver_get = $this->getUserTask($userdata,CONSTFILE::USER_TASK_HUODONG_SILVER_CION);
+            $ckey = $this->get_today_video_status_key($userdata);
+            $is_get_today_video = $this->cache()->get($ckey);
+            $userdata['is_get_today_video'] = $is_get_today_video;
+        }
+
 
         $userdata['qqshare'] = site_url('share?'.http_build_query([
                 'type'=>'qq',

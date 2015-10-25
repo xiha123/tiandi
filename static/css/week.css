@@ -19,11 +19,7 @@ body{ font-size:12px; font-family:Microsoft Yahei;}
 .nav ul li.first{ padding-top:22px; height:44px; background:#006b78;}
 .nav ul li:hover{background:#006b78; color:#ffffff;}
 .nav ul li a{ font-size:16px; color:#c5f9ff;}
-.login{width:210px; float:right;}
-.login li{ float:left;width:80px; text-align:center; padding-top:22px;}
-.login li a{ color:#c5f9ff; font-size:16px;}
-.login li.l1 a{ background:url(/static/image/week/icon2.png) no-repeat left center; padding-left:22px;}
-.login li.l2 a{ background:url(/static/image/week/icon3.png) no-repeat left center; padding-left:22px;}
+ 
 .ban-box{ background:url(/static/image/week/bg1.png) no-repeat top center; height:790px;color:#fff;}
 .baninfo{ padding-top:320px; position:relative;width:1200px; margin:0 auto;}
 .ban-box .djs{ text-align:center; margin-bottom:65px;}

@@ -1,12 +1,18 @@
 <?php $this->load->view('widgets/header.php'); ?>
-<link rel="stylesheet" href="static/css/week.css" />
 
+<link rel="stylesheet" href="static/css/global.css">
 
+<style>
+    html{
+        background:url() #ffffff;
+    }
+</style>
 </head>
 
 <body class="index">
 <?php $this->load->view('widgets/miaoda/nav.php' , []); ?>
 <?php $this->load->view('widgets/windows.php' ); ?>
+<link rel="stylesheet" href="static/css/week.css" />
 
 <div class="ban-box" style="margin-top: -30px;">
     <div class="baninfo">
@@ -108,11 +114,21 @@
         </div>
     </div>
 </div>
-
+<script src="static/js/api.js"></script>
+<script>
+    window._td = {};
+    _td.api = require('api');
+    _td.info = {
+        id: -1
+    };
+</script>
 <script src="/static/lib/jquery-1.11.1.js" type="text/javascript"></script>
 <script src="/static/lib/ZeroClipboard/ZeroClipboard.min.js"></script>
 <script type="text/javascript" src="/static/lib/jquery.downCount.js"></script>
 <script type="text/javascript" src="/static/lib/kxbdSuperMarquee.js"></script>
+
+<script src="static/js/global.js"></script>
+
 <script type="text/javascript">
     $(function(){
         function inviteTask(tim){
@@ -175,7 +191,7 @@
                     }else{
                         $(".open_detail").html(
                             '<p>抱歉!</p>'+
-                            '<p>您没有抢到!</p>'
+                            '<p>您没有抢到或没登陆!</p>'
                         );
                         $(".open-box").show();
                         $(document.body).css("overflow-y","hidden");
@@ -205,7 +221,7 @@
                 }else{
                     $(".open_detail").html(
                         '<p>抱歉!</p>'+
-                        '<p>您没有抢到!</p>'
+                        '<p>您没有抢到或没登陆!</p>'
 
                     );
                     $(".open-box").show();
