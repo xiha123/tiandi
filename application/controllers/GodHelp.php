@@ -31,7 +31,7 @@ class godHelp extends CI_Controller {
 
         $userdata = ModelFactory::User()->check_login();
         if (!$userdata) {
-            echo json_encode(['result'=>false]);
+            echo json_encode(['result'=>false,'error'=>'nologin']);
             return ;
         }
         $silver_get = $this->getUserTask($userdata,CONSTFILE::USER_TASK_HUODONG_SILVER_CION);
@@ -54,7 +54,7 @@ class godHelp extends CI_Controller {
             echo json_encode(['result'=>true,'number'=>$number]);exit;
         }
 
-        echo json_encode(['result'=>false]);
+        echo json_encode(['result'=>false,'error'=>'did']);
 
     }
 
@@ -62,30 +62,41 @@ class godHelp extends CI_Controller {
 
         $userdata = ModelFactory::User()->check_login();
         if (!$userdata) {
-            echo json_encode(['result'=>false]);
+            echo json_encode(['result'=>false,'error'=>'nologin']);
             return ;
         }
-        $date  = 'get_video'.$userdata['id'];
-        $conter =  $this->cache()->increment($date);
         $videos = [
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545188.mp4','name'=>'U3D公开课—喷气小飞鼠'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545187.mp4','name'=>'AS3游戏开发'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545186.mp4','name'=>'AS3—Starling教程'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545185.mp4','name'=>'WEB公开课—侧边栏效果'],
-            ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545184.mp4','name'=>'U3D公开课—人物技能释放'],
-            ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545183.mp4','name'=>'Swift公开课'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545182.mp4','name'=>'Cocos公开课—三消游戏'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545181.mp4','name'=>'Cocos公开课—跑酷游戏'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545179.mp4','name'=>'Android公开课—计算器项目'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545178.mp4','name'=>'Android公开课—分享组件'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545177.mp4','name'=>'WEB公开课—Html5前景介绍'],
-          ['url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545176.mp4','name'=>'游戏策划公开课'],
+            1=>['id'=>'1','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545188.mp4','name'=>'U3D公开课—喷气小飞鼠'],
+            2=>['id'=>'2','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545187.mp4','name'=>'AS3游戏开发'],
+            3=>['id'=>'3','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545186.mp4','name'=>'AS3—Starling教程'],
+            4=>['id'=>'4','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545185.mp4','name'=>'WEB公开课—侧边栏效果'],
+            5=>  ['id'=>'5','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545184.mp4','name'=>'U3D公开课—人物技能释放'],
+            6=>  ['id'=>'6','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545183.mp4','name'=>'Swift公开课'],
+            7=>['id'=>'7','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545182.mp4','name'=>'Cocos公开课—三消游戏'],
+            8=>['id'=>'8','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545181.mp4','name'=>'Cocos公开课—跑酷游戏'],
+            9=>['id'=>'9','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545179.mp4','name'=>'Android公开课—计算器项目'],
+            10=>['id'=>'10','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545178.mp4','name'=>'Android公开课—分享组件'],
+            11=>['id'=>'11','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545177.mp4','name'=>'WEB公开课—Html5前景介绍'],
+            12=>['id'=>'12','url'=>'http://cloud.video.taobao.com/play/u/529822091/p/1/e/6/t/1/31545176.mp4','name'=>'游戏策划公开课'],
         ];
+
+
         $ckey = $this->get_today_video_status_key($userdata);
-        $is_get = $this->cache()->get($ckey);
+        $is_get =  $this->cache()->get($ckey);
+        $user_video_cache_key = $this->get_user_video_status($userdata);
+        $user_video_status = ($data = $this->cache()->get($user_video_cache_key)) ? $data:[];
+        foreach ($user_video_status as $key) {
+            unset($videos[$key]);
+        }
+        $rand_keys = array_rand($videos, 1);
+
+        $conter = $rand_keys;
+
         if (isset($videos[$conter]) && !$is_get) {
             $tommoday = strtotime(date('Y-m-d 00:00:00',time()+86400));
-            $this->cache()->save($ckey,$tommoday-time());
+            $user_video_status[] = $rand_keys;
+            $this->cache()->save($user_video_cache_key,$user_video_status,86400*365);
+            $this->cache()->save($ckey,1,$tommoday-time());
             ModelFactory::Pricelist()->create([
                 'user_id'=>$userdata['id'],
                 'type'=>2,
@@ -93,9 +104,10 @@ class godHelp extends CI_Controller {
                 'name'=>$userdata['nickname'],
                 'price'=>$videos[$conter]['name'],
             ]);
+
             echo json_encode(['result'=>true,'video'=>$videos[$conter]]);
         }else{
-            echo json_encode(['result'=>false]);
+            echo json_encode(['result'=>false,'error'=>'did']);
         }
     }
 
@@ -137,14 +149,20 @@ class godHelp extends CI_Controller {
             if (count($list)==10) {
                 $this->cache()->save($id,$list,86400);
             }else{
-                $this->cache()->save($id,$list,10);
+                $this->cache()->save($id,$list,86400);
             }
         }
         echo json_encode(['list'=>$list]);
 
     }
     protected function get_today_video_status_key($user){
-        return 'video_'.date('Y-m-d').$user['id'];
+        return 'video_v7_'.date('Y-m-d').$user['id'];
+    }
+    protected function get_user_video_status($user){
+        return 'video_v1_'.$user['id'];
+
+    }
+    public function download(){
     }
 	public function week()
 	{
@@ -163,9 +181,7 @@ class godHelp extends CI_Controller {
         $silver_get = 0;
         if ($id) {
             $silver_get = $this->getUserTask($userdata,CONSTFILE::USER_TASK_HUODONG_SILVER_CION);
-            $ckey = $this->get_today_video_status_key($userdata);
-            $is_get_today_video = $this->cache()->get($ckey);
-            $userdata['is_get_today_video'] = $is_get_today_video;
+
         }
 
 

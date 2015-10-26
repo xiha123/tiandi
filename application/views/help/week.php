@@ -35,7 +35,7 @@
             <div class="detail-box" style="padding-top:50px;">
                 <P class="des m-b40">一键领取我们海量公开课视频，这里有你想不到的有趣课程。<br/>
                     课程视频虽好，可不要贪杯喔。</P>
-                <P><a href="javascript:;" id="video_btn" class="btn1 <?php if(!$is_get_today_video) echo 'on';?>">领取公开课视频</a></P>
+                <P><a href="javascript:;" id="video_btn" class="btn1 on">领取公开课视频</a></P>
                 <P class="other">每位用户每天限领一次</P>
             </div>
         </div>
@@ -182,19 +182,25 @@
                             '<p>你可以点击直接下载!</p>'
 
                         );
-                        $(vbtn).removeClass('on');
+                        $('.open-box').css('height','440px');
                         $(".open-box").show();
                         $('.confirm-btn').text('下载');
                         $('.confirm-btn').attr('href', data.video.url);
                         $('.confirm-btn').attr('target', '_blank');
                         $(document.body).css("overflow-y","hidden");
                     }else{
-                        $(".open_detail").html(
-                            '<p>抱歉!</p>'+
-                            '<p>您没有抢到或没登陆!</p>'
-                        );
-                        $(".open-box").show();
-                        $(document.body).css("overflow-y","hidden");
+                        if(data.error == 'did'){
+                            $(".open_detail").html(
+                                '<p>视频今天已领取!</p>'
+                            );
+                            $('.open-box').css('height','350px');
+                            $(".open-box").show();
+                            $(document.body).css("overflow-y","hidden");
+                        }else{
+                            $("#reg").hide();
+                            bomb("login");
+                        }
+
                     }
                 });
 
@@ -219,13 +225,10 @@
                     $(document.body).css("overflow-y","hidden");
 
                 }else{
-                    $(".open_detail").html(
-                        '<p>抱歉!</p>'+
-                        '<p>您没有抢到或没登陆!</p>'
-
-                    );
-                    $(".open-box").show();
-                    $(document.body).css("overflow-y","hidden");
+                    if(data.error == 'nologin'){
+                        $("#reg").hide();
+                        bomb("login");
+                    }
                 }
             })
         })
