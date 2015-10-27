@@ -17,7 +17,7 @@
 <div class="ban-box" style="margin-top: -30px;">
     <div class="baninfo">
         <P class="djs"><span class="txt1 days"></span><span class="txt2"><span class="m-r50">天</span></span><span class="txt1 hours"></span><span class="txt2 m-r50">小时</span><span class="txt1 minutes"></span><span class="txt2 m-r50">分钟</span><span class="txt1 seconds"></span><span class="txt2">秒</span></P>
-        <P class="detail">秒答上线第一周</P>
+        <P class="detail">秒答内测首月</P>
         <P  class="detail">银币&课程视频疯狂大派送</P>
         <P class="poa l"><img src="/static/image/week/icon4.png" width="242" height="59" /></P>
     </div>
@@ -64,7 +64,7 @@
 
     <div class="c" style="margin-bottom:100px;">
         <p class="tit1"><img src="/static/image/week/t1.png" width="360" height="74" /></p>
-        <P class="des2">邀请10名好友注册<br/>即刻赢取价值2000元程序员入门基础课</P>
+        <P class="des2">邀请10名好友注册<br/>领取价值2000元程序员编程基础课,完成任务还有机会获得iPhone 6S！</P>
         <ul class="c yq-box">
             <li class="first">您的邀请链接</li>
             <li><input type="text" value="<?php echo $invate_url;?>" /></li>
@@ -72,9 +72,9 @@
         </ul>
         <div class="link-box">
             <ul>
-                <li><a class="link-txt link-txt1" href="<?= $qqshare;?>">QQ群/好友(强烈推荐)</a></li>
-                <li><a class="link-txt link-txt2"  href="<?= $qqzshare;?>">QQ空间(推荐)</a></li>
-                <li><a class="link-txt link-txt3"  href="<?= $sinashare;?>">发布微博</a></li>
+                <li><a class="link-txt link-txt1" target="_blank" href="<?= $qqshare;?>">QQ群/好友(强烈推荐)</a></li>
+                <li><a class="link-txt link-txt2" target="_blank"  href="<?= $qqzshare;?>">QQ空间(推荐)</a></li>
+                <li><a class="link-txt link-txt3" target="_blank"  href="<?= $sinashare;?>">发布微博</a></li>
             </ul>
         </div>
 
@@ -140,7 +140,7 @@
                     $('#finish_count').html(data['list'].length);
                     for (i=0;i<10;i++) {
                         if (data['list'][i]) {
-                            $('.rw-head ul').append('<li><a href="'+data['list'][i]['id']+'"><img src="'+data['list'][i]['avatar']+'" /></a></li> ');
+                            $('.rw-head ul').append('<li><a href="javascript:;"><img src="'+data['list'][i]['avatar']+'" /></a></li> ');
                         }else{
                             $('.rw-head ul').append('<li><a href="#"></a></li>');
                         }
@@ -256,13 +256,76 @@
     })
 
     $('.djs').downCount({
-        date: '12/24/2015 15:00:00', //初始化日期
+        date: '11/19/2015 23:59:59', //初始化日期
         offset: +8  //时区
     }, function () {
         alert('倒计时结束!');
     });
 </script>
 
+<?php if (!isset($id)) { ?>
+    <script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://www.tiandipeixun.com/qq_cb" charset="utf-8"></script>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3729754985" type="text/javascript" charset="utf-8"></script>
+    <script>
+        // 微博登录
+        WB2.anyWhere(function (W) {
+            W.widget.connectButton({
+                id: "wb_connect_btn",
+                type: '3,2',
+                callback: {
+                    login: function (res) {
+                        var avatar = res.avatar_large,
+                            nickname = res.name;
 
+                        _td.api.checkOauth({
+                            key: avatar
+                        }).then(function () {
+                            location.reload();
+                        }, function () {
+                            $('#reg').find('h2').text('通过新浪微博账号注册');
+                            $('#reg_nick').val(nickname);
+                            $('#reg_avatar').val(avatar);
+                            $('.bomb-reg').trigger('click');
+                        });
+                    }
+                }
+            });
+        });
+        // QQ登录
+        QC.Login({
+            btnId:"qq-login-btn"    //插入按钮的节点id
+        }, function (reqData, opts) {
+            var avatar = reqData.figureurl_qq_2,
+                nickname = QC.String.escHTML(reqData.nickname);
+
+            _td.api.checkOauth({
+                key: avatar
+            }).then(function () {
+                location.reload();
+            }, function () {
+                $('#reg').find('h2').text('通过 QQ 账号注册');
+                $('#reg_nick').val(nickname);
+                $('#reg_avatar').val(avatar);
+                $('.bomb-reg').trigger('click');
+            });
+            /*
+             //根据返回数据，更换按钮显示状态方法
+             var dom = document.getElementById(opts['btnId']),
+             _logoutTemplate=[
+             //头像
+             '<span><img src="{figureurl}" class="{size_key}"/></span>',
+             //昵称
+             '<span>{nickname}</span>',
+             //退出
+             '<span><a href="javascript:QC.Login.signOut();">退出</a></span>'
+             ].join("");
+             dom && (dom.innerHTML = QC.String.format(_logoutTemplate, {
+             nickname : QC.String.escHTML(reqData.nickname), //做xss过滤
+             figureurl : reqData.figureurl
+             }));
+             */
+        });
+    </script>
+<?php } ?>
 </body>
 </html>

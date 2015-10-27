@@ -96,7 +96,9 @@ class godHelp extends CI_Controller {
             $tommoday = strtotime(date('Y-m-d 00:00:00',time()+86400));
             $user_video_status[] = $rand_keys;
             $this->cache()->save($user_video_cache_key,$user_video_status,86400*365);
-            $this->cache()->save($ckey,1,$tommoday-time());
+            $var = $videos[$conter];
+            $arr = ['id' => $conter,'video'=> $var];
+            $this->cache()->save($ckey, $arr,$tommoday-time());
             ModelFactory::Pricelist()->create([
                 'user_id'=>$userdata['id'],
                 'type'=>2,
@@ -107,7 +109,12 @@ class godHelp extends CI_Controller {
 
             echo json_encode(['result'=>true,'video'=>$videos[$conter]]);
         }else{
-            echo json_encode(['result'=>false,'error'=>'did']);
+            if ($is_get) {
+                echo json_encode(['result'=>true,'video'=>$is_get['video']]);
+            }else{
+                echo json_encode(['result'=>false,'error'=>'did']);
+
+            }
         }
     }
 
@@ -156,7 +163,7 @@ class godHelp extends CI_Controller {
 
     }
     protected function get_today_video_status_key($user){
-        return 'video_v7_'.date('Y-m-d').$user['id'];
+        return 'video_v8_'.date('Y-m-d').$user['id'];
     }
     protected function get_user_video_status($user){
         return 'video_v1_'.$user['id'];
@@ -187,16 +194,16 @@ class godHelp extends CI_Controller {
 
         $userdata['qqshare'] = site_url('share?'.http_build_query([
                 'type'=>'qq',
-                'from'=> 'invite',
+                'from'=> 'xiaobai',
             ]));
         $userdata['qqzshare'] = site_url('share?'.http_build_query([
                 'type'=>'qqz',
-                'from'=> 'invite',
+                'from'=> 'xiaobai',
 
             ]));
         $userdata['sinashare'] = site_url('share?'.http_build_query([
                 'type'=>'sina',
-                'from'=> 'invite',
+                'from'=> 'xiaobai',
             ]));
         $userdata['invate_url'] = base_url('/share/people?'.http_build_query([
                 'trace'=>base64_encode($id),

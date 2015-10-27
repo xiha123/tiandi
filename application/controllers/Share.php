@@ -11,15 +11,27 @@ class Share extends CI_Controller {
         $userdata = ModelFactory::User()->check_login();
 
         $type = $this->input->get('type');
+        $from = $this->input->get('from');
+
         $pid = $this->input->get('pid');
         if ($pid) {
             $problem = ModelFactory::Problem()->get_by_id($pid);
             $problem['url'] = site_url('/problem/?p='.$problem['id']);
 
-        }else{
+        }elseif($from=='invite'){
             $problem['title'] = '来秒答答题，赢任性壕礼！';
             $problem['summary'] = '在秒答快乐分享，授人以渔，还能获得缤纷大礼！';
             $problem['desc'] = '你还没来秒答答题赢大奖？全新秒答，任性壕礼！回答问题获得威望点，集齐一定威望点就可以召唤神龙！哦，不对，就可以兑换机械键盘、kindle、魔声耳机、ipad mini 4！';
+            $problem['pics'] = base_url('/static/image/share_image.jpg');
+            $problem['url'] = base_url('/share/people?'.http_build_query([
+                    'trace'=>base64_encode($userdata['id']),
+                    'from_invite'=>1
+                ]));
+        }elseif($from=='xiaobai'){
+            $problem['title'] = '编程有难题，秒答来帮你！';
+            $problem['summary'] = '外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑';
+            $problem['desc'] = '外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑机会，超有趣超好玩的游戏编程APP开发教程。还有抽iPhone 6s！你不来组成分母？
+微博分享标题：外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑机会，超有趣超好玩的游戏编程APP开发教程。还有抽iPhone 6s！你不来组成分母？';
             $problem['pics'] = base_url('/static/image/share_image.jpg');
             $problem['url'] = base_url('/share/people?'.http_build_query([
                     'trace'=>base64_encode($userdata['id']),

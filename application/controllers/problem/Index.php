@@ -3,7 +3,11 @@ include_once(APPPATH . 'controllers/api/Base_api.php');
 include_once('./static/lib/phpanalysis/index.php');
 
 class Index extends CI_Controller {
+    public $headTitle = '';
+    public $headKeyWords = '';
+    public $headDesc = '';
 	public function __construct() {
+
 		parent::__construct();
 		$this->load->model("problem_model");
 		$this->load->model("problem_detail_model");
@@ -27,7 +31,6 @@ class Index extends CI_Controller {
 		if(!isset($userdata["problem_data"]["title"])){
 			show_404();
 		}
-
 		// 用户每次访问问题增加火力值
 		$this->problem_model->hot($id , "0.01" , true);
 		$tag_replace_temp = array();
@@ -39,7 +42,12 @@ class Index extends CI_Controller {
 			array_push($tag_list_temp , $value['name']);
 			array_push($tag_replace_temp , "<a href='./tag?name=" . urldecode($value['name']) ."'>" . $value['name'] . "</a>");
 		}
-
+        $this->headTitle = $userdata["problem_data"]['title'];
+        if (isset($problem_detail[1])) {
+            $this->headDesc = strip_tags($problem_detail[1]['content']);
+        }else{
+            $this->headDesc = $userdata["problem_data"]['title'];
+        }
 
 		// problem detail tag replace 感觉这样做性能会很差产自2015年9月11日 12:00:24
 		foreach ($problem_detail as &$value) {
