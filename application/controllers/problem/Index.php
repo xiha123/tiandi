@@ -70,7 +70,11 @@ class Index extends CI_Controller {
 					array_push($temp_array_two, $key_value);
 				}
 				$value['content'] = str_replace($ches[0] , $temp_array_two , $value['content']);
-				$value['content'] = str_replace_once($tag_list_temp[$key] , $tag_replace_temp[$key] , $value['content']);
+                if($_GET['preg_debug']){
+                    $value['content'] = preg_replace("/{$tag_list_temp[$key]}/",$tag_replace_temp[$key],$value['content']);
+                }else{
+                    $value['content'] = str_replace_once($tag_list_temp[$key] , $tag_replace_temp[$key] , $value['content']);
+                }
 				$value['content'] = str_replace($temp_array_two , $ches[0] , $value['content']);
 			}
 			$value['content'] = str_replace($temp_array , $matches[0] , $value['content']);

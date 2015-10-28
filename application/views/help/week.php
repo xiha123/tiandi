@@ -134,8 +134,6 @@
         function inviteTask(tim){
             $.getJSON('/godHelp/get_invite',function(data){
                 if (data) {
-                    window.data = data;
-                    console.log(data['list'].length);
                     $('.rw-head ul').html('');
                     $('#finish_count').html(data['list'].length);
                     for (i=0;i<10;i++) {
@@ -256,7 +254,7 @@
     })
 
     $('.djs').downCount({
-        date: '11/19/2015 23:59:59', //初始化日期
+        date: '11/9/2015 23:59:59', //初始化日期
         offset: +8  //时区
     }, function () {
         alert('倒计时结束!');

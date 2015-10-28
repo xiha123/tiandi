@@ -133,7 +133,6 @@ class godHelp extends CI_Controller {
     }
     public function get_invite(){
 
-
         $userdata = ModelFactory::User()->check_login();
         if (!$userdata) {
             echo json_encode(['result'=>false]);
@@ -144,19 +143,23 @@ class godHelp extends CI_Controller {
         ];
         $id = ModelFactory::Invitehistory()->getInviteKey($userdata);
         $list = $this->cache()->get($id);
+
         if (!$list) {
             $list = (array) ModelFactory::Invitehistory()->get_list($where,0,10);
+
             foreach ($list as &$user) {
-                    $get_user =  ModelFactory::User()->get(array("id" => $user['user_id']));
-                    if(!isset($get_user['avatar'])) return false;
-                    if($user['avatar'] == ""){
-                        $user['avatar'] = "static/image/default.jpg";
-                    }
+                $user['avatar'] = "static/image/default.jpg";
+
+                $get_user =  ModelFactory::User()->get(array("id" => $user['user_id']));
+
+                if($get_user){
+                    $user['avatar'] = $get_user['avatar'];
+                }
             }
             if (count($list)==10) {
-                $this->cache()->save($id,$list,86400);
+//                $this->cache()->save($id,$list,86400);
             }else{
-                $this->cache()->save($id,$list,86400);
+//                $this->cache()->save($id,$list,86400);
             }
         }
         echo json_encode(['list'=>$list]);
