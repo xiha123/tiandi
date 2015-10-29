@@ -28,10 +28,9 @@ class Share extends CI_Controller {
                     'from_invite'=>1
                 ]));
         }elseif($from=='xiaobai'){
-            $problem['title'] = '编程有难题，秒答来帮你！';
-            $problem['summary'] = '外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑';
-            $problem['desc'] = '外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑机会，超有趣超好玩的游戏编程APP开发教程。还有抽iPhone 6s！你不来组成分母？
-微博分享标题：外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑机会，超有趣超好玩的游戏编程APP开发教程。还有抽iPhone 6s！你不来组成分母？';
+            $problem['title'] = '秒答Beta送送送，看一眼就是赚到！';
+            $problem['summary'] = '编程有难题，秒答来帮你！';
+            $problem['desc'] = '外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑机会，超有趣超好玩的游戏编程APP开发教程。还有抽iPhone 6s！你不来组成分母？';
             $problem['pics'] = base_url('/static/image/share_image.jpg');
             $problem['url'] = base_url('/share/people?'.http_build_query([
                     'trace'=>base64_encode($userdata['id']),
@@ -50,6 +49,9 @@ class Share extends CI_Controller {
 
                 break;
             case 'sina':
+                if ($from='xiaobai') {
+                    $problem['title'] ='外事不决问谷歌，内事不懂问度娘，编程不会就来问秒小答吧！庆祝秒答内测第一个月，注册即送编程大神一对一答疑机会，超有趣超好玩的游戏编程APP开发教程。还有抽iPhone 6s！你不来组成分母？';
+                }
                 $url = $this->get_sina_url($problem);
                 $task_id = CONSTFILE::USER_TASK_SHARE_SINA;
                 break;

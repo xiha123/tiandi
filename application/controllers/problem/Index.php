@@ -35,19 +35,18 @@ class Index extends CI_Controller {
 		$this->problem_model->hot($id , "0.01" , true);
 		$tag_replace_temp = array();
 		$tag_list_temp = array();
-		$tag_list = $this->tag_model->get_list(array() , 0 , 100 , array("name"));
+		$tag_list_all = $this->tag_model->get_list(array() , 0 , 100 , array("name"));
 		$problem_detail = $this->problem_detail_model->get_detail($userdata["problem_data"]['id']);
+        $tag_list  = [];
+        foreach ($tag_list_all as $tag ) {
+            $tag_list[$tag['name']] = $tag;
+        }
 		foreach ($tag_list as $key => $value) {
 			$tag_list[$key] = $value['name'];
 			array_push($tag_list_temp , $value['name']);
 			array_push($tag_replace_temp , "<a href='./tag?name=" . urldecode($value['name']) ."'>" . $value['name'] . "</a>");
 		}
-        $this->headTitle = $userdata["problem_data"]['title'];
-        if (isset($problem_detail[1])) {
-            $this->headDesc = strip_tags($problem_detail[1]['content']);
-        }else{
-            $this->headDesc = $userdata["problem_data"]['title'];
-        }
+
 
 		// problem detail tag replace 感觉这样做性能会很差产自2015年9月11日 12:00:24
 		foreach ($problem_detail as &$value) {
@@ -62,6 +61,8 @@ class Index extends CI_Controller {
 			$value['content'] = str_replace('&lt;span [removed] normal;&quot;&gt;', "", $value['content']);
 			$value['content'] = str_replace("white-space", "tocurd", $value['content']);
 			$value['content'] = str_replace($matches[0] , $temp_array , $value['content']);
+
+
 			foreach ($tag_list_temp as $key => $values) {
 				$temp_array_two = array();
 				preg_match_all("/<((?!p)|(?!strong)|(?!b)|(?!span)|(?!em)|(?!i))[^>]+>/i", $value['content'], $ches);
@@ -69,12 +70,9 @@ class Index extends CI_Controller {
 					$key_value = "[t:" . $this->rand_key(6) . "]";
 					array_push($temp_array_two, $key_value);
 				}
-				$value['content'] = str_replace($ches[0] , $temp_array_two , $value['content']);
-                if($_GET['preg_debug']){
-                    $value['content'] = preg_replace("/{$tag_list_temp[$key]}/",$tag_replace_temp[$key],$value['content']);
-                }else{
-                    $value['content'] = str_replace_once($tag_list_temp[$key] , $tag_replace_temp[$key] , $value['content']);
-                }
+
+                $value['content'] = str_replace_once($tag_list_temp[$key] , $tag_replace_temp[$key] , $value['content']);
+
 				$value['content'] = str_replace($temp_array_two , $ches[0] , $value['content']);
 			}
 			$value['content'] = str_replace($temp_array , $matches[0] , $value['content']);
@@ -157,6 +155,24 @@ class Index extends CI_Controller {
 			$userdata['is_fund'] = false;
 		}
 
+        $this->headTitle = '秒答_'.strip_tags($userdata["problem_data"]['title']);
+
+        $keywords = '';
+        foreach ($userdata["problem_data"]['tags'] as $tag) {
+            if (!empty($tag['name'])) {
+                $keywords .= ',' . $tag['name'];
+            }
+        }
+        $description = substr($problem_detail[1]['content'], 0, 160);
+
+        $this->headKeyWords = $keywords;
+        if (isset($problem_detail[1])) {
+            $this->headDesc = strip_tags($problem_detail[1]['content']);
+        }else{
+            $this->headDesc = $userdata["problem_data"]['title'];
+        }
+        $this->headDesc = strip_tags($description);
+        $this->headDesc = strip_tags($description);
 		$this->parser->parse("miaoda/problem/problem.php" , $userdata);
 	}
 

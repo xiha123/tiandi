@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Index extends CI_Controller {
-
+    public $headTitle = '';
+    public $headKeyWords = '';
+    public $headDesc = '';
 	function __construct() {
 		parent::__construct();
 		$this->load->model("user_model");
@@ -14,6 +16,7 @@ class Index extends CI_Controller {
 		$this->load->library('parser');
 		$userdata = $this->user_model->check_login();
 		$userdata['data_list'] = $data_list;
+
 
 		$this->parser->parse('pages/home.php', $userdata);
 	}
