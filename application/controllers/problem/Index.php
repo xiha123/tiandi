@@ -157,7 +157,7 @@ class Index extends CI_Controller {
 
         $this->headTitle = '秒答_'.strip_tags($userdata["problem_data"]['title']);
 
-        $keywords = '';
+        $keywords = '秒答,问答社区,';
         foreach ($userdata["problem_data"]['tags'] as $tag) {
             if (!empty($tag['name'])) {
                 $keywords .= ',' . $tag['name'];
@@ -169,10 +169,8 @@ class Index extends CI_Controller {
         if (isset($problem_detail[1])) {
             $this->headDesc = strip_tags($problem_detail[1]['content']);
         }else{
-            $this->headDesc = $userdata["problem_data"]['title'];
+            $this->headDesc = strip_tags($description);
         }
-        $this->headDesc = strip_tags($description);
-        $this->headDesc = strip_tags($description);
 		$this->parser->parse("miaoda/problem/problem.php" , $userdata);
 	}
 
