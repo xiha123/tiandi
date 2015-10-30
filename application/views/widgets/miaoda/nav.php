@@ -36,7 +36,7 @@
 
 			    array(
 			        'name' => '精英汇',
-			        'link' => 'javascript:showAlert(false, \'页面暂未开放，敬请期待\');',
+			        'link' => '/about/recruit',
 			        'active' => false
 			    ),
 			);
