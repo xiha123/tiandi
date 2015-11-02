@@ -13,6 +13,12 @@ class Admin extends CI_Controller {
 		$this->user_info = $this->admin_model->check_login();
 	}
 
+	public function updateFromGithub() {
+		if($this->admin_model->require_login() === false) redirect('admin/login');
+
+		var_dump(exec('git pull'));
+	}
+
 	public function videoAdministrator(){
 		if($this->admin_model->require_login() === false) redirect('admin/login');
 		$data['me'] = $this->user_info;
