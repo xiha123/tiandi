@@ -80,7 +80,7 @@
                         <p style="font-size: 30px; color: #0092a4; ">全新秒答，任性壕礼</p>
                     </div>
                     <div style="margin:0 auto;width:200px; relative; margin-top: 20px;">
-                        <form action="/godHelp/gift">
+                        <form action="/godHelp/gift"> 
 
                             <input type="submit" value="去看看" id="ajax_login" >
                         </form>

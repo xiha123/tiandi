@@ -104,11 +104,12 @@ if (!isset($_SESSION['problem_temp'])) {
     <div class="prey">Copyright ©2015天地培训 All rights reserved｜浙ICP备09080888号</div>
 
 </footer>
-<script src="/static/recruit/js/recruit.js"></script>
 
 <?php $this->load->view('widgets/footer.php'); ?>
 <script src="ueditor/umeditor.config.js"></script>
 <script src="ueditor/umeditor.min.js"></script>
 <script src="static/js/problem.home.js"></script>
+<script src="/static/recruit/js/recruit.js"></script>
+
 </body>
 </html>

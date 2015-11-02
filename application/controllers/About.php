@@ -11,4 +11,5 @@ class About extends CI_Controller {
 		$this->parser->parse('about/recruit.php', array('activeNav'=>5));
 	}
 
+
 }

@@ -200,7 +200,39 @@ class Admin extends CI_Controller {
 
 		$this->parser->parse('admin/user.php', $data);
 	}
+    function stats(){
 
+        $page = !isset($_GET['page']) ? "1" : $this->input->get("page");
+
+        $pid = $this->input->get('pid',1);
+        $args = $this->uri->uri_to_assoc();
+        if (!$pid) {
+            if (isset($args['pid'])) {
+                $pid = $args['pid'];
+            }
+        }
+        $where = [];
+        if ($pid) {
+            $where = array(
+                "parent_id" => $pid
+            );
+        }
+        $per_page = 10;
+        $userdata["list"] = ModelFactory::Invitehistory()->get_list($where,$page-1, $per_page);
+        foreach ( $userdata["list"] as &$user) {
+            $user['user_info'] = ModelFactory::User()->get_user_data($user['user_id']);
+            $user['pt_info'] = ModelFactory::User()->get_user_data($user['parent_id']);
+        }
+        $count = ModelFactory::Invitehistory()->get_count($where);
+        $userdata['count'] = $count;
+        $userdata['page_url'] = "/admin/stats";
+        if ($pid) {
+            $userdata['page_url'] .= '/pid/'.$pid;
+        }
+//        echo $count;exit;
+        $this->parser->parse('admin/stats.php',$userdata);
+
+    }
 	public function index() {
 		if ($this->admin_model->require_login() === false) redirect('admin/login');
 		$data = array (
