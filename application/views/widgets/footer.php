@@ -4,7 +4,7 @@
 
 <div class="left-ad">
     <a href="javascript:$('.left-ad').hide();"><i class="fa fa-close"></i></a>
-    <a href="godintro"><img src="static/image/left-float-ad.png" alt="apply god" width="170" height="320"></a>
+    <a href="/godHelp/week?md=miaodaleft"><img src="/static/image/miaoda_left2.jpg" alt="apply god" width="170" height="320"></a>
 </div>
 
 <div class="js-popup popup-wrapper hidden">
@@ -104,11 +104,12 @@ QC.Login({
 <?php } ?>
 
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?2694678cf8a7b699c823be7c914dd440";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-45771923-3', 'auto');
+    ga('send', 'pageview');
+
 </script>

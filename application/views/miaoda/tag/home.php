@@ -1,19 +1,14 @@
+<?php
+$tag_name = $tag_data['name'];
+$this->headDesc  = substr($tag_data['content'], 0, 160);
+?>
 <?php $this->load->view('widgets/header.php'); ?>
 <link rel="stylesheet" href="./static/css/miaoda/home.css">
 <link rel="stylesheet" href="./static/css/miaoda/tag.css">
 <body>
 
-<?php
-	$tag_name = $tag_data['name'];
-	$description = substr($tag_data['content'], 0, 160);
-?>
-<div
-	id="page-info"
-	class="hidden"
-	data-title="秒答_<?= $tag_name ?>问题集合"
-	data-keywords="<?= $tag_name ?>,自学<?= $tag_name ?>,<?= $tag_name ?>学习,<?= $tag_name ?>学习资料"
-	data-description="<?= strip_tags($description) ?>"
-></div>
+
+
 
 <script>
 	var tag = <?=$tag_data['id']?>;

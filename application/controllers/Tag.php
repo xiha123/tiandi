@@ -1,11 +1,14 @@
 <?php
 
 class Tag extends CI_Controller {
-
+    public $headTitle = '';
+    public $headKeyWords = '';
+    public $headDesc = '';
 	public function __construct() {
 		parent::__construct();
 		$this->load->model("tag_model");
 		$this->load->model("problem_model");
+
 	}
 
 	public function index() {
@@ -64,6 +67,9 @@ class Tag extends CI_Controller {
 		$userdata['active_god'] = $this->tag_model->get_active_user($userdata['tag_data']['id'], 5, true);
 		$userdata['active_stu'] = $this->tag_model->get_active_user($userdata['tag_data']['id'], 5);
 
+        $this->headTitle = "秒答_{$name}问题集合";
+        $this->headKeyWords = "{$name},自学{$name},{$name}学习,{$name}学习资料";
+        $this->headDesc = $userdata['tag_data']['content'];
 		$this->parser->parse("miaoda/tag/home.php" , $userdata);
 	}
 

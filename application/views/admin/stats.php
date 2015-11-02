@@ -28,7 +28,7 @@
 
                 <td><?php echo $user_info['user_info']['nickname'].'|'.$user_info['user_info']['id'];?></td>
 				<td><?php echo $user_info['pt_info']['nickname'].'|'.$user_info['pt_info']['id'];?></td>
-				<td><?php echo $user_info['created_at'];?></td>
+				<td><?php echo date('Y-m-d H:i:s',$user_info['created_at'])?></td>
 
 			</tr>
          <?php };?>

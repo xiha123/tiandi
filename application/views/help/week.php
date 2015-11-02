@@ -64,7 +64,7 @@
 
     <div class="c" style="margin-bottom:100px;">
         <p class="tit1"><img src="/static/image/week/t1.png" width="360" height="74" /></p>
-        <P class="des2">邀请10名好友注册<br/>领取价值2000元程序员编程基础课,完成任务还有机会获得iPhone 6S！</P>
+        <P class="des2">邀请10名好友注册<br/>领取价值2000元程序员编程基础课,<br>完成任务还有机会获得iPhone 6S！</P>
         <ul class="c yq-box">
             <li class="first">您的邀请链接</li>
             <li><input type="text" value="<?php echo $invate_url;?>" /></li>
