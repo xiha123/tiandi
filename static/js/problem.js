@@ -23,9 +23,11 @@ $(function () {
 			});
 		}, 3000);
 	}
-});
 
-SyntaxHighlighter.all();
+	$('pre code').each(function(i, block) {
+		hljs.highlightBlock(block);
+	});
+});
 
 $("#answer").on('click' , function(event) {
 	_td.api.requestProblem({

@@ -6,7 +6,7 @@
 .rightBox a{margin:10px 0px;padding-bottom:10px;border-bottom:1px solid #eee;float: left;color:#aaa;}
 
 .leftHeader,.whyUser{width: 100%;float: left}
-.code{max-height:280px;overflow-y:scroll; width:760px;margin-top:0px;float:left; border: 2px solid #eeeeee;}
+.code{max-height:300px;overflow-y:scroll; width:760px;margin-top:0px;float:left; border: 2px solid #eeeeee; padding:10px;}
 .code .toolbar { display:none; }
 .code textarea{height:200px;width: 100%}
  .button button{font-size:16px; cursor: pointer; font-weight:700;font-family: '微软雅黑'; text-align: center; background:#219ba1;color:#fff;margin:0px 15px;margin-top:20px;border:none;width:130px;height:30px; border-radius: 20px; left:0px; line-height:30px; }

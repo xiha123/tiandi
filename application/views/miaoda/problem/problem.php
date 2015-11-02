@@ -1,7 +1,6 @@
 	<?php $this->load->view('widgets/header.php'); ?>
 	<link rel="stylesheet" href="static/css/miaoda/student.css">
-	<link rel="stylesheet" href="static/lib/syntax/shCore.css">
-	<link rel="stylesheet" href="static/lib/syntax/shThemeDefault.css">
+	<link rel="stylesheet" href="static/lib/highlight/styles/hybrid.css">
 	<link href="ueditor/themes/default/css/umeditor.min.css" rel="stylesheet">
 <body>
 
@@ -11,6 +10,14 @@
 	if (isset($_SESSION['first']) && $_SESSION['first'] == true) {
 		$first = 'true';
 	}
+
+	$langRevise = array(
+        'unity-3d' => 'c#',
+        'web' => 'html',
+        'cocos2d-x' => 'objectivec',
+		'android' => 'java',
+		'objective-c' => 'objectivec',
+	);
 ?>
 
 <script>
@@ -78,7 +85,9 @@
 			</div>
 			<?php
 				if ($problem_detail[0]["code"] != NULL) {
-					echo '<div class="code"><pre class="brush: '.($problem_detail[0]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[0]["code"]).'</pre></div>';
+					$lang = $problem_detail[0]['language'];
+					$lang = $langRevise[$lang] ? $langRevise[$lang] : $lang;
+					echo '<div class="code"><pre><code class="', $lang, '">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[0]["code"]).'</code></pre></div>';
 				}
 
 				for ($index = 1; $index < count($problem_detail); $index++) {
@@ -97,7 +106,9 @@
 					</div>
 			<?php
 					if ($problem_detail[$index]["code"] != NULL) {
-						echo '<div class="code"><pre class="brush: '.($problem_detail[$index]["language"]).'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[$index]["code"]).'</pre></div>';
+						$lang = $problem_detail[0]['language'];
+						$lang = $langRevise[$lang] ? $langRevise[$lang] : $lang;
+						echo '<div class="code"><pre><code class=" ', $lang ,'">'.str_replace(array("&amp;lt;","&amp;gt;"),array("&lt;","&gt;"),$problem_detail[$index]["code"]).'</code></pre></div>';
 					}
 				}
 			?>
@@ -245,7 +256,7 @@
 	</div>
 <?php $this->load->view('widgets/footer.php'); ?>
 
-<script src="./static/lib/syntax/brush.js"></script>
+<script src="static/lib/highlight/highlight.js"></script>
 <script src="ueditor/umeditor.config.js"></script>
 <script src="ueditor/umeditor.min.js"></script>
 <script src="static/js/problem.js"></script>
@@ -257,6 +268,7 @@ $(function () {
 	ue.addListener('ready', function() {
 		UM.getEditor('editor').setDisabled('fullscreen');
 	});
+
 	$('#problem-code').attr('readOnly' , true).css('color','#aaa');
 });
 </script>
