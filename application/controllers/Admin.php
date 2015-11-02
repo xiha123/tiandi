@@ -214,8 +214,13 @@ class Admin extends CI_Controller {
         $where = [];
         if ($pid) {
             $where = array(
-                "parent_id" => $pid
+                "nickname" => $pid
             );
+            $data = ModelFactory::User()->get($where);
+            $where = array(
+                "parent_id" => $data['id']
+            );
+
         }
         $per_page = 10;
         $userdata["list"] = ModelFactory::Invitehistory()->get_list($where,$page-1, $per_page);

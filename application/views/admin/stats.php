@@ -9,7 +9,7 @@
 	<div class="navbar navbar-default">
 		<form class="form-inline fr" action="javascript:;" onsubmit="searchOn('./admin/stats')">
 			<div class="input-group">
-				<input type="pid" class="form-control" id="searchName" placeholder="用户ID">
+				<input type="pid" class="form-control" id="searchName" placeholder="用户昵称">
 				<div class="input-group-addon"><button class="search"><i class="fa fa-search"></i></button></div>
 			</div>
 		</form>
