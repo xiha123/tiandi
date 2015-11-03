@@ -75,6 +75,8 @@
 - course 用来存放大神用户所开课程，JSON数组
 - oauth_key 第三方登录后账号关联的凭证，头像地址for qq
 - god_course_count 用来存放 god_course 的数量，和 god_course 表中的数据一致
+- register_ip 注册IP
+- last_login_ip 最后一次登录的IP
 
 ### class_guide
 
@@ -242,4 +244,3 @@
 - link
 - img
 - title
-
