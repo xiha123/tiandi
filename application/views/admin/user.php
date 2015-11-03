@@ -32,10 +32,11 @@
 				<th width="10%">手机号</th>
 				<th width="10%">注册IP</th>
 				<th width="10%">最后登录IP</th>
-				<th width="15%">个人描述</th>
-				<th width="5">金币</th>
+				<th width="10%">个人描述</th>
+				<th width="5%">金币</th>
 				<th width="5%">银币</th>
 				<th width="5%">积分</th>
+				<th width="5%">威望</th>
 				<th width="5%">类型</th>
 				<th width="5%">操作</th>
 			</tr>
@@ -53,10 +54,9 @@
 				<td>{gold_coin}</td>
 				<td>{silver_coin}</td>
 				<td>{Integral}</td>
-                <td>{prestige}</td>
-                <td>{type}</td>
-
-                <td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
+				<td>{prestige}</td>
+				<td>{type}</td>
+				<td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
 			</tr>
 			{/user}
 		</tbody>
