@@ -1,7 +1,7 @@
 .slider-summary a{color:#219ba1;}
 .slider-summary a:link{color:#219ba1;}
 /* slider */
-.js-slider-trigger{float:left;position:absolute;bottom:10px;right:185px;}
+.js-slider-trigger{float:left;position:absolute;bottom:10px;right:185px;z-index:10;}
 .js-slider-trigger li{float:left;margin-right:6px;}
 .js-slider-trigger .active a{background:#aaa}
 .js-slider-trigger li a{   transition: background 0.4s ease-in-out;border-radius:10px;padding:5px;background:#fff;float:left}
@@ -78,6 +78,7 @@ p{word-break:break-all}
 	bottom:0;
 	opacity:0;
 	transition:opacity 0.4s ease-in-out;
+    z-index:0;
 }
 .slider-sheet img {
 	float:left;
@@ -118,6 +119,7 @@ p{word-break:break-all}
 }
 .slider-sheet .active {
 	opacity:1;
+    z-index:1;
 }
 .slider-sheet .active img {
 	opacity:1;

@@ -26,19 +26,19 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>昵称</th>
-				<th>真实姓名</th>
-				<th>邮箱</th>
-				<th>手机号</th>
-				<th>支付宝号</th>
-				<th>金币</th>
-				<th>银币</th>
-				<th>积分</th>
-
-                <th>威望</th>
-                <th>类型</th>
-
-                <th>操作</th>
+				<th width="10%">昵称</th>
+				<th width="10%">真实姓名</th>
+				<th width="10%">邮箱</th>
+				<th width="10%">手机号</th>
+				<th width="10%">注册IP</th>
+				<th width="10%">最后登录IP</th>
+				<th width="10%">个人描述</th>
+				<th width="5%">金币</th>
+				<th width="5%">银币</th>
+				<th width="5%">积分</th>
+				<th width="5%">威望</th>
+				<th width="5%">类型</th>
+				<th width="5%">操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,14 +48,15 @@
 				<td>{name}</td>
 				<td>{email}</td>
 				<td>{cellphone}</td>
-				<td>{alipay}</td>
+				<td>{register_ip}</td>
+				<td>{last_login_ip}</td>
+				<td>{description}</td>
 				<td>{gold_coin}</td>
 				<td>{silver_coin}</td>
 				<td>{Integral}</td>
-                <td>{prestige}</td>
-                <td>{type}</td>
-
-                <td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
+				<td>{prestige}</td>
+				<td>{type}</td>
+				<td><i class="fa fa-edit edit-user"></i><i class="fa fa-trash remove-user"></i></td>
 			</tr>
 			{/user}
 		</tbody>
