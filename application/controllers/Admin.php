@@ -229,7 +229,7 @@ class Admin extends CI_Controller {
             );
 
         }
-        $per_page = 10;
+        $per_page = 40;
         $userdata["list"] = ModelFactory::Invitehistory()->get_list($where,$page-1, $per_page);
         foreach ( $userdata["list"] as &$user) {
             $user['user_info'] = ModelFactory::User()->get_user_data($user['user_id']);
