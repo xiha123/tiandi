@@ -213,8 +213,9 @@ class Admin extends CI_Controller {
         }
         $where = [];
         if ($pid) {
+
             $where = array(
-                "nickname" => $pid
+                "nickname" => urldecode($pid)
             );
             $data = ModelFactory::User()->get($where);
             $where = array(

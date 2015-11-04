@@ -19,6 +19,7 @@
 			<th width="15%">id</th>
 			<th width="10%">用户</th>
 			<th width="10%">邀请人</th>
+			<th width="10%">注册ip</th>
 			<th width="50%">创建时间</th>
 		</tr></thead>
 		<tbody>
@@ -28,7 +29,9 @@
 
                 <td><?php echo $user_info['user_info']['nickname'].'|'.$user_info['user_info']['id'];?></td>
 				<td><?php echo $user_info['pt_info']['nickname'].'|'.$user_info['pt_info']['id'];?></td>
-				<td><?php echo date('Y-m-d H:i:s',$user_info['created_at'])?></td>
+                <td><?php echo $user_info['created_ip'];?></td>
+
+                <td><?php echo date('Y-m-d H:i:s',$user_info['created_at'])?></td>
 
 			</tr>
          <?php };?>
