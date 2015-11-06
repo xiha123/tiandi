@@ -207,6 +207,7 @@ class Admin extends CI_Controller {
 		$this->parser->parse('admin/user.php', $data);
 	}
     function stats(){
+        if($this->admin_model->require_login() === false) redirect('admin/login');
 
         $page = !isset($_GET['page']) ? "1" : $this->input->get("page");
 
