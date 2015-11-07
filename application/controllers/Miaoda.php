@@ -18,7 +18,7 @@ class Miaoda extends CI_Controller {
 			if($_GET['hot'] == "chou"){
 				$userdata["hot_type"] = "2";
 				$userdata["problem_list"] = $this->problem_model->get_fund_list(($userdata["page"] - 1));
-				$userdata["problem_list_count"] = $this->problem_model->get_count(array("who !=" => "[]"));
+				$userdata["problem_list_count"] = $this->problem_model->get_fund_count();
 			}else{
 				$userdata["hot_type"] = "0";
 				$userdata["problem_list"] = $this->problem_model->get_hot_list($userdata["page"] - 1);
