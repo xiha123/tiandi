@@ -15,7 +15,7 @@
 	<div class="tab">
 		<ul class="tab-trigger cf js-tab-trigger">
 			<li data-id="3d" <?=$types == 0 ? $active :"" ?>><a href="./god?type=u3d">Unity-3D</a></li>
-			<li data-id="Flash" <?=$types == 1 ? $active :"" ?>><a href="./god?type=Flash">Flash</a></li>
+			<li data-id="Egret" <?=$types == 1 ? $active :"" ?>><a href="./god?type=Egret">Egret</a></li>
 			<li data-id="Web" <?=$types == 2 ? $active :"" ?>><a href="./god?type=Web">Web</a></li>
 			<li data-id="Cocos2d-x" <?=$types == 3 ? $active :"" ?>><a href="./god?type=Cocos2d-x">Cocos2d-x</a></li>
 			<li data-id="Android" <?=$types == 4 ? $active :"" ?>><a href="./god?type=Android">Android</a></li>

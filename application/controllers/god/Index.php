@@ -7,13 +7,12 @@ class index extends CI_Controller {
 	public function index() {
 		$userdata = $this->user_model->check_login();
 
-
 		// 课程处理通用Tab
 		$userdata['type_name'] = $this->input->get('type');
 		if(isset($_GET['type'])){
 			switch ($userdata['type_name']) {
 				case 'u3d':$type = 0;break;
-				case 'Flash':$type = 1;break;
+				case 'Egret':$type = 1;break;
 				case 'Web':$type = 2;break;
 				case 'Cocos2d-x':$type = 3;break;
 				case 'Android':$type = 4;break;
