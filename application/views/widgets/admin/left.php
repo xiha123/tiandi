@@ -79,7 +79,7 @@
 				array(
 					"title" => "邀请监控",
 					"link" => "admin/stats",
-					"icon" => "fa fa-comment",
+					"icon" => "fa fa-bar-chart",
 					"active" => false,
 					"name" => "stats"
 				),
