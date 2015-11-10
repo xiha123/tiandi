@@ -4,7 +4,7 @@
 
 <div class="left-ad">
     <a href="javascript:$('.left-ad').hide();"><i class="fa fa-close"></i></a>
-    <a href="http://ke.qq.com/course/95792"><img src="/static/image/miaoda_left2.jpg" alt="apply god" width="170" height="320"></a>
+    <a href="http://ke.qq.com/course/95792" target=“_blank”><img src="/static/image/miaoda_left2.jpg" alt="apply god" width="170" height="320"></a>
 </div>
 
 <div class="js-popup popup-wrapper hidden">
