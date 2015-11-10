@@ -3,7 +3,7 @@
 </head>
 
 <body>
-<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 11)); ?>
+<?php $this->load->view('widgets/admin/left.php', array("activeNav" => 10)); ?>
 
 <div class="main">
 	<div class="navbar navbar-default">

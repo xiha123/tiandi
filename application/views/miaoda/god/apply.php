@@ -12,7 +12,7 @@
         <h3 class="information">擅长的标签</h3>
         <select id="tag">
             <option value="0">Unity-3D</option>
-            <option value="1">Flash</option>
+            <option value="1">Egret</option>
             <option value="2">Web</option>
             <option value="3">Cocos2d-x</option>
             <option value="4">Android</option>
