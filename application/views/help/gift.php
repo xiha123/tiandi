@@ -42,7 +42,7 @@
             </li>
             <li>
                 <P class="txt1"><a>攒够100威望点就可以换<strong>小米USB插线板</strong><span class="tips">
-                            <span class="qp-icon"></span><img src="static/image/good/mi-usb-patch-panel.jpg" width="98" height="98" /></span></a></P>
+                            <span class="qp-icon"></span><img src="static/image/good/xiaomi.jpg" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
