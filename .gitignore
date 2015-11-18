@@ -3,3 +3,6 @@ static/uploads/
 node_modules
 ueditor/php/upload
 video/*
+/application/config/database.php
+/tiandi.iml
+/.gitignore

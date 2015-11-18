@@ -18,7 +18,7 @@
             <li>小伙伴通过你的链接成为大神</li>
             <li class="last">你获得20威望点</li>
         </ul>
-        <P align="center" class="p2"><img src="/static/image/share/p2.png" width="565" height="79" /></P>
+        <P align="center" class="p2"><img src="/static/image/share/qq_icon.png" width="565" height="79" /></P>
         <ul class="c list2">
             <li>小伙伴等级达到L3</li>
             <li class="last">你再次获得20威望点</li>
