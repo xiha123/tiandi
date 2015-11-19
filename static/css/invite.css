@@ -14,9 +14,9 @@ body{ font-family:Microsoft Yahei; font-size:12px; background:#0091a2;}
 .list1{ padding-left:100px; margin-bottom:80px;}
 .list1 li{ float:left; font-size:18px; color:#fff; margin-right:30px;}
 .list1 li.last{ margin-right:0;padding-left:30px;}
-.list2{ padding-left:200px;}
+.list2{ padding-left:150px;}
 .list2 li{ float:left; font-size:18px; color:#fff; margin-right:30px;}
-.list2 li.last{ margin-right:0;padding-left:90px;}
+.list2 li.last{ margin-right:0;padding-left:34px;}
 .linkbox{ background:#ffffff; padding:50px 30px;}
 .yq-box{ padding-left:60px;}
 .yq-box li{ float:left; margin-right:15px; font-size:18px; line-height:33px;}

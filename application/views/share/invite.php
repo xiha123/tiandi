@@ -20,8 +20,8 @@
         </ul>
         <P align="center" class="p2"><img src="/static/image/share/qq_icon.png" width="565" height="79" /></P>
         <ul class="c list2">
-            <li>小伙伴等级达到L3</li>
-            <li class="last">你再次获得20威望点</li>
+            <li>6名小伙伴成功注册成为大神</li>
+            <li class="last">请联系客服QQ：2194846949</li>
         </ul>
     </div>
     <div class="linkbox">

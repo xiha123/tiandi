@@ -18,55 +18,76 @@
     <img src="/static/image/gift.jpg?1444547764" width="100%" >
 </div>
 <div class="ad-layout c" style="margin-top: -60px;margin-bottom: 40px;">
+
     <div class="ad-left">
+        <a href="/share/invite" style="
+    display: block;
+    background: #ff7a11;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    padding: 20px 0;
+    font-size: 18px;
+    border-radius: 10px;
+">
+            邀请6名小伙伴<br>注册有好礼
+        </a>
+        <div style="
+    color: #ff7a11;
+    text-align: center;
+    margin-top: 10px;
+">兑换壕礼请联系<br>
+            vip客服：2194846949</div>
+    </div>
+    <!--<div class="ad-left">
         <p class=""><a href="/share/invite" target="_blank"><img src="/static/image/invite.png" /></a></p>
 
-        <!--<p class="ad-txt1">邀请32个大神好友</p>
+        <p class="ad-txt1">邀请32个大神好友</p>
         <p class="ad-txt2">这台ipad就是你的</p>
         <P><a href="/share/invite" target="_blank"><img src="/static/image/ad-b1.jpg" /></a></P>
         <P class="p-line"><img src="/static/image/p-line.png" /></P>
-        <P><a href="/godHelp#what-8" target="_blank"><img src="/static/image/ad-b2.jpg" /></a></P>-->
-    </div>
+        <P><a href="/godHelp#what-8" target="_blank"><img src="/static/image/ad-b2.jpg" /></a></P>
+    </div>-->
     <div class="ad-right">
         <div class="ad-list">
             <li>
-                <P class="txt1"><a>攒够30威望点就可以换<strong>程序员马克杯</strong>
+                <P class="txt1"><a>30威望点就可以换<strong>程序员马克杯</strong>
                         <span class="tips"><span class="qp-icon"></span>
                             <img   src="static/image/good/1-cup.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够68威望点就可以换<strong>《算法帝国》/《编程之美》</strong><span class="tips">
+                <P class="txt1"><a>68威望点就可以换<strong>《算法帝国》/《编程之美》</strong><span class="tips">
                             <span class="qp-icon"></span><img src="static/image/good/2-book.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够100威望点就可以换<strong>小米USB插线板</strong><span class="tips">
+                <P class="txt1"><a>100威望点就可以换<strong>小米USB插线板</strong><span class="tips">
                             <span class="qp-icon"></span><img src="static/image/good/xiaomi.jpg" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够150威望点就可以换<strong>小米手环</strong><span class="tips"><span class="qp-icon"></span><img src="static/image/good/3-band.png" width="98" height="98" /></span></a></P>
+                <P class="txt1"><a>150威望点就可以换<strong>小米手环</strong><span class="tips"><span class="qp-icon"></span><img src="static/image/good/3-band.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够200威望点就可以换<strong>无线鼠标</strong>，每月限额15个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/4-mouse.png" width="98" height="98" /></span></a></P>
+                <P class="txt1"><a>200威望点就可以换<strong>无线鼠标</strong>，每月限额15个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/4-mouse.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够400威望点就可以换<strong>机械键盘</strong>，每月限额8个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/5-keyboard.png" width="98" height="98" /></span></a></P>
+                <P class="txt1"><a>400威望点就可以换<strong>机械键盘</strong>，每月限额8个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/5-keyboard.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够750威望点就可以换<strong>kindle</strong>，每月限额5个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/6-kindle.png" width="98" height="98" /></span></a></P>
+                <P class="txt1"><a>750威望点就可以换<strong>kindle</strong>，每月限额5个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/6-kindle.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够999威望点就可以换<strong>魔声耳机</strong>，每月限额2个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/7-beats.png" width="98" height="98" /></span></a></P>
+                <P class="txt1"><a>999威望点就可以换<strong>魔声耳机</strong>，每月限额2个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/7-beats.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
             <li>
-                <P class="txt1"><a>攒够1280威望点就可以换<strong>iPad mini 2</strong>，每月限额1个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/8-ipad.png" width="98" height="98" /></span></a></P>
+                <P class="txt1"><a>1280威望点就可以换<strong>iPad mini 2</strong>，每月限额1个<span class="tips"><span class="qp-icon"></span><img src="static/image/good/8-ipad.png" width="98" height="98" /></span></a></P>
                 <P class="txt2"></P>
             </li>
 
