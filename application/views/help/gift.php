@@ -19,7 +19,7 @@
 </div>
 <div class="ad-layout c" style="margin-top: -60px;margin-bottom: 40px;">
     <div class="ad-left">
-        <p class=""><a href="/godHelp#what-8" target="_blank"><img src="/static/image/invite.png" /></a></p>
+        <p class=""><a href="/share/invite" target="_blank"><img src="/static/image/invite.png" /></a></p>
 
         <!--<p class="ad-txt1">邀请32个大神好友</p>
         <p class="ad-txt2">这台ipad就是你的</p>
