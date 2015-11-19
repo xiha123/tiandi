@@ -11,7 +11,7 @@
 <body>
 <div class="main">
     <div class="top">
-        <h2>邀请小伙伴，获赠威望点</h2>
+        <h2>邀请小伙伴，领取壕礼</h2>
         <P align="center" class="p1"><img src="/static/image/share/p1.png" width="565" height="56" /></P>
         <ul class="c list1">
             <li>把你的链接发给小伙伴</li>
