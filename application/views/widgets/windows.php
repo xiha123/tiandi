@@ -103,7 +103,7 @@
 
 <?php }else { ?>
         <div class="window" style="<?php if($show_notice || isset($_GET['editprofile'])){echo 'display:block;';}?>" >
-            <div class="login" id="notice" style="<?php if($show_notice){echo 'display:block;';}?>;height: 300px;">
+            <div class="login" id="notice" style="<?php if($show_notice){echo 'display:block;';}else{echo 'display:none;';}?>;height: 300px;">
                 <div class="login-title">
                     <h2>提醒</h2>
                     <a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>
@@ -122,11 +122,11 @@
                 </div>
             </div>
             <?php $userinfo = ModelFactory::User()->check_login();?>
-            <form method="post" action="/userset/profile">
+            <form method="post" action="/userset/profile" style="margin-top:30px">
 
-                <div class="regist-box"  style="<?php if(isset($_GET['editprofile'])){echo 'display:block;';}?>;">
+                <div class="regist-box"  style="<?php if(isset($_GET['editprofile'])){echo 'display:block;';}else{echo 'display:none;';}?>">
                     <dl class="reg-top c">
-                        <dt><img src="<?php if($userinfo['avatar']){echo $userinfo['avatar'];}else{echo '/static/login/images/head.png';} ;?>" width="96" height="96" /></dt>
+                        <dt><img src="<?php echo '/static/login/images/head.png';?>" width="96" height="96" /></dt>
                         <dd>
                             <h2>感谢您加入秒答</h2>
                             <p class="m-b10">不要害羞，介绍一下自己吧...</p>
@@ -173,7 +173,7 @@
                                     <div class="reg-op">
                                         <button type="submit" class="reg-btn2">确定</button>
                                         <P><img src="/static/login/images/regist-line1.png" width="287" height="17" /></P>
-                                        <a href="/home?home=index&uid=<?php $userinfo['id'];?>" class="reg-btn1 ">害羞嘛,还是先跳过吧</a>
+                                        <a href="/home?home=index&uid=<?php echo $userinfo['id'];?>" class="reg-btn1 ">害羞嘛,还是先跳过吧</a>
                                     </div>
                                 </li>
                             </ul>

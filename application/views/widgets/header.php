@@ -13,4 +13,17 @@
 <meta property="qc:admins" content="2771270563641164105105663757" />
 <meta property="wb:webmaster" content="70045023058016ff" />
 <meta name="baidu-site-verification" content="IbjMD7HW0P" />
+    <?php
+    switch($this->agent->browser()) {
+        case 'Opera':
+        case 'Chrome':
+        case 'Firefox':
+        case 'Safari':
+            echo '<script src="static/lib/jquery/jquery-2.1.4.min.js"></script>';
+            break;
+        default:
+            echo '<script src="static/lib/jquery/jquery-1.11.3.min.js"></script>';
+            break;
+    }
+    ?>
     <script src="/static/lib/ajaxupload.js" type="text/javascript"></script>

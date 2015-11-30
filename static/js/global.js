@@ -267,7 +267,7 @@ $("#ajax_login").on('click' , function(event) {
 
 
     $.post("/api/user_api/login",{
-            name : name,
+            name : username,
             pwd : password,
             vcode: vcode
         }, function(data) {
@@ -275,8 +275,8 @@ $("#ajax_login").on('click' , function(event) {
             if (obj.status) {
                 showAlert(true, "登录成功！");
                 setTimeout(function() {
-                    if (res.data.type === '1') {
-                        location.href = 'home?uid=' + res.data.id;
+                    if (obj.data.type === '1') {
+                        location.href = '/home?uid=' + obj.data.id;
                     } else {
                         location.reload();
                     }
