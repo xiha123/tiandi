@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="regist-box">
+    <dl class="reg-top c">
+        <dt><img src="images/head.png" width="96" height="96" /></dt>
+        <dd>
+          <h2>感谢您加入秒答</h2>
+          <p class="m-b10">不要害羞，介绍一下自己吧...</p>
+          <P><span class="reg-icon1"></span>微博<span class="wb-add">(hello@91miaoda.com)</span></P>
+        </dd>
+    </dl>
+    <div class="reg-con c">
+      <div class="reg-left">
+        <P><img src="images/head1.png" width="169" height="169" /></P>
+        <p class="tac m-b5"><a href="#" class="reg-btn1">更换头像</a></p>
+        <P class="tips">Size limit:2MB</P>
+      </div>
+      <div class="reg-rig">
+        <ul class="reg-list">
+          <li class="m-b10">
+            <P class="txt1">昵称</P>
+            <input class="reg-input1" type="text" placeholder="hello" />
+          </li>
+          <li class="m-b10">
+            <P class="txt1">添加你喜欢的标签</P>
+            <input class="reg-input1" type="text" placeholder="e.g.Unity3D,Cocos2d-x,C#,Java,web" />
+          </li>
+          <li class="m-b10">
+            <P class="txt1">你现在处于什么阶段？</P>
+            <P class="state c">
+              <a>学生</a><a class="on">工作中</a>
+            </P>
+          </li>
+          <li class="m-b10">
+            <div class="c about m-b5">
+               <P class="about-box"><input type="text" class="reg-input2 fl" placeholder="学生" /><span class="a-txt fl">at</span><input type="text" class="reg-input2 fl" placeholder="工作中" /></P>
+               <P class="about-box" style="display:none;"><input type="text" class="reg-input2 fl" placeholder="工程师" /><span class="a-txt fl">at</span><input type="text" class="reg-input2 fl" placeholder="公司" /></P>
+            </div>
+            <P class="m-b5">天地君道培训学员？</P>
+            <P><input type="text" class="reg-input2" placeholder="工程师" />&nbsp;期</P>
+          </li>
+          <li class="m-b10">
+           <div class="reg-op">
+            <a class="reg-btn2">确定</a>
+            <P><img src="images/regist-line1.png" width="287" height="17" /></P>
+            <a class="reg-btn2">害羞嘛,还是先跳过吧</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+</div>
+
+<script src="js/jquery-1.11.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(function(){
+	  $('.state a').click(function(){
+		    var i = $(this).index();
+  ;
+			$(this).addClass("on").siblings().removeClass("on");
+			$(".about .about-box").eq(i).show().siblings().hide();
+		  })
+	  })
+</script>
+</body>
+</html>
