@@ -435,6 +435,7 @@ function showAlert(type , value){
 
 $(".bomb-login").click(function(event) {
     $("#reg").hide();
+    $("#forget").hide();
     bomb("login");
 });
 $(".bomb-reg").click(function(event) {

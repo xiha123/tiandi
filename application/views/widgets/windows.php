@@ -13,7 +13,7 @@
 
 	<div class="login" id="login" style="width: 305px;height: 345px;">
 		<div class="regist-open">
-			<a class="close-icon close" href="#"></a>
+			<a class="close-icon close" href="javascript:;"></a>
 			<div class="open-top">
 				<h2 class="m-b5">加入秒答</h2>
 				<P>答你所问 知你所想</P>
@@ -31,7 +31,9 @@
 					<P class="yzm-tips" style="float:right"><img style="cursor: pointer;" src="/Verification" id="logvcode" onclick="javascript:refreshYZM('logvcode');" width="97" height="36" /></P>
 				</li>
 				<li class="c regist-zh">
-					<a href="#" class="reg-btn3" id="ajax_login">登陆</a>
+                    <a href="#" class="reg-btn3" id="ajax_login">登陆</a>
+                    <input type="checkbox" value="1"> 记住我 *
+                    <a class="reg-link" style="color: #0a001f" href="javascript:$('#forget').click();">无法登陆?</a>
 				</li>
                 <li class="c open-login">
                     <P class="tac m-b5">社交账号登录</P>
@@ -46,10 +48,10 @@
 
 	</div>
 
-	<div class="login" id="forget">
+	<div class="login forget" id="forget" >
 		<div class="login-title">
 			<h2>找回密码</h2>
-			<a href="javascript:;" class="close"><i class="fa fa fa-times-circle-o"></i></a>
+			<a href="javascript:$('.window .close').click();$('#forget').hide();" class="close" ><i class="fa fa fa-times-circle-o"></i></a>
 		</div>
 		<div class="login-content">
 			<ul>
@@ -63,7 +65,7 @@
 
 	<div class="login"  style="width:305px;height: 390px;<?php if(isset($_GET['from_invite'])){echo 'display:block;';}?>" id="reg">
 		<div class="regist-open">
-			<a class="close-icon close" href="#"></a>
+			<a class="close-icon close" href="javascript:;"></a>
 			<div class="open-top">
 				<h2 class="m-b5">加入秒答</h2>
 				<P>答你所问 知你所想</P>
@@ -194,10 +196,8 @@
                     var type = $(this).text();
                     console.log(type);
                     if (type != '学生') {
-                        $('#studeninfo').hide();
                         $('#profile_type').val(2) ;
                     }else{
-                        $('#studeninfo').show()
                         $('#profile_type').val(2) ;
 
                     }
