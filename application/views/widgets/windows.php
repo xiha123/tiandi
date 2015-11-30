@@ -122,7 +122,7 @@
                 </div>
             </div>
             <?php $userinfo = ModelFactory::User()->check_login();?>
-            <form method="post" action="/userset/profile" style="margin-top:30px">
+            <form method="post" action="/userset/profile" style="margin-top:60px">
 
                 <div class="regist-box"  style="<?php if(isset($_GET['editprofile'])){echo 'display:block;';}else{echo 'display:none;';}?>">
                     <dl class="reg-top c">

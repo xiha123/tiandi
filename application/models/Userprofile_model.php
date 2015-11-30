@@ -2,7 +2,7 @@
 
 include_once(APPPATH . 'models/Base_model.php');
 
-class User_profile_model extends Base_model {
+class Userprofile_model extends Base_model {
 
 	public function __construct() {
 		parent::__construct();

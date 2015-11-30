@@ -45,10 +45,10 @@ class ModelFactory {
             return  self::load('Invitehistory_model');
         }
     /**
-     * @return User_profile_model
+     * @return Userprofile_model
      */
         static  function UserProfile(){
-            return  self::load('User_profile_model');
+            return  self::load('Userprofile_model');
         }
 
     /**
