@@ -171,10 +171,12 @@ class User_api extends Base_api {
     }
 
     public function login() {
-        $params = parent::get_params('POST', array('name', 'pwd'));
+        $params = parent::get_params('POST', array('name', 'pwd','vcode'));
         extract($params);
-
-        $result = $this->user_model->login($name, $pwd);
+        if (md5($params['vcode']) != $_SESSION["verification"]) {
+            parent::finish(false, '验证码错误!');
+        }
+        $result = ModelFactory::User()->login($name, $pwd);
         if ($result === false) {
             parent::finish(false, '用户名或密码错误');
         }
@@ -238,15 +240,19 @@ class User_api extends Base_api {
         $this->load->helper('cookie');
         $parent_id = get_cookie('parent_id');
         $this->load->helper('email');
-        $params = parent::get_params('POST', array('email', 'nickname', 'pwd', 'avatar'));
+        $params = parent::get_params('POST', array('email', 'nickname', 'pwd', 'avatar','vcode_reg'));
         extract($params);
-
+        if (md5($params['vcode_reg']) != $_SESSION["verification"]) {
+            parent::finish(false, '验证码错误!');
+        }
         if(!valid_email($email)){
             parent::finish(false, '您输入的邮箱格式不太正确，请检查后再输入！');
         }
+
         if(preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/",$nickname)){
             parent::finish(false , "您的昵称中存在特殊字符，请检查后重新提交");
         }
+
         parent::is_length(array(
             array("name" => "密码" , "value" => $pwd , "min" => 6 , "max" => 16),
             array("name" => "昵称" , "value" => $nickname , "min" => 4 , "max" => 16)

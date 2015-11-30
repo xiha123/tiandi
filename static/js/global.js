@@ -259,6 +259,38 @@ $("#login-form").on('submit' , function(event) {
         showAlert(false, "您输入的账号或密码错误，请检查后再试");
     });
 });
+$("#ajax_login").on('click' , function(event) {
+    event.preventDefault();
+    var username = $("#login_username").val(),
+    password = $("#login_password").val(),
+    vcode = $("#vcode").val();
+
+
+    $.post("/api/user_api/login",{
+            name : name,
+            pwd : password,
+            vcode: vcode
+        }, function(data) {
+            obj = eval('('+data+')');
+            if (obj.status) {
+                showAlert(true, "登录成功！");
+                setTimeout(function() {
+                    if (res.data.type === '1') {
+                        location.href = 'home?uid=' + res.data.id;
+                    } else {
+                        location.reload();
+                    }
+                }, 1000)
+            }else{
+
+                showAlert(false , obj.error);
+
+            }
+        })
+        .error(function() { alert("网络异常!"); })
+
+
+});
 
 $("#ajax_outlogin").on('click', function(event) {
     $.ajax({
@@ -321,6 +353,62 @@ $("#register").on('submit' , function(event) {
     }, function(res) {
         showAlert(false, res.error);
     });
+});
+$("#ajax_reg").on('click' , function(event) {
+    event.preventDefault();
+    var password = $("#reg_password").val(),
+        email = $("#reg_email").val(),
+        nick = $("#reg_nick").val(),
+        avatar = $('#reg_avatar').val() || 'none';
+
+    if(password == "" || email == "" || nick == "" ){
+        showAlert(false , "您输入的账号或密码不能为空");
+        return;
+    }
+    if(password != $("#reg_password_r").val()){
+        showAlert(false , "两次输入的密码不一致");
+        return;
+    }
+
+    $.post("/api/user_api/create",{
+            email : email,
+            nickname : nick,
+            pwd : password,
+            avatar: avatar,
+            vcode_reg:  $("#vcode_reg").val()
+    }, function(data) {
+            obj = eval('('+data+')');
+            if (obj.status) {
+                //var checked = document.getElementById("reg_god").checked;
+                var checked = false;
+                if(checked){
+                    showAlert(true , "注册账号成功！请继续填写详细信息，首次注册赠送200银币已到帐！激活邮箱再送300银币！");
+                }else{
+                    showAlert(true , "注册账号成功！首次注册赠送200银币已到帐！激活邮箱再送300银币！");
+                }
+                setTimeout(function(){
+                    href = window.location.href.split('#')[0];
+                    href = href.replace('&editprofile=1','');
+                    //var checked2 = document.getElementById("reg_god").checked;
+                    if(checked){
+                        href.href="/god/apply";
+                    }else{
+                        if ( href.indexOf('?') >= 0 ) {
+                            href = href + '&editprofile=1'
+                        }else{
+                            href = href + '?editprofile=1';
+                        }
+                        location.replace(href);
+                    }
+                }, 1000);
+            }else{
+                showAlert(false , obj.error);
+
+            }
+        })
+        .error(function() { alert("网络异常!"); })
+
+
 });
 
 

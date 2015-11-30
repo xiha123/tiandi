@@ -2,24 +2,16 @@
 
 include_once(APPPATH . 'models/Base_model.php');
 
-class God_course_model extends Base_model {
+class User_profile_model extends Base_model {
 
 	public function __construct() {
 		parent::__construct();
-		$this->table_name = 'god_course';
+		$this->table_name = 'user_profile';
 	}
 
-	public function create($params) {
-		$this->db->query('update user set god_course_count = god_course_count + 1 where id = ' . $params['god']);
-		$id = parent::create($params);
-		return $id;
-	}
-
-	public function remove($id) {
-		$course = parent::get(array(
-			'id' => $id
+	public function getbyuserid($uid){
+		return $this->get(array(
+				'user_id' => $uid
 		));
-		$this->db->query('update user set god_course_count = god_course_count - 1 where id = ' . $course['god']);
-		parent::remove($id);
 	}
 }
