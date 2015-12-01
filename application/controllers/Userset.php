@@ -27,7 +27,7 @@ class UserSet extends CI_Controller {
 					'avatar' => $avatar
 			]);
 		}
-		$tags = explode(',',$fav_tag);
+		$tags = explode(' ',$fav_tag);
 		foreach ($tags as $tag) {
 
 			$tag = ModelFactory::Tag()->get_tag_withtype($tag);

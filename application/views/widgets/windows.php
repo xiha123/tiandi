@@ -38,7 +38,7 @@
                 <li class="c open-login">
                     <P class="tac m-b5">社交账号登录</P>
                     <div class="reg-link c">
-                        <P><a href="javascript:alert('敬请期待');" class="reg-link1"><span class="reg-icon2"></span>微信</a></P>
+                        <P><a href="#"   class="reg-link1 wx-login-btn"><span class="reg-icon2"></span>微信</a></P>
                         <P><a href="#" class="reg-link1" id="wb_connect_btn"><span class="reg-icon3"></span>微博</a></P>
                         <P><a href="#" class="reg-link1" id="qq-login-btn"><span class="reg-icon4"></span>QQ</a></P>
                     </div>
@@ -95,9 +95,9 @@
 				<li class="c open-login">
 					<P class="tac m-b5">社交账号登录</P>
 					<div class="reg-link c">
-						<P><a href="javascript:alert('敬请期待');" class="reg-link1"><span class="reg-icon2"></span>微信</a></P>
-						<P><a href="#" class="reg-link1" id="wb_connect_btn"><span class="reg-icon3"></span>微博</a></P>
-						<P><a href="#" class="reg-link1" id="qq-login-btn"><span class="reg-icon4"></span>QQ</a></P>
+						<P><a href="javascript:;" class="reg-link1 wx-login-btn" id="wx-login-btn"><span class="reg-icon2"></span>微信</a></P>
+						<P><a href="#" class="reg-link1" id="wb_connect_btn_rg"><span class="reg-icon3"></span>微博</a></P>
+						<P><a href="#" class="reg-link1" id="qq-login-btn_rg"><span class="reg-icon4"></span>QQ</a></P>
 					</div>
 				</li>
 			</ul>
@@ -126,7 +126,7 @@
                 </div>
             </div>
             <?php $userinfo = ModelFactory::User()->check_login();?>
-            <form method="post" action="/userset/profile" style="margin-top:60px">
+            <form method="post" action="/userset/profile" style="margin-top:45px">
 
                 <div class="regist-box"  style="<?php if(isset($_GET['editprofile'])){echo 'display:block;';}else{echo 'display:none;';}?>">
                     <dl class="reg-top c">
@@ -154,7 +154,7 @@
                                 </li>
                                 <li class="m-b10">
                                     <P class="txt1">添加你喜欢的标签</P>
-                                    <input class="reg-input1"  name="fav_tag"  id="fav_tag"  type="text" placeholder="e.g.Unity3D,Cocos2d-x,C#,Java,web" />
+                                    <input class="reg-input1"  name="fav_tag"  id="fav_tag"  type="text" placeholder="e.g.Unity3D Cocos2d-x C# Java web" />
                                 </li>
                                 <li class="m-b10">
                                     <P class="txt1">你现在处于什么阶段？</P>
@@ -166,7 +166,7 @@
                                 <li class="m-b10">
                                     <div class="c about m-b5">
                                         <P class="about-box"><input type="text" name="professional" class="reg-input2 fl" placeholder="专业" /><span class="a-txt fl">at</span><input name="school" type="text" class="reg-input2 fl" placeholder="学校" /></P>
-                                        <P class="about-box" style="display:none;"><input type="text" name="station" class="reg-input2 fl" placeholder="工程师" /><span class="a-txt fl">at</span><input name="company" type="text" class="reg-input2 fl" placeholder="公司" /></P>
+                                        <P class="about-box" style="display:none;"><input type="text" name="station" class="reg-input2 fl" placeholder="职位" /><span class="a-txt fl">at</span><input name="company" type="text" class="reg-input2 fl" placeholder="公司" /></P>
                                     </div>
                                     <div id="studeninfo">
                                         <P class="m-b5">天地君道培训学员？</P>

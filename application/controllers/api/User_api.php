@@ -5,6 +5,8 @@ include_once(APPPATH . 'controllers/api/Base_api.php');
 class User_api extends Base_api {
     public function __construct() {
         parent::__construct();
+        $this->load->helper('cookie');
+
         $this->load->model('user_model');
         $this->load->model('tag_model');
         $this->load->model('problem_model');
@@ -15,15 +17,44 @@ class User_api extends Base_api {
     }
 
     public function check_oauth() {
-        $params = parent::get_params('POST', array('key'));
+        $params = parent::get_params('POST', array('key','avatar','nickname','source','source_id'));
         extract($params);
 
-        $user = $this->user_model->get_by_oauth($key);
+        $user = ModelFactory::User()->get_by_oauth($key);
         if ($user === false) {
+            $parent_id = get_cookie('parent_id');
+
+            while (1) {
+                $params1 = array('nickname' => $params['nickname']);
+                $true = ModelFactory::User()->is_exist($params1);
+                if ($true) {
+                    $params['nickname'] = $params['nickname'].mt_rand(400000,900000);
+                }else{
+                    break;
+                }
+            }
+
+            $true = ModelFactory::User()->create([
+                'email' => $params['nickname']."@91miaoda.com",
+                'oauth_key' =>  $params['avatar'],
+                'nickname' => $params['nickname'],
+                'pwd' => '',
+                'avatar' => $params['avatar'],
+                'parent_id' => $parent_id,
+            ]);
+            if ($true) {
+                $user = ModelFactory::User()->get_by_oauth($key);
+                if ($user) {
+                    ModelFactory::User()->login_by_oauth($user['id']);
+                    parent::finish(true,'',['first'=>'yes']);
+                }
+            }else{
+                parent::finish(false);
+            }
             parent::finish(false);
         } else {
-            $this->user_model->login_by_oauth($user['id']);
-            parent::finish(true);
+            ModelFactory::User()->login_by_oauth($user['id']);
+            parent::finish(true,'',['first'=>'yes']);
         }
     }
 
@@ -237,7 +268,6 @@ class User_api extends Base_api {
 
     // 创建、注册用户
     public function create() {
-        $this->load->helper('cookie');
         $parent_id = get_cookie('parent_id');
         $this->load->helper('email');
         $params = parent::get_params('POST', array('email', 'nickname', 'pwd', 'avatar','vcode_reg'));

@@ -415,7 +415,21 @@ $("#ajax_reg").on('click' , function(event) {
 
 
 });
-
+window.openprofile = function openprofile(){
+    var href = window.location.href.split('#')[0];
+    href = href.replace('&editprofile=1','');
+    var checked = false;
+    if(checked){
+        href.href="/god/apply";
+    }else{
+        if ( href.indexOf('?') >= 0 ) {
+            href = href + '&editprofile=1'
+        }else{
+            href = href + '?editprofile=1';
+        }
+        location.replace(href);
+    }
+}
 
 var isShow = false;
 function showAlert(type , value){
