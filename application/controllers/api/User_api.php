@@ -54,7 +54,7 @@ class User_api extends Base_api {
             parent::finish(false);
         } else {
             ModelFactory::User()->login_by_oauth($user['id']);
-            parent::finish(true,'',['first'=>'yes']);
+            parent::finish(true,'',['first'=>'no']);
         }
     }
 
