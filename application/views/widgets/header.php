@@ -27,3 +27,5 @@
     }
     ?>
     <script src="/static/lib/ajaxupload.js" type="text/javascript"></script>
+    <script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://www.91miaoda.com/qq_cb" charset="utf-8"></script>
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=665902895" type="text/javascript" charset="utf-8"></script>

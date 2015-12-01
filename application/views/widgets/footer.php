@@ -27,8 +27,6 @@
 <script src="static/js/global.js"></script>
 
 <?php if (!isset($id)) { ?>
-<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://www.91miaoda.com/qq_cb" charset="utf-8"></script>
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=665902895" type="text/javascript" charset="utf-8"></script>
 <script>
 // 微博登录
 WB2.anyWhere(function (W) {
@@ -37,6 +35,7 @@ WB2.anyWhere(function (W) {
         type: '3,2',
         callback: {
             login: function (res) {
+                console.log(res);
                 var avatar = res.avatar_large,
                     nickname = res.name;
 
@@ -58,14 +57,14 @@ WB2.anyWhere(function (W) {
 QC.Login({
     btnId:"qq-login-btn"    //插入按钮的节点id
 }, function (reqData, opts) {
-    var avatar = reqData.figureurl_qq_2,
+    var avatar = reqData.figureurl_qq_1,
         nickname = QC.String.escHTML(reqData.nickname);
-
     _td.api.checkOauth({
         key: avatar
     }).then(function () {
         location.reload();
     }, function () {
+        var avatar = reqData.figureurl_qq_1;
         $('#reg').find('h2').text('通过 QQ 账号注册');
         $('#reg_nick').val(nickname);
         $('#reg_avatar').val(avatar);

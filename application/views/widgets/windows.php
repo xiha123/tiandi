@@ -81,6 +81,8 @@
 					<p><input type="password" id="reg_password_r" class="open-input2" placeholder="密码(不少于6位)" /></p>
 				</li>
 				<li class="c">
+                    <input type="hidden" name="reg_avatar" id="reg_avatar">
+                    <input type="hidden" name="reg_type" id="reg_type">
 					<p><input type="password" id="reg_password" class="open-input2" placeholder="确认密码" /></p>
 				</li>
 				<li class="c">
@@ -138,7 +140,7 @@
                     </dl>
                     <div class="reg-con c">
                         <div class="reg-left">
-                            <P><img src="/static/login/images/head1.png" id="header_img" width="169" height="169" /></P>
+                            <P><img src="<?php if(isset($userinfo['avatar'])) {echo $userinfo['avatar'];}else{echo '/static/login/images/head1.png';} ;?>" id="header_img" width="169" height="169" /></P>
                             <p class="tac m-b5"><input type="button" href="javascript:;" id="ajax_upload_header" class="reg-btn1" value="更换头像" /></p>
                             <input type="hidden" value="" name="avatar_url" id="profile_avatar" />
 

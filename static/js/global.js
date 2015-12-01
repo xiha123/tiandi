@@ -298,6 +298,11 @@ $("#ajax_outlogin").on('click', function(event) {
         type: 'GET',
         success:function(){
              showAlert(true,"退出成功！");
+
+                WB2.logout(function() {
+                    //callback function
+                });
+                QC.Login.signOut();
              setTimeout(function(){
                 location.href = '';
             },1000)
