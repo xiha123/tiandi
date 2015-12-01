@@ -28,11 +28,11 @@
 				</li>
 				<li class="c">
 					<p class="yzm-box"><input id="vcode" name="vcode" type="text" class="open-input3" placeholder="验证码" /></p>
-					<P class="yzm-tips" style="float:right"><img style="cursor: pointer;" src="/Verification" id="logvcode" onclick="javascript:refreshYZM('logvcode');" width="97" height="36" /></P>
+					<P class="yzm-tips" style="float:right"><img style="cursor: pointer;" src="/Verification" id="logvcode" onclick="javascript:refreshYZM('logvcode');" width="97" height="45" /></P>
 				</li>
 				<li class="c regist-zh">
                     <a href="#" class="reg-btn3" id="ajax_login">登陆</a>
-                    <input type="checkbox" value="1"> 记住我 *
+                    <input type="checkbox" value="1"> 记住我 .
                     <a class="reg-link" style="color: #0a001f" href="javascript:$('#forget').click();">无法登陆?</a>
 				</li>
                 <li class="c open-login">
@@ -57,7 +57,7 @@
 			<ul>
 				<li><input type="text" id="userEmail" placeholder="请输入您的邮箱"></li>
 				<li><input type="text" id="verification" placeholder="请输入验证码"></li>
-				<li class="login-click"><img src="" onclick="document.getElementById('image_id').src='./Verification'" id="image_id" alt="" width="120" height="40"></li>
+				<li class="login-click"><img src="" onclick="document.getElementById('image_id').src='./Verification'" id="image_id" alt="" width="120" height="30"></li>
 				<li><input type="button" value="找回密码" id="ajax_forget"></li>
 			</ul>
 		</div>
@@ -87,7 +87,7 @@
 				</li>
 				<li class="c">
 					<p class="yzm-box"><input type="text" id="vcode_reg" class="open-input3" placeholder="验证码" /></p>
-					<P class="yzm-tips" style="float:right"><img style="cursor: pointer;" src="/Verification"  onclick="javascript:refreshYZM('vcode1');"  id="vcode1" width="97" height="36" /></P>
+					<P class="yzm-tips" style="float:right"><img style="cursor: pointer;" src="/Verification"  onclick="javascript:refreshYZM('vcode1');"  id="vcode1" width="97" height="45" /></P>
 				</li>
 				<li class="c regist-zh">
 					<a href="#" id="ajax_reg" class="reg-btn3">确认</a> <a class="reg-link" href="javascript:$('.bomb-login').click();">已有账号</a>

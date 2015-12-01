@@ -54,7 +54,7 @@ input{font-family:Microsoft Yahei; outline:none;}
 .reg-btn3:hover{ background:#28a4ac;}
 .open-list li.open-login{ background:#fafafa;border-bottom:none; padding:10px 0; height:auto;}
 .reg-link p{width:33%; float:left; text-align:center;}
-.reg-link p a{ text-align:center; color:#000; display:block;height:35px; line-height:35px;}
+.reg-link p a{ text-align:center; color:#000; display:block;height:35px; line-height:0px;}
 .reg-icon2{ background:url(../images/icon2.png) no-repeat;width:22px; height:22px; display:inline-block; vertical-align:middle;}
 .reg-icon3{ background:url(../images/icon3.png) no-repeat;width:22px; height:22px; display:inline-block; vertical-align:middle;}
 .reg-icon4{ background:url(../images/icon4.png) no-repeat;width:22px; height:22px; display:inline-block; vertical-align:middle;}
