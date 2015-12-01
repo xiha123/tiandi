@@ -9,38 +9,38 @@ a,p{word-break: break-all;}
 .login .login-title i{font-size: 28px}
 
 /*登录框通用*/
-.window{display:none;width:100%;z-index:1023;position:fixed; top:0;left: 0;height: 100%;background: rgba(0,0,0,0.4);}
+.window{display:none;width:100%;z-index:1023;position:fixed; top:0;left: 0;height: 100%;background: rgba(255,255,255,0.4);}
 
 .showAlert{text-align: center;display:none;transition:top 0.4s ease-in-out;height:30px;z-index:99999;position:fixed; top:0%;bottom:0px;left:0;right: 0;margin:0 auto;text-align: center;padding:10px;}
-              .showAlert .aletrContent{font-size:18px;display:inline;padding:15px 30px;color:#fff; border-radius:5px; width:auto; margin:0 auto;}
-                              .aletrContent.success{background:#5cb85c;}
-                              .aletrContent.danger{background:#d9534f;}
-                               .aletrContent i{margin-right: 10px;}
+.showAlert .aletrContent{font-size:18px;display:inline;padding:15px 30px;color:#fff; border-radius:5px; width:auto; margin:0 auto;}
+.aletrContent.success{background:#5cb85c;}
+.aletrContent.danger{background:#d9534f;}
+.aletrContent i{margin-right: 10px;}
 
 .window #reg{height:480px;display:none;}
 .regGod span{text-decoration: underline;}
 
-.window .login {display:none;width:400px;height:390px;position:fixed; top:0;left: 0;right: 0;bottom: 0;margin: auto;background: #fff;z-index:1024;}
+.window .login {display:none;width:400px;height:390px;position:fixed; top:0;left: 0;right: 0;bottom: 0;margin: auto;z-index:1024;}
 .login .login-title{padding:5px 25px;height:30px;background:#219ba1;color:#fff;}
-         .login-title h2{font-size:20px;float: left}
-         .login-title .close{line-height:30px;color:#fff;font-size:20px;float:right;}
+.login-title h2{font-size:20px;float: left}
+.login-title .close{line-height:30px;color:#fff;font-size:20px;float:right;}
 .login .login-content{padding:20px 45px;}
-          .login-content li{float: left;width:100%;}
-          .login-content .login-click{margin:18px 0;}
-                                .login-click a,.login-click{color:#219ba1;}
-                                .login-click span{margin-left:5px;}
+.login-content li{float: left;width:100%;}
+.login-content .login-click{margin:18px 0;}
+.login-click a,.login-click{color:#219ba1;}
+.login-click span{margin-left:5px;}
 .login .sociality {margin-top:25px;line-height:24px;color:#219ba1;}
-         .sociality a{color:#219ba1;}
-         .sociality img{margin-left: 10px;}
+.sociality a{color:#219ba1;}
+.sociality img{margin-left: 10px;}
 
-          .login-content input[type='text'],
-          .login-content input[type='password'],
-          .login-content input[type="submit"]{width:100%;box-sizing: border-box;font-size:14px;margin-top:20px;border-radius: 30px;padding:8px 15px;border:1px solid #219ba1;}
-          .login-content input[type="submit"]{width:100%;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
+.login-content input[type='text'],
+.login-content input[type='password'],
+.login-content input[type="submit"]{width:100%;box-sizing: border-box;font-size:14px;margin-top:20px;border-radius: 30px;padding:8px 15px;border:1px solid #219ba1;}
+.login-content input[type="submit"]{width:100%;background:#219ba1; cursor:pointer; color:#fff;font-size: 20px;}
 
-          #qq-login-btn img {
-              vertical-align: middle;
-          }
+#qq-login-btn img {
+    vertical-align: middle;
+}
 
 
 
@@ -135,12 +135,12 @@ html{
     font-size:14px;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
-	color:#333;
+    color:#333;
 
     background:url(../image/footer.png) #fff  repeat-x bottom;
 }
 a {
-	text-decoration:none;
+    text-decoration:none;
 }
 .box-title{width: 100%;border-bottom:1px solid #219ba1;color:#219ba1;padding:6px 0px;font-size:20px;}
 .box-title.none-border{border: none}
@@ -317,16 +317,16 @@ textarea ,button{
 /* fund dialog */
 .windows {display:none;width:100%;float:left;height:100%;position:fixed;top:0px;left:0px;z-index:1119;background:rgba(0,0,0,0.5)}
 .windows .confirm{display:none;transition:top 0.5s;width:600px;height:auto;border:1px solid #777;background:#fff;position:absolute;top:0px;left:0;right:0;margin:auto}
-   .confirm .confirm-title{height:40px;padding:10px 20px;}
-   		     .confirm-title h2{color:#333;float:left;line-height:40px;font-size:16px;}
-   		     .confirm-title .close{float:right;line-height:40px;color:#999;margin-right:5px;}
-   .confirm .confirm-content{padding:18px;padding-top:0px;color:#999;}
-  		     .confirm-content i{margin:0px 15px;margin-right:33px;position:relative;top:2px;float:left;font-size:56px;}
-  		     .confirm-content p{margin-left:15px;line-height:30px;}
-     .confirm-content .icon-remove{color:#ff5757}
-     .confirm-content .icon-ok{color:#0C3}
-   .confirm .confirm-bottom{width:100%;height:50px; text-align:center;}
-   		     .confirm-bottom button{background:#219ba1;border:none;font-family: '微软雅黑'; cursor:pointer; color:#fff;font-size:16px;outline:none;width:140px;height:30px;line-height:0px;margin-right:8px;}
+.confirm .confirm-title{height:40px;padding:10px 20px;}
+.confirm-title h2{color:#333;float:left;line-height:40px;font-size:16px;}
+.confirm-title .close{float:right;line-height:40px;color:#999;margin-right:5px;}
+.confirm .confirm-content{padding:18px;padding-top:0px;color:#999;}
+.confirm-content i{margin:0px 15px;margin-right:33px;position:relative;top:2px;float:left;font-size:56px;}
+.confirm-content p{margin-left:15px;line-height:30px;}
+.confirm-content .icon-remove{color:#ff5757}
+.confirm-content .icon-ok{color:#0C3}
+.confirm .confirm-bottom{width:100%;height:50px; text-align:center;}
+.confirm-bottom button{background:#219ba1;border:none;font-family: '微软雅黑'; cursor:pointer; color:#fff;font-size:16px;outline:none;width:140px;height:30px;line-height:0px;margin-right:8px;}
 
 
 
