@@ -155,7 +155,7 @@
                                 </li>
                                 <li class="m-b10">
                                     <P class="txt1">添加你喜欢的标签</P>
-                                    <input class="reg-input1"  name="fav_tag"  id="fav_tag"  type="text" placeholder="e.g.Unity3D Cocos2d-x C# Java web" />
+                                    <input class="reg-input1"  name="fav_tag"  id="fav_tag"  type="text" placeholder="e.g.Unity3D Cocos2d-x C# Java web （多个标签用空格分开）" />
                                 </li>
                                 <li class="m-b10">
                                     <P class="txt1">你现在处于什么阶段？</P>
