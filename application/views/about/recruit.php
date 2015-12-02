@@ -99,6 +99,8 @@ if (!isset($_SESSION['problem_temp'])) {
         <span><a href="">9RIA天地会</a></span>
         <span><a href="">腾讯课堂</a></span>
         <span><a href="">白鹭引擎</a></span>
+        <span><a href="https://software.intel.com/zh-cn" target="_blank">因特尔</a></span>
+
     </section>
     <hr>
     <div class="prey">Copyright ©2015天地培训 All rights reserved｜浙ICP备09080888号</div>

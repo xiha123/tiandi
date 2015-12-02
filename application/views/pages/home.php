@@ -75,6 +75,8 @@
 			<a href="http://www.9ria.com/" target="_blank">9RIA天地会</a>
 			<a href="http://ke.qq.com/" target="_blank">腾讯课堂</a>
 			<a href="http://www.egret.com/" target="_blank">白鹭引擎</a>
+			<span><a href="https://software.intel.com/zh-cn" target="_blank">因特尔</a></span>
+
 
 		</div>
 		<p class="bottom">Copyright © 2015 天地培训. All Rights Reserved 浙ICP备09080888号</p>
