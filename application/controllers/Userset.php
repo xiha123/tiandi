@@ -30,14 +30,17 @@ class UserSet extends CI_Controller {
 		$tags = explode(' ',$fav_tag);
 		foreach ($tags as $tag) {
 
-			$tag = ModelFactory::Tag()->get_tag_withtype($tag);
-			if (!$tag) {
-				ModelFactory::Tag()->add_tag($tag);
+			$trim = trim($tag);
+			if ($trim) {
 				$tag = ModelFactory::Tag()->get_tag_withtype($tag);
-			}
-			$is_col = ModelFactory::Tag()->is_collect_tag($tag['id']);
-			if (!$is_col) {
-				ModelFactory::Tag()->collect_tag($tag['id']);
+				if (!$tag && $trim) {
+					ModelFactory::Tag()->add_tag($tag);
+					$tag = ModelFactory::Tag()->get_tag_withtype($tag);
+				}
+				$is_col = ModelFactory::Tag()->is_collect_tag($tag['id']);
+				if (!$is_col) {
+					ModelFactory::Tag()->collect_tag($tag['id']);
+				}
 			}
 		}
 		if (!$pro = ModelFactory::UserProfile()->getbyuserid($this->me['id'])) {
