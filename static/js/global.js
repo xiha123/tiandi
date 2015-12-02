@@ -239,26 +239,26 @@ $("#ajax_eye, #ajax_uneye").click(function(event) {
 });
 
 
-$("#login-form").on('submit' , function(event) {
-    event.preventDefault();
-    var username = $("#login_username").val(),
-    password = $("#login_password").val();
-    _td.api.loginUser({
-        "name" : username,
-        "pwd" : password
-    }).then(function(res) {
-        showAlert(true, "登录成功！");
-        setTimeout(function() {
-            if (res.data.type === '1') {
-                location.href = 'home?uid=' + res.data.id;
-            } else {
-                location.reload();
-            }
-        }, 1000)
-    }, function(){
-        showAlert(false, "您输入的账号或密码错误，请检查后再试");
-    });
-});
+//$("#login-form").on('submit' , function(event) {
+//    event.preventDefault();
+//    var username = $("#login_username").val(),
+//    password = $("#login_password").val();
+//    _td.api.loginUser({
+//        "name" : username,
+//        "pwd" : password
+//    }).then(function(res) {
+//        showAlert(true, "登录成功！");
+//        setTimeout(function() {
+//            if (res.data.type === '1') {
+//                location.href = 'home?uid=' + res.data.id;
+//            } else {
+//                location.reload();
+//            }
+//        }, 1000)
+//    }, function(){
+//        showAlert(false, "您输入的账号或密码错误，请检查后再试");
+//    });
+//});
 $("#ajax_login").on('click' , function(event) {
     event.preventDefault();
     var username = $("#login_username").val(),
@@ -269,6 +269,8 @@ $("#ajax_login").on('click' , function(event) {
     $.post("/api/user_api/login",{
             name : username,
             pwd : password,
+            remind:document.getElementById("remindme").checked == true?'yes':'no',
+
             vcode: vcode
         }, function(data) {
             obj = eval('('+data+')');

@@ -15,7 +15,6 @@
     </div>
 </div>
 
-
 <script src="static/js/api.js"></script>
 <script>
     window._td = {};
@@ -26,55 +25,14 @@
 </script>
 <script src="static/js/global.js"></script>
 
+
+
 <?php if (!isset($id)) { ?>
 <script>
-
 // 微博登录
 WB2.anyWhere(function (W) {
     W.widget.connectButton({
-        id: "wb_connect_btn",
-        type: '3,2',
-        callback: {
-            login: function (res) {
-                console.log(res);
-                var avatar = res.avatar_large,
-                    nickname = res.name;
-
-                $.post('/api/user_api/check_oauth',{
-                    key: avatar,
-                    source:'sina',
-                    source_id:avatar,
-                    avatar:avatar,
-                    nickname:nickname
-                },function(resp){
-                    obj = eval('('+resp+')');
-                    if (obj.status) {
-                        if (obj.data.first == 'yes') {
-                            var checked = false;
-                            href = window.location.href.split('#')[0];
-                            href = href.replace('&editprofile=1','');
-                            if(checked){
-                                href.href="/god/apply";
-                            }else{
-                                if ( href.indexOf('?') >= 0 ) {
-                                    href = href + '&editprofile=1'
-                                }else{
-                                    href = href + '?editprofile=1';
-                                }
-                                location.replace(href);
-                            }
-                        }else{
-                            location.reload();
-                        }
-                    }
-                }).error(function() { alert("网络异常!"); });
-            }
-        }
-    });
-});
-WB2.anyWhere(function (W) {
-    W.widget.connectButton({
-        id: "wb_connect_btn_rg",
+        id: "wb_connect_btn-hidden",
         type: '3,2',
         callback: {
             login: function (res) {
@@ -115,8 +73,9 @@ WB2.anyWhere(function (W) {
     });
 });
 // QQ登录
+
 QC.Login({
-    btnId:"qq-login-btn"    //插入按钮的节点id
+    btnId:"qq-login-btn-hidden"    //插入按钮的节点id
 }, function (reqData, opts) {
     var avatar = reqData.figureurl_qq_1,
         nickname = QC.String.escHTML(reqData.nickname);
@@ -152,44 +111,7 @@ QC.Login({
     }).error(function() { alert("网络异常!"); });
 
 });
-// QQ登录
-QC.Login({
-    btnId:"qq-login-btn_rg"    //插入按钮的节点id
-}, function (reqData, opts) {
-    var avatar = reqData.figureurl_qq_1,
-        nickname = QC.String.escHTML(reqData.nickname);
-    console.log(reqData);
 
-    $.post('/api/user_api/check_oauth',{
-        key: avatar,
-        source:'qq',
-        source_id:avatar,
-        avatar:avatar,
-        nickname:nickname
-    },function(resp){
-        obj = eval('('+resp+')');
-        if (obj.status) {
-            if (obj.data.first == 'yes') {
-                    var checked = false;
-                    href = window.location.href.split('#')[0];
-                    href = href.replace('&editprofile=1','');
-                    if(checked){
-                        href.href="/god/apply";
-                    }else{
-                        if ( href.indexOf('?') >= 0 ) {
-                            href = href + '&editprofile=1'
-                        }else{
-                            href = href + '?editprofile=1';
-                        }
-                        location.replace(href);
-                    }
-            }else{
-                location.reload();
-            }
-        }
-    }).error(function() { alert("网络异常!"); });
-
-});
 function openwindow(url,name,iWidth,iHeight)
 {
     var url;                                 //转向网页的地址;
@@ -204,6 +126,15 @@ $(function(){
     $('.wx-login-btn').on('click',function(){
         openwindow('/weixin/login','weixinlogin',600,600);
     })
+    $('.qq-login-btn').on('click',function(){
+        var url = 'https://graph.qq.com/oauth2.0/authorize?client_id=101242237&response_type=token&scope=all&redirect_uri=http%3A%2F%2Fwww.91miaoda.com%2Fqq_cb';
+        openwindow(url,'qqlogin',600,600);
+
+    })
+    $('.wb_connect_btn').on('click',function(){
+        $('.WB_loginButton').click();
+    })
+
 })
 
 </script>

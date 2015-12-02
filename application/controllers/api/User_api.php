@@ -42,7 +42,7 @@ class User_api extends Base_api {
                 'avatar' => $params['avatar'],
                 'parent_id' => $parent_id,
             ]);
-            if ($true) {
+            if ($true === true) {
                 $user = ModelFactory::User()->get_by_oauth($key);
                 if ($user) {
                     ModelFactory::User()->login_by_oauth($user['id']);
@@ -202,10 +202,15 @@ class User_api extends Base_api {
     }
 
     public function login() {
-        $params = parent::get_params('POST', array('name', 'pwd','vcode'));
+        $params = parent::get_params('POST', array('name', 'pwd','vcode','remind'));
         extract($params);
         if (md5($params['vcode']) != $_SESSION["verification"]) {
             parent::finish(false, '验证码错误!');
+        }
+        if ($params['remindme'] == 'yes') {
+            $this->load->helper('cookie');
+            $cookie = $this->input->cookie('ci_session');
+            $this->input->set_cookie('ci_session', $cookie, '35580000');
         }
         $result = ModelFactory::User()->login($name, $pwd);
         if ($result === false) {

@@ -9,7 +9,8 @@
                 </script>
 <!-- 登录窗口通用弹窗  -->
 <div class="window" style="<?php if(isset($_GET['from_invite']) || $show_notice){echo 'display:block;';}?>">
-
+    <div id="qq-login-btn-hidden" style="display: none"></div>
+    <div id="wb_connect_btn-hidden" style="display: none"></div>
 
 	<div class="login" id="login" style="width: 305px;height: 345px;">
 		<div class="regist-open">
@@ -32,15 +33,15 @@
 				</li>
 				<li class="c regist-zh">
                     <a href="#" class="reg-btn3" id="ajax_login">登陆</a>
-                    <input type="checkbox" value="1"> 记住我 .
+                    <input type="checkbox" id="remindme" value="1"> 记住我 .
                     <a class="reg-link" style="color: #0a001f" href="javascript:$('#forget').click();">无法登陆?</a>
 				</li>
                 <li class="c open-login">
                     <P class="tac m-b5">社交账号登录</P>
                     <div class="reg-link c">
-                        <P><a href="#"   class="reg-link1 wx-login-btn"><span class="reg-icon2"></span>微信</a></P>
-                        <P><a href="#" class="reg-link1" id="wb_connect_btn"><span class="reg-icon3"></span>微博</a></P>
-                        <P><a href="#" class="reg-link1" id="qq-login-btn"><span class="reg-icon4"></span>QQ</a></P>
+                        <P><a href="javascript:;"   class="reg-link1 wx-login-btn"><span class="reg-icon2"></span>微信</a></P>
+                        <P><a href="javascript:;" class="reg-link1 wb_connect_btn" ><span class="reg-icon3"></span>微博</a></P>
+                        <P><a href="javascript:;" class="reg-link1 qq-login-btn" ><span class="reg-icon4"></span>QQ</a></P>
                     </div>
                 </li>
 			</ul>
@@ -96,8 +97,8 @@
 					<P class="tac m-b5">社交账号登录</P>
 					<div class="reg-link c">
 						<P><a href="javascript:;" class="reg-link1 wx-login-btn" id="wx-login-btn"><span class="reg-icon2"></span>微信</a></P>
-						<P><a href="#" class="reg-link1" id="wb_connect_btn_rg"><span class="reg-icon3"></span>微博</a></P>
-						<P><a href="#" class="reg-link1" id="qq-login-btn_rg"><span class="reg-icon4"></span>QQ</a></P>
+						<P><a href="javascript:;" class="reg-link1 wb_connect_btn" id="wb_connect_btn"><span class="reg-icon3"></span>微博</a></P>
+						<P><a href="javascript:;" class="reg-link1 qq-login-btn" id="qq-login-btn"><span class="reg-icon4"></span>QQ</a></P>
 					</div>
 				</li>
 			</ul>
