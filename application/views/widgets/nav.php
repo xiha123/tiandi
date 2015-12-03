@@ -6,7 +6,7 @@
                 $navList = array(
                     array(
                         'name' => '秒答',
-                        'link' => 'miaoda',
+                        'link' => 'http://www.91miaoda.com',
                         'active' => false
                     ),
 
