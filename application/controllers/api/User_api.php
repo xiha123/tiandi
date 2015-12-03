@@ -57,7 +57,32 @@ class User_api extends Base_api {
             parent::finish(true,'',['first'=>'no']);
         }
     }
+    public 	function checknick(){
+        $nick =  $this->input->post("nick");
 
+        if (!$nick) {
+            parent::finish(false,'昵称不能为空!',['first'=>'no']);
+        }
+        $params1 = array('nickname' => $nick);
+
+        $users =(array) ModelFactory::User()->get_list($params1,0,2);
+
+        $count = count($users);
+        if ($count >= 2) {
+            parent::finish(false,'昵称已被使用，请重新选择!',['first'=>'no']);
+        } else {
+            if ($count == 1) {
+                if ($users[0]['id'] != $this->me['id']) {
+                    parent::finish(false,'昵称已被使用，请重新选择!',['first'=>'no']);
+                }
+            }else{
+                ModelFactory::User()->edit($this->me['id'],[
+                    'nickname'=>$nick
+                ]);
+            }
+            parent::finish(true,'');
+        }
+    }
     /**
     * 关注用户与取消用户关注
      * @param [user_id] [要搜索的标签索引值]
@@ -204,6 +229,12 @@ class User_api extends Base_api {
     public function login() {
         $params = parent::get_params('POST', array('name', 'pwd','vcode','remind'));
         extract($params);
+        if (!trim($params['name']) ) {
+            parent::finish(false, '用户名不能为空!');
+        }
+        if (!trim($params['pwd']) ) {
+            parent::finish(false, '密码不能为空!');
+        }
         if (md5($params['vcode']) != $_SESSION["verification"]) {
             parent::finish(false, '验证码错误!');
         }

@@ -127,7 +127,7 @@
                 </div>
             </div>
             <?php $userinfo = ModelFactory::User()->check_login();?>
-            <form method="post" action="/userset/profile" style="margin-top:45px">
+            <form method="post" action="/userset/profile" id="profileform" style="margin-top:45px" >
 
                 <div class="regist-box"  style="<?php if(isset($_GET['editprofile'])){echo 'display:block;';}else{echo 'display:none;';}?>">
                     <dl class="reg-top c">
@@ -135,8 +135,9 @@
                         <dd>
                             <h2>感谢您加入秒答</h2>
                             <p class="m-b10">不要害羞，介绍一下自己吧...</p>
+                            <!-- 4 qq  2 wx 3 weibo-->
 <!--                            						<P><span class="reg-icon1"></span>微博<span class="wb-add">(--><?php //echo $userinfo['email'];?><!--)</span></P>-->
-                            <P><span class="wb-add"><?php echo $userinfo['email'];?></span></P>
+                            <P><span class="<?php echo ModelFactory::User()->getUserType($userinfo)?>"></span><span class="wb-add"><?php echo $userinfo['email'];?></span></P>
                         </dd>
                     </dl>
                     <div class="reg-con c">
@@ -176,7 +177,7 @@
                                 </li>
                                 <li class="m-b10">
                                     <div class="reg-op">
-                                        <button type="submit" class="reg-btn2">确定</button>
+                                        <button type="submit" id="editProForm" class="reg-btn2">确定</button>
                                         <P><img src="/static/login/images/regist-line1.png" width="287" height="17" /></P>
                                         <a href="/home?home=index&uid=<?php echo $userinfo['id'];?>" class="reg-btn1 ">害羞嘛,还是先跳过吧</a>
                                     </div>
@@ -194,6 +195,19 @@
         <script type="text/javascript">
 
             $(function(){
+                $('#editProForm').click(function () {
+                    $.post('/api/user_api/checknick',{
+                        nick:$('#nick_name').val()
+                    },function (data){
+                        var  obj = eval('('+data+')');
+                        if (obj.status == false) {
+                            showAlert(true, obj.error);
+                        }else{
+                            $('#profileform').submit();
+                        }
+                    })
+                    return false;
+                })
                 $('.state a').click(function(){
                     var i = $(this).index();
                     var type = $(this).text();
