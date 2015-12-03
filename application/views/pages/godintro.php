@@ -40,7 +40,7 @@
 <script>
     $(".js-apply").click(function () {
         if (_td.info.id === -1) {
-            $('.bomb-login').trigger('click');
+            $('.bomb-reg').trigger('click');
         } else {
             location.href = 'god/apply';
         }

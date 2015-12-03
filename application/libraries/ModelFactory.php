@@ -27,6 +27,12 @@ class ModelFactory {
             return  self::load('Usertask_model');
         }
     /**
+     * @return Tag_model
+     */
+        static  function Tag(){
+            return  self::load('Tag_model');
+        }
+    /**
      * @return Pricelist_model
      */
         static  function Pricelist(){
@@ -37,6 +43,12 @@ class ModelFactory {
      */
         static  function Invitehistory(){
             return  self::load('Invitehistory_model');
+        }
+    /**
+     * @return Userprofile_model
+     */
+        static  function UserProfile(){
+            return  self::load('Userprofile_model');
         }
 
     /**

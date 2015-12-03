@@ -2,7 +2,7 @@
     <i class="fa fa-chevron-up"></i>
 </div>
 
-<div class="left-ad">
+<div class="left-ad" style="display: none;">
     <a href="javascript:$('.left-ad').hide();"><i class="fa fa-close"></i></a>
     <a href="http://ke.qq.com/course/95792" target=“_blank”><img src="/static/image/miaoda_left2.jpg" alt="apply god" width="170" height="320"></a>
 </div>
@@ -15,19 +15,6 @@
     </div>
 </div>
 
-<?php
-switch($this->agent->browser()) {
-    case 'Opera':
-    case 'Chrome':
-    case 'Firefox':
-    case 'Safari':
-        echo '<script src="static/lib/jquery/jquery-2.1.4.min.js"></script>';
-        break;
-    default:
-        echo '<script src="static/lib/jquery/jquery-1.11.3.min.js"></script>';
-        break;
-}
-?>
 <script src="static/js/api.js"></script>
 <script>
     window._td = {};
@@ -38,68 +25,118 @@ switch($this->agent->browser()) {
 </script>
 <script src="static/js/global.js"></script>
 
+
+
 <?php if (!isset($id)) { ?>
-<script src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101242237" data-redirecturi="http://www.tiandipeixun.com/qq_cb" charset="utf-8"></script>
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=3729754985" type="text/javascript" charset="utf-8"></script>
 <script>
 // 微博登录
 WB2.anyWhere(function (W) {
     W.widget.connectButton({
-        id: "wb_connect_btn",
+        id: "wb_connect_btn-hidden",
         type: '3,2',
         callback: {
             login: function (res) {
+                console.log(res);
                 var avatar = res.avatar_large,
                     nickname = res.name;
 
-                _td.api.checkOauth({
-                    key: avatar
-                }).then(function () {
-                    location.reload();
-                }, function () {
-                    $('#reg').find('h2').text('通过新浪微博账号注册');
-                    $('#reg_nick').val(nickname);
-                    $('#reg_avatar').val(avatar);
-                    $('.bomb-reg').trigger('click');
-                });
+                $.post('/api/user_api/check_oauth',{
+                    key: avatar,
+                    source:'sina',
+                    source_id:avatar,
+                    avatar:avatar,
+                    nickname:nickname
+                },function(resp){
+                    obj = eval('('+resp+')');
+                    if (obj.status) {
+                        if (obj.data.first == 'yes') {
+                            var checked = false;
+                            href = window.location.href.split('#')[0];
+                            href = href.replace('&editprofile=1','');
+                            if(checked){
+                                href.href="/god/apply";
+                            }else{
+                                if ( href.indexOf('?') >= 0 ) {
+                                    href = href + '&editprofile=1'
+                                }else{
+                                    href = href + '?editprofile=1';
+                                }
+                                location.replace(href);
+                            }
+                        }else{
+                            location.reload();
+                        }
+                    }
+                }).error(function() { alert("网络异常!"); });
             }
         }
     });
 });
 // QQ登录
-QC.Login({
-    btnId:"qq-login-btn"    //插入按钮的节点id
-}, function (reqData, opts) {
-    var avatar = reqData.figureurl_qq_2,
-        nickname = QC.String.escHTML(reqData.nickname);
 
-    _td.api.checkOauth({
-        key: avatar
-    }).then(function () {
-        location.reload();
-    }, function () {
-        $('#reg').find('h2').text('通过 QQ 账号注册');
-        $('#reg_nick').val(nickname);
-        $('#reg_avatar').val(avatar);
-        $('.bomb-reg').trigger('click');
-    });
-    /*
-    //根据返回数据，更换按钮显示状态方法
-    var dom = document.getElementById(opts['btnId']),
-    _logoutTemplate=[
-        //头像
-        '<span><img src="{figureurl}" class="{size_key}"/></span>',
-        //昵称
-        '<span>{nickname}</span>',
-        //退出
-        '<span><a href="javascript:QC.Login.signOut();">退出</a></span>'
-    ].join("");
-    dom && (dom.innerHTML = QC.String.format(_logoutTemplate, {
-        nickname : QC.String.escHTML(reqData.nickname), //做xss过滤
-        figureurl : reqData.figureurl
-    }));
-    */
+QC.Login({
+    btnId:"qq-login-btn-hidden"    //插入按钮的节点id
+}, function (reqData, opts) {
+    var avatar = reqData.figureurl_qq_1,
+        nickname = QC.String.escHTML(reqData.nickname);
+    console.log(reqData);
+
+    $.post('/api/user_api/check_oauth',{
+        key: avatar,
+        source:'qq',
+        source_id:avatar,
+        avatar:avatar,
+        nickname:nickname
+    },function(resp){
+        obj = eval('('+resp+')');
+        if (obj.status) {
+            if (obj.data.first == 'yes') {
+                    var checked = false;
+                    href = window.location.href.split('#')[0];
+                    href = href.replace('&editprofile=1','');
+                    if(checked){
+                        href.href="/god/apply";
+                    }else{
+                        if ( href.indexOf('?') >= 0 ) {
+                            href = href + '&editprofile=1'
+                        }else{
+                            href = href + '?editprofile=1';
+                        }
+                        location.replace(href);
+                    }
+            }else{
+                location.reload();
+            }
+        }
+    }).error(function() { alert("网络异常!"); });
+
 });
+
+function openwindow(url,name,iWidth,iHeight)
+{
+    var url;                                 //转向网页的地址;
+    var name;                           //网页名称，可为空;
+    var iWidth;                          //弹出窗口的宽度;
+    var iHeight;                        //弹出窗口的高度;
+    var iTop = (window.screen.availHeight-30-iHeight)/2;       //获得窗口的垂直位置;
+    var iLeft = (window.screen.availWidth-10-iWidth)/2;           //获得窗口的水平位置;
+    window.open(url,name,'height='+iHeight+',,innerHeight='+iHeight+',width='+iWidth+',innerWidth='+iWidth+',top='+iTop+',left='+iLeft+',toolbar=no,menubar=no,scrollbars=auto,resizeable=no,location=no,status=no');
+}
+$(function(){
+    $('.wx-login-btn').on('click',function(){
+        openwindow('/weixin/login','weixinlogin',600,600);
+    })
+    $('.qq-login-btn').on('click',function(){
+        var url = 'https://graph.qq.com/oauth2.0/authorize?client_id=101242237&response_type=token&scope=all&redirect_uri=http%3A%2F%2Fwww.91miaoda.com%2Fqq_cb';
+        openwindow(url,'qqlogin',600,600);
+
+    })
+    $('.wb_connect_btn').on('click',function(){
+        $('.WB_loginButton').click();
+    })
+
+})
+
 </script>
 <?php } ?>
 

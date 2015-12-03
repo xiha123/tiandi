@@ -40,7 +40,7 @@ class Miaoda extends CI_Controller {
 			}
 		}
 
-		$hot_tags = $this->tag_model->get_tag(0 , 20 , "all");
+		$hot_tags = $this->tag_model->get_tag(0, 30, "all");
 		$hot_tags = empty($hot_tags) ? array() : $hot_tags;
 		foreach ($hot_tags as &$tag) {
 			$tag['encode_name'] = urlencode($tag['name']);
