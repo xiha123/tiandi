@@ -31,7 +31,7 @@ $(function () {
     document.getElementsByName('keywords')[0].setAttribute('content', (eleInfo && eleInfo.getAttribute('data-keywords')) || defaultInfo['keywords']);
     document.getElementsByName('description')[0].setAttribute('content', (eleInfo && eleInfo.getAttribute('data-description')) || defaultInfo['description']);
 
-    if (location.pathname === '/' || location.pathname === '/godintro') {
+    if (/*location.pathname === '/' || */location.pathname === '/godintro') {
         $('.left-ad').hide();
     }
 });
